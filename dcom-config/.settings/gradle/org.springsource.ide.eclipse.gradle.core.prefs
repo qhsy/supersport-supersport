@@ -1,5 +1,5 @@
 #org.springsource.ide.eclipse.gradle.core.preferences.GradleProjectPreferences
-#Fri Apr 15 22:42:44 CST 2016
-build.family.org.gradle.tooling.model.eclipse.HierarchicalEclipseProject=;../zoocom;../zoodata;../zooweb;../zoozero;
+#Mon Apr 18 21:43:35 CST 2016
+build.family.org.gradle.tooling.model.eclipse.HierarchicalEclipseProject=;../../zoouhutu/zoocom;../../zoouhutu/zoodata;../../zoouhutu/zooweb;../../zoouhutu/zoozero;
 org.springsource.ide.eclipse.gradle.linkedresources=
-org.springsource.ide.eclipse.gradle.rootprojectloc=../zooadmin
+org.springsource.ide.eclipse.gradle.rootprojectloc=
