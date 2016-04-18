@@ -1,0 +1,26 @@
+buildscript {
+		repositories {
+			 maven {url zooInitMavenCenter}
+		}
+		dependencies {
+			classpath("org.springframework.boot:spring-boot-gradle-plugin:${zooInitSpringBoot}") 
+		}
+}
+
+apply plugin: 'spring-boot'
+
+jar {
+	baseName = 'dcom-remark'
+	version = zooInitVersion
+}
+
+
+dependencies {
+	compile project(':zoozero'){version=zooInitVersion;group=zooInitGroupId}
+	
+	
+	testCompile('org.springframework.boot:spring-boot-starter-test') 
+	
+	
+}
+
