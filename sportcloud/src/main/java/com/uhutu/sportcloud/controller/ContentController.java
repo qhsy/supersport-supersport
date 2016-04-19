@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping(value = "/api/contentController")
-@Api(tags="首页相关操作")
+@Api(tags="内容相关接口")
 public class ContentController {
 	
 	@ResponseBody
@@ -36,7 +36,7 @@ public class ContentController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/sportingMoments", method = RequestMethod.POST)
-	@ApiOperation(value = "运动时刻接口", notes = "运动时刻")
+	@ApiOperation(value = "运动时刻接口", notes = "运动时刻展示")
 	public ApiSportingMomentsResult versionInfo(@RequestBody ApiSportingMomentsInput input) {
 		
 		return new ApiSportingMoments().api(input);
