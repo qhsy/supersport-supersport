@@ -13,9 +13,6 @@ public class HomePageModel {
 	@ApiModelProperty(name="展示类型" ,notes=" 01:展示图文，02:轮播图，	03:轮播图",example="01")
 	private String type="";
 	
-	@ApiModelProperty(name="展示顺序" ,notes="0或者1或者2,越小越靠上,最小为0",example="0")
-	private String sort	=	"";
-	
 	@ApiModelProperty(name="头像图片链接" ,notes="头像图片链接",example="http://www.ichsy.com")
 	private String headProUrl="";
 	
@@ -113,14 +110,6 @@ public class HomePageModel {
 
 	public void setDateShow(String dateShow) {
 		this.dateShow = dateShow;
-	}
-
-	public String getSort() {
-		return sort;
-	}
-
-	public void setSort(String sort) {
-		this.sort = sort;
 	}
 
 	public String getLocationName() {
