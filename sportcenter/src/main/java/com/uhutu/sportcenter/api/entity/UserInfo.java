@@ -39,6 +39,12 @@ public class UserInfo {
 	@ApiModelProperty(value = "简介头像", notes = "简介头像")
 	private String about_head = "";
 
+	@ApiModelProperty(value = "注册到现在为止年数", notes = "注册到现在为止年数")
+	private int years = 1;
+	
+	@ApiModelProperty(value = "运动时刻发布总数量", notes = "运动时刻数量")
+	private int sportsNum = 0;
+	
 	public String getUserCode() {
 		return userCode;
 	}
@@ -117,6 +123,22 @@ public class UserInfo {
 
 	public void setAbout_head(String about_head) {
 		this.about_head = about_head;
+	}
+
+	public int getYears() {
+		return years;
+	}
+
+	public void setYears(int years) {
+		this.years = years;
+	}
+
+	public int getSportsNum() {
+		return sportsNum;
+	}
+
+	public void setSportsNum(int sportsNum) {
+		this.sportsNum = sportsNum;
 	}
 	
 
