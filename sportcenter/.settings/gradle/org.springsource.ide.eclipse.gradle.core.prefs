@@ -1,5 +1,5 @@
 #org.springsource.ide.eclipse.gradle.core.preferences.GradleProjectPreferences
-#Mon Apr 18 22:57:51 CST 2016
+#Tue Apr 19 14:16:02 CST 2016
 build.family.org.gradle.tooling.model.eclipse.HierarchicalEclipseProject=;../../zoouhutu/zoocom;../../zoouhutu/zoodata;../../zoouhutu/zooweb;../../zoouhutu/zoozero;../dcom-component;../dcom-config;../dcom-content;../dcom-remark;../dcom-tag;../dcom-user;
 org.springsource.ide.eclipse.gradle.linkedresources=
-org.springsource.ide.eclipse.gradle.rootprojectloc=
+org.springsource.ide.eclipse.gradle.rootprojectloc=../sportcloud
