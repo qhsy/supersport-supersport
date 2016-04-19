@@ -1,0 +1,88 @@
+
+allprojects{
+    repositories {
+        /*
+        def REPOSITORY_URL = 'http://dev-nexus.ntdev.srnpr.com/nexus/content/repositories/central'
+        all { ArtifactRepository repo ->
+            if(repo instanceof MavenArtifactRepository){
+                def url = repo.url.toString()
+                if (url.startsWith('https://repo1.maven.org/maven2') || url.startsWith('https://jcenter.bintray.com/')) {
+                    project.logger.lifecycle "Repository ${repo.url} replaced by $REPOSITORY_URL."
+                    remove repo
+                }
+            }
+        }
+        maven {
+            url REPOSITORY_URL
+        }
+        */
+
+        maven {url 'http://dev-nexus.ntw.srnpr.com/nexus/content/repositories/central/'}
+		maven {url 'http://dev-nexus.ntw.srnpr.com/nexus/content/repositories/snapshots/'}
+        
+    }
+
+	ext {
+		zooInitVersion='0.0.1-SNAPSHOT'
+		zooInitGroupId='com.uhutu'
+		zooInitGradle='2.12'
+		zooInitSpringBoot='1.3.3.RELEASE'
+		zooInitMavenCenter='http://dev-nexus.ntw.srnpr.com/nexus/content/repositories/central/'
+		zooVersionSpringFox='2.4.0'
+		zooVersionHibernate='5.1.0.Final'
+		zooVersionCommonsLang3='3.3.2'
+		zooVersionEhcache='3.0.0'
+		zooVersionJavaxcache='1.0.0'
+		zooVersionJackson='2.7.3'
+	}
+
+
+    apply plugin: 'java'
+	apply plugin: 'eclipse'
+	//apply plugin: 'spring-boot' 
+	apply plugin: 'maven'
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+
+    /*
+	task wrapper(type: Wrapper) {
+		gradleVersion = '2.12'
+	}
+	*/
+    
+	task sourcesJar(type: Jar, dependsOn: classes) {
+	    classifier = 'sources'
+	    from sourceSets.main.allSource
+	}
+		 
+	artifacts {
+	    archives sourcesJar
+	}
+
+
+   
+	uploadArchives {
+	    repositories {
+	        mavenDeployer {
+	            repository(url: "http://dev-nexus.ntw.srnpr.com/nexus/content/repositories/snapshots/") {
+	                authentication(userName: "deployment", password: "uhutu")
+	            }
+	            pom.version = "$zooInitVersion"
+	            pom.artifactId = "$jar.baseName"
+	            pom.groupId = zooInitGroupId
+	        }
+	    }
+	}
+
+
+	configurations.all {
+    	resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+	}
+
+
+
+}
+
+
+
