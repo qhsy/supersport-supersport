@@ -2,6 +2,7 @@ package com.uhutu.sportcenter.api.input;
 
 import com.uhutu.zoocom.root.RootApiInput;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -9,6 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author pang_jhui
  *
  */
+@ApiModel
 public class ApiUserRegInput extends RootApiInput {
 	
 	@ApiModelProperty(value = "用户名", notes = "用户名", example = "13512345678", required = true)

@@ -1,8 +1,10 @@
 package com.uhutu.sportcenter.api.input;
 
 import com.uhutu.zoocom.root.RootApiInput;
-import io.swagger.annotations.ApiModelProperty;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+@ApiModel
 public class ApiVersionInfoInput  extends RootApiInput  {
 
 	@ApiModelProperty(value="手机系统类型",notes="对应手机当前手机类型，如：1代表ios,2代表andriod")

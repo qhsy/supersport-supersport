@@ -2,12 +2,14 @@ package com.uhutu.sportcenter.api.input;
 
 import com.uhutu.zoocom.root.RootApiInput;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 /**
  * 
  * @author xiegj
  *	短信验证码登录输入类
  */
+@ApiModel
 public class ApiForLoginInput extends RootApiInput {
 	
 	@ApiModelProperty(value = "用户名", notes = "用户名", example = "13512345678", required = true)
