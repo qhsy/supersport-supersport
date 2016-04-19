@@ -40,7 +40,7 @@ import io.swagger.annotations.ApiOperation;
  *
  */
 @RestController
-@RequestMapping(value = "/userController")
+@RequestMapping(value = "/api/userController")
 @Api(tags="",description="用户相关操作")
 public class UserController {
 	
