@@ -1,6 +1,6 @@
 package com.uhutu.sportcenter.api.result;
 
-import com.uhutu.sportcenter.api.entity.ApiUserInfo;
+import com.uhutu.sportcenter.api.entity.UserInfo;
 import com.uhutu.zoocom.root.RootApiResult;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -13,13 +13,13 @@ import io.swagger.annotations.ApiModelProperty;
 public class ApiUserInfoResult extends RootApiResult {
 	
 	@ApiModelProperty(value = "用户信息")
-	private ApiUserInfo userInfo = new ApiUserInfo();
+	private UserInfo userInfo = new UserInfo();
 
-	public ApiUserInfo getUserInfo() {
+	public UserInfo getUserInfo() {
 		return userInfo;
 	}
 
-	public void setUserInfo(ApiUserInfo userInfo) {
+	public void setUserInfo(UserInfo userInfo) {
 		this.userInfo = userInfo;
 	}
 

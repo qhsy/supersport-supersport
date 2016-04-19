@@ -5,11 +5,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.uhutu.sportcenter.api.APiStartPage;
 import com.uhutu.sportcenter.api.ApiForLogin;
 import com.uhutu.sportcenter.api.ApiLoginOut;
 import com.uhutu.sportcenter.api.ApiSendSms;
 import com.uhutu.sportcenter.api.ApiSocialLogin;
+import com.uhutu.sportcenter.api.ApiUserInfo;
 import com.uhutu.sportcenter.api.ApiUserRegister;
 import com.uhutu.sportcenter.api.ApiVersionInfo;
 import com.uhutu.sportcenter.api.input.APiStartPageInput;
@@ -17,6 +19,7 @@ import com.uhutu.sportcenter.api.input.ApiForLoginInput;
 import com.uhutu.sportcenter.api.input.ApiLoginOutInput;
 import com.uhutu.sportcenter.api.input.ApiSendSmsInput;
 import com.uhutu.sportcenter.api.input.ApiSocialLoginInput;
+import com.uhutu.sportcenter.api.input.ApiUserInfoInput;
 import com.uhutu.sportcenter.api.input.ApiUserRegInput;
 import com.uhutu.sportcenter.api.input.ApiVersionInfoInput;
 import com.uhutu.sportcenter.api.result.APiStartPageResult;
@@ -24,6 +27,7 @@ import com.uhutu.sportcenter.api.result.ApiForLoginResult;
 import com.uhutu.sportcenter.api.result.ApiLoginOutResult;
 import com.uhutu.sportcenter.api.result.ApiSendSmsResult;
 import com.uhutu.sportcenter.api.result.ApiSocialLoginResult;
+import com.uhutu.sportcenter.api.result.ApiUserInfoResult;
 import com.uhutu.sportcenter.api.result.ApiUserRegResult;
 import com.uhutu.sportcenter.api.result.ApiVersionInfoResult;
 
@@ -96,5 +100,12 @@ public class UserController {
 		return new ApiForLogin().process(input);
 		
 	}
-
+	
+	@ResponseBody
+	@RequestMapping(value="/userInfo",method = RequestMethod.POST)
+	@ApiOperation(value="用户信息接口",notes="用户相关")
+	public ApiUserInfoResult userInfo(@RequestBody ApiUserInfoInput infoInput){
+		
+		return new ApiUserInfo().process(infoInput);
+	}
 }

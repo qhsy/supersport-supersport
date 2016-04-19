@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author pang_jhui
  *
  */
-public class ApiUserInfo {
+public class UserInfo {
 	
 	@ApiModelProperty(value = "用户编号", notes = "用户编号")
 	private String userCode = "";
