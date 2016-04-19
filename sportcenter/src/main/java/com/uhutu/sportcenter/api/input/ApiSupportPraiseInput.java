@@ -13,4 +13,30 @@ import io.swagger.annotations.ApiModelProperty;
 		
 		@ApiModelProperty(value = "取消么么哒或者嘘嘘", notes = "取消么么哒或者嘘嘘",required=true, example = "true")
 		private boolean cancelFlag = false;
+
+		public String getPraiseType() {
+			return praiseType;
+		}
+
+		public void setPraiseType(String praiseType) {
+			this.praiseType = praiseType;
+		}
+
+		public String getContentCode() {
+			return contentCode;
+		}
+
+		public void setContentCode(String contentCode) {
+			this.contentCode = contentCode;
+		}
+
+		public boolean isCancelFlag() {
+			return cancelFlag;
+		}
+
+		public void setCancelFlag(boolean cancelFlag) {
+			this.cancelFlag = cancelFlag;
+		}
+		
+		
 }
