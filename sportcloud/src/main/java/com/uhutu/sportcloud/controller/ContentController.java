@@ -5,9 +5,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.uhutu.sportcenter.api.ApiHomePage;
+import com.uhutu.sportcenter.api.ApiSportingMoments;
 import com.uhutu.sportcenter.api.input.ApiHomePageInput;
+import com.uhutu.sportcenter.api.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.api.result.ApiHomePageResult;
+import com.uhutu.sportcenter.api.result.ApiSportingMomentsResult;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -29,6 +34,12 @@ public class ContentController {
 		return new ApiHomePage().api(input);
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value = "/sportingMoments", method = RequestMethod.POST)
+	@ApiOperation(value = "运动时刻接口", notes = "运动时刻")
+	public ApiSportingMomentsResult versionInfo(@RequestBody ApiSportingMomentsInput input) {
+		
+		return new ApiSportingMoments().api(input);
+	}
 
 }
