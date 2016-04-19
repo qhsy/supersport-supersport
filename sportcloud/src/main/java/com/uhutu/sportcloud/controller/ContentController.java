@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping(value = "/api/contentController")
-@Api(tags="",description="首页相关操作")
+@Api(tags="首页相关操作")
 public class ContentController {
 	
 	@ResponseBody
