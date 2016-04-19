@@ -18,6 +18,8 @@ jar {
 dependencies {
 	compile project(':sportcenter'){version=zooInitVersion;group=zooInitGroupId}
 	
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: zooVersionSpringFox
+	
 	
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 	
