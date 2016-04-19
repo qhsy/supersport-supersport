@@ -6,12 +6,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uhutu.sportcenter.api.ApiForLabels;
 import com.uhutu.sportcenter.api.ApiHomePage;
 import com.uhutu.sportcenter.api.ApiSportingMoments;
 import com.uhutu.sportcenter.api.ApiSupportPraise;
+import com.uhutu.sportcenter.api.input.ApiForLabelsInput;
 import com.uhutu.sportcenter.api.input.ApiHomePageInput;
 import com.uhutu.sportcenter.api.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.api.input.ApiSupportPraiseInput;
+import com.uhutu.sportcenter.api.result.ApiForLabelsResult;
 import com.uhutu.sportcenter.api.result.ApiHomePageResult;
 import com.uhutu.sportcenter.api.result.ApiSportingMomentsResult;
 import com.uhutu.sportcenter.api.result.ApiSupportPraiseResult;
@@ -52,4 +55,13 @@ public class ContentController {
 		
 		return new ApiSupportPraise().api(input);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/forLabels", method = RequestMethod.POST)
+	@ApiOperation(value = "运动标签获取接口", notes = "运动标签")
+	public ApiForLabelsResult versionInfo(@RequestBody ApiForLabelsInput input) {
+		
+		return new ApiForLabels().api(input);
+	}
+	
 }
