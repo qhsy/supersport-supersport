@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.api.ApiHomePage;
 import com.uhutu.sportcenter.api.ApiSportingMoments;
+import com.uhutu.sportcenter.api.ApiSupportPraise;
 import com.uhutu.sportcenter.api.input.ApiHomePageInput;
 import com.uhutu.sportcenter.api.input.ApiSportingMomentsInput;
+import com.uhutu.sportcenter.api.input.ApiSupportPraiseInput;
 import com.uhutu.sportcenter.api.result.ApiHomePageResult;
 import com.uhutu.sportcenter.api.result.ApiSportingMomentsResult;
+import com.uhutu.sportcenter.api.result.ApiSupportPraiseResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -42,4 +45,11 @@ public class ContentController {
 		return new ApiSportingMoments().api(input);
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/supportPraise", method = RequestMethod.POST)
+	@ApiOperation(value = "内容评价接口", notes = "么么哒与嘘嘘")
+	public ApiSupportPraiseResult versionInfo(@RequestBody ApiSupportPraiseInput input) {
+		
+		return new ApiSupportPraise().api(input);
+	}
 }
