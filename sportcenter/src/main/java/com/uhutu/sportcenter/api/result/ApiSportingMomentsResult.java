@@ -2,8 +2,10 @@ package com.uhutu.sportcenter.api.result;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.uhutu.sportcenter.api.entity.SportingMoment;
 import com.uhutu.zoocom.root.RootApiResult;
+
 import io.swagger.annotations.ApiModelProperty;
 
 public class ApiSportingMomentsResult extends RootApiResult {

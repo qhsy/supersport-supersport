@@ -8,14 +8,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.api.ApiForLabels;
 import com.uhutu.sportcenter.api.ApiHomePage;
+import com.uhutu.sportcenter.api.ApiPublishSportingMoment;
 import com.uhutu.sportcenter.api.ApiSportingMoments;
 import com.uhutu.sportcenter.api.ApiSupportPraise;
 import com.uhutu.sportcenter.api.input.ApiForLabelsInput;
 import com.uhutu.sportcenter.api.input.ApiHomePageInput;
+import com.uhutu.sportcenter.api.input.ApiPublishSportingMomentInput;
 import com.uhutu.sportcenter.api.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.api.input.ApiSupportPraiseInput;
 import com.uhutu.sportcenter.api.result.ApiForLabelsResult;
 import com.uhutu.sportcenter.api.result.ApiHomePageResult;
+import com.uhutu.sportcenter.api.result.ApiPublishSportingMomentResult;
 import com.uhutu.sportcenter.api.result.ApiSportingMomentsResult;
 import com.uhutu.sportcenter.api.result.ApiSupportPraiseResult;
 
@@ -62,6 +65,14 @@ public class ContentController {
 	public ApiForLabelsResult versionInfo(@RequestBody ApiForLabelsInput input) {
 		
 		return new ApiForLabels().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/publishSportingMoment", method = RequestMethod.POST)
+	@ApiOperation(value = "发布运动时刻接口", notes = "发布运动时刻内容")
+	public ApiPublishSportingMomentResult versionInfo(@RequestBody ApiPublishSportingMomentInput input) {
+		
+		return new ApiPublishSportingMoment().api(input);
 	}
 	
 }
