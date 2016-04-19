@@ -18,7 +18,7 @@ jar {
 dependencies {
 	compile project(':zoozero'){version=zooInitVersion;group=zooInitGroupId}
 	
-	
+	compile group: 'zooInitGroupId', name: 'zoozero', version: zooInitVersion
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 	
 	
