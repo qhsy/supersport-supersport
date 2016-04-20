@@ -3,7 +3,7 @@ package com.uhutu.sportcenter.api.result;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.uhutu.sportcenter.api.entity.Label;
+import com.uhutu.dcom.tag.entity.Label;
 import com.uhutu.zoocom.root.RootApiResult;
 
 import io.swagger.annotations.ApiModelProperty;
