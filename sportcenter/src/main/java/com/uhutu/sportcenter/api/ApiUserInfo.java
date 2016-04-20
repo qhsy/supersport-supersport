@@ -1,7 +1,12 @@
 package com.uhutu.sportcenter.api;
 
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uhutu.dcom.user.entity.UcUserinfo;
+import com.uhutu.dcom.user.service.UserServiceFactory;
+import com.uhutu.sportcenter.api.entity.UserInfo;
 import com.uhutu.sportcenter.api.input.ApiUserInfoInput;
 import com.uhutu.sportcenter.api.result.ApiUserInfoResult;
 import com.uhutu.zoocom.root.RootApiBase;
@@ -14,9 +19,22 @@ import com.uhutu.zoocom.root.RootApiBase;
 @Service
 public class ApiUserInfo extends RootApiBase< ApiUserInfoInput,ApiUserInfoResult> {
 
+	@Autowired
+	private UserServiceFactory userServiceFactory;
+	
 	public ApiUserInfoResult process(ApiUserInfoInput inputParam ) {
 		
-		return new ApiUserInfoResult();
+		ApiUserInfoResult userInfoResult = new ApiUserInfoResult();
+		
+		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().query(inputParam.getUserCode());
+		
+		UserInfo apiUserInfo = new UserInfo();
+		
+		BeanUtils.copyProperties(ucUserinfo, apiUserInfo);
+		
+		userInfoResult.setUserInfo(apiUserInfo);
+		
+		return userInfoResult;
 	}
 
 }
