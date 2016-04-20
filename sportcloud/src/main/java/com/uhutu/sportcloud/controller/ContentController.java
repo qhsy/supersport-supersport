@@ -53,7 +53,7 @@ public class ContentController {
 
 	@ResponseBody
 	@RequestMapping(value = "/supportPraise", method = RequestMethod.POST)
-	@ApiOperation(value = "内容评价接口", notes = "么么哒与嘘嘘")
+	@ApiOperation(value = "点赞接口", notes = "可对内容进行么么哒与嘘嘘")
 	public ApiSupportPraiseResult versionInfo(@RequestBody ApiSupportPraiseInput input) {
 		
 		return new ApiSupportPraise().api(input);
