@@ -1,7 +1,6 @@
 package com.uhutu.dcom.user.dao;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
 import com.uhutu.dcom.user.entity.UcUserinfoSocial;
 
@@ -10,7 +9,7 @@ import com.uhutu.dcom.user.entity.UcUserinfoSocial;
  * @author pang_jhui
  *
  */
-@Repository
+
 public interface IUserInfoSocialDao extends CrudRepository<UcUserinfoSocial, Long> {
 
 }
