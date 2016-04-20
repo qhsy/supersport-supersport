@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ZooexampleApplication {
+public class DcomUserApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ZooexampleApplication.class, args);
+		SpringApplication.run(DcomUserApplicationTest.class, args);
 	}
 }
