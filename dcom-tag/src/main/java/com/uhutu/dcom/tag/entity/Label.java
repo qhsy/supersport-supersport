@@ -1,12 +1,20 @@
-package com.uhutu.sportcenter.api.entity;
+package com.uhutu.dcom.tag.entity;
 
+import javax.persistence.Entity;
+import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoodata.dbbase.BaseEntity;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-public class Label {
-	
+@Entity
+@ApiModel
+public class Label extends BaseEntity{
+
+	@ZooData(name = "标签编号")
 	@ApiModelProperty(name="标签编号" ,notes="标签编号",example="lb001")
 	private String labelCode="";
 	
+	@ZooData(name = "标签名称")
 	@ApiModelProperty(name="标签" ,notes="标签",example="极限运动")
 	private String labelName="";
 
