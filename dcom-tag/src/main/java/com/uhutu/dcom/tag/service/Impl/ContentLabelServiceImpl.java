@@ -28,14 +28,14 @@ public class ContentLabelServiceImpl implements IContentLabelService {
 		return contentLabelDaoFacotry.getContentLabelDao().findOne(za);
 	}
 
-	@Override
+	@Autowired
 	public List<CnContentLabel> queryAll() {
 		List<CnContentLabel> list = new ArrayList<CnContentLabel>();
 		list = contentLabelDaoFacotry.getContentLabelDao().queryAll();
 		return list;
 	}
 
-	@Override
+	@Autowired
 	public List<CnContentLabel> querybyuserCode(String userCode) {
 		return contentLabelDaoFacotry.getContentLabelDao().querybyuserCode(userCode);
 	}
