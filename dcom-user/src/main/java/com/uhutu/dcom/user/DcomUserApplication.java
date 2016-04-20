@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DcomUserApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DcomUserApplicationTest.class, args);
+		SpringApplication.run(DcomUserApplication.class, args);
 	}
 }
