@@ -1,21 +1,27 @@
 package com.uhutu.sportcloud.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uhutu.sportcenter.api.ApiFactory;
 import com.uhutu.sportcenter.api.ApiForLabels;
 import com.uhutu.sportcenter.api.ApiHomePage;
 import com.uhutu.sportcenter.api.ApiPublishSportingMoment;
 import com.uhutu.sportcenter.api.ApiSportingMoments;
 import com.uhutu.sportcenter.api.ApiSupportPraise;
+import com.uhutu.sportcenter.api.input.ApiContentDetailInput;
+import com.uhutu.sportcenter.api.input.ApiContentPhotosInput;
 import com.uhutu.sportcenter.api.input.ApiForLabelsInput;
 import com.uhutu.sportcenter.api.input.ApiHomePageInput;
 import com.uhutu.sportcenter.api.input.ApiPublishSportingMomentInput;
 import com.uhutu.sportcenter.api.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.api.input.ApiSupportPraiseInput;
+import com.uhutu.sportcenter.api.result.ApiContentDetailResult;
+import com.uhutu.sportcenter.api.result.ApiContentPhotosResult;
 import com.uhutu.sportcenter.api.result.ApiForLabelsResult;
 import com.uhutu.sportcenter.api.result.ApiHomePageResult;
 import com.uhutu.sportcenter.api.result.ApiPublishSportingMomentResult;
@@ -34,6 +40,9 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping(value = "/api/contentController")
 @Api(tags="内容相关接口")
 public class ContentController {
+	
+	@Autowired
+	private ApiFactory apiFactory;
 	
 	@ResponseBody
 	@RequestMapping(value = "/homePage", method = RequestMethod.POST)
@@ -73,6 +82,24 @@ public class ContentController {
 	public ApiPublishSportingMomentResult versionInfo(@RequestBody ApiPublishSportingMomentInput input) {
 		
 		return new ApiPublishSportingMoment().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/contentDetail", method = RequestMethod.POST)
+	@ApiOperation(value = "内容详情", notes = "内容详情")
+	public ApiContentDetailResult contentDetail(@RequestBody ApiContentDetailInput input) {
+		
+		return apiFactory.getContentDetailInfo().api(input);
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/contentPhotosDetail", method = RequestMethod.POST)
+	@ApiOperation(value = "图集详情", notes = "图集详情")
+	public ApiContentPhotosResult contentPhotosDetail(@RequestBody ApiContentPhotosInput input) {
+		
+		return apiFactory.getContentPhotosDetailInfo().api(input);
+		
 	}
 	
 }
