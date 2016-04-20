@@ -1,12 +1,12 @@
-package com.uhutu.dcom.config;
+package com.uhutu.dcom.content;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ZooexampleApplication {
+public class DcomContentApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ZooexampleApplication.class, args);
+		SpringApplication.run(DcomContentApplication.class, args);
 	}
 }

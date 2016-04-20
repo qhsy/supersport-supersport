@@ -1,12 +1,12 @@
-package com.uhutu.dcom.remark;
+package com.uhutu.dcom.component;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ZooexampleApplication {
+public class DcomComponentApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ZooexampleApplication.class, args);
+		SpringApplication.run(DcomComponentApplication.class, args);
 	}
 }

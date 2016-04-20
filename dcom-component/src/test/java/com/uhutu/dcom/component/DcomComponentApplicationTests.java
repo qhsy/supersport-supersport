@@ -5,11 +5,11 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.uhutu.dcom.component.ZooexampleApplication;
+import com.uhutu.dcom.component.DcomComponentApplication;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ZooexampleApplication.class)
-public class ZooexampleApplicationTests {
+@SpringApplicationConfiguration(classes = DcomComponentApplication.class)
+public class DcomComponentApplicationTests {
 
 	@Test
 	public void contextLoads() {

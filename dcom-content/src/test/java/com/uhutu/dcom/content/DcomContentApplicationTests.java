@@ -1,15 +1,15 @@
-package com.uhutu.dcom.config;
+package com.uhutu.dcom.content;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.uhutu.dcom.config.ZooexampleApplication;
+import com.uhutu.dcom.content.DcomContentApplication;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ZooexampleApplication.class)
-public class ZooexampleApplicationTests {
+@SpringApplicationConfiguration(classes = DcomContentApplication.class)
+public class DcomContentApplicationTests {
 
 	@Test
 	public void contextLoads() {
