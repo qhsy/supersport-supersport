@@ -4,10 +4,28 @@ buildscript {
 		}
 		dependencies {
 			classpath("org.springframework.boot:spring-boot-gradle-plugin:${zooInitSpringBoot}") 
+			classpath('se.transmode.gradle:gradle-docker:'+zooInitDocker)
 		}
 }
 
 apply plugin: 'spring-boot'
+
+//for docker
+apply plugin: 'docker'
+group = zooInitDockerGroup
+
+task buildDocker(type: Docker, dependsOn: build) {
+	  push = false
+	  applicationName = jar.baseName
+	  dockerfile = file('src/main/docker/Dockerfile')
+	  doFirst {
+	    copy {
+	      from jar
+	      into stageDir
+	    }
+	  }
+}
+
 
 jar {
 	baseName = 'sportcloud'
