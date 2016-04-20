@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class HomePageModel {
 	
-	@ApiModelProperty(name="展示类型" ,notes=" 01:展示图文，02:轮播图，	03:轮播图",example="01")
+	@ApiModelProperty(name="展示类型" ,notes=" 01:展示图文，02:轮播图，	03:广告位",example="01")
 	private String type="";
 	
 	@ApiModelProperty(name="头像图片链接" ,notes="头像图片链接",example="http://www.ichsy.com")
@@ -34,8 +34,11 @@ public class HomePageModel {
 	@ApiModelProperty(name="轮播图图片url" ,notes="轮播图图片url",example="http://www.ichsy.com")
 	private String carouselUrl="";
 	
-	@ApiModelProperty(name="轮播图图片超链接" ,notes="轮播图图片超链接",example="http://www.ichsy.com")
-	private String carouselUrlLink="";
+	@ApiModelProperty(name="轮播图链接跳转类型" ,notes="轮播图链接跳转类型01:超链接,02:运动时刻详情页,03:个人中心",example="01")
+	private String carouselLinkType="";
+	
+	@ApiModelProperty(name="轮播图链接跳转内容" ,notes="轮播图链接跳转内容",example="http://www.ichsy.com")
+	private String carouselLinkContent="";
 	
 	@ApiModelProperty(name="日期展示" ,notes="日期展示",example="2016-4-19")
 	private String dateShow="";
@@ -96,14 +99,6 @@ public class HomePageModel {
 		this.carouselUrl = carouselUrl;
 	}
 
-	public String getCarouselUrlLink() {
-		return carouselUrlLink;
-	}
-
-	public void setCarouselUrlLink(String carouselUrlLink) {
-		this.carouselUrlLink = carouselUrlLink;
-	}
-
 	public String getDateShow() {
 		return dateShow;
 	}
@@ -118,6 +113,22 @@ public class HomePageModel {
 
 	public void setLocationName(String locationName) {
 		this.locationName = locationName;
+	}
+
+	public String getCarouselLinkType() {
+		return carouselLinkType;
+	}
+
+	public void setCarouselLinkType(String carouselLinkType) {
+		this.carouselLinkType = carouselLinkType;
+	}
+
+	public String getCarouselLinkContent() {
+		return carouselLinkContent;
+	}
+
+	public void setCarouselLinkContent(String carouselLinkContent) {
+		this.carouselLinkContent = carouselLinkContent;
 	}
 	
 }
