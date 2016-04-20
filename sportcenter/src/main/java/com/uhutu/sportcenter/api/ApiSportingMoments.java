@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.api;
 
+import org.springframework.stereotype.Service;
+
 import com.uhutu.sportcenter.api.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.api.result.ApiSportingMomentsResult;
 import com.uhutu.zoocom.root.RootApiBase;
@@ -10,6 +12,7 @@ import com.uhutu.zoocom.root.RootApiBase;
  * @author xiegj
  * 
  */
+@Service
 public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, ApiSportingMomentsResult> {
 
 	protected ApiSportingMomentsResult process(ApiSportingMomentsInput input) {

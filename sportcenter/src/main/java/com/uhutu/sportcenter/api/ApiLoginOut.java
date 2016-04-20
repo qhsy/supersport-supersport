@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.api;
 
+import org.springframework.stereotype.Service;
+
 import com.uhutu.sportcenter.api.input.ApiLoginOutInput;
 import com.uhutu.sportcenter.api.result.ApiLoginOutResult;
 import com.uhutu.zoocom.root.RootApiBase;
@@ -9,6 +11,7 @@ import com.uhutu.zoocom.root.RootApiBase;
  * @author pang_jhui
  *
  */
+@Service
 public class ApiLoginOut extends RootApiBase< ApiLoginOutInput,ApiLoginOutResult> {
 
 	public ApiLoginOutResult process(ApiLoginOutInput inputParam ) {

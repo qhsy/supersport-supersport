@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.api;
 
+import org.springframework.stereotype.Service;
+
 import com.uhutu.sportcenter.api.input.ApiVersionInfoInput;
 import com.uhutu.sportcenter.api.result.ApiVersionInfoResult;
 import com.uhutu.zoocom.root.RootApiBase;
@@ -10,6 +12,7 @@ import com.uhutu.zoocom.root.RootApiBase;
  * @author xiegj
  * @version1.0
  */
+@Service
 public class ApiVersionInfo extends
 		RootApiBase<ApiVersionInfoInput,ApiVersionInfoResult> {
 
