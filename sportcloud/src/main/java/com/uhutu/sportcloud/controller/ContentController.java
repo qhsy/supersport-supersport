@@ -8,11 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.api.ApiFactory;
-import com.uhutu.sportcenter.api.ApiForLabels;
-import com.uhutu.sportcenter.api.ApiHomePage;
-import com.uhutu.sportcenter.api.ApiPublishSportingMoment;
-import com.uhutu.sportcenter.api.ApiSportingMoments;
-import com.uhutu.sportcenter.api.ApiSupportPraise;
 import com.uhutu.sportcenter.api.input.ApiContentDetailInput;
 import com.uhutu.sportcenter.api.input.ApiContentPhotosInput;
 import com.uhutu.sportcenter.api.input.ApiForLabelsInput;
@@ -49,7 +44,7 @@ public class ContentController {
 	@ApiOperation(value = "app首页接口", notes = "首页内容展示")
 	public ApiHomePageResult versionInfo(@RequestBody ApiHomePageInput input) {
 		
-		return new ApiHomePage().api(input);
+		return apiFactory.getApiHomePage().api(input);
 	}
 	
 	@ResponseBody
@@ -57,7 +52,7 @@ public class ContentController {
 	@ApiOperation(value = "运动时刻接口", notes = "运动时刻展示")
 	public ApiSportingMomentsResult versionInfo(@RequestBody ApiSportingMomentsInput input) {
 		
-		return new ApiSportingMoments().api(input);
+		return apiFactory.getApiSportingMoments().api(input);
 	}
 
 	@ResponseBody
@@ -65,7 +60,7 @@ public class ContentController {
 	@ApiOperation(value = "点赞接口", notes = "可对内容进行么么哒与嘘嘘")
 	public ApiSupportPraiseResult versionInfo(@RequestBody ApiSupportPraiseInput input) {
 		
-		return new ApiSupportPraise().api(input);
+		return apiFactory.getApiSupportPraise().api(input);
 	}
 	
 	@ResponseBody
@@ -73,7 +68,7 @@ public class ContentController {
 	@ApiOperation(value = "运动标签获取接口", notes = "运动标签")
 	public ApiForLabelsResult versionInfo(@RequestBody ApiForLabelsInput input) {
 		
-		return new ApiForLabels().api(input);
+		return apiFactory.getApiForLabels().api(input);
 	}
 	
 	@ResponseBody
@@ -81,7 +76,7 @@ public class ContentController {
 	@ApiOperation(value = "发布运动时刻接口", notes = "发布运动时刻内容")
 	public ApiPublishSportingMomentResult versionInfo(@RequestBody ApiPublishSportingMomentInput input) {
 		
-		return new ApiPublishSportingMoment().api(input);
+		return apiFactory.getApiPublishSportingMoment().api(input);
 	}
 	
 	@ResponseBody
