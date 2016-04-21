@@ -25,7 +25,7 @@ public interface ISupportPraiseDao extends CrudRepository<CnSupportPraise, Strin
 	 *            用户编号
 	 * @return 标签信息
 	 */
-	@Query("select cp from CnSupportPraise cp where cp.type=:type and cp.user_code=:userCode")
+	@Query("select cp from CnSupportPraise cp where cp.type=:type and cp.userCode=:userCode")
 	public List<CnSupportPraise> querybyUserCodeAndType(@Param("type") String type, @Param("userCode") String userCode);
 
 	/**
@@ -39,7 +39,7 @@ public interface ISupportPraiseDao extends CrudRepository<CnSupportPraise, Strin
 	 *            内容编号
 	 * @return 标签信息
 	 */
-	@Query("select cp from CnSupportPraise cp where cp.type=:type and cp.user_code=:userCode and contentCode=:contentCode")
+	@Query("select cp from CnSupportPraise cp where cp.type=:type and cp.userCode=:userCode and cp.contentCode=:contentCode")
 	public List<CnSupportPraise> querybyContentCodeAndUserCodeAndType(@Param("type") String type,
 			@Param("userCode") String userCode, @Param("contentCode") String contentCode);
 
@@ -50,7 +50,7 @@ public interface ISupportPraiseDao extends CrudRepository<CnSupportPraise, Strin
 	 *            用户编号
 	 * @return 点击评价信息
 	 */
-	@Query("select cp from CnSupportPraise cp where cp.user_code=:userCode")
+	@Query("select cp from CnSupportPraise cp where cp.userCode=:userCode")
 	public List<CnSupportPraise> querybyUserCode(@Param("userCode") String userCode);
 
 	/**
@@ -60,7 +60,7 @@ public interface ISupportPraiseDao extends CrudRepository<CnSupportPraise, Strin
 	 *            内容编号
 	 * @return 点击评价信息
 	 */
-	@Query("select cp from CnSupportPraise cp where content_code=:contentCode")
+	@Query("select cp from CnSupportPraise cp where contentCode=:contentCode")
 	public List<CnSupportPraise> querybyContentCode(@Param("contentCode") String contentCode);
 
 	/**
@@ -73,7 +73,7 @@ public interface ISupportPraiseDao extends CrudRepository<CnSupportPraise, Strin
 	 * 
 	 * @return 点击评价信息
 	 */
-	@Query("select cp from CnSupportPraise cp where cp.type=:type and cp.content_code=:contentCode")
+	@Query("select cp from CnSupportPraise cp where cp.type=:type and cp.contentCode=:contentCode")
 	public List<CnSupportPraise> querybyContentCodeAndType(@Param("type") String type,
 			@Param("contentCode") String contentCode);
 }

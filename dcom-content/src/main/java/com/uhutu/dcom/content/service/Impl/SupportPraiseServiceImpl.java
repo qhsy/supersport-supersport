@@ -44,15 +44,16 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 
 	@Autowired
 	public void save(CnSupportPraise praise) {
-		List<CnSupportPraise> list = querybyContentCodeAndUserCodeAndType(praise.getType(), praise.getUserCode(), praise.getContentCode());
-		if(list==null||list.isEmpty()||list.size()==0){
+		List<CnSupportPraise> list = querybyContentCodeAndUserCodeAndType(praise.getType(), praise.getUserCode(),
+				praise.getContentCode());
+		if (list == null || list.isEmpty() || list.size() == 0) {
 			supportPraiseDaoFacotry.getSupportPraiseDao().save(praise);
 		}
 	}
 
 	@Autowired
-	public void delete(String code) {
-		supportPraiseDaoFacotry.getSupportPraiseDao().delete(code);
+	public void delete(CnSupportPraise praise) {
+		supportPraiseDaoFacotry.getSupportPraiseDao().delete(praise);
 	}
 
 	@Autowired
@@ -60,7 +61,7 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 		List<CnSupportPraise> list = querybyContentCodeAndUserCodeAndType(type, userCode, contentCode);
 		if (list != null && !list.isEmpty() && list.size() > 0) {
 			for (int i = 0; i < list.size(); i++) {
-				supportPraiseDaoFacotry.getSupportPraiseDao().delete(list.get(i).getCode());
+				supportPraiseDaoFacotry.getSupportPraiseDao().delete(list.get(i));
 			}
 		}
 	}
