@@ -22,5 +22,22 @@ public interface IUserInfoService {
 	 * @return 用户信息
 	 */
 	public UcUserinfo query(String id);
+	
+	/**
+	 * 根据用户编号查询用户信息
+	 * @param code
+	 * 		用户编号
+	 * @return 用户信息
+	 */
+	public UcUserinfo queryByCode(String code);
+	
+	/**
+	 * 根据登录名称查询用户信息
+	 * @param loginName
+	 * 		登录名称
+	 * @return 用户信息
+	 */
+	public UcUserinfo queryByLoginName(String loginName);
+	
 
 }
