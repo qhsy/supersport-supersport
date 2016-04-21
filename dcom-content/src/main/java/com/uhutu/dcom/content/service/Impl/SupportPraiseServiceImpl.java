@@ -19,30 +19,30 @@ import com.uhutu.dcom.content.service.ISupportPraiseService;
 @Transactional(readOnly = true)
 public class SupportPraiseServiceImpl implements ISupportPraiseService {
 
-	@Autowired
+	
 	private SupportPraiseDaoFacotry supportPraiseDaoFacotry;
 
-	@Autowired
+	
 	public List<CnSupportPraise> querybyUserCodeAndType(String type, String userCode) {
 		return supportPraiseDaoFacotry.getSupportPraiseDao().querybyUserCodeAndType(type, userCode);
 	}
 
-	@Autowired
+	
 	public List<CnSupportPraise> querybyUserCode(String userCode) {
 		return supportPraiseDaoFacotry.getSupportPraiseDao().querybyUserCode(userCode);
 	}
 
-	@Autowired
+	
 	public List<CnSupportPraise> querybyContentCode(String contentCode) {
 		return supportPraiseDaoFacotry.getSupportPraiseDao().querybyContentCode(contentCode);
 	}
 
-	@Autowired
+	
 	public List<CnSupportPraise> querybyContentCodeAndtype(String type, String contentCode) {
 		return supportPraiseDaoFacotry.getSupportPraiseDao().querybyContentCodeAndType(type, contentCode);
 	}
 
-	@Autowired
+	
 	public void save(CnSupportPraise praise) {
 		List<CnSupportPraise> list = querybyContentCodeAndUserCodeAndType(praise.getType(), praise.getUserCode(),
 				praise.getContentCode());
@@ -51,12 +51,12 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 		}
 	}
 
-	@Autowired
+	
 	public void delete(CnSupportPraise praise) {
 		supportPraiseDaoFacotry.getSupportPraiseDao().delete(praise);
 	}
 
-	@Autowired
+	
 	public void deleteByContentCodeAndUserCode(String contentCode, String userCode, String type) {
 		List<CnSupportPraise> list = querybyContentCodeAndUserCodeAndType(type, userCode, contentCode);
 		if (list != null && !list.isEmpty() && list.size() > 0) {
@@ -66,7 +66,7 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 		}
 	}
 
-	@Autowired
+	
 	public List<CnSupportPraise> querybyContentCodeAndUserCodeAndType(String type, String userCode,
 			String contentCode) {
 		List<CnSupportPraise> list = supportPraiseDaoFacotry.getSupportPraiseDao()
