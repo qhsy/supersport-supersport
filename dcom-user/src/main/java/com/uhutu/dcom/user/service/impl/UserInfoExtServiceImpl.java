@@ -32,4 +32,11 @@ public class UserInfoExtServiceImpl implements IUserInfoExtService {
 		
 	}
 
+	@Override
+	public UcUserinfoExt queryByUserCode(String userCode) {
+		
+		return userDaoFacotry.getUserInfoExtDao().queryByUserCode(userCode);
+		
+	}
+
 }

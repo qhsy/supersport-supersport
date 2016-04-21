@@ -14,7 +14,13 @@ public enum UserEnum {
 	FLAG_DISABLE("用户失效","0"),
 	
 	/**用户状态：冻结*/
-	FLAG_FREEZE("用户冻结","2");	
+	FLAG_FREEZE("用户冻结","2"),
+	
+	/**用户装填：已登录*/
+	FLAG_LOGIN("用户登录","3"),
+	
+	/**用户装填：已登录*/
+	FLAG_LOGINOUT("用户登录退出","4");	
 	
 	private String code = "";
 	

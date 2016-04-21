@@ -1,6 +1,8 @@
 package com.uhutu.dcom.user.dao;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import com.uhutu.dcom.user.entity.UcUserinfoExt;
 
@@ -10,5 +12,8 @@ import com.uhutu.dcom.user.entity.UcUserinfoExt;
  *
  */
 public interface IUserInfoExtDao extends CrudRepository<UcUserinfoExt, String> {
+	
+	@Query("select t from UcUserinfoExt t where userCode=:userCode")
+	public UcUserinfoExt queryByUserCode(@Param("userCode") String userCode);
 
 }

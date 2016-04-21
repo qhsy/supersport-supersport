@@ -22,5 +22,13 @@ public interface IUserInfoExtService {
 	 * @return 用户扩展信息
 	 */
 	public UcUserinfoExt query(String id);
+	
+	/**
+	 * 根据用户编号获取用户扩展信息
+	 * @param userCode
+	 * 		用户编号
+	 * @return 用户扩展信息
+	 */
+	public UcUserinfoExt queryByUserCode(String userCode);
 
 }
