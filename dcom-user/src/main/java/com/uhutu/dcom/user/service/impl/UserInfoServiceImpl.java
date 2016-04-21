@@ -26,13 +26,26 @@ public class UserInfoServiceImpl implements IUserInfoService {
 	@Override
 	public void save(UcUserinfo ucUserinfo) {
 		
-		ucUserinfo.setFlag(UserEnum.FLAG_ENABLE.getCode());
-		
-		String dateStr = DateFormatUtils.format(new Date(), "yyyyMMddHHmmssSSS");
-		
-		ucUserinfo.setCode(PrexEnum.UC.name()+dateStr);
-		
-		userDaoFacotry.getUserInfoDao().save(ucUserinfo);
+		if(userDaoFacotry.getUserInfoDao().exists(ucUserinfo.getZa())){
+			
+			ucUserinfo.setZu(new Date());
+			
+			userDaoFacotry.getUserInfoDao().save(ucUserinfo);
+			
+			
+		}else{
+			
+			ucUserinfo.setFlag(UserEnum.FLAG_ENABLE.getCode());
+			
+			String dateStr = DateFormatUtils.format(new Date(), "yyyyMMddHHmmssSSS");
+			
+			ucUserinfo.setZc(new Date());
+			
+			ucUserinfo.setCode(PrexEnum.UC.name()+dateStr);
+			
+			userDaoFacotry.getUserInfoDao().save(ucUserinfo);
+			
+		}
 		
 	}
 	
