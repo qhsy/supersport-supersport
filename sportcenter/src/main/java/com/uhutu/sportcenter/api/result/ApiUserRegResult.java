@@ -15,7 +15,7 @@ public class ApiUserRegResult extends RootApiResult {
 	private String userCode;
 	
 	@ApiModelProperty(value="会话token")
-	private String token;
+	private String userToken;
 
 	public String getUserCode() {
 		return userCode;
@@ -25,12 +25,12 @@ public class ApiUserRegResult extends RootApiResult {
 		this.userCode = userCode;
 	}
 
-	public String getToken() {
-		return token;
+	public String getUserToken() {
+		return userToken;
 	}
 
-	public void setToken(String token) {
-		this.token = token;
+	public void setUserToken(String userToken) {
+		this.userToken = userToken;
 	}
 	
 	
