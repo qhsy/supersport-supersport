@@ -26,7 +26,8 @@ public class ApiUserInfo extends RootApiBase< ApiUserInfoInput,ApiUserInfoResult
 		
 		ApiUserInfoResult userInfoResult = new ApiUserInfoResult();
 		
-		UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().query
+		UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService()
+				.queryByUserCode(inputParam.getUserCode());
 		
 		UserInfo apiUserInfo = new UserInfo();
 		
