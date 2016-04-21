@@ -60,9 +60,8 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 	}
 
 
-	public List<CnSupportPraise> cancelbyCCAndUCAndType(String type, String userCode, String contentCode) {
+	public void cancelbyCCAndUCAndType(String type, String userCode, String contentCode) {
 		supportPraiseDaoFacotry.getSupportPraiseDao().cancelbyCCAndUCAndType(type, userCode, contentCode);
-		return null;
 	}
 
 }
