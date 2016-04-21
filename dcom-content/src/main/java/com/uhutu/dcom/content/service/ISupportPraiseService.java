@@ -88,5 +88,5 @@ public interface ISupportPraiseService {
 	 *            内容编号
 	 * @return 标签信息
 	 */
-	public List<CnSupportPraise> cancelbyCCAndUCAndType(String type, String userCode, String contentCode);
+	public void cancelbyCCAndUCAndType(String type, String userCode, String contentCode);
 }

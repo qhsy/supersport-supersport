@@ -57,7 +57,7 @@ public interface ISupportPraiseDao extends CrudRepository<CnSupportPraise, Strin
 	 */
 	@Modifying
 	@Query("delete CnSupportPraise cp where cp.type=:type and cp.userCode=:userCode and cp.contentCode=:contentCode")
-	public List<CnSupportPraise> cancelbyCCAndUCAndType(@Param("type") String type,
+	public void cancelbyCCAndUCAndType(@Param("type") String type,
 			@Param("userCode") String userCode, @Param("contentCode") String contentCode);
 
 	/**
