@@ -1,5 +1,7 @@
 package com.uhutu.dcom.user.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
@@ -24,6 +26,9 @@ public class UcUserinfo extends BaseEntity {
 	
 	@ZooData(name="是否可用")
 	private String flag;
+	
+	@ZooData(name="最近登录时间")
+	private Date lastTime;
 
 	/**
 	 * 获取用户编号
@@ -87,6 +92,14 @@ public class UcUserinfo extends BaseEntity {
 	 */
 	public void setFlag(String flag) {
 		this.flag = flag;
+	}
+
+	public Date getLastTime() {
+		return lastTime;
+	}
+
+	public void setLastTime(Date lastTime) {
+		this.lastTime = lastTime;
 	}
 	
 	

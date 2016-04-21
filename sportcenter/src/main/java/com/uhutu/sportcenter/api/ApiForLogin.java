@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.api;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,8 @@ public class ApiForLogin extends RootApiBase<ApiForLoginInput, ApiForLoginResult
 		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(inputParam.getLoginName());
 
 		ucUserinfo.setFlag(UserEnum.FLAG_LOGIN.getCode());
+		
+		ucUserinfo.setLastTime(new Date());
 		
 		userServiceFactory.getUserInfoService().save(ucUserinfo);
 		
