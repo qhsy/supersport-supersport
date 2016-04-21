@@ -74,7 +74,7 @@ public interface ISupportPraiseService {
 	 * 
 	 * @return 点击评价信息
 	 */
-	public void delete(CnSupportPraise praise);
+	public void deleteEn(CnSupportPraise praise);
 
 	/**
 	 * 内容获赞取消
