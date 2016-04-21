@@ -4,7 +4,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uhutu.dcom.user.entity.UcUserinfo;
+import com.uhutu.dcom.user.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.service.UserServiceFactory;
 import com.uhutu.sportcenter.api.entity.UserInfo;
 import com.uhutu.sportcenter.api.input.ApiUserInfoInput;
@@ -26,11 +26,11 @@ public class ApiUserInfo extends RootApiBase< ApiUserInfoInput,ApiUserInfoResult
 		
 		ApiUserInfoResult userInfoResult = new ApiUserInfoResult();
 		
-		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().query(inputParam.getUserCode());
+		UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().query(inputParam.getUserCode());
 		
 		UserInfo apiUserInfo = new UserInfo();
 		
-		BeanUtils.copyProperties(ucUserinfo, apiUserInfo);
+		BeanUtils.copyProperties(ucUserinfoExt, apiUserInfo);
 		
 		userInfoResult.setUserInfo(apiUserInfo);
 		

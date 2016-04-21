@@ -42,6 +42,9 @@ public class UcUserinfoExt extends BaseEntity {
 	
 	@ZooData(name="用户等级")
 	private String level;
+	
+	@ZooData(name="用户头像")
+	private String aboutHead;
 
 	/**
 	 * 获取用户编号
@@ -201,6 +204,14 @@ public class UcUserinfoExt extends BaseEntity {
 	 */
 	public void setLevel(String level) {
 		this.level = level;
+	}
+
+	public String getAboutHead() {
+		return aboutHead;
+	}
+
+	public void setAboutHead(String aboutHead) {
+		this.aboutHead = aboutHead;
 	}
 	
 

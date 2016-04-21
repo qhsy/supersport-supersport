@@ -13,7 +13,7 @@ public class UserInfo {
 	private String userCode = "";
 	
 	@ApiModelProperty(value = "昵称", notes = "昵称")
-	private String nick_name = "";
+	private String nickName = "";
 	
 	@ApiModelProperty(value = "性别", notes = "性别")
 	private String sex = "";
@@ -22,13 +22,13 @@ public class UserInfo {
 	private String location = "";
 	
 	@ApiModelProperty(value = "封面", notes = "封面")
-	private String about_cover = "";
+	private String aboutCover = "";
 	
 	@ApiModelProperty(value = "简介标签", notes = "足球、篮球、户外")
-	private String about_tag = "";
+	private String aboutTag = "";
 	
 	@ApiModelProperty(value = "简介视频", notes = "简介视频")
-	private String about_vido = "";
+	private String aboutVideo = "";
 	
 	@ApiModelProperty(value = "关注领域", notes = "关注领域")
 	private String domain = "";
@@ -37,14 +37,14 @@ public class UserInfo {
 	private String level = "";
 	
 	@ApiModelProperty(value = "简介头像", notes = "简介头像")
-	private String about_head = "";
+	private String aboutHead = "";
 
 	@ApiModelProperty(value = "注册到现在为止年数", notes = "注册到现在为止年数")
 	private int years = 1;
 	
 	@ApiModelProperty(value = "运动时刻发布总数量", notes = "运动时刻数量")
 	private int sportsNum = 0;
-	
+
 	public String getUserCode() {
 		return userCode;
 	}
@@ -53,12 +53,12 @@ public class UserInfo {
 		this.userCode = userCode;
 	}
 
-	public String getNick_name() {
-		return nick_name;
+	public String getNickName() {
+		return nickName;
 	}
 
-	public void setNick_name(String nick_name) {
-		this.nick_name = nick_name;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public String getSex() {
@@ -77,28 +77,28 @@ public class UserInfo {
 		this.location = location;
 	}
 
-	public String getAbout_cover() {
-		return about_cover;
+	public String getAboutCover() {
+		return aboutCover;
 	}
 
-	public void setAbout_cover(String about_cover) {
-		this.about_cover = about_cover;
+	public void setAboutCover(String aboutCover) {
+		this.aboutCover = aboutCover;
 	}
 
-	public String getAbout_tag() {
-		return about_tag;
+	public String getAboutTag() {
+		return aboutTag;
 	}
 
-	public void setAbout_tag(String about_tag) {
-		this.about_tag = about_tag;
+	public void setAboutTag(String aboutTag) {
+		this.aboutTag = aboutTag;
 	}
 
-	public String getAbout_vido() {
-		return about_vido;
+	public String getAboutVideo() {
+		return aboutVideo;
 	}
 
-	public void setAbout_vido(String about_vido) {
-		this.about_vido = about_vido;
+	public void setAboutVideo(String aboutVideo) {
+		this.aboutVideo = aboutVideo;
 	}
 
 	public String getDomain() {
@@ -117,12 +117,12 @@ public class UserInfo {
 		this.level = level;
 	}
 
-	public String getAbout_head() {
-		return about_head;
+	public String getAboutHead() {
+		return aboutHead;
 	}
 
-	public void setAbout_head(String about_head) {
-		this.about_head = about_head;
+	public void setAboutHead(String aboutHead) {
+		this.aboutHead = aboutHead;
 	}
 
 	public int getYears() {
@@ -140,6 +140,8 @@ public class UserInfo {
 	public void setSportsNum(int sportsNum) {
 		this.sportsNum = sportsNum;
 	}
+	
+	
 	
 
 }
