@@ -1,6 +1,7 @@
 package com.uhutu.dcom.content.service.Impl;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.uhutu.dcom.content.dao.SupportPraiseDaoFacotry;
 import com.uhutu.dcom.content.entity.CnSupportPraise;
 import com.uhutu.dcom.content.service.ISupportPraiseService;
-import com.uhutu.zoodata.z.helper.DbHelper;
 
 /**
  * 点赞业务逻辑实现
@@ -51,29 +51,18 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 			supportPraiseDaoFacotry.getSupportPraiseDao().save(praise);
 		}
 	}
-
-	
-	public void deleteEn(CnSupportPraise praise) {
-		DbHelper.insert(praise);
-		supportPraiseDaoFacotry.getSupportPraiseDao().delete(praise);
-	}
-
-	
-	public void deleteByContentCodeAndUserCode(String contentCode, String userCode, String type) {
-		List<CnSupportPraise> list = querybyContentCodeAndUserCodeAndType(type, userCode, contentCode);
-		if (list != null && !list.isEmpty() && list.size() > 0) {
-			for (int i = 0; i < list.size(); i++) {
-				deleteEn(list.get(i));
-			}
-		}
-	}
-
 	
 	public List<CnSupportPraise> querybyContentCodeAndUserCodeAndType(String type, String userCode,
 			String contentCode) {
 		List<CnSupportPraise> list = supportPraiseDaoFacotry.getSupportPraiseDao()
 				.querybyContentCodeAndUserCodeAndType(type, userCode, contentCode);
 		return list;
+	}
+
+
+	public List<CnSupportPraise> cancelbyCCAndUCAndType(String type, String userCode, String contentCode) {
+		supportPraiseDaoFacotry.getSupportPraiseDao().cancelbyCCAndUCAndType(type, userCode, contentCode);
+		return null;
 	}
 
 }
