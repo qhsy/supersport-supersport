@@ -26,10 +26,10 @@ public class CnContentBasicinfo extends BaseEntity {
 	private String title;
 	
 	@ZooData(name = "发布时间")
-	private Date publish_time;
+	private Date publishTime;
 	
 	@ZooData(name = "内容简介")
-	private String about_desc;
+	private String aboutDesc;
 	
 	@ZooData(name = "内容来源")
 	private String souce;
@@ -38,28 +38,28 @@ public class CnContentBasicinfo extends BaseEntity {
 	private String status;
 	
 	@ZooData(name = "内容分类编号")
-	private String category_code;
+	private String categoryCode;
 	
 	@ZooData(name = "标签编码")
-	private String tag_code;
+	private String tagCode;
 	
 	@ZooData(name = "内容作者")
 	private String author;
 	
 	@ZooData(name = "内容分享范围")
-	private String share_scope;
+	private String shareScope;
 	
 	@ZooData(name = "定位经纬度")
 	private String location;
 	
 	@ZooData(name = "定位位置名称")
-	private String localtion_name;
+	private String localtionName;
 	
 	@ZooData(name = "业务类型编号：运动时刻 文章")
-	private String busi_type;
+	private String busiType;
 	
 	@ZooData(name = "内容类型：感想、视频、图片")
-	private String content_type;
+	private String contentType;
 
 	public String getCode() {
 		return code;
@@ -85,20 +85,20 @@ public class CnContentBasicinfo extends BaseEntity {
 		this.title = title;
 	}
 
-	public Date getPublish_time() {
-		return publish_time;
+	public Date getPublishTime() {
+		return publishTime;
 	}
 
-	public void setPublish_time(Date publish_time) {
-		this.publish_time = publish_time;
+	public void setPublishTime(Date publishTime) {
+		this.publishTime = publishTime;
 	}
 
-	public String getAbout_desc() {
-		return about_desc;
+	public String getAboutDesc() {
+		return aboutDesc;
 	}
 
-	public void setAbout_desc(String about_desc) {
-		this.about_desc = about_desc;
+	public void setAboutDesc(String aboutDesc) {
+		this.aboutDesc = aboutDesc;
 	}
 
 	public String getSouce() {
@@ -117,20 +117,20 @@ public class CnContentBasicinfo extends BaseEntity {
 		this.status = status;
 	}
 
-	public String getCategory_code() {
-		return category_code;
+	public String getCategoryCode() {
+		return categoryCode;
 	}
 
-	public void setCategory_code(String category_code) {
-		this.category_code = category_code;
+	public void setCategoryCode(String categoryCode) {
+		this.categoryCode = categoryCode;
 	}
 
-	public String getTag_code() {
-		return tag_code;
+	public String getTagCode() {
+		return tagCode;
 	}
 
-	public void setTag_code(String tag_code) {
-		this.tag_code = tag_code;
+	public void setTagCode(String tagCode) {
+		this.tagCode = tagCode;
 	}
 
 	public String getAuthor() {
@@ -141,12 +141,12 @@ public class CnContentBasicinfo extends BaseEntity {
 		this.author = author;
 	}
 
-	public String getShare_scope() {
-		return share_scope;
+	public String getShareScope() {
+		return shareScope;
 	}
 
-	public void setShare_scope(String share_scope) {
-		this.share_scope = share_scope;
+	public void setShareScope(String shareScope) {
+		this.shareScope = shareScope;
 	}
 
 	public String getLocation() {
@@ -157,28 +157,28 @@ public class CnContentBasicinfo extends BaseEntity {
 		this.location = location;
 	}
 
-	public String getLocaltion_name() {
-		return localtion_name;
+	public String getLocaltionName() {
+		return localtionName;
 	}
 
-	public void setLocaltion_name(String localtion_name) {
-		this.localtion_name = localtion_name;
+	public void setLocaltionName(String localtionName) {
+		this.localtionName = localtionName;
 	}
 
-	public String getBusi_type() {
-		return busi_type;
+	public String getBusiType() {
+		return busiType;
 	}
 
-	public void setBusi_type(String busi_type) {
-		this.busi_type = busi_type;
+	public void setBusiType(String busiType) {
+		this.busiType = busiType;
 	}
 
-	public String getContent_type() {
-		return content_type;
+	public String getContentType() {
+		return contentType;
 	}
 
-	public void setContent_type(String content_type) {
-		this.content_type = content_type;
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 
 }

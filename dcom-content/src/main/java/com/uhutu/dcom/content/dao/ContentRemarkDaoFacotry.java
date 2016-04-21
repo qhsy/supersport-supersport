@@ -4,23 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * 内容数据facotry
+ * 评价信息数据facotry
  * 
  * @author xiegj
  *
  */
 @Component
-public class ContentDetailDaoFacotry {
+public class ContentRemarkDaoFacotry {
 
 	@Autowired
-	private IContentDetailDao cnContentDetailDao;
+	private IContentRemarkDao contentRemarkDao;
 
 	/**
 	 * 分类业务数据访问
 	 * 
 	 */
-	public IContentDetailDao getCnContentDetailDao() {
-		return cnContentDetailDao;
+	public IContentRemarkDao getContentRemarkDao() {
+		return contentRemarkDao;
 	}
 
 }

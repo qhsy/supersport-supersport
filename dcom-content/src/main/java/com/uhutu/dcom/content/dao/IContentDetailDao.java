@@ -12,7 +12,7 @@ import com.uhutu.dcom.content.entity.CnContentDetail;
  * @author xiegj
  *
  */
-public interface ICnContentDetailDao extends CrudRepository<CnContentDetail, String> {
+public interface IContentDetailDao extends CrudRepository<CnContentDetail, String> {
 
 	/**
 	 * 根据内容编号查询内容对象
