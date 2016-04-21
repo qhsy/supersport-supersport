@@ -27,12 +27,12 @@ public class ApiSupportPraise extends RootApiToken<ApiSupportPraiseInput, ApiSup
 
 	protected ApiSupportPraiseResult process(ApiSupportPraiseInput input) {
 		CnSupportPraise praise = new CnSupportPraise();
-		praise.setCode(DateFormatUtils.format(new Date(), PrexEnum.CNE.toString()));
+		praise.setCode(PrexEnum.CNE.toString()+DateFormatUtils.format(new Date(), "yyyyMMddhhmmssSSS"));
 		praise.setContentCode(input.getContentCode());
 		praise.setType(input.getType());
 		praise.setUserCode("userCode_xiegj");// 暂时没有
 		if (input.isCancelFlag()) {// 取消点赞或者取消点嘘嘘
-			serviceFactory.getSupportPraiseService().deleteByContentCodeAndUserCode(input.getContentCode(),
+			serviceFactory.getSupportPraiseService().cancelbyCCAndUCAndType(input.getContentCode(),
 					"userCode_xiegj", input.getType());
 		} else {// 点赞或者点嘘嘘
 			serviceFactory.getSupportPraiseService().save(praise);
