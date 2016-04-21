@@ -9,25 +9,25 @@ import io.swagger.annotations.ApiModel;
 
 @Entity
 @ApiModel
-public class CnContentLabel extends BaseEntity{
+public class CnContentLabel extends BaseEntity {
 
 	@ZooData(name = "标签编号")
-	private String code="";
-	
+	private String code;
+
 	@ZooData(name = "标签名称")
-	private String name="";
+	private String name;
 
 	@ZooData(name = "账户类型")
-	private String type="";
-	
+	private String type;
+
 	@ZooData(name = "位置经纬度")
-	private String location="";
-	
+	private String location;
+
 	@ZooData(name = "位置名称")
-	private String locationName="";
-	
+	private String locationName;
+
 	@ZooData(name = "状态")
-	private String status="";
+	private String status;
 
 	public String getCode() {
 		return code;
@@ -76,4 +76,4 @@ public class CnContentLabel extends BaseEntity{
 	public void setLocationName(String locationName) {
 		this.locationName = locationName;
 	}
-	}
+}
