@@ -10,6 +10,6 @@ import com.uhutu.dcom.user.entity.UcUserinfoSocial;
  *
  */
 
-public interface IUserInfoSocialDao extends CrudRepository<UcUserinfoSocial, Long> {
+public interface IUserInfoSocialDao extends CrudRepository<UcUserinfoSocial, String> {
 
 }

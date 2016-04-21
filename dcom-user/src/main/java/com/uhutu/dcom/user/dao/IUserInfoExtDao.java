@@ -9,6 +9,6 @@ import com.uhutu.dcom.user.entity.UcUserinfoExt;
  * @author pang_jhui
  *
  */
-public interface IUserInfoExtDao extends CrudRepository<UcUserinfoExt, Long> {
+public interface IUserInfoExtDao extends CrudRepository<UcUserinfoExt, String> {
 
 }
