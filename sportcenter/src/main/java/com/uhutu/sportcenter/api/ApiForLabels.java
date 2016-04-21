@@ -37,7 +37,7 @@ public class ApiForLabels extends RootApiToken<ApiForLabelsInput, ApiForLabelsRe
 		if (contentLabels != null && !contentLabels.isEmpty() && contentLabels.size() > 0) {
 			for (int i = 0; i < contentLabels.size(); i++) {
 				Label label = new Label();
-				BeanUtils.copyProperties(contentLabels.get(0), label);
+				BeanUtils.copyProperties(contentLabels.get(i), label);
 				labels.add(label);
 			}
 		}
