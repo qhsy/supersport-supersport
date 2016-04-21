@@ -33,6 +33,8 @@ public class ApiUserRegister extends RootApiBase< ApiUserRegInput,ApiUserRegResu
 		
 		userRegResult.setUserCode(ucUserinfo.getCode());
 		
+		userRegResult.setToken(ucUserinfo.getCode());
+		
 		return userRegResult;
 		
 	}
