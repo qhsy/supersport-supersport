@@ -10,7 +10,7 @@ import com.uhutu.dcom.content.entity.CnContentCategory;
 import com.uhutu.dcom.content.service.IContentCategoryService;
 
 /**
- * 点赞业务逻辑实现
+ * 分类业务逻辑实现
  * 
  * @author xiegj
  */
