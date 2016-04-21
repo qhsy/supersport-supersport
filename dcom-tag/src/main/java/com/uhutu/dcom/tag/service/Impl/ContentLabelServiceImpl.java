@@ -3,6 +3,7 @@ package com.uhutu.dcom.tag.service.Impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +21,7 @@ import com.uhutu.dcom.tag.service.IContentLabelService;
 @Transactional(readOnly = true)
 public class ContentLabelServiceImpl implements IContentLabelService {
 
+	@Autowired
 	private ContentLabelDaoFacotry contentLabelDaoFacotry;
 
 	public CnContentLabel query(String za) {
