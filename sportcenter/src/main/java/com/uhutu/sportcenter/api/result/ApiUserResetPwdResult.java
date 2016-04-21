@@ -11,14 +11,14 @@ import io.swagger.annotations.ApiModelProperty;
 public class ApiUserResetPwdResult extends RootApiResult {
 	
 	@ApiModelProperty(value="会话token")
-	private String token;
+	private String userToken;
 
-	public String getToken() {
-		return token;
+	public String getUserToken() {
+		return userToken;
 	}
 
-	public void setToken(String token) {
-		this.token = token;
+	public void setUserToken(String userToken) {
+		this.userToken = userToken;
 	}
 
 }

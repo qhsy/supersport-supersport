@@ -37,7 +37,7 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 			
 			userServiceFactory.getUserInfoService().save(ucUserinfo);
 			
-			resetPwdResult.setToken(ucUserinfo.getCode());
+			resetPwdResult.setUserToken(ucUserinfo.getCode());
 			
 		}else{
 			
