@@ -21,7 +21,7 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 
 	@Autowired
 	private SupportPraiseDaoFacotry supportPraiseDaoFacotry;
-	
+
 	@Autowired
 	public List<CnSupportPraise> querybyUserCodeAndType(String type, String userCode) {
 		return supportPraiseDaoFacotry.getSupportPraiseDao().querybyUserCodeAndType(type, userCode);
@@ -40,6 +40,37 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 	@Autowired
 	public List<CnSupportPraise> querybyContentCodeAndtype(String type, String contentCode) {
 		return supportPraiseDaoFacotry.getSupportPraiseDao().querybyContentCodeAndType(type, contentCode);
+	}
+
+	@Autowired
+	public void save(CnSupportPraise praise) {
+		List<CnSupportPraise> list = querybyContentCodeAndUserCodeAndType(praise.getType(), praise.getUserCode(), praise.getContentCode());
+		if(list==null||list.isEmpty()||list.size()==0){
+			supportPraiseDaoFacotry.getSupportPraiseDao().save(praise);
+		}
+	}
+
+	@Autowired
+	public void delete(String code) {
+		supportPraiseDaoFacotry.getSupportPraiseDao().delete(code);
+	}
+
+	@Autowired
+	public void deleteByContentCodeAndUserCode(String contentCode, String userCode, String type) {
+		List<CnSupportPraise> list = querybyContentCodeAndUserCodeAndType(type, userCode, contentCode);
+		if (list != null && !list.isEmpty() && list.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
+				supportPraiseDaoFacotry.getSupportPraiseDao().delete(list.get(i).getCode());
+			}
+		}
+	}
+
+	@Autowired
+	public List<CnSupportPraise> querybyContentCodeAndUserCodeAndType(String type, String userCode,
+			String contentCode) {
+		List<CnSupportPraise> list = supportPraiseDaoFacotry.getSupportPraiseDao()
+				.querybyContentCodeAndUserCodeAndType(type, userCode, contentCode);
+		return list;
 	}
 
 }

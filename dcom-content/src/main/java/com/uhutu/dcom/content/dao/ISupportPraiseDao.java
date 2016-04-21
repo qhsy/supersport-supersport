@@ -29,6 +29,21 @@ public interface ISupportPraiseDao extends CrudRepository<CnSupportPraise, Strin
 	public List<CnSupportPraise> querybyUserCodeAndType(@Param("type") String type, @Param("userCode") String userCode);
 
 	/**
+	 * 个人点赞类型数据查询(分类型)
+	 * 
+	 * @param type
+	 *            点赞类型
+	 * @param userCode
+	 *            用户编号
+	 * @param contentCode
+	 *            内容编号
+	 * @return 标签信息
+	 */
+	@Query("select cp from CnSupportPraise cp where cp.type=:type and cp.user_code=:userCode and contentCode=:contentCode")
+	public List<CnSupportPraise> querybyContentCodeAndUserCodeAndType(@Param("type") String type,
+			@Param("userCode") String userCode, @Param("contentCode") String contentCode);
+
+	/**
 	 * 个人点赞所有数据查询
 	 * 
 	 * @param userCode
@@ -59,5 +74,6 @@ public interface ISupportPraiseDao extends CrudRepository<CnSupportPraise, Strin
 	 * @return 点击评价信息
 	 */
 	@Query("select cp from CnSupportPraise cp where cp.type=:type and cp.content_code=:contentCode")
-	public List<CnSupportPraise> querybyContentCodeAndType(@Param("type") String type, @Param("contentCode") String contentCode);
+	public List<CnSupportPraise> querybyContentCodeAndType(@Param("type") String type,
+			@Param("contentCode") String contentCode);
 }
