@@ -15,6 +15,7 @@ import com.uhutu.sportcenter.api.input.ApiSendSmsInput;
 import com.uhutu.sportcenter.api.input.ApiSocialLoginInput;
 import com.uhutu.sportcenter.api.input.ApiUserInfoInput;
 import com.uhutu.sportcenter.api.input.ApiUserRegInput;
+import com.uhutu.sportcenter.api.input.ApiUserResetPwdInput;
 import com.uhutu.sportcenter.api.input.ApiVersionInfoInput;
 import com.uhutu.sportcenter.api.result.APiStartPageResult;
 import com.uhutu.sportcenter.api.result.ApiForLoginResult;
@@ -23,6 +24,7 @@ import com.uhutu.sportcenter.api.result.ApiSendSmsResult;
 import com.uhutu.sportcenter.api.result.ApiSocialLoginResult;
 import com.uhutu.sportcenter.api.result.ApiUserInfoResult;
 import com.uhutu.sportcenter.api.result.ApiUserRegResult;
+import com.uhutu.sportcenter.api.result.ApiUserResetPwdResult;
 import com.uhutu.sportcenter.api.result.ApiVersionInfoResult;
 
 import io.swagger.annotations.Api;
@@ -104,5 +106,13 @@ public class UserController {
 	public ApiUserInfoResult userInfo(@RequestBody ApiUserInfoInput infoInput){
 		
 		return apiFactory.getApiUserInfo().api(infoInput);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/resetPwd",method = RequestMethod.POST)
+	@ApiOperation(value="用户重置密码",notes="用户相关")
+	public ApiUserResetPwdResult resetPwd(@RequestBody ApiUserResetPwdInput input){
+		
+		return apiFactory.getApiUserResetPwd().api(input);
 	}
 }

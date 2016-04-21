@@ -56,6 +56,9 @@ public class ApiFactory {
 	@Autowired
 	private ApiForLabels apiForLabels;
 	
+	@Autowired
+	private ApiUserResetPwd apiUserResetPwd;
+	
 	public ApiContentDetailInfo getContentDetailInfo() {
 		return contentDetailInfo;
 	}
@@ -114,6 +117,10 @@ public class ApiFactory {
 
 	public ApiForLabels getApiForLabels() {
 		return apiForLabels;
+	}
+
+	public ApiUserResetPwd getApiUserResetPwd() {
+		return apiUserResetPwd;
 	}
 	
 
