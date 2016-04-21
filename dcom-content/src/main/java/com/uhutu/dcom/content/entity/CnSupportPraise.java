@@ -15,16 +15,16 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 public class CnSupportPraise extends BaseEntity{
 
 	@ZooData(name = "评价编号")
-	private String code="";
+	private String code;
 	
 	@ZooData(name = "内容编号")
-	private String contentCode="";
+	private String contentCode;
 
 	@ZooData(name = "评价类型")
-	private String type="";
+	private String type;
 	
 	@ZooData(name = "用户编号")
-	private String userCode="";
+	private String userCode;
 
 	public String getCode() {
 		return code;
