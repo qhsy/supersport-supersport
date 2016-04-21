@@ -1,9 +1,11 @@
 package com.uhutu.sportcenter.api;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.user.entity.UcUserinfo;
+import com.uhutu.dcom.user.enums.UserOperEnum;
 import com.uhutu.dcom.user.service.UserServiceFactory;
 import com.uhutu.sportcenter.api.input.ApiSendSmsInput;
 import com.uhutu.sportcenter.api.result.ApiSendSmsResult;
@@ -26,7 +28,7 @@ public class ApiSendSms extends RootApiBase< ApiSendSmsInput,ApiSendSmsResult> {
 		
 		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(inputParam.getMobileNO());
 		
-		if(ucUserinfo != null){
+		if(ucUserinfo != null && StringUtils.equals(inputParam.getMsgType(), UserOperEnum.register.name())){
 			
 			sendSmsResult.setError("该用户已经注册");
 			
