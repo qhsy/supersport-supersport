@@ -17,7 +17,7 @@ jar {
 
 dependencies {
 	//compile project(':zoozero'){version=zooInitVersion;group=zooInitGroupId}
-	
+	compile project(':dcom-config'){version=zooInitVersion;group=zooInitGroupId}
 	compile group: zooInitGroupId, name: 'zoozero', version: zooInitVersion, changing: true
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 	
