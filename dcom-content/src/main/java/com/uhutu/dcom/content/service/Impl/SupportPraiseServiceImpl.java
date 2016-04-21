@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.uhutu.dcom.content.dao.SupportPraiseDaoFacotry;
 import com.uhutu.dcom.content.entity.CnSupportPraise;
 import com.uhutu.dcom.content.service.ISupportPraiseService;
+import com.uhutu.zoodata.z.helper.DbHelper;
 
 /**
  * 点赞业务逻辑实现
@@ -19,7 +20,7 @@ import com.uhutu.dcom.content.service.ISupportPraiseService;
 @Transactional(readOnly = true)
 public class SupportPraiseServiceImpl implements ISupportPraiseService {
 
-	
+	@Autowired
 	private SupportPraiseDaoFacotry supportPraiseDaoFacotry;
 
 	
@@ -52,7 +53,8 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 	}
 
 	
-	public void delete(CnSupportPraise praise) {
+	public void deleteEn(CnSupportPraise praise) {
+		DbHelper.insert(praise);
 		supportPraiseDaoFacotry.getSupportPraiseDao().delete(praise);
 	}
 
@@ -61,7 +63,7 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 		List<CnSupportPraise> list = querybyContentCodeAndUserCodeAndType(type, userCode, contentCode);
 		if (list != null && !list.isEmpty() && list.size() > 0) {
 			for (int i = 0; i < list.size(); i++) {
-				supportPraiseDaoFacotry.getSupportPraiseDao().delete(list.get(i));
+				deleteEn(list.get(i));
 			}
 		}
 	}
