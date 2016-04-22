@@ -1,6 +1,6 @@
 package com.uhutu.sportcenter.api.result;
 
-import com.uhutu.dcom.content.entity.CnContentBasicinfo;
+import com.uhutu.sportcenter.api.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.api.entity.ContentDetailInfo;
 import com.uhutu.zoocom.root.RootApiResult;
 
@@ -16,16 +16,16 @@ import io.swagger.annotations.ApiModelProperty;
 public class ApiContentDetailResult extends RootApiResult {
 	
 	@ApiModelProperty(value="内容基本信息",notes="基本信息")
-	private CnContentBasicinfo sportingMoment = new CnContentBasicinfo();
+	private ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();
 	
 	@ApiModelProperty(value="内容详细信息",notes="详细信息")
 	private ContentDetailInfo contentDetailInfo = new ContentDetailInfo();
 
-	public CnContentBasicinfo getSportingMoment() {
+	public ContentBasicinfoForApi getSportingMoment() {
 		return sportingMoment;
 	}
 
-	public void setSportingMoment(CnContentBasicinfo sportingMoment) {
+	public void setSportingMoment(ContentBasicinfoForApi sportingMoment) {
 		this.sportingMoment = sportingMoment;
 	}
 
