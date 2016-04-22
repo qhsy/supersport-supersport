@@ -40,6 +40,14 @@ public class ApiHomePage extends RootApiBase<ApiHomePageInput, ApiHomePageResult
 		AdvertiseMent am = new AdvertiseMent();// 首页广告
 		ApiHomePageResult result = new ApiHomePageResult();
 		List<CnContentBasicinfo> basicinfos = basicinfoServiceFactory.getContentBasicinfoService().queryAll("1");
+
+		int firstIndex = (input.getPageNum() - 1) * 10;
+		int toIndex = input.getPageNum() * 10;
+		if (toIndex > basicinfos.size()) {
+			toIndex = basicinfos.size();
+		}
+		result.setNextflag(basicinfos.size() > toIndex);
+		basicinfos = basicinfos.subList(firstIndex, toIndex);
 		if (basicinfos != null && !basicinfos.isEmpty() && basicinfos.size() > 0) {
 			for (int i = 0; i < basicinfos.size(); i++) {
 				HomePageModel hmp = new HomePageModel();
@@ -59,5 +67,4 @@ public class ApiHomePage extends RootApiBase<ApiHomePageInput, ApiHomePageResult
 		result.setAdv(am);
 		return result;
 	}
-
 }
