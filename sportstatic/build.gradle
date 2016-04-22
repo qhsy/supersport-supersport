@@ -7,6 +7,8 @@ buildscript {
 		}
 }
 
+apply plugin: 'spring-boot'
+
 jar {
 	baseName = 'sportstatic'
 	version = zooInitVersion
@@ -15,6 +17,9 @@ jar {
 
 dependencies {
 	
+	compile('org.springframework.boot:spring-boot-starter')
 	
+	
+	testCompile('org.springframework.boot:spring-boot-starter-test') 
 }
 
