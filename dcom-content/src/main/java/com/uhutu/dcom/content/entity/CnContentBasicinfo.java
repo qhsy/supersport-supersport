@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * 分类数据模型
  * 
@@ -19,12 +21,15 @@ public class CnContentBasicinfo extends BaseEntity {
 	@ZooData(name = "内容编号")
 	private String code;
 
+	@ApiModelProperty(name="内容封面图片链接",notes="内容封面图片链接",example="http://www.ichsy.com")
 	@ZooData(name = "内容封面")
 	private String cover;
 	
+	@ApiModelProperty(name="标题" ,notes="标题",example="新体优家，您运动的首选~")
 	@ZooData(name = "内容标题")
 	private String title;
 	
+	@ApiModelProperty(name="日期展示" ,notes="日期展示",example="2016-4-19")
 	@ZooData(name = "发布时间")
 	private Date publishTime;
 	
@@ -49,15 +54,18 @@ public class CnContentBasicinfo extends BaseEntity {
 	@ZooData(name = "内容分享范围")
 	private String shareScope;
 	
+	@ApiModelProperty(name="地理位置" ,notes="位置经纬度",example="116.404, 39.915")
 	@ZooData(name = "定位经纬度")
 	private String location;
 	
+	@ApiModelProperty(name="地理位置名称" ,notes="位置名称",example="金域国际大厦")
 	@ZooData(name = "定位位置名称")
 	private String localtionName;
 	
 	@ZooData(name = "业务类型编号：运动时刻 文章")
 	private String busiType;
 	
+	@ApiModelProperty(name = "展示类型", notes = " 01:展示图文", example = "01")
 	@ZooData(name = "内容类型：感想、视频、图片")
 	private String contentType;
 
