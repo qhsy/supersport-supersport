@@ -2,10 +2,9 @@ package com.uhutu.dcom.content.dao;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-
 import com.uhutu.dcom.content.entity.CnContentBasicinfo;
 
 /**
@@ -14,7 +13,7 @@ import com.uhutu.dcom.content.entity.CnContentBasicinfo;
  * @author xiegj
  *
  */
-public interface IContentBasicinfoDao extends CrudRepository<CnContentBasicinfo, String> {
+public interface IContentBasicinfoDao extends JpaRepository<CnContentBasicinfo, String> {
 
 	/**
 	 * 根据内容编号查询内容对象

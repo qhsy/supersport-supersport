@@ -1,10 +1,7 @@
 package com.uhutu.dcom.content.service;
 
 import java.util.List;
-
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
+import org.springframework.data.domain.Page;
 import com.uhutu.dcom.content.entity.CnContentBasicinfo;
 
 /**
@@ -25,12 +22,15 @@ public interface IContentBasicinfoService {
 	public CnContentBasicinfo queryByCode(String code);
 	
 	/**
-	 * 根据内容分享范围查询内容对象
-	 * 
-	 * @param shareScope 0:不公开  1：公开
-	 *            分享范围 
-	 * @return 内容信息
+	 * 查询分页信息
+	 * @param pageNum
+	 * 		页码
+	 * @param limit
+	 * 		每页展示数量
+	 * @return 分页数据
 	 */
+	public Page<CnContentBasicinfo> queryPage(int pageNum, int limit);
+
 	public List<CnContentBasicinfo> queryAll(String shareScope);
 
 	/**
