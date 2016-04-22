@@ -2,6 +2,8 @@ package com.uhutu.dcom.content.service;
 
 import java.util.List;
 import org.springframework.data.domain.Page;
+
+import com.uhutu.dcom.component.page.QueryConditions;
 import com.uhutu.dcom.content.entity.CnContentBasicinfo;
 
 /**
@@ -27,9 +29,11 @@ public interface IContentBasicinfoService {
 	 * 		页码
 	 * @param limit
 	 * 		每页展示数量
+	 * @param conditions
+	 * 		查询条件
 	 * @return 分页数据
 	 */
-	public Page<CnContentBasicinfo> queryPage(int pageNum, int limit);
+	public Page<CnContentBasicinfo> queryPage(int pageNum, int limit,QueryConditions conditions);
 
 	public List<CnContentBasicinfo> queryAll(String shareScope);
 
