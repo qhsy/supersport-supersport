@@ -59,6 +59,9 @@ public class ContentBasicinfoForApi {
 	
 	@ApiModelProperty(name = "用户头像")
 	private String aboutHead;
+	
+	@ApiModelProperty(name = "昵称")
+	private String nickName;
 
 	public String getCode() {
 		return code;
@@ -174,6 +177,14 @@ public class ContentBasicinfoForApi {
 
 	public String getContentType() {
 		return contentType;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public void setContentType(String contentType) {
