@@ -1,5 +1,7 @@
 package com.uhutu.dcom.content.entity;
 
+import javax.persistence.Entity;
+
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
@@ -10,6 +12,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author xiegj
  *
  */
+@Entity
 public class CnAdvertiseInfo extends BaseEntity {
 
 	@ZooData(name = "广告编号")

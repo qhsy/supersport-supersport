@@ -1,5 +1,7 @@
 package com.uhutu.dcom.content.entity;
 
+import javax.persistence.Entity;
+
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
@@ -11,6 +13,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author xiegj
  *
  */
+@Entity
 public class CnAdvertiseDetail extends BaseEntity {
 	@ZooData(name = "广告编号")
 	@ApiModelProperty(name = "广告编号", notes = "广告编号", example = "gg01")
