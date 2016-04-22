@@ -22,5 +22,13 @@ public interface IUserInfoSocialService {
 	 * @return 社交类用户信息
 	 */
 	public UcUserinfoSocial query(String id);
+	
+	/**
+	 * 根据用户编号获取社交类用户信息
+	 * @param userCode
+	 * 		用户编号
+	 * @return 社交类用户信息
+	 */
+	public UcUserinfoSocial queryByUserCode(String userCode);
 
 }

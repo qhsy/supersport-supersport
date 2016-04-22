@@ -32,4 +32,11 @@ public class UserInfoSocialServiceImpl implements IUserInfoSocialService {
 		
 	}
 
+	@Override
+	public UcUserinfoSocial queryByUserCode(String userCode) {
+		
+		return userDaoFacotry.getUserInfoSocialDao().queryByUserCode(userCode);
+		
+	}
+
 }
