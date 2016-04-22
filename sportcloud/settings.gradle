@@ -20,3 +20,6 @@ project(':dcom-remark').projectDir = new File(settingsDir, '../dcom-remark')
 
 include ':sportcenter'
 project(':sportcenter').projectDir = new File(settingsDir, '../sportcenter')
+
+include ':sportstatic'
+project(':sportstatic').projectDir = new File(settingsDir, '../sportstatic')
