@@ -10,35 +10,13 @@ import io.swagger.annotations.ApiModelProperty;
 public class ContentDetailInfo {
 	
 	@ApiModelProperty(name="内容编号" ,notes="内容编号")
-	private String content_code="";
+	private String code="";
 	
 	@ApiModelProperty(name="内容" ,notes="内容")
-	private  byte[] content;
+	private String content;
 	
 	@ApiModelProperty(name="简介",notes="简介")
 	private String description = "";
-	
-	@ApiModelProperty(name="图片",notes="图片")
-	private String picture = "";
-	
-	@ApiModelProperty(name="视频",notes="视频")
-	private String video = "";
-
-	public String getContent_code() {
-		return content_code;
-	}
-
-	public void setContent_code(String content_code) {
-		this.content_code = content_code;
-	}
-
-	public byte[] getContent() {
-		return content;
-	}
-
-	public void setContent(byte[] content) {
-		this.content = content;
-	}
 
 	public String getDescription() {
 		return description;
@@ -48,20 +26,20 @@ public class ContentDetailInfo {
 		this.description = description;
 	}
 
-	public String getPicture() {
-		return picture;
+	public String getCode() {
+		return code;
 	}
 
-	public void setPicture(String picture) {
-		this.picture = picture;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public String getVideo() {
-		return video;
+	public String getContent() {
+		return content;
 	}
 
-	public void setVideo(String video) {
-		this.video = video;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 }

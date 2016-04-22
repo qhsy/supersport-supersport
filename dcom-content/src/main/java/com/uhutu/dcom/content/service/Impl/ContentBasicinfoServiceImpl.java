@@ -7,8 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.uhutu.dcom.component.page.QueryConditionUtil;
 import com.uhutu.dcom.component.page.QueryConditions;
 import com.uhutu.dcom.content.dao.ContentDaoFactory;
@@ -22,7 +20,7 @@ import com.uhutu.dcom.content.service.IContentBasicinfoService;
  */
 
 @Service
-@Transactional(readOnly = true)
+
 public class ContentBasicinfoServiceImpl implements IContentBasicinfoService {
 
 	@Autowired

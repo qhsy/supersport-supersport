@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.uhutu.dcom.content.dao.ContentDaoFactory;
 import com.uhutu.dcom.content.entity.CnContentItem;
@@ -19,7 +18,6 @@ import com.uhutu.dcom.content.service.IContentItemService;
  */
 
 @Service
-@Transactional(readOnly = true)
 public class ContentItemServiceImpl implements IContentItemService {
 
 	@Autowired
