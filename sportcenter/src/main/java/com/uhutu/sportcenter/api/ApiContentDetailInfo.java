@@ -16,7 +16,10 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 	@Override
 	protected ApiContentDetailResult process(ApiContentDetailInput input) {
 		
+		
+		
 		return new ApiContentDetailResult();
+		
 	}
 
 	

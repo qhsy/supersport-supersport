@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.uhutu.dcom.content.dao.ContentItemDaoFacotry;
+import com.uhutu.dcom.content.dao.ContentDaoFactory;
 import com.uhutu.dcom.content.entity.CnContentItem;
 import com.uhutu.dcom.content.service.IContentItemService;
 
@@ -23,16 +23,16 @@ import com.uhutu.dcom.content.service.IContentItemService;
 public class ContentItemServiceImpl implements IContentItemService {
 
 	@Autowired
-	private ContentItemDaoFacotry contentItemDaoFacotry;
+	private ContentDaoFactory daoFacotry;
 
 	@Override
 	public CnContentItem queryByCode(String code) {
-		return contentItemDaoFacotry.getContentItemDao().queryByCode(code);
+		return daoFacotry.getContentItemDao().queryByCode(code);
 	}
 
 	@Override
 	public List<CnContentItem> queryAll() {
-		Iterable<CnContentItem> it = contentItemDaoFacotry.getContentItemDao().findAll();
+		Iterable<CnContentItem> it = daoFacotry.getContentItemDao().findAll();
 		List<CnContentItem> list = new ArrayList<CnContentItem>();
 		Iterator<CnContentItem> ito = it.iterator();
 		while (ito.hasNext()) {

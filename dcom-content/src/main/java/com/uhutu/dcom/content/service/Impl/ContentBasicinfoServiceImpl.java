@@ -8,9 +8,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.uhutu.dcom.component.page.QueryConditionUtil;
 import com.uhutu.dcom.component.page.QueryConditions;
-import com.uhutu.dcom.content.dao.ContentBasicinfoDaoFacotry;
+import com.uhutu.dcom.content.dao.ContentDaoFactory;
 import com.uhutu.dcom.content.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.service.IContentBasicinfoService;
 
@@ -25,21 +26,21 @@ import com.uhutu.dcom.content.service.IContentBasicinfoService;
 public class ContentBasicinfoServiceImpl implements IContentBasicinfoService {
 
 	@Autowired
-	private ContentBasicinfoDaoFacotry contentCategoryDaoFacotry;
+	private ContentDaoFactory daoFacotry;
 
 	@Override
 	public CnContentBasicinfo queryByCode(String code) {
-		return contentCategoryDaoFacotry.getContentBasicinfoDao().queryByCode(code);
+		return daoFacotry.getContentBasicinfoDao().queryByCode(code);
 	}
 
 	@Override
 	public List<CnContentBasicinfo> queryAll(String shareScope) {
-		return contentCategoryDaoFacotry.getContentBasicinfoDao().queryAll(shareScope);
+		return daoFacotry.getContentBasicinfoDao().queryAll(shareScope);
 	}
 
 	@Override
 	public List<CnContentBasicinfo> queryByAuthor(String author) {
-		return contentCategoryDaoFacotry.getContentBasicinfoDao().queryByAuthor(author);
+		return daoFacotry.getContentBasicinfoDao().queryByAuthor(author);
 	}
 
 	@Override
@@ -49,7 +50,7 @@ public class ContentBasicinfoServiceImpl implements IContentBasicinfoService {
 		
 		Specification<CnContentBasicinfo> spec = QueryConditionUtil.buildSpecification(conditions);
 		
-		Page<CnContentBasicinfo> contentInfoPage = contentCategoryDaoFacotry.getContentBasicinfoDao().findAll(spec, page);
+		Page<CnContentBasicinfo> contentInfoPage = daoFacotry.getContentBasicinfoDao().findAll(spec, page);
 		
 		return contentInfoPage;
 	}

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.uhutu.dcom.content.dao.AdvertiseInfoDaoFacotry;
+import com.uhutu.dcom.content.dao.ContentDaoFactory;
 import com.uhutu.dcom.content.entity.CnAdvertiseInfo;
 import com.uhutu.dcom.content.service.IAdvertiseInfoService;
 
@@ -21,16 +21,16 @@ import com.uhutu.dcom.content.service.IAdvertiseInfoService;
 public class AdvertiseInfoServiceImpl implements IAdvertiseInfoService {
 
 	@Autowired
-	private AdvertiseInfoDaoFacotry contentCategoryDaoFacotry;
+	private ContentDaoFactory daoFacotry;
 
 	@Override
 	public CnAdvertiseInfo queryByCode(String code) {
-		return contentCategoryDaoFacotry.getAdvertiseInfoDao().queryByCode(code);
+		return daoFacotry.getAdvertiseInfoDao().queryByCode(code);
 	}
 
 	@Override
 	public List<CnAdvertiseInfo> queryAll() {
-		return contentCategoryDaoFacotry.getAdvertiseInfoDao().queryAll();
+		return daoFacotry.getAdvertiseInfoDao().queryAll();
 	}
 
 }

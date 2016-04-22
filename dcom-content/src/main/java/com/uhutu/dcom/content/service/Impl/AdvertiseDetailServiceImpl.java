@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.uhutu.dcom.content.dao.AdvertiseDetailDaoFacotry;
+import com.uhutu.dcom.content.dao.ContentDaoFactory;
 import com.uhutu.dcom.content.entity.CnAdvertiseDetail;
 import com.uhutu.dcom.content.service.IAdvertiseDetailService;
 
@@ -21,7 +21,7 @@ import com.uhutu.dcom.content.service.IAdvertiseDetailService;
 public class AdvertiseDetailServiceImpl implements IAdvertiseDetailService {
 
 	@Autowired
-	private AdvertiseDetailDaoFacotry daoFacotry;
+	private ContentDaoFactory daoFacotry;
 
 	@Override
 	public List<CnAdvertiseDetail> queryByCode(String code) {

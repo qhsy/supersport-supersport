@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.uhutu.dcom.content.dao.SupportPraiseDaoFacotry;
+import com.uhutu.dcom.content.dao.ContentDaoFactory;
 import com.uhutu.dcom.content.entity.CnSupportPraise;
 import com.uhutu.dcom.content.service.ISupportPraiseService;
 
@@ -21,26 +21,26 @@ import com.uhutu.dcom.content.service.ISupportPraiseService;
 public class SupportPraiseServiceImpl implements ISupportPraiseService {
 
 	@Autowired
-	private SupportPraiseDaoFacotry supportPraiseDaoFacotry;
+	private ContentDaoFactory daoFacotry;
 
 	
 	public List<CnSupportPraise> querybyUserCodeAndType(String type, String userCode) {
-		return supportPraiseDaoFacotry.getSupportPraiseDao().querybyUserCodeAndType(type, userCode);
+		return daoFacotry.getSupportPraiseDao().querybyUserCodeAndType(type, userCode);
 	}
 
 	
 	public List<CnSupportPraise> querybyUserCode(String userCode) {
-		return supportPraiseDaoFacotry.getSupportPraiseDao().querybyUserCode(userCode);
+		return daoFacotry.getSupportPraiseDao().querybyUserCode(userCode);
 	}
 
 	
 	public List<CnSupportPraise> querybyContentCode(String contentCode) {
-		return supportPraiseDaoFacotry.getSupportPraiseDao().querybyContentCode(contentCode);
+		return daoFacotry.getSupportPraiseDao().querybyContentCode(contentCode);
 	}
 
 	
 	public List<CnSupportPraise> querybyContentCodeAndtype(String type, String contentCode) {
-		return supportPraiseDaoFacotry.getSupportPraiseDao().querybyContentCodeAndType(type, contentCode);
+		return daoFacotry.getSupportPraiseDao().querybyContentCodeAndType(type, contentCode);
 	}
 
 	
@@ -48,20 +48,20 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 		List<CnSupportPraise> list = querybyContentCodeAndUserCodeAndType(praise.getType(), praise.getUserCode(),
 				praise.getContentCode());
 		if (list == null || list.isEmpty() || list.size() == 0) {
-			supportPraiseDaoFacotry.getSupportPraiseDao().save(praise);
+			daoFacotry.getSupportPraiseDao().save(praise);
 		}
 	}
 	
 	public List<CnSupportPraise> querybyContentCodeAndUserCodeAndType(String type, String userCode,
 			String contentCode) {
-		List<CnSupportPraise> list = supportPraiseDaoFacotry.getSupportPraiseDao()
+		List<CnSupportPraise> list = daoFacotry.getSupportPraiseDao()
 				.querybyContentCodeAndUserCodeAndType(type, userCode, contentCode);
 		return list;
 	}
 
 
 	public void cancelbyCCAndUCAndType(String type, String userCode, String contentCode) {
-		supportPraiseDaoFacotry.getSupportPraiseDao().cancelbyCCAndUCAndType(type, userCode, contentCode);
+		daoFacotry.getSupportPraiseDao().cancelbyCCAndUCAndType(type, userCode, contentCode);
 	}
 
 }

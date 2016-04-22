@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.uhutu.dcom.content.dao.ContentCategoryDaoFacotry;
+
+import com.uhutu.dcom.content.dao.ContentDaoFactory;
 import com.uhutu.dcom.content.entity.CnContentCategory;
 import com.uhutu.dcom.content.service.IContentCategoryService;
 
@@ -20,16 +21,16 @@ import com.uhutu.dcom.content.service.IContentCategoryService;
 public class ContentCategoryServiceImpl implements IContentCategoryService {
 
 	@Autowired
-	private ContentCategoryDaoFacotry contentCategoryDaoFacotry;
+	private ContentDaoFactory daoFacotry;
 
 	@Override
 	public CnContentCategory queryByCode(String code) {
-		return contentCategoryDaoFacotry.getContentCategoryDao().queryByCode(code);
+		return daoFacotry.getContentCategoryDao().queryByCode(code);
 	}
 
 	@Override
 	public List<CnContentCategory> queryByParentCode(String parentCode) {
-		return contentCategoryDaoFacotry.getContentCategoryDao().queryByParentCode(parentCode);
+		return daoFacotry.getContentCategoryDao().queryByParentCode(parentCode);
 	}
 
 }
