@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * 用户信息扩展
  * @author pang_jhui
@@ -16,6 +18,7 @@ public class UcUserinfoExt extends BaseEntity {
 	@ZooData(name="用户编号")
 	private String userCode;
 	
+	@ApiModelProperty(name="昵称" ,notes="昵称",example="papi酱")
 	@ZooData(name="昵称")
 	private String nickName;
 	
@@ -43,6 +46,7 @@ public class UcUserinfoExt extends BaseEntity {
 	@ZooData(name="用户等级")
 	private String level;
 	
+	@ApiModelProperty(name="头像图片链接",notes="头像图片链接",example="http://www.ichsy.com")
 	@ZooData(name="用户头像")
 	private String aboutHead;
 

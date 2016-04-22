@@ -2,6 +2,8 @@ package com.uhutu.sportcenter.api.result;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.uhutu.sportcenter.api.entity.AdvertiseMent;
 import com.uhutu.sportcenter.api.entity.HomePageModel;
 import com.uhutu.zoocom.root.RootApiResult;
 
@@ -13,7 +15,7 @@ public class ApiHomePageResult extends RootApiResult {
 	private List<HomePageModel>	list=	new  ArrayList<HomePageModel>();
 
 	@ApiModelProperty(name="首页顶部广告位" ,notes="首页顶部广告位")
-	private HomePageModel	top = new HomePageModel();
+	private AdvertiseMent	adv = new AdvertiseMent();
 	
 	public List<HomePageModel> getList() {
 		return list;
@@ -23,12 +25,12 @@ public class ApiHomePageResult extends RootApiResult {
 		this.list = list;
 	}
 
-	public HomePageModel getTop() {
-		return top;
+	public AdvertiseMent getAdv() {
+		return adv;
 	}
 
-	public void setTop(HomePageModel top) {
-		this.top = top;
+	public void setAdv(AdvertiseMent adv) {
+		this.adv = adv;
 	}
-	
+
 }
