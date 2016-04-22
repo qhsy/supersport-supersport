@@ -43,11 +43,24 @@ public class ApiUserInfo extends RootApiBase< ApiUserInfoInput,ApiUserInfoResult
 			UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService()
 					.queryByUserCode(inputParam.getUserCode());
 			
-			UserInfo apiUserInfo = new UserInfo();
-			
-			BeanUtils.copyProperties(ucUserinfoExt, apiUserInfo);
-			
-			userInfoResult.setUserInfo(apiUserInfo);
+			if(ucUserinfoExt == null){
+				
+				userInfoResult.setStatus(0);
+				
+				userInfoResult.setError("用户信息不存在");
+				
+				return userInfoResult;
+				
+				
+			}else{		
+				
+				UserInfo apiUserInfo = new UserInfo();
+				
+				BeanUtils.copyProperties(ucUserinfoExt, apiUserInfo);
+				
+				userInfoResult.setUserInfo(apiUserInfo);
+				
+			}
 			
 		}
 
