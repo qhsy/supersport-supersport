@@ -12,6 +12,8 @@ import com.uhutu.dcom.component.page.QueryConditions;
 import com.uhutu.dcom.content.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.enums.ContentEnum;
 import com.uhutu.dcom.content.service.ContentBasicinfoServiceFactory;
+import com.uhutu.dcom.user.entity.UcUserinfoExt;
+import com.uhutu.dcom.user.service.UserServiceFactory;
 import com.uhutu.sportcenter.api.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.api.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.api.result.ApiSportingMomentsResult;
@@ -29,6 +31,9 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 	@Autowired
 	private ContentBasicinfoServiceFactory serviceFactory;
 	
+	@Autowired
+	private UserServiceFactory userServiceFactory;
+	
 	protected ApiSportingMomentsResult process(ApiSportingMomentsInput input) {
 
 		QueryConditions queryConditions = new QueryConditions();
@@ -45,9 +50,13 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 		
 		for(CnContentBasicinfo contentBasicInfo : contentBasicInfos){
 			
-			ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();
+			ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();		
 			
 			BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
+			
+			UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(sportingMoment.getAuthor());
+			
+			sportingMoment.setAboutHead(ucUserinfoExt.getAboutHead());
 			
 			sports.add(sportingMoment);
 			
