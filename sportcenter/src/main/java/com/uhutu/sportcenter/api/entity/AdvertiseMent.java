@@ -3,8 +3,6 @@ package com.uhutu.sportcenter.api.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.uhutu.dcom.content.entity.CnAdvertiseDetail;
-
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -20,9 +18,9 @@ public class AdvertiseMent {
 
 	@ApiModelProperty(name = "广告类型", notes = " 01:轮播图，03:广告位", example = "01")
 	private String type = "";
-	
+
 	@ApiModelProperty(name = "广告图片信息", notes = "广告图片信息")
-	List<CnAdvertiseDetail> details = new ArrayList<CnAdvertiseDetail>();
+	List<AdvertiseDetailForApi> details = new ArrayList<AdvertiseDetailForApi>();
 
 	public String getCode() {
 		return code;
@@ -40,13 +38,4 @@ public class AdvertiseMent {
 		this.type = type;
 	}
 
-	public List<CnAdvertiseDetail> getDetails() {
-		return details;
-	}
-
-	public void setDetails(List<CnAdvertiseDetail> details) {
-		this.details = details;
-	}
-	
-	
 }

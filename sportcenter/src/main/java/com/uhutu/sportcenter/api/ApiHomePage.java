@@ -3,16 +3,18 @@ package com.uhutu.sportcenter.api;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.content.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.service.ContentBasicinfoServiceFactory;
 import com.uhutu.dcom.content.service.ContentDetailServiceFactory;
-import com.uhutu.dcom.user.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.support.UserInfoSupport;
 import com.uhutu.sportcenter.api.entity.AdvertiseMent;
+import com.uhutu.sportcenter.api.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.api.entity.HomePageModel;
+import com.uhutu.sportcenter.api.entity.UserinfoExtForApi;
 import com.uhutu.sportcenter.api.input.ApiHomePageInput;
 import com.uhutu.sportcenter.api.result.ApiHomePageResult;
 import com.uhutu.zoocom.root.RootApiBase;
@@ -42,12 +44,15 @@ public class ApiHomePage extends RootApiBase<ApiHomePageInput, ApiHomePageResult
 			for (int i = 0; i < basicinfos.size(); i++) {
 				HomePageModel hmp = new HomePageModel();
 				CnContentBasicinfo info = basicinfos.get(i);
-				UcUserinfoExt userInfo = new UcUserinfoExt();
+				ContentBasicinfoForApi infoApi = new ContentBasicinfoForApi();
+				UserinfoExtForApi userInfoApi = new UserinfoExtForApi();
 				if (StringUtils.isNotBlank(info.getAuthor())) {
-					userInfo = userInfoSupport.getUserBasicInfo(info.getAuthor()).getUcUserinfoExt();
+					BeanUtils.copyProperties(userInfoSupport.getUserBasicInfo(info.getAuthor()).getUcUserinfoExt(),
+							userInfoApi);
 				}
-				hmp.setInfo(info);
-				hmp.setUe(userInfo);
+				BeanUtils.copyProperties(info, infoApi);
+				hmp.setInfo(infoApi);
+				hmp.setUe(userInfoApi);
 				result.getList().add(hmp);
 			}
 		}

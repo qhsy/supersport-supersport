@@ -1,7 +1,5 @@
 package com.uhutu.sportcenter.api.entity;
 
-import com.uhutu.dcom.content.entity.CnContentBasicinfo;
-import com.uhutu.dcom.user.entity.UcUserinfoExt;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -12,28 +10,26 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class HomePageModel {
 
-
 	@ApiModelProperty(name = "用户信息", notes = "用户信息头像昵称等信息", example = "张嘉译个人信息")
-	UcUserinfoExt ue = new UcUserinfoExt();
+	UserinfoExtForApi ue = new UserinfoExtForApi();
 
 	@ApiModelProperty(name = "展示的内容基本信息", notes = "展示的内容基本信息", example = "张嘉译拍摄《营盘镇警事》杀青新闻")
-	CnContentBasicinfo info = new CnContentBasicinfo();
+	ContentBasicinfoForApi info = new ContentBasicinfoForApi();
 
-	public UcUserinfoExt getUe() {
+	public UserinfoExtForApi getUe() {
 		return ue;
 	}
 
-	public void setUe(UcUserinfoExt ue) {
+	public void setUe(UserinfoExtForApi ue) {
 		this.ue = ue;
 	}
 
-	public CnContentBasicinfo getInfo() {
+	public ContentBasicinfoForApi getInfo() {
 		return info;
 	}
 
-	public void setInfo(CnContentBasicinfo info) {
+	public void setInfo(ContentBasicinfoForApi info) {
 		this.info = info;
 	}
 
-	
 }
