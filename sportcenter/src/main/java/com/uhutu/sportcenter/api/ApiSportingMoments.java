@@ -2,15 +2,17 @@ package com.uhutu.sportcenter.api;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+
 import com.uhutu.dcom.component.page.QueryConditions;
 import com.uhutu.dcom.content.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.enums.ContentEnum;
 import com.uhutu.dcom.content.service.ContentBasicinfoServiceFactory;
-import com.uhutu.sportcenter.api.entity.SportingMoment;
+import com.uhutu.sportcenter.api.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.api.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.api.result.ApiSportingMomentsResult;
 import com.uhutu.zoocom.root.RootApiBase;
@@ -39,11 +41,11 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 		
 		List<CnContentBasicinfo> contentBasicInfos = page.getContent();
 		
-		List<SportingMoment> sports = new ArrayList<SportingMoment>();
+		List<ContentBasicinfoForApi> sports = new ArrayList<ContentBasicinfoForApi>();
 		
 		for(CnContentBasicinfo contentBasicInfo : contentBasicInfos){
 			
-			SportingMoment sportingMoment = new SportingMoment();
+			ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();
 			
 			BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
 			
@@ -52,6 +54,16 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 		}
 		
 		sportingMomentsResult.setMoments(sports);
+		
+		if(page.hasNext()){
+			
+			sportingMomentsResult.setNextPageFlag(true);
+			
+		}else{
+			
+			sportingMomentsResult.setNextPageFlag(false);
+			
+		}
 		
 		return sportingMomentsResult;
 	}

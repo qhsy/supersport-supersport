@@ -3,7 +3,7 @@ package com.uhutu.sportcenter.api.result;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.uhutu.sportcenter.api.entity.SportingMoment;
+import com.uhutu.sportcenter.api.entity.ContentBasicinfoForApi;
 import com.uhutu.zoocom.root.RootApiResult;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -16,8 +16,8 @@ public class ApiSportingMomentsResult extends RootApiResult {
 	@ApiModelProperty(name="版块名称",value="版块名称",example="运动时刻")
 	private String  	contentTitle= "";
 	
-	@ApiModelProperty(name="",value="",example="")
-	private List<SportingMoment> moments  	=	new ArrayList<SportingMoment>();
+	@ApiModelProperty(name="运动时刻列表",value="运动时刻列表",example="")
+	private List<ContentBasicinfoForApi> moments  	=	new ArrayList<ContentBasicinfoForApi>();
 
 	public String getContentTitle() {
 		return contentTitle;
@@ -27,11 +27,11 @@ public class ApiSportingMomentsResult extends RootApiResult {
 		this.contentTitle = contentTitle;
 	}
 
-	public List<SportingMoment> getMoments() {
+	public List<ContentBasicinfoForApi> getMoments() {
 		return moments;
 	}
 
-	public void setMoments(List<SportingMoment> moments) {
+	public void setMoments(List<ContentBasicinfoForApi> moments) {
 		this.moments = moments;
 	}
 
