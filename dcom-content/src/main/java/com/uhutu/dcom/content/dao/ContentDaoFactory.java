@@ -1,12 +1,14 @@
 package com.uhutu.dcom.content.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * 内容数据操作
  * @author pang_jhui
  *
  */
+@Component
 public class ContentDaoFactory {
 	
 	@Autowired
