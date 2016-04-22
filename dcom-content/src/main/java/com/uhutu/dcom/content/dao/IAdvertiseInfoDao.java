@@ -1,5 +1,7 @@
 package com.uhutu.dcom.content.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -20,7 +22,7 @@ public interface IAdvertiseInfoDao extends CrudRepository<CnAdvertiseInfo, Strin
 	 * @return 广告信息
 	 */
 	@Query("select cc from CnAdvertiseInfo cc where cc.status='1'")
-	public CnAdvertiseInfo queryAll();
+	public List<CnAdvertiseInfo> queryAll();
 
 	/**
 	 * 根据广告编号查询广告信息

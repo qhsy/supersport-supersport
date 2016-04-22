@@ -1,5 +1,7 @@
 package com.uhutu.dcom.content.service.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,9 +29,8 @@ public class AdvertiseInfoServiceImpl implements IAdvertiseInfoService {
 	}
 
 	@Override
-	public CnAdvertiseInfo queryAll() {
-		contentCategoryDaoFacotry.getAdvertiseInfoDao().queryAll();
-		return null;
+	public List<CnAdvertiseInfo> queryAll() {
+		return contentCategoryDaoFacotry.getAdvertiseInfoDao().queryAll();
 	}
 
 }

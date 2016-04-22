@@ -1,5 +1,7 @@
 package com.uhutu.dcom.content.service;
 
+import java.util.List;
+
 import com.uhutu.dcom.content.entity.CnAdvertiseInfo;
 
 /**
@@ -15,7 +17,7 @@ public interface IAdvertiseInfoService {
 	 * 
 	 * @return 广告信息
 	 */
-	public CnAdvertiseInfo queryAll();
+	public List<CnAdvertiseInfo> queryAll();
 
 	/**
 	 * 根据广告编号查询广告信息
