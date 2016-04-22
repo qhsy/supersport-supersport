@@ -9,3 +9,10 @@ project(':zooweb').projectDir = new File(settingsDir, '../../zoouhutu/zooweb')
 
 include ':zoozero'
 project(':zoozero').projectDir = new File(settingsDir, '../../zoouhutu/zoozero')
+
+include ':dcom-config'
+project(':dcom-config').projectDir = new File(settingsDir, '../dcom-config')
+
+include ':dcom-component'
+project(':dcom-component').projectDir = new File(settingsDir, '../dcom-component')
+
