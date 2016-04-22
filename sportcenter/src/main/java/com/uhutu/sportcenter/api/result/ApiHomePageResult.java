@@ -17,6 +17,9 @@ public class ApiHomePageResult extends RootApiResult {
 	@ApiModelProperty(name="首页顶部广告位" ,notes="首页顶部广告位")
 	private AdvertiseMent	adv = new AdvertiseMent();
 	
+	@ApiModelProperty(value = "是否还有下一页", notes = "是否还有下一页 ", example = "true", required = true)
+	private boolean nextflag = true;
+	
 	public List<HomePageModel> getList() {
 		return list;
 	}
@@ -31,6 +34,14 @@ public class ApiHomePageResult extends RootApiResult {
 
 	public void setAdv(AdvertiseMent adv) {
 		this.adv = adv;
+	}
+
+	public boolean isNextflag() {
+		return nextflag;
+	}
+
+	public void setNextflag(boolean nextflag) {
+		this.nextflag = nextflag;
 	}
 
 }
