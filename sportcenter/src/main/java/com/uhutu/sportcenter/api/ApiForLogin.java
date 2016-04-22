@@ -35,6 +35,8 @@ public class ApiForLogin extends RootApiBase<ApiForLoginInput, ApiForLoginResult
 		
 		userServiceFactory.getUserInfoService().save(ucUserinfo);
 		
+		result.setUserToken(ucUserinfo.getCode());
+		
 		return result;
 
 	}

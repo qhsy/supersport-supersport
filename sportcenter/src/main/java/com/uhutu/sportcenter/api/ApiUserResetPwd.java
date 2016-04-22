@@ -27,13 +27,27 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 		
 		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(input.getLoginName());
 		
-		ucUserinfo.setLoginPwd(input.getLoginPwd());
+		ApiUserResetPwdResult resetPwdResult = new ApiUserResetPwdResult();
 		
-		ucUserinfo.setLastTime(new Date());
+		if(ucUserinfo != null){
+			
+			ucUserinfo.setLoginPwd(input.getLoginPwd());
+			
+			ucUserinfo.setLastTime(new Date());
+			
+			userServiceFactory.getUserInfoService().save(ucUserinfo);
+			
+			resetPwdResult.setUserToken(ucUserinfo.getCode());
+			
+		}else{
+			
+			resetPwdResult.setError("该用户信息不存在");
+			
+			resetPwdResult.setStatus(0);
+			
+		}
 		
-		userServiceFactory.getUserInfoService().save(ucUserinfo);
-		
-		return new ApiUserResetPwdResult();
+		return resetPwdResult;
 	}
 
 }
