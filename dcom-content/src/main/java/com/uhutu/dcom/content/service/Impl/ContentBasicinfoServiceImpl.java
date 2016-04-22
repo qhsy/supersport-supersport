@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import com.uhutu.dcom.component.page.QueryConditionUtil;
+import com.uhutu.dcom.component.page.QueryConditions;
 import com.uhutu.dcom.content.dao.ContentBasicinfoDaoFacotry;
 import com.uhutu.dcom.content.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.service.IContentBasicinfoService;
@@ -41,11 +43,13 @@ public class ContentBasicinfoServiceImpl implements IContentBasicinfoService {
 	}
 
 	@Override
-	public Page<CnContentBasicinfo> queryPage(int pageNum, int limit) {
+	public Page<CnContentBasicinfo> queryPage(int pageNum, int limit,QueryConditions conditions) {
 		
 		PageRequest page = new PageRequest(pageNum, limit);
 		
-		Page<CnContentBasicinfo> contentInfoPage = contentCategoryDaoFacotry.getContentBasicinfoDao().findAll(page);
+		Specification<CnContentBasicinfo> spec = QueryConditionUtil.buildSpecification(conditions);
+		
+		Page<CnContentBasicinfo> contentInfoPage = contentCategoryDaoFacotry.getContentBasicinfoDao().findAll(spec, page);
 		
 		return contentInfoPage;
 	}
