@@ -3,7 +3,7 @@ package com.uhutu.sportcenter.api.result;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.uhutu.dcom.content.entity.CnContentBasicinfo;
+import com.uhutu.sportcenter.api.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.api.entity.UserInfo;
 import com.uhutu.zoocom.root.RootApiResult;
 
@@ -20,7 +20,10 @@ public class ApiUserInfoResult extends RootApiResult {
 	private UserInfo userInfo = new UserInfo();
 
 	@ApiModelProperty(value = "运动时刻信息")
-	private List<CnContentBasicinfo> moments = new ArrayList<CnContentBasicinfo>();
+	private List<ContentBasicinfoForApi> moments = new ArrayList<ContentBasicinfoForApi>();
+	
+	@ApiModelProperty(name="是否存在下一页数据",value="是否存在下一页数据",example="true")
+	private boolean  nextPageFlag= true;
 	
 	public UserInfo getUserInfo() {
 		return userInfo;
@@ -30,12 +33,20 @@ public class ApiUserInfoResult extends RootApiResult {
 		this.userInfo = userInfo;
 	}
 
-	public List<CnContentBasicinfo> getMoments() {
+	public List<ContentBasicinfoForApi> getMoments() {
 		return moments;
 	}
 
-	public void setMoments(List<CnContentBasicinfo> moments) {
+	public void setMoments(List<ContentBasicinfoForApi> moments) {
 		this.moments = moments;
+	}
+
+	public boolean isNextPageFlag() {
+		return nextPageFlag;
+	}
+
+	public void setNextPageFlag(boolean nextPageFlag) {
+		this.nextPageFlag = nextPageFlag;
 	}
 
 	

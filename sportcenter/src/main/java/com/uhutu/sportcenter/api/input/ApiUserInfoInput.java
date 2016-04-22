@@ -15,6 +15,9 @@ public class ApiUserInfoInput extends RootApiInput {
 	
 	@ApiModelProperty(value = "用户编号", notes = "用户编号", required = true)
 	private String userCode = "";
+	
+	@ApiModelProperty(name="页码",value="页码",example="0")
+	private int  pagination= 0;
 
 	/**
 	 * 获取用户编号
@@ -30,6 +33,14 @@ public class ApiUserInfoInput extends RootApiInput {
 	 */
 	public void setUserCode(String userCode) {
 		this.userCode = userCode;
+	}
+
+	public int getPagination() {
+		return pagination;
+	}
+
+	public void setPagination(int pagination) {
+		this.pagination = pagination;
 	}
 
 }
