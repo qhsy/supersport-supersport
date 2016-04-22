@@ -16,7 +16,7 @@ public class ApiSendSmsInput extends RootApiInput {
 	@ApiModelProperty(value = "手机号码", notes = "手机号码", required = true)
 	private String mobileNO = "";
 	
-	@ApiModelProperty(value = "消息类型", notes = "register(注册),login(登录),resetpwd(重置密码),forgetpwd(忘记密码)", required = true)
+	@ApiModelProperty(value = "消息类型", example = "register(注册),login(登录),resetpwd(重置密码),forgetpwd(忘记密码)", required = true)
 	private String msgType = "";
 
 	public String getMobileNO() {
