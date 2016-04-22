@@ -47,6 +47,7 @@ public class ApiHomePage extends RootApiBase<ApiHomePageInput, ApiHomePageResult
 			toIndex = basicinfos.size();
 		}
 		result.setNextflag(basicinfos.size() > toIndex);
+		if(firstIndex>toIndex){firstIndex=0;}
 		basicinfos = basicinfos.subList(firstIndex, toIndex);
 		if (basicinfos != null && !basicinfos.isEmpty() && basicinfos.size() > 0) {
 			for (int i = 0; i < basicinfos.size(); i++) {
