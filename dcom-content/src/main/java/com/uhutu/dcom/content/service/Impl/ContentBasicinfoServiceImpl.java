@@ -1,5 +1,7 @@
 package com.uhutu.dcom.content.service.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,16 @@ public class ContentBasicinfoServiceImpl implements IContentBasicinfoService {
 	@Override
 	public CnContentBasicinfo queryByCode(String code) {
 		return contentCategoryDaoFacotry.getContentBasicinfoDao().queryByCode(code);
+	}
+
+	@Override
+	public List<CnContentBasicinfo> queryAll(String shareScope) {
+		return contentCategoryDaoFacotry.getContentBasicinfoDao().queryAll(shareScope);
+	}
+
+	@Override
+	public List<CnContentBasicinfo> queryByAuthor(String author) {
+		return contentCategoryDaoFacotry.getContentBasicinfoDao().queryByAuthor(author);
 	}
 
 }

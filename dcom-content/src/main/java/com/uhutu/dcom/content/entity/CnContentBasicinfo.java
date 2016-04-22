@@ -10,7 +10,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * 分类数据模型
+ * 内容基本信息数据模型
  * 
  * @author xiegj
  *
@@ -39,7 +39,7 @@ public class CnContentBasicinfo extends BaseEntity {
 	@ZooData(name = "内容来源")
 	private String souce;
 	
-	@ZooData(name = "内容状态")
+	@ZooData(name = "内容状态 1:正常，02：失效")
 	private String status;
 	
 	@ZooData(name = "内容分类编号")
@@ -51,7 +51,7 @@ public class CnContentBasicinfo extends BaseEntity {
 	@ZooData(name = "内容作者")
 	private String author;
 	
-	@ZooData(name = "内容分享范围")
+	@ZooData(name = "内容分享范围 0:不公开  1：公开")
 	private String shareScope;
 	
 	@ApiModelProperty(name="地理位置" ,notes="位置经纬度",example="116.404, 39.915")
