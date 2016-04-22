@@ -1,0 +1,20 @@
+buildscript {
+		repositories {
+			 maven {url zooInitMavenCenter}
+		}
+		dependencies {
+			classpath("org.springframework.boot:spring-boot-gradle-plugin:${zooInitSpringBoot}") 
+		}
+}
+
+jar {
+	baseName = 'sportstatic'
+	version = zooInitVersion
+}
+
+
+dependencies {
+	
+	
+}
+
