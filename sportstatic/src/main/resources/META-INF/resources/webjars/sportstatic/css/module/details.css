@@ -1,0 +1,17 @@
+/* 详情页 */
+.details-hd{position: relative;}
+.details-hgroup{width: 100%; height: 100%; display: flex; display: -webkit-flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; -webkit-align-content: center; align-content: center; position: absolute; left: 0; top: 0; z-index: 9; color: #fff; text-align: center;}
+.details-hgroup h1{width: 100%; margin-bottom: 0.07rem; font-size: 0.18rem;}
+.details-hgroup time{width: 100%; font-size: 0.12rem;}
+.details-mask{width: 100%; height: 100%; position: absolute; left: 0; top: 0; z-index: 8; background: linear-gradient(rgba(0,0,0,0.2) 60%, rgba(255,255,255,0.7), #fff); background: -webkit-linear-gradient(rgba(0,0,0,0.2) 60%, rgba(255,255,255,0.7), #fff);}
+.details-author{padding-bottom: 0.1rem; margin: -0.37rem 0 0.26rem; position: relative; z-index: 10;}
+.details-photo{width: 0.45rem; height: 0.45rem; margin: auto; overflow: hidden; border: #fff 1px solid; border-radius: 50%;}
+.details-name{margin: 0.04rem 0 0.24rem; text-align: center;}
+.details-follow{display: block; width: 0.85rem; height: 0.34rem; margin: auto; box-shadow: 0.01rem 0.1rem 0.1rem #ffe5d1; border-radius: 0.15rem; background: #fd8528; text-align: center; line-height: 0.34rem; color: #fff;}
+.details-follow.select{color: #3c3c3c; background: #ececec; box-shadow: none;}
+.details-article p{padding: 0 0.25rem 0.22rem 0.25rem;}
+.details-article img{margin-bottom: 0.26rem;}
+.details-tag{padding: 0.03rem 0 0.5rem; text-align: center; font-size: 0.12rem;}
+.details-tag:before{content: ""; width: 0.16rem; height: 0.16rem; display: block; margin: 0 auto 0.02rem; background: url(../img/tag.png) no-repeat; background-size: 0.16rem;}
+.details-tag i{width: 3px; height: 3px; display: inline-block;  vertical-align: middle; margin: 0 0.05rem; background: #000; border-radius: 50%; font-size: 0.12rem;}
+.details-tag b{width: 0.15rem; height: 0.1rem; margin: 0 0.1rem; display: inline-block; vertical-align: top; border-bottom: 1px solid #dddddd;}
