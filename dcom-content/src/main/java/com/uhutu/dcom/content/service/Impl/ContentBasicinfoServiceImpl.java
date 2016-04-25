@@ -48,6 +48,12 @@ public class ContentBasicinfoServiceImpl implements IContentBasicinfoService {
 	@Override
 	public Page<CnContentBasicinfo> queryPage(int pageNum, int limit,QueryConditions conditions) {
 		
+		if(pageNum >= 1){
+			
+			pageNum--;
+			
+		}
+		
 		PageRequest page = new PageRequest(pageNum, limit);
 		
 		Specification<CnContentBasicinfo> spec = QueryConditionUtil.buildSpecification(conditions);
