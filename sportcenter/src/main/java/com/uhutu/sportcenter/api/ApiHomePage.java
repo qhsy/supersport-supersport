@@ -41,8 +41,8 @@ public class ApiHomePage extends RootApiBase<ApiHomePageInput, ApiHomePageResult
 		ApiHomePageResult result = new ApiHomePageResult();
 		List<CnContentBasicinfo> basicinfos = basicinfoServiceFactory.getContentBasicinfoService().queryAll("1");
 
-		int firstIndex = (input.getPageNum() - 1) * 10;
-		int toIndex = input.getPageNum() * 10;
+		int firstIndex = (input.getPagination() - 1) * 10;
+		int toIndex = input.getPagination() * 10;
 		if (toIndex > basicinfos.size()) {
 			toIndex = basicinfos.size();
 		}
