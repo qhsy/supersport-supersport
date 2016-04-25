@@ -58,6 +58,8 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 			
 			sportingMoment.setAboutHead(ucUserinfoExt.getAboutHead());
 			
+			sportingMoment.setNickName(ucUserinfoExt.getNickName());
+			
 			sports.add(sportingMoment);
 			
 		}
