@@ -44,7 +44,7 @@ public class ApiUserInfo extends RootApiBase< ApiUserInfoInput,ApiUserInfoResult
 		
 		UcUserinfoExt ucUserinfoExt = new UcUserinfoExt();
 		
-		if(inputParam.getPagination() <= 0){
+		if(inputParam.getPagination() <= 1){
 			
 			ucUserinfoExt = userServiceFactory.getUserInfoExtService()
 					.queryByUserCode(userCode);
