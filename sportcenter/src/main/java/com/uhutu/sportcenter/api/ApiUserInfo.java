@@ -38,6 +38,8 @@ public class ApiUserInfo extends RootApiBase< ApiUserInfoInput,ApiUserInfoResult
 		
 		ApiUserInfoResult userInfoResult = new ApiUserInfoResult();
 		
+		UserInfo apiUserInfo = new UserInfo();
+		
 		if(inputParam.getPagination() <= 0){
 			
 			UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService()
@@ -52,13 +54,9 @@ public class ApiUserInfo extends RootApiBase< ApiUserInfoInput,ApiUserInfoResult
 				return userInfoResult;
 				
 				
-			}else{		
-				
-				UserInfo apiUserInfo = new UserInfo();
+			}else{	
 				
 				BeanUtils.copyProperties(ucUserinfoExt, apiUserInfo);
-				
-				userInfoResult.setUserInfo(apiUserInfo);
 				
 			}
 			
@@ -88,6 +86,7 @@ public class ApiUserInfo extends RootApiBase< ApiUserInfoInput,ApiUserInfoResult
 		
 		userInfoResult.setMoments(sports);
 		
+		
 		if(page.hasNext()){
 			
 			userInfoResult.setNextPageFlag(true);
@@ -97,6 +96,12 @@ public class ApiUserInfo extends RootApiBase< ApiUserInfoInput,ApiUserInfoResult
 			userInfoResult.setNextPageFlag(false);
 			
 		}
+		
+		Long tempVal = new Long(page.getTotalElements());
+		
+		apiUserInfo.setSportsNum(tempVal.intValue());
+		
+		userInfoResult.setUserInfo(apiUserInfo);
 	
 		
 		
