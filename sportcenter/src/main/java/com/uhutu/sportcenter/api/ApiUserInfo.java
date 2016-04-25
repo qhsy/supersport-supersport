@@ -36,7 +36,7 @@ public class ApiUserInfo extends RootApiBase< ApiUserInfoInput,ApiUserInfoResult
 	
 	public ApiUserInfoResult process(ApiUserInfoInput inputParam ) {
 		
-		String userCode = inputParam.getZoo().getToken();
+		String userCode = inputParam.getZoo().getToken().trim();
 		
 		ApiUserInfoResult userInfoResult = new ApiUserInfoResult();
 		
@@ -70,7 +70,7 @@ public class ApiUserInfo extends RootApiBase< ApiUserInfoInput,ApiUserInfoResult
 		
 		queryConditions.setConditionEqual("busiType", ContentEnum.sportmoment.getCode());
 		
-		queryConditions.setConditionEqual("author", inputParam.getUserCode());
+		queryConditions.setConditionEqual("author", userCode);
 		
 		Page<CnContentBasicinfo> page = serviceFactory.getContentBasicinfoService().queryPage(inputParam.getPagination(), 10, queryConditions);
 		
