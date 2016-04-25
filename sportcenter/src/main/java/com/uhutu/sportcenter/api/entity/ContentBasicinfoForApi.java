@@ -2,6 +2,8 @@ package com.uhutu.sportcenter.api.entity;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
+
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -87,8 +89,8 @@ public class ContentBasicinfoForApi {
 		this.title = title;
 	}
 
-	public Date getPublishTime() {
-		return publishTime;
+	public String getPublishTime() {
+		return DateFormatUtils.format(this.publishTime, "MM-dd HH:mm");
 	}
 
 	public void setPublishTime(Date publishTime) {
