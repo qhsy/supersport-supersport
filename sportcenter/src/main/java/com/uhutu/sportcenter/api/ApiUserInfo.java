@@ -36,6 +36,8 @@ public class ApiUserInfo extends RootApiBase< ApiUserInfoInput,ApiUserInfoResult
 	
 	public ApiUserInfoResult process(ApiUserInfoInput inputParam ) {
 		
+		String userCode = inputParam.getZoo().getToken();
+		
 		ApiUserInfoResult userInfoResult = new ApiUserInfoResult();
 		
 		UserInfo apiUserInfo = new UserInfo();
@@ -43,7 +45,7 @@ public class ApiUserInfo extends RootApiBase< ApiUserInfoInput,ApiUserInfoResult
 		if(inputParam.getPagination() <= 0){
 			
 			UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService()
-					.queryByUserCode(inputParam.getUserCode());
+					.queryByUserCode(userCode);
 			
 			if(ucUserinfoExt == null){
 				
