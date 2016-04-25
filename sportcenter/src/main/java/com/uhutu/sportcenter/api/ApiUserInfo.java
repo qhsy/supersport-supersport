@@ -42,9 +42,11 @@ public class ApiUserInfo extends RootApiBase< ApiUserInfoInput,ApiUserInfoResult
 		
 		UserInfo apiUserInfo = new UserInfo();
 		
+		UcUserinfoExt ucUserinfoExt = new UcUserinfoExt();
+		
 		if(inputParam.getPagination() <= 0){
 			
-			UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService()
+			ucUserinfoExt = userServiceFactory.getUserInfoExtService()
 					.queryByUserCode(userCode);
 			
 			if(ucUserinfoExt == null){
@@ -81,6 +83,10 @@ public class ApiUserInfo extends RootApiBase< ApiUserInfoInput,ApiUserInfoResult
 			ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();
 			
 			BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
+			
+			sportingMoment.setAboutHead(ucUserinfoExt.getAboutHead());
+			
+			sportingMoment.setNickName(ucUserinfoExt.getNickName());
 			
 			sports.add(sportingMoment);
 			
