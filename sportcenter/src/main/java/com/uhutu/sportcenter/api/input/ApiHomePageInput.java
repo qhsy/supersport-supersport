@@ -12,7 +12,7 @@ public class ApiHomePageInput extends RootApiInput {
 	private String width = "";
 
 	@ApiModelProperty(value = "展示的页数", notes = "展示的页数", example = "1", required = true)
-	private int pageNum = 1;
+	private int pagination = 1;
 
 	public String getWidth() {
 		return width;
@@ -22,13 +22,12 @@ public class ApiHomePageInput extends RootApiInput {
 		this.width = width;
 	}
 
-	public int getPageNum() {
-		return pageNum;
+	public int getPagination() {
+		return pagination;
 	}
 
-	public void setPageNum(int pageNum) {
-		this.pageNum = pageNum;
+	public void setPagination(int pagination) {
+		this.pagination = pagination;
 	}
 
-	
 }
