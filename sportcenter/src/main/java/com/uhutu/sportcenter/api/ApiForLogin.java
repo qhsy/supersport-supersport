@@ -29,13 +29,23 @@ public class ApiForLogin extends RootApiBase<ApiForLoginInput, ApiForLoginResult
 
 		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(inputParam.getLoginName());
 
-		ucUserinfo.setFlag(UserEnum.FLAG_LOGIN.getCode());
-		
-		ucUserinfo.setLastTime(new Date());
-		
-		userServiceFactory.getUserInfoService().save(ucUserinfo);
-		
-		result.setUserToken(ucUserinfo.getCode());
+		if(ucUserinfo != null){
+			
+			ucUserinfo.setFlag(UserEnum.FLAG_LOGIN.getCode());
+			
+			ucUserinfo.setLastTime(new Date());
+			
+			userServiceFactory.getUserInfoService().save(ucUserinfo);
+			
+			result.setUserToken(ucUserinfo.getCode());
+			
+		}else{
+			
+			result.setStatus(0);
+			
+			result.setError("用户信息不存在，请确认输入登录账户");
+			
+		}
 		
 		return result;
 
