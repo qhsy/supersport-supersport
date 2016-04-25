@@ -18,5 +18,11 @@ public interface IContentDetailService {
 	 * @return 内容信息
 	 */
 	public CnContentDetail queryByCode(String code);
+	
+	/**
+	 * 内容详情保存
+	 * @param contentDetail 内容详情
+	 */
+	public void save(CnContentDetail contentDetail);
 
 }
