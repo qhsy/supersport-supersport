@@ -45,4 +45,10 @@ public interface IContentBasicinfoService {
 	 * @return 内容信息
 	 */
 	public List<CnContentBasicinfo> queryByAuthor(String author);
+	
+	/**
+	 * 内容基本信息存储
+	 * @param contentBasicinfo
+	 */
+	public void save(CnContentBasicinfo contentBasicinfo);
 }

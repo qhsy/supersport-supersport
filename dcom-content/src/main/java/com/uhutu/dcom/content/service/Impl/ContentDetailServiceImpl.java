@@ -24,4 +24,11 @@ public class ContentDetailServiceImpl implements IContentDetailService {
 		return daoFacotry.getContentDetailDao().queryByCode(code);
 	}
 
+	@Override
+	public void save(CnContentDetail contentDetail) {
+		
+		daoFacotry.getContentDetailDao().save(contentDetail);
+		
+	}
+
 }
