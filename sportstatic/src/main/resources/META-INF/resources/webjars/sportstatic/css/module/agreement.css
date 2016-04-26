@@ -1,5 +1,5 @@
 /* 用户协议 */
 .agreement{padding: 0.1rem 0.15rem;}
 .agreement h1{margin-bottom: 0.1rem; font-size: 0.18rem; text-align: center;}
-.agreement p{margin-bottom: 0.2rem;}
+.agreement p{margin-bottom: 0.2rem; text-align:justify;}
 .agreement span{display: block; padding-bottom: 0.05rem; color: #fd8528;}
