@@ -60,6 +60,8 @@ public class ApiHomePage extends RootApiBase<ApiHomePageInput, ApiHomePageResult
 							userInfoApi);
 				}
 				BeanUtils.copyProperties(info, infoApi);
+				infoApi.setNickName(userInfoApi.getNickName());
+				infoApi.setAboutHead(userInfoApi.getAboutHead());
 				hmp.setInfo(infoApi);
 				hmp.setUe(userInfoApi);
 				result.getList().add(hmp);
