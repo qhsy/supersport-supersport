@@ -62,6 +62,9 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiForSports apiForSports;
+	
+	@Autowired
+	private ApiSetUserFavor apiSetUserFavor;
 
 	public ApiContentDetailInfo getContentDetailInfo() {
 		return contentDetailInfo;
@@ -129,6 +132,10 @@ public class ApiFactory {
 
 	public ApiForSports getApiForSports() {
 		return apiForSports;
+	}
+
+	public ApiSetUserFavor getApiSetUserFavor() {
+		return apiSetUserFavor;
 	}
 
 }

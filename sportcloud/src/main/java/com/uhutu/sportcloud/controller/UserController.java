@@ -12,6 +12,7 @@ import com.uhutu.sportcenter.api.input.APiStartPageInput;
 import com.uhutu.sportcenter.api.input.ApiForLoginInput;
 import com.uhutu.sportcenter.api.input.ApiLoginOutInput;
 import com.uhutu.sportcenter.api.input.ApiSendSmsInput;
+import com.uhutu.sportcenter.api.input.ApiSetUserFavoerInput;
 import com.uhutu.sportcenter.api.input.ApiSocialLoginInput;
 import com.uhutu.sportcenter.api.input.ApiUserInfoInput;
 import com.uhutu.sportcenter.api.input.ApiUserRegInput;
@@ -21,6 +22,7 @@ import com.uhutu.sportcenter.api.result.APiStartPageResult;
 import com.uhutu.sportcenter.api.result.ApiForLoginResult;
 import com.uhutu.sportcenter.api.result.ApiLoginOutResult;
 import com.uhutu.sportcenter.api.result.ApiSendSmsResult;
+import com.uhutu.sportcenter.api.result.ApiSetUserFavorResult;
 import com.uhutu.sportcenter.api.result.ApiSocialLoginResult;
 import com.uhutu.sportcenter.api.result.ApiUserInfoResult;
 import com.uhutu.sportcenter.api.result.ApiUserRegResult;
@@ -115,4 +117,13 @@ public class UserController {
 		
 		return apiFactory.getApiUserResetPwd().api(input);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/setUserFavor",method = RequestMethod.POST)
+	@ApiOperation(value="设置用户喜欢",notes="用户相关")
+	public ApiSetUserFavorResult setUserFavor(@RequestBody ApiSetUserFavoerInput input){
+		
+		return apiFactory.getApiSetUserFavor().api(input);
+	}
+	
 }
