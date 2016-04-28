@@ -1,6 +1,7 @@
 package com.uhutu.sportcenter.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.user.entity.UserBasicInfo;
 import com.uhutu.dcom.user.service.UserServiceFactory;
@@ -13,6 +14,7 @@ import com.uhutu.sportcenter.api.result.ApiSetUserFavorResult;
  * @author pang_jhui
  *
  */
+@Service
 public class ApiSetUserFavor extends RootUserToken<ApiSetUserFavoerInput, ApiSetUserFavorResult> {
 	
 	@Autowired
