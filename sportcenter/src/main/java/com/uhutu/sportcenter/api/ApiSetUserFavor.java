@@ -27,7 +27,7 @@ public class ApiSetUserFavor extends RootUserToken<ApiSetUserFavoerInput, ApiSet
 		
 		UserBasicInfo userBasicInfo = getUserBasicInfo(input.getZoo().getToken());
 		
-		if(userBasicInfo == null){
+		if(userBasicInfo.getUcUserinfoExt() == null){
 			
 			favorResult.setStatus(0);
 			
