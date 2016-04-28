@@ -18,6 +18,9 @@ public class UcUserinfo extends BaseEntity {
 	@ZooData(name="用户编号")
 	private String code;
 	
+	@ZooData(name="用户类型")
+	private String type;
+	
 	@ZooData(name="登录名称")
 	private String loginName;
 	
@@ -100,6 +103,22 @@ public class UcUserinfo extends BaseEntity {
 
 	public void setLastTime(Date lastTime) {
 		this.lastTime = lastTime;
+	}
+
+	/**
+	 * 获取用户类型
+	 * @return
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * 设置用户类型
+	 * @param type
+	 */
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

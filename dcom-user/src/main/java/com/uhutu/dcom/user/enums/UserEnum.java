@@ -20,7 +20,13 @@ public enum UserEnum {
 	FLAG_LOGIN("用户登录","3"),
 	
 	/**用户装填：已登录*/
-	FLAG_LOGINOUT("用户登录退出","4");	
+	FLAG_LOGINOUT("用户登录退出","4"),
+	
+	/**普通用户*/
+	TYPE_CUSTOM("普通用户","01"),
+	
+	/**达人用户*/
+	TYPE_EXPERT("达人用户","02");	
 	
 	private String code = "";
 	

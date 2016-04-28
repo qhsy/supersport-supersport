@@ -1,13 +1,12 @@
 package com.uhutu.sportcenter.api.face;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.uhutu.dcom.user.entity.UserBasicInfo;
 import com.uhutu.dcom.user.support.UserInfoSupport;
-import com.uhutu.zoocom.face.IRootApiInput;
-import com.uhutu.zoocom.face.IRootApiResult;
+import com.uhutu.zoocom.face.IRootApi;
 import com.uhutu.zoocom.root.RootApiInput;
 import com.uhutu.zoocom.root.RootApiResult;
-import com.uhutu.zoocom.root.RootApiToken;
 
 /**
  * 用户登录信息相关api接口
@@ -18,11 +17,16 @@ import com.uhutu.zoocom.root.RootApiToken;
  * @param <R>
  * 		处理结果
  */
-public abstract class RootUserToken<I extends RootApiInput, R extends RootApiResult>
-		extends RootApiToken<IRootApiInput, IRootApiResult> {
+public abstract class RootUserToken<I extends RootApiInput, R extends RootApiResult> implements IRootApi {
 	
 	@Autowired
 	private UserInfoSupport userInfoSupport;
+	
+	public R api(I input) {
+		return process(input);
+	}
+
+	protected abstract R process(I input);
 	
 	/**
 	 * 根据用户编号h
