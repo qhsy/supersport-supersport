@@ -5,60 +5,64 @@ import org.springframework.stereotype.Component;
 
 /**
  * api工厂
+ * 
  * @author pang_jhui
  *
  */
 @Component
 public class ApiFactory {
-	
+
 	@Autowired
 	private ApiContentDetailInfo contentDetailInfo;
-	
+
 	@Autowired
 	private ApiContentPhotosDetailInfo contentPhotosDetailInfo;
-	
+
 	@Autowired
 	private ApiVersionInfo apiVersionInfo;
-	
+
 	@Autowired
 	private ApiUserRegister apiUserRegister;
-	
+
 	@Autowired
 	private ApiUserInfo apiUserInfo;
-	
+
 	@Autowired
 	private ApiSupportPraise apiSupportPraise;
-	
+
 	@Autowired
 	private APiStartPage apiStartPage;
-	
+
 	@Autowired
 	private ApiSportingMoments apiSportingMoments;
-	
+
 	@Autowired
 	private ApiSocialLogin apiSocialLogin;
-	
+
 	@Autowired
 	private ApiSendSms apiSendSms;
-	
+
 	@Autowired
 	private ApiPublishSportingMoment apiPublishSportingMoment;
-	
+
 	@Autowired
 	private ApiLoginOut apiLoginOut;
-	
+
 	@Autowired
 	private ApiHomePage apiHomePage;
-	
+
 	@Autowired
 	private ApiForLogin apiForLogin;
-	
+
 	@Autowired
 	private ApiForLabels apiForLabels;
-	
+
 	@Autowired
 	private ApiUserResetPwd apiUserResetPwd;
-	
+
+	@Autowired
+	private ApiForSports apiForSports;
+
 	public ApiContentDetailInfo getContentDetailInfo() {
 		return contentDetailInfo;
 	}
@@ -122,6 +126,9 @@ public class ApiFactory {
 	public ApiUserResetPwd getApiUserResetPwd() {
 		return apiUserResetPwd;
 	}
-	
+
+	public ApiForSports getApiForSports() {
+		return apiForSports;
+	}
 
 }
