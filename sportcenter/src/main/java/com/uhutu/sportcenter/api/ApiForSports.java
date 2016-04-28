@@ -7,10 +7,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uhutu.dcom.content.entity.CnContentSport;
-import com.uhutu.dcom.content.service.ContentSportServiceFactory;
-import com.uhutu.dcom.content.service.IContentSportService;
-import com.uhutu.sportcenter.api.entity.ContentSportForApi;
+import com.uhutu.dcom.content.entity.SpSportCategory;
+import com.uhutu.dcom.content.service.ISportCategoryService;
+import com.uhutu.dcom.content.service.SportCategoryServiceFactory;
+import com.uhutu.sportcenter.api.entity.SportCategoryForApi;
 import com.uhutu.sportcenter.api.input.ApiForSportsInput;
 import com.uhutu.sportcenter.api.result.ApiForSportsResult;
 import com.uhutu.zoocom.root.RootApiToken;
@@ -24,19 +24,19 @@ import com.uhutu.zoocom.root.RootApiToken;
 public class ApiForSports extends RootApiToken<ApiForSportsInput, ApiForSportsResult> {
 
 	@Autowired
-	private ContentSportServiceFactory contentSportServiceFactory;
+	private SportCategoryServiceFactory sportCategoryServiceFactory;
 
 	protected ApiForSportsResult process(ApiForSportsInput input) {
 		ApiForSportsResult result = new ApiForSportsResult();
 
-		IContentSportService service = contentSportServiceFactory.getContentSportService();
+		ISportCategoryService service = sportCategoryServiceFactory.getSportCategoryService();
 
-		List<CnContentSport> contentSports = service.queryAll();
+		List<SpSportCategory> contentSports = service.queryAll();
 
-		List<ContentSportForApi> sports = new ArrayList<ContentSportForApi>();
+		List<SportCategoryForApi> sports = new ArrayList<SportCategoryForApi>();
 		if (contentSports != null && !contentSports.isEmpty() && contentSports.size() > 0) {
 			for (int i = 0; i < contentSports.size(); i++) {
-				ContentSportForApi sportInfo = new ContentSportForApi();
+				SportCategoryForApi sportInfo = new SportCategoryForApi();
 				BeanUtils.copyProperties(contentSports.get(i), sportInfo);
 				sports.add(sportInfo);
 			}

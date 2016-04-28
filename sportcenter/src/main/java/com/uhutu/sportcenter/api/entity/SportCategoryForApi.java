@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 @Entity
-public class ContentSportForApi extends BaseEntity {
+public class SportCategoryForApi extends BaseEntity {
 
 	@ApiModelProperty(value = "运动编号", notes = "运动编号")
 	private String code = "";
@@ -22,7 +22,10 @@ public class ContentSportForApi extends BaseEntity {
 	private String name = "";
 
 	@ApiModelProperty(value = "运动图片链接", notes = "运动图片链接")
-	private String picUrl = "";
+	private String icon = "";
+
+	@ApiModelProperty(value = "描述", notes = "描述")
+	private String description = "";
 
 	public String getCode() {
 		return code;
@@ -40,12 +43,20 @@ public class ContentSportForApi extends BaseEntity {
 		this.name = name;
 	}
 
-	public String getPicUrl() {
-		return picUrl;
+	public String getIcon() {
+		return icon;
 	}
 
-	public void setPicUrl(String picUrl) {
-		this.picUrl = picUrl;
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

@@ -101,9 +101,9 @@ public class ContentController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/contentSports", method = RequestMethod.POST)
+	@RequestMapping(value = "/sportCategory", method = RequestMethod.POST)
 	@ApiOperation(value = "各种运动类型接口", notes = "运动类型")
-	public ApiForSportsResult contentSports(@RequestBody ApiForSportsInput input) {
+	public ApiForSportsResult sportCategory(@RequestBody ApiForSportsInput input) {
 
 		return apiFactory.getApiForSports().api(input);
 
