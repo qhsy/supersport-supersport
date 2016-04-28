@@ -5,36 +5,37 @@ import org.springframework.stereotype.Component;
 
 /**
  * 内容数据操作
+ * 
  * @author pang_jhui
  *
  */
 @Component
 public class ContentDaoFactory {
-	
+
 	@Autowired
 	private IContentDetailDao contentDetailDao;
-	
+
 	@Autowired
 	private IAdvertiseDetailDao advertiseDetailDao;
-	
+
 	@Autowired
 	private IContentBasicinfoDao contentBasicinfoDao;
-	
+
 	@Autowired
 	private IContentItemDao contentItemDao;
-	
+
 	@Autowired
 	private IContentRemarkDao contentRemarkDao;
-	
+
 	@Autowired
 	private ISupportPraiseDao supportPraiseDao;
-	
+
 	@Autowired
 	private IAdvertiseInfoDao advertiseInfoDao;
-	
+
 	@Autowired
 	private IContentCategoryDao contentCategoryDao;
-	
+
 	@Autowired
 	private ISportCategoryDao sportCategoryDao;
 
