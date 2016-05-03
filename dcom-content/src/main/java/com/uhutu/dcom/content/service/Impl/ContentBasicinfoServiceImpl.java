@@ -66,8 +66,15 @@ public class ContentBasicinfoServiceImpl implements IContentBasicinfoService {
 	@Override
 	public void save(CnContentBasicinfo contentBasicinfo) {
 		
-		if(StringUtils.isNoneBlank(contentBasicinfo.getZa())
+		if(StringUtils.isNotBlank(contentBasicinfo.getZa())
 				&& daoFacotry.getContentBasicinfoDao().exists(contentBasicinfo.getZa())){
+			
+			contentBasicinfo.setZu(new Date());
+			
+			daoFacotry.getContentBasicinfoDao().save(contentBasicinfo);
+			
+			
+		}else{
 			
 			String dateStr = DateFormatUtils.format(new Date(), "yyyyMMddHHmmssSSS");
 			
@@ -77,15 +84,7 @@ public class ContentBasicinfoServiceImpl implements IContentBasicinfoService {
 			
 			contentBasicinfo.setZc(new Date());
 			
-			daoFacotry.getContentBasicinfoDao().save(contentBasicinfo);
-			
-			
-		}else{
-			
-			contentBasicinfo.setZu(new Date());
-			
-			daoFacotry.getContentBasicinfoDao().save(contentBasicinfo);
-			
+			daoFacotry.getContentBasicinfoDao().save(contentBasicinfo);			
 			
 		}
 		
