@@ -43,6 +43,7 @@ dependencies {
 	compile group: zooInitGroupId, name: 'zoodata', version: zooInitVersion, changing: true
 	compile group: zooInitGroupId, name: 'zooweb', version: zooInitVersion, changing: true
 	compile group: zooInitGroupId, name: 'zoozero', version: zooInitVersion, changing: true
+	compile group: zooInitGroupId, name: 'zoostatic', version: zooInitVersion, changing: true
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 	
 	
