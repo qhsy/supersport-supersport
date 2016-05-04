@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  templet.xsd">
+	<data>
+		<item code="dzpi451001000001" nodeName="用户管理" parentCode="" />
+		<item code="dzpi4510010000010001" nodeName="用户基本信息" parentCode="dzpi451001000001"
+			pageUrl="/zpage/pg/com_uhutu_zooexample_z_page_DemoPage" pageIcon="glyphicon-th" />
+		
+	</data>
+
+</db>
