@@ -21,6 +21,9 @@ public class ApiUserRegInput extends RootApiInput {
 	
 	@ApiModelProperty(value = "验证码", notes = "验证码", required = true)
 	private String verify_code = "";
+	
+	@ApiModelProperty(value="昵称",notes="昵称",required = true)
+	private String nickName = "";
 
 	public String getLoginName() {
 		return loginName;
@@ -44,6 +47,14 @@ public class ApiUserRegInput extends RootApiInput {
 
 	public void setVerify_code(String verify_code) {
 		this.verify_code = verify_code;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 }
