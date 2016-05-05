@@ -19,7 +19,7 @@ public class ApiUserResetPwdInput extends RootApiInput {
 	@ApiModelProperty(value = "登录密码", notes = "登录密码", required = true)
 	private String loginPwd = "";
 	
-	@ApiModelProperty(value="")
+	@ApiModelProperty(value="短信验证码",notes="短信验证码",required = true)
 	private String verifyCode = "";
 
 	public String getLoginName() {
