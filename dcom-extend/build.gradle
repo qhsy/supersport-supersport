@@ -1,0 +1,25 @@
+buildscript {
+		repositories {
+			 maven {url zooInitMavenCenter}
+		}
+		dependencies {
+			classpath("org.springframework.boot:spring-boot-gradle-plugin:${zooInitSpringBoot}") 
+		}
+}
+
+apply plugin: 'spring-boot'
+
+jar {
+	baseName = 'dcom-extend'
+	version = zooInitVersion
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile group: 'dom4j', name: 'dom4j', version: zooVersionDom4j
+	compile group: 'com.google.code.gson', name: 'gson', version: zooVersionGson
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: zooVersionApacheHttpClient
+	testCompile('org.springframework.boot:spring-boot-starter-test') 
+}
+
