@@ -3,7 +3,7 @@ package com.uhutu.sportcenter.z.result;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.entity.ContentPhotosDetail;
 import com.uhutu.zoocom.root.RootApiResult;
 
@@ -14,17 +14,17 @@ import io.swagger.annotations.ApiModelProperty;
 public class ApiContentPhotosResult extends RootApiResult {
 	
 	@ApiModelProperty(value="内容基本信息",notes="基本信息")
-	private CnContentBasicinfo sportingMoment = new CnContentBasicinfo();
+	private ContentBasicinfoForApi contentBasicInfo = new ContentBasicinfoForApi();
 	
 	@ApiModelProperty(value="内容详细信息",notes="详细信息")
 	private List<ContentPhotosDetail> contentPhotosDetails = new ArrayList<ContentPhotosDetail>();
 
-	public CnContentBasicinfo getSportingMoment() {
-		return sportingMoment;
+	public ContentBasicinfoForApi getContentBasicInfo() {
+		return contentBasicInfo;
 	}
 
-	public void setSportingMoment(CnContentBasicinfo sportingMoment) {
-		this.sportingMoment = sportingMoment;
+	public void setContentBasicInfo(ContentBasicinfoForApi contentBasicInfo) {
+		this.contentBasicInfo = contentBasicInfo;
 	}
 
 	public List<ContentPhotosDetail> getContentPhotosDetails() {
@@ -34,6 +34,7 @@ public class ApiContentPhotosResult extends RootApiResult {
 	public void setContentPhotosDetails(List<ContentPhotosDetail> contentPhotosDetails) {
 		this.contentPhotosDetails = contentPhotosDetails;
 	}
+
 
 	
 
