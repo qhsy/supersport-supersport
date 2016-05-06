@@ -12,3 +12,6 @@ project(':zoozero').projectDir = new File(settingsDir, '../../zoouhutu/zoozero')
 
 include ':dcom-config'
 project(':dcom-config').projectDir = new File(settingsDir, '../dcom-config')
+
+include ':dcom-extend'
+project(':dcom-extend').projectDir = new File(settingsDir, '../dcom-extend')
