@@ -1,0 +1,42 @@
+package com.uhutu.dcom.user.z.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.uhutu.dcom.user.z.dao.UserDaoFacotry;
+import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
+import com.uhutu.dcom.user.z.service.IUserInfoExtService;
+
+/**
+ * 用户扩展信息保存
+ * @author pang_jhui
+ *
+ */
+@Service
+public class UserInfoExtServiceImpl implements IUserInfoExtService {
+	
+	@Autowired
+	private UserDaoFacotry userDaoFacotry;
+
+	@Override
+	public void save(UcUserinfoExt ucUserinfoExt) {
+		
+		userDaoFacotry.getUserInfoExtDao().save(ucUserinfoExt);
+
+	}
+
+	@Override
+	public UcUserinfoExt query(String id) {
+		
+		return userDaoFacotry.getUserInfoExtDao().findOne(id);
+		
+	}
+
+	@Override
+	public UcUserinfoExt queryByUserCode(String userCode) {
+		
+		return userDaoFacotry.getUserInfoExtDao().queryByUserCode(userCode);
+		
+	}
+
+}
