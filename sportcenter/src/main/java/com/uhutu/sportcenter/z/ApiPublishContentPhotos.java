@@ -1,9 +1,14 @@
 package com.uhutu.sportcenter.z;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.entity.CnContentPhotos;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiPublishContentPhotosInput;
 import com.uhutu.sportcenter.z.result.ApiPublishContentPhotosResult;
@@ -35,8 +40,31 @@ public class ApiPublishContentPhotos extends RootApiToken<ApiPublishContentPhoto
 			
 			serviceFactory.getContentBasicinfoService().save(contentBasicinfo);
 			
+			List<CnContentPhotos> cnContentPhotos = new ArrayList<CnContentPhotos>();
+			
+			input.getContentPhotos().forEach(entity -> {
+				
+				CnContentPhotos temp = new CnContentPhotos();
+				
+				BeanUtils.copyProperties(entity, temp);
+				
+				temp.setContentCode(contentBasicinfo.getCode());
+				
+				temp.setZc(new Date());
+				
+				cnContentPhotos.add(temp);
+				
+			});
+			
+			serviceFactory.getContentPhotosService().save(cnContentPhotos);
+			
 
 		} else {
+			
+			contentPhotosResult.setStatus(0);
+			
+			contentPhotosResult.setError("内容信息不存在");
+			
 
 		}
 
