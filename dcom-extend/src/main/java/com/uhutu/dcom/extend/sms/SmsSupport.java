@@ -1,5 +1,6 @@
 package com.uhutu.dcom.extend.sms;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +64,8 @@ public class SmsSupport extends RootClass {
 	public RootApiResult upLastVerifyCode(SmsTypeEnum smsTypeEnum, String sMobile, String verifyCode) {
 
 		RootApiResult result = new RootApiResult();
-		List<Map<String, Object>> dataMap = new DataJdbcFactory()
+		DataJdbcFactory factory = new DataJdbcFactory();
+		List<Map<String, Object>> dataMap = factory
 				.dataSqlList("select * from cm_send_sms where verify_sum<" + SmsConst.MAX_VERIFY_CODE_SUM
 						+ " and flag_verify=0 and active_time>='" + FormatHelper.upDateTime() + "' and verify_type='"
 						+ smsTypeByEnumer(smsTypeEnum) + "' and mobile_phone='" + sMobile
@@ -72,7 +74,15 @@ public class SmsSupport extends RootClass {
 		if (dataMap != null && dataMap.size() > 0) {
 			code = dataMap.get(0).get("verify_code").toString();
 		}
-		if (!code.equals(verifyCode)) {
+		if (!code.equals(verifyCode)&&dataMap != null && dataMap.size() > 0) {
+			String sql="UPDATE dev_sportcloud.cm_send_sms SET verify_sum=verify_sum+1 and zu='"+new Date()+"' WHERE za='"+dataMap.get(0).get("za")+"'";
+			factory.dataExec(sql, new MDataMap());
+			result.setStatus(81090004);
+			result.setError(TopHelper.upInfo(81090004));
+		}else if(dataMap != null && dataMap.size() > 0){
+			String sql="UPDATE dev_sportcloud.cm_send_sms SET flag_verify='1' WHERE za='"+dataMap.get(0).get("za")+"'";
+			factory.dataExec(sql, new MDataMap());
+		}else if (dataMap==null||dataMap.isEmpty()) {
 			result.setStatus(81090004);
 			result.setError(TopHelper.upInfo(81090004));
 		}
