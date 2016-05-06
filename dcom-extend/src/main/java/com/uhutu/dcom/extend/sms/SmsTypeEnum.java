@@ -1,4 +1,4 @@
-package com.uhutu.dcom.component.sms;
+package com.uhutu.dcom.extend.sms;
 
 /**
  * 短信发送类型

@@ -1,4 +1,4 @@
-package com.uhutu.dcom.component.sms;
+package com.uhutu.dcom.extend.sms;
 
 public class SmsConst {
 

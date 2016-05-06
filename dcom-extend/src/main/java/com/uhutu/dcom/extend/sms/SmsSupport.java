@@ -1,4 +1,4 @@
-package com.uhutu.dcom.component.sms;
+package com.uhutu.dcom.extend.sms;
 
 import java.util.HashMap;
 import java.util.List;
@@ -60,18 +60,19 @@ public class SmsSupport extends RootClass {
 	 * @param sMobile
 	 * @return
 	 */
-	public RootApiResult upLastVerifyCode(SmsTypeEnum smsTypeEnum, String sMobile,String verifyCode) {
+	public RootApiResult upLastVerifyCode(SmsTypeEnum smsTypeEnum, String sMobile, String verifyCode) {
 
 		RootApiResult result = new RootApiResult();
-		 List<Map<String, Object>> dataMap = new DataJdbcFactory().dataSqlList("select * from cm_send_sms where verify_type=:verify_type and mobile_phone=:mobile_phone and verify_sum<"
-						+ SmsConst.MAX_VERIFY_CODE_SUM + " and flag_verify=0 and active_time>:current_time",
-				"verify_type", smsTypeByEnumer(smsTypeEnum), "mobile_phone", sMobile, "current_time",
-				FormatHelper.upDateTime()+"order by zc desc");
-		 String code = "";
+		List<Map<String, Object>> dataMap = new DataJdbcFactory()
+				.dataSqlList("select * from cm_send_sms where verify_sum<" + SmsConst.MAX_VERIFY_CODE_SUM
+						+ " and flag_verify=0 and active_time>='" + FormatHelper.upDateTime() + "' and verify_type='"
+						+ smsTypeByEnumer(smsTypeEnum) + "' and mobile_phone='" + sMobile
+						+ "' order by zc desc",new MDataMap());
+		String code = "";
 		if (dataMap != null && dataMap.size() > 0) {
 			code = dataMap.get(0).get("verify_code").toString();
 		}
-		if(!code.equals(verifyCode)){
+		if (!code.equals(verifyCode)) {
 			result.setStatus(81070004);
 			result.setError(TopHelper.upInfo(81070004));
 		}
