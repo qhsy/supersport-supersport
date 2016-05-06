@@ -1,0 +1,2 @@
+include ':zoodata'
+project(':zoodata').projectDir = new File(settingsDir, '../../zoouhutu/zoodata')

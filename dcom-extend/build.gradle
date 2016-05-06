@@ -16,8 +16,8 @@ jar {
 
 
 dependencies {
+	compile project(':zoodata'){version=zooInitVersion;group=zooInitGroupId}
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile group: 'dom4j', name: 'dom4j', version: zooVersionDom4j
 	compile group: 'com.google.code.gson', name: 'gson', version: zooVersionGson
 	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: zooVersionApacheHttpClient
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
