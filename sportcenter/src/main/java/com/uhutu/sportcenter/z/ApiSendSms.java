@@ -51,10 +51,11 @@ public class ApiSendSms extends RootApiBase<ApiSendSmsInput, ApiSendSmsResult> {
 				rr = new SmsSupport().sendVerifyCode(new SmsSupport().smsTypeByEnumer(SmsTypeEnum.forgetpwd),
 						inputParam.getMobileNO(), 6, 5);
 			} else {
-				sendSmsResult.setStatus(0);
+				rr.setStatus(0);
+				rr.setError("无此验证码类型");
 			}
 			sendSmsResult.setStatus(rr.getStatus());
-			sendSmsResult.setError("无此验证码类型");
+			sendSmsResult.setError(rr.getError());
 		}
 
 		return sendSmsResult;

@@ -15,7 +15,7 @@ public class SmsConst {
 	/**
 	 * 验证码最短发送时间间隔
 	 */
-	public final static String MIN_VERIFY_TIME_STEP = "-30s";
+	public final static String MIN_VERIFY_TIME_STEP = "-60s";
 
 	/**
 	 * 验证码每天时间间隔

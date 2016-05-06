@@ -1,5 +1,6 @@
 package com.uhutu.dcom.extend.sms;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +64,8 @@ public class SmsSupport extends RootClass {
 	public RootApiResult upLastVerifyCode(SmsTypeEnum smsTypeEnum, String sMobile, String verifyCode) {
 
 		RootApiResult result = new RootApiResult();
-		List<Map<String, Object>> dataMap = new DataJdbcFactory()
+		DataJdbcFactory factory = new DataJdbcFactory();
+		List<Map<String, Object>> dataMap = factory
 				.dataSqlList("select * from cm_send_sms where verify_sum<" + SmsConst.MAX_VERIFY_CODE_SUM
 						+ " and flag_verify=0 and active_time>='" + FormatHelper.upDateTime() + "' and verify_type='"
 						+ smsTypeByEnumer(smsTypeEnum) + "' and mobile_phone='" + sMobile
@@ -72,9 +74,17 @@ public class SmsSupport extends RootClass {
 		if (dataMap != null && dataMap.size() > 0) {
 			code = dataMap.get(0).get("verify_code").toString();
 		}
-		if (!code.equals(verifyCode)) {
-			result.setStatus(81070004);
-			result.setError(TopHelper.upInfo(81070004));
+		if (!code.equals(verifyCode)&&dataMap != null && dataMap.size() > 0) {
+			String sql="UPDATE dev_sportcloud.cm_send_sms SET verify_sum=verify_sum+1 and zu='"+new Date()+"' WHERE za='"+dataMap.get(0).get("za")+"'";
+			factory.dataExec(sql, new MDataMap());
+			result.setStatus(81090004);
+			result.setError(TopHelper.upInfo(81090004));
+		}else if(dataMap != null && dataMap.size() > 0){
+			String sql="UPDATE dev_sportcloud.cm_send_sms SET flag_verify='1' WHERE za='"+dataMap.get(0).get("za")+"'";
+			factory.dataExec(sql, new MDataMap());
+		}else if (dataMap==null||dataMap.isEmpty()) {
+			result.setStatus(81090004);
+			result.setError(TopHelper.upInfo(81090004));
 		}
 		return result;
 
@@ -96,9 +106,9 @@ public class SmsSupport extends RootClass {
 			MDataMap pmap = new MDataMap();
 			pmap.put("mobile", sMobile);
 			List<Map<String, Object>> verifyCodeList = new DataJdbcFactory().dataSqlList(verifySql, pmap);
-			if (verifyCodeList != null && verifyCodeList.size() > SmsConst.MAX_VERIFY_CODE_SEND_SUM) {
-				result.setStatus(81070002);
-				result.setError(TopHelper.upInfo(81070002));
+			if (verifyCodeList != null && verifyCodeList.size() >= SmsConst.MAX_VERIFY_CODE_SEND_SUM) {
+				result.setStatus(81090002);
+				result.setError(TopHelper.upInfo(81090002));
 			}
 		}
 		if (result.getStatus() == 1) {
@@ -109,8 +119,8 @@ public class SmsSupport extends RootClass {
 			List<Map<String, Object>> mCheckMap = new DataJdbcFactory()
 					.dataSqlList("SELECT za FROM cm_send_sms where mobile_phone=:mobile_phone and zc>:min_time", pmap);
 			if (mCheckMap != null && mCheckMap.size() > 0) {
-				result.setStatus(81070003);
-				result.setError(TopHelper.upInfo(81070003));
+				result.setStatus(81090003);
+				result.setError(TopHelper.upInfo(81090003));
 			}
 		}
 		return result;
@@ -199,7 +209,7 @@ public class SmsSupport extends RootClass {
 		if (!"000000".equals(result.get("statusCode"))) {
 			// 异常返回输出错误码和错误信息
 			re = "错误码=" + result.get("statusCode") + " 错误信息= " + result.get("statusMsg");
-			bLog(81070001, re);
+			bLog(81090001, re);
 		}
 		return re;
 	}
