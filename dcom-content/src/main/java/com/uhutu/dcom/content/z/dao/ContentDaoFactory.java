@@ -38,6 +38,9 @@ public class ContentDaoFactory {
 
 	@Autowired
 	private ISportCategoryDao sportCategoryDao;
+	
+	@Autowired
+	private IContentPhotosDao contentPhotosDao;
 
 	public IContentDetailDao getContentDetailDao() {
 		return contentDetailDao;
@@ -73,6 +76,10 @@ public class ContentDaoFactory {
 
 	public ISportCategoryDao getSportCategoryDao() {
 		return sportCategoryDao;
+	}
+
+	public IContentPhotosDao getContentPhotosDao() {
+		return contentPhotosDao;
 	}
 
 }

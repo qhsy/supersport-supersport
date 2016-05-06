@@ -1,22 +1,26 @@
-package com.uhutu.sportcenter.z.entity;
+package com.uhutu.dcom.content.z.entity;
 
-import io.swagger.annotations.ApiModelProperty;
+import javax.persistence.Entity;
+
+import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
- * 内容图集详情
+ * 图集信息
  * @author pang_jhui
  *
  */
-public class ContentPhotosDetail {
+@Entity
+public class CnContentPhotos extends BaseEntity {
 	
-	@ApiModelProperty(value="内容编号",notes="内容编号")
-	private String contentCode = "";
+	@ZooData(name = "内容编号")
+	private String contentCode;
 	
-	@ApiModelProperty(value="图片信息",notes="图片信息")
-	private String picture = "";
+	@ZooData(name = "图片路径")
+	private String picture;
 	
-	@ApiModelProperty(value="内容信息",notes="内容信息")
-	private String content = "";
+	@ZooData(name = "内容信息")
+	private String content;
 
 	public String getContentCode() {
 		return contentCode;

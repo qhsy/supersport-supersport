@@ -1,8 +1,10 @@
 package com.uhutu.sportcenter.z;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiPublishContentPhotosInput;
 import com.uhutu.sportcenter.z.result.ApiPublishContentPhotosResult;
 import com.uhutu.zoocom.root.RootApiToken;
@@ -14,6 +16,9 @@ import com.uhutu.zoocom.root.RootApiToken;
  *
  */
 public class ApiPublishContentPhotos extends RootApiToken<ApiPublishContentPhotosInput, ApiPublishContentPhotosResult> {
+	
+	@Autowired
+	private ContentServiceFactory serviceFactory;
 
 	@Override
 	protected ApiPublishContentPhotosResult process(ApiPublishContentPhotosInput input) {
@@ -27,6 +32,9 @@ public class ApiPublishContentPhotos extends RootApiToken<ApiPublishContentPhoto
 			BeanUtils.copyProperties(input.getContentBasicInfo(), contentBasicinfo);
 			
 			contentBasicinfo.setAuthor(input.getZoo().getToken());
+			
+			serviceFactory.getContentBasicinfoService().save(contentBasicinfo);
+			
 
 		} else {
 

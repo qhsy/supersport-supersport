@@ -16,6 +16,13 @@ public class ContentServiceFactory {
 	
 	@Autowired
 	private IContentDetailService contentDetailService;
+	
+	@Autowired
+	private IContentPhotosService contentPhotosService;
+
+	public IContentPhotosService getContentPhotosService() {
+		return contentPhotosService;
+	}
 
 	public IContentBasicinfoService getContentBasicinfoService() {
 		return contentBasicinfoService;
