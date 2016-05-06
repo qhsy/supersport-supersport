@@ -16,7 +16,7 @@ jar {
 
 
 dependencies {
-	compile project(':zoozero'){version=zooInitVersion;group=zooInitGroupId}
+	compile group: zooInitGroupId, name: 'zoozero', version: zooInitVersion, changing: true
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile group: 'com.google.code.gson', name: 'gson', version: zooVersionGson
 	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: zooVersionApacheHttpClient
