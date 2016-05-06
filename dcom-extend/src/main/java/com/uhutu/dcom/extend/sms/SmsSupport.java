@@ -96,7 +96,7 @@ public class SmsSupport extends RootClass {
 			MDataMap pmap = new MDataMap();
 			pmap.put("mobile", sMobile);
 			List<Map<String, Object>> verifyCodeList = new DataJdbcFactory().dataSqlList(verifySql, pmap);
-			if (verifyCodeList != null && verifyCodeList.size() > SmsConst.MAX_VERIFY_CODE_SEND_SUM) {
+			if (verifyCodeList != null && verifyCodeList.size() >= SmsConst.MAX_VERIFY_CODE_SEND_SUM) {
 				result.setStatus(81090002);
 				result.setError(TopHelper.upInfo(81090002));
 			}
