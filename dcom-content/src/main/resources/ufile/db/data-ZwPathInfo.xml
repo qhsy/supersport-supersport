@@ -6,6 +6,7 @@
 		<item code="dmtg4107100110011001" nodeName="评论信息" parentCode="dmtg41071001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentRemarkPage" pageIcon="glyphicon-phone-alt" />
 		<item code="dmtg410710011002" nodeName="广告管理" parentCode="" />
 		<item code="dmtg4107100110021001" nodeName="广告信息" parentCode="dmtg41071002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_AdvertiseInfoPage" pageIcon="glyphicon-film" />
+		<item code="dmtg4107100110021002" nodeName="添加广告信息" parentCode="dmtg41071002" pageUrl="/zpage/pa/com_uhutu_dcom_content_z_page_AdvertiseInfoPage" pageIcon="glyphicon-film" />
 	</data>
 
 </db>
