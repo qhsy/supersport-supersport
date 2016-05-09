@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
+	<data>
+		<item code="dmtg410710011001" nodeName="评论管理" parentCode="" />
+		<item code="dmtg4107100110011001" nodeName="评论信息" parentCode="dmtg41071001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentRemarkPage" pageIcon="glyphicon-phone-alt" />
+	</data>
+
+</db>
