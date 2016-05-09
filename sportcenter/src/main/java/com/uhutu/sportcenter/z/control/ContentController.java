@@ -13,6 +13,7 @@ import com.uhutu.sportcenter.z.input.ApiContentPhotosInput;
 import com.uhutu.sportcenter.z.input.ApiForLabelsInput;
 import com.uhutu.sportcenter.z.input.ApiForSportsInput;
 import com.uhutu.sportcenter.z.input.ApiHomePageInput;
+import com.uhutu.sportcenter.z.input.ApiPublishContentPhotosInput;
 import com.uhutu.sportcenter.z.input.ApiPublishSportingMomentInput;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.z.input.ApiSupportPraiseInput;
@@ -21,6 +22,7 @@ import com.uhutu.sportcenter.z.result.ApiContentPhotosResult;
 import com.uhutu.sportcenter.z.result.ApiForLabelsResult;
 import com.uhutu.sportcenter.z.result.ApiForSportsResult;
 import com.uhutu.sportcenter.z.result.ApiHomePageResult;
+import com.uhutu.sportcenter.z.result.ApiPublishContentPhotosResult;
 import com.uhutu.sportcenter.z.result.ApiPublishSportingMomentResult;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
 import com.uhutu.sportcenter.z.result.ApiSupportPraiseResult;
@@ -106,6 +108,15 @@ public class ContentController {
 	public ApiForSportsResult sportCategory(@RequestBody ApiForSportsInput input) {
 
 		return apiFactory.getApiForSports().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/publicContentPhotos", method = RequestMethod.POST)
+	@ApiOperation(value = "发布图集", notes = "运动类型")
+	public ApiPublishContentPhotosResult publicContentPhotos(@RequestBody ApiPublishContentPhotosInput input) {
+
+		return apiFactory.getApiPublishContentPhotos().api(input);
 
 	}
 }
