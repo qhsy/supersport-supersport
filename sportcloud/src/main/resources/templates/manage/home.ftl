@@ -19,10 +19,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user icon_margin" aria-hidden="true"></span>刘测测</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user icon_margin" aria-hidden="true"></span>逄小杰</a></li>
             <li><a href="#">设置</a></li>
             <li><a href="#">消息&nbsp;&nbsp;<span class="badge">42</span></a></li>
-            <li><a href="#">Help</a></li>
+            <li><a basetarget="_blank" href="www.baidu.com">Help(百度)</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -37,7 +37,7 @@
           
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">你好，世界</h1>
+          <h1 class="page-header">你好，新体优家</h1>
 
           <div class="row ">
             <div id="zoo_content" class="zs_page_form_box"></div>
