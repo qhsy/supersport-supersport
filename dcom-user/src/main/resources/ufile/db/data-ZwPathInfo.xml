@@ -4,7 +4,7 @@
 	<data>
 		<item code="dzpi451001000001" nodeName="用户管理" parentCode="" />
 		<item code="dzpi4510010000010001" nodeName="用户基本信息" parentCode="dzpi451001000001"
-			pageUrl="/zpage/pg/com_uhutu_dcom_user_page_UserInfoOperPage" pageIcon="glyphicon-th" />	
+			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UserInfoOperPage" pageIcon="glyphicon-th" />	
 	</data>
 
 </db>
