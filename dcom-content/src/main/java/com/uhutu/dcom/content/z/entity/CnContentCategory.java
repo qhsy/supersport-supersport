@@ -17,7 +17,7 @@ public class CnContentCategory extends BaseEntity{
 	@ZooData(name = "分类编号")
 	private String code;
 	
-	@ZooData(name = "分类编号")
+	@ZooData(name = "分类名称")
 	private String name;
 
 	@ZooData(name = "分类父编号")
