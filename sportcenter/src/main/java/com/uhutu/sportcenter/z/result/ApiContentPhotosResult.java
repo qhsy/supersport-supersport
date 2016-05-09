@@ -13,6 +13,9 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class ApiContentPhotosResult extends RootApiResult {
 	
+	@ApiModelProperty(value="图集总数")
+	private int totalCount;
+	
 	@ApiModelProperty(value="内容基本信息",notes="基本信息")
 	private ContentBasicinfoForApi contentBasicInfo = new ContentBasicinfoForApi();
 	
@@ -33,6 +36,14 @@ public class ApiContentPhotosResult extends RootApiResult {
 
 	public void setContentPhotosDetails(List<ContentPhotosDetail> contentPhotosDetails) {
 		this.contentPhotosDetails = contentPhotosDetails;
+	}
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
 	}
 
 

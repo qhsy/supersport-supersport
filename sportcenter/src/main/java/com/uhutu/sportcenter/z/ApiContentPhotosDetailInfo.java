@@ -54,9 +54,12 @@ public class ApiContentPhotosDetailInfo extends RootApiBase<ApiContentPhotosInpu
 			
 			List<CnContentPhotos> cnContentPhotos = serviceFactory.getContentPhotosService().queryByContentCode(input.getContent_code());
 			
+			
 			List<ContentPhotosDetail> cnContentPhotosDetails = new ArrayList<ContentPhotosDetail>();
 			
 			if(cnContentPhotos != null){
+				
+				result.setTotalCount(cnContentPhotos.size());
 				
 				cnContentPhotos.forEach( entity -> {
 					
