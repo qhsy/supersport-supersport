@@ -22,7 +22,7 @@
             <li><a href="#"><span class="glyphicon glyphicon-user icon_margin" aria-hidden="true"></span>逄小杰</a></li>
             <li><a href="#">设置</a></li>
             <li><a href="#">消息&nbsp;&nbsp;<span class="badge">42</span></a></li>
-            <li><a basetarget="_blank" href="www.baidu.com">Help(百度)</a></li>
+            <li><a href="www.baidu.com">Help</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
