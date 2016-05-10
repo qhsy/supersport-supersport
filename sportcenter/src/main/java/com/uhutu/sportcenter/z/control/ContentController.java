@@ -11,6 +11,7 @@ import com.uhutu.sportcenter.z.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiComplainInfoInput;
 import com.uhutu.sportcenter.z.input.ApiContentDetailInput;
 import com.uhutu.sportcenter.z.input.ApiContentPhotosInput;
+import com.uhutu.sportcenter.z.input.ApiContentRecommInput;
 import com.uhutu.sportcenter.z.input.ApiForLabelsInput;
 import com.uhutu.sportcenter.z.input.ApiForSportsInput;
 import com.uhutu.sportcenter.z.input.ApiHomePageInput;
@@ -21,6 +22,7 @@ import com.uhutu.sportcenter.z.input.ApiSupportPraiseInput;
 import com.uhutu.sportcenter.z.result.ApiComplainInfoResult;
 import com.uhutu.sportcenter.z.result.ApiContentDetailResult;
 import com.uhutu.sportcenter.z.result.ApiContentPhotosResult;
+import com.uhutu.sportcenter.z.result.ApiContentRecommResult;
 import com.uhutu.sportcenter.z.result.ApiForLabelsResult;
 import com.uhutu.sportcenter.z.result.ApiForSportsResult;
 import com.uhutu.sportcenter.z.result.ApiHomePageResult;
@@ -128,6 +130,15 @@ public class ContentController {
 	public ApiComplainInfoResult contentComplain(@RequestBody ApiComplainInfoInput input) {
 
 		return apiFactory.getApiComplainInfo().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/contentRecomm", method = RequestMethod.POST)
+	@ApiOperation(value = "编辑推荐信息", notes = "内容详情中编辑推荐信息")
+	public ApiContentRecommResult contentRecomm(@RequestBody ApiContentRecommInput input) {
+
+		return apiFactory.getApiContentRecommInfo().api(input);
 
 	}
 }

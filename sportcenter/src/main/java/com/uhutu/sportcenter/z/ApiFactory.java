@@ -71,6 +71,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiPublishContentPhotos apiPublishContentPhotos;
+	
+	@Autowired
+	private ApiContentRecommInfo apiContentRecommInfo;
 
 	public ApiContentDetailInfo getContentDetailInfo() {
 		return contentDetailInfo;
@@ -150,6 +153,10 @@ public class ApiFactory {
 
 	public ApiComplainInfo getApiComplainInfo() {
 		return apiComplainInfo;
+	}
+
+	public ApiContentRecommInfo getApiContentRecommInfo() {
+		return apiContentRecommInfo;
 	}
 
 }
