@@ -7,7 +7,7 @@ var manage_home = {
 
 		ReactDOM.render(React.createElement("div", {
 			className : 'form-horizontal'
-		}, 'abc'), document.getElementById(zstatic_config.id_main));
+		}, 'abc'), document.getElementById(zstatic_config.id.main));
 
 		this.page();
 

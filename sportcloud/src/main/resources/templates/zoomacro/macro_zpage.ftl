@@ -2,7 +2,9 @@
 
 <#macro m_zoo_zpage_html_js p_list>
 	<#list p_list?split(",") as e>
-	<script type="text/javascript" src="${zoo_config["webjarsUrl"]}${e}"></script>
+		<#if e!="">
+			<script type="text/javascript" src="${zoo_config["webjarsUrl"]}${e}"></script>
+		</#if>
 	</#list>
 
 </#macro>
@@ -18,7 +20,9 @@
 
 <#macro m_zoo_zpage_html_css p_list >
 <#list p_list?split(",") as e>
-	<link type="text/css" href="${zoo_config["webjarsUrl"]}${e}" rel="stylesheet">
+	<#if e!="">
+		<link type="text/css" href="${zoo_config["webjarsUrl"]}${e}" rel="stylesheet">
+	</#if>
 </#list>
 </#macro>
 
