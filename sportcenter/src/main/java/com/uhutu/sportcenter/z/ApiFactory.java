@@ -67,6 +67,9 @@ public class ApiFactory {
 	private ApiSetUserFavor apiSetUserFavor;
 	
 	@Autowired
+	private ApiComplainInfo apiComplainInfo;
+	
+	@Autowired
 	private ApiPublishContentPhotos apiPublishContentPhotos;
 
 	public ApiContentDetailInfo getContentDetailInfo() {
@@ -143,6 +146,10 @@ public class ApiFactory {
 
 	public ApiPublishContentPhotos getApiPublishContentPhotos() {
 		return apiPublishContentPhotos;
+	}
+
+	public ApiComplainInfo getApiComplainInfo() {
+		return apiComplainInfo;
 	}
 
 }

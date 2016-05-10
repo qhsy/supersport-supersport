@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.ApiFactory;
+import com.uhutu.sportcenter.z.input.ApiComplainInfoInput;
 import com.uhutu.sportcenter.z.input.ApiContentDetailInput;
 import com.uhutu.sportcenter.z.input.ApiContentPhotosInput;
 import com.uhutu.sportcenter.z.input.ApiForLabelsInput;
@@ -17,6 +18,7 @@ import com.uhutu.sportcenter.z.input.ApiPublishContentPhotosInput;
 import com.uhutu.sportcenter.z.input.ApiPublishSportingMomentInput;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.z.input.ApiSupportPraiseInput;
+import com.uhutu.sportcenter.z.result.ApiComplainInfoResult;
 import com.uhutu.sportcenter.z.result.ApiContentDetailResult;
 import com.uhutu.sportcenter.z.result.ApiContentPhotosResult;
 import com.uhutu.sportcenter.z.result.ApiForLabelsResult;
@@ -117,6 +119,15 @@ public class ContentController {
 	public ApiPublishContentPhotosResult publicContentPhotos(@RequestBody ApiPublishContentPhotosInput input) {
 
 		return apiFactory.getApiPublishContentPhotos().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/contentComplain", method = RequestMethod.POST)
+	@ApiOperation(value = "内容投诉", notes = "内容详情页投诉接口")
+	public ApiComplainInfoResult contentComplain(@RequestBody ApiComplainInfoInput input) {
+
+		return apiFactory.getApiComplainInfo().api(input);
 
 	}
 }
