@@ -1,7 +1,5 @@
 package com.uhutu.sportcenter.z.entity;
 
-import javax.persistence.Entity;
-
 import io.swagger.annotations.ApiModelProperty;
 
 /**

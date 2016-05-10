@@ -1,4 +1,4 @@
-package com.uhutu.sportcenter.z;
+package com.uhutu.sportcenter.z.api.home;
 
 import org.springframework.stereotype.Service;
 

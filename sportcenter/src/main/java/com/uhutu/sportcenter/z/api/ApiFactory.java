@@ -1,7 +1,29 @@
-package com.uhutu.sportcenter.z;
+package com.uhutu.sportcenter.z.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.uhutu.sportcenter.z.api.category.ApiForSports;
+import com.uhutu.sportcenter.z.api.content.ApiComplainInfo;
+import com.uhutu.sportcenter.z.api.content.ApiContentDetailInfo;
+import com.uhutu.sportcenter.z.api.content.ApiContentPhotosDetailInfo;
+import com.uhutu.sportcenter.z.api.content.ApiContentRecommInfo;
+import com.uhutu.sportcenter.z.api.content.ApiPublishContentPhotos;
+import com.uhutu.sportcenter.z.api.content.ApiPublishSportingMoment;
+import com.uhutu.sportcenter.z.api.content.ApiSportingMoments;
+import com.uhutu.sportcenter.z.api.content.ApiSupportPraise;
+import com.uhutu.sportcenter.z.api.extend.ApiSendSms;
+import com.uhutu.sportcenter.z.api.home.APiStartPage;
+import com.uhutu.sportcenter.z.api.home.ApiHomePage;
+import com.uhutu.sportcenter.z.api.label.ApiForLabels;
+import com.uhutu.sportcenter.z.api.user.ApiForLogin;
+import com.uhutu.sportcenter.z.api.user.ApiLoginOut;
+import com.uhutu.sportcenter.z.api.user.ApiSetUserFavor;
+import com.uhutu.sportcenter.z.api.user.ApiSocialLogin;
+import com.uhutu.sportcenter.z.api.user.ApiUserInfo;
+import com.uhutu.sportcenter.z.api.user.ApiUserRegister;
+import com.uhutu.sportcenter.z.api.user.ApiUserResetPwd;
+import com.uhutu.sportcenter.z.api.user.ApiVersionInfo;
 
 /**
  * api工厂

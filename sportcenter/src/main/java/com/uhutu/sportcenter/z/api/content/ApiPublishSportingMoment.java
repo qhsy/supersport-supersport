@@ -1,4 +1,4 @@
-package com.uhutu.sportcenter.z;
+package com.uhutu.sportcenter.z.api.content;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

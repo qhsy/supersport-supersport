@@ -1,4 +1,4 @@
-package com.uhutu.sportcenter.z;
+package com.uhutu.sportcenter.z.api.content;
 
 import java.util.Date;
 

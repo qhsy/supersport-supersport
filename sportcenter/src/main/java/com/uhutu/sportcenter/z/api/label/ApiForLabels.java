@@ -1,4 +1,4 @@
-package com.uhutu.sportcenter.z;
+package com.uhutu.sportcenter.z.api.label;
 
 import java.util.ArrayList;
 import java.util.List;
