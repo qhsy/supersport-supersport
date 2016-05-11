@@ -16,6 +16,7 @@ import com.uhutu.sportcenter.z.api.extend.ApiSendSms;
 import com.uhutu.sportcenter.z.api.home.APiStartPage;
 import com.uhutu.sportcenter.z.api.home.ApiHomePage;
 import com.uhutu.sportcenter.z.api.label.ApiForLabels;
+import com.uhutu.sportcenter.z.api.remark.ApiPublishRemark;
 import com.uhutu.sportcenter.z.api.user.ApiForLogin;
 import com.uhutu.sportcenter.z.api.user.ApiLoginOut;
 import com.uhutu.sportcenter.z.api.user.ApiSetUserFavor;
@@ -96,6 +97,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiContentRecommInfo apiContentRecommInfo;
+	
+	@Autowired
+	private ApiPublishRemark apiPublishRemark;
 
 	public ApiContentDetailInfo getContentDetailInfo() {
 		return contentDetailInfo;
@@ -179,6 +183,10 @@ public class ApiFactory {
 
 	public ApiContentRecommInfo getApiContentRecommInfo() {
 		return apiContentRecommInfo;
+	}
+
+	public ApiPublishRemark getApiPublishRemark() {
+		return apiPublishRemark;
 	}
 
 }
