@@ -10,34 +10,23 @@
 <meta name="description" content="">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="author" content="">
-<link rel="stylesheet" href="css/include/base.css">
-<link rel="stylesheet" href="css/module/details.css">
+<link rel="stylesheet" href="css/main.css?version=20160509">
 </head>
-<body class="ms-controller" ms-controller="root">
-<header class="details-hd">
-	<img ms-attr-src="{{content.sportingMoment.cover}}">
-	<div class="details-hgroup">
-		<h1>{{content.sportingMoment.title}}</h1>
-		<time>— {{content.sportingMoment.publishTime}} —</time>
-	</div>
-	<div class="details-mask"></div>
-</header>
+<body class="ms-controller" >
 <section class="details-author">
-	<div class="details-photo"><img ms-attr-src="{{content.sportingMoment.aboutHead}}"></div>
-	<h2 class="details-name">{{content.sportingMoment.nickName}}</h2>
-	<a href="javascript:;" class="details-follow" style="display:none;">关注达人</a>
+	<div class="details-photo"></div>
+	<h2 class="details-name"></h2>
 </section>
-<article class="details-article" ms-html="content.contentDetailInfo.content"></article>
-<aside class="details-tag"><b></b><span>{{content.sportingMoment.tagCode}}</span><b></b></aside>
-<script type="text/javascript" src="script/avalon.mobile.min.js"></script>
+<div class="details-hgroup">
+	<h1></h1>
+	<time></time>
+</div>
+<article class="details-article"></article>
+<aside class="details-tag"><b></b><span></span><b></b></aside>
 <script type="text/javascript" src="script/zepto.min.js"></script>
 <script type="text/javascript">
-	avalon.ready(function(){
+	$(function(){
 		var code = getCode(window.location.search);
-		var module = avalon.define({
-				$id:'root',
-				content:null
-		});
 		$.ajax({
 			url:'/api/contentController/contentDetail',
 			type:'POST',
@@ -45,18 +34,28 @@
 			data:'{"content_code":"' + code + '",	"zoo": {"key": "tesetkey","token": "12221"}}',
 			dataType:'json',
 			success:function(data){
-				console.log(data)
-				module.content = data;
-				avalon.scan(document.body);
+				if(data.contentRecommInfo != null){
+					if(data.contentRecommInfo.content != ''){
+						var ele = $('<fieldset class="details-basten"><legend>果果推荐语</legend><p></p></fieldset>');
+							ele.prependTo('body');
+							ele.find('p').html(data.contentRecommInfo.content);
+					}
+				}
+				$('.head').attr('src',data.sportingMoment.cover)
+				$('.details-hgroup h1').html(data.sportingMoment.title);
+				$('.details-hgroup time').html(data.sportingMoment.publishTime);
+				$('.details-photo').html('<img src="' + data.sportingMoment.aboutHead + '" />')
+				$('.details-name').html(data.sportingMoment.nickName);
+				$('.details-article').html(data.contentDetailInfo.content);
+				$('.details-tag span').html(data.sportingMoment.tagCode)
+				$('body').removeClass('ms-controller');
 			},
 			error:function(xhr,status,error){
-					
+					alert(error);
 			}
 		});
 	});
-		
-		
-		
+
 	/* 通过URL获取CODE值 */
 	function getCode(str){
 		// ?content_code=string
