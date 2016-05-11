@@ -19,6 +19,9 @@ public class ContentServiceFactory {
 	
 	@Autowired
 	private IContentPhotosService contentPhotosService;
+	
+	@Autowired
+	private IContentRecommService contentRecommService;
 
 	public IContentPhotosService getContentPhotosService() {
 		return contentPhotosService;
@@ -30,6 +33,10 @@ public class ContentServiceFactory {
 
 	public IContentDetailService getContentDetailService() {
 		return contentDetailService;
+	}
+
+	public IContentRecommService getContentRecommService() {
+		return contentRecommService;
 	}
 
 }

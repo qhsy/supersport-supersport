@@ -41,6 +41,9 @@ public class ContentDaoFactory {
 	
 	@Autowired
 	private IContentPhotosDao contentPhotosDao;
+	
+	@Autowired
+	private IContentRecommDao contentRecommDao;
 
 	public IContentDetailDao getContentDetailDao() {
 		return contentDetailDao;
@@ -80,6 +83,10 @@ public class ContentDaoFactory {
 
 	public IContentPhotosDao getContentPhotosDao() {
 		return contentPhotosDao;
+	}
+
+	public IContentRecommDao getContentRecommDao() {
+		return contentRecommDao;
 	}
 
 }
