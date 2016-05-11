@@ -11,15 +11,15 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class ApiRemarkCountInput extends RootApiInput {
 
-	@ApiModelProperty(value="评论类型",example="remarkCount:评论数量,favorCoun:喜欢的数量")
-	private String operFlag;
+	@ApiModelProperty(value="内容编号",example="nr001")
+	private String contentCode;
 
-	public String getOperFlag() {
-		return operFlag;
+	public String getContentCode() {
+		return contentCode;
 	}
 
-	public void setOperFlag(String operFlag) {
-		this.operFlag = operFlag;
+	public void setContentCode(String contentCode) {
+		this.contentCode = contentCode;
 	}
-	
+
 }
