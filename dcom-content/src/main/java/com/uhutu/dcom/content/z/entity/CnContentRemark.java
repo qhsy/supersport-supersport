@@ -33,6 +33,9 @@ public class CnContentRemark extends BaseEntity {
 	
 	@ZooData(name = "内容状态")
 	private String status;
+	
+	@ZooData(name="回复的人名称")
+	private String replyName;
 
 	public String getCode() {
 		return code;
@@ -80,6 +83,14 @@ public class CnContentRemark extends BaseEntity {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getReplyName() {
+		return replyName;
+	}
+
+	public void setReplyName(String replyName) {
+		this.replyName = replyName;
 	}
 	
 }
