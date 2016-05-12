@@ -17,6 +17,9 @@ public class ApiRemarkListResult extends RootApiResult {
 	
 	@ApiModelProperty(value="评论信息")
 	private List<ContentRemarkInfo> contentRemarkInfo;
+	
+	@ApiModelProperty(value="是否还有下一页")
+	private boolean nextflag = true;
 
 	public List<ContentRemarkInfo> getContentRemarkInfo() {
 		return contentRemarkInfo;
@@ -24,6 +27,14 @@ public class ApiRemarkListResult extends RootApiResult {
 
 	public void setContentRemarkInfo(List<ContentRemarkInfo> contentRemarkInfo) {
 		this.contentRemarkInfo = contentRemarkInfo;
+	}
+
+	public boolean isNextflag() {
+		return nextflag;
+	}
+
+	public void setNextflag(boolean nextflag) {
+		this.nextflag = nextflag;
 	}
 
 }
