@@ -14,10 +14,10 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class CnContentItemRel extends BaseEntity {
 
-	@ZooData(name = "栏目名称", element = "select", inc = {"system_define=dzsi46991002"})
+	@ZooData(name = "栏目名称", element = "select", inc = {"source_code=dzsi41071002","source_value='222222'"})
 	private String itemCode;
 
-	@ZooData(name = "内容名称", element = "select", inc = {"system_define=dzsi46991003"})
+	@ZooData(name = "内容名称", element = "select", inc = {"source_code=dzsi41071003","source_value='333333'"})
 	private String contentCode;
 
 	public String getItemCode() {
