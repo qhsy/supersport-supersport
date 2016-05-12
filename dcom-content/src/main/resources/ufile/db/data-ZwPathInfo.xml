@@ -4,13 +4,13 @@
 	<data>
 		<item code="dmtg410710011001" nodeName="评论管理" parentCode="" />
 		<item code="dmtg4107100110011001" nodeName="评论信息" parentCode="dmtg41071001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentRemarkPage" pageIcon="glyphicon-phone-alt" />
-		<item code="dmtg410710011002" nodeName="广告管理" parentCode="" />
+		<!-- <item code="dmtg410710011002" nodeName="广告管理" parentCode="" />
 		<item code="dmtg4107100110021001" nodeName="广告信息" parentCode="dmtg41071002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_AdvertiseInfoPage" pageIcon="glyphicon-film" />
-		<item code="dmtg4107100110021002" nodeName="添加广告信息" parentCode="dmtg41071002" pageUrl="/zpage/pa/com_uhutu_dcom_content_z_page_AdvertiseInfoPage" pageIcon="glyphicon-film" />
+		<item code="dmtg4107100110021002" nodeName="添加广告信息" parentCode="dmtg41071002" pageUrl="/zpage/pa/com_uhutu_dcom_content_z_page_AdvertiseInfoPage" pageIcon="glyphicon-film" /> -->
 		<item code="dmtg410710011003" nodeName="栏目管理" parentCode="" />
 		<item code="dmtg4107100110031001" nodeName="栏目信息" parentCode="dmtg41071003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemPage" pageIcon="glyphicon-heart-empty" />
 		<item code="dmtg4107100110031003" nodeName="添加栏目信息" parentCode="dmtg41071003" pageUrl="/zpage/pa/com_uhutu_dcom_content_z_page_ContentItemPage" pageIcon="glyphicon-heart-empty" />
-		<item code="dmtg410710011004" nodeName="栏目与内容管理" parentCode="" />
+		<item code="dmtg410710011004" nodeName="栏目内容管理" parentCode="" />
 		<item code="dmtg4107100110041001" nodeName="栏目与内容关联" parentCode="dmtg41071004" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemRelPage" pageIcon="glyphicon-heart" />
 		<item code="dmtg4107100110041003" nodeName="添加栏目与内容关联" parentCode="dmtg41071004" pageUrl="/zpage/pa/com_uhutu_dcom_content_z_page_ContentItemRelPage" pageIcon="glyphicon-heart" />
 	</data>
