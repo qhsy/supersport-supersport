@@ -1,6 +1,6 @@
-package com.uhutu.dcom.content.z.page;
+package com.uhutu.dcom.remark.z.page;
 
-import com.uhutu.dcom.content.z.entity.CnContentRemark;
+import com.uhutu.dcom.remark.z.entity.CnContentRemark;
 import com.uhutu.zoocom.baseannotation.ZooPage;
 import com.uhutu.zoocom.root.RootPageSimple;
 import com.uhutu.zooweb.define.DefineZooWeb;
