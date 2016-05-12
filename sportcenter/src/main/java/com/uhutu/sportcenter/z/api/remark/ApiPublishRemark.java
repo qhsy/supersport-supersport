@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.api.remark;
 
+import java.util.Optional;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,11 +63,13 @@ public class ApiPublishRemark extends RootApiBase<ApiPublishRemarkInput, ApiPubl
 				
 				UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(parentContentRemark.getAuthor());
 				
-				if(ucUserinfoExt != null){
+				Optional<UcUserinfoExt> userOptional = Optional.ofNullable(ucUserinfoExt);
+				
+				if(userOptional.isPresent()){
 					
 					contentRemark.setReplyName(ucUserinfoExt.getNickName());
 					
-				}			
+				}		
 				
 				
 			}
