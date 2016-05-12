@@ -14,11 +14,15 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class CnContentItemRel extends BaseEntity {
 
-	@ZooData(name = "栏目名称", element = "select", inc = {"source_code=dzsi41071002","source_value='222222'"})
+	@ZooData(name = "栏目名称", element = "select", inc = { "source_code=dzsi41071002", "source_value='222222'" })
 	private String itemCode;
 
-	@ZooData(name = "内容名称", element = "select", inc = {"source_code=dzsi41071003","source_value='333333'"})
+	@ZooData(name = "内容名称", element = "select", sort = { "pq=0" }, inc = { "source_code=dzsi41071003",
+			"source_value='333333'" })
 	private String contentCode;
+
+	@ZooData(name = "展示顺序(倒序)")
+	private String sort;
 
 	public String getItemCode() {
 		return itemCode;
@@ -34,6 +38,14 @@ public class CnContentItemRel extends BaseEntity {
 
 	public void setContentCode(String contentCode) {
 		this.contentCode = contentCode;
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
 	}
 
 }
