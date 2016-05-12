@@ -41,6 +41,8 @@ public class ApiPublishRemark extends RootApiBase<ApiPublishRemarkInput, ApiPubl
 		
 		initParentInfo(cnContentRemark);
 		
+		servieFactory.getContentRemarkService().save(cnContentRemark);
+		
 		return remarkResult;
 		
 	}
