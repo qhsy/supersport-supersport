@@ -22,7 +22,7 @@ public enum PrexEnum {
 	/**内容评论前缀*/
 	CNR,
 	/**运动分类前缀*/
-	SPC;
-	
-
+	SPC,
+	/**地址前缀*/
+    DZ;
 }

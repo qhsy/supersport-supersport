@@ -73,6 +73,11 @@ public class QueryConditions {
 	 * 不为空字符串值
 	 */
 	public static final String ISNOTEMPTY = "isnotempty";
+	
+	/**
+	 * in
+	 */
+	public static final String IN = "in";
 
 	/**
 	 * 排序语句
@@ -174,6 +179,9 @@ public class QueryConditions {
 		} else if (operator.equals(RIGHT_INCLUDE)) {
 			operators.add("like");
 			values.add("%" + value);
+		} else if(operator.equals(IN)){
+			operators.add("in");
+			values.add(value);
 		} else {
 			operators.add(operator);
 			values.add(value);
@@ -231,7 +239,11 @@ public class QueryConditions {
 	public void setConditionIsNotEmpty(String propertyName) {
 		setCondition(propertyName, ISNOTEMPTY, ISNOTEMPTY);
 	}
-
+	
+	public void setConditionIn(String propertyName, Object value) {
+		setCondition(propertyName, IN, value);
+	}
+	
 	public String getOrderBy() {
 		return orderBy;
 	}
