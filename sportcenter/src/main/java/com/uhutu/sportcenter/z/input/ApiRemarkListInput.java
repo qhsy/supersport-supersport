@@ -15,6 +15,9 @@ public class ApiRemarkListInput extends RootApiInput {
 	
 	@ApiModelProperty(value="内容编号",notes="内容编号")
 	private String contentCode;
+	
+	@ApiModelProperty(value="页码",example="从1开始")
+	private int pagination = 1;
 
 	public String getContentCode() {
 		return contentCode;
