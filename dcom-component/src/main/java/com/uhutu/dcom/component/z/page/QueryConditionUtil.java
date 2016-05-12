@@ -1,9 +1,11 @@
 package com.uhutu.dcom.component.z.page;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -87,6 +89,16 @@ public class QueryConditionUtil{
 					}
 					else if(operator.equals(QueryConditions.NOT_EQUAL)) {
 						predicates.add(builder.notEqual(root.get(names[0]), value));
+					}
+					else if(operator.equals(QueryConditions.IN)){
+						In in = builder.in(root.get(names[0]));
+						String[] values = value.toString().split(",");
+						List<String> valueList=new ArrayList();
+						valueList=Arrays.asList(values);
+						for(int m = 0;m<valueList.size();m++){
+							in.value(valueList.get(m));
+						}
+						predicates.add(builder.in(in));
 					}
 				}
 				// 将所有条件用 and 联合起来
