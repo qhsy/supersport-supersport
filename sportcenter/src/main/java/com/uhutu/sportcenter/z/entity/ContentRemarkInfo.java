@@ -32,6 +32,12 @@ public class ContentRemarkInfo {
 	
 	@ApiModelProperty(value="评论状态",notes="评论状态")
 	private String status;
+	
+	@ApiModelProperty(value="用户头像")
+	private String headUrl;
+	
+	@ApiModelProperty(value="发布时间")
+	private String publishTime;
 
 	public String getCode() {
 		return code;
@@ -95,6 +101,22 @@ public class ContentRemarkInfo {
 
 	public void setReplyName(String replyName) {
 		this.replyName = replyName;
+	}
+
+	public String getHeadUrl() {
+		return headUrl;
+	}
+
+	public void setHeadUrl(String headUrl) {
+		this.headUrl = headUrl;
+	}
+
+	public String getPublishTime() {
+		return publishTime;
+	}
+
+	public void setPublishTime(String publishTime) {
+		this.publishTime = publishTime;
 	}
 
 }
