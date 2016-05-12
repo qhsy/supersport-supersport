@@ -1,5 +1,6 @@
 package com.uhutu.sportcenter.z.api.content;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,41 +35,59 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 
 	@Override
 	protected ApiContentDetailResult process(ApiContentDetailInput input) {
-
-		CnContentDetail cnContentDetail = contentServiceFactory.getContentDetailService()
-				.queryByCode(input.getContent_code());
-
-		ContentBasicinfoForApi contentBasicinfoForApi = new ContentBasicinfoForApi();
-
-		CnContentBasicinfo cnContentBasicinfo = contentServiceFactory.getContentBasicinfoService()
-				.queryByCode(input.getContent_code());
-
-		ContentDetailInfo contentDetailInfo = new ContentDetailInfo();
-
-		BeanUtils.copyProperties(cnContentDetail, contentDetailInfo);
-
-		BeanUtils.copyProperties(cnContentBasicinfo, contentBasicinfoForApi);
-
-		UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService()
-				.queryByUserCode(contentBasicinfoForApi.getAuthor());
-
-		contentBasicinfoForApi.setAboutHead(ucUserinfoExt.getAboutHead());
-
-		contentBasicinfoForApi.setNickName(ucUserinfoExt.getNickName());
-
+		
 		ApiContentDetailResult contentDetailResult = new ApiContentDetailResult();
-		
-		ContentRecommInfo recommInfo = new ContentRecommInfo();
-		
-		CnContentRecomm sourceRecommInfo = contentServiceFactory.getContentRecommService().queryEntityByCode(input.getContent_code());
-		
-		BeanUtils.copyProperties(sourceRecommInfo, recommInfo);
 
-		contentDetailResult.setContentDetailInfo(contentDetailInfo);
+		if(StringUtils.isNotBlank(input.getContent_code())){
+			
+			CnContentDetail cnContentDetail = contentServiceFactory.getContentDetailService()
+					.queryByCode(input.getContent_code());
 
-		contentDetailResult.setSportingMoment(contentBasicinfoForApi);
-		
-		contentDetailResult.setContentRecommInfo(recommInfo);
+			ContentBasicinfoForApi contentBasicinfoForApi = new ContentBasicinfoForApi();
+
+			CnContentBasicinfo cnContentBasicinfo = contentServiceFactory.getContentBasicinfoService()
+					.queryByCode(input.getContent_code());
+
+			ContentDetailInfo contentDetailInfo = new ContentDetailInfo();
+
+			if(cnContentDetail != null){
+				
+				BeanUtils.copyProperties(cnContentDetail, contentDetailInfo);
+
+				BeanUtils.copyProperties(cnContentBasicinfo, contentBasicinfoForApi);
+
+				UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService()
+						.queryByUserCode(contentBasicinfoForApi.getAuthor());
+
+				contentBasicinfoForApi.setAboutHead(ucUserinfoExt.getAboutHead());
+
+				contentBasicinfoForApi.setNickName(ucUserinfoExt.getNickName());		
+				
+				ContentRecommInfo recommInfo = new ContentRecommInfo();
+				
+				CnContentRecomm sourceRecommInfo = contentServiceFactory.getContentRecommService().queryEntityByCode(input.getContent_code());
+				
+				if(sourceRecommInfo != null){
+					
+					BeanUtils.copyProperties(sourceRecommInfo, recommInfo);
+					
+					contentDetailResult.setContentRecommInfo(recommInfo);
+					
+				}
+				
+				contentDetailResult.setContentDetailInfo(contentDetailInfo);
+
+				contentDetailResult.setSportingMoment(contentBasicinfoForApi);
+				
+			}else{
+				
+				contentDetailResult.setStatus(0);
+				
+				contentDetailResult.setError("内容详情不存在");
+				
+			}
+			
+		}
 
 		return contentDetailResult;
 
