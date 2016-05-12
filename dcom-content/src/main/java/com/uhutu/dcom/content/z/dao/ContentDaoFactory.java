@@ -25,9 +25,6 @@ public class ContentDaoFactory {
 	private IContentItemDao contentItemDao;
 
 	@Autowired
-	private IContentRemarkDao contentRemarkDao;
-
-	@Autowired
 	private ISupportPraiseDao supportPraiseDao;
 
 	@Autowired
@@ -59,10 +56,6 @@ public class ContentDaoFactory {
 
 	public IContentItemDao getContentItemDao() {
 		return contentItemDao;
-	}
-
-	public IContentRemarkDao getContentRemarkDao() {
-		return contentRemarkDao;
 	}
 
 	public ISupportPraiseDao getSupportPraiseDao() {

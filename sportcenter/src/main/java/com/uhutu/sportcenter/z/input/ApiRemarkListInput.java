@@ -26,6 +26,14 @@ public class ApiRemarkListInput extends RootApiInput {
 	public void setContentCode(String contentCode) {
 		this.contentCode = contentCode;
 	}
+
+	public int getPagination() {
+		return pagination;
+	}
+
+	public void setPagination(int pagination) {
+		this.pagination = pagination;
+	}
 	
 	
 

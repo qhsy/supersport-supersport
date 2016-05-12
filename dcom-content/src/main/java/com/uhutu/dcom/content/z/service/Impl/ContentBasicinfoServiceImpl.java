@@ -49,6 +49,9 @@ public class ContentBasicinfoServiceImpl implements IContentBasicinfoService {
 	@Override
 	public Page<CnContentBasicinfo> queryPage(int pageNum, int limit,QueryConditions conditions) {
 		
+		
+		conditions.setCondition("code", "in", "in");
+		
 		if(pageNum >= 1){
 			
 			pageNum--;
