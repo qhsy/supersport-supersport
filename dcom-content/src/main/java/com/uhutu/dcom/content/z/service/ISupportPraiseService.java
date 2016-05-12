@@ -89,4 +89,12 @@ public interface ISupportPraiseService {
 	 * @return 标签信息
 	 */
 	public void cancelbyCCAndUCAndType(String type, String userCode, String contentCode);
+	
+	/**
+	 * 根据内容编号查询
+	 * @param contentCode
+	 * 		内容编号
+	 * @return 数量
+	 */
+	public int queryCountByCode(String contentCode);
 }

@@ -50,4 +50,12 @@ public interface IContentRemarkService {
 	 */
 	public List<CnContentRemark> queryByContentCode(String contentCode);
 	
+	/**
+	 * 根据内容编号查询数量
+	 * @param contentCode
+	 * 		内容编号
+	 * @return 数量
+	 */
+	public int queryCount(String contentCode);
+	
 }

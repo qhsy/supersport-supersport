@@ -13,6 +13,9 @@ public class ApiRemarkCountInput extends RootApiInput {
 
 	@ApiModelProperty(value="内容编号",example="nr001")
 	private String contentCode;
+	
+	@ApiModelProperty(value="评论类型",example="remarkCount:评论数量,favorCount:喜欢的数量,空默认为全部")
+	private String type;
 
 	public String getContentCode() {
 		return contentCode;
@@ -20,6 +23,14 @@ public class ApiRemarkCountInput extends RootApiInput {
 
 	public void setContentCode(String contentCode) {
 		this.contentCode = contentCode;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

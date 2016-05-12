@@ -63,4 +63,11 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 		daoFacotry.getSupportPraiseDao().cancelbyCCAndUCAndType(type, userCode, contentCode);
 	}
 
+
+	@Override
+	public int queryCountByCode(String contentCode) {
+		
+		return daoFacotry.getSupportPraiseDao().queryCountByCode(contentCode);
+	}
+
 }

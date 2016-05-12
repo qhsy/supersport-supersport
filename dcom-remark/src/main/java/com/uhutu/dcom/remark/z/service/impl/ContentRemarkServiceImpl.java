@@ -81,4 +81,11 @@ public class ContentRemarkServiceImpl implements IContentRemarkService {
 		return daoFactory.getContentRemarkDao().queryByContentCode(contentCode);
 	}
 
+	@Override
+	public int queryCount(String contentCode) {
+		
+		return daoFactory.getContentRemarkDao().queryCount(contentCode);
+		
+	}
+
 }
