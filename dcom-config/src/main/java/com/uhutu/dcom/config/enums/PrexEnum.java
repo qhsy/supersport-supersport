@@ -23,6 +23,6 @@ public enum PrexEnum {
 	CNR,
 	/**运动分类前缀*/
 	SPC;
-	
+	/***/
 
 }
