@@ -37,6 +37,8 @@ public class ApiRemarkCount extends RootApiBase<ApiRemarkCountInput, ApiRemarkCo
 			favorCount(input,remarkCountResult);
 			break;
 		default:
+			remarkCount(input,remarkCountResult);
+			favorCount(input,remarkCountResult);
 			break;
 		}
 
