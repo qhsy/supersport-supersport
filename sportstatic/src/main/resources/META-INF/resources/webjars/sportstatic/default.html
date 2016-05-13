@@ -14,7 +14,7 @@
 </head>
 <body class="ms-controller" >
 <section class="details-author">
-	<div class="details-photo"></div>
+	<div class="details-photo" onclick="callbackFunc()"></div>
 	<h2 class="details-name"></h2>
 </section>
 <div class="details-hgroup">
@@ -62,6 +62,9 @@
 		if(typeof str != 'string') return;
 		var arr = str.substr(1).split('=');
 		return arr[1];
+	}
+	function callbackFunc(){
+		console.log(2)
 	}
 </script>
 </body>
