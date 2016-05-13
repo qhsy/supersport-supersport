@@ -98,7 +98,7 @@ public class QueryConditionUtil{
 						for(int m = 0;m<valueList.size();m++){
 							in.value(valueList.get(m));
 						}
-						predicates.add(builder.in(in));
+						predicates.add(in);
 					}
 				}
 				// 将所有条件用 and 联合起来

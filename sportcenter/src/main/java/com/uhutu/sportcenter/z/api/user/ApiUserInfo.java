@@ -12,6 +12,7 @@ import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentBasicinfoServiceFactory;
+import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
@@ -109,7 +110,11 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 		apiUserInfo.setSportsNum(tempVal.intValue());
 
 		userInfoResult.setUserInfo(apiUserInfo);
-
+		if(!inputParam.getZoo().getToken().trim().equals(inputParam.getUserCode())){
+			UcAttentionInfo info = userServiceFactory.getAttentionInfoService()
+					.queryByBothCode(inputParam.getZoo().getToken().trim(), inputParam.getUserCode());
+			userInfoResult.setFlag(info.getStatus());
+		}
 		return userInfoResult;
 	}
 
