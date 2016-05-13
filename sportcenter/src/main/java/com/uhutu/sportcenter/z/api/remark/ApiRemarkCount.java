@@ -2,8 +2,8 @@ package com.uhutu.sportcenter.z.api.remark;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
+import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.sportcenter.z.entity.RemarkInfo;
 import com.uhutu.sportcenter.z.input.ApiRemarkCountInput;
@@ -31,10 +31,10 @@ public class ApiRemarkCount extends RootApiBase<ApiRemarkCountInput, ApiRemarkCo
 
 		switch (input.getType()) {
 		case "remarkCount":
-			remarkCount(input.getContentCode(),remarkCountResult);
+			remarkCount(input,remarkCountResult);
 			break;
 		case "favorCount":
-			favorCount(input.getContentCode(),remarkCountResult);
+			favorCount(input,remarkCountResult);
 			break;
 		default:
 			break;
@@ -44,9 +44,9 @@ public class ApiRemarkCount extends RootApiBase<ApiRemarkCountInput, ApiRemarkCo
 
 	}
 	
-	public void remarkCount(String contentCode,ApiRemarkCountResult remarkCountResult){
+	public void remarkCount(ApiRemarkCountInput input,ApiRemarkCountResult remarkCountResult){
 		
-		int total = serviceFactory.getContentRemarkService().queryCount(contentCode);
+		int total = serviceFactory.getContentRemarkService().queryCount(input.getContentCode());
 		
 		RemarkInfo remarkInfo = new RemarkInfo();
 		
@@ -54,13 +54,15 @@ public class ApiRemarkCount extends RootApiBase<ApiRemarkCountInput, ApiRemarkCo
 		
 		remarkInfo.setTotal(total);
 		
+		remarkInfo.setFavor(lightFavor(input));
+		
 		remarkCountResult.getList().add(remarkInfo);
 		
 	}
 	
-	public void favorCount(String contentCode,ApiRemarkCountResult remarkCountResult){
+	public void favorCount(ApiRemarkCountInput input,ApiRemarkCountResult remarkCountResult){
 		
-		int total = contentServiceFactory.getSupportPraiseService().queryCountByCode(contentCode);
+		int total = contentServiceFactory.getSupportPraiseService().queryCountByCode(input.getContentCode());
 		
 		RemarkInfo remarkInfo = new RemarkInfo();
 		
@@ -68,7 +70,25 @@ public class ApiRemarkCount extends RootApiBase<ApiRemarkCountInput, ApiRemarkCo
 		
 		remarkInfo.setTotal(total);
 		
+		remarkInfo.setFavor(lightFavor(input));
+		
 		remarkCountResult.getList().add(remarkInfo);
+		
+	}
+	
+	public String lightFavor(ApiRemarkCountInput input){
+		
+		String iffavor = RemarkEnum.ICON_DARK.getCode();
+		
+		int count = contentServiceFactory.getSupportPraiseService().favored(input.getType(), input.getZoo().getToken(), input.getContentCode());
+		
+		if(count > 0){
+			
+			iffavor = RemarkEnum.ICON_LIGHT.getCode();
+			
+		}
+		
+		return iffavor;
 		
 	}
 

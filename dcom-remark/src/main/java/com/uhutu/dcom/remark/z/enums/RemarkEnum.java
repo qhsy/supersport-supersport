@@ -11,7 +11,19 @@ public enum RemarkEnum {
 	FLAG_ENABLE("评论有效","01"),
 	
 	/**评论状态：无效*/
-	FLAG_DISENABLE("评论无效","02");
+	FLAG_DISENABLE("评论无效","02"),
+	
+	/**喜欢类型：么么哒*/
+	PRAISE_FAVOR("么么哒","01"),
+	
+	/**喜欢类型：嘘嘘*/
+	PRAISE_BOO("嘘嘘","02"),
+	
+	/**图片类型：点亮*/
+	ICON_LIGHT("点亮","1"),
+	
+	/**图片类型：点暗*/
+	ICON_DARK("点暗","0");
 	
 	private String code = "";
 	

@@ -103,5 +103,21 @@ public interface ISupportPraiseDao extends CrudRepository<CnSupportPraise, Strin
 	@Query("select count(1) from CnSupportPraise cp where cp.contentCode=:contentCode")
 	public int queryCountByCode(@Param("contentCode") String contentCode);
 	
+	/**
+	 * 点赞过
+	 * 
+	 * @param type
+	 *            点赞类型
+	 * @param userCode
+	 *            用户编号
+	 * @param contentCode
+	 *            内容编号
+	 * @return 标签信息
+	 */
+	
+	@Query("select count(1) from CnSupportPraise cp where cp.type=:type and cp.userCode=:userCode and cp.contentCode=:contentCode")
+	public int favored(@Param("type") String type,
+			@Param("userCode") String userCode, @Param("contentCode") String contentCode);
+	
 	
 }

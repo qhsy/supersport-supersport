@@ -70,4 +70,12 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 		return daoFacotry.getSupportPraiseDao().queryCountByCode(contentCode);
 	}
 
+
+	@Override
+	public int favored(String type, String userCode, String contentCode) {
+		
+		return daoFacotry.getSupportPraiseDao().favored(type, userCode, contentCode);
+		
+	}
+
 }

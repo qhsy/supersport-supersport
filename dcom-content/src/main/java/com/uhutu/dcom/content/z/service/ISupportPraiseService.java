@@ -97,4 +97,17 @@ public interface ISupportPraiseService {
 	 * @return 数量
 	 */
 	public int queryCountByCode(String contentCode);
+	
+	/**
+	 * 是否喜欢过
+	 * 
+	 * @param type
+	 *            点赞类型
+	 * @param userCode
+	 *            用户编号
+	 * @param contentCode
+	 *            内容编号
+	 * @return 标签信息
+	 */
+	public int favored(String type, String userCode, String contentCode);
 }
