@@ -1,26 +1,38 @@
-package com.uhutu.sportcenter.z.input;
+package com.uhutu.dcom.remark.z.entity;
 
-import com.uhutu.zoocom.root.RootApiInput;
+import javax.persistence.Entity;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
- * 内容举报输入参数
+ * 投诉
  * @author 逄小帅
  *
  */
-@ApiModel
-public class ApiComplainInfoInput extends RootApiInput {
+
+@Entity
+public class CnSupportComplain extends BaseEntity {
 	
-	@ApiModelProperty(value="内容编号",notes="内容编号",required=true)
+	@ZooData(name="编号")
+	private String code;
+	
+	@ZooData(name="内容编号")
 	private String contentCode;
 	
-	@ApiModelProperty(value="投诉原因",required=true)
+	@ZooData(name="投诉原因编号")
 	private String reasonCode;
 	
-	@ApiModelProperty(value="投诉备注信息")
+	@ZooData(name="备注信息")
 	private String remark;
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 
 	public String getContentCode() {
 		return contentCode;
@@ -45,6 +57,5 @@ public class ApiComplainInfoInput extends RootApiInput {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
 
 }
