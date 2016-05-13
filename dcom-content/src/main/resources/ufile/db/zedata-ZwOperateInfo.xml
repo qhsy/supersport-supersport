@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
+	<data table="ZwOperateInfo">
+		<item code="dzoi41071001" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.CnContentBasicinfoFuncAdd" operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+	</data>
+
+</db>
