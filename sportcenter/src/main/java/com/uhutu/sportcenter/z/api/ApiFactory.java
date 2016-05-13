@@ -19,6 +19,7 @@ import com.uhutu.sportcenter.z.api.label.ApiForLabels;
 import com.uhutu.sportcenter.z.api.remark.ApiPublishRemark;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkCount;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkList;
+import com.uhutu.sportcenter.z.api.user.ApiForAttention;
 import com.uhutu.sportcenter.z.api.user.ApiForLogin;
 import com.uhutu.sportcenter.z.api.user.ApiLoginOut;
 import com.uhutu.sportcenter.z.api.user.ApiSetUserFavor;
@@ -109,6 +110,8 @@ public class ApiFactory {
 	@Autowired
 	private ApiRemarkCount apiRemarkCount;
 
+	@Autowired
+	private ApiForAttention apiForAttention;
 	public ApiContentDetailInfo getContentDetailInfo() {
 		return contentDetailInfo;
 	}
@@ -205,4 +208,7 @@ public class ApiFactory {
 		return apiRemarkCount;
 	}
 
+	public ApiForAttention getApiForAttention() {
+		return apiForAttention;
+	}
 }

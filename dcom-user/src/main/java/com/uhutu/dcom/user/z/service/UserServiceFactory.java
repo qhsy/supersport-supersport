@@ -24,6 +24,8 @@ public class UserServiceFactory {
 	@Autowired
 	private IClientInfoService clientInfoService;
 
+	@Autowired
+	private IAttentionInfoService attentionInfoService;
 	/**
 	 * 获取用户业务实现
 	 * 
@@ -58,6 +60,14 @@ public class UserServiceFactory {
 	 */
 	public IClientInfoService getClientInfoService() {
 		return clientInfoService;
+	}
+
+	/**
+	 * 关注信息业务处理
+	 * @return attentionInfoService
+	 */
+	public IAttentionInfoService getAttentionInfoService() {
+		return attentionInfoService;
 	}
 
 }
