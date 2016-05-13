@@ -20,6 +20,8 @@ public class UserDaoFacotry {
 	@Autowired
 	private IUserInfoSocialDao userInfoSocialDao;
 
+	@Autowired
+	private IClientInfoDao clientInfoDao;
 	/**
 	 * 用户信息数据访问
 	 * @return
@@ -42,6 +44,13 @@ public class UserDaoFacotry {
 	 */
 	public IUserInfoSocialDao getUserInfoSocialDao() {
 		return userInfoSocialDao;
+	}
+
+	/**
+	 *启动终端信息 
+	 */
+	public IClientInfoDao getClientInfoDao() {
+		return clientInfoDao;
 	}
 
 }
