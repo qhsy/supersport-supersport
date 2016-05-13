@@ -11,10 +11,10 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  */
 public class CnContentBasicinfoForAdd extends BaseEntity {
 
-	@ZooData(name = "内容编号", inc = "insert_code=NR", sort = { "pa=0", "pe=0" })
+	@ZooData(name = "内容编号", inc = "insert_code=CNB", sort = { "pa=0", "pe=0" })
 	private String code;
 
-	@ZooData(name = "内容标题", sort = { "pq=0" })
+	@ZooData(name = "内容标题",require = "1", sort = { "pq=0" })
 	private String title;
 
 	@ZooData(name = "内容封面", element = "upload", require = "1", sort = { "pq=0", "pg=0" })
@@ -23,13 +23,13 @@ public class CnContentBasicinfoForAdd extends BaseEntity {
 	// @ZooData(name = "发布时间")
 	// private Date publishTime;
 
-	@ZooData(name = "内容简介", element = "textarea", sort = { "pq=0", "pg=0" })
+	@ZooData(name = "内容简介", element = "textarea",require = "1", sort = { "pq=0", "pg=0" })
 	private String aboutDesc;
 
-	@ZooData(name = "内容详情", element = "editor", sort = { "pq=0", "pg=0" })
+	@ZooData(name = "内容详情", element = "editor",require = "1", sort = { "pq=0", "pg=0" })
 	private String contentDetail;
 
-	@ZooData(name = "内容来源", sort = { "pq=0", "pg=0" })
+	@ZooData(name = "内容来源",require = "1", sort = { "pq=0", "pg=0" })
 	private String souce;
 
 	@ZooData(name = "发布状态", element = "select", inc = { "system_define=dzsd469910011001" })
@@ -43,7 +43,7 @@ public class CnContentBasicinfoForAdd extends BaseEntity {
 			"pq=0", "pg=0" })
 	private String tagCode;
 
-	@ZooData(name = "内容作者", sort = { "pq=0" })
+	@ZooData(name = "内容作者",require = "1", sort = { "pq=0" })
 	private String author;
 
 	@ZooData(name = "内容是否公开", element = "select", inc = { "system_define=dzsd469910011001" })
@@ -52,7 +52,7 @@ public class CnContentBasicinfoForAdd extends BaseEntity {
 	@ZooData(name = "定位经纬度", sort = { "pq=0", "pg=0" })
 	private String location;
 
-	@ZooData(name = "定位位置名称", sort = { "pq=0", "pg=0" })
+	@ZooData(name = "定位位置名称",require = "1", sort = { "pq=0", "pg=0" })
 	private String localtionName;
 
 	@ZooData(name = "业务类型", element = "select", inc = { "system_define=dzsd469910011002" })
