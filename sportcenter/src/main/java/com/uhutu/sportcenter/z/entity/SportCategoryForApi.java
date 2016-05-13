@@ -1,7 +1,5 @@
 package com.uhutu.sportcenter.z.entity;
 
-import javax.persistence.Entity;
-
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -12,7 +10,6 @@ import io.swagger.annotations.ApiModelProperty;
  * @author xiegj
  *
  */
-@Entity
 public class SportCategoryForApi extends BaseEntity {
 
 	@ApiModelProperty(value = "运动编号", notes = "运动编号")
