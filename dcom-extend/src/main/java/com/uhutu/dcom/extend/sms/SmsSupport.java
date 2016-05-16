@@ -24,6 +24,23 @@ import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 public class SmsSupport extends RootClass {
 
+	private String url = "";
+	private String accountSid = "";
+	private String authToken = "";
+	private String appId = "";
+
+	public SmsSupport(String url, String accountSid, String authToken, String appId) {
+		super();
+		this.url = url;
+		this.accountSid = accountSid;
+		this.authToken = authToken;
+		this.appId = appId;
+	}
+
+	public SmsSupport() {
+		super();
+	}
+
 	/**
 	 * 获取验证码编号根据类型
 	 * 
@@ -65,24 +82,26 @@ public class SmsSupport extends RootClass {
 
 		RootApiResult result = new RootApiResult();
 		DataJdbcFactory factory = new DataJdbcFactory();
-		List<Map<String, Object>> dataMap = factory
-				.dataSqlList("select * from cm_send_sms where verify_sum<" + SmsConst.MAX_VERIFY_CODE_SUM
+		List<Map<String, Object>> dataMap = factory.dataSqlList(
+				"select * from cm_send_sms where verify_sum<" + SmsConst.MAX_VERIFY_CODE_SUM
 						+ " and flag_verify=0 and active_time>='" + FormatHelper.upDateTime() + "' and verify_type='"
-						+ smsTypeByEnumer(smsTypeEnum) + "' and mobile_phone='" + sMobile
-						+ "' order by zc desc",new MDataMap());
+						+ smsTypeByEnumer(smsTypeEnum) + "' and mobile_phone='" + sMobile + "' order by zc desc",
+				new MDataMap());
 		String code = "";
 		if (dataMap != null && dataMap.size() > 0) {
 			code = dataMap.get(0).get("verify_code").toString();
 		}
-		if (!code.equals(verifyCode)&&dataMap != null && dataMap.size() > 0) {
-			String sql="UPDATE dev_sportcloud.cm_send_sms SET verify_sum=verify_sum+1 and zu='"+new Date()+"' WHERE za='"+dataMap.get(0).get("za")+"'";
+		if (!code.equals(verifyCode) && dataMap != null && dataMap.size() > 0) {
+			String sql = "UPDATE dev_sportcloud.cm_send_sms SET verify_sum=verify_sum+1 and zu='" + new Date()
+					+ "' WHERE za='" + dataMap.get(0).get("za") + "'";
 			factory.dataExec(sql, new MDataMap());
 			result.setStatus(81090004);
 			result.setError(TopHelper.upInfo(81090004));
-		}else if(dataMap != null && dataMap.size() > 0){
-			String sql="UPDATE dev_sportcloud.cm_send_sms SET flag_verify='1' WHERE za='"+dataMap.get(0).get("za")+"'";
+		} else if (dataMap != null && dataMap.size() > 0) {
+			String sql = "UPDATE dev_sportcloud.cm_send_sms SET flag_verify='1' WHERE za='" + dataMap.get(0).get("za")
+					+ "'";
 			factory.dataExec(sql, new MDataMap());
-		}else if (dataMap==null||dataMap.isEmpty()) {
+		} else if (dataMap == null || dataMap.isEmpty()) {
 			result.setStatus(81090004);
 			result.setError(TopHelper.upInfo(81090004));
 		}
@@ -171,7 +190,7 @@ public class SmsSupport extends RootClass {
 		// *沙盒环境（用于应用开发调试）：restAPI.init("sandboxapp.cloopen.com", "8883");*
 		// *生产环境（用户应用上线使用）：restAPI.init("app.cloopen.com", "8883"); *
 		// *******************************************************************************
-		restAPI.init("sandboxapp.cloopen.com", "8883");
+		restAPI.init(getUrl(), "8883");
 		// restAPI.init("app.cloopen.com", "8883");
 
 		// ******************************注释*********************************************
@@ -179,14 +198,14 @@ public class SmsSupport extends RootClass {
 		// *ACOUNT SID和AUTH TOKEN在登陆官网后，在“应用-管理控制台”中查看开发者主账号获取*
 		// *参数顺序：第一个参数是ACOUNT SID，第二个参数是AUTH TOKEN。 *
 		// *******************************************************************************
-		restAPI.setAccount("8a48b551544cd73f0154610f96b91815", "dd926d36f55741bab9d35207ee65df8b");
+		restAPI.setAccount(getAccountSid(), getAuthToken());
 
 		// ******************************注释*********************************************
 		// *初始化应用ID *
 		// *测试开发可使用“测试Demo”的APP ID，正式上线需要使用自己创建的应用的App ID *
 		// *应用ID的获取：登陆官网，在“应用-应用列表”，点击应用名称，看应用详情获取APP ID*
 		// *******************************************************************************
-		restAPI.setAppId("aaf98f89544cd9d90154611297fa1768");
+		restAPI.setAppId(getAppId());
 
 		// ******************************注释****************************************************************
 		// *调用发送模板短信的接口发送短信 *
@@ -213,5 +232,42 @@ public class SmsSupport extends RootClass {
 		}
 		return re;
 	}
+	public String getUrl() {
+		return url;
+	}
 
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+
+	public String getAccountSid() {
+		return accountSid;
+	}
+
+
+	public void setAccountSid(String accountSid) {
+		this.accountSid = accountSid;
+	}
+
+
+	public String getAuthToken() {
+		return authToken;
+	}
+
+
+	public void setAuthToken(String authToken) {
+		this.authToken = authToken;
+	}
+
+
+	public String getAppId() {
+		return appId;
+	}
+
+
+	public void setAppId(String appId) {
+		this.appId = appId;
+	}
 }
