@@ -39,16 +39,16 @@ public class ApiSendSms extends RootApiBase<ApiSendSmsInput, ApiSendSmsResult> {
 		} else {
 			RootApiResult rr = new RootApiResult();
 			if ("register".equals(inputParam.getMsgType())) {
-				rr = new SmsSupport().sendVerifyCode(new SmsSupport().smsTypeByEnumer(SmsTypeEnum.register),
+				rr = new SmsSupport("sandboxapp.cloopen.com","8a48b551544cd73f0154610f96b91815","dd926d36f55741bab9d35207ee65df8b","aaf98f89544cd9d90154611297fa1768").sendVerifyCode(new SmsSupport().smsTypeByEnumer(SmsTypeEnum.register),
 						inputParam.getMobileNO(), 6, 5);
 			} else if ("login".equals(inputParam.getMsgType())) {
-				rr = new SmsSupport().sendVerifyCode(new SmsSupport().smsTypeByEnumer(SmsTypeEnum.login),
+				rr = new SmsSupport("sandboxapp.cloopen.com","8a48b551544cd73f0154610f96b91815","dd926d36f55741bab9d35207ee65df8b","aaf98f89544cd9d90154611297fa1768").sendVerifyCode(new SmsSupport().smsTypeByEnumer(SmsTypeEnum.login),
 						inputParam.getMobileNO(), 6, 5);
 			} else if ("resetpwd".equals(inputParam.getMsgType())) {
-				rr = new SmsSupport().sendVerifyCode(new SmsSupport().smsTypeByEnumer(SmsTypeEnum.resetpwd),
+				rr = new SmsSupport("sandboxapp.cloopen.com","8a48b551544cd73f0154610f96b91815","dd926d36f55741bab9d35207ee65df8b","aaf98f89544cd9d90154611297fa1768").sendVerifyCode(new SmsSupport().smsTypeByEnumer(SmsTypeEnum.resetpwd),
 						inputParam.getMobileNO(), 6, 5);
 			} else if ("forgetpwd".equals(inputParam.getMsgType())) {
-				rr = new SmsSupport().sendVerifyCode(new SmsSupport().smsTypeByEnumer(SmsTypeEnum.forgetpwd),
+				rr = new SmsSupport("sandboxapp.cloopen.com","8a48b551544cd73f0154610f96b91815","dd926d36f55741bab9d35207ee65df8b","aaf98f89544cd9d90154611297fa1768").sendVerifyCode(new SmsSupport().smsTypeByEnumer(SmsTypeEnum.forgetpwd),
 						inputParam.getMobileNO(), 6, 5);
 			} else {
 				rr.setStatus(0);
