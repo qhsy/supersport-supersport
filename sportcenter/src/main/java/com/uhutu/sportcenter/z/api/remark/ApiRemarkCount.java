@@ -82,7 +82,8 @@ public class ApiRemarkCount extends RootApiBase<ApiRemarkCountInput, ApiRemarkCo
 		
 		String iffavor = RemarkEnum.ICON_DARK.getCode();
 		
-		int count = contentServiceFactory.getSupportPraiseService().favored(input.getType(), input.getZoo().getToken(), input.getContentCode());
+		/*01点赞*/
+		int count = contentServiceFactory.getSupportPraiseService().favored("01", input.getZoo().getToken(), input.getContentCode());
 		
 		if(count > 0){
 			

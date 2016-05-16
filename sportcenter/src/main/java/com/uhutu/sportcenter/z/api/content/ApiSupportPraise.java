@@ -32,7 +32,7 @@ public class ApiSupportPraise extends RootApiToken<ApiSupportPraiseInput, ApiSup
 		praise.setType(input.getType());
 		praise.setUserCode(input.getZoo().getToken().trim());// 暂时没有
 		if ("0".equals(input.getIsLike())) {// 取消点赞或者取消点嘘嘘
-			serviceFactory.getSupportPraiseService().cancelbyCCAndUCAndType(input.getContentCode(), "userCode_xiegj",
+			serviceFactory.getSupportPraiseService().cancelbyCCAndUCAndType(input.getContentCode(), input.getZoo().getToken(),
 					input.getType());
 		} else {// 点赞或者点嘘嘘
 			serviceFactory.getSupportPraiseService().save(praise);
