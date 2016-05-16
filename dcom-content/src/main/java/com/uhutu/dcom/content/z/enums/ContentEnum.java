@@ -9,7 +9,11 @@ public enum ContentEnum {
 	
 	sportmoment("运动时刻","01"),
 	
-	article("文章","02");
+	article("文章","02"),
+	
+	normal("有效","1"),
+	
+	invalid("失效","0");
 	
 	private String name = "";
 	

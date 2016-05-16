@@ -51,18 +51,22 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 
 		for (CnContentBasicinfo contentBasicInfo : contentBasicInfos) {
 
-			ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();
+			if(contentBasicInfo != null){
+				
+				ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();
 
-			BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
+				BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
 
-			UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService()
-					.queryByUserCode(sportingMoment.getAuthor());
+				UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService()
+						.queryByUserCode(sportingMoment.getAuthor());
 
-			sportingMoment.setAboutHead(ucUserinfoExt.getAboutHead());
+				sportingMoment.setAboutHead(ucUserinfoExt.getAboutHead());
 
-			sportingMoment.setNickName(ucUserinfoExt.getNickName());
+				sportingMoment.setNickName(ucUserinfoExt.getNickName());
 
-			sports.add(sportingMoment);
+				sports.add(sportingMoment);
+				
+			}
 
 		}
 

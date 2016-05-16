@@ -15,6 +15,7 @@ import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.ContentRemarkInfo;
+import com.uhutu.sportcenter.z.entity.ContentReplyInfo;
 import com.uhutu.sportcenter.z.input.ApiRemarkListInput;
 import com.uhutu.sportcenter.z.result.ApiRemarkListResult;
 import com.uhutu.zoocom.root.RootApiBase;
@@ -49,11 +50,37 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 			
 		}
 		
-		List<ContentRemarkInfo> remarkInfos = new ArrayList<ContentRemarkInfo>();
+		List<ContentReplyInfo> remarkInfos = new ArrayList<ContentReplyInfo>();
+		
+		
 		
 		remarkPage.getContent().forEach(remark -> {
 			
-			ContentRemarkInfo remarkInfo = new ContentRemarkInfo();
+			ContentReplyInfo replyInfo = new ContentReplyInfo();
+			
+			CnContentRemark sourceRef = serviceFactory.getContentRemarkService().queryByCode(remark.getParentCode());
+			
+			replyInfo.setRefReplyInfo(initRemarkInfo(sourceRef));
+			
+			replyInfo.setReplyInfo(initRemarkInfo(remark));
+			
+			remarkInfos.add(replyInfo);
+			
+		});
+		
+		remarkListResult.setContentRemarkInfo(remarkInfos);
+		
+		return remarkListResult;
+		
+	}
+	
+	public ContentRemarkInfo initRemarkInfo(CnContentRemark remark){
+		
+		ContentRemarkInfo remarkInfo = null;
+		
+		if(remark != null){
+			
+			remarkInfo = new ContentRemarkInfo();
 			
 			BeanUtils.copyProperties(remark, remarkInfo);
 			
@@ -71,13 +98,9 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 			
 			remarkInfo.setPublishTime(publishDate);
 			
-			remarkInfos.add(remarkInfo);
-			
-		});
+		}		
 		
-		remarkListResult.setContentRemarkInfo(remarkInfos);
-		
-		return remarkListResult;
+		return remarkInfo;
 		
 	}
 

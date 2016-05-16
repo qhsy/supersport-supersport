@@ -2,7 +2,7 @@ package com.uhutu.sportcenter.z.result;
 
 import java.util.List;
 
-import com.uhutu.sportcenter.z.entity.ContentRemarkInfo;
+import com.uhutu.sportcenter.z.entity.ContentReplyInfo;
 import com.uhutu.zoocom.root.RootApiResult;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -16,16 +16,16 @@ import io.swagger.annotations.ApiModelProperty;
 public class ApiRemarkListResult extends RootApiResult {
 	
 	@ApiModelProperty(value="评论信息")
-	private List<ContentRemarkInfo> contentRemarkInfo;
+	private List<ContentReplyInfo> contentRemarkInfo;
 	
 	@ApiModelProperty(value="是否还有下一页")
 	private boolean nextflag = false;
 
-	public List<ContentRemarkInfo> getContentRemarkInfo() {
+	public List<ContentReplyInfo> getContentRemarkInfo() {
 		return contentRemarkInfo;
 	}
 
-	public void setContentRemarkInfo(List<ContentRemarkInfo> contentRemarkInfo) {
+	public void setContentRemarkInfo(List<ContentReplyInfo> contentRemarkInfo) {
 		this.contentRemarkInfo = contentRemarkInfo;
 	}
 
