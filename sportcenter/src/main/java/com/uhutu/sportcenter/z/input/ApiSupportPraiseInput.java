@@ -11,8 +11,8 @@ import io.swagger.annotations.ApiModelProperty;
 		@ApiModelProperty(value = "评价内容编号", notes = "评价内容编号",required=true, example = "MeiZi666")
 		private String contentCode = "";
 		
-		@ApiModelProperty(value = "取消么么哒或者嘘嘘", notes = "取消:0,赞：1",required=true, example = "1")
-		private String cancelFlag = "0";
+		@ApiModelProperty(value = "是否喜欢", notes = "不喜欢:0,喜欢：1",required=true, example = "1")
+		private String isLike = "0";
 
 		public String getType() {
 			return type;
@@ -30,12 +30,12 @@ import io.swagger.annotations.ApiModelProperty;
 			this.contentCode = contentCode;
 		}
 
-		public String getCancelFlag() {
-			return cancelFlag;
+		public String getIsLike() {
+			return isLike;
 		}
 
-		public void setCancelFlag(String cancelFlag) {
-			this.cancelFlag = cancelFlag;
+		public void setIsLike(String isLike) {
+			this.isLike = isLike;
 		}
 
 }
