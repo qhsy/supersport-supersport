@@ -30,9 +30,6 @@ public class CnContentRemark extends BaseEntity {
 	
 	@ZooData(name="评论状态")
 	private String status;
-	
-	@ZooData(name="回复引用用户名称")
-	private String replyName;
 
 	public String getCode() {
 		return code;
@@ -80,14 +77,6 @@ public class CnContentRemark extends BaseEntity {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public String getReplyName() {
-		return replyName;
-	}
-
-	public void setReplyName(String replyName) {
-		this.replyName = replyName;
 	}
 	
 	

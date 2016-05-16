@@ -27,9 +27,6 @@ public class ContentRemarkInfo {
 	@ApiModelProperty(value="评论的父级编号",notes="评论的父级编号")
 	private String parentCode;
 	
-	@ApiModelProperty(value="父级评论的用户名称",notes="评论的用户名称",example="@帅帅")
-	private String replyName;
-	
 	@ApiModelProperty(value="评论状态",notes="评论状态")
 	private String status;
 	
@@ -93,14 +90,6 @@ public class ContentRemarkInfo {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public String getReplyName() {
-		return replyName;
-	}
-
-	public void setReplyName(String replyName) {
-		this.replyName = replyName;
 	}
 
 	public String getHeadUrl() {

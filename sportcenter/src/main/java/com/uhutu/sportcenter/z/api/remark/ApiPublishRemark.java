@@ -39,8 +39,6 @@ public class ApiPublishRemark extends RootApiBase<ApiPublishRemarkInput, ApiPubl
 		
 		cnContentRemark.setAuthor(input.getZoo().getToken());
 		
-		initParentInfo(cnContentRemark);
-		
 		servieFactory.getContentRemarkService().save(cnContentRemark);
 		
 		return remarkResult;
@@ -69,7 +67,7 @@ public class ApiPublishRemark extends RootApiBase<ApiPublishRemarkInput, ApiPubl
 				
 				if(userOptional.isPresent()){
 					
-					contentRemark.setReplyName(ucUserinfoExt.getNickName());
+					
 					
 				}		
 				
