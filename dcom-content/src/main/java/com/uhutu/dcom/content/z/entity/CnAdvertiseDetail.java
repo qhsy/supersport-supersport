@@ -3,6 +3,9 @@ package com.uhutu.dcom.content.z.entity;
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebElement;
+import com.uhutu.zoocom.define.DefineWebInc;
+import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -19,15 +22,16 @@ public class CnAdvertiseDetail extends BaseEntity {
 	@ApiModelProperty(name = "广告编号", notes = "广告编号", example = "gg01")
 	private String code;
 
-	@ZooData(name = "图片url")
-	@ApiModelProperty(name = "图片url", notes = "轮播图图片url", example = "http://www.ichsy.com")
+	@ZooData(name = "图片", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0" })
+	@ApiModelProperty(name = "图片", notes = "轮播图图片", example = "http://www.ichsy.com")
 	private String picUrl;
 
-	@ZooData(name = "图片超链接跳转类型")
-	@ApiModelProperty(name = "图片超链接跳转类型", notes = "轮播图链接跳转类型01:超链接,02:运动时刻详情页,03:个人中心", example = "01")
+	@ZooData(name = "图片跳转类型", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsf469910011005" })
+	@ApiModelProperty(name = "图片超链接跳转类型", notes = "轮播图链接跳转类型01:超链接,02:运动时刻详情页,03:个人中心")
 	private String piclinkType;
 
-	@ZooData(name = "图片超链接跳转内容")
+	@ZooData(name = "图片跳转内容")
 	@ApiModelProperty(name = "图片超链接跳转内容", notes = "轮播图链接跳转内容", example = "http://www.ichsy.com")
 	private String piclinkContent;
 
