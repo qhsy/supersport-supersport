@@ -56,7 +56,7 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(name = "业务类型编号：运动时刻 文章")
 	private String busiType;
 
-	@ApiModelProperty(name = "展示类型", notes = " 01:展示图文", example = "01")
+	@ApiModelProperty(name = "展示类型", notes = " 01:展示图文 02:视频", example = "01 图文 02 视频")
 	private String contentType;
 	
 	@ApiModelProperty(name = "用户头像")
