@@ -15,7 +15,6 @@
 		<item code="dmtg4107100110051001" nodeName="内容添加" parentCode="dmtg410710011005" pageUrl="/zpage/pa/com_uhutu_dcom_content_z_page_ContentBasicInfoForAddPage" pageIcon="glyphicon-adjust" />
 		<item code="dmtg4107100110051002" nodeName="内容基本信息" parentCode="dmtg410710011005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoPage" pageIcon="glyphicon-adjust" />
 		<item code="dmtg4107100110051003" nodeName="内容详细信息" parentCode="dmtg410710011005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentDetailPage" pageIcon="glyphicon-adjust" />
-		<item code="dmtg4107100110051004" nodeName="内容图集添加" parentCode="dmtg410710011005" pageUrl="/zpage/pa/com_uhutu_dcom_content_z_page_ContentPhotosPage" pageIcon="glyphicon-adjust" />
 		<item code="dmtg4107100110051005" nodeName="内容图集信息" parentCode="dmtg410710011005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentPhotosPage" pageIcon="glyphicon-adjust" />
 		<item code="dmtg410710011006" nodeName="编辑推荐" parentCode="" />
 		<item code="dmtg4107100110061001" nodeName="编辑推荐信息" parentCode="dmtg410710011006" pageUrl="/zpage/pa/com_uhutu_dcom_content_z_page_ContentRecommPage" pageIcon="glyphicon-leaf" />
