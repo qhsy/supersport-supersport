@@ -1,5 +1,8 @@
 package com.uhutu.dcom.content.z.service.Impl;
 
+import java.util.Date;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +30,24 @@ public class ContentDetailServiceImpl implements IContentDetailService {
 	@Override
 	public void save(CnContentDetail contentDetail) {
 		
-		daoFacotry.getContentDetailDao().save(contentDetail);
+		if(StringUtils.isNotBlank(contentDetail.getZa())
+				&& daoFacotry.getContentBasicinfoDao().exists(contentDetail.getZa())){
+			
+			contentDetail.setZu(new Date());
+			
+			daoFacotry.getContentDetailDao().save(contentDetail);
+			
+			
+		}else{
+			
+			
+			contentDetail.setZc(new Date());
+			
+			daoFacotry.getContentDetailDao().save(contentDetail);		
+			
+		}
+		
+		
 		
 	}
 
