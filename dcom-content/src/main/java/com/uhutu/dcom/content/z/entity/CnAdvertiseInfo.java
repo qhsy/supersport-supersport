@@ -18,7 +18,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class CnAdvertiseInfo extends BaseEntity {
 
-	@ZooData(name = "广告编号", inc = DefineWebInc.Insert_Code + "=ADBH", sort = { DefineWebPage.Page_Add + "=35",
+	@ZooData(name = "广告编号", inc = DefineWebInc.Insert_Code + "=ADBH", sort = { DefineWebPage.Page_Add + "=1",
 			DefineWebPage.Page_Edit + "=0" })
 	private String code;
 

@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModel;
 @ApiModel
 public class CnContentLabel extends BaseEntity {
 
-	@ZooData(name = "标签编号", inc = DefineWebInc.Insert_Code + "=GGBH", sort = { DefineWebPage.Page_Add + "=35",
+	@ZooData(name = "标签编号", inc = DefineWebInc.Insert_Code + "=GGBH", sort = { DefineWebPage.Page_Add + "=1",
 			DefineWebPage.Page_Edit + "=0" })
 	private String code;
 
