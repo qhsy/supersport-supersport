@@ -29,16 +29,17 @@ public class CnContentItem extends BaseEntity {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String status;
 
-	@ZooData(name = "排序(倒序)", element = DefineWebElement.Input, verify = { DefineWebVerify.Base_Number })
+	@ZooData(name = "排序(倒序)", element = DefineWebElement.Input, verify = { DefineWebVerify.Base_Number }, sort = {
+			DefineWebPage.Page_Query + "=0" })
 	private String sort;
 
-	@ZooData(name = "有效期(开始时间)")
+	@ZooData(name = "有效期(开始时间)", sort = { DefineWebPage.Page_Query + "=0" })
 	private String startTime;
 
-	@ZooData(name = "有效期(结束时间)")
+	@ZooData(name = "有效期(结束时间)", sort = { DefineWebPage.Page_Query + "=0" })
 	private String endTime;
 
-	@ZooData(name = "备注", element = DefineWebElement.Textarea)
+	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
 	private String remark;
 
 	public String getCode() {

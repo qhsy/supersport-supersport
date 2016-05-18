@@ -60,6 +60,9 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 				UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService()
 						.queryByUserCode(sportingMoment.getAuthor());
 
+				if(ucUserinfoExt==null){
+					continue;
+				}
 				sportingMoment.setAboutHead(ucUserinfoExt.getAboutHead());
 
 				sportingMoment.setNickName(ucUserinfoExt.getNickName());
