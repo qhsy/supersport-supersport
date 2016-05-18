@@ -11,6 +11,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="author" content="">
 <link rel="stylesheet" href="css/main.css?version=20160509">
+<link rel="stylesheet" type="text/css" href="css/index-min.css">
+<script src="script/prism-min.js"></script>
 </head>
 <body class="ms-controller" >
 <section class="details-author">
@@ -24,6 +26,7 @@
 <article class="details-article"></article>
 <aside class="details-tag"><b></b><span></span><b></b></aside>
 <script type="text/javascript" src="script/zepto.min.js"></script>
+
 <script type="text/javascript">
 	$(function(){
 		var code = getCode(window.location.search);
@@ -41,6 +44,7 @@
 							ele.find('p').html(data.contentRecommInfo.content);
 					}
 				}
+				
 				$('.head').attr('src',data.sportingMoment.cover)
 				$('.details-hgroup h1').html(data.sportingMoment.title);
 				$('.details-hgroup time').html(data.sportingMoment.publishTime);
@@ -49,6 +53,9 @@
 				$('.details-article').html(data.contentDetailInfo.content);
 				$('.details-tag span').html(data.sportingMoment.tagCode)
 				$('body').removeClass('ms-controller');
+				if(data.sportingMoment.contentType == '02'){
+					InitPlayer(data.contentDetailInfo.videoUrl, data.contentDetailInfo.videoCover);
+				}
 			},
 			error:function(xhr,status,error){
 					alert(error);
@@ -66,6 +73,55 @@
 	function callbackFunc(){
 		console.log(2)
 	}
+	
+	function InitPlayer(videoUrl, coverUrl){
+		var player = new prismplayer({
+		    id: "prismPlayer", // 容器id
+		    source: videoUrl,        // 视频url 支持互联网可直接访问的视频地址
+		    autoplay: false,      // 自动播放
+		    width: "100%",       // 播放器宽度
+		    height: "400px",      // 播放器高度
+		    trackLog: false,
+		    cover: coverUrl,
+		    skinLayout: [
+		        {
+		            "align":"blabs",
+		            "x":0,
+		            "y":0,
+		            "name":"controlBar",
+		            "children":[
+		                {
+		                    "align":"tlabs",
+		                    "x":0,
+		                    "y":0,
+		                    "name":"progress"
+		                },{
+		                    "align":"tl",
+		                    "x":15,
+		                    "y":26,
+		                    "name":"playButton"
+		                },{
+		                    "align":"tl",
+		                    "x":10,
+		                    "y":24,
+		                    "name":"timeDisplay"
+		                },{
+		                    "align":"tr",
+		                    "x":20,
+		                    "y":25,
+		                    "name":"fullScreenButton"
+		                },{
+		                    "align":"tr",
+		                    "x":20,
+		                    "y":25,
+		                    "name":"volume"
+		                }
+		            ]
+		        }
+		    ]
+		});
+	}
+	
 </script>
 </body>
 </html>
