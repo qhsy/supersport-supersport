@@ -33,10 +33,10 @@ public class CnContentItem extends BaseEntity {
 			DefineWebPage.Page_Query + "=0" })
 	private String sort;
 
-	@ZooData(name = "有效期(开始时间)", sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "开始时间", element = DefineWebElement.Date)
 	private String startTime;
 
-	@ZooData(name = "有效期(结束时间)", sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "结束时间", element = DefineWebElement.Datehms)
 	private String endTime;
 
 	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
