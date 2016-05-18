@@ -1,9 +1,7 @@
 package com.uhutu.dcom.user.z.entity;
 
 import java.util.Date;
-
 import javax.persistence.Entity;
-
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
@@ -26,6 +24,9 @@ public class UcMsgAttention extends BaseEntity {
 	
 	@ZooData(value="消息时间")
 	private Date msgTime;
+	
+	@ZooData(value="是否已读标识")
+	private String flag;
 
 	public String getFansUserCode() {
 		return fansUserCode;
@@ -57,6 +58,14 @@ public class UcMsgAttention extends BaseEntity {
 
 	public void setMsgTime(Date msgTime) {
 		this.msgTime = msgTime;
+	}
+
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
 	}
 
 }

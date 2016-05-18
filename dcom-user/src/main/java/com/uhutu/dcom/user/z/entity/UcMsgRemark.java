@@ -1,7 +1,6 @@
 package com.uhutu.dcom.user.z.entity;
 
 import javax.persistence.Entity;
-
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
@@ -27,6 +26,9 @@ public class UcMsgRemark extends BaseEntity {
 	
 	@ZooData(value="内容标题")
 	private String contentTitle;
+	
+	@ZooData(value="是否已读标识")
+	private String flag;
 
 	public String getMsgTitle() {
 		return msgTitle;
@@ -66,6 +68,14 @@ public class UcMsgRemark extends BaseEntity {
 
 	public void setContentTitle(String contentTitle) {
 		this.contentTitle = contentTitle;
+	}
+
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
 	}
 
 }

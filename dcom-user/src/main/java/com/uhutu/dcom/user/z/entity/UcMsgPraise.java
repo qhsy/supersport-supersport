@@ -33,6 +33,9 @@ public class UcMsgPraise extends BaseEntity {
 	
 	@ZooData(value="点赞用户编号")
 	private String praiseUserCode;
+	
+	@ZooData(value="是否已读")
+	private String flag;
 
 	public String getContentCode() {
 		return contentCode;
@@ -88,6 +91,14 @@ public class UcMsgPraise extends BaseEntity {
 
 	public void setPraiseUserCode(String praiseUserCode) {
 		this.praiseUserCode = praiseUserCode;
+	}
+
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
 	}
 
 }
