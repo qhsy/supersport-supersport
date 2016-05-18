@@ -108,13 +108,13 @@ public class SmsSupport extends RootClass {
 			code = dataMap.get(0).get("verify_code").toString();
 		}
 		if (!code.equals(verifyCode) && dataMap != null && dataMap.size() > 0) {
-			String sql = "UPDATE dev_sportcloud.cm_send_sms SET verify_sum=verify_sum+1 and zu='" + new Date()
+			String sql = "UPDATE cm_send_sms SET verify_sum=verify_sum+1 and zu='" + new Date()
 					+ "' WHERE za='" + dataMap.get(0).get("za") + "'";
 			factory.dataExec(sql, new MDataMap());
 			result.setStatus(81090004);
 			result.setError(TopHelper.upInfo(81090004));
 		} else if (dataMap != null && dataMap.size() > 0) {
-			String sql = "UPDATE dev_sportcloud.cm_send_sms SET flag_verify='1' WHERE za='" + dataMap.get(0).get("za")
+			String sql = "UPDATE cm_send_sms SET flag_verify='1' WHERE za='" + dataMap.get(0).get("za")
 					+ "'";
 			factory.dataExec(sql, new MDataMap());
 		} else if (dataMap == null || dataMap.isEmpty()) {
