@@ -7,9 +7,23 @@ package com.uhutu.dcom.user.z.enums;
  */
 public enum MsgEnum {
 	
+	/**未读*/
 	FLAG_UNREAD("0","未读"),
 	
-	FLAG_READ("1","已读");
+	/**已读*/
+	FLAG_READ("1","已读"),
+	
+	/**关注*/
+	ATTEND("01","关注"),
+	
+	/**评论*/
+	REMARK("02","评论"),
+	
+	/**通知*/
+	NOTICE("03","通知"),
+	
+	/**点赞*/
+	PRAISE("04","点赞");
 	
 	/**枚举编号*/
 	private String code;

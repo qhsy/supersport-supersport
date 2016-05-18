@@ -26,6 +26,22 @@ public class UserServiceFactory {
 
 	@Autowired
 	private IAttentionInfoService attentionInfoService;
+	
+	@Autowired
+	private IMsgStatusService msgStatusService;
+	
+	@Autowired
+	private IMsgPraiseService msgPraiseService;
+	
+	@Autowired
+	private IMsgAttentionService msgAttentionService;
+	
+	@Autowired
+	private IMsgNoticeService msgNoticeService;
+	
+	@Autowired
+	private IMsgRemarkService msRemarkService;
+	
 	/**
 	 * 获取用户业务实现
 	 * 
@@ -68,6 +84,26 @@ public class UserServiceFactory {
 	 */
 	public IAttentionInfoService getAttentionInfoService() {
 		return attentionInfoService;
+	}
+
+	public IMsgStatusService getMsgStatusService() {
+		return msgStatusService;
+	}
+
+	public IMsgPraiseService getMsgPraiseService() {
+		return msgPraiseService;
+	}
+
+	public IMsgAttentionService getMsgAttentionService() {
+		return msgAttentionService;
+	}
+
+	public IMsgNoticeService getMsgNoticeService() {
+		return msgNoticeService;
+	}
+
+	public IMsgRemarkService getMsRemarkService() {
+		return msRemarkService;
 	}
 
 }

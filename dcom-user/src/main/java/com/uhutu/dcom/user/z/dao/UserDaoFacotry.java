@@ -38,6 +38,9 @@ public class UserDaoFacotry {
 	
 	@Autowired
 	private IMsgRemarkDao msgRemarkDao;
+	
+	@Autowired
+	private IMsgStatusDao msgStatusDao;
 
 	/**
 	 * 用户信息数据访问
@@ -110,6 +113,14 @@ public class UserDaoFacotry {
 	 */
 	public IMsgRemarkDao getMsgRemarkDao() {
 		return msgRemarkDao;
+	}
+
+	/**
+	 * 消息状态
+	 * @return
+	 */
+	public IMsgStatusDao getMsgStatusDao() {
+		return msgStatusDao;
 	}
 
 }
