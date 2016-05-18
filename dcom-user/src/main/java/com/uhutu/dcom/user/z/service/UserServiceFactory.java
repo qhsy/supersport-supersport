@@ -28,9 +28,6 @@ public class UserServiceFactory {
 	private IAttentionInfoService attentionInfoService;
 	
 	@Autowired
-	private IMsgStatusService msgStatusService;
-	
-	@Autowired
 	private IMsgPraiseService msgPraiseService;
 	
 	@Autowired
@@ -84,10 +81,6 @@ public class UserServiceFactory {
 	 */
 	public IAttentionInfoService getAttentionInfoService() {
 		return attentionInfoService;
-	}
-
-	public IMsgStatusService getMsgStatusService() {
-		return msgStatusService;
 	}
 
 	public IMsgPraiseService getMsgPraiseService() {
