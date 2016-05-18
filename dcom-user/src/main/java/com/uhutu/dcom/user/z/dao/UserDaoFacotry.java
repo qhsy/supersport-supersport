@@ -26,6 +26,18 @@ public class UserDaoFacotry {
 
 	@Autowired
 	private IAttentionInfoDao attentionInfoDao;
+	
+	@Autowired
+	private IMsgAttentionDao msgAttentionDao;
+	
+	@Autowired
+	private IMsgNoticeDao msgNoticeDao;
+	
+	@Autowired
+	private IMsgPraiseDao msgPraiseDao;
+	
+	@Autowired
+	private IMsgRemarkDao msgRemarkDao;
 
 	/**
 	 * 用户信息数据访问
@@ -66,6 +78,38 @@ public class UserDaoFacotry {
 	 */
 	public IAttentionInfoDao getAttentionInfoDao() {
 		return attentionInfoDao;
+	}
+
+	/**
+	 * 关注消息通知
+	 * @return
+	 */
+	public IMsgAttentionDao getMsgAttentionDao() {
+		return msgAttentionDao;
+	}
+
+	/**
+	 * 消息通知
+	 * @return
+	 */
+	public IMsgNoticeDao getMsgNoticeDao() {
+		return msgNoticeDao;
+	}
+
+	/**
+	 * 点赞消息通知
+	 * @return
+	 */
+	public IMsgPraiseDao getMsgPraiseDao() {
+		return msgPraiseDao;
+	}
+
+	/**
+	 * 评论消息
+	 * @return
+	 */
+	public IMsgRemarkDao getMsgRemarkDao() {
+		return msgRemarkDao;
 	}
 
 }

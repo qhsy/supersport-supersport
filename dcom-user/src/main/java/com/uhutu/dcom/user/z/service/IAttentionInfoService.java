@@ -2,9 +2,6 @@ package com.uhutu.dcom.user.z.service;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
 
 /**
