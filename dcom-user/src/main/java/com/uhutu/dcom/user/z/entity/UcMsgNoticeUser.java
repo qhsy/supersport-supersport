@@ -20,7 +20,7 @@ public class UcMsgNoticeUser extends BaseEntity {
 	private String noticeCode;
 	
 	@ZooData(value="读取标识")
-	private String flag;
+	private String status;
 
 	public String getUserCode() {
 		return userCode;
@@ -38,12 +38,12 @@ public class UcMsgNoticeUser extends BaseEntity {
 		this.noticeCode = noticeCode;
 	}
 
-	public String getFlag() {
-		return flag;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setFlag(String flag) {
-		this.flag = flag;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 

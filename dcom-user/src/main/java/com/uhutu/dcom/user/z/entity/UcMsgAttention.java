@@ -26,7 +26,7 @@ public class UcMsgAttention extends BaseEntity {
 	private Date msgTime;
 	
 	@ZooData(value="是否已读标识")
-	private String flag;
+	private String status;
 
 	public String getFansUserCode() {
 		return fansUserCode;
@@ -60,12 +60,12 @@ public class UcMsgAttention extends BaseEntity {
 		this.msgTime = msgTime;
 	}
 
-	public String getFlag() {
-		return flag;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setFlag(String flag) {
-		this.flag = flag;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

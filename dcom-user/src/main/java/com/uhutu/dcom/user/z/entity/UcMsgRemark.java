@@ -31,7 +31,7 @@ public class UcMsgRemark extends BaseEntity {
 	private String contentAuthor;
 	
 	@ZooData(value="是否已读标识")
-	private String flag;
+	private String status;
 
 	public String getMsgTitle() {
 		return msgTitle;
@@ -73,12 +73,12 @@ public class UcMsgRemark extends BaseEntity {
 		this.contentTitle = contentTitle;
 	}
 
-	public String getFlag() {
-		return flag;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setFlag(String flag) {
-		this.flag = flag;
+	public void setFlag(String status) {
+		this.status = status;
 	}
 
 }
