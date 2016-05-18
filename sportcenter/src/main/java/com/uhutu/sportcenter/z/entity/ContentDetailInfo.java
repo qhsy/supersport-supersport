@@ -20,6 +20,9 @@ public class ContentDetailInfo {
 	
 	@ApiModelProperty(name="视频路径")
 	private String videoUrl;
+	
+	@ApiModelProperty(name="视频封面")
+	private String videoCover;
 
 	public String getDescription() {
 		return description;
@@ -51,6 +54,14 @@ public class ContentDetailInfo {
 
 	public void setVideoUrl(String videoUrl) {
 		this.videoUrl = videoUrl;
+	}
+
+	public String getVideoCover() {
+		return videoCover;
+	}
+
+	public void setVideoCover(String videoCover) {
+		this.videoCover = videoCover;
 	}
 
 }

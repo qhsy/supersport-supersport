@@ -25,6 +25,9 @@ public class CnContentDetail extends BaseEntity{
 	
 	@ZooData(name="视频地址")
 	private String videoUrl;
+	
+	@ZooData(name="视频封面")
+	private String videoCover;
 
 	public String getCode() {
 		return code;
@@ -56,6 +59,14 @@ public class CnContentDetail extends BaseEntity{
 
 	public void setVideoUrl(String videoUrl) {
 		this.videoUrl = videoUrl;
+	}
+
+	public String getVideoCover() {
+		return videoCover;
+	}
+
+	public void setVideoCover(String videoCover) {
+		this.videoCover = videoCover;
 	}
 
 }
