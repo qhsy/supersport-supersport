@@ -20,7 +20,7 @@ public class ApiUserInfoResult extends RootApiResult {
 	private UserInfo userInfo = new UserInfo();
 
 	@ApiModelProperty(name = "是否关注",notes="如果获取的用户信息不是自己，则使用本参数,1:已关注，0:未关注", example = "0")
-	private String flag = "";
+	private String flag = "";	
 	
 	@ApiModelProperty(value = "运动时刻信息")
 	private List<ContentBasicinfoForApi> moments = new ArrayList<ContentBasicinfoForApi>();

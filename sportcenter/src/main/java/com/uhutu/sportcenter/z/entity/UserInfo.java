@@ -44,6 +44,13 @@ public class UserInfo {
 	
 	@ApiModelProperty(value = "运动时刻发布总数量", notes = "运动时刻数量")
 	private int sportsNum = 0;
+	
+	@ApiModelProperty(value="粉丝数量",notes="粉丝数量")
+	private int fansNum;
+	
+	@ApiModelProperty(value="关注数量",notes="关注数量")
+	private int attendNum;
+	
 
 	public String getUserCode() {
 		return userCode;
@@ -139,6 +146,22 @@ public class UserInfo {
 
 	public void setSportsNum(int sportsNum) {
 		this.sportsNum = sportsNum;
+	}
+
+	public int getFansNum() {
+		return fansNum;
+	}
+
+	public void setFansNum(int fansNum) {
+		this.fansNum = fansNum;
+	}
+
+	public int getAttendNum() {
+		return attendNum;
+	}
+
+	public void setAttendNum(int attendNum) {
+		this.attendNum = attendNum;
 	}
 	
 	
