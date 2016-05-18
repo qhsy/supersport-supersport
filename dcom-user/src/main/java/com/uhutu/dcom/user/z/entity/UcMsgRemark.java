@@ -27,6 +27,9 @@ public class UcMsgRemark extends BaseEntity {
 	@ZooData(value="内容标题")
 	private String contentTitle;
 	
+	@ZooData(value="内容作者")
+	private String contentAuthor;
+	
 	@ZooData(value="是否已读标识")
 	private String flag;
 

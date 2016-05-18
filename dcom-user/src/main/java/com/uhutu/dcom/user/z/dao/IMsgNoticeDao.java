@@ -9,5 +9,7 @@ import com.uhutu.dcom.user.z.entity.UcMsgNotice;
  *
  */
 public interface IMsgNoticeDao extends CrudRepository<UcMsgNotice, String> {
+	
+	
 
 }

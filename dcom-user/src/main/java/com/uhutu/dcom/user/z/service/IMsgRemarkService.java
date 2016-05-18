@@ -15,6 +15,16 @@ public interface IMsgRemarkService {
 	 */
 	public void save(UcMsgRemark ucMsgRemark);
 	
+	/**
+	 * 根据用户编号与消息状态查询记录数量
+	 * @param userCode
+	 * 		用户编号
+	 * @param flag
+	 * 		消息状态
+	 * @return 对应状态的记录数
+	 */
+	public int queryCount(String userCode,String flag);
+	
 	
 	
 }

@@ -4,16 +4,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.uhutu.dcom.user.z.entity.UcMsgPraise;
+import com.uhutu.dcom.user.z.entity.UcMsgNoticeUser;
 
 /**
- * 点赞消息通知dao
+ * 消息通知用户关联关系dao
  * @author 逄小帅
  *
  */
-public interface IMsgPraiseDao extends CrudRepository<UcMsgPraise, String> {
+public interface IMsgNoticeUserDao extends CrudRepository<UcMsgNoticeUser, String> {
 	
-	@Query("select count(1) from UcMsgPraise t where contentuthor=:userCode and flag=:flag")
+	@Query("select count(1) from UcMsgNoticeUser t where userCode=:userCode and flag=:flag")
 	public int queryCount(@Param("userCode") String userCode,@Param("flag") String flag);
 
 }
