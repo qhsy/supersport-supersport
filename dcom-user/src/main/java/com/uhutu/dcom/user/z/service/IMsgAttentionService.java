@@ -14,5 +14,16 @@ public interface IMsgAttentionService {
 	 * @param ucMsgAttention
 	 */
 	public void save(UcMsgAttention ucMsgAttention);
+	
+	/**
+	 * 根据用户编号与读取标识查询数量
+	 * @param userCode
+	 * 		用户编号
+	 * @param flag
+	 * 		读取标识
+	 * @return 数量
+	 */
+	public int queryCount(String userCode,String flag);
+	
 
 }

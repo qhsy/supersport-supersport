@@ -12,6 +12,7 @@ import com.uhutu.sportcenter.z.input.APiStartPageInput;
 import com.uhutu.sportcenter.z.input.ApiForAttentionInput;
 import com.uhutu.sportcenter.z.input.ApiForLoginInput;
 import com.uhutu.sportcenter.z.input.ApiLoginOutInput;
+import com.uhutu.sportcenter.z.input.ApiMsgNumListInput;
 import com.uhutu.sportcenter.z.input.ApiSendSmsInput;
 import com.uhutu.sportcenter.z.input.ApiSetUserFavoerInput;
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput;
@@ -23,6 +24,7 @@ import com.uhutu.sportcenter.z.result.APiStartPageResult;
 import com.uhutu.sportcenter.z.result.ApiForAttentionResult;
 import com.uhutu.sportcenter.z.result.ApiForLoginResult;
 import com.uhutu.sportcenter.z.result.ApiLoginOutResult;
+import com.uhutu.sportcenter.z.result.ApiMsgNumListResult;
 import com.uhutu.sportcenter.z.result.ApiSendSmsResult;
 import com.uhutu.sportcenter.z.result.ApiSetUserFavorResult;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult;
@@ -135,6 +137,15 @@ public class UserController {
 	public ApiForAttentionResult contentRecomm(@RequestBody ApiForAttentionInput input) {
 
 		return apiFactory.getApiForAttention().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/userMsgNumInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "用户消息提醒数量", notes = "用户消息中心")
+	public ApiMsgNumListResult userMsgNumInfo(@RequestBody ApiMsgNumListInput input) {
+
+		return apiFactory.getApiMsgNumList().api(input);
 
 	}
 }

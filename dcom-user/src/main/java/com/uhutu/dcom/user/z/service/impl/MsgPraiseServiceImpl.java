@@ -24,4 +24,10 @@ public class MsgPraiseServiceImpl implements IMsgPraiseService {
 		
 	}
 
+	@Override
+	public int queryCount(String userCode, String flag) {
+		
+		return userDaoFacotry.getMsgPraiseDao().queryCount(userCode, flag);
+	}
+
 }

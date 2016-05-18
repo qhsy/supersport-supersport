@@ -1,7 +1,8 @@
 package com.uhutu.dcom.user.z.dao;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-
+import org.springframework.data.repository.query.Param;
 import com.uhutu.dcom.user.z.entity.UcMsgAttention;
 
 /**
@@ -10,5 +11,8 @@ import com.uhutu.dcom.user.z.entity.UcMsgAttention;
  *
  */
 public interface IMsgAttentionDao extends CrudRepository<UcMsgAttention, String> {
+	
+	@Query("select count(1) from UcMsgAttention t where attnUserCode=:userCode and flag=:flag")
+	public int queryByCode(@Param("userCode") String userCode,@Param("flag") String flag);
 
 }

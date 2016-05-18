@@ -37,7 +37,7 @@ public class UserServiceFactory {
 	private IMsgNoticeService msgNoticeService;
 	
 	@Autowired
-	private IMsgRemarkService msRemarkService;
+	private IMsgRemarkService msgRemarkService;
 	
 	@Autowired
 	private IMsgNoticeUserService msgNoticeUserService;
@@ -98,8 +98,8 @@ public class UserServiceFactory {
 		return msgNoticeService;
 	}
 
-	public IMsgRemarkService getMsRemarkService() {
-		return msRemarkService;
+	public IMsgRemarkService getMsgRemarkService() {
+		return msgRemarkService;
 	}
 
 	public IMsgNoticeUserService getMsgNoticeUserService() {

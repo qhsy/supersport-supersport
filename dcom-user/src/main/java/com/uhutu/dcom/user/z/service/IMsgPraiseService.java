@@ -14,5 +14,15 @@ public interface IMsgPraiseService {
 	 * @param ucMsgPraise
 	 */
 	public void save(UcMsgPraise ucMsgPraise);
+	
+	/**
+	 * 根据用户编号与读取标识查询数量
+	 * @param userCode
+	 * 		用户编号
+	 * @param flag
+	 * 		
+	 * @return
+	 */
+	public int queryCount(String userCode,String flag);
 
 }
