@@ -19,7 +19,7 @@ public class CmSendSms extends BaseEntity {
 	private String mobilePhone;
 	
 	@ZooData(name="验证码")
-	private String verifyode;
+	private String verifyCode;
 	
 	@ZooData(name="是否以验证")
 	private String flagVerify;
@@ -52,12 +52,12 @@ public class CmSendSms extends BaseEntity {
 		this.mobilePhone = mobilePhone;
 	}
 
-	public String getVerifyode() {
-		return verifyode;
+	public String getVerifyCode() {
+		return verifyCode;
 	}
 
-	public void setVerifyode(String verifyode) {
-		this.verifyode = verifyode;
+	public void setVerifyCode(String verifyCode) {
+		this.verifyCode = verifyCode;
 	}
 
 	public String getFlagVerify() {
