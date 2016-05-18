@@ -1,5 +1,6 @@
 package com.uhutu.dcom.extend.sms.z.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
@@ -22,16 +23,19 @@ public class CmSendSms extends BaseEntity {
 	private String verifyCode;
 	
 	@ZooData(name="是否以验证")
-	private String flagVerify;
+	@Column(columnDefinition="int default 0")
+	private int flagVerify;
 	
 	@ZooData(name="有效时间")
 	private String activeTime;
 	
 	@ZooData(name="验证次数")
-	private String verifySum;
+	@Column(columnDefinition="int default 0")
+	private int verifySum;
 	
 	@ZooData(name="是否已经发送")
-	private String flagSend;
+	@Column(columnDefinition="int default 0")
+	private int flagSend;
 	
 	@ZooData(name="发送日志")
 	private String sendMessage;
@@ -60,36 +64,12 @@ public class CmSendSms extends BaseEntity {
 		this.verifyCode = verifyCode;
 	}
 
-	public String getFlagVerify() {
-		return flagVerify;
-	}
-
-	public void setFlagVerify(String flagVerify) {
-		this.flagVerify = flagVerify;
-	}
-
 	public String getActiveTime() {
 		return activeTime;
 	}
 
 	public void setActiveTime(String activeTime) {
 		this.activeTime = activeTime;
-	}
-
-	public String getVerifySum() {
-		return verifySum;
-	}
-
-	public void setVerifySum(String verifySum) {
-		this.verifySum = verifySum;
-	}
-
-	public String getFlagSend() {
-		return flagSend;
-	}
-
-	public void setFlagSend(String flagSend) {
-		this.flagSend = flagSend;
 	}
 
 	public String getSendMessage() {
@@ -99,6 +79,28 @@ public class CmSendSms extends BaseEntity {
 	public void setSendMessage(String sendMessage) {
 		this.sendMessage = sendMessage;
 	}
-	
 
+	public int getFlagVerify() {
+		return flagVerify;
+	}
+
+	public void setFlagVerify(int flagVerify) {
+		this.flagVerify = flagVerify;
+	}
+
+	public int getVerifySum() {
+		return verifySum;
+	}
+
+	public void setVerifySum(int verifySum) {
+		this.verifySum = verifySum;
+	}
+
+	public int getFlagSend() {
+		return flagSend;
+	}
+
+	public void setFlagSend(int flagSend) {
+		this.flagSend = flagSend;
+	}
 }
