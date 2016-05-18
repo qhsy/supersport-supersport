@@ -16,6 +16,7 @@ import com.uhutu.sportcenter.z.input.ApiMsgNumListInput;
 import com.uhutu.sportcenter.z.input.ApiSendSmsInput;
 import com.uhutu.sportcenter.z.input.ApiSetUserFavoerInput;
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput;
+import com.uhutu.sportcenter.z.input.ApiUpdateMsgStatusInput;
 import com.uhutu.sportcenter.z.input.ApiUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiUserRegInput;
 import com.uhutu.sportcenter.z.input.ApiUserResetPwdInput;
@@ -28,6 +29,7 @@ import com.uhutu.sportcenter.z.result.ApiMsgNumListResult;
 import com.uhutu.sportcenter.z.result.ApiSendSmsResult;
 import com.uhutu.sportcenter.z.result.ApiSetUserFavorResult;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult;
+import com.uhutu.sportcenter.z.result.ApiUpdateMsgStatusResult;
 import com.uhutu.sportcenter.z.result.ApiUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiUserRegResult;
 import com.uhutu.sportcenter.z.result.ApiUserResetPwdResult;
@@ -146,6 +148,15 @@ public class UserController {
 	public ApiMsgNumListResult userMsgNumInfo(@RequestBody ApiMsgNumListInput input) {
 
 		return apiFactory.getApiMsgNumList().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/updateMsgStatus", method = RequestMethod.POST)
+	@ApiOperation(value = "更新消息状态", notes = "用户消息中心")
+	public ApiUpdateMsgStatusResult updateMsgStatus(@RequestBody ApiUpdateMsgStatusInput input) {
+
+		return apiFactory.getApiUpdateMsgStatus().api(input);
 
 	}
 }
