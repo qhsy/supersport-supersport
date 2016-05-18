@@ -28,13 +28,29 @@ public class SmsSupport extends RootClass {
 	private String accountSid = "";
 	private String authToken = "";
 	private String appId = "";
+	private String templateId = "";
 
-	public SmsSupport(String url, String accountSid, String authToken, String appId) {
+	/**
+	 * 
+	 * @param url
+	 *            沙盒环境（用于应用开发调试）：restAPI.init("sandboxapp.cloopen.com");*
+	 *            生产环境（用户应用上线使用）：restAPI.init("app.cloopen.com"); *
+	 * @param accountSid
+	 *            云通信sid
+	 * @param authToken
+	 *            云通信token
+	 * @param appId
+	 *            应用编号
+	 * @param templateId
+	 *            短信模板编号
+	 */
+	public SmsSupport(String url, String accountSid, String authToken, String appId, String templateId) {
 		super();
 		this.url = url;
 		this.accountSid = accountSid;
 		this.authToken = authToken;
 		this.appId = appId;
+		this.templateId = templateId;
 	}
 
 	public SmsSupport() {
@@ -223,7 +239,7 @@ public class SmsSupport extends RootClass {
 		// String[]{"6532","5"}); *
 		// *则13800000000手机号收到的短信内容是：【云通讯】您使用的是云通讯短信模板，您的验证码是6532，请于5分钟内正确输入 *
 		// *********************************************************************************************************************
-		HashMap<String, Object> result = restAPI.sendTemplateSMS(mobile, "1",
+		HashMap<String, Object> result = restAPI.sendTemplateSMS(mobile, getTemplateId(),
 				new String[] { verifyCode, String.valueOf(minutes) });
 		if (!"000000".equals(result.get("statusCode"))) {
 			// 异常返回输出错误码和错误信息
@@ -232,42 +248,45 @@ public class SmsSupport extends RootClass {
 		}
 		return re;
 	}
+
 	public String getUrl() {
 		return url;
 	}
-
 
 	public void setUrl(String url) {
 		this.url = url;
 	}
 
-
 	public String getAccountSid() {
 		return accountSid;
 	}
-
 
 	public void setAccountSid(String accountSid) {
 		this.accountSid = accountSid;
 	}
 
-
 	public String getAuthToken() {
 		return authToken;
 	}
-
 
 	public void setAuthToken(String authToken) {
 		this.authToken = authToken;
 	}
 
-
 	public String getAppId() {
 		return appId;
 	}
 
-
 	public void setAppId(String appId) {
 		this.appId = appId;
 	}
+
+	public String getTemplateId() {
+		return templateId;
+	}
+
+	public void setTemplateId(String templateId) {
+		this.templateId = templateId;
+	}
+
 }
