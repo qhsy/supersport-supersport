@@ -22,6 +22,9 @@ public class CnAdvertiseInfo extends BaseEntity {
 			DefineWebPage.Page_Edit + "=0" })
 	private String code;
 
+	@ZooData(name = "广告名称", require = "1")
+	private String name;
+
 	@ZooData(name = "广告类型", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd469910011004" })
 	private String type;
@@ -29,6 +32,9 @@ public class CnAdvertiseInfo extends BaseEntity {
 	@ZooData(name = "广告状态(是否发布)", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String status;
+
+	@ZooData(name = "备注", require = "1",element = DefineWebElement.Textarea,sort = { DefineWebPage.Page_Query + "=0"})
+	private String remark;
 
 	public String getCode() {
 		return code;
@@ -52,6 +58,22 @@ public class CnAdvertiseInfo extends BaseEntity {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }

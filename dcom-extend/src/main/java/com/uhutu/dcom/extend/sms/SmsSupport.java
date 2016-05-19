@@ -77,6 +77,10 @@ public class SmsSupport extends RootClass {
 		case forgetpwd:
 			sReturn = "41070004";
 			break;
+		case weChatlogin:
+			sReturn = "41070005";
+			break;	
+			
 		}
 
 		return sReturn;
@@ -111,7 +115,7 @@ public class SmsSupport extends RootClass {
 			updateMap.put("verify_sum", String.valueOf(li.get(0).getVerifySum() + 1));
 			updateMap.put("zu", new Date().toString());
 			updateMap.put("za", li.get(0).getZa());
-			JdbcHelper.dataUpdate("cm_send_sms", updateMap, " verify_sum=:verify_sum and zu=:zu", "za=:za");
+			JdbcHelper.dataUpdate("cm_send_sms", updateMap, "verify_sum,zu", "za");
 			result.setStatus(81090004);
 			result.setError(TopHelper.upInfo(81090004));
 		} else if (li != null && li.size() > 0) {
@@ -119,7 +123,7 @@ public class SmsSupport extends RootClass {
 			updateMap.put("flag_verify", "1");
 			updateMap.put("zu", new Date().toString());
 			updateMap.put("za", li.get(0).getZa());
-			JdbcHelper.dataUpdate("cm_send_sms", updateMap, " flag_verify=:flag_verify and zu=:zu", "za=:za");
+			JdbcHelper.dataUpdate("cm_send_sms", updateMap, "flag_verify,zu", "za");
 		} else if (li == null || li.isEmpty()) {
 			result.setStatus(81090004);
 			result.setError(TopHelper.upInfo(81090004));
