@@ -1,5 +1,7 @@
 package com.uhutu.dcom.content.z.page.vo;
 
+import java.util.Date;
+
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
@@ -14,45 +16,46 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  */
 public class CnContentBasicinfo extends BaseEntity {
 
-	@ZooData(name = "内容编号", inc = DefineWebInc.Insert_Code + "=CNB", sort = { DefineWebPage.Page_Add + "=0",
+	@ZooData(name = "内容编号", inc = DefineWebInc.Insert_Code + "=CNB", sort = { DefineWebPage.Page_Add + "=1",
 			DefineWebPage.Page_Edit + "=0" })
 	private String code;
 
-	@ZooData(name = "内容标题", require = "1", sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "内容标题", require = "1")
 	private String title;
 
-	@ZooData(name = "内容封面", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query+"=0", DefineWebPage.Page_Grid+"=0" })
+	@ZooData(name = "内容封面", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
 	private String cover;
 
-	// @ZooData(name = "发布时间")
-	// private Date publishTime;
-
-	@ZooData(name = "内容简介", element = DefineWebElement.Textarea, require = "1", sort = { DefineWebPage.Page_Query+"=0", DefineWebPage.Page_Grid+"=0" })
+	@ZooData(name = "内容简介", element = DefineWebElement.Textarea, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String aboutDesc;
 
-	@ZooData(name = "内容来源", require = "1", sort = { DefineWebPage.Page_Query+"=0", DefineWebPage.Page_Grid+"=0" })
+	@ZooData(name = "内容来源", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String souce;
 
 	@ZooData(name = "发布状态", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String status;
 
-	@ZooData(name = "大分类", element = DefineWebElement.Select, inc = { DefineWebInc.Source_Code + "=dzsi41071005",
-			DefineWebInc.Source_Value + "='222222'" }, sort = { DefineWebPage.Page_Query+"=0" })
+	@ZooData(name = "大分类", sort = { DefineWebPage.Page_Query + "=0" })
 	private String categoryCode;
 
-	@ZooData(name = "标签", element = DefineWebElement.Select, inc = { DefineWebInc.Source_Code + "=dzsi41071004",
-			DefineWebInc.Source_Value + "='222222'" }, sort = { DefineWebPage.Page_Query+"=0", DefineWebPage.Page_Grid+"=0" })
+	@ZooData(name = "标签", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String tagCode;
 
-	@ZooData(name = "内容作者", require = "1", sort = { DefineWebPage.Page_Query+"=0" })
+	@ZooData(name = "内容作者", require = "1", sort = { DefineWebPage.Page_Query + "=0" })
 	private String author;
+
+	@ZooData(name = "发布时间", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0",
+			DefineWebPage.Page_Add + "=0" })
+	private Date publishTime;
 
 	@ZooData(name = "内容是否公开", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String shareScope;
 
-	@ZooData(name = "定位经纬度", sort = { DefineWebPage.Page_Query+"=0", DefineWebPage.Page_Grid+"=0" })
+	@ZooData(name = "定位经纬度", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String location;
 
 	@ZooData(name = "定位位置名称", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
@@ -176,6 +179,14 @@ public class CnContentBasicinfo extends BaseEntity {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public Date getPublishTime() {
+		return publishTime;
+	}
+
+	public void setPublishTime(Date publishTime) {
+		this.publishTime = publishTime;
 	}
 
 }
