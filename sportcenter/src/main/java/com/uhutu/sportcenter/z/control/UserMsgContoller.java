@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiMsgNumListInput;
+import com.uhutu.sportcenter.z.input.ApiMsgPraiseListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgRemarkListInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateMsgStatusInput;
 import com.uhutu.sportcenter.z.result.ApiMsgNumListResult;
+import com.uhutu.sportcenter.z.result.ApiMsgPraiseListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgRemarkResult;
 import com.uhutu.sportcenter.z.result.ApiUpdateMsgStatusResult;
 
@@ -58,5 +60,16 @@ public class UserMsgContoller {
 		return apiFactory.getApiMsgRemarkList().api(input);
 
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/msgPraiseList", method = RequestMethod.POST)
+	@ApiOperation(value = "消息点赞列表", notes = "用户消息中心")
+	public ApiMsgPraiseListResult msgPraiseList(@RequestBody ApiMsgPraiseListInput input) {
+
+		return apiFactory.getApiMsgPraiseList().api(input);
+
+	}
+	
+	
 
 }
