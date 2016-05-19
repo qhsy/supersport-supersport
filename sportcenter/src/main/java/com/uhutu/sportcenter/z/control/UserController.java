@@ -6,18 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.APiStartPageInput;
 import com.uhutu.sportcenter.z.input.ApiForAttentionInput;
 import com.uhutu.sportcenter.z.input.ApiForLoginInput;
 import com.uhutu.sportcenter.z.input.ApiLoginOutInput;
-import com.uhutu.sportcenter.z.input.ApiMsgNumListInput;
-import com.uhutu.sportcenter.z.input.ApiMsgRemarkListInput;
 import com.uhutu.sportcenter.z.input.ApiSendSmsInput;
 import com.uhutu.sportcenter.z.input.ApiSetUserFavoerInput;
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput;
-import com.uhutu.sportcenter.z.input.ApiUpdateMsgStatusInput;
 import com.uhutu.sportcenter.z.input.ApiUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiUserRegInput;
 import com.uhutu.sportcenter.z.input.ApiUserResetPwdInput;
@@ -26,17 +22,13 @@ import com.uhutu.sportcenter.z.result.APiStartPageResult;
 import com.uhutu.sportcenter.z.result.ApiForAttentionResult;
 import com.uhutu.sportcenter.z.result.ApiForLoginResult;
 import com.uhutu.sportcenter.z.result.ApiLoginOutResult;
-import com.uhutu.sportcenter.z.result.ApiMsgNumListResult;
-import com.uhutu.sportcenter.z.result.ApiMsgRemarkResult;
 import com.uhutu.sportcenter.z.result.ApiSendSmsResult;
 import com.uhutu.sportcenter.z.result.ApiSetUserFavorResult;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult;
-import com.uhutu.sportcenter.z.result.ApiUpdateMsgStatusResult;
 import com.uhutu.sportcenter.z.result.ApiUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiUserRegResult;
 import com.uhutu.sportcenter.z.result.ApiUserResetPwdResult;
 import com.uhutu.sportcenter.z.result.ApiVersionInfoResult;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -141,33 +133,6 @@ public class UserController {
 	public ApiForAttentionResult contentRecomm(@RequestBody ApiForAttentionInput input) {
 
 		return apiFactory.getApiForAttention().api(input);
-
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/userMsgNumInfo", method = RequestMethod.POST)
-	@ApiOperation(value = "用户消息提醒数量", notes = "用户消息中心")
-	public ApiMsgNumListResult userMsgNumInfo(@RequestBody ApiMsgNumListInput input) {
-
-		return apiFactory.getApiMsgNumList().api(input);
-
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/updateMsgStatus", method = RequestMethod.POST)
-	@ApiOperation(value = "更新消息状态", notes = "用户消息中心")
-	public ApiUpdateMsgStatusResult updateMsgStatus(@RequestBody ApiUpdateMsgStatusInput input) {
-
-		return apiFactory.getApiUpdateMsgStatus().api(input);
-
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/msgRemarkList", method = RequestMethod.POST)
-	@ApiOperation(value = "消息中心评论列表", notes = "用户消息中心")
-	public ApiMsgRemarkResult msgRemarkList(@RequestBody ApiMsgRemarkListInput input) {
-
-		return apiFactory.getApiMsgRemarkList().api(input);
 
 	}
 	
