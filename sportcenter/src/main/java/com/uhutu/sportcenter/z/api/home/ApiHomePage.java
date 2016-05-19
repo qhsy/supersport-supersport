@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.service.ContentBasicinfoServiceFactory;
 import com.uhutu.dcom.content.z.service.ContentDetailServiceFactory;
+import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.AdvertiseMent;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
@@ -59,6 +60,10 @@ public class ApiHomePage extends RootApiBase<ApiHomePageInput, ApiHomePageResult
 				ContentBasicinfoForApi infoApi = new ContentBasicinfoForApi();
 				UserinfoExtForApi userInfoApi = new UserinfoExtForApi();
 				if (StringUtils.isNotBlank(info.getAuthor())) {
+					UcUserinfoExt ext = userInfoSupport.getUserBasicInfo(info.getAuthor()).getUcUserinfoExt();
+					if (ext == null) {
+						continue;
+					}
 					BeanUtils.copyProperties(userInfoSupport.getUserBasicInfo(info.getAuthor()).getUcUserinfoExt(),
 							userInfoApi);
 				}
