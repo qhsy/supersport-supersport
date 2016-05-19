@@ -18,6 +18,9 @@ public class ApiUserInfoInput extends RootApiInput {
 	
 	@ApiModelProperty(name="页码",value="页码",example="0")
 	private int  pagination= 0;
+	
+	@ApiModelProperty(value="是否本身用户",example="own:用户本身,other:非自身")
+	private String operFlag;
 
 	/**
 	 * 获取用户编号
@@ -41,6 +44,14 @@ public class ApiUserInfoInput extends RootApiInput {
 
 	public void setPagination(int pagination) {
 		this.pagination = pagination;
+	}
+
+	public String getOperFlag() {
+		return operFlag;
+	}
+
+	public void setOperFlag(String operFlag) {
+		this.operFlag = operFlag;
 	}
 
 }

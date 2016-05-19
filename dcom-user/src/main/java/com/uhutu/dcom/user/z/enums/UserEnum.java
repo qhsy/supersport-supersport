@@ -32,7 +32,13 @@ public enum UserEnum {
 	ATTEND("关注","1"),
 	
 	/**取消关注*/
-	UN_ATTEND("取消关注","0");	
+	UN_ATTEND("取消关注","0"),
+	
+	/**自身*/
+	OPER_OWN("自身","own"),
+	
+	/**其他用户*/
+	OPER_OTHER("其他用户","other");	
 	
 	private String code = "";
 	

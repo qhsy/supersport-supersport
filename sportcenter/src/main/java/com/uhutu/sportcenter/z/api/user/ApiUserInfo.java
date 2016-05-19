@@ -15,6 +15,7 @@ import com.uhutu.dcom.content.z.service.ContentBasicinfoServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.enums.MsgEnum;
+import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.entity.UserInfo;
@@ -38,8 +39,20 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 	private ContentBasicinfoServiceFactory serviceFactory;
 
 	public ApiUserInfoResult process(ApiUserInfoInput inputParam) {
-
-		String userCode = inputParam.getZoo().getToken().trim();
+		
+		String userCode = "";
+		
+		if(UserEnum.OPER_OWN.getCode().equals(inputParam.getOperFlag())){
+			
+			userCode = inputParam.getZoo().getToken().trim();
+			
+		}
+		
+		if(UserEnum.OPER_OTHER.getCode().equals(inputParam.getOperFlag())){
+			
+			userCode = inputParam.getUserCode();
+			
+		}		
 
 		ApiUserInfoResult userInfoResult = new ApiUserInfoResult();
 
