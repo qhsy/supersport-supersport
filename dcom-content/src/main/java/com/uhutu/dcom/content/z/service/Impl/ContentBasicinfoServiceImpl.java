@@ -92,4 +92,11 @@ public class ContentBasicinfoServiceImpl implements IContentBasicinfoService {
 		
 	}
 
+	@Override
+	public String queryTitleByCode(String code) {
+		
+		return daoFacotry.getContentBasicinfoDao().queryTitleByCode(code);
+		
+	}
+
 }

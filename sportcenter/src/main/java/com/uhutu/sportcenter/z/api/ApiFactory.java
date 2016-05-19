@@ -23,6 +23,7 @@ import com.uhutu.sportcenter.z.api.user.ApiForAttention;
 import com.uhutu.sportcenter.z.api.user.ApiForLogin;
 import com.uhutu.sportcenter.z.api.user.ApiLoginOut;
 import com.uhutu.sportcenter.z.api.user.ApiMsgNumList;
+import com.uhutu.sportcenter.z.api.user.ApiMsgRemarkList;
 import com.uhutu.sportcenter.z.api.user.ApiSetUserFavor;
 import com.uhutu.sportcenter.z.api.user.ApiSocialLogin;
 import com.uhutu.sportcenter.z.api.user.ApiUpdateMsgStatus;
@@ -117,6 +118,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiUpdateMsgStatus apiUpdateMsgStatus;
+	
+	@Autowired
+	private ApiMsgRemarkList apiMsgRemarkList;
 
 	@Autowired
 	private ApiForAttention apiForAttention;
@@ -230,5 +234,13 @@ public class ApiFactory {
 
 	public void setApiUpdateMsgStatus(ApiUpdateMsgStatus apiUpdateMsgStatus) {
 		this.apiUpdateMsgStatus = apiUpdateMsgStatus;
+	}
+
+	public ApiMsgRemarkList getApiMsgRemarkList() {
+		return apiMsgRemarkList;
+	}
+
+	public void setApiMsgRemarkList(ApiMsgRemarkList apiMsgRemarkList) {
+		this.apiMsgRemarkList = apiMsgRemarkList;
 	}
 }

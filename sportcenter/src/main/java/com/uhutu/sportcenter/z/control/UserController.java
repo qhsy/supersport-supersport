@@ -13,6 +13,7 @@ import com.uhutu.sportcenter.z.input.ApiForAttentionInput;
 import com.uhutu.sportcenter.z.input.ApiForLoginInput;
 import com.uhutu.sportcenter.z.input.ApiLoginOutInput;
 import com.uhutu.sportcenter.z.input.ApiMsgNumListInput;
+import com.uhutu.sportcenter.z.input.ApiMsgRemarkListInput;
 import com.uhutu.sportcenter.z.input.ApiSendSmsInput;
 import com.uhutu.sportcenter.z.input.ApiSetUserFavoerInput;
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput;
@@ -26,6 +27,7 @@ import com.uhutu.sportcenter.z.result.ApiForAttentionResult;
 import com.uhutu.sportcenter.z.result.ApiForLoginResult;
 import com.uhutu.sportcenter.z.result.ApiLoginOutResult;
 import com.uhutu.sportcenter.z.result.ApiMsgNumListResult;
+import com.uhutu.sportcenter.z.result.ApiMsgRemarkResult;
 import com.uhutu.sportcenter.z.result.ApiSendSmsResult;
 import com.uhutu.sportcenter.z.result.ApiSetUserFavorResult;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult;
@@ -159,4 +161,14 @@ public class UserController {
 		return apiFactory.getApiUpdateMsgStatus().api(input);
 
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/msgRemarkList", method = RequestMethod.POST)
+	@ApiOperation(value = "消息中心评论列表", notes = "用户消息中心")
+	public ApiMsgRemarkResult msgRemarkList(@RequestBody ApiMsgRemarkListInput input) {
+
+		return apiFactory.getApiMsgRemarkList().api(input);
+
+	}
+	
 }

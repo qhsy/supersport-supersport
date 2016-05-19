@@ -52,4 +52,12 @@ public interface IContentBasicinfoService {
 	 * @param contentBasicinfo
 	 */
 	public void save(CnContentBasicinfo contentBasicinfo);
+	
+	/**
+	 * 根据内容编号查询内容标题
+	 * @param code
+	 * 		内容编号
+	 * @return 标题
+	 */
+	public String queryTitleByCode(String code);
 }

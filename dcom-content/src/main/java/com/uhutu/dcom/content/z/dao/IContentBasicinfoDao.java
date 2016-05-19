@@ -47,5 +47,14 @@ public interface IContentBasicinfoDao extends JpaRepository<CnContentBasicinfo, 
 	@Query("select cc from CnContentBasicinfo cc where cc.author=:author and cc.status='1' order by cc.publishTime desc")
 	public List<CnContentBasicinfo> queryByAuthor(@Param("author") String author);
 	
+	/**
+	 * 根据内容编号查询标题
+	 * @param code
+	 * 		内容编号
+	 * @return 标题
+	 */
+	@Query("select t.title from CnContentBasicinfo t where t.code=:code")
+	public String queryTitleByCode(@Param("code") String code);
+	
 
 }

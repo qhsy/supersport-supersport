@@ -32,6 +32,9 @@ public class UcMsgRemark extends BaseEntity {
 	
 	@ZooData(value="是否已读标识")
 	private String status;
+	
+	@ZooData(value="评论引用")
+	private String remarkParentCode;
 
 	public String getMsgTitle() {
 		return msgTitle;
@@ -79,6 +82,22 @@ public class UcMsgRemark extends BaseEntity {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getContentAuthor() {
+		return contentAuthor;
+	}
+
+	public void setContentAuthor(String contentAuthor) {
+		this.contentAuthor = contentAuthor;
+	}
+
+	public String getRemarkParentCode() {
+		return remarkParentCode;
+	}
+
+	public void setRemarkParentCode(String remarkParentCode) {
+		this.remarkParentCode = remarkParentCode;
 	}
 
 }

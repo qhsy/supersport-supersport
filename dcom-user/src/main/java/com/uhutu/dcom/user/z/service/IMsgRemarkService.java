@@ -1,5 +1,8 @@
 package com.uhutu.dcom.user.z.service;
 
+import org.springframework.data.domain.Page;
+
+import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.entity.UcMsgRemark;
 
 /**
@@ -24,6 +27,19 @@ public interface IMsgRemarkService {
 	 * @return 对应状态的记录数
 	 */
 	public int queryCount(String userCode,String status);
+	
+	/**
+	 * 根据用户编号与评论状态查询分页数据
+	 * 
+	 * @param conditions
+	 * 		查询条件
+	 * @param pageNum
+	 * 		页码
+	 * @param 每页展示数量
+	 * 		limit
+	 * @return 分页数据
+	 */
+	public Page<UcMsgRemark> queryPageByUserCode(int pageNum, int limit, QueryConditions conditions);
 	
 	
 	

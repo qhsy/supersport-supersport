@@ -14,6 +14,9 @@ public class ContentReplyInfo {
 	
 	@ApiModelProperty(value="引用的回复信息")
 	private ContentRemarkInfo refReplyInfo;
+	
+	@ApiModelProperty(value="内容标题")
+	private String contentTitle;
 
 	public ContentRemarkInfo getReplyInfo() {
 		return replyInfo;
@@ -29,6 +32,14 @@ public class ContentReplyInfo {
 
 	public void setRefReplyInfo(ContentRemarkInfo refReplyInfo) {
 		this.refReplyInfo = refReplyInfo;
+	}
+
+	public String getContentTitle() {
+		return contentTitle;
+	}
+
+	public void setContentTitle(String contentTitle) {
+		this.contentTitle = contentTitle;
 	}
 
 }
