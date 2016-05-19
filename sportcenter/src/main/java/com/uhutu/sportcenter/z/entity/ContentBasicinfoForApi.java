@@ -32,7 +32,7 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(name = "内容来源")
 	private String souce;
 
-	@ApiModelProperty(name = "内容状态 1:正常，02：失效")
+	@ApiModelProperty(name = "内容状态 dzsd4699100110010001:正常，dzsd4699100110010002：失效")
 	private String status;
 
 	@ApiModelProperty(name = "内容分类编号")
@@ -44,7 +44,7 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(name = "内容作者")
 	private String author;
 
-	@ApiModelProperty(name = "内容分享范围 0:不公开  1：公开")
+	@ApiModelProperty(name = "内容分享范围 dzsd4699100110010002:不公开  dzsd4699100110010001：公开")
 	private String shareScope;
 
 	@ApiModelProperty(name = "地理位置", notes = "位置经纬度", example = "116.404, 39.915")
@@ -56,12 +56,12 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(name = "业务类型编号：运动时刻 文章")
 	private String busiType;
 
-	@ApiModelProperty(name = "展示类型", notes = " 01:展示图文 02:视频", example = "01 图文 02 视频")
+	@ApiModelProperty(name = "展示类型", notes = " dzsd4699100110030001:展示图文 dzsd4699100110030002:视频", example = "dzsd4699100110030002")
 	private String contentType;
-	
+
 	@ApiModelProperty(name = "用户头像")
 	private String aboutHead;
-	
+
 	@ApiModelProperty(name = "昵称")
 	private String nickName;
 
