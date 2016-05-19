@@ -33,7 +33,7 @@ public class CnAdvertiseInfo extends BaseEntity {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String status;
 
-	@ZooData(name = "备注", require = "1",element = DefineWebElement.Textarea,sort = { DefineWebPage.Page_Query + "=0"})
+	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
 	private String remark;
 
 	public String getCode() {

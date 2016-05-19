@@ -18,11 +18,13 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @Entity
 public class CnAdvertiseDetail extends BaseEntity {
-	@ZooData(name = "广告编号")
-	@ApiModelProperty(name = "广告编号", notes = "广告编号", example = "gg01")
+	@ZooData(name = "广告编号", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw410710010001" })
+	@ApiModelProperty(name = "广告编号", notes = "广告编号", example = "ADBH0001")
 	private String code;
 
-	@ZooData(name = "图片", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "图片", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
 	@ApiModelProperty(name = "图片", notes = "轮播图图片", example = "http://www.ichsy.com")
 	private String picUrl;
 
