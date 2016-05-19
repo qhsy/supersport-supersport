@@ -100,7 +100,7 @@ public class SmsSupport extends RootClass {
 		mWhereMap.put("verify_type", smsTypeByEnumer(smsTypeEnum));
 		mWhereMap.put("mobile_phone", sMobile);
 		List<CmSendSms> li = JdbcHelper.queryForList(CmSendSms.class, "", "-zc",
-				" verify_sum<:verify_sum and and flag_verify=0 and active_time>=:active_time and verify_type=:verify_type and mobile_phone=:mobile_phone ",
+				" verify_sum<:verify_sum and flag_verify=0 and active_time>=:active_time and verify_type=:verify_type and mobile_phone=:mobile_phone ",
 				mWhereMap);
 		String code = "";
 		if (li != null && !li.isEmpty() && li.size() > 0) {
