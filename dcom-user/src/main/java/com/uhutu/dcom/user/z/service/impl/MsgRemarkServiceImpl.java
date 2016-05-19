@@ -26,9 +26,9 @@ public class MsgRemarkServiceImpl implements IMsgRemarkService {
 	}
 
 	@Override
-	public int queryCount(String userCode, String flag) {
+	public int queryCount(String userCode, String status) {
 		
-		return userDaoFacotry.getMsgRemarkDao().queryCount(userCode, flag);
+		return userDaoFacotry.getMsgRemarkDao().queryCount(userCode, status);
 	}
 
 }

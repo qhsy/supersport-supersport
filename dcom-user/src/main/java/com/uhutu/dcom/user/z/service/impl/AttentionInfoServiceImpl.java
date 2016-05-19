@@ -36,4 +36,16 @@ public class AttentionInfoServiceImpl implements IAttentionInfoService {
 		return userDaoFacotry.getAttentionInfoDao().queryByBothCode(attention, beAttention);
 	}
 
+	@Override
+	public int queryFansCount(String userCode, String status) {
+		
+		return userDaoFacotry.getAttentionInfoDao().queryFansCount(userCode, status);
+	}
+
+	@Override
+	public int queryAttendCount(String userCode, String status) {
+		
+		return userDaoFacotry.getAttentionInfoDao().queryAttendCount(userCode, status);
+	}
+
 }

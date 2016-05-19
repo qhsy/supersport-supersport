@@ -12,7 +12,7 @@ import com.uhutu.dcom.user.z.entity.UcMsgAttention;
  */
 public interface IMsgAttentionDao extends CrudRepository<UcMsgAttention, String> {
 	
-	@Query("select count(1) from UcMsgAttention t where attnUserCode=:userCode and flag=:flag")
-	public int queryByCode(@Param("userCode") String userCode,@Param("flag") String flag);
+	@Query("select count(1) from UcMsgAttention t where attnUserCode=:userCode and status=:status")
+	public int queryByCode(@Param("userCode") String userCode,@Param("status") String status);
 
 }

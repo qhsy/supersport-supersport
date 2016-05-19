@@ -21,10 +21,10 @@ public interface IMsgNoticeUserService {
 	 * 根据用户编号查询记录数量
 	 * @param userCode
 	 * 		用户编号
-	 * @param flag
+	 * @param status
 	 * 		读取标识
 	 * @return 未读记录数量
 	 */
-	public int queryCount(String userCode,String flag);
+	public int queryCount(String userCode,String status);
 
 }

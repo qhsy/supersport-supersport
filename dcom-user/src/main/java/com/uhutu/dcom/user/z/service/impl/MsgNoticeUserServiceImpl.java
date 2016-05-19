@@ -28,9 +28,9 @@ public class MsgNoticeUserServiceImpl implements IMsgNoticeUserService {
 	}
 
 	@Override
-	public int queryCount(String userCode, String flag) {
+	public int queryCount(String userCode, String status) {
 		
-		return userDaoFacotry.getMsgNoticeUserDao().queryCount(userCode, flag);
+		return userDaoFacotry.getMsgNoticeUserDao().queryCount(userCode, status);
 		
 	}
 

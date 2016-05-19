@@ -20,7 +20,7 @@ public class UcAttentionInfo extends BaseEntity {
 	@ZooData(value = "被关注者")
 	private String beAttention;
 
-	@ZooData(value = "关注状态")
+	@ZooData(value = "关注状态",comment="0:未关注 1:已关注")
 	private String status;
 
 	public String getAttention() {

@@ -45,4 +45,30 @@ public interface IAttentionInfoDao extends CrudRepository<UcAttentionInfo, Strin
 	@Query("select t from UcAttentionInfo t where attention=:attention and beAttention=:beAttention")
 	public UcAttentionInfo queryByBothCode(@Param("attention") String attention,
 			@Param("beAttention") String beAttention);
+	
+	/**
+	 * 获取粉丝数量
+	 * 
+	 * @param userCode
+	 *        用户编号
+	 * @param status
+	 * 		状态
+	 * @return 粉丝数量
+	 */
+	@Query("select count(1) from UcAttentionInfo t where beAttention=:userCode and status=:status")
+	public int queryFansCount(@Param("userCode") String userCode,
+			@Param("status") String status);
+	
+	/**
+	 * 获取关注数量
+	 * 
+	 * @param userCode
+	 *        用户编号
+	 * @param status
+	 * 		状态
+	 * @return 关注数量
+	 */
+	@Query("select count(1) from UcAttentionInfo t where attention=:userCode and status=:status")
+	public int queryAttendCount(@Param("userCode") String userCode,
+			@Param("status") String status);
 }

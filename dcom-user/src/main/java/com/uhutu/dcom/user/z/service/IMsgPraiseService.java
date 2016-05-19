@@ -19,10 +19,10 @@ public interface IMsgPraiseService {
 	 * 根据用户编号与读取标识查询数量
 	 * @param userCode
 	 * 		用户编号
-	 * @param flag
+	 * @param status
 	 * 		
 	 * @return
 	 */
-	public int queryCount(String userCode,String flag);
+	public int queryCount(String userCode,String status);
 
 }

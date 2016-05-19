@@ -13,7 +13,7 @@ import com.uhutu.dcom.user.z.entity.UcMsgPraise;
  */
 public interface IMsgPraiseDao extends CrudRepository<UcMsgPraise, String> {
 	
-	@Query("select count(1) from UcMsgPraise t where contentAuthor=:userCode and flag=:flag")
-	public int queryCount(@Param("userCode") String userCode,@Param("flag") String flag);
+	@Query("select count(1) from UcMsgPraise t where contentAuthor=:userCode and status=:status")
+	public int queryCount(@Param("userCode") String userCode,@Param("status") String status);
 
 }

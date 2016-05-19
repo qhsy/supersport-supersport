@@ -26,9 +26,9 @@ public class MsgAttentionServiceImpl implements IMsgAttentionService {
 	}
 
 	@Override
-	public int queryCount(String userCode, String flag) {
+	public int queryCount(String userCode, String status) {
 		
-		return userDaoFacotry.getMsgAttentionDao().queryByCode(userCode, flag);
+		return userDaoFacotry.getMsgAttentionDao().queryByCode(userCode, status);
 		
 	}
 

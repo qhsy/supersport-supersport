@@ -14,6 +14,7 @@ import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentBasicinfoServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
+import com.uhutu.dcom.user.z.enums.MsgEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.entity.UserInfo;
@@ -108,6 +109,8 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 		Long tempVal = new Long(page.getTotalElements());
 
 		apiUserInfo.setSportsNum(tempVal.intValue());
+		
+		initFansNum(apiUserInfo);
 
 		userInfoResult.setUserInfo(apiUserInfo);
 		if(!inputParam.getZoo().getToken().trim().equals(inputParam.getUserCode())){
@@ -116,6 +119,22 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 			userInfoResult.setFlag(info.getStatus());
 		}
 		return userInfoResult;
+	}
+	
+	/**
+	 * 初始化粉丝和关注数量
+	 * @param userInfo
+	 */
+	public void initFansNum(UserInfo userInfo){
+		
+		int fansNum = userServiceFactory.getAttentionInfoService().queryFansCount(userInfo.getUserCode(), MsgEnum.ATTEND.getCode());
+		
+		int attendNum = userServiceFactory.getAttentionInfoService().queryAttendCount(userInfo.getUserCode(), MsgEnum.ATTEND.getCode());
+		
+		userInfo.setFansNum(fansNum);
+		
+		userInfo.setAttendNum(attendNum);
+		
 	}
 
 }

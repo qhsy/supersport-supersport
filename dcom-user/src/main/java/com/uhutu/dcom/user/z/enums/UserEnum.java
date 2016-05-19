@@ -26,7 +26,13 @@ public enum UserEnum {
 	TYPE_CUSTOM("普通用户","01"),
 	
 	/**达人用户*/
-	TYPE_EXPERT("达人用户","02");	
+	TYPE_EXPERT("达人用户","02"),
+	
+	/**关注*/
+	ATTEND("关注","1"),
+	
+	/**取消关注*/
+	UN_ATTEND("取消关注","0");	
 	
 	private String code = "";
 	

@@ -13,7 +13,7 @@ import com.uhutu.dcom.user.z.entity.UcMsgNoticeUser;
  */
 public interface IMsgNoticeUserDao extends CrudRepository<UcMsgNoticeUser, String> {
 	
-	@Query("select count(1) from UcMsgNoticeUser t where userCode=:userCode and flag=:flag")
-	public int queryCount(@Param("userCode") String userCode,@Param("flag") String flag);
+	@Query("select count(1) from UcMsgNoticeUser t where userCode=:userCode and status=:status")
+	public int queryCount(@Param("userCode") String userCode,@Param("status") String status);
 
 }

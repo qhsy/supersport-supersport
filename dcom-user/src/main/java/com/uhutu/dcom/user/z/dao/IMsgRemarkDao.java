@@ -12,7 +12,7 @@ import com.uhutu.dcom.user.z.entity.UcMsgRemark;
  */
 public interface IMsgRemarkDao extends CrudRepository<UcMsgRemark, String> {
 	
-	@Query("select count(1) from UcMsgRemark t where contentuthor=:userCode and flag=:flag")
-	public int queryCount(@Param("userCode") String userCode,@Param("flag") String flag);
+	@Query("select count(1) from UcMsgRemark t where contentuthor=:userCode and status=:status")
+	public int queryCount(@Param("userCode") String userCode,@Param("status") String status);
 
 }
