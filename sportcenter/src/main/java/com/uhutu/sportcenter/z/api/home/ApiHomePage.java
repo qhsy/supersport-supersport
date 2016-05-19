@@ -40,7 +40,7 @@ public class ApiHomePage extends RootApiBase<ApiHomePageInput, ApiHomePageResult
 	protected ApiHomePageResult process(ApiHomePageInput input) {
 		AdvertiseMent am = new AdvertiseMent();// 首页广告
 		ApiHomePageResult result = new ApiHomePageResult();
-		List<CnContentBasicinfo> basicinfos = basicinfoServiceFactory.getContentBasicinfoService().queryAll("1");
+		List<CnContentBasicinfo> basicinfos = basicinfoServiceFactory.getContentBasicinfoService().queryAll("dzsd4699100110010001");
 
 		int firstIndex = (input.getPagination() - 1) * 10;
 		int toIndex = input.getPagination() * 10;
