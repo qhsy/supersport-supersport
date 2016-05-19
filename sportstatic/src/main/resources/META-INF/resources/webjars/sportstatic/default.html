@@ -71,7 +71,10 @@
 		return arr[1];
 	}
 	function callbackFunc(){
-		console.log(2)
+		var userAgent = navigator.userAgent;
+		if(userAgent.indexOf('Android') =>0 ){
+			javascript:android.StartUserInfo();
+		}
 	}
 	
 	function InitPlayer(videoUrl, coverUrl){
