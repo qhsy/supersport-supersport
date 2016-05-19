@@ -41,7 +41,8 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 		ApiSportingMomentsResult sportingMomentsResult = new ApiSportingMomentsResult();
 
 		queryConditions.setConditionEqual("busiType", ContentEnum.sportmoment.getCode());
-
+		queryConditions.setConditionEqual("status", "dzsd4699100110010001");
+		queryConditions.setConditionEqual("shareScope", "dzsd4699100110010001");
 		Page<CnContentBasicinfo> page = serviceFactory.getContentBasicinfoService().queryPage(input.getPagination(), 10,
 				queryConditions);
 
@@ -51,8 +52,8 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 
 		for (CnContentBasicinfo contentBasicInfo : contentBasicInfos) {
 
-			if(contentBasicInfo != null){
-				
+			if (contentBasicInfo != null) {
+
 				ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();
 
 				BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
@@ -60,7 +61,7 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 				UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService()
 						.queryByUserCode(sportingMoment.getAuthor());
 
-				if(ucUserinfoExt==null){
+				if (ucUserinfoExt == null) {
 					continue;
 				}
 				sportingMoment.setAboutHead(ucUserinfoExt.getAboutHead());
@@ -68,7 +69,7 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 				sportingMoment.setNickName(ucUserinfoExt.getNickName());
 
 				sports.add(sportingMoment);
-				
+
 			}
 
 		}
