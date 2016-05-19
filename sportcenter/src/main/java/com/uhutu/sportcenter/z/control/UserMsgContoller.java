@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
+import com.uhutu.sportcenter.z.input.ApiMsgAttendListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgNumListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgPraiseListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgRemarkListInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateMsgStatusInput;
+import com.uhutu.sportcenter.z.result.ApiMsgAttendListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgNumListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgPraiseListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgRemarkResult;
@@ -67,6 +69,15 @@ public class UserMsgContoller {
 	public ApiMsgPraiseListResult msgPraiseList(@RequestBody ApiMsgPraiseListInput input) {
 
 		return apiFactory.getApiMsgPraiseList().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/msgAttendList", method = RequestMethod.POST)
+	@ApiOperation(value = "消息关注列表", notes = "用户消息中心")
+	public ApiMsgAttendListResult msgAttendList(@RequestBody ApiMsgAttendListInput input) {
+
+		return apiFactory.getApiMsgAttendList().api(input);
 
 	}
 	
