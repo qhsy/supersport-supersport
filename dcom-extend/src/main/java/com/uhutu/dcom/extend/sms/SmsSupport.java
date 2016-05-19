@@ -3,18 +3,15 @@ package com.uhutu.dcom.extend.sms;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
-
 import org.apache.commons.lang3.StringUtils;
-
+import com.uhutu.dcom.extend.sms.z.entity.CmSendSms;
 import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.helper.FormatHelper;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiResult;
 import com.uhutu.zoocom.root.RootClass;
-import com.uhutu.zoodata.z.bean.DataJdbcFactory;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
@@ -97,27 +94,33 @@ public class SmsSupport extends RootClass {
 	public RootApiResult upLastVerifyCode(SmsTypeEnum smsTypeEnum, String sMobile, String verifyCode) {
 
 		RootApiResult result = new RootApiResult();
-		DataJdbcFactory factory = new DataJdbcFactory();
-		List<Map<String, Object>> dataMap = factory.dataSqlList(
-				"select * from cm_send_sms where verify_sum<" + SmsConst.MAX_VERIFY_CODE_SUM
-						+ " and flag_verify=0 and active_time>='" + FormatHelper.upDateTime() + "' and verify_type='"
-						+ smsTypeByEnumer(smsTypeEnum) + "' and mobile_phone='" + sMobile + "' order by zc desc",
-				new MDataMap());
+		MDataMap mWhereMap = new MDataMap();
+		mWhereMap.put("verify_sum", String.valueOf(SmsConst.MAX_VERIFY_CODE_SUM));
+		mWhereMap.put("active_time", FormatHelper.upDateTime());
+		mWhereMap.put("verify_type", smsTypeByEnumer(smsTypeEnum));
+		mWhereMap.put("mobile_phone", sMobile);
+		List<CmSendSms> li = JdbcHelper.queryForList(CmSendSms.class, "", "-zc",
+				" verify_sum<:verify_sum and and flag_verify=0 and active_time>=:active_time and verify_type=:verify_type and mobile_phone=:mobile_phone ",
+				mWhereMap);
 		String code = "";
-		if (dataMap != null && dataMap.size() > 0) {
-			code = dataMap.get(0).get("verify_code").toString();
+		if (li != null && !li.isEmpty() && li.size() > 0) {
+			code = li.get(0).getVerifyCode();
 		}
-		if (!code.equals(verifyCode) && dataMap != null && dataMap.size() > 0) {
-			String sql = "UPDATE cm_send_sms SET verify_sum=verify_sum+1 and zu='" + new Date()
-					+ "' WHERE za='" + dataMap.get(0).get("za") + "'";
-			factory.dataExec(sql, new MDataMap());
+		if (!code.equals(verifyCode) && li != null && li.size() > 0) {
+			MDataMap updateMap = new MDataMap();
+			updateMap.put("verify_sum", String.valueOf(li.get(0).getVerifySum() + 1));
+			updateMap.put("zu", new Date().toString());
+			updateMap.put("za", li.get(0).getZa());
+			JdbcHelper.dataUpdate("cm_send_sms", updateMap, " verify_sum=:verify_sum and zu=:zu", "za=:za");
 			result.setStatus(81090004);
 			result.setError(TopHelper.upInfo(81090004));
-		} else if (dataMap != null && dataMap.size() > 0) {
-			String sql = "UPDATE cm_send_sms SET flag_verify='1' WHERE za='" + dataMap.get(0).get("za")
-					+ "'";
-			factory.dataExec(sql, new MDataMap());
-		} else if (dataMap == null || dataMap.isEmpty()) {
+		} else if (li != null && li.size() > 0) {
+			MDataMap updateMap = new MDataMap();
+			updateMap.put("flag_verify", "1");
+			updateMap.put("zu", new Date().toString());
+			updateMap.put("za", li.get(0).getZa());
+			JdbcHelper.dataUpdate("cm_send_sms", updateMap, " flag_verify=:flag_verify and zu=:zu", "za=:za");
+		} else if (li == null || li.isEmpty()) {
 			result.setStatus(81090004);
 			result.setError(TopHelper.upInfo(81090004));
 		}
@@ -136,12 +139,12 @@ public class SmsSupport extends RootClass {
 		RootApiResult result = new RootApiResult();
 		if (result.getStatus() == 1) {
 			// 每个手机号每天只允许最多发送5条短信
-			String verifySql = "SELECT za FROM cm_send_sms where mobile_phone=:mobile " + " and zc >'"
-					+ DateHelper.upDateTimeAdd(SmsConst.DAY_VERIFY_TIME_STEP) + "' and zc<'" + DateHelper.upNow() + "'";
 			MDataMap pmap = new MDataMap();
 			pmap.put("mobile", sMobile);
-			List<Map<String, Object>> verifyCodeList = new DataJdbcFactory().dataSqlList(verifySql, pmap);
-			if (verifyCodeList != null && verifyCodeList.size() >= SmsConst.MAX_VERIFY_CODE_SEND_SUM) {
+			List<CmSendSms> li = JdbcHelper.queryForList(CmSendSms.class, "", "", " mobile_phone=:mobile and zc >'"
+					+ DateHelper.upDateTimeAdd(SmsConst.DAY_VERIFY_TIME_STEP) + "' and zc<'" + DateHelper.upNow() + "'",
+					pmap);
+			if (li != null && li.size() >= SmsConst.MAX_VERIFY_CODE_SEND_SUM) {
 				result.setStatus(81090002);
 				result.setError(TopHelper.upInfo(81090002));
 			}
@@ -151,9 +154,9 @@ public class SmsSupport extends RootClass {
 			MDataMap pmap = new MDataMap();
 			pmap.put("mobile_phone", sMobile);
 			pmap.put("min_time", DateHelper.upDateTimeAdd(SmsConst.MIN_VERIFY_TIME_STEP));
-			List<Map<String, Object>> mCheckMap = new DataJdbcFactory()
-					.dataSqlList("SELECT za FROM cm_send_sms where mobile_phone=:mobile_phone and zc>:min_time", pmap);
-			if (mCheckMap != null && mCheckMap.size() > 0) {
+			List<CmSendSms> li = JdbcHelper.queryForList(CmSendSms.class, "", "",
+					"mobile_phone=:mobile_phone and zc>:min_time", pmap);
+			if (li != null && li.size() > 0) {
 				result.setStatus(81090003);
 				result.setError(TopHelper.upInfo(81090003));
 			}
