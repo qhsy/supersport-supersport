@@ -1,6 +1,5 @@
 package com.uhutu.sportcenter.z.entity;
 
-import java.util.Date;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -20,7 +19,7 @@ public class MsgAttendInfo {
 	private String fansUserCode;
 	
 	@ApiModelProperty(name="消息时间")
-	private Date msgTime;
+	private String msgTime;
 	
 	@ApiModelProperty(name="是否已关注")
 	private String attendStatus;
@@ -49,11 +48,11 @@ public class MsgAttendInfo {
 		this.fansUserCode = fansUserCode;
 	}
 
-	public Date getMsgTime() {
+	public String getMsgTime() {
 		return msgTime;
 	}
 
-	public void setMsgTime(Date msgTime) {
+	public void setMsgTime(String msgTime) {
 		this.msgTime = msgTime;
 	}
 

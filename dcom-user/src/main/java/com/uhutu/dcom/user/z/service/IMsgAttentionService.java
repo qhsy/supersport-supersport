@@ -1,5 +1,8 @@
 package com.uhutu.dcom.user.z.service;
 
+import org.springframework.data.domain.Page;
+
+import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.entity.UcMsgAttention;
 
 /**
@@ -24,6 +27,18 @@ public interface IMsgAttentionService {
 	 * @return 数量
 	 */
 	public int queryCount(String userCode,String status);
+	
+	/**
+	 * 查询用户分页信息对象
+	 * @param pageNum
+	 * 		页码
+	 * @param limit
+	 * 		每页展示数量
+	 * @param conditions
+	 * 		查询条件
+	 * @return 分页对象
+	 */
+	public Page<UcMsgAttention> queryPageByUserCode(int pageNum, int limit,QueryConditions conditions);
 	
 
 }

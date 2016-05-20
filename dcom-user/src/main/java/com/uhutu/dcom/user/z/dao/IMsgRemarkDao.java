@@ -13,7 +13,7 @@ import com.uhutu.dcom.user.z.entity.UcMsgRemark;
  */
 public interface IMsgRemarkDao extends JpaRepository<UcMsgRemark, String>,JpaSpecificationExecutor<UcMsgRemark> {
 	
-	@Query("select count(1) from UcMsgRemark t where contentuthor=:userCode and status=:status")
+	@Query("select count(1) from UcMsgRemark t where contentAuthor=:userCode and status=:status")
 	public int queryCount(@Param("userCode") String userCode,@Param("status") String status);
 	
 

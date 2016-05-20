@@ -1,8 +1,12 @@
 package com.uhutu.dcom.user.z.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-
+import com.uhutu.dcom.component.z.page.QueryConditionUtil;
+import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.dao.UserDaoFacotry;
 import com.uhutu.dcom.user.z.entity.UcMsgAttention;
 import com.uhutu.dcom.user.z.service.IMsgAttentionService;
@@ -30,6 +34,24 @@ public class MsgAttentionServiceImpl implements IMsgAttentionService {
 		
 		return userDaoFacotry.getMsgAttentionDao().queryByCode(userCode, status);
 		
+	}
+
+	@Override
+	public Page<UcMsgAttention> queryPageByUserCode(int pageNum, int limit, QueryConditions conditions) {
+		
+		if(pageNum >= 1){
+			
+			pageNum--;
+			
+		}
+		
+		PageRequest page = new PageRequest(pageNum, limit);
+		
+		Specification<UcMsgAttention> spec = QueryConditionUtil.buildSpecification(conditions);
+		
+		Page<UcMsgAttention> msgAttendPage = userDaoFacotry.getMsgAttentionDao().findAll(spec, page);
+		
+		return msgAttendPage;
 	}
 
 }
