@@ -5,6 +5,12 @@
 		<item code="dzcw410710010001" componentClass="com.uhutu.zooweb.component.DialogComponent"
 			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_AdvertiseInfoPage&amp;max=1"
 			serverDefine="table=CnAdvertiseInfo&amp;text=name&amp;value=code" />
+		<item code="dzcw410710010002" componentClass="com.uhutu.zooweb.component.DialogComponent"
+			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoPage&amp;max=1"
+			serverDefine="table=CnContentBasicinfo&amp;text=title&amp;value=code" />
+		<item code="dzcw410710010003" componentClass="com.uhutu.zooweb.component.DialogComponent"
+			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_ContentItemPage&amp;max=1"
+			serverDefine="table=CnContentItem&amp;text=name&amp;value=code" />
 	</data>
 
 </db>

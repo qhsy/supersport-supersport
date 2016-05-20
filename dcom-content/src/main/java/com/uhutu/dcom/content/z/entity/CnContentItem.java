@@ -22,21 +22,25 @@ public class CnContentItem extends BaseEntity {
 			DefineWebPage.Page_Edit + "=0" })
 	private String code;
 
-	@ZooData(name = "栏目名称")
+	@ZooData(name = "栏目名称", require = "1")
 	private String name;
+
+	@ZooData(value = "栏目类型", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd469910011006" })
+	private String type;
 
 	@ZooData(name = "发布状态", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String status;
 
 	@ZooData(name = "排序(倒序)", element = DefineWebElement.Input, verify = { DefineWebVerify.Base_Number }, sort = {
-			DefineWebPage.Page_Query + "=0" })
+			DefineWebPage.Page_Query + "=0" }, require = "1")
 	private String sort;
 
-	@ZooData(name = "开始时间", element = DefineWebElement.Datehms)
+	@ZooData(name = "开始时间", element = DefineWebElement.Datehms, require = "1")
 	private String startTime;
 
-	@ZooData(name = "结束时间", element = DefineWebElement.Datehms)
+	@ZooData(name = "结束时间", element = DefineWebElement.Datehms, require = "1")
 	private String endTime;
 
 	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
@@ -96,6 +100,14 @@ public class CnContentItem extends BaseEntity {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }
