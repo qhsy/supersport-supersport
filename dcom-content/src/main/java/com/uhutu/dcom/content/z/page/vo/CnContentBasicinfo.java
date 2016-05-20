@@ -38,7 +38,9 @@ public class CnContentBasicinfo extends BaseEntity {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String status;
 
-	@ZooData(name = "大分类", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "大分类", sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" }, element = DefineWebElement.Model, inc = {
+					DefineWebInc.Web_Component + "=dzcw410710010004" })
 	private String categoryCode;
 
 	@ZooData(name = "标签", sort = { DefineWebPage.Page_Query + "=0",
