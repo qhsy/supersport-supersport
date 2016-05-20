@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.uhutu.dcom.extend.sms.SmsSupport;
 import com.uhutu.dcom.extend.sms.SmsTypeEnum;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
+import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiUserRegInput;
 import com.uhutu.sportcenter.z.result.ApiUserRegResult;
@@ -38,6 +39,14 @@ public class ApiUserRegister extends RootApiBase<ApiUserRegInput, ApiUserRegResu
 			ucUserinfo.setLoginPwd(inputParam.getPassword());
 
 			userServiceFactory.getUserInfoService().save(ucUserinfo);
+			
+			UcUserinfoExt ucUserinfoExt = new UcUserinfoExt();
+			
+			ucUserinfoExt.setUserCode(ucUserinfo.getCode());
+			
+			ucUserinfoExt.setNickName(inputParam.getNickName());
+			
+			userServiceFactory.getUserInfoExtService().save(ucUserinfoExt);
 
 			userRegResult.setUserCode(ucUserinfo.getCode());
 
