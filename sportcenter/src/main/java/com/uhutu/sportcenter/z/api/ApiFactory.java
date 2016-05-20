@@ -23,6 +23,7 @@ import com.uhutu.sportcenter.z.api.user.ApiForAttention;
 import com.uhutu.sportcenter.z.api.user.ApiForLogin;
 import com.uhutu.sportcenter.z.api.user.ApiLoginOut;
 import com.uhutu.sportcenter.z.api.user.ApiMsgAttendList;
+import com.uhutu.sportcenter.z.api.user.ApiMsgNoticeList;
 import com.uhutu.sportcenter.z.api.user.ApiMsgNumList;
 import com.uhutu.sportcenter.z.api.user.ApiMsgPraiseList;
 import com.uhutu.sportcenter.z.api.user.ApiMsgRemarkList;
@@ -132,6 +133,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiMsgAttendList apiMsgAttendList;
+	
+	@Autowired
+	private ApiMsgNoticeList apiMsgNoticeList;
 	
 	
 	public ApiContentDetailInfo getContentDetailInfo() {
@@ -260,5 +264,9 @@ public class ApiFactory {
 
 	public ApiMsgAttendList getApiMsgAttendList() {
 		return apiMsgAttendList;
+	}
+
+	public ApiMsgNoticeList getApiMsgNoticeList() {
+		return apiMsgNoticeList;
 	}
 }

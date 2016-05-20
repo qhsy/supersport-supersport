@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiMsgAttendListInput;
+import com.uhutu.sportcenter.z.input.ApiMsgNoticeListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgNumListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgPraiseListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgRemarkListInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateMsgStatusInput;
 import com.uhutu.sportcenter.z.result.ApiMsgAttendListResult;
+import com.uhutu.sportcenter.z.result.ApiMsgNoticeListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgNumListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgPraiseListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgRemarkResult;
@@ -78,6 +80,15 @@ public class UserMsgContoller {
 	public ApiMsgAttendListResult msgAttendList(@RequestBody ApiMsgAttendListInput input) {
 
 		return apiFactory.getApiMsgAttendList().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/msgNoticeList", method = RequestMethod.POST)
+	@ApiOperation(value = "消息通知列表", notes = "用户消息中心")
+	public ApiMsgNoticeListResult msgNoticeList(@RequestBody ApiMsgNoticeListInput input) {
+
+		return apiFactory.getApiMsgNoticeList().api(input);
 
 	}
 	
