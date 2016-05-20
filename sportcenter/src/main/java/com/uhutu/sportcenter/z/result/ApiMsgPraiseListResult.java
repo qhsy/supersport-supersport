@@ -18,6 +18,10 @@ public class ApiMsgPraiseListResult extends RootApiResult {
 	
 	@ApiModelProperty(name="点赞消息列表")
 	private List<MsgPraiseInfo> msgPraiseInfos = new ArrayList<MsgPraiseInfo>();
+	
+	@ApiModelProperty(value="是否还有下一页")
+	private boolean nextflag = false;
+	
 
 	public List<MsgPraiseInfo> getMsgPraiseInfos() {
 		return msgPraiseInfos;
@@ -25,6 +29,14 @@ public class ApiMsgPraiseListResult extends RootApiResult {
 
 	public void setMsgPraiseInfos(List<MsgPraiseInfo> msgPraiseInfos) {
 		this.msgPraiseInfos = msgPraiseInfos;
+	}
+
+	public boolean isNextflag() {
+		return nextflag;
+	}
+
+	public void setNextflag(boolean nextflag) {
+		this.nextflag = nextflag;
 	}
 	
 	

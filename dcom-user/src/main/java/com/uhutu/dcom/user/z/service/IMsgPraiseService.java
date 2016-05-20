@@ -1,5 +1,8 @@
 package com.uhutu.dcom.user.z.service;
 
+import org.springframework.data.domain.Page;
+
+import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.entity.UcMsgPraise;
 
 /**
@@ -24,5 +27,19 @@ public interface IMsgPraiseService {
 	 * @return
 	 */
 	public int queryCount(String userCode,String status);
+	
+	/**
+	 * 根据查询条件查询分页数据
+	 * @param pageNum
+	 * 		当前页码
+	 * @param limit
+	 * 		每页展示数量
+	 * @param conditions
+	 * 		查询条件
+	 * @return 分页数据
+	 */
+	public Page<UcMsgPraise> queryPageByUserCode(int pageNum, int limit,QueryConditions conditions);
+	
+	
 
 }

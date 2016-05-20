@@ -1,5 +1,7 @@
 package com.uhutu.dcom.user.z.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
@@ -17,7 +19,7 @@ public class UcMsgPraise extends BaseEntity {
 	private String contentCode;
 	
 	@ZooData(value="消息时间")
-	private String msgTime;
+	private Date msgTime;
 	
 	@ZooData(value="消息标题")
 	private String msgTitle;
@@ -45,11 +47,11 @@ public class UcMsgPraise extends BaseEntity {
 		this.contentCode = contentCode;
 	}
 
-	public String getMsgTime() {
+	public Date getMsgTime() {
 		return msgTime;
 	}
 
-	public void setMsgTime(String msgTime) {
+	public void setMsgTime(Date msgTime) {
 		this.msgTime = msgTime;
 	}
 
