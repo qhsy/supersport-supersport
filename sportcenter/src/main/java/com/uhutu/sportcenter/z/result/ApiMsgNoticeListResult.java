@@ -19,6 +19,9 @@ public class ApiMsgNoticeListResult extends RootApiResult {
 	
 	@ApiModelProperty(name="消息通知列表")
 	private List<MsgNoticeInfo> msgNoticeInfos = new ArrayList<MsgNoticeInfo>();
+	
+	@ApiModelProperty(value="是否还有下一页")
+	private boolean nextflag = false;
 
 	public List<MsgNoticeInfo> getMsgNoticeInfos() {
 		return msgNoticeInfos;
@@ -26,6 +29,14 @@ public class ApiMsgNoticeListResult extends RootApiResult {
 
 	public void setMsgNoticeInfos(List<MsgNoticeInfo> msgNoticeInfos) {
 		this.msgNoticeInfos = msgNoticeInfos;
+	}
+
+	public boolean isNextflag() {
+		return nextflag;
+	}
+
+	public void setNextflag(boolean nextflag) {
+		this.nextflag = nextflag;
 	}
 
 }
