@@ -17,6 +17,7 @@ import com.uhutu.dcom.config.enums.PrexEnum;
 import com.uhutu.dcom.content.z.dao.ContentDaoFactory;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.service.IContentBasicinfoService;
+import com.uhutu.zooweb.helper.WebHelper;
 
 /**
  * 内容基本信息业务逻辑实现
@@ -77,9 +78,7 @@ public class ContentBasicinfoServiceImpl implements IContentBasicinfoService {
 			
 		}else{
 			
-			String dateStr = DateFormatUtils.format(new Date(), "yyyyMMddHHmmssSSS");
-			
-			contentBasicinfo.setCode(PrexEnum.CNB+dateStr);
+			contentBasicinfo.setCode(WebHelper.upCode("CNBH"));
 			
 			contentBasicinfo.setPublishTime(new Date());
 			
