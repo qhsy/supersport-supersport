@@ -2,6 +2,7 @@ package com.uhutu.dcom.content.z.page.vo;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
+import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
@@ -13,7 +14,8 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  */
 public class CnContentDetail extends BaseEntity {
 
-	@ZooData(name = "内容编号", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
+	@ZooData(name = "内容编号", sort = { DefineWebPage.Page_Edit + "=0" }, element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw410710010002" })
 	private String code;
 
 	@ZooData(name = "内容信息json串", element = DefineWebElement.Editor, sort = { DefineWebPage.Page_Query + "=0",

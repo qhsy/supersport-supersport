@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
+import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
@@ -16,7 +17,8 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class CnContentPhotos extends BaseEntity {
 
-	@ZooData(name = "内容编号")
+	@ZooData(name = "内容编号", sort = { DefineWebPage.Page_Edit + "=0" }, element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw410710010002" })
 	private String contentCode;
 
 	@ZooData(name = "图片路径", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0" })
