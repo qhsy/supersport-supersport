@@ -13,7 +13,7 @@
 		<item code="dzoi41071003" operateName="修改"
 			operateFunc="com.uhutu.dcom.content.func.CnContentItemRelFuncEdit" operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
-			parentCode="dzoi469910011005" noteRemark="" />
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
