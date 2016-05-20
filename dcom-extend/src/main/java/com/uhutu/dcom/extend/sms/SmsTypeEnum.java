@@ -26,7 +26,7 @@ public enum SmsTypeEnum {
 	forgetpwd,
 
 	/**
-	 * 微信登录
+	 * 微信登录41070005
 	 */
 	weChatlogin,
 }
