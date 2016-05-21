@@ -10,19 +10,19 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class HomePageModel {
 
+	@ApiModelProperty(name = "展示类型", notes = "dzsd4699100110060001:轮播广告,dzsd4699100110060002:一栏广告,dzsd4699100110060003:内容,dzsd4699100110060004:时间展示", example = "dzsd4699100110060001")
+	private String showType = "";
+	
 	@ApiModelProperty(name = "用户信息", notes = "用户信息头像昵称等信息", example = "张嘉译个人信息")
 	UserinfoExtForApi ue = new UserinfoExtForApi();
 
-	@ApiModelProperty(name = "展示的内容基本信息", notes = "展示的内容基本信息", example = "张嘉译拍摄《营盘镇警事》杀青新闻")
+	@ApiModelProperty(name = "内容信息", notes = "内容信息", example = "张嘉译拍摄《营盘镇警事》杀青新闻")
 	ContentBasicinfoForApi info = new ContentBasicinfoForApi();
 
 	@ApiModelProperty(name = "广告信息", notes = "广告信息")
 	private AdvertiseMent adv = new AdvertiseMent();
 
-	@ApiModelProperty(name = "展示类型", notes = "dzsd4699100110060001:轮播广告,dzsd4699100110060002:一栏广告,dzsd4699100110060003:内容,dzsd4699100110060004:时间展示", example = "dzsd4699100110060001")
-	private String showType = "";
-
-	@ApiModelProperty(name = "广告信息", notes = "广告信息")
+	@ApiModelProperty(name = "日期展示信息", notes = "日期展示信息")
 	private String dateShow = "";
 
 	public UserinfoExtForApi getUe() {
