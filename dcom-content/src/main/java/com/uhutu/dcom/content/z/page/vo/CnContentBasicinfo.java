@@ -6,6 +6,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -20,7 +21,7 @@ public class CnContentBasicinfo extends BaseEntity {
 			DefineWebPage.Page_Edit + "=0" })
 	private String code;
 
-	@ZooData(name = "内容标题", require = "1")
+	@ZooData(name = "内容标题", require = "1", verify = { DefineWebVerify.Max_Length + "=28" })
 	private String title;
 
 	@ZooData(name = "内容封面", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
@@ -48,7 +49,9 @@ public class CnContentBasicinfo extends BaseEntity {
 					DefineWebInc.Web_Component + "=dzcw412410010001" })
 	private String tagCode;
 
-	@ZooData(name = "内容作者", require = "1", sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "内容作者", require = "1", sort = {
+			DefineWebPage.Page_Query + "=0" }, element = DefineWebElement.Model, inc = {
+					DefineWebInc.Web_Component + "=dzcw451010010001" })
 	private String author;
 
 	@ZooData(name = "发布时间", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0",
