@@ -21,7 +21,9 @@ public class CnContentLabel extends BaseEntity {
 	@ZooData(name = "标签名称")
 	private String name;
 
-	@ZooData(name = "账户类型", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "账户类型", sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" }, element = DefineWebElement.Model, inc = {
+					DefineWebInc.Web_Component + "=dzcw451010010001" })
 	private String type;
 
 	@ZooData(name = "位置经纬度", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
