@@ -45,7 +45,7 @@ public class CnContentItemRelFuncEdit extends RootFunc {
 				relInfo.setZa(input.getDataMap().get("za"));
 				relInfo.setStartTime(input.getDataMap().get("start_time"));
 				relInfo.setEndTime(input.getDataMap().get("end_time"));
-				JdbcHelper.update(relInfo, "itemCode,contentCode,itemType,sort", "za");
+				JdbcHelper.update(relInfo, "itemCode,contentCode,itemType,sort,start_time,end_time", "za");
 			}
 
 		} else if (item == null || binfo == null || ainfo == null) {
