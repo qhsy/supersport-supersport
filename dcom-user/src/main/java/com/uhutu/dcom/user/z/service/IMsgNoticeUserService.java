@@ -2,6 +2,9 @@ package com.uhutu.dcom.user.z.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
+import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.entity.UcMsgNoticeUser;
 
 /**
@@ -26,5 +29,18 @@ public interface IMsgNoticeUserService {
 	 * @return 未读记录数量
 	 */
 	public int queryCount(String userCode,String status);
+	
+	/**
+	 * 
+	 * @param pageNum
+	 * 		页码
+	 * @param limit
+	 * 		每页展示数量
+	 * @param conditions
+	 * 		查询条件
+	 * @return 查询分页信息
+	 */
+	public Page<UcMsgNoticeUser> queryPageByUserCode(int pageNum, int limit,QueryConditions conditions);
+
 
 }

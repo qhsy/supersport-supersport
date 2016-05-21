@@ -14,5 +14,13 @@ public interface IMsgNoticeService {
 	 * @param ucMsgAttention
 	 */
 	public void save(UcMsgNotice ucMsgNotice);
+	
+	/**
+	 * 根据编号查询消息通知
+	 * @param code
+	 * 		消息编号
+	 * @return 消息通知
+	 */
+	public UcMsgNotice queryByCode(String code);
 
 }

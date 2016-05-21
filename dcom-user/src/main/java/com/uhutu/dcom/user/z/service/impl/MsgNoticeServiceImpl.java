@@ -25,4 +25,10 @@ public class MsgNoticeServiceImpl implements IMsgNoticeService {
 
 	}
 
+	@Override
+	public UcMsgNotice queryByCode(String code) {
+		
+		return userDaoFacotry.getMsgNoticeDao().queryByCode(code);
+	}
+
 }

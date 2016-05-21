@@ -3,8 +3,13 @@ package com.uhutu.dcom.user.z.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.uhutu.dcom.component.z.page.QueryConditionUtil;
+import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.dao.UserDaoFacotry;
 import com.uhutu.dcom.user.z.entity.UcMsgNoticeUser;
 import com.uhutu.dcom.user.z.service.IMsgNoticeUserService;
@@ -32,6 +37,26 @@ public class MsgNoticeUserServiceImpl implements IMsgNoticeUserService {
 		
 		return userDaoFacotry.getMsgNoticeUserDao().queryCount(userCode, status);
 		
+	}
+
+	@Override
+	public Page<UcMsgNoticeUser> queryPageByUserCode(int pageNum, int limit, QueryConditions conditions) {
+		
+		if(pageNum >= 1){
+			
+			pageNum--;
+			
+		}
+		
+		PageRequest page = new PageRequest(pageNum, limit);
+		
+		Specification<UcMsgNoticeUser> spec = QueryConditionUtil.buildSpecification(conditions);
+		
+		Page<UcMsgNoticeUser> msgNoticePage = userDaoFacotry.getMsgNoticeUserDao().findAll(spec, page);
+		
+		return msgNoticePage;
+		
+	
 	}
 
 }

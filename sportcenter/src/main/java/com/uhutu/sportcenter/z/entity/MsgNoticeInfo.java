@@ -1,6 +1,5 @@
 package com.uhutu.sportcenter.z.entity;
 
-import java.util.Date;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -11,16 +10,16 @@ import io.swagger.annotations.ApiModelProperty;
 public class MsgNoticeInfo {
 	
 	@ApiModelProperty(name="消息时间")
-	private Date notifyTime;
+	private String notifyTime;
 	
 	@ApiModelProperty(name="消息内容")
 	private String content;
 
-	public Date getNotifyTime() {
+	public String getNotifyTime() {
 		return notifyTime;
 	}
 
-	public void setNotifyTime(Date notifyTime) {
+	public void setNotifyTime(String notifyTime) {
 		this.notifyTime = notifyTime;
 	}
 
