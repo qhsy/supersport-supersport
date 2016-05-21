@@ -1,5 +1,6 @@
 package com.uhutu.sportcenter.z.entity;
 
+import java.util.Date;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -22,7 +23,7 @@ public class MsgPraiseInfo {
 	private String contentTitle;
 	
 	@ApiModelProperty(name="消息时间")
-	private String msgTime;
+	private Date msgTime;
 
 	public String getHeadUrl() {
 		return headUrl;
@@ -56,11 +57,11 @@ public class MsgPraiseInfo {
 		this.contentTitle = contentTitle;
 	}
 
-	public String getMsgTime() {
+	public Date getMsgTime() {
 		return msgTime;
 	}
 
-	public void setMsgTime(String msgTime) {
+	public void setMsgTime(Date msgTime) {
 		this.msgTime = msgTime;
 	}
 	
