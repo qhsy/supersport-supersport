@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
+	<data table="ZwComponentWeb">
+		<item code="dzcw451010010001" componentClass="com.uhutu.zooweb.component.DialogComponent"
+			clientExtend="page=/pg/com_uhutu_dcom_user_z_page_UserInfoExtPage&amp;max=1"
+			serverDefine="table=UcUserinfoExt&amp;text=nick_name&amp;value=code" />
+	</data>
+
+</db>
