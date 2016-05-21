@@ -126,10 +126,17 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 		initFansNum(apiUserInfo);
 
 		userInfoResult.setUserInfo(apiUserInfo);
+		
 		if(!inputParam.getZoo().getToken().trim().equals(inputParam.getUserCode())){
 			UcAttentionInfo info = userServiceFactory.getAttentionInfoService()
 					.queryByBothCode(inputParam.getZoo().getToken().trim(), inputParam.getUserCode());
-			userInfoResult.setFlag(info.getStatus());
+			
+			if(info != null){
+				
+				userInfoResult.setFlag(info.getStatus());
+				
+			}
+			
 		}
 		return userInfoResult;
 	}
