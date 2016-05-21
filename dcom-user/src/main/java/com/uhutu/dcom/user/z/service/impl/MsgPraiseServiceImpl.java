@@ -1,5 +1,8 @@
 package com.uhutu.dcom.user.z.service.impl;
 
+import java.util.Date;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,7 +28,19 @@ public class MsgPraiseServiceImpl implements IMsgPraiseService {
 	@Override
 	public void save(UcMsgPraise ucMsgPraise) {
 		
-		userDaoFacotry.getMsgPraiseDao().save(ucMsgPraise);
+		if (StringUtils.isNoneBlank(ucMsgPraise.getZa()) && userDaoFacotry.getUserInfoDao().exists(ucMsgPraise.getZa())) {
+
+			ucMsgPraise.setZu(new Date());
+
+			userDaoFacotry.getMsgPraiseDao().save(ucMsgPraise);
+
+		} else {
+
+			ucMsgPraise.setZc(new Date());
+
+			userDaoFacotry.getMsgPraiseDao().save(ucMsgPraise);
+
+		}
 		
 	}
 

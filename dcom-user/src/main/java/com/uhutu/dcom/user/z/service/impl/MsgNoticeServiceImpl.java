@@ -1,5 +1,8 @@
 package com.uhutu.dcom.user.z.service.impl;
 
+import java.util.Date;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +22,21 @@ public class MsgNoticeServiceImpl implements IMsgNoticeService {
 	private UserDaoFacotry userDaoFacotry;
 
 	@Override
-	public void save(UcMsgNotice ucMsgNotice) {
+	public void save(UcMsgNotice ucMsgNotice) {		
 		
-		userDaoFacotry.getMsgNoticeDao().save(ucMsgNotice);
+		if (StringUtils.isNoneBlank(ucMsgNotice.getZa()) && userDaoFacotry.getUserInfoDao().exists(ucMsgNotice.getZa())) {
+
+			ucMsgNotice.setZu(new Date());
+
+			userDaoFacotry.getMsgNoticeDao().save(ucMsgNotice);
+
+		} else {
+
+			ucMsgNotice.setZc(new Date());
+
+			userDaoFacotry.getMsgNoticeDao().save(ucMsgNotice);
+
+		}
 
 	}
 

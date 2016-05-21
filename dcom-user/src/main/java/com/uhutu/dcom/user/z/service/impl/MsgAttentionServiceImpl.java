@@ -1,5 +1,8 @@
 package com.uhutu.dcom.user.z.service.impl;
 
+import java.util.Date;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,7 +28,19 @@ public class MsgAttentionServiceImpl implements IMsgAttentionService {
 	@Override
 	public void save(UcMsgAttention ucMsgAttention) {
 		
-		userDaoFacotry.getMsgAttentionDao().save(ucMsgAttention);
+		if (StringUtils.isNoneBlank(ucMsgAttention.getZa()) && userDaoFacotry.getUserInfoDao().exists(ucMsgAttention.getZa())) {
+
+			ucMsgAttention.setZu(new Date());
+
+			userDaoFacotry.getMsgAttentionDao().save(ucMsgAttention);
+
+		} else {
+
+			ucMsgAttention.setZc(new Date());
+
+			userDaoFacotry.getMsgAttentionDao().save(ucMsgAttention);
+
+		}
 
 	}
 

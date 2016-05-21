@@ -1,14 +1,20 @@
 package com.uhutu.sportcenter.z.api.remark;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
+import com.uhutu.dcom.user.z.entity.UcMsgRemark;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
+import com.uhutu.dcom.user.z.enums.MsgEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiPublishRemarkInput;
 import com.uhutu.sportcenter.z.result.ApiPublishRemarkResult;
@@ -27,6 +33,9 @@ public class ApiPublishRemark extends RootApiBase<ApiPublishRemarkInput, ApiPubl
 	
 	@Autowired
 	private UserServiceFactory userServiceFactory;
+	
+	@Autowired
+	private ContentServiceFactory contentServiceFactory;
 
 	@Override
 	protected ApiPublishRemarkResult process(ApiPublishRemarkInput input) {
@@ -77,6 +86,43 @@ public class ApiPublishRemark extends RootApiBase<ApiPublishRemarkInput, ApiPubl
 		}
 		
 		
+		
+	}
+	
+	/**
+	 * 保存评论消息通知
+	 * @param remark
+	 * 		评论信息
+	 */
+	public void saveMsgRemarkInfo(CnContentRemark remark){
+		
+		UcMsgRemark ucMsgRemark = new UcMsgRemark();
+		
+		ucMsgRemark.setContentCode(remark.getContentCode());
+		
+		CnContentBasicinfo contentBasicInfo = contentServiceFactory.getContentBasicinfoService().queryByCode(remark.getContentCode());
+		
+		Optional<CnContentBasicinfo> contentOptional = Optional.ofNullable(contentBasicInfo);
+		
+		if(contentOptional.isPresent()){
+			
+			ucMsgRemark.setContentAuthor(contentBasicInfo.getAuthor());
+			
+			ucMsgRemark.setContentTitle(contentBasicInfo.getTitle());
+			
+			ucMsgRemark.setMsgTime(new Date());
+			
+			ucMsgRemark.setMsgTitle("回复了我");
+			
+			ucMsgRemark.setRemarkCode(remark.getCode());
+			
+			ucMsgRemark.setRemarkParentCode(remark.getParentCode());
+			
+			ucMsgRemark.setStatus(MsgEnum.FLAG_UNREAD.getCode());
+			
+		}
+		
+		userServiceFactory.getMsgRemarkService().save(ucMsgRemark);
 		
 	}
 

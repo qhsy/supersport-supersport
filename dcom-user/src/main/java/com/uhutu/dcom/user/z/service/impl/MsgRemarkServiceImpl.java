@@ -1,5 +1,8 @@
 package com.uhutu.dcom.user.z.service.impl;
 
+import java.util.Date;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,7 +29,19 @@ public class MsgRemarkServiceImpl implements IMsgRemarkService {
 	@Override
 	public void save(UcMsgRemark ucMsgRemark) {
 		
-		userDaoFacotry.getMsgRemarkDao().save(ucMsgRemark);
+		if (StringUtils.isNoneBlank(ucMsgRemark.getZa()) && userDaoFacotry.getUserInfoDao().exists(ucMsgRemark.getZa())) {
+
+			ucMsgRemark.setZu(new Date());
+
+			userDaoFacotry.getMsgRemarkDao().save(ucMsgRemark);
+
+		} else {
+
+			ucMsgRemark.setZc(new Date());
+
+			userDaoFacotry.getMsgRemarkDao().save(ucMsgRemark);
+
+		}
 
 	}
 
