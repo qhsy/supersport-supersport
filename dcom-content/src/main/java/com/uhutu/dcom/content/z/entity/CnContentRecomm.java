@@ -3,6 +3,7 @@ package com.uhutu.dcom.content.z.entity;
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
@@ -18,7 +19,7 @@ public class CnContentRecomm extends BaseEntity {
 	@ZooData(name = "内容编号")
 	private String contentCode;
 
-	@ZooData(name = "内容信息", sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "推荐理由", sort = { DefineWebPage.Page_Query + "=0" }, element = DefineWebElement.Textarea)
 	private String content;
 
 	public String getContentCode() {
