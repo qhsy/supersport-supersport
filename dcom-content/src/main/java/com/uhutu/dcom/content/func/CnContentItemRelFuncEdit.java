@@ -43,6 +43,8 @@ public class CnContentItemRelFuncEdit extends RootFunc {
 				relInfo.setItemType(item.getType());
 				relInfo.setSort(input.getDataMap().get("sort"));
 				relInfo.setZa(input.getDataMap().get("za"));
+				relInfo.setStartTime(input.getDataMap().get("start_time"));
+				relInfo.setEndTime(input.getDataMap().get("end_time"));
 				JdbcHelper.update(relInfo, "itemCode,contentCode,itemType,sort", "za");
 			}
 

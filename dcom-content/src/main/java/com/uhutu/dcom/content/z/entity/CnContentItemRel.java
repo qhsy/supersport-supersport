@@ -33,6 +33,17 @@ public class CnContentItemRel extends BaseEntity {
 	@ZooData(name = "展示顺序(倒序)", require = "1")
 	private String sort;
 
+	@ZooData(name = "开始时间", element = DefineWebElement.Datehms, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0" })
+	private String startTime;
+
+	@ZooData(name = "结束时间", element = DefineWebElement.Datehms, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0" })
+	private String endTime;
+
+	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
+	private String remark;
+
 	public String getItemCode() {
 		return itemCode;
 	}
@@ -63,6 +74,30 @@ public class CnContentItemRel extends BaseEntity {
 
 	public void setItemType(String itemType) {
 		this.itemType = itemType;
+	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }
