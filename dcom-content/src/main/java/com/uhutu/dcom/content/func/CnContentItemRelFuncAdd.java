@@ -43,6 +43,7 @@ public class CnContentItemRelFuncAdd extends RootFunc {
 				relInfo.setSort(input.getDataMap().get("sort"));
 				relInfo.setStartTime(input.getDataMap().get("start_time"));
 				relInfo.setEndTime(input.getDataMap().get("end_time"));
+				relInfo.setRemark(input.getDataMap().get("remark"));
 				JdbcHelper.insert(relInfo);
 			}
 

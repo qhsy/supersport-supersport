@@ -89,8 +89,8 @@ public class ContentBasicinfoForApi {
 		this.title = title;
 	}
 
-	public String getPublishTime() {
-		return DateFormatUtils.format(this.publishTime, "MM-dd HH:mm");
+	public Date getPublishTime() {
+		return publishTime;
 	}
 
 	public void setPublishTime(Date publishTime) {
