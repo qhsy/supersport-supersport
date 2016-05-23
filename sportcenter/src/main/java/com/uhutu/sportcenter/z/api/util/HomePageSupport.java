@@ -94,7 +94,7 @@ public class HomePageSupport {
 			switch (itemType) {
 			case "dzsd4699100110060003":// 内容
 
-				List<CnContentBasicinfo> basics = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "-publish_time",
+				List<CnContentBasicinfo> basics = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "",
 						"status='dzsd4699100110010001' and shareScope='dzsd4699100110010001' and code in("
 								+ str.toString() + ")",
 						new MDataMap());
