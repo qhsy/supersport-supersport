@@ -8,14 +8,13 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.content.z.entity.CnAdvertiseDetail;
 import com.uhutu.dcom.content.z.entity.CnAdvertiseInfo;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentItem;
 import com.uhutu.dcom.content.z.entity.CnContentItemRel;
+import com.uhutu.dcom.content.z.entity.CnContentRecomm;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.AdvertiseDetailForApi;
@@ -112,6 +111,14 @@ public class HomePageSupport {
 							}
 							BeanUtils.copyProperties(
 									userInfoSupport.getUserBasicInfo(info.getAuthor()).getUcUserinfoExt(), userInfoApi);
+						}
+						CnContentRecomm recomm = JdbcHelper.queryOne(CnContentRecomm.class, "contentCode",
+								info.getCode());
+						if (recomm != null) {
+							info.setCover(
+									StringUtils.isNotBlank(recomm.getCover()) ? recomm.getCover() : info.getCover());
+							info.setTitle(
+									StringUtils.isNotBlank(recomm.getTitle()) ? recomm.getTitle() : info.getTitle());
 						}
 						BeanUtils.copyProperties(info, infoApi);
 						infoApi.setNickName(userInfoApi.getNickName());
