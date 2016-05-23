@@ -209,7 +209,13 @@ public class ContentBasicinfoForApi {
 	}
 
 	public void setPublishTimeStr(String pattern) {
-		this.publishTimeStr = DateFormatUtils.format(getPublishTime(), pattern);
+		
+		if(getPublishTime() != null){
+			
+			this.publishTimeStr = DateFormatUtils.format(getPublishTime(), pattern);
+			
+		}
+		
 	}
 
 }
