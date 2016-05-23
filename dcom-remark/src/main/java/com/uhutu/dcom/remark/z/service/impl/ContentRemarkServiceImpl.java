@@ -7,6 +7,8 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import com.uhutu.dcom.component.z.page.QueryConditionUtil;
@@ -62,7 +64,9 @@ public class ContentRemarkServiceImpl implements IContentRemarkService {
 			
 		}
 		
-		PageRequest page = new PageRequest(pageNum, limit);
+		Sort sort = new Sort(Direction.DESC,"zc");
+		
+		PageRequest page = new PageRequest(pageNum, limit,sort);
 		
 		Specification<CnContentRemark> spec = QueryConditionUtil.buildSpecification(conditions);
 		

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +50,9 @@ public class MsgNoticeUserServiceImpl implements IMsgNoticeUserService {
 			
 		}
 		
-		PageRequest page = new PageRequest(pageNum, limit);
+		Sort sort = new Sort(Direction.DESC,"zc");
+		
+		PageRequest page = new PageRequest(pageNum, limit,sort);
 		
 		Specification<UcMsgNoticeUser> spec = QueryConditionUtil.buildSpecification(conditions);
 		
