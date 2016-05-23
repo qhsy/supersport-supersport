@@ -15,7 +15,7 @@ public class AdvertiseDetailForApi {
 	@ApiModelProperty(name = "图片url", notes = "轮播图图片url", example = "http://www.ichsy.com")
 	private String picUrl;
 
-	@ApiModelProperty(name = "图片超链接跳转类型", notes = "轮播图链接跳转类型01:超链接,02:运动时刻详情页,03:个人中心", example = "01")
+	@ApiModelProperty(name = "图片超链接跳转类型", notes = "轮播图链接跳转类型dzsd4699100110050003:超链接,dzsd4699100110050002:运动时刻详情页,dzsd4699100110050001:个人中心", example = "01")
 	private String piclinkType;
 
 	@ApiModelProperty(name = "图片超链接跳转内容", notes = "轮播图链接跳转内容", example = "http://www.ichsy.com")
