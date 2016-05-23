@@ -3,20 +3,17 @@
 	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
 	<data table="ZwComponentWeb">
 		<item code="dzcw410710010001" componentClass="com.uhutu.zooweb.component.DialogComponent"
-			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_AdvertiseInfoPage&amp;max=1"
+			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_AdvertiseInfoPage&amp;max=1"
 			serverDefine="table=CnAdvertiseInfo&amp;text=name&amp;value=code" />
 		<item code="dzcw410710010002" componentClass="com.uhutu.zooweb.component.DialogComponent"
-			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoPage&amp;max=1"
+			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_ContentBasicInfoPage&amp;max=1"
 			serverDefine="table=CnContentBasicinfo&amp;text=title&amp;value=code" />
 		<item code="dzcw410710010003" componentClass="com.uhutu.zooweb.component.DialogComponent"
-			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_ContentItemPage&amp;max=1"
+			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_ContentItemPage&amp;max=1"
 			serverDefine="table=CnContentItem&amp;text=name&amp;value=code" />
 		<item code="dzcw410710010004" componentClass="com.uhutu.zooweb.component.DialogComponent"
-			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_SportCategoryPage&amp;max=10"
+			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_SportCategoryPage&amp;max=10"
 			serverDefine="table=SpSportCategory&amp;text=name&amp;value=code" />
-		<item code="dzcw410710010005" componentClass="com.uhutu.zooweb.component.DialogComponent"
-			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_AdvertiseInfoPage&amp;max=1"
-			serverDefine="table=cn_advertise_info&amp;text=name&amp;value=code" />
 	</data>
 
 </db>

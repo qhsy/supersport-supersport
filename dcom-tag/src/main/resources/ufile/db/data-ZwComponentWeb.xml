@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
 	<data table="ZwComponentWeb">
 		<item code="dzcw412410010001" componentClass="com.uhutu.zooweb.component.DialogComponent"
-			clientExtend="page=/pg/com_uhutu_dcom_tag_z_page_ContentLabelPage&amp;max=10"
+			clientExtend="page=/pg/com_uhutu_dcom_tag_z_page_component_ContentLabelPage&amp;max=10"
 			serverDefine="table=CnContentLabel&amp;text=name&amp;value=code" />
 	</data>
 
