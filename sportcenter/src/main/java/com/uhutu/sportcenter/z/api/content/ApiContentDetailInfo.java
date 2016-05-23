@@ -61,7 +61,9 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 
 				contentBasicinfoForApi.setAboutHead(ucUserinfoExt.getAboutHead());
 
-				contentBasicinfoForApi.setNickName(ucUserinfoExt.getNickName());		
+				contentBasicinfoForApi.setNickName(ucUserinfoExt.getNickName());
+				
+				contentBasicinfoForApi.setPublishTimeStr("MM-dd HH:mm");
 				
 				ContentRecommInfo recommInfo = new ContentRecommInfo();
 				

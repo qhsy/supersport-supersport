@@ -25,6 +25,9 @@ public class ContentBasicinfoForApi {
 
 	@ApiModelProperty(name = "日期展示", notes = "日期展示", example = "2016-4-19")
 	private Date publishTime;
+	
+	@ApiModelProperty(name="日期格式化",notes="日期格式化字符串", example="MM-dd HH:mm")
+	private String publishTimeStr;
 
 	@ApiModelProperty(name = "内容简介")
 	private String aboutDesc;
@@ -199,6 +202,14 @@ public class ContentBasicinfoForApi {
 
 	public void setAboutHead(String aboutHead) {
 		this.aboutHead = aboutHead;
+	}
+
+	public String getPublishTimeStr() {
+		return publishTimeStr;
+	}
+
+	public void setPublishTimeStr(String pattern) {
+		this.publishTimeStr = DateFormatUtils.format(getPublishTime(), pattern);
 	}
 
 }
