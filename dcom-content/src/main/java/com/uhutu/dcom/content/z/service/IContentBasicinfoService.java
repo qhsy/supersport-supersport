@@ -60,4 +60,14 @@ public interface IContentBasicinfoService {
 	 * @return 标题
 	 */
 	public String queryTitleByCode(String code);
+	
+	/**
+	 * 更新记录状态
+	 * @param code
+	 * 		内容编号
+	 * @param status
+	 * 		内容状态
+	 * @return 更新记录
+	 */
+	public int updateStatus(String code, String status);
 }

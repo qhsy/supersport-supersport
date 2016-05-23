@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.component.z.page.QueryConditionUtil;
 import com.uhutu.dcom.component.z.page.QueryConditions;
-import com.uhutu.dcom.config.enums.PrexEnum;
 import com.uhutu.dcom.content.z.dao.ContentDaoFactory;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.service.IContentBasicinfoService;
@@ -96,6 +94,12 @@ public class ContentBasicinfoServiceImpl implements IContentBasicinfoService {
 		
 		return daoFacotry.getContentBasicinfoDao().queryTitleByCode(code);
 		
+	}
+
+	@Override
+	public int updateStatus(String code, String status) {
+		
+		return daoFacotry.getContentBasicinfoDao().updateStatus(code, status);
 	}
 
 }

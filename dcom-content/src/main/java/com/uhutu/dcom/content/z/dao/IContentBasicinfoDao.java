@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -58,5 +59,16 @@ public interface IContentBasicinfoDao
 	 */
 	@Query("select t.title from CnContentBasicinfo t where t.code=:code")
 	public String queryTitleByCode(@Param("code") String code);
+	
+	/**
+	 * 根据内容编号查询标题
+	 * 
+	 * @param code
+	 *            内容编号
+	 * @return 标题
+	 */
+	@Modifying
+	@Query("update CnContentBasicinfo t set t.status=:status where t.code=:code")
+	public int updateStatus(@Param("code") String code,@Param("status") String status);
 
 }
