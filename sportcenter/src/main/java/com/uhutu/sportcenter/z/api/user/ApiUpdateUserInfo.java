@@ -54,6 +54,12 @@ public class ApiUpdateUserInfo extends RootApiToken<ApiUpdateUserInfoInput, ApiU
 			
 			
 			
+		}else{
+			
+			result.setStatus(0);
+			
+			result.setError("用户信息为空");
+			
 		}
 		
 		return result;
