@@ -49,6 +49,9 @@ public class UcUserinfoExt extends BaseEntity {
 	@ApiModelProperty(name="头像图片链接",notes="头像图片链接",example="http://www.ichsy.com")
 	@ZooData(name="用户头像")
 	private String aboutHead;
+	
+	@ZooData(name="地址名称")
+	private String locationName;
 
 	/**
 	 * 获取用户编号

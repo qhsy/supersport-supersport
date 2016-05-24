@@ -21,6 +21,9 @@ public class UserInfo {
 	@ApiModelProperty(value = "所在地", notes = "所在地")
 	private String location = "";
 	
+	@ApiModelProperty(value="位置名称")
+	private String locationName;
+	
 	@ApiModelProperty(value = "封面", notes = "封面")
 	private String aboutCover = "";
 	
@@ -184,6 +187,14 @@ public class UserInfo {
 
 	public void setDomainName(String domainName) {
 		this.domainName = domainName;
+	}
+
+	public String getLocationName() {
+		return locationName;
+	}
+
+	public void setLocationName(String locationName) {
+		this.locationName = locationName;
 	}
 	
 	
