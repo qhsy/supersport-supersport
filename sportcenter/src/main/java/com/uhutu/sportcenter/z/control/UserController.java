@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.APiStartPageInput;
 import com.uhutu.sportcenter.z.input.ApiForAttentionInput;
@@ -14,6 +15,7 @@ import com.uhutu.sportcenter.z.input.ApiLoginOutInput;
 import com.uhutu.sportcenter.z.input.ApiSendSmsInput;
 import com.uhutu.sportcenter.z.input.ApiSetUserFavoerInput;
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput;
+import com.uhutu.sportcenter.z.input.ApiUpdateUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiUserRegInput;
 import com.uhutu.sportcenter.z.input.ApiUserResetPwdInput;
@@ -25,10 +27,12 @@ import com.uhutu.sportcenter.z.result.ApiLoginOutResult;
 import com.uhutu.sportcenter.z.result.ApiSendSmsResult;
 import com.uhutu.sportcenter.z.result.ApiSetUserFavorResult;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult;
+import com.uhutu.sportcenter.z.result.ApiUpdateUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiUserRegResult;
 import com.uhutu.sportcenter.z.result.ApiUserResetPwdResult;
 import com.uhutu.sportcenter.z.result.ApiVersionInfoResult;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -133,6 +137,15 @@ public class UserController {
 	public ApiForAttentionResult contentRecomm(@RequestBody ApiForAttentionInput input) {
 
 		return apiFactory.getApiForAttention().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "关注它人", notes = "关注它人信息")
+	public ApiUpdateUserInfoResult updateUserInfo(@RequestBody ApiUpdateUserInfoInput input) {
+
+		return apiFactory.getApiUpdateUserInfo().api(input);
 
 	}
 	

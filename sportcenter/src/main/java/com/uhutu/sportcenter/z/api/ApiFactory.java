@@ -30,6 +30,7 @@ import com.uhutu.sportcenter.z.api.user.ApiMsgRemarkList;
 import com.uhutu.sportcenter.z.api.user.ApiSetUserFavor;
 import com.uhutu.sportcenter.z.api.user.ApiSocialLogin;
 import com.uhutu.sportcenter.z.api.user.ApiUpdateMsgStatus;
+import com.uhutu.sportcenter.z.api.user.ApiUpdateUserInfo;
 import com.uhutu.sportcenter.z.api.user.ApiUserInfo;
 import com.uhutu.sportcenter.z.api.user.ApiUserRegister;
 import com.uhutu.sportcenter.z.api.user.ApiUserResetPwd;
@@ -136,6 +137,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiMsgNoticeList apiMsgNoticeList;
+	
+	@Autowired
+	private ApiUpdateUserInfo apiUpdateUserInfo;
 	
 	
 	public ApiContentDetailInfo getContentDetailInfo() {
@@ -268,5 +272,9 @@ public class ApiFactory {
 
 	public ApiMsgNoticeList getApiMsgNoticeList() {
 		return apiMsgNoticeList;
+	}
+
+	public ApiUpdateUserInfo getApiUpdateUserInfo() {
+		return apiUpdateUserInfo;
 	}
 }
