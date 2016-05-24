@@ -31,7 +31,7 @@ public class CnContentItemRel extends BaseEntity {
 	private String contentCode;
 
 	@ZooData(name = "展示顺序(倒序)", require = "1")
-	private String sort;
+	private int sort;
 
 	@ZooData(name = "开始时间", element = DefineWebElement.Datehms, require = "1", sort = {
 			DefineWebPage.Page_Query + "=0" })
@@ -60,11 +60,11 @@ public class CnContentItemRel extends BaseEntity {
 		this.contentCode = contentCode;
 	}
 
-	public String getSort() {
+	public int getSort() {
 		return sort;
 	}
 
-	public void setSort(String sort) {
+	public void setSort(int sort) {
 		this.sort = sort;
 	}
 
