@@ -27,5 +27,13 @@ public interface ISportCategoryService {
 	 * @return 运动类型信息
 	 */
 	public List<SpSportCategory> queryAll();
+	
+	/**
+	 * 根据编号集合查询分类列表
+	 * @param codes
+	 * 		编号集合
+	 * @return 分类集合
+	 */
+	public List<SpSportCategory> queryListByCodeIn(List<String> codes);
 
 }

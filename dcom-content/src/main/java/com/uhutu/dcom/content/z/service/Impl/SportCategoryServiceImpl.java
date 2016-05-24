@@ -40,4 +40,11 @@ public class SportCategoryServiceImpl implements ISportCategoryService {
 		return list;
 	}
 
+	@Override
+	public List<SpSportCategory> queryListByCodeIn(List<String> codes) {
+		
+		return daoFacotry.getSportCategoryDao().queryListByCodeIn(codes);
+		
+	}
+
 }

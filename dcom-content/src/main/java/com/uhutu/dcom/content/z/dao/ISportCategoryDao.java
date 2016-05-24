@@ -1,5 +1,7 @@
 package com.uhutu.dcom.content.z.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -23,5 +25,14 @@ public interface ISportCategoryDao extends CrudRepository<SpSportCategory, Strin
 	 */
 	@Query("select ci from SpSportCategory ci where ci.code=:code")
 	public SpSportCategory queryByCode(@Param("code") String code);
+	
+	/**
+	 * 根据编号查询运动分类
+	 * @param code
+	 * 		编号
+	 * @return 运动分类列表
+	 */
+	@Query("select ci from SpSportCategory ci where ci.code in:codes")
+	public List<SpSportCategory> queryListByCodeIn(@Param("codes") List<String> codes);
 
 }

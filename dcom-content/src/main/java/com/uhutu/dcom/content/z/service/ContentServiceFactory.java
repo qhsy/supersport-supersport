@@ -25,6 +25,9 @@ public class ContentServiceFactory {
 	
 	@Autowired
 	private ISupportPraiseService supportPraiseService;
+	
+	@Autowired
+	private ISportCategoryService sportCategoryService;
 
 	public IContentPhotosService getContentPhotosService() {
 		return contentPhotosService;
@@ -44,6 +47,10 @@ public class ContentServiceFactory {
 
 	public ISupportPraiseService getSupportPraiseService() {
 		return supportPraiseService;
+	}
+
+	public ISportCategoryService getSportCategoryService() {
+		return sportCategoryService;
 	}
 
 }

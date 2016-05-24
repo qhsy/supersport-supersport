@@ -16,7 +16,7 @@ public class ApiSocialLoginInput extends RootApiInput {
 	@ApiModelProperty(value = "用户标识", notes = "用户标识", required = true)
 	private String account_id = "";
 	
-	@ApiModelProperty(value = "账户类型", notes = "wechat:微信、sinaWeibo:新浪微博、qq:腾讯qq", required = true)
+	@ApiModelProperty(value = "账户类型", example = "wechat:微信、sinaWeibo:新浪微博、qq:腾讯qq", required = true)
 	private String account_type = "";
 	
 	@ApiModelProperty(value = "账户名称", notes = "社交类app昵称", required = true)

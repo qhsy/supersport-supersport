@@ -1,17 +1,18 @@
 package com.uhutu.sportcenter.z.api.user;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.entity.SpSportCategory;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
-import com.uhutu.dcom.content.z.service.ContentBasicinfoServiceFactory;
+import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.enums.MsgEnum;
@@ -36,10 +37,10 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 	private UserServiceFactory userServiceFactory;
 
 	@Autowired
-	private ContentBasicinfoServiceFactory serviceFactory;
+	private ContentServiceFactory serviceFactory;
 
 	public ApiUserInfoResult process(ApiUserInfoInput inputParam) {
-		
+	
 		String userCode = "";
 		
 		if(UserEnum.OPER_OWN.getCode().equals(inputParam.getOperFlag())){
@@ -75,6 +76,12 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 			} else {
 
 				BeanUtils.copyProperties(ucUserinfoExt, apiUserInfo);
+				
+				List<String> codes = Arrays.asList(StringUtils.split(apiUserInfo.getDomain(), ","));
+				
+				List<SpSportCategory> sportCategories = serviceFactory.getSportCategoryService().queryListByCodeIn(codes);
+				
+				apiUserInfo.setDomainName(convertCatoryNames(sportCategories));
 
 			}
 
@@ -154,6 +161,26 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 		userInfo.setFansNum(fansNum);
 		
 		userInfo.setAttendNum(attendNum);
+		
+	}
+	
+	/**
+	 * 转换分类名称
+	 * @param sportCategories
+	 * 		根据分类集合获取分类名称
+	 * @return 分类名称
+	 */
+	public String convertCatoryNames(List<SpSportCategory> sportCategories){
+		
+		String name = "";
+		
+		if(sportCategories != null){
+			
+			name = StringUtils.join(sportCategories,",");
+			
+		}
+		
+		return name;
 		
 	}
 

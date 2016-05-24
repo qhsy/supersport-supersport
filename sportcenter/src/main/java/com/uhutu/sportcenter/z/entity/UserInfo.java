@@ -30,14 +30,20 @@ public class UserInfo {
 	@ApiModelProperty(value = "简介视频", notes = "简介视频")
 	private String aboutVideo = "";
 	
-	@ApiModelProperty(value = "关注领域", notes = "关注领域")
+	@ApiModelProperty(value = "关注领域", notes = "关注领域集合")
 	private String domain = "";
+	
+	@ApiModelProperty(value = "关注领域", notes = "关注领域名称集合")
+	private String domainName = "";
 	
 	@ApiModelProperty(value = "用户等级", notes = "用户等级")
 	private String level = "";
 	
 	@ApiModelProperty(value = "简介头像", notes = "简介头像")
 	private String aboutHead = "";
+	
+	@ApiModelProperty(value="用户简介")
+	private String aboutDesc;
 
 	@ApiModelProperty(value = "注册到现在为止年数", notes = "注册到现在为止年数")
 	private int years = 1;
@@ -162,6 +168,22 @@ public class UserInfo {
 
 	public void setAttendNum(int attendNum) {
 		this.attendNum = attendNum;
+	}
+
+	public String getAboutDesc() {
+		return aboutDesc;
+	}
+
+	public void setAboutDesc(String aboutDesc) {
+		this.aboutDesc = aboutDesc;
+	}
+
+	public String getDomainName() {
+		return domainName;
+	}
+
+	public void setDomainName(String domainName) {
+		this.domainName = domainName;
 	}
 	
 	
