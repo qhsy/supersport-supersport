@@ -74,12 +74,15 @@ public class HomePageSupport {
 		return flag;
 	}
 
-	public List<HomePageModel> getPageModels(String itemType) {
+	public List<HomePageModel> getPageModels(String itemType, String t1, String t2) {
 		List<HomePageModel> li = new ArrayList<HomePageModel>();
 		MDataMap map = new MDataMap();
 		map.put("itemType", itemType);
+		map.put("t1", t1);
+		map.put("t2", t2);
 		List<CnContentItemRel> rels = JdbcHelper.queryForList(CnContentItemRel.class, "contentCode",
-				"-sort,-start_time", "itemType=:itemType and endTime>=NOW()", map);
+				"-sort,-start_time", "itemType=:itemType and endTime>=NOW() and startTime>=:t1 and startTime<=:t2 ",
+				map);
 		StringBuffer str = new StringBuffer();
 		if (rels != null && !rels.isEmpty() && rels.size() > 0) {
 			for (int i = 0; i < rels.size(); i++) {
@@ -91,8 +94,7 @@ public class HomePageSupport {
 			}
 		}
 		if (StringUtils.isNotBlank(str)) {
-			switch (itemType) {
-			case "dzsd4699100110060003":// 内容
+			if ("dzsd4699100110060003".equals(itemType)) {// 内容
 
 				List<CnContentBasicinfo> basics = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "",
 						"status='dzsd4699100110010001' and shareScope='dzsd4699100110010001' and code in("
@@ -101,7 +103,7 @@ public class HomePageSupport {
 				List<CnContentBasicinfo> infos = new ArrayList<CnContentBasicinfo>();
 				for (int i = 0; i < rels.size(); i++) {
 					for (int j = 0; j < basics.size(); j++) {
-						if (rels.get(i).equals(basics.get(j))) {
+						if (rels.get(i).getContentCode().equals(basics.get(j).getCode())) {
 							infos.add(basics.get(j));
 						}
 					}
@@ -137,8 +139,8 @@ public class HomePageSupport {
 						li.add(hmp);
 					}
 				}
-				;
-			case "dzsd4699100110060002":// 一栏广告
+			} else if ("dzsd4699100110060002".equals(itemType)) {// 一栏广告
+
 				List<CnAdvertiseInfo> dtAdv = JdbcHelper.queryForList(CnAdvertiseInfo.class, "", "-zc",
 						"status='dzsd4699100110010001' and type='dzsd4699100110040001' and code in(" + str.toString()
 								+ ")",
@@ -158,8 +160,8 @@ public class HomePageSupport {
 						li.add(hmp);
 					}
 				}
-				;
-			case "dzsd4699100110060001":// 轮播广告
+			} else if ("dzsd4699100110060001".equals(itemType)) {// 轮播广告
+
 				List<CnAdvertiseInfo> lbAdv = JdbcHelper.queryForList(CnAdvertiseInfo.class, "", "-zc",
 						"status='dzsd4699100110010001' and type='dzsd4699100110040002' and code in(" + str.toString()
 								+ ")",
@@ -181,7 +183,6 @@ public class HomePageSupport {
 						li.add(hmp);
 					}
 				}
-				;
 			}
 		}
 		return li;
