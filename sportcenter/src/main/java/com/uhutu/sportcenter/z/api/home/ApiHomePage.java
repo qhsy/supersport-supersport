@@ -36,7 +36,7 @@ public class ApiHomePage extends RootApiBase<ApiHomePageInput, ApiHomePageResult
 			HomePageModel dateShow = new HomePageModel();
 			dateShow.setShowType("dzsd4699100110060004");
 			dateShow.setDateShow(
-					new HomePageSupport(userInfoSupport).getTime(input.getPagination()).split("#")[0].substring(0, 11));
+					new HomePageSupport(userInfoSupport).getTime(input.getPagination()).split("#")[0].substring(0, 10));
 			result.getList().add(dateShow);
 		}
 		MDataMap mDataMap = new MDataMap();

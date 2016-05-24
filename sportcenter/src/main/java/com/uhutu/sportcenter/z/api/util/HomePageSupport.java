@@ -98,10 +98,18 @@ public class HomePageSupport {
 						"status='dzsd4699100110010001' and shareScope='dzsd4699100110010001' and code in("
 								+ str.toString() + ")",
 						new MDataMap());
-				if (basics != null && !basics.isEmpty() && basics.size() > 0) {
-					for (int i = 0; i < basics.size(); i++) {
+				List<CnContentBasicinfo> infos = new ArrayList<CnContentBasicinfo>();
+				for (int i = 0; i < rels.size(); i++) {
+					for (int j = 0; j < basics.size(); j++) {
+						if (rels.get(i).equals(basics.get(j))) {
+							infos.add(basics.get(j));
+						}
+					}
+				}
+				if (infos != null && !infos.isEmpty() && infos.size() > 0) {
+					for (int i = 0; i < infos.size(); i++) {
 						HomePageModel hmp = new HomePageModel();
-						CnContentBasicinfo info = basics.get(i);
+						CnContentBasicinfo info = infos.get(i);
 						ContentBasicinfoForApi infoApi = new ContentBasicinfoForApi();
 						UserinfoExtForApi userInfoApi = new UserinfoExtForApi();
 						if (StringUtils.isNotBlank(info.getAuthor())) {
