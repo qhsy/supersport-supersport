@@ -41,7 +41,7 @@ public class CnContentItemRelFuncEdit extends RootFunc {
 				relInfo.setContentCode(input.getDataMap().get("content_code"));
 				relInfo.setItemCode(input.getDataMap().get("item_code"));
 				relInfo.setItemType(item.getType());
-				relInfo.setSort(input.getDataMap().get("sort"));
+				relInfo.setSort(Integer.valueOf(input.getDataMap().get("sort")));
 				relInfo.setZa(input.getDataMap().get("za"));
 				relInfo.setStartTime(input.getDataMap().get("start_time"));
 				relInfo.setEndTime(input.getDataMap().get("end_time"));
