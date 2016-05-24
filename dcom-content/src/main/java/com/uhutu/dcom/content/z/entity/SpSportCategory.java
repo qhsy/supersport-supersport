@@ -24,6 +24,9 @@ public class SpSportCategory extends BaseEntity {
 	@ZooData(name = "运动名称", require = "1")
 	private String name;
 
+	@ZooData(name = "排序(倒序)", require = "1", sort = { DefineWebPage.Page_Query + "=0" })
+	private String sort;
+
 	@ZooData(name = "运动图标", require = "1", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
 	private String icon;
@@ -61,6 +64,14 @@ public class SpSportCategory extends BaseEntity {
 
 	public void setIcon(String icon) {
 		this.icon = icon;
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
 	}
 
 }
