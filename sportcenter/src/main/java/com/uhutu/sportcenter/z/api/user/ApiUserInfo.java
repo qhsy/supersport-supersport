@@ -77,11 +77,15 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 
 				BeanUtils.copyProperties(ucUserinfoExt, apiUserInfo);
 				
-				List<String> codes = Arrays.asList(StringUtils.split(apiUserInfo.getDomain(), ","));
-				
-				List<SpSportCategory> sportCategories = serviceFactory.getSportCategoryService().queryListByCodeIn(codes);
-				
-				apiUserInfo.setDomainName(convertCatoryNames(sportCategories));
+				if(apiUserInfo.getDomain() != null){
+					
+					List<String> codes = Arrays.asList(StringUtils.split(apiUserInfo.getDomain(), ","));
+					
+					List<SpSportCategory> sportCategories = serviceFactory.getSportCategoryService().queryListByCodeIn(codes);
+					
+					apiUserInfo.setDomainName(convertCatoryNames(sportCategories));
+					
+				}
 
 			}
 
