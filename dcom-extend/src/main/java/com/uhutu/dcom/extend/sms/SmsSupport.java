@@ -10,9 +10,10 @@ import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.helper.FormatHelper;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
-import com.uhutu.zoocom.root.RootApiResult;
 import com.uhutu.zoocom.root.RootClass;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
+import com.uhutu.zooweb.model.MVerifyCodeGenerate;
+import com.uhutu.zooweb.support.VerifyCodeSupport;
 
 /**
  * 短信验证相关
@@ -181,17 +182,18 @@ public class SmsSupport extends RootClass {
 		RootApiResult result = new RootApiResult();
 		result = this.checkSendVerifyCode(sMobile);
 		if (result.getStatus() == 1) {
-			String sVerifyCode = StringUtils
-					.leftPad(String.valueOf(new Random().nextInt((int) Math.pow(10, iLength) - 1)), iLength, "0");
-			String re = this.sendSms(sMobile, sVerifyCode, minutes);
+			MVerifyCodeGenerate mVerifyCodeGenerate = new VerifyCodeSupport().upVerifyCode(sMobile, iLength);
+			String re = this.sendSms(sMobile, mVerifyCodeGenerate.getVerifyCode(), minutes);
 			MDataMap insert = new MDataMap();
 			insert.put("verify_type", smsType);
 			insert.put("mobile_phone", sMobile);
-			insert.put("verify_code", sVerifyCode);
+			insert.put("verify_code", mVerifyCodeGenerate.getVerifyCode());
 			insert.put("active_time", DateHelper.upDateTimeAdd(String.valueOf(minutes * 60) + "s"));
 			insert.put("flag_send", "1");
 			insert.put("send_message", re);
 			JdbcHelper.dataInsert("cm_send_sms", insert);
+			
+			result.setVerifyNumber(mVerifyCodeGenerate.getVerifyNumber());
 		}
 		return result;
 	}
