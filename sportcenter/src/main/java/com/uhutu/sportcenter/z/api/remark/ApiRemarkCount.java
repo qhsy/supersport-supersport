@@ -1,7 +1,10 @@
 package com.uhutu.sportcenter.z.api.remark;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
@@ -83,9 +86,9 @@ public class ApiRemarkCount extends RootApiBase<ApiRemarkCountInput, ApiRemarkCo
 		String iffavor = RemarkEnum.ICON_DARK.getCode();
 		
 		/*01点赞*/
-		int count = contentServiceFactory.getSupportPraiseService().favored("01", input.getZoo().getToken(), input.getContentCode());
+		CnSupportPraise praise = contentServiceFactory.getSupportPraiseService().query(input.getContentCode(),input.getZoo().getToken(), "01");
 		
-		if(count > 0){
+		if(praise != null && StringUtils.equals(praise.getStatus(), "1")){
 			
 			iffavor = RemarkEnum.ICON_LIGHT.getCode();
 			

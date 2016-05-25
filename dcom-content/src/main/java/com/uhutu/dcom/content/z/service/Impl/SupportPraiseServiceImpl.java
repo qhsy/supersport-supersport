@@ -1,10 +1,10 @@
 package com.uhutu.dcom.content.z.service.Impl;
 
+import java.util.Date;
 import java.util.List;
-
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.uhutu.dcom.content.z.dao.ContentDaoFactory;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 import com.uhutu.dcom.content.z.service.ISupportPraiseService;
@@ -44,11 +44,21 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 
 	
 	public void save(CnSupportPraise praise) {
-		List<CnSupportPraise> list = querybyContentCodeAndUserCodeAndType(praise.getType(), praise.getUserCode(),
-				praise.getContentCode());
-		if (list == null || list.isEmpty() || list.size() == 0) {
+		
+		if (StringUtils.isNoneBlank(praise.getZa()) && daoFacotry.getSupportPraiseDao().exists(praise.getZa())) {
+
+			praise.setZu(new Date());
+
 			daoFacotry.getSupportPraiseDao().save(praise);
+
+		} else {
+
+			praise.setZc(new Date());
+
+			daoFacotry.getSupportPraiseDao().save(praise);
+
 		}
+		
 	}
 	
 	public List<CnSupportPraise> querybyContentCodeAndUserCodeAndType(String type, String userCode,
