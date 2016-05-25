@@ -74,15 +74,13 @@ public class HomePageSupport {
 		return flag;
 	}
 
-	public List<HomePageModel> getPageModels(String itemType, String t1, String t2) {
+	public List<HomePageModel> getPageModels(String itemCode, String itemType, String t1, String t2) {
 		List<HomePageModel> li = new ArrayList<HomePageModel>();
 		MDataMap map = new MDataMap();
 		map.put("itemType", itemType);
-		map.put("t1", t1);
-		map.put("t2", t2);
+		map.put("itemCode", itemCode);
 		List<CnContentItemRel> rels = JdbcHelper.queryForList(CnContentItemRel.class, "contentCode",
-				"-sort,-start_time", "itemType=:itemType and endTime>=NOW() and startTime>=:t1 and startTime<=:t2 ",
-				map);
+				"-sort,-start_time", " itemCode=:itemCode and itemType=:itemType and endTime>=NOW() ", map);
 		StringBuffer str = new StringBuffer();
 		if (rels != null && !rels.isEmpty() && rels.size() > 0) {
 			for (int i = 0; i < rels.size(); i++) {
