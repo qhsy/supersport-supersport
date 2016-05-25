@@ -2,6 +2,8 @@ package com.uhutu.dcom.component.z.util;
 
 import java.io.ByteArrayOutputStream;
 import org.apache.http.HttpEntity;
+
+import com.uhutu.zoocom.file.FileUploadResult;
 import com.uhutu.zoocom.support.WebClientSupport;
 import com.uhutu.zooweb.support.WebUploadSupport;
 
@@ -20,7 +22,7 @@ public class FileUtil {
 	 * 		阿里云图像url
 	 * @throws Exception
 	 */
-	public void aliyunConvert(String fileName,String url) throws Exception{
+	public String aliyunConvert(String fileName,String url) throws Exception{
 		
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
@@ -38,7 +40,9 @@ public class FileUtil {
 		
 		WebUploadSupport support = new WebUploadSupport();
 		
-		support.remoteUpload("zoofile", fileName, bos.toByteArray());
+		FileUploadResult result = support.remoteUpload("zoofile", fileName, bos.toByteArray());
+		
+		return result.getFileUrl();
 		
 	}
 

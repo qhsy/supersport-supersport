@@ -2,8 +2,8 @@ package com.uhutu.dcom.remark.z.service.impl;
 
 import java.util.Date;
 import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
 import com.uhutu.dcom.component.z.page.QueryConditionUtil;
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.config.enums.PrexEnum;
@@ -18,6 +19,7 @@ import com.uhutu.dcom.remark.z.dao.ContentRemarkDaoFactory;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
 import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.IContentRemarkService;
+import com.uhutu.zooweb.helper.WebHelper;
 
 /**
  * 内容评论业务实现
@@ -43,11 +45,9 @@ public class ContentRemarkServiceImpl implements IContentRemarkService {
 
 			cnContentRemark.setStatus(RemarkEnum.FLAG_ENABLE.getCode());
 
-			String dateStr = DateFormatUtils.format(new Date(), "yyyyMMddHHmmssSSS");
-
 			cnContentRemark.setZc(new Date());
 
-			cnContentRemark.setCode(PrexEnum.CNR.name() + dateStr);
+			cnContentRemark.setCode(WebHelper.upCode(PrexEnum.CNR.name()));
 
 			daoFactory.getContentRemarkDao().save(cnContentRemark);
 
