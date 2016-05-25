@@ -25,6 +25,9 @@ public class CnSupportPraise extends BaseEntity{
 	
 	@ZooData(name = "用户编号")
 	private String userCode;
+	
+	@ZooData(name="状态")
+	private String status;
 
 	public String getCode() {
 		return code;
@@ -56,6 +59,14 @@ public class CnSupportPraise extends BaseEntity{
 
 	public void setUserCode(String userCode) {
 		this.userCode = userCode;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

@@ -119,5 +119,8 @@ public interface ISupportPraiseDao extends CrudRepository<CnSupportPraise, Strin
 	public int favored(@Param("type") String type,
 			@Param("userCode") String userCode, @Param("contentCode") String contentCode);
 	
+	@Query("select t from CnSupportPraise t where t.type=:type and t.contentCode=:contentCode and t.userCode=:userCode")
+	public CnSupportPraise query(@Param("contentCode") String contentCode,@Param("userCode") String userCode,@Param("type") String type);
+	
 	
 }

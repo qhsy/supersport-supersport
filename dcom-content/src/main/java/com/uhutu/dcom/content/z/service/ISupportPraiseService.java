@@ -110,4 +110,16 @@ public interface ISupportPraiseService {
 	 * @return 标签信息
 	 */
 	public int favored(String type, String userCode, String contentCode);
+	
+	/**
+	 * 根据内容编号、用户编号、类型查询实体
+	 * @param contentCode
+	 * 		内容编号
+	 * @param userCode
+	 * 		用户编号
+	 * @param type
+	 * 		类型标识
+	 * @return 实体类
+	 */
+	public CnSupportPraise query(String contentCode, String userCode, String type);
 }

@@ -1,5 +1,6 @@
 package com.uhutu.sportcenter.z.api.user;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput;
@@ -16,6 +17,8 @@ import com.uhutu.zoocom.root.RootApiBase;
 public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLoginResult> {
 
 	public ApiSocialLoginResult process(ApiSocialLoginInput inputParam) {
+		
+		StringUtils.isNoneBlank("");
 
 		return new ApiSocialLoginResult();
 	}

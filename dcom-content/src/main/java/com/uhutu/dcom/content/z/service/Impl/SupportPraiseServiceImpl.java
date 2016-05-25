@@ -78,4 +78,12 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 		
 	}
 
+
+	@Override
+	public CnSupportPraise query(String contentCode, String userCode, String type) {
+		
+		return daoFacotry.getSupportPraiseDao().query(contentCode, userCode, type);
+		
+	}
+
 }

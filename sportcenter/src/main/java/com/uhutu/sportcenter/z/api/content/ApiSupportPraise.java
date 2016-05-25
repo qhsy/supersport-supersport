@@ -2,20 +2,21 @@ package com.uhutu.sportcenter.z.api.content;
 
 import java.util.Date;
 import java.util.Optional;
-import org.apache.commons.lang3.time.DateFormatUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.uhutu.dcom.config.enums.PrexEnum;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
-import com.uhutu.dcom.content.z.service.SupportPraiseServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcMsgPraise;
 import com.uhutu.dcom.user.z.enums.MsgEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiSupportPraiseInput;
 import com.uhutu.sportcenter.z.result.ApiSupportPraiseResult;
 import com.uhutu.zoocom.root.RootApiToken;
+import com.uhutu.zooweb.helper.WebHelper;
 
 /***
  * 赞与嘘嘘接口
@@ -25,9 +26,6 @@ import com.uhutu.zoocom.root.RootApiToken;
  */
 @Service
 public class ApiSupportPraise extends RootApiToken<ApiSupportPraiseInput, ApiSupportPraiseResult> {
-
-	@Autowired
-	private SupportPraiseServiceFactory serviceFactory;
 	
 	@Autowired
 	private UserServiceFactory userServiceFactory;
@@ -36,23 +34,32 @@ public class ApiSupportPraise extends RootApiToken<ApiSupportPraiseInput, ApiSup
 	private ContentServiceFactory contentServiceFactory;
 
 	protected ApiSupportPraiseResult process(ApiSupportPraiseInput input) {
-		CnSupportPraise praise = new CnSupportPraise();
-		praise.setCode(PrexEnum.CNE.toString() + DateFormatUtils.format(new Date(), "yyyyMMddhhmmssSSS"));
-		praise.setContentCode(input.getContentCode());
-		praise.setType(input.getType());
-		praise.setUserCode(input.getZoo().getToken().trim());// 暂时没有
-		if ("0".equals(input.getIsLike())) {// 取消点赞或者取消点嘘嘘
-			serviceFactory.getSupportPraiseService().cancelbyCCAndUCAndType(input.getContentCode(), input.getZoo().getToken(),
-					input.getType());
-		} else {// 点赞或者点嘘嘘
+		
+		ApiSupportPraiseResult result = new ApiSupportPraiseResult();
+		
+		CnSupportPraise praise = contentServiceFactory.getSupportPraiseService().
+				query(input.getContentCode(), input.getZoo().getToken(), input.getType());
+		
+		Optional<CnSupportPraise> praiseOptional = Optional.ofNullable(praise);
+		
+		if(praiseOptional.isPresent()){
 			
-			serviceFactory.getSupportPraiseService().save(praise);
+			praise.setStatus(input.getIsLike());
 			
-			saveMsgPraise(praise);
-			
-		}
+		} else {
 
-		return new ApiSupportPraiseResult();
+			praise = new CnSupportPraise();
+			praise.setCode(WebHelper.upCode(PrexEnum.CNE.name()));
+			praise.setContentCode(input.getContentCode());
+			praise.setType(input.getType());
+			praise.setUserCode(input.getZoo().getToken().trim());
+			praise.setStatus(input.getIsLike());
+
+		}
+		
+		contentServiceFactory.getSupportPraiseService().save(praise);
+
+		return result;
 	}
 	
 	/**
