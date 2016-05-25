@@ -10,7 +10,11 @@ import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiForLoginInput;
 import com.uhutu.sportcenter.z.result.ApiForLoginResult;
+import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zooweb.user.UserCallFactory;
+import com.uhutu.zooweb.user.UserLoginInput;
+import com.uhutu.zooweb.user.UserLoginResult;
 
 /***
  * 登录
@@ -36,8 +40,31 @@ public class ApiForLogin extends RootApiBase<ApiForLoginInput, ApiForLoginResult
 			ucUserinfo.setLastTime(new Date());
 
 			userServiceFactory.getUserInfoService().save(ucUserinfo);
+		
+			UserCallFactory userCallFactory = new UserCallFactory();
+			
+			UserLoginInput loginInput = new UserLoginInput();
+			
+			loginInput.setLoginName(inputParam.getLoginName());
+			
+			loginInput.setLoginPass(inputParam.getLoginPass());
+			
+			loginInput.setLoginSystem(DefineUser.Login_System_Default);
+			
+			UserLoginResult loginResult = userCallFactory.userLogin(loginInput);
 
-			result.setUserToken(ucUserinfo.getCode());
+			if(loginResult.upFlagTrue()){
+				
+				result.setUserToken(loginResult.getToken());
+				
+			}else{
+				
+				result.setError(loginResult.getError());
+				
+				result.setStatus(loginResult.getStatus());
+				
+			}
+				
 
 		} else {
 

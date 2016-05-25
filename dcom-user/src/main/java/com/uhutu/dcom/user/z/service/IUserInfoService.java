@@ -1,6 +1,7 @@
 package com.uhutu.dcom.user.z.service;
 
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
+import com.uhutu.zooweb.user.UserReginsterResult;
 
 /**
  * 用户业务信息处理
@@ -38,6 +39,16 @@ public interface IUserInfoService {
 	 * @return 用户信息
 	 */
 	public UcUserinfo queryByLoginName(String loginName);
+	
+	/**
+	 * 授权用户注册
+	 * @param loginName
+	 * 		登录名称
+	 * @param loginPass
+	 * 		登录密码
+	 * @return 用户授权信息
+	 */
+	public UserReginsterResult regAuthUser(String loginName, String loginPass);
 	
 
 }

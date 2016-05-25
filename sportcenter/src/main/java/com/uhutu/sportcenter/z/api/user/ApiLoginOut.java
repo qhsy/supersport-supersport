@@ -8,7 +8,8 @@ import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiLoginOutInput;
 import com.uhutu.sportcenter.z.result.ApiLoginOutResult;
-import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zoocom.root.RootApiToken;
+import com.uhutu.zooweb.user.UserCallFactory;
 
 /**
  * 用户信息退出
@@ -17,8 +18,8 @@ import com.uhutu.zoocom.root.RootApiBase;
  *
  */
 @Service
-public class ApiLoginOut extends RootApiBase<ApiLoginOutInput, ApiLoginOutResult> {
-
+public class ApiLoginOut extends RootApiToken<ApiLoginOutInput, ApiLoginOutResult> {
+	
 	@Autowired
 	private UserServiceFactory userServiceFactory;
 
@@ -26,11 +27,25 @@ public class ApiLoginOut extends RootApiBase<ApiLoginOutInput, ApiLoginOutResult
 
 		ApiLoginOutResult result = new ApiLoginOutResult();
 
-		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(inputParam.getLoginName());
+		UserCallFactory userCallFactory = new UserCallFactory();
+		
+		boolean flag = userCallFactory.userLogout(inputParam.getZoo().getToken());
+		
+		if(!flag){
+			
+			result.setStatus(0);
+			
+			result.setError("退出失败");
+			
+		}else{
+			
+			UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(inputParam.getLoginName());
 
-		ucUserinfo.setFlag(UserEnum.FLAG_LOGINOUT.getCode());
+			ucUserinfo.setFlag(UserEnum.FLAG_LOGINOUT.getCode());
 
-		userServiceFactory.getUserInfoService().save(ucUserinfo);
+			userServiceFactory.getUserInfoService().save(ucUserinfo);
+			
+		}
 
 		return result;
 

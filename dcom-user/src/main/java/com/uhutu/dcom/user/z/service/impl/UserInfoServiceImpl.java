@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import com.uhutu.dcom.user.z.dao.UserDaoFacotry;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.service.IUserInfoService;
+import com.uhutu.zoocom.define.DefineUser;
+import com.uhutu.zooweb.user.UserCallFactory;
+import com.uhutu.zooweb.user.UserReginsterInput;
+import com.uhutu.zooweb.user.UserReginsterResult;
 
 /**
  * 用户业务处理实现
@@ -60,6 +64,23 @@ public class UserInfoServiceImpl implements IUserInfoService {
 
 		return userDaoFacotry.getUserInfoDao().queryByLoginName(loginName);
 
+	}
+	
+	@Override
+	public UserReginsterResult regAuthUser(String loginName, String loginPass){
+		
+		UserReginsterInput input = new UserReginsterInput();
+		
+		input.setLoginName(loginName);
+		
+		input.setLoginPass(loginPass);
+		
+		input.setLoginSystem(DefineUser.Login_System_Default);
+		
+		UserCallFactory userCallFactory = new UserCallFactory();
+		
+		return userCallFactory.userReginster(input);
+		
 	}
 
 }

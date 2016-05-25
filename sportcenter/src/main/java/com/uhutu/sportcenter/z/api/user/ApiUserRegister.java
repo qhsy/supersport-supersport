@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.api.user;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,10 +10,12 @@ import com.uhutu.dcom.extend.sms.SmsSupport;
 import com.uhutu.dcom.extend.sms.SmsTypeEnum;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
+import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiUserRegInput;
 import com.uhutu.sportcenter.z.result.ApiUserRegResult;
 import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zooweb.user.UserReginsterResult;
 
 /**
  * 用户注册接口api
@@ -37,6 +41,18 @@ public class ApiUserRegister extends RootApiBase<ApiUserRegInput, ApiUserRegResu
 			ucUserinfo.setLoginName(inputParam.getLoginName());
 
 			ucUserinfo.setLoginPwd(inputParam.getPassword());
+			
+			UserReginsterResult userAuthResult = userServiceFactory.getUserInfoService().regAuthUser(inputParam.getLoginName(), inputParam.getPassword());
+			
+			ucUserinfo.setFlag(UserEnum.FLAG_ENABLE.getCode());
+			
+			ucUserinfo.setLastTime(new Date());
+			
+			ucUserinfo.setLoginCode(userAuthResult.getLoginCode());
+			
+			ucUserinfo.setCode(userAuthResult.getUserCode());
+			
+			ucUserinfo.setType(UserEnum.TYPE_CUSTOM.getCode());
 
 			userServiceFactory.getUserInfoService().save(ucUserinfo);
 			
@@ -50,7 +66,7 @@ public class ApiUserRegister extends RootApiBase<ApiUserRegInput, ApiUserRegResu
 
 			userRegResult.setUserCode(ucUserinfo.getCode());
 
-			userRegResult.setUserToken(ucUserinfo.getCode());
+			userRegResult.setUserToken(userAuthResult.getToken());
 		} else {
 			userRegResult.setStatus(rootApiResult.getStatus());
 			userRegResult.setError(rootApiResult.getError());
@@ -59,5 +75,7 @@ public class ApiUserRegister extends RootApiBase<ApiUserRegInput, ApiUserRegResu
 		return userRegResult;
 
 	}
+	
+	
 
 }
