@@ -46,7 +46,8 @@ public class ApiHomePage extends RootApiBase<ApiHomePageInput, ApiHomePageResult
 				"startTime>:t1 and startTime<:t2 and endTime>=NOW()", mDataMap);
 		for (int i = 0; i < items.size(); i++) {
 			String itemType = items.get(i).getType();
-			result.getList().addAll(new HomePageSupport(userInfoSupport).getPageModels(itemType, t1, t2));
+			String itemCode = items.get(i).getCode();
+			result.getList().addAll(new HomePageSupport(userInfoSupport).getPageModels(itemCode, itemType, t1, t2));
 		}
 
 		return result;
