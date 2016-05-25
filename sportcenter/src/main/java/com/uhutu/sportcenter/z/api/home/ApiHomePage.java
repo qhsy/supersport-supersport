@@ -34,7 +34,7 @@ public class ApiHomePage extends RootApiBase<ApiHomePageInput, ApiHomePageResult
 		String t2 = str.contains("&") ? str.split("&")[1] : str.split("#")[1];
 		if (new HomePageSupport(userInfoSupport).getTime(input.getPagination()).contains("#")) {
 			HomePageModel dateShow = new HomePageModel();
-			dateShow.setShowType("dzsd4699100110060004");
+			dateShow.setShowType("dzsd4107100110060004");
 			dateShow.setDateShow(
 					new HomePageSupport(userInfoSupport).getTime(input.getPagination()).split("#")[0].substring(0, 10));
 			result.getList().add(dateShow);

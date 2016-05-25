@@ -56,10 +56,10 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(name = "地理位置名称", notes = "位置名称", example = "金域国际大厦")
 	private String localtionName;
 
-	@ApiModelProperty(name = "业务类型编号：运动时刻 文章", notes = "运动时刻:dzsd4699100110020001,文章:dzsd4699100110020002")
+	@ApiModelProperty(name = "业务类型编号：运动时刻 文章", notes = "运动时刻:dzsd4107100110020001,文章:dzsd4107100110020002")
 	private String busiType;
 
-	@ApiModelProperty(name = "展示类型", notes = " dzsd4699100110030001:展示图文 dzsd4699100110030002:视频", example = "dzsd4699100110030002")
+	@ApiModelProperty(name = "展示类型", notes = " dzsd4107100110030001:展示图文 ,dzsd4107100110030002:视频,dzsd4107100110030003:图集", example = "dzsd4107100110030002")
 	private String contentType;
 
 	@ApiModelProperty(name = "用户头像")

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
+	<data table="ZwSystemDefine">
+		<item code="dzsd410710011002" defineName="内容类型" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110020001" defineName="运动时刻" parentCode="dzsd410710011002" />
+		<item code="dzsd4107100110020002" defineName="文章" parentCode="dzsd410710011002" />
+		<item code="dzsd410710011003" defineName="展示类型" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110030001" defineName="图文" parentCode="dzsd410710011003" />
+		<item code="dzsd4107100110030002" defineName="视频" parentCode="dzsd410710011003" />
+		<item code="dzsd4107100110030003" defineName="图集" parentCode="dzsd410710011003" />
+		<item code="dzsd410710011004" defineName="广告类型" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110040001" defineName="单图广告" parentCode="dzsd410710011004" />
+		<item code="dzsd4107100110040002" defineName="轮播广告" parentCode="dzsd410710011004" />
+		<item code="dzsd410710011005" defineName="跳转类型" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110050001" defineName="个人中心" parentCode="dzsd410710011005" />
+		<item code="dzsd4107100110050002" defineName="运动时刻详情页" parentCode="dzsd410710011005" />
+		<item code="dzsd4107100110050003" defineName="超链接" parentCode="dzsd410710011005" />
+		<item code="dzsd410710011006" defineName="栏目类型" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110060001" defineName="轮播广告栏目" parentCode="dzsd410710011006" />
+		<item code="dzsd4107100110060002" defineName="一栏广告栏目" parentCode="dzsd410710011006" />
+		<item code="dzsd4107100110060003" defineName="内容栏目" parentCode="dzsd410710011006" />
+	</data>
+
+</db>

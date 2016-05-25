@@ -26,7 +26,7 @@ public class CnContentItem extends BaseEntity {
 	private String name;
 
 	@ZooData(value = "栏目类型", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd469910011006" })
+			DefineWebInc.System_Define + "=dzsd410710011006" })
 	private String type;
 
 	@ZooData(name = "发布状态", element = DefineWebElement.Select, inc = {

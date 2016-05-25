@@ -29,7 +29,7 @@ public class CnAdvertiseDetail extends BaseEntity {
 	private String picUrl;
 
 	@ZooData(name = "图片跳转类型", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd469910011005" })
+			DefineWebInc.System_Define + "=dzsd410710011005" })
 	@ApiModelProperty(name = "图片超链接跳转类型", notes = "轮播图链接跳转类型01:超链接,02:运动时刻详情页,03:个人中心")
 	private String piclinkType;
 

@@ -26,7 +26,7 @@ public class CnAdvertiseInfo extends BaseEntity {
 	private String name;
 
 	@ZooData(name = "广告类型", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd469910011004" })
+			DefineWebInc.System_Define + "=dzsd410710011004" })
 	private String type;
 
 	@ZooData(name = "广告状态(是否发布)", element = DefineWebElement.Select, inc = {

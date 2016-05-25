@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class HomePageModel {
 
-	@ApiModelProperty(name = "展示类型", notes = "dzsd4699100110060001:轮播广告,dzsd4699100110060002:一栏广告,dzsd4699100110060003:内容,dzsd4699100110060004:时间展示", example = "dzsd4699100110060001")
+	@ApiModelProperty(name = "展示类型", notes = "dzsd4107100110060001:轮播广告,dzsd4107100110060002:一栏广告,dzsd4107100110060003:内容,dzsd4107100110060004:时间展示", example = "dzsd4107100110060001")
 	private String showType = "";
 	
 	@ApiModelProperty(name = "用户信息", notes = "用户信息头像昵称等信息", example = "张嘉译个人信息")

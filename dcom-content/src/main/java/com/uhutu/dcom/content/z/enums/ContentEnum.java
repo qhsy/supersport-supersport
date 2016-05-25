@@ -8,9 +8,9 @@ package com.uhutu.dcom.content.z.enums;
  */
 public enum ContentEnum {
 
-	sportmoment("运动时刻", "dzsd4699100110020001"),
+	sportmoment("运动时刻", "dzsd4107100110020001"),
 
-	article("文章", "dzsd4699100110020002"),
+	article("文章", "dzsd4107100110020002"),
 
 	normal("有效", "dzsd4699100110010001"),
 

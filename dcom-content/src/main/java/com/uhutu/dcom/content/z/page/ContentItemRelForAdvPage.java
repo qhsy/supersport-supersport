@@ -10,7 +10,7 @@ import com.uhutu.zooweb.define.DefineZooWeb;
 @ZooPage(name = "栏目内容关联管理", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = { DefineZooWeb.PAGE_DEFAULT_OPERATE,
 		DefineWebPage.Page_Add + "=dzoi41071002",
 		DefineWebPage.Page_Edit + "=dzoi41071003" }, deploy = DefineWebDeploy.Grid_Where
-				+ "=itemType!='dzsd4699100110060003' ")
+				+ "=itemType!='dzsd4107100110060003' ")
 public class ContentItemRelForAdvPage extends RootPageSimple<CnContentItemRel> {
 
 }

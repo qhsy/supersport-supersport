@@ -93,7 +93,7 @@ public class HomePageSupport {
 			}
 		}
 		if (StringUtils.isNotBlank(str)) {
-			if ("dzsd4699100110060003".equals(itemType)) {// 内容
+			if ("dzsd4107100110060003".equals(itemType)) {// 内容
 
 				List<CnContentBasicinfo> basics = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "",
 						"status='dzsd4699100110010001' and shareScope='dzsd4699100110010001' and code in("
@@ -134,14 +134,14 @@ public class HomePageSupport {
 						infoApi.setAboutHead(userInfoApi.getAboutHead());
 						hmp.setInfo(infoApi);
 						hmp.setUe(userInfoApi);
-						hmp.setShowType("dzsd4699100110060003");
+						hmp.setShowType("dzsd4107100110060003");
 						li.add(hmp);
 					}
 				}
-			} else if ("dzsd4699100110060002".equals(itemType)) {// 一栏广告
+			} else if ("dzsd4107100110060002".equals(itemType)) {// 一栏广告
 
 				List<CnAdvertiseInfo> dtAdv = JdbcHelper.queryForList(CnAdvertiseInfo.class, "", "-zc",
-						"status='dzsd4699100110010001' and type='dzsd4699100110040001' and code in(" + str.toString()
+						"status='dzsd4699100110010001' and type='dzsd4107100110040001' and code in(" + str.toString()
 								+ ")",
 						new MDataMap());
 				if (dtAdv != null && !dtAdv.isEmpty() && dtAdv.size() > 0) {
@@ -150,7 +150,7 @@ public class HomePageSupport {
 						CnAdvertiseDetail detail = JdbcHelper.queryOne(CnAdvertiseDetail.class, "code",
 								advertiseInfo.getCode());
 						HomePageModel hmp = new HomePageModel();
-						hmp.setShowType("dzsd4699100110060002");
+						hmp.setShowType("dzsd4107100110060002");
 						hmp.getAdv().setCode(advertiseInfo.getCode());
 						hmp.getAdv().setType(advertiseInfo.getType());
 						AdvertiseDetailForApi dfa = new AdvertiseDetailForApi();
@@ -159,11 +159,11 @@ public class HomePageSupport {
 						li.add(hmp);
 					}
 				}
-			} else if ("dzsd4699100110060001".equals(itemType)
+			} else if ("dzsd4107100110060001".equals(itemType)
 					&& t1.substring(0, 10).equals(DateHelper.upNow().substring(0, 10))) {// 轮播广告
 
 				List<CnAdvertiseInfo> lbAdv = JdbcHelper.queryForList(CnAdvertiseInfo.class, "", "-zc",
-						"status='dzsd4699100110010001' and type='dzsd4699100110040002' and code in(" + str.toString()
+						"status='dzsd4699100110010001' and type='dzsd4107100110040002' and code in(" + str.toString()
 								+ ")",
 						new MDataMap());
 				if (lbAdv != null && !lbAdv.isEmpty() && lbAdv.size() > 0) {
@@ -172,7 +172,7 @@ public class HomePageSupport {
 						List<CnAdvertiseDetail> details = JdbcHelper.queryForList(CnAdvertiseDetail.class, "",
 								"-zu,-zc", "code=:code", MapHelper.initMap("code", advertiseInfo.getCode()));
 						HomePageModel hmp = new HomePageModel();
-						hmp.setShowType("dzsd4699100110060001");
+						hmp.setShowType("dzsd4107100110060001");
 						hmp.getAdv().setCode(advertiseInfo.getCode());
 						hmp.getAdv().setType(advertiseInfo.getType());
 						for (int j = 0; j < details.size(); j++) {
