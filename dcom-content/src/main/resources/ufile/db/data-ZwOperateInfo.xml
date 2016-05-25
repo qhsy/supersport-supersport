@@ -26,6 +26,14 @@
 			operateFunc="com.uhutu.dcom.content.func.CnContentRecommFuncEdit" operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071007" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.ContentItemPageFuncAdd" operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071008" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.ContentItemPageFuncEdit" operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
