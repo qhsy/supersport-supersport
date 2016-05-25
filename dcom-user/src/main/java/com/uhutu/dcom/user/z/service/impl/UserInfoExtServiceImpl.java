@@ -53,4 +53,11 @@ public class UserInfoExtServiceImpl implements IUserInfoExtService {
 		
 	}
 
+	@Override
+	public UcUserinfoExt queryByNickName(String nickName) {
+		
+		return userDaoFacotry.getUserInfoExtDao().queryByNickName(nickName);
+		
+	}
+
 }

@@ -30,5 +30,13 @@ public interface IUserInfoExtService {
 	 * @return 用户扩展信息
 	 */
 	public UcUserinfoExt queryByUserCode(String userCode);
+	
+	/**
+	 * 根据昵称查询用户信息
+	 * @param nickName
+	 * 		昵称
+	 * @return 用户扩展信息
+	 */
+	public UcUserinfoExt queryByNickName(String nickName);
 
 }

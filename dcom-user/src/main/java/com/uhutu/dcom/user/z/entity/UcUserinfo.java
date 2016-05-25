@@ -32,6 +32,9 @@ public class UcUserinfo extends BaseEntity {
 	
 	@ZooData(name="最近登录时间")
 	private Date lastTime;
+	
+	@ZooData(name="登录编号")
+	private String loginCode;
 
 	/**
 	 * 获取用户编号
@@ -119,6 +122,14 @@ public class UcUserinfo extends BaseEntity {
 	 */
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getLoginCode() {
+		return loginCode;
+	}
+
+	public void setLoginCode(String loginCode) {
+		this.loginCode = loginCode;
 	}
 	
 	

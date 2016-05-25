@@ -21,6 +21,9 @@ public class ApiSocialLoginInput extends RootApiInput {
 	
 	@ApiModelProperty(value = "账户名称", notes = "社交类app昵称", required = true)
 	private String accountName = "";
+	
+	@ApiModelProperty(value="头像地址")
+	private String aboutHead;
 
 	public String getAccountId() {
 		return accountId;
@@ -44,6 +47,14 @@ public class ApiSocialLoginInput extends RootApiInput {
 
 	public void setAccountName(String accountName) {
 		this.accountName = accountName;
+	}
+
+	public String getAboutHead() {
+		return aboutHead;
+	}
+
+	public void setAboutHead(String aboutHead) {
+		this.aboutHead = aboutHead;
 	}
 	
 

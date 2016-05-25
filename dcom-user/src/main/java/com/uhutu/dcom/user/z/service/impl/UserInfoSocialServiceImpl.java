@@ -1,5 +1,8 @@
 package com.uhutu.dcom.user.z.service.impl;
 
+import java.util.Date;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +23,16 @@ public class UserInfoSocialServiceImpl implements IUserInfoSocialService {
 
 	@Override
 	public void save(UcUserinfoSocial ucUserinfoSocial) {
+		
+		if(StringUtils.isNoneEmpty(ucUserinfoSocial.getZa()) && userDaoFacotry.getUserInfoSocialDao().exists(ucUserinfoSocial.getZa())){
+			
+			ucUserinfoSocial.setZu(new Date());
+			
+		}else{
+			
+			ucUserinfoSocial.setZc(new Date());
+			
+		}
 		
 		userDaoFacotry.getUserInfoSocialDao().save(ucUserinfoSocial);
 		

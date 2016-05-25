@@ -15,5 +15,8 @@ public interface IUserInfoExtDao extends CrudRepository<UcUserinfoExt, String> {
 	
 	@Query("select t from UcUserinfoExt t where userCode=:userCode")
 	public UcUserinfoExt queryByUserCode(@Param("userCode") String userCode);
+	
+	@Query("select t from UcUserinfoExt t where nickName=:nickName")
+	public UcUserinfoExt queryByNickName(@Param("nickName") String nickName);
 
 }
