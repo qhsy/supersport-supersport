@@ -6,8 +6,8 @@
 		<item code="dzsd4107100110020001" defineName="运动时刻" parentCode="dzsd410710011002" />
 		<item code="dzsd4107100110020002" defineName="文章" parentCode="dzsd410710011002" />
 		<item code="dzsd410710011003" defineName="展示类型" parentCode="dzsd41071001" />
-		<item code="dzsd4107100110030001" defineName="图文" parentCode="dzsd410710011003" />
-		<item code="dzsd4107100110030002" defineName="视频" parentCode="dzsd410710011003" />
+		<item code="dzsd4107100110030001" defineName="文章" parentCode="dzsd410710011003" />
+		<item code="dzsd4107100110030002" defineName="文章(含视频)" parentCode="dzsd410710011003" />
 		<item code="dzsd4107100110030003" defineName="图集" parentCode="dzsd410710011003" />
 		<item code="dzsd410710011004" defineName="广告类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110040001" defineName="单图广告" parentCode="dzsd410710011004" />
