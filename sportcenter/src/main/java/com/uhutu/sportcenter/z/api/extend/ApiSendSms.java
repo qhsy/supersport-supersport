@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uhutu.dcom.extend.sms.RootApiResult;
 import com.uhutu.dcom.extend.sms.SmsSupport;
 import com.uhutu.dcom.extend.sms.SmsTypeEnum;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
@@ -12,7 +13,6 @@ import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiSendSmsInput;
 import com.uhutu.sportcenter.z.result.ApiSendSmsResult;
 import com.uhutu.zoocom.root.RootApiBase;
-import com.uhutu.zoocom.root.RootApiResult;
 
 /**
  * 短信发送接口

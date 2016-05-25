@@ -21,6 +21,7 @@ import com.uhutu.sportcenter.z.entity.AdvertiseDetailForApi;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.entity.HomePageModel;
 import com.uhutu.sportcenter.z.entity.UserinfoExtForApi;
+import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
@@ -158,7 +159,8 @@ public class HomePageSupport {
 						li.add(hmp);
 					}
 				}
-			} else if ("dzsd4699100110060001".equals(itemType)) {// 轮播广告
+			} else if ("dzsd4699100110060001".equals(itemType)
+					&& t1.substring(0, 10).equals(DateHelper.upNow().substring(0, 10))) {// 轮播广告
 
 				List<CnAdvertiseInfo> lbAdv = JdbcHelper.queryForList(CnAdvertiseInfo.class, "", "-zc",
 						"status='dzsd4699100110010001' and type='dzsd4699100110040002' and code in(" + str.toString()
