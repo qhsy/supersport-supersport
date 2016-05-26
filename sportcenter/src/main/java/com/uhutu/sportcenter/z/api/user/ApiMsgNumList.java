@@ -26,7 +26,7 @@ public class ApiMsgNumList extends RootApiToken<ApiMsgNumListInput, ApiMsgNumLis
 
 		ApiMsgNumListResult msgNumListResult = new ApiMsgNumListResult();
 
-		String userCode = input.getZoo().getToken();
+		String userCode = upUserCode();
 
 		String[] msgTypes = { MsgEnum.NOTICE.getCode(), MsgEnum.ATTEND.getCode(), MsgEnum.PRAISE.getCode(),
 				MsgEnum.REMARK.getCode() };

@@ -32,7 +32,7 @@ public class ApiUpdateUserInfo extends RootApiToken<ApiUpdateUserInfoInput, ApiU
 		
 		if(userOption.isPresent()){
 			
-			String userCode = input.getZoo().getToken();
+			String userCode = upUserCode();
 			
 			UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(userCode);
 			

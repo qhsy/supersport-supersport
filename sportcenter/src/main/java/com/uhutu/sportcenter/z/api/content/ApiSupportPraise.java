@@ -38,7 +38,7 @@ public class ApiSupportPraise extends RootApiToken<ApiSupportPraiseInput, ApiSup
 		ApiSupportPraiseResult result = new ApiSupportPraiseResult();
 		
 		CnSupportPraise praise = contentServiceFactory.getSupportPraiseService().
-				query(input.getContentCode(), input.getZoo().getToken(), input.getType());
+				query(input.getContentCode(), upUserCode(), input.getType());
 		
 		Optional<CnSupportPraise> praiseOptional = Optional.ofNullable(praise);
 		
@@ -52,7 +52,7 @@ public class ApiSupportPraise extends RootApiToken<ApiSupportPraiseInput, ApiSup
 			praise.setCode(WebHelper.upCode(PrexEnum.CNE.name()));
 			praise.setContentCode(input.getContentCode());
 			praise.setType(input.getType());
-			praise.setUserCode(input.getZoo().getToken().trim());
+			praise.setUserCode(upUserCode());
 			praise.setStatus(input.getIsLike());
 
 		}

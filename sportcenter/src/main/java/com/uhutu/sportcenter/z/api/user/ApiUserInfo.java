@@ -24,7 +24,9 @@ import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.entity.UserInfo;
 import com.uhutu.sportcenter.z.input.ApiUserInfoInput;
 import com.uhutu.sportcenter.z.result.ApiUserInfoResult;
+import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zoocom.z.bean.TopUserFactory;
 
 /**
  * 用户信息展示
@@ -47,7 +49,8 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 		
 		if(UserEnum.OPER_OWN.getCode().equals(inputParam.getOperFlag())){
 			
-			userCode = inputParam.getZoo().getToken().trim();
+			userCode = TopUserFactory.upUserCallFactory()
+					.upUserCodeByAuthToken(inputParam.getZoo().getToken(), DefineUser.Login_System_Default);
 			
 		}
 		

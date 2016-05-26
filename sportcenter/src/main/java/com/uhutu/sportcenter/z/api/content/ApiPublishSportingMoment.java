@@ -36,7 +36,7 @@ public class ApiPublishSportingMoment
 
 		BeanUtils.copyProperties(input.getMomentDetailInfo(), contentDetail);
 
-		contentBasicinfo.setAuthor(input.getZoo().getToken());
+		contentBasicinfo.setAuthor(upUserCode());
 
 		contentServiceFactory.getContentBasicinfoService().save(contentBasicinfo);
 

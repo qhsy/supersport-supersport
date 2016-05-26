@@ -38,7 +38,7 @@ public class ApiPublishContentPhotos extends RootApiToken<ApiPublishContentPhoto
 			
 			BeanUtils.copyProperties(input.getContentBasicInfo(), contentBasicinfo);
 			
-			contentBasicinfo.setAuthor(input.getZoo().getToken());
+			contentBasicinfo.setAuthor(upUserCode());
 			
 			serviceFactory.getContentBasicinfoService().save(contentBasicinfo);
 			
