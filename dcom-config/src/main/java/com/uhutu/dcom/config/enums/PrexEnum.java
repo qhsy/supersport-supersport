@@ -26,5 +26,7 @@ public enum PrexEnum {
 	/**地址前缀*/
     DZ,
     /**内容投诉*/
-    CCP;
+    CCP,
+    /**意见反馈*/
+    UMA;
 }
