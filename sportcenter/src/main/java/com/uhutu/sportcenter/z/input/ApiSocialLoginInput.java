@@ -23,7 +23,7 @@ public class ApiSocialLoginInput extends RootApiInput {
 	private String accountName = "";
 	
 	@ApiModelProperty(value="头像地址")
-	private String aboutHead;
+	private String aboutHead = "";
 
 	public String getAccountId() {
 		return accountId;

@@ -21,6 +21,9 @@ public class ApiUserResetPwdInput extends RootApiInput {
 	
 	@ApiModelProperty(value="短信验证码",notes="短信验证码",required = true)
 	private String verifyCode = "";
+	
+	@ApiModelProperty(value="校验类型",example="重置密码:resetpwd,忘记密码:forgetpwd")
+	private String verifyType = "";
 
 	public String getLoginName() {
 		return loginName;
@@ -44,6 +47,14 @@ public class ApiUserResetPwdInput extends RootApiInput {
 
 	public void setVerifyCode(String verifyCode) {
 		this.verifyCode = verifyCode;
+	}
+
+	public String getVerifyType() {
+		return verifyType;
+	}
+
+	public void setVerifyType(String verifyType) {
+		this.verifyType = verifyType;
 	}
 
 }
