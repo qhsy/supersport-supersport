@@ -31,6 +31,8 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 	
 	@Autowired
 	private UserServiceFactory userServiceFactory;
+	
+	private UserCallFactory userCallFactory = new UserCallFactory();
 
 	public ApiSocialLoginResult process(ApiSocialLoginInput inputParam) {
 		
@@ -38,13 +40,28 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 		
 	    UserReginsterResult userRegResult = userRegister(inputParam.getAccountId());
 	    
-	    saveUserInfo(userRegResult, inputParam);
-	    
-	    saveUserInfoExt(userRegResult.getUserCode(), inputParam);
-	    
-	    saveSocialInfo(userRegResult.getUserCode(), inputParam);
-	    
-	    result.setUserToken(userRegResult.getToken());
+	    if(userRegResult.upFlagTrue()){
+	    	
+	    	saveUserInfo(userRegResult, inputParam);
+		    
+		    saveUserInfoExt(userRegResult.getUserCode(), inputParam);
+		    
+		    saveSocialInfo(userRegResult.getUserCode(), inputParam);
+		    
+		    result.setUserToken(userRegResult.getToken());
+	    	
+	    }else{
+	    	
+	    	UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().
+	    			queryByLoginName(inputParam.getAccountId());
+	    	
+	    	String token = userCallFactory.upAuthCode(ucUserinfo.getLoginCode(), 
+	    			ucUserinfo.getCode(), DefineUser.Login_System_Default);
+	    	
+	    	result.setUserToken(token);
+	    	
+	    	
+	    }
 
 		return result;
 	}
@@ -56,8 +73,6 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 	 * @return 授权系统用户注册结果
 	 */
 	public UserReginsterResult userRegister(String accountId){
-		
-		 UserCallFactory userCallFactory = new UserCallFactory();
 		    
 		 UserReginsterInput registInput = new UserReginsterInput();
 		    
