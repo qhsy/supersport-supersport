@@ -72,9 +72,7 @@ public class ApiUserRegister extends RootApiBase<ApiUserRegInput, ApiUserRegResu
 				
 			}else{
 				
-				userRegResult.setStatus(userAuthResult.getStatus());
-				
-				userRegResult.setError(userAuthResult.getError());
+				userRegResult.inError(81100002);
 				
 			}
 			
