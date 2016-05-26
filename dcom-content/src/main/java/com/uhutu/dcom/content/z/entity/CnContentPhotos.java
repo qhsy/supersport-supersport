@@ -17,7 +17,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class CnContentPhotos extends BaseEntity {
 
-	@ZooData(name = "内容名称", sort = { DefineWebPage.Page_Edit + "=0" }, element = DefineWebElement.Model, inc = {
+	@ZooData(name = "内容标题", sort = { DefineWebPage.Page_Edit + "=0" }, element = DefineWebElement.Model, inc = {
 			DefineWebInc.Web_Component + "=dzcw410710010006" })
 	private String contentCode;
 

@@ -26,7 +26,7 @@ public class CnContentItemRel extends BaseEntity {
 					DefineWebInc.System_Define + "=dzsd410710011006" })
 	private String itemType;
 
-	@ZooData(name = "内容名称", element = DefineWebElement.Model, inc = {
+	@ZooData(name = "内容标题", element = DefineWebElement.Model, inc = {
 			DefineWebInc.Web_Component + "=dzcw410710010002" })
 	private String contentCode;
 
