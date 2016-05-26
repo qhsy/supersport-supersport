@@ -34,7 +34,8 @@ public class CnContentRemark extends BaseEntity {
 	@ZooData(name = "父级编号", sort = { DefineWebPage.Page_Edit + "=0" })
 	private String parentCode;
 
-	@ZooData(name = "是否通过", element = DefineWebElement.Select, inc = { DefineWebInc.System_Define + "=10" })
+	@ZooData(name = "是否通过", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String status;
 
 	public String getCode() {

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
+	<data table="ZwOperateInfo">
+		<item code="dzoi480110011001" operateName="删除"
+			operateFunc="com.uhutu.dcom.remark.z.func.ContentRemarkPageFuncDelete"
+			operateType="js"
+			operateLink="zstatic_operate.ope_pd('[[struct:pageUnique]]','[[data:za]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+	</data>
+
+</db>
