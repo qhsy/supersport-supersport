@@ -31,7 +31,7 @@ public class ApiMsgPraiseList extends RootApiToken<ApiMsgPraiseListInput, ApiMsg
 		
 		QueryConditions conditions = new QueryConditions();
 		
-		String userCode = input.getZoo().getToken();
+		String userCode = upUserCode();
 		
 		conditions.setConditionEqual("contentAuthor", userCode);
 		

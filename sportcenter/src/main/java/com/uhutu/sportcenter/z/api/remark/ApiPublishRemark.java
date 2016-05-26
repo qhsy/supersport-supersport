@@ -18,7 +18,7 @@ import com.uhutu.dcom.user.z.enums.MsgEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiPublishRemarkInput;
 import com.uhutu.sportcenter.z.result.ApiPublishRemarkResult;
-import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zoocom.root.RootApiToken;
 
 /**
  * 评论发布
@@ -26,7 +26,7 @@ import com.uhutu.zoocom.root.RootApiBase;
  *
  */
 @Component
-public class ApiPublishRemark extends RootApiBase<ApiPublishRemarkInput, ApiPublishRemarkResult> {
+public class ApiPublishRemark extends RootApiToken<ApiPublishRemarkInput, ApiPublishRemarkResult> {
 	
 	@Autowired
 	private ContentRemarkServiceFactory servieFactory;
@@ -46,7 +46,7 @@ public class ApiPublishRemark extends RootApiBase<ApiPublishRemarkInput, ApiPubl
 		
 		BeanUtils.copyProperties(input, cnContentRemark);
 		
-		cnContentRemark.setAuthor(input.getZoo().getToken());
+		cnContentRemark.setAuthor(upUserCode());
 		
 		servieFactory.getContentRemarkService().save(cnContentRemark);
 		

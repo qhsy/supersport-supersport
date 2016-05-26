@@ -39,7 +39,7 @@ public class ApiMsgRemarkList extends RootApiToken<ApiMsgRemarkListInput, ApiMsg
 		
 		ApiMsgRemarkResult msgRemarkResult = new ApiMsgRemarkResult();
 		
-		String userCode = input.getZoo().getToken();
+		String userCode = upUserCode();
 		
 		QueryConditions conditions = new QueryConditions();
 		

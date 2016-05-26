@@ -30,7 +30,7 @@ public class ApiMsgNoticeList extends RootApiToken<ApiMsgNoticeListInput, ApiMsg
 		
 		ApiMsgNoticeListResult result = new ApiMsgNoticeListResult();
 		
-		String userCode = input.getZoo().getToken();
+		String userCode = upUserCode();
 		
 		QueryConditions conditions = new QueryConditions();
 		

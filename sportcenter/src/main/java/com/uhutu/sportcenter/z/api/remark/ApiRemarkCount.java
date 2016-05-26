@@ -11,7 +11,9 @@ import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.sportcenter.z.entity.RemarkInfo;
 import com.uhutu.sportcenter.z.input.ApiRemarkCountInput;
 import com.uhutu.sportcenter.z.result.ApiRemarkCountResult;
+import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zoocom.z.bean.TopUserFactory;
 
 /**
  * 各种评论数量
@@ -85,8 +87,10 @@ public class ApiRemarkCount extends RootApiBase<ApiRemarkCountInput, ApiRemarkCo
 		
 		String iffavor = RemarkEnum.ICON_DARK.getCode();
 		
+		String userCode = TopUserFactory.upUserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(), DefineUser.Login_System_Default);
+		
 		/*01点赞*/
-		CnSupportPraise praise = contentServiceFactory.getSupportPraiseService().query(input.getContentCode(),input.getZoo().getToken(), "01");
+		CnSupportPraise praise = contentServiceFactory.getSupportPraiseService().query(input.getContentCode(),userCode, "01");
 		
 		if(praise != null && StringUtils.equals(praise.getStatus(), "1")){
 			

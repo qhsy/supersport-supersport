@@ -30,7 +30,7 @@ public class ApiMsgAttendList extends RootApiToken<ApiMsgAttendListInput, ApiMsg
 		
 		ApiMsgAttendListResult attendListResult = new ApiMsgAttendListResult();
 		
-		String userCode = input.getZoo().getToken();
+		String userCode = upUserCode();
 		
 		QueryConditions conditions = new QueryConditions();
 		

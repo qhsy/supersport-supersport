@@ -24,7 +24,7 @@ public class ApiForAttention extends RootApiToken<ApiForAttentionInput, ApiForAt
 
 	public ApiForAttentionResult process(ApiForAttentionInput inputParam) {
 		UcAttentionInfo info = userServiceFactory.getAttentionInfoService()
-				.queryByBothCode(inputParam.getZoo().getToken().trim(), inputParam.getUserCode());
+				.queryByBothCode(upUserCode(), inputParam.getUserCode());
 		if(info==null&&"1".equals(inputParam.getFlag())){
 			UcAttentionInfo attentionInfo = new UcAttentionInfo();
 			attentionInfo.setAttention(inputParam.getZoo().getToken().trim());
