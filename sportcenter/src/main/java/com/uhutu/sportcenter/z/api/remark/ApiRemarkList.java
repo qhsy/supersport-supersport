@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
+import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
@@ -41,6 +42,8 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 		QueryConditions conditions = new QueryConditions();
 		
 		conditions.setConditionEqual("contentCode", input.getContentCode());
+		
+		conditions.setConditionEqual("status", RemarkEnum.FLAG_ENABLE.getCode());
 		
 		Page<CnContentRemark> remarkPage = serviceFactory.getContentRemarkService().queryPage(input.getPagination(), 10, conditions);
 		

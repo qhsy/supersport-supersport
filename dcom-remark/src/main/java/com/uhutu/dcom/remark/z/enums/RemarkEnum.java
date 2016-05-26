@@ -8,10 +8,10 @@ package com.uhutu.dcom.remark.z.enums;
 public enum RemarkEnum {
 	
 	/**评论状态：有效*/
-	FLAG_ENABLE("评论有效","01"),
+	FLAG_ENABLE("评论有效","dzsd4699100110010001"),
 	
 	/**评论状态：无效*/
-	FLAG_DISENABLE("评论无效","02"),
+	FLAG_DISENABLE("评论无效","dzsd4699100110010002"),
 	
 	/**喜欢类型：么么哒*/
 	PRAISE_FAVOR("么么哒","01"),

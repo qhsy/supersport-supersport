@@ -10,7 +10,9 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
+import com.uhutu.dcom.extend.sensitive.SensitivewordFilter;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
+import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcMsgRemark;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
@@ -47,6 +49,20 @@ public class ApiPublishRemark extends RootApiToken<ApiPublishRemarkInput, ApiPub
 		BeanUtils.copyProperties(input, cnContentRemark);
 		
 		cnContentRemark.setAuthor(upUserCode());
+		
+		SensitivewordFilter sensitivewordFilter = new SensitivewordFilter();
+		
+		boolean flag = sensitivewordFilter.isContaintSensitiveWord(cnContentRemark.getRemark(), 2);
+		
+		if(flag){
+			
+			cnContentRemark.setStatus(RemarkEnum.FLAG_DISENABLE.getCode());
+			
+		}else{
+			
+			cnContentRemark.setStatus(RemarkEnum.FLAG_ENABLE.getCode());
+			
+		}
 		
 		servieFactory.getContentRemarkService().save(cnContentRemark);
 		
