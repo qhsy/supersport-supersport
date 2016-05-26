@@ -41,6 +41,9 @@ public class UserDaoFacotry {
 	
 	@Autowired
 	private IMsgNoticeUserDao msgNoticeUserDao;
+	
+	@Autowired
+	private IMsgAdviceDao msgAdviceDao;
 
 	/**
 	 * 用户信息数据访问
@@ -117,6 +120,10 @@ public class UserDaoFacotry {
 
 	public IMsgNoticeUserDao getMsgNoticeUserDao() {
 		return msgNoticeUserDao;
+	}
+
+	public IMsgAdviceDao getMsgAdviceDao() {
+		return msgAdviceDao;
 	}
 
 }

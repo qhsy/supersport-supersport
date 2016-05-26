@@ -42,6 +42,9 @@ public class UserServiceFactory {
 	@Autowired
 	private IMsgNoticeUserService msgNoticeUserService;
 	
+	@Autowired
+	private IMsgAdviceService msgAdviceService;
+	
 	/**
 	 * 获取用户业务实现
 	 * 
@@ -108,6 +111,10 @@ public class UserServiceFactory {
 
 	public void setMsgNoticeUserService(IMsgNoticeUserService msgNoticeUserService) {
 		this.msgNoticeUserService = msgNoticeUserService;
+	}
+
+	public IMsgAdviceService getMsgAdviceService() {
+		return msgAdviceService;
 	}
 
 }
