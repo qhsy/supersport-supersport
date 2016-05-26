@@ -17,6 +17,12 @@
 		<item code="dzcw410710010005" componentClass="com.uhutu.zooweb.component.DialogComponent"
 			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_ext_ContentItemPage&amp;max=1"
 			serverDefine="table=CnContentItem&amp;text=name&amp;value=code" />
+		<item code="dzcw410710010006" componentClass="com.uhutu.zooweb.component.DialogComponent"
+			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_ext_ContentBasicInfoPage&amp;max=1"
+			serverDefine="table=CnContentBasicinfo&amp;text=title&amp;value=code" />
+		<item code="dzcw410710010007" componentClass="com.uhutu.zooweb.component.DialogComponent"
+			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_ext_ContentBasicInfoPageTwo&amp;max=1"
+			serverDefine="table=CnContentBasicinfo&amp;text=title&amp;value=code" />
 	</data>
 
 </db>

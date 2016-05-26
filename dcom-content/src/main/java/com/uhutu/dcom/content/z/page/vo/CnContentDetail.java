@@ -14,8 +14,8 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  */
 public class CnContentDetail extends BaseEntity {
 
-	@ZooData(name = "内容编号", sort = { DefineWebPage.Page_Edit + "=0" }, element = DefineWebElement.Model, inc = {
-			DefineWebInc.Web_Component + "=dzcw410710010002" })
+	@ZooData(name = "内容名称", sort = { DefineWebPage.Page_Edit + "=0" }, element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw410710010007" })
 	private String code;
 
 	@ZooData(name = "内容信息json串", element = DefineWebElement.Editor, sort = { DefineWebPage.Page_Query + "=0",
