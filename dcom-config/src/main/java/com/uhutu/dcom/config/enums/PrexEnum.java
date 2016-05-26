@@ -24,5 +24,7 @@ public enum PrexEnum {
 	/**运动分类前缀*/
 	SPC,
 	/**地址前缀*/
-    DZ;
+    DZ,
+    /**内容投诉*/
+    CCP;
 }

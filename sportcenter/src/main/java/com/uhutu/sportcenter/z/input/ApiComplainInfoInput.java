@@ -21,6 +21,9 @@ public class ApiComplainInfoInput extends RootApiInput {
 	
 	@ApiModelProperty(value="投诉备注信息")
 	private String remark;
+	
+	@ApiModelProperty(value="类型",example="1:内容，2:评论",required=true)
+	private String type;
 
 	public String getContentCode() {
 		return contentCode;
@@ -44,6 +47,14 @@ public class ApiComplainInfoInput extends RootApiInput {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 

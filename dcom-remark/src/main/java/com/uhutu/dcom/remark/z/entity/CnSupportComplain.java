@@ -25,6 +25,9 @@ public class CnSupportComplain extends BaseEntity {
 	
 	@ZooData(name="备注信息")
 	private String remark;
+	
+	@ZooData(name="类型")
+	private String type;
 
 	public String getCode() {
 		return code;
@@ -56,6 +59,14 @@ public class CnSupportComplain extends BaseEntity {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

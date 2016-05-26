@@ -13,9 +13,16 @@ public class ContentRemarkDaoFactory {
 	
 	@Autowired
 	private IContentRemarkDao contentRemarkDao;
+	
+	@Autowired
+	private ISupportComplainDao supportComplainDao;
 
 	public IContentRemarkDao getContentRemarkDao() {
 		return contentRemarkDao;
+	}
+
+	public ISupportComplainDao getSupportComplainDao() {
+		return supportComplainDao;
 	}
 	
 	

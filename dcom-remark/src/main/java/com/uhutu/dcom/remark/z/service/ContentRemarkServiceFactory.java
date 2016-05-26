@@ -13,9 +13,16 @@ public class ContentRemarkServiceFactory {
 	
 	@Autowired
 	private IContentRemarkService contentRemarkService;
+	
+	@Autowired
+	private ISupportComplainService supportComplainService;
 
 	public IContentRemarkService getContentRemarkService() {
 		return contentRemarkService;
+	}
+
+	public ISupportComplainService getSupportComplainService() {
+		return supportComplainService;
 	}
 
 }
