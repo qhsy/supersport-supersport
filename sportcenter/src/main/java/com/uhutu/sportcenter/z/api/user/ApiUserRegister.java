@@ -35,38 +35,47 @@ public class ApiUserRegister extends RootApiBase<ApiUserRegInput, ApiUserRegResu
 		RootApiResult rootApiResult = new SmsSupport().upLastVerifyCode(SmsTypeEnum.register, inputParam.getLoginName(),
 				inputParam.getVerify_code());
 		if (rootApiResult.getStatus() == 1) {
-
-			UcUserinfo ucUserinfo = new UcUserinfo();
-
-			ucUserinfo.setLoginName(inputParam.getLoginName());
-
-			ucUserinfo.setLoginPwd(inputParam.getPassword());
 			
 			UserReginsterResult userAuthResult = userServiceFactory.getUserInfoService().regAuthUser(inputParam.getLoginName(), inputParam.getPassword());
-			
-			ucUserinfo.setFlag(UserEnum.FLAG_ENABLE.getCode());
-			
-			ucUserinfo.setLastTime(new Date());
-			
-			ucUserinfo.setLoginCode(userAuthResult.getLoginCode());
-			
-			ucUserinfo.setCode(userAuthResult.getUserCode());
-			
-			ucUserinfo.setType(UserEnum.TYPE_CUSTOM.getCode());
 
-			userServiceFactory.getUserInfoService().save(ucUserinfo);
-			
-			UcUserinfoExt ucUserinfoExt = new UcUserinfoExt();
-			
-			ucUserinfoExt.setUserCode(ucUserinfo.getCode());
-			
-			ucUserinfoExt.setNickName(inputParam.getNickName());
-			
-			userServiceFactory.getUserInfoExtService().save(ucUserinfoExt);
+			if(userAuthResult.upFlagTrue()){
+				
+				UcUserinfo ucUserinfo = new UcUserinfo();
 
-			userRegResult.setUserCode(ucUserinfo.getCode());
+				ucUserinfo.setLoginName(inputParam.getLoginName());
 
-			userRegResult.setUserToken(userAuthResult.getToken());
+				ucUserinfo.setLoginPwd(inputParam.getPassword());
+				
+				ucUserinfo.setFlag(UserEnum.FLAG_ENABLE.getCode());
+				
+				ucUserinfo.setLastTime(new Date());
+				
+				ucUserinfo.setLoginCode(userAuthResult.getLoginCode());
+				
+				ucUserinfo.setCode(userAuthResult.getUserCode());
+				
+				ucUserinfo.setType(UserEnum.TYPE_CUSTOM.getCode());
+
+				userServiceFactory.getUserInfoService().save(ucUserinfo);
+				
+				UcUserinfoExt ucUserinfoExt = new UcUserinfoExt();
+				
+				ucUserinfoExt.setUserCode(ucUserinfo.getCode());
+				
+				ucUserinfoExt.setNickName(inputParam.getNickName());
+				
+				userServiceFactory.getUserInfoExtService().save(ucUserinfoExt);
+
+				userRegResult.setUserCode(userAuthResult.getUserCode());
+
+				userRegResult.setUserToken(userAuthResult.getToken());
+				
+			}else{
+				
+				userRegResult.inError(81100002);
+				
+			}
+			
 		} else {
 			userRegResult.setStatus(rootApiResult.getStatus());
 			userRegResult.setError(rootApiResult.getError());
