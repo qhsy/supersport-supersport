@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @Entity
 public class CnAdvertiseDetail extends BaseEntity {
-	@ZooData(name = "广告名称", element = DefineWebElement.Model, inc = {
+	@ZooData(name = "广告标题", element = DefineWebElement.Model, inc = {
 			DefineWebInc.Web_Component + "=dzcw410710010001" })
 	@ApiModelProperty(name = "广告编号", notes = "广告编号", example = "ADBH0001")
 	private String code;

@@ -22,7 +22,7 @@ public class CnAdvertiseInfo extends BaseEntity {
 			DefineWebPage.Page_Edit + "=0" })
 	private String code;
 
-	@ZooData(name = "广告名称", require = "1")
+	@ZooData(name = "广告标题", require = "1")
 	private String name;
 
 	@ZooData(name = "广告类型", element = DefineWebElement.Select, inc = {
