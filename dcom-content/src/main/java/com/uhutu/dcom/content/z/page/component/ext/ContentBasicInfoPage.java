@@ -6,7 +6,7 @@ import com.uhutu.zoocom.define.DefineWebDeploy;
 import com.uhutu.zoocom.root.RootPageSimple;
 import com.uhutu.zooweb.define.DefineZooWeb;
 
-@ZooPage(name = "内容管理(图集)", operates = DefineZooWeb.PAGE_DIALOG_OPERATE, deploy = DefineWebDeploy.Grid_Where
+@ZooPage(name = "图集", operates = DefineZooWeb.PAGE_DIALOG_OPERATE, deploy = DefineWebDeploy.Grid_Where
 		+ "=content_type='dzsd4107100110030003' ")
 public class ContentBasicInfoPage extends RootPageSimple<CnContentBasicinfo> {
 
