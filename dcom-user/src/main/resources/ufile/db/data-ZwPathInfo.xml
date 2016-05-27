@@ -2,9 +2,13 @@
 <db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  templet.xsd">
 	<data>
-		<item code="dzpi451001000001" nodeName="用户管理" parentCode="" />
-		<item code="dzpi4510010000010001" nodeName="用户基本信息" parentCode="dzpi451001000001"
-			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UserInfoOperPage" pageIcon="glyphicon-th" />	
+		<item code="dzpi45101001" nodeName="用户相关" parentCode="" />
+		<item code="dzpi451010010001" nodeName="用户管理" parentCode="dzpi45101001" />
+		<item code="dzpi4510100100010001" nodeName="用户基本信息" parentCode="dzpi451010010001"
+			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UserInfoOperPage" pageIcon="glyphicon-th" />
+		<item code="dzpi451010010002" nodeName="用户反馈" parentCode="dzpi45101001" />
+		<item code="dzpi4510100100020001" nodeName="反馈信息" parentCode="dzpi451010010002"
+			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_MsgAdvicePage" pageIcon="glyphicon-exclamation-sign" />	
 	</data>
 
 </db>
