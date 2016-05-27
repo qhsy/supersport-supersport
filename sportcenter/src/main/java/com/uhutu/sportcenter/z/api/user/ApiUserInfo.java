@@ -180,15 +180,7 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 	 */
 	public String convertCatoryNames(List<String> sportCategories){
 		
-		String name = "";
-		
-		if(sportCategories != null){
-			
-			name = StringUtils.join(sportCategories,",");
-			
-		}
-		
-		return name;
+		return StringUtils.join(sportCategories,",");
 		
 	}
 	

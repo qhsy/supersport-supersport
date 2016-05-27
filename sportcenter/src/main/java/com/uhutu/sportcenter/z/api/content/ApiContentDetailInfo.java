@@ -108,26 +108,14 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 	 * 		标签code
 	 * @return 标签名称
 	 */
-	public String initTagName(String tagCodes){
-		
-		String name = "";
-		
-		if(StringUtils.isNoneBlank(tagCodes)){
-			
-			List<String> codes = Arrays.asList(StringUtils.split(tagCodes, ","));
-			
-			List<String> tagNames = labelServiceFacotry.getContentLabelService().queryListByCodeIn(codes);
-			
-			if(tagNames != null && !tagNames.isEmpty()){
-				
-				name = StringUtils.join(tagNames, ",");
-				
-			}
-			
-		}
-		
-		return name;
-		
+	public String initTagName(String tagCodes) {
+
+		List<String> codes = Arrays.asList(StringUtils.split(tagCodes, ","));
+
+		List<String> tagNames = labelServiceFacotry.getContentLabelService().queryListByCodeIn(codes);
+
+		return StringUtils.join(tagNames, ",");
+
 	}
 
 }
