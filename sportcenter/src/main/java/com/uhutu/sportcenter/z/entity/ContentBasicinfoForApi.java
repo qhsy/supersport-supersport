@@ -25,8 +25,8 @@ public class ContentBasicinfoForApi {
 
 	@ApiModelProperty(name = "日期展示", notes = "日期展示", example = "2016-4-19")
 	private Date publishTime;
-	
-	@ApiModelProperty(name="日期格式化",notes="日期格式化字符串", example="MM-dd HH:mm")
+
+	@ApiModelProperty(name = "日期格式化", notes = "日期格式化字符串", example = "MM-dd HH:mm")
 	private String publishTimeStr;
 
 	@ApiModelProperty(name = "内容简介")
@@ -43,8 +43,8 @@ public class ContentBasicinfoForApi {
 
 	@ApiModelProperty(name = "标签编码")
 	private String tagCode;
-	
-	@ApiModelProperty(name = "标签名称",notes="多个以英文逗号分割")
+
+	@ApiModelProperty(name = "标签名称", notes = "多个以英文逗号分割")
 	private String tagName;
 
 	@ApiModelProperty(name = "内容作者")
@@ -53,7 +53,7 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(name = "内容分享范围 ", notes = "dzsd4699100110010002:不公开  dzsd4699100110010001：公开")
 	private String shareScope;
 
-	@ApiModelProperty(name = "地理位置", notes = "位置经纬度", example = "116.404, 39.915")
+	@ApiModelProperty(name = "地理位置", notes = "位置经纬度(顺序：latitude,longitude)", example = "116.404, 39.915")
 	private String location;
 
 	@ApiModelProperty(name = "地理位置名称", notes = "位置名称", example = "金域国际大厦")
@@ -212,13 +212,13 @@ public class ContentBasicinfoForApi {
 	}
 
 	public void setPublishTimeStr(String pattern) {
-		
-		if(getPublishTime() != null){
-			
+
+		if (getPublishTime() != null) {
+
 			this.publishTimeStr = DateFormatUtils.format(getPublishTime(), pattern);
-			
+
 		}
-		
+
 	}
 
 	public String getTagName() {
