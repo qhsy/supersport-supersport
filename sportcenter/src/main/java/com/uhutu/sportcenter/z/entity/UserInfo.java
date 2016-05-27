@@ -30,6 +30,9 @@ public class UserInfo {
 	@ApiModelProperty(value = "简介标签", notes = "足球、篮球、户外")
 	private String aboutTag = "";
 	
+	@ApiModelProperty(value = "简介标签展示名称", notes = "足球、篮球、户外")
+	private String aboutTagName = "";
+	
 	@ApiModelProperty(value = "简介视频", notes = "简介视频")
 	private String aboutVideo = "";
 	
@@ -196,8 +199,14 @@ public class UserInfo {
 	public void setLocationName(String locationName) {
 		this.locationName = locationName;
 	}
-	
-	
+
+	public String getAboutTagName() {
+		return aboutTagName;
+	}
+
+	public void setAboutTagName(String aboutTagName) {
+		this.aboutTagName = aboutTagName;
+	}
 	
 
 }
