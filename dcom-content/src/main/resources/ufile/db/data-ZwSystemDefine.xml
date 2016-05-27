@@ -14,7 +14,7 @@
 		<item code="dzsd4107100110040002" defineName="轮播广告" parentCode="dzsd410710011004" />
 		<item code="dzsd410710011005" defineName="跳转类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110050001" defineName="个人中心" parentCode="dzsd410710011005" />
-		<item code="dzsd4107100110050002" defineName="运动时刻详情页" parentCode="dzsd410710011005" />
+		<item code="dzsd4107100110050002" defineName="内容详情页" parentCode="dzsd410710011005" />
 		<item code="dzsd4107100110050003" defineName="超链接" parentCode="dzsd410710011005" />
 		<item code="dzsd410710011006" defineName="栏目类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110060001" defineName="轮播广告栏目" parentCode="dzsd410710011006" />

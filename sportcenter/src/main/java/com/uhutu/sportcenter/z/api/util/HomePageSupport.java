@@ -155,6 +155,14 @@ public class HomePageSupport {
 						hmp.getAdv().setType(advertiseInfo.getType());
 						AdvertiseDetailForApi dfa = new AdvertiseDetailForApi();
 						BeanUtils.copyProperties(detail, dfa);
+						if ("dzsd4107100110050002".equals(detail.getPiclinkType())
+								&& StringUtils.isNotBlank(detail.getPiclinkContent())) {
+							CnContentBasicinfo cbi = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
+									detail.getPiclinkContent());
+							if (cbi != null) {
+								dfa.setType(cbi.getContentType());
+							}
+						}
 						hmp.getAdv().getDetails().add(dfa);
 						li.add(hmp);
 					}
