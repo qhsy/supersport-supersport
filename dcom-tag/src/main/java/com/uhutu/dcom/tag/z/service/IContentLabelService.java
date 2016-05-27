@@ -33,4 +33,12 @@ public interface IContentLabelService {
 	 * @return 标签信息
 	 */
 	public List<CnContentLabel> queryAll();
+	
+	/**
+	 * 查询名称列表
+	 * @param codes
+	 * 		代码集合
+	 * @return
+	 */
+	public List<String> queryListByCodeIn(List<String> codes);
 }

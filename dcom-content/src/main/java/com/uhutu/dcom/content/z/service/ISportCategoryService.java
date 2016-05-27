@@ -34,6 +34,6 @@ public interface ISportCategoryService {
 	 * 		编号集合
 	 * @return 分类集合
 	 */
-	public List<SpSportCategory> queryListByCodeIn(List<String> codes);
+	public List<String> queryListByCodeIn(List<String> codes);
 
 }

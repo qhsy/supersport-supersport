@@ -1,14 +1,16 @@
 package com.uhutu.sportcenter.z.api.content;
 
+import java.util.Arrays;
+import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
+import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
@@ -29,6 +31,9 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 
 	@Autowired
 	private ContentServiceFactory contentServiceFactory;
+	
+	@Autowired
+	private ContentLabelServiceFactory labelServiceFacotry;
 
 	@Autowired
 	private UserServiceFactory userServiceFactory;
@@ -63,6 +68,8 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 
 				contentBasicinfoForApi.setNickName(ucUserinfoExt.getNickName());
 				
+				contentBasicinfoForApi.setTagName(initTagName(cnContentBasicinfo.getTagCode()));
+				
 				contentBasicinfoForApi.setPublishTimeStr("MM-dd HH:mm");
 				
 				ContentRecommInfo recommInfo = new ContentRecommInfo();
@@ -93,6 +100,34 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 
 		return contentDetailResult;
 
+	}
+	
+	/**
+	 * 初始化标签名称
+	 * @param tagCode
+	 * 		标签code
+	 * @return 标签名称
+	 */
+	public String initTagName(String tagCodes){
+		
+		String name = "";
+		
+		if(StringUtils.isNoneBlank(tagCodes)){
+			
+			List<String> codes = Arrays.asList(StringUtils.split(tagCodes, ","));
+			
+			List<String> tagNames = labelServiceFacotry.getContentLabelService().queryListByCodeIn(codes);
+			
+			if(tagNames != null && !tagNames.isEmpty()){
+				
+				name = StringUtils.join(tagNames, ",");
+				
+			}
+			
+		}
+		
+		return name;
+		
 	}
 
 }

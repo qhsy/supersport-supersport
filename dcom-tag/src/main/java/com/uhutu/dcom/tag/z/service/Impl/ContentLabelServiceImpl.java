@@ -38,4 +38,10 @@ public class ContentLabelServiceImpl implements IContentLabelService {
 		return contentLabelDaoFacotry.getContentLabelDao().querybyuserCode(userCode);
 	}
 
+	@Override
+	public List<String> queryListByCodeIn(List<String> codes) {
+		
+		return contentLabelDaoFacotry.getContentLabelDao().queryListByCodeIn(codes);
+	}
+
 }
