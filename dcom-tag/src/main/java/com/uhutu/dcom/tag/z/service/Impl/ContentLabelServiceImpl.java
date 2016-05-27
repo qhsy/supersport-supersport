@@ -1,8 +1,10 @@
 package com.uhutu.dcom.tag.z.service.Impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +38,23 @@ public class ContentLabelServiceImpl implements IContentLabelService {
 
 	public List<CnContentLabel> querybyuserCode(String userCode) {
 		return contentLabelDaoFacotry.getContentLabelDao().querybyuserCode(userCode);
+	}
+
+	@Override
+	public List<String> queryListByCodeIn(List<String> codes) {
+		
+		return contentLabelDaoFacotry.getContentLabelDao().queryListByCodeIn(codes);
+	}
+
+	@Override
+	public String initTagName(String tagCode) {
+
+		List<String> codes = Arrays.asList(StringUtils.split(tagCode, ","));
+
+		List<String> tagNames = queryListByCodeIn(codes);
+
+		return StringUtils.join(tagNames, ",");
+
 	}
 
 }

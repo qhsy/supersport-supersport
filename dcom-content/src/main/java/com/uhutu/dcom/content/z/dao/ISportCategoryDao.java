@@ -32,7 +32,7 @@ public interface ISportCategoryDao extends CrudRepository<SpSportCategory, Strin
 	 * 		编号
 	 * @return 运动分类列表
 	 */
-	@Query("select ci from SpSportCategory ci where ci.code in:codes")
-	public List<SpSportCategory> queryListByCodeIn(@Param("codes") List<String> codes);
+	@Query("select ci.name from SpSportCategory ci where ci.code in:codes")
+	public List<String> queryListByCodeIn(@Param("codes") List<String> codes);
 
 }

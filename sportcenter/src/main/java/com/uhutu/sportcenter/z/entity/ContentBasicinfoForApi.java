@@ -43,6 +43,9 @@ public class ContentBasicinfoForApi {
 
 	@ApiModelProperty(name = "标签编码")
 	private String tagCode;
+	
+	@ApiModelProperty(name = "标签名称",notes="多个以英文逗号分割")
+	private String tagName;
 
 	@ApiModelProperty(name = "内容作者")
 	private String author;
@@ -216,6 +219,14 @@ public class ContentBasicinfoForApi {
 			
 		}
 		
+	}
+
+	public String getTagName() {
+		return tagName;
+	}
+
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
 	}
 
 }

@@ -12,6 +12,7 @@ import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentBasicinfoServiceFactory;
+import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
@@ -33,6 +34,9 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 
 	@Autowired
 	private UserServiceFactory userServiceFactory;
+	
+	@Autowired
+	private ContentLabelServiceFactory labelServiceFactory;
 
 	protected ApiSportingMomentsResult process(ApiSportingMomentsInput input) {
 
@@ -67,6 +71,8 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 				sportingMoment.setAboutHead(ucUserinfoExt.getAboutHead());
 
 				sportingMoment.setNickName(ucUserinfoExt.getNickName());
+				
+				sportingMoment.setTagName(labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
 
 				sports.add(sportingMoment);
 

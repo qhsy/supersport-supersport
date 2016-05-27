@@ -33,4 +33,21 @@ public interface IContentLabelService {
 	 * @return 标签信息
 	 */
 	public List<CnContentLabel> queryAll();
+	
+	/**
+	 * 查询名称列表
+	 * @param codes
+	 * 		代码集合
+	 * @return
+	 */
+	public List<String> queryListByCodeIn(List<String> codes);
+	
+	/**
+	 * 初始化标签名称
+	 * @param tagCode
+	 * 		标签代码
+	 * @return 标签名称
+	 */
+	public String initTagName(String tagCode);
+	
 }

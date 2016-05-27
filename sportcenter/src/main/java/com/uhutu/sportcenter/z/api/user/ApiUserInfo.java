@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
-import com.uhutu.dcom.content.z.entity.SpSportCategory;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
@@ -86,7 +85,7 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 					
 					List<String> codes = Arrays.asList(StringUtils.split(apiUserInfo.getAboutTag(), ","));
 					
-					List<SpSportCategory> sportCategories = serviceFactory.getSportCategoryService().queryListByCodeIn(codes);
+					List<String> sportCategories = serviceFactory.getSportCategoryService().queryListByCodeIn(codes);
 					
 					apiUserInfo.setAboutTagName(convertCatoryNames(sportCategories));
 					
@@ -179,17 +178,9 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 	 * 		根据分类集合获取分类名称
 	 * @return 分类名称
 	 */
-	public String convertCatoryNames(List<SpSportCategory> sportCategories){
+	public String convertCatoryNames(List<String> sportCategories){
 		
-		String name = "";
-		
-		if(sportCategories != null){
-			
-			name = StringUtils.join(sportCategories,",");
-			
-		}
-		
-		return name;
+		return StringUtils.join(sportCategories,",");
 		
 	}
 	

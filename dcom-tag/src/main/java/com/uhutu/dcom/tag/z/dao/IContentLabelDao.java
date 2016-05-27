@@ -33,4 +33,13 @@ public interface IContentLabelDao extends CrudRepository<CnContentLabel, String>
 	 */
 	@Query("select cc from CnContentLabel cc where 1=1")
 	public List<CnContentLabel> queryAll();
+	
+	/**
+	 * 根据编号查询标签信息
+	 * @param code
+	 * 		编号
+	 * @return 内容标签列表
+	 */
+	@Query("select ci.name from CnContentLabel ci where ci.code in:codes")
+	public List<String> queryListByCodeIn(@Param("codes") List<String> codes);
 }

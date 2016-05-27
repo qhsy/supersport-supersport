@@ -9,6 +9,7 @@ import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
+import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
@@ -29,6 +30,9 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 
 	@Autowired
 	private ContentServiceFactory contentServiceFactory;
+	
+	@Autowired
+	private ContentLabelServiceFactory labelServiceFacotry;
 
 	@Autowired
 	private UserServiceFactory userServiceFactory;
@@ -62,6 +66,8 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 				contentBasicinfoForApi.setAboutHead(ucUserinfoExt.getAboutHead());
 
 				contentBasicinfoForApi.setNickName(ucUserinfoExt.getNickName());
+				
+				contentBasicinfoForApi.setTagName(labelServiceFacotry.getContentLabelService().initTagName(cnContentBasicinfo.getTagCode()));
 				
 				contentBasicinfoForApi.setPublishTimeStr("MM-dd HH:mm");
 				
