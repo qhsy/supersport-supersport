@@ -1,7 +1,5 @@
 package com.uhutu.dcom.user.z.page.vo;
 
-import javax.persistence.Entity;
-
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 

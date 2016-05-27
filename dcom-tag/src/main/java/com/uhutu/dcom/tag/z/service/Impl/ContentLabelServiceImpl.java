@@ -52,10 +52,18 @@ public class ContentLabelServiceImpl implements IContentLabelService {
 		tagCode = StringUtils.defaultString(tagCode);
 
 		List<String> codes = Arrays.asList(StringUtils.split(tagCode, ","));
+		
+		String name = "";
+		
+		if(!codes.isEmpty()){
+			
+			List<String> tagNames = queryListByCodeIn(codes);
+			
+			name = StringUtils.join(tagNames, ",");
+			
+		}
 
-		List<String> tagNames = queryListByCodeIn(codes);
-
-		return StringUtils.join(tagNames, ",");
+		return name;
 
 	}
 

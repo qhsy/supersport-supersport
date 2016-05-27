@@ -85,9 +85,13 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 					
 					List<String> codes = Arrays.asList(StringUtils.split(apiUserInfo.getAboutTag(), ","));
 					
-					List<String> sportCategories = serviceFactory.getSportCategoryService().queryListByCodeIn(codes);
-					
-					apiUserInfo.setAboutTagName(convertCatoryNames(sportCategories));
+					if(!codes.isEmpty()){
+						
+						List<String> sportCategories = serviceFactory.getSportCategoryService().queryListByCodeIn(codes);
+						
+						apiUserInfo.setAboutTagName(convertCatoryNames(sportCategories));
+						
+					}
 					
 				}
 
