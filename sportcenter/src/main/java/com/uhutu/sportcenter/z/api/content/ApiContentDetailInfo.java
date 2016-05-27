@@ -1,11 +1,10 @@
 package com.uhutu.sportcenter.z.api.content;
 
-import java.util.Arrays;
-import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
@@ -68,7 +67,7 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 
 				contentBasicinfoForApi.setNickName(ucUserinfoExt.getNickName());
 				
-				contentBasicinfoForApi.setTagName(initTagName(cnContentBasicinfo.getTagCode()));
+				contentBasicinfoForApi.setTagName(labelServiceFacotry.getContentLabelService().initTagName(cnContentBasicinfo.getTagCode()));
 				
 				contentBasicinfoForApi.setPublishTimeStr("MM-dd HH:mm");
 				
@@ -99,22 +98,6 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 		}
 
 		return contentDetailResult;
-
-	}
-	
-	/**
-	 * 初始化标签名称
-	 * @param tagCode
-	 * 		标签code
-	 * @return 标签名称
-	 */
-	public String initTagName(String tagCodes) {
-
-		List<String> codes = Arrays.asList(StringUtils.split(tagCodes, ","));
-
-		List<String> tagNames = labelServiceFacotry.getContentLabelService().queryListByCodeIn(codes);
-
-		return StringUtils.join(tagNames, ",");
 
 	}
 

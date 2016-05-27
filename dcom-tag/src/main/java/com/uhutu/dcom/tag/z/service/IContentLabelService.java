@@ -41,4 +41,13 @@ public interface IContentLabelService {
 	 * @return
 	 */
 	public List<String> queryListByCodeIn(List<String> codes);
+	
+	/**
+	 * 初始化标签名称
+	 * @param tagCode
+	 * 		标签代码
+	 * @return 标签名称
+	 */
+	public String initTagName(String tagCode);
+	
 }
