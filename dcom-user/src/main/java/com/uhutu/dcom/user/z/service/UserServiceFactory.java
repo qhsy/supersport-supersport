@@ -45,6 +45,9 @@ public class UserServiceFactory {
 	@Autowired
 	private IMsgAdviceService msgAdviceService;
 	
+	@Autowired
+	private IAppVersionService appVersionService;
+	
 	/**
 	 * 获取用户业务实现
 	 * 
@@ -115,6 +118,10 @@ public class UserServiceFactory {
 
 	public IMsgAdviceService getMsgAdviceService() {
 		return msgAdviceService;
+	}
+
+	public IAppVersionService getAppVersionService() {
+		return appVersionService;
 	}
 
 }

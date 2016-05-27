@@ -44,6 +44,9 @@ public class UserDaoFacotry {
 	
 	@Autowired
 	private IMsgAdviceDao msgAdviceDao;
+	
+	@Autowired
+	private IAppVersionDao appVersionDao;
 
 	/**
 	 * 用户信息数据访问
@@ -124,6 +127,10 @@ public class UserDaoFacotry {
 
 	public IMsgAdviceDao getMsgAdviceDao() {
 		return msgAdviceDao;
+	}
+
+	public IAppVersionDao getAppVersionDao() {
+		return appVersionDao;
 	}
 
 }
