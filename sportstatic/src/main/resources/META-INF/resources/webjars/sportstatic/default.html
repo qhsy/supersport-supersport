@@ -54,9 +54,9 @@
 				$('.details-photo').attr('id',data.sportingMoment.author).html('<img src="' + data.sportingMoment.aboutHead + '" />')
 				$('.details-name').html(data.sportingMoment.nickName);
 				$('.details-article').html(data.contentDetailInfo.content);
-				$('.details-tag span').html(data.sportingMoment.tagCode.replace(/\,/g, '<i></i>'));
+				$('.details-tag span').html(data.sportingMoment.tagName.replace(/\,/g, '<i></i>'));
 				$('body').removeClass('ms-controller');
-				if(data.sportingMoment.contentType == '02'){
+				if(data.sportingMoment.contentType == 'dzsd4107100110030002'){
 					InitPlayer(data.contentDetailInfo.videoUrl, data.contentDetailInfo.videoCover);
 				}
 			},
@@ -69,7 +69,6 @@
 		});
 		$('.details-photo').on('click',function(){
 			var id = $(this).attr('id');
-			console.log(id)
 			callbackFunc(id);
 		});
 	});

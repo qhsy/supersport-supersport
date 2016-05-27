@@ -81,7 +81,7 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 
 				BeanUtils.copyProperties(ucUserinfoExt, apiUserInfo);
 				
-				if(apiUserInfo != null){
+				if(apiUserInfo != null && StringUtils.isNotEmpty(apiUserInfo.getAboutTag())){
 					
 					List<String> codes = Arrays.asList(StringUtils.split(apiUserInfo.getAboutTag(), ","));
 					

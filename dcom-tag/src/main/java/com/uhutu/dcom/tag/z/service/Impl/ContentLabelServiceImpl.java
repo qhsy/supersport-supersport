@@ -48,6 +48,8 @@ public class ContentLabelServiceImpl implements IContentLabelService {
 
 	@Override
 	public String initTagName(String tagCode) {
+		
+		tagCode = StringUtils.defaultString(tagCode);
 
 		List<String> codes = Arrays.asList(StringUtils.split(tagCode, ","));
 
