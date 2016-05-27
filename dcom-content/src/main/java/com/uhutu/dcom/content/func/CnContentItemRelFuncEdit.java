@@ -6,6 +6,7 @@ import com.uhutu.dcom.content.z.entity.CnAdvertiseInfo;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentItem;
 import com.uhutu.dcom.content.z.entity.CnContentItemRel;
+import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
@@ -21,6 +22,11 @@ public class CnContentItemRelFuncEdit extends RootFunc {
 	public WebOperateResult process(WebPageModel webPageModel, ExtendPageDefine extendPageDefine,
 			WebOperateInput input) {
 		WebOperateResult result = new WebOperateResult();
+		if (input.getDataMap().get("start_time").equals(input.getDataMap().get("end_time"))
+				|| DateHelper.parseDate(input.getDataMap().get("start_time"))
+						.after(DateHelper.parseDate(input.getDataMap().get("end_time")))) {
+			result.inError(810710004);
+		}
 		CnContentItem item = JdbcHelper.queryOne(CnContentItem.class, "code", input.getDataMap().get("item_code"));
 		CnContentBasicinfo binfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
 				input.getDataMap().get("content_code"));

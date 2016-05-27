@@ -17,7 +17,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class CnContentItemRel extends BaseEntity {
 
-	@ZooData(name = "栏目名称", element = DefineWebElement.Model, inc = {
+	@ZooData(name = "栏目名称", require = "1", element = DefineWebElement.Model, inc = {
 			DefineWebInc.Web_Component + "=dzcw410710010005" })
 	private String itemCode;
 
@@ -26,7 +26,7 @@ public class CnContentItemRel extends BaseEntity {
 					DefineWebInc.System_Define + "=dzsd410710011006" })
 	private String itemType;
 
-	@ZooData(name = "内容标题", element = DefineWebElement.Model, inc = {
+	@ZooData(name = "内容标题", require = "1", element = DefineWebElement.Model, inc = {
 			DefineWebInc.Web_Component + "=dzcw410710010002" })
 	private String contentCode;
 
