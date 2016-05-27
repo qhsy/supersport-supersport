@@ -50,7 +50,7 @@
 				}
 				$('.head').attr('src',data.sportingMoment.cover)
 				$('.details-hgroup h1').html(data.sportingMoment.title);
-				$('.details-hgroup time').html(data.sportingMoment.publishTime);
+				$('.details-hgroup time').html(data.sportingMoment.publishTimeStr);
 				$('.details-photo').attr('id',data.sportingMoment.author).html('<img src="' + data.sportingMoment.aboutHead + '" />')
 				$('.details-name').html(data.sportingMoment.nickName);
 				$('.details-article').html(data.contentDetailInfo.content);
