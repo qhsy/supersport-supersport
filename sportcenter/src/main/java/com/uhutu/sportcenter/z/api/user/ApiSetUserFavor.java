@@ -38,7 +38,7 @@ public class ApiSetUserFavor extends RootUserToken<ApiSetUserFavoerInput, ApiSet
 
 		} else {
 
-			userBasicInfo.getUcUserinfoExt().setAboutTag(input.getCatagoryCodes());
+			userBasicInfo.getUcUserinfoExt().setDomain(input.getCatagoryCodes());
 
 			userServiceFactory.getUserInfoExtService().save(userBasicInfo.getUcUserinfoExt());
 

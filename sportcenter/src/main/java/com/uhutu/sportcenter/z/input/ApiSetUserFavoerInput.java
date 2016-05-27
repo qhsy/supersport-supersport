@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class ApiSetUserFavoerInput extends RootApiInput {
 	
-	@ApiModelProperty(value="运动分类集合" , example="以|分割 例如：002|003|004")
+	@ApiModelProperty(value="运动分类集合" , example="以英文逗号分割 例如：002,003,004")
 	private String catagoryCodes;
 
 	/**
