@@ -34,6 +34,10 @@
 			operateFunc="com.uhutu.dcom.content.func.ContentItemPageFuncEdit" operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071009" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.CnContentDetailFuncAdd" operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
