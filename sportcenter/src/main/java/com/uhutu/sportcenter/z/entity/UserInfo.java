@@ -63,6 +63,9 @@ public class UserInfo {
 	@ApiModelProperty(value="关注数量",notes="关注数量")
 	private int attendNum;
 	
+	@ApiModelProperty(value="喜欢数量",notes="喜欢数量")
+	private int favorNum;
+	
 
 	public String getUserCode() {
 		return userCode;
@@ -206,6 +209,14 @@ public class UserInfo {
 
 	public void setAboutTagName(String aboutTagName) {
 		this.aboutTagName = aboutTagName;
+	}
+
+	public int getFavorNum() {
+		return favorNum;
+	}
+
+	public void setFavorNum(int favorNum) {
+		this.favorNum = favorNum;
 	}
 	
 

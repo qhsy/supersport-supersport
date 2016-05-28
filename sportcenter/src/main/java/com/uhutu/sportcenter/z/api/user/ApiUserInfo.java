@@ -170,9 +170,13 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 		
 		int attendNum = userServiceFactory.getAttentionInfoService().queryAttendCount(userInfo.getUserCode(), MsgEnum.ATTEND.getCode());
 		
+		int favorNum = serviceFactory.getSupportPraiseService().favored(ContentEnum.FAVOR_TYPE_LIKE.getCode(), userInfo.getUserCode());
+		
 		userInfo.setFansNum(fansNum);
 		
 		userInfo.setAttendNum(attendNum);
+		
+		userInfo.setFavorNum(favorNum);
 		
 	}
 	

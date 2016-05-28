@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.uhutu.dcom.content.z.dao.ContentDaoFactory;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
+import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ISupportPraiseService;
 
 /**
@@ -93,6 +94,14 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 	public CnSupportPraise query(String contentCode, String userCode, String type) {
 		
 		return daoFacotry.getSupportPraiseDao().query(contentCode, userCode, type);
+		
+	}
+
+
+	@Override
+	public int favored(String type, String userCode) {
+		
+		return daoFacotry.getSupportPraiseDao().favored(type, userCode,ContentEnum.FAVOR_STATUS_YES.getCode());
 		
 	}
 

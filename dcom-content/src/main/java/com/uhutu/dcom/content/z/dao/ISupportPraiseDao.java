@@ -103,6 +103,9 @@ public interface ISupportPraiseDao extends CrudRepository<CnSupportPraise, Strin
 	@Query("select count(1) from CnSupportPraise cp where cp.contentCode=:contentCode")
 	public int queryCountByCode(@Param("contentCode") String contentCode);
 	
+	@Query("select t from CnSupportPraise t where t.type=:type and t.contentCode=:contentCode and t.userCode=:userCode")
+	public CnSupportPraise query(@Param("contentCode") String contentCode,@Param("userCode") String userCode,@Param("type") String type);
+	
 	/**
 	 * 点赞过
 	 * 
@@ -115,12 +118,7 @@ public interface ISupportPraiseDao extends CrudRepository<CnSupportPraise, Strin
 	 * @return 标签信息
 	 */
 	
-	@Query("select count(1) from CnSupportPraise cp where cp.type=:type and cp.userCode=:userCode and cp.contentCode=:contentCode")
-	public int favored(@Param("type") String type,
-			@Param("userCode") String userCode, @Param("contentCode") String contentCode);
-	
-	@Query("select t from CnSupportPraise t where t.type=:type and t.contentCode=:contentCode and t.userCode=:userCode")
-	public CnSupportPraise query(@Param("contentCode") String contentCode,@Param("userCode") String userCode,@Param("type") String type);
-	
+	@Query("select count(1) from CnSupportPraise cp where cp.type=:type and cp.userCode=:userCode and status=:status")
+	public int favored(@Param("type") String type, @Param("userCode") String userCode,@Param("status") String status);
 	
 }
