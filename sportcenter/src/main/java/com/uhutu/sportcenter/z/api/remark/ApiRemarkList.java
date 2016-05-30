@@ -53,9 +53,9 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 			
 		}
 		
-		List<ContentReplyInfo> remarkInfos = new ArrayList<ContentReplyInfo>();
+		remarkListResult.setTotal(remarkPage.getTotalElements());
 		
-		
+		List<ContentReplyInfo> remarkInfos = new ArrayList<ContentReplyInfo>();		
 		
 		remarkPage.getContent().forEach(remark -> {
 			

@@ -20,6 +20,9 @@ public class ApiRemarkListResult extends RootApiResult {
 	
 	@ApiModelProperty(value="是否还有下一页")
 	private boolean nextflag = false;
+	
+	@ApiModelProperty(value="总数")
+	private long total;
 
 	public List<ContentReplyInfo> getContentRemarkInfo() {
 		return contentRemarkInfo;
@@ -35,6 +38,14 @@ public class ApiRemarkListResult extends RootApiResult {
 
 	public void setNextflag(boolean nextflag) {
 		this.nextflag = nextflag;
+	}
+
+	public long getTotal() {
+		return total;
+	}
+
+	public void setTotal(long total) {
+		this.total = total;
 	}
 
 }
