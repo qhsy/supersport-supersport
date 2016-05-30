@@ -38,7 +38,13 @@ public enum UserEnum {
 	OPER_OWN("自身","own"),
 	
 	/**其他用户*/
-	OPER_OTHER("其他用户","other");	
+	OPER_OTHER("其他用户","other"),
+	
+	/**操作普通用户*/
+	OPER_CUSTOM("普通用户","custom"),
+	
+	/**操作社交用户*/
+	OPER_SOCIAL("社交类用户","social");	
 	
 	private String code = "";
 	

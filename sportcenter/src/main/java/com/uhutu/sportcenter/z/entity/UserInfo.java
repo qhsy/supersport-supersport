@@ -66,6 +66,9 @@ public class UserInfo {
 	@ApiModelProperty(value="喜欢数量",notes="喜欢数量")
 	private int favorNum;
 	
+	@ApiModelProperty(value="用户操作标识",notes="社交类用户:social,普通用户:custom")
+	private String socialFlag;
+	
 
 	public String getUserCode() {
 		return userCode;
@@ -217,6 +220,14 @@ public class UserInfo {
 
 	public void setFavorNum(int favorNum) {
 		this.favorNum = favorNum;
+	}
+
+	public String getSocialFlag() {
+		return socialFlag;
+	}
+
+	public void setSocialFlag(String socialFlag) {
+		this.socialFlag = socialFlag;
 	}
 	
 

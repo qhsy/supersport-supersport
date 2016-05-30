@@ -16,6 +16,7 @@ import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
+import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
 import com.uhutu.dcom.user.z.enums.MsgEnum;
 import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
@@ -143,6 +144,11 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 		apiUserInfo.setSportsNum(tempVal.intValue());
 		
 		initFansNum(apiUserInfo);
+		
+		/*初始化用户操作标识*/
+		String socialFlag = initSocialFlag(apiUserInfo.getUserCode());
+		
+		apiUserInfo.setSocialFlag(socialFlag);
 
 		userInfoResult.setUserInfo(apiUserInfo);
 		
@@ -189,6 +195,32 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 	public String convertCatoryNames(List<String> sportCategories){
 		
 		return StringUtils.join(sportCategories,",");
+		
+	}
+	
+	/**
+	 * 初始化操作标识
+	 * @param userCode
+	 * 		用户编号
+	 * @return 操作标识
+	 */
+	public String initSocialFlag(String userCode){
+		
+		String social = ""; 
+		
+		UcUserinfoSocial ucUserinfoSocial = userServiceFactory.getUserInfoSocialService().queryByUserCode(userCode);
+		
+		if(ucUserinfoSocial != null){
+			
+			social = UserEnum.OPER_SOCIAL.getCode();
+			
+		}else{
+			
+			social = UserEnum.OPER_CUSTOM.getCode();
+			
+		}
+		
+		return social;
 		
 	}
 	
