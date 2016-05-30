@@ -1,6 +1,7 @@
 package com.uhutu.dcom.user.z.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,13 @@ public class MsgNoticeServiceImpl implements IMsgNoticeService {
 	public UcMsgNotice queryByCode(String code) {
 		
 		return userDaoFacotry.getMsgNoticeDao().queryByCode(code);
+	}
+
+	@Override
+	public List<UcMsgNotice> queryUnReadMsgList(String userCode) {
+		
+		return userDaoFacotry.getMsgNoticeDao().queryUnReadMsgList(userCode);
+		
 	}
 
 }

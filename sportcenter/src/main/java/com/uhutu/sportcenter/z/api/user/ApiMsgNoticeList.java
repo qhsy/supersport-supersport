@@ -1,6 +1,9 @@
 package com.uhutu.sportcenter.z.api.user;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -8,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.entity.UcMsgNotice;
 import com.uhutu.dcom.user.z.entity.UcMsgNoticeUser;
+import com.uhutu.dcom.user.z.enums.MsgEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.MsgNoticeInfo;
 import com.uhutu.sportcenter.z.input.ApiMsgNoticeListInput;
@@ -32,6 +36,8 @@ public class ApiMsgNoticeList extends RootApiToken<ApiMsgNoticeListInput, ApiMsg
 		
 		String userCode = upUserCode();
 		
+		saveMsgNotice(userCode);
+		
 		QueryConditions conditions = new QueryConditions();
 		
 		conditions.setConditionEqual("userCode", userCode);
@@ -55,6 +61,34 @@ public class ApiMsgNoticeList extends RootApiToken<ApiMsgNoticeListInput, ApiMsg
 		});
 		
 		return result;
+	}
+	
+	public void saveMsgNotice(String userCode){
+		
+		List<UcMsgNotice> msgNotices = userServiceFactory.getMsgNoticeService().queryUnReadMsgList(userCode);
+		
+		List<UcMsgNoticeUser> msgNoticeUsers = new ArrayList<UcMsgNoticeUser>();
+		
+		if(msgNotices != null){
+			
+			msgNotices.forEach(msgNotice ->{
+				
+				UcMsgNoticeUser ucMsgNoticeUser = new UcMsgNoticeUser();
+				
+				ucMsgNoticeUser.setNoticeCode(msgNotice.getCode());
+				
+				ucMsgNoticeUser.setUserCode(userCode);
+				
+				ucMsgNoticeUser.setStatus(MsgEnum.FLAG_READ.getCode());
+				
+				ucMsgNoticeUser.setZc(new Date());
+				
+			});
+			
+			userServiceFactory.getMsgNoticeUserService().save(msgNoticeUsers);
+			
+		}
+		
 	}
 
 }

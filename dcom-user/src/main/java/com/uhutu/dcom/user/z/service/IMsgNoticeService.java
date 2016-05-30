@@ -1,5 +1,7 @@
 package com.uhutu.dcom.user.z.service;
 
+import java.util.List;
+
 import com.uhutu.dcom.user.z.entity.UcMsgNotice;
 
 /**
@@ -22,5 +24,13 @@ public interface IMsgNoticeService {
 	 * @return 消息通知
 	 */
 	public UcMsgNotice queryByCode(String code);
+	
+	/**
+	 * 查询未读消息列表
+	 * @param userCode
+	 * 		用户编号
+	 * @return 未读消息数量
+	 */
+	public List<UcMsgNotice> queryUnReadMsgList(String userCode);
 
 }
