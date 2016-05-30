@@ -1,5 +1,6 @@
 package com.uhutu.sportcenter.z.result;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.uhutu.sportcenter.z.entity.ContentReplyInfo;
@@ -17,7 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class ApiMsgRemarkResult extends RootApiResult {
 	
 	@ApiModelProperty(value="评论信息")
-	private List<ContentReplyInfo> contentRemarkInfo;
+	private List<ContentReplyInfo> contentRemarkInfo = new ArrayList<ContentReplyInfo>();
 	
 	@ApiModelProperty(value="是否还有下一页")
 	private boolean nextflag = false;
