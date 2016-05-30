@@ -58,6 +58,8 @@ public class ApiSupportPraise extends RootApiToken<ApiSupportPraiseInput, ApiSup
 		}
 		
 		contentServiceFactory.getSupportPraiseService().save(praise);
+		
+		saveMsgPraise(praise);
 
 		return result;
 	}
