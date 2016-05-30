@@ -55,7 +55,7 @@ public class CnContentBasicinfo extends BaseEntity {
 	private String author;
 
 	@ZooData(name = "发布时间", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0",
-			DefineWebPage.Page_Grid + "=0", DefineWebPage.Page_Add + "=0" })
+			DefineWebPage.Page_Add + "=0" })
 	private Date publishTime;
 
 	@ZooData(name = "内容是否公开", element = DefineWebElement.Select, inc = {
