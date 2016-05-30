@@ -73,6 +73,8 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 				sportingMoment.setNickName(ucUserinfoExt.getNickName());
 				
 				sportingMoment.setTagName(labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
+				
+				sportingMoment.setPublishTimeStr("MM-dd HH:mm");
 
 				sports.add(sportingMoment);
 
