@@ -60,7 +60,7 @@ public class ApiMsgRemarkList extends RootApiToken<ApiMsgRemarkListInput, ApiMsg
 			
 			if(StringUtils.isNotBlank(msgRemark.getRemarkParentCode())){
 				
-				CnContentRemark parentRemarkInfo = serviceFactory.getContentRemarkService().queryByCode(msgRemark.getRemarkCode());
+				CnContentRemark parentRemarkInfo = serviceFactory.getContentRemarkService().queryByCode(msgRemark.getRemarkParentCode());
 				
 				contentReplyInfo.setRefReplyInfo(initRemarkInfo(parentRemarkInfo));
 				

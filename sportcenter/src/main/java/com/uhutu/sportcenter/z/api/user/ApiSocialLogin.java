@@ -48,6 +48,8 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 		    
 		    saveSocialInfo(userRegResult.getUserCode(), inputParam);
 		    
+		    result.setFirstLogin(true);
+		    
 		    result.setUserToken(userRegResult.getToken());
 	    	
 	    }else{
@@ -57,6 +59,8 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 	    	
 	    	String token = userCallFactory.upAuthCode(ucUserinfo.getLoginCode(), 
 	    			ucUserinfo.getCode(), DefineUser.Login_System_Default);
+	    	
+	    	result.setFirstLogin(false);
 	    	
 	    	result.setUserToken(token);
 	    	
