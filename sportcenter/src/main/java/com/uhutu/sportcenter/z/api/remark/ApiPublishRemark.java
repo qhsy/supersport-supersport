@@ -66,6 +66,8 @@ public class ApiPublishRemark extends RootApiToken<ApiPublishRemarkInput, ApiPub
 		
 		servieFactory.getContentRemarkService().save(cnContentRemark);
 		
+		saveMsgRemarkInfo(cnContentRemark);
+		
 		return remarkResult;
 		
 	}
