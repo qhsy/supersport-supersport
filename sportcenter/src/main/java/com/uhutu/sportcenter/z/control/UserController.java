@@ -14,6 +14,7 @@ import com.uhutu.sportcenter.z.input.ApiForLoginInput;
 import com.uhutu.sportcenter.z.input.ApiLoginOutInput;
 import com.uhutu.sportcenter.z.input.ApiSendSmsInput;
 import com.uhutu.sportcenter.z.input.ApiSetUserFavoerInput;
+import com.uhutu.sportcenter.z.input.ApiShareContentInput;
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiUserInfoInput;
@@ -26,6 +27,7 @@ import com.uhutu.sportcenter.z.result.ApiForLoginResult;
 import com.uhutu.sportcenter.z.result.ApiLoginOutResult;
 import com.uhutu.sportcenter.z.result.ApiSendSmsResult;
 import com.uhutu.sportcenter.z.result.ApiSetUserFavorResult;
+import com.uhutu.sportcenter.z.result.ApiShareContentResult;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult;
 import com.uhutu.sportcenter.z.result.ApiUpdateUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiUserInfoResult;
@@ -146,6 +148,15 @@ public class UserController {
 	public ApiUpdateUserInfoResult updateUserInfo(@RequestBody ApiUpdateUserInfoInput input) {
 
 		return apiFactory.getApiUpdateUserInfo().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/shareContent", method = RequestMethod.POST)
+	@ApiOperation(value = "分享内容", notes = "用户相关")
+	public ApiShareContentResult shareContent(@RequestBody ApiShareContentInput input) {
+
+		return apiFactory.getApiShareContent().api(input);
 
 	}
 	
