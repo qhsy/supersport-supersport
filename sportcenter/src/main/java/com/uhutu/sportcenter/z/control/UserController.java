@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.APiStartPageInput;
+import com.uhutu.sportcenter.z.input.ApiAttendListInput;
+import com.uhutu.sportcenter.z.input.ApiFansListInput;
 import com.uhutu.sportcenter.z.input.ApiForAttentionInput;
 import com.uhutu.sportcenter.z.input.ApiForLoginInput;
 import com.uhutu.sportcenter.z.input.ApiLoginOutInput;
@@ -22,6 +24,8 @@ import com.uhutu.sportcenter.z.input.ApiUserRegInput;
 import com.uhutu.sportcenter.z.input.ApiUserResetPwdInput;
 import com.uhutu.sportcenter.z.input.ApiVersionInfoInput;
 import com.uhutu.sportcenter.z.result.APiStartPageResult;
+import com.uhutu.sportcenter.z.result.ApiAttendListResult;
+import com.uhutu.sportcenter.z.result.ApiFansListResult;
 import com.uhutu.sportcenter.z.result.ApiForAttentionResult;
 import com.uhutu.sportcenter.z.result.ApiForLoginResult;
 import com.uhutu.sportcenter.z.result.ApiLoginOutResult;
@@ -144,7 +148,7 @@ public class UserController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
-	@ApiOperation(value = "关注它人", notes = "关注它人信息")
+	@ApiOperation(value = "用户信息更新", notes = "用户相关")
 	public ApiUpdateUserInfoResult updateUserInfo(@RequestBody ApiUpdateUserInfoInput input) {
 
 		return apiFactory.getApiUpdateUserInfo().api(input);
@@ -157,6 +161,24 @@ public class UserController {
 	public ApiShareContentResult shareContent(@RequestBody ApiShareContentInput input) {
 
 		return apiFactory.getApiShareContent().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/attendList", method = RequestMethod.POST)
+	@ApiOperation(value = "关注列表", notes = "用户相关")
+	public ApiAttendListResult shareContent(@RequestBody ApiAttendListInput input) {
+
+		return apiFactory.getApiAttendList().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/fansList", method = RequestMethod.POST)
+	@ApiOperation(value = "粉丝列表", notes = "用户相关")
+	public ApiFansListResult shareContent(@RequestBody ApiFansListInput input) {
+
+		return apiFactory.getApiFansList().api(input);
 
 	}
 	

@@ -34,6 +34,7 @@ public class ApiForAttention extends RootApiToken<ApiForAttentionInput, ApiForAt
 			attentionInfo.setAttention(inputParam.getZoo().getToken().trim());
 			attentionInfo.setBeAttention(inputParam.getUserCode());
 			attentionInfo.setStatus(inputParam.getFlag());
+			attentionInfo.setZc(new Date());
 			userServiceFactory.getAttentionInfoService().save(attentionInfo);
 			saveMsgAttend(attentionInfo);
 		}else if(info!=null&&!info.getStatus().equals(inputParam.getFlag())) {

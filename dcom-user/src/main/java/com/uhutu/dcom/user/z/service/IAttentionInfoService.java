@@ -2,6 +2,9 @@ package com.uhutu.dcom.user.z.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
+import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
 
 /**
@@ -67,4 +70,16 @@ public interface IAttentionInfoService {
 	 * @return 关注数量
 	 */
 	public int queryAttendCount(String userCode,String status);
+	
+	/**
+	 * 根据查询条件查询分页信息
+	 * @param pageNum
+	 * 		页码
+	 * @param limit
+	 * 		每页展示数量
+	 * @param conditions
+	 * 		查询条件
+	 * @return 页面数据
+	 */
+	public Page<UcAttentionInfo> queryPageByCondition(int pageNum, int limit,QueryConditions conditions);
 }

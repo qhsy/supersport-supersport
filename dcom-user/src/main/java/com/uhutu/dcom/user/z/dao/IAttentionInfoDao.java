@@ -2,8 +2,9 @@ package com.uhutu.dcom.user.z.dao;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
@@ -14,7 +15,7 @@ import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
  * @author xiegj
  *
  */
-public interface IAttentionInfoDao extends CrudRepository<UcAttentionInfo, String> {
+public interface IAttentionInfoDao extends JpaRepository<UcAttentionInfo, String>,JpaSpecificationExecutor<UcAttentionInfo> {
 	/**
 	 * 我关注的人
 	 * 
