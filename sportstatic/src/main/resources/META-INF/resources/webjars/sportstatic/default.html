@@ -53,7 +53,7 @@
 				$('.details-hgroup time').html(data.sportingMoment.publishTimeStr);
 				$('.details-photo').attr('id',data.sportingMoment.author).html('<img src="' + data.sportingMoment.aboutHead + '" />')
 				$('.details-name').html(data.sportingMoment.nickName);
-				$('.details-article').html(data.contentDetailInfo.content.replace(/godovideobingo/gi, '<span style="display: block;" id="prismPlayer" class="prism-player"></span>'));
+				$('.details-article').html(data.contentDetailInfo.content.replace('[godovideobingo]', '<span style="display: block;" id="prismPlayer" class="prism-player"></span>'));
 				if(data.sportingMoment.tagName == ''){
 					$('.details-tag').remove();
 				}
@@ -182,7 +182,7 @@
 				window.location.replace("");
 			}else{
 				openclient({
-					scheme: '',
+					scheme: 'godosports://',
 					download: ''
 				});
 			}
