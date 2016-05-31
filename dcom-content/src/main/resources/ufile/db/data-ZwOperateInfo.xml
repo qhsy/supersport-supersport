@@ -59,6 +59,14 @@
 			operateFunc="" operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_AdvertiseDetailPage?u_code=[[data:code]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071015" operateName="维护内容"
+			operateFunc="" operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_ContentItemRelPage?u_itemCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071016" operateName="添加内容"
+			operateFunc="" operateType="button"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_ContentItemRelPage?u_itemCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
