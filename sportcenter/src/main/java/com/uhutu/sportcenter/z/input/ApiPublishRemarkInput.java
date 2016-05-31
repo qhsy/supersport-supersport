@@ -1,5 +1,8 @@
 package com.uhutu.sportcenter.z.input;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.Base64Utils;
+
 import com.uhutu.zoocom.root.RootApiInput;
 
 import io.swagger.annotations.ApiModel;
@@ -31,11 +34,31 @@ public class ApiPublishRemarkInput extends RootApiInput {
 	}
 
 	public String getRemark() {
+		
+		if(StringUtils.isNotEmpty(remark)){
+			
+			byte[] decodeByte = Base64Utils.decode(remark.getBytes());
+			
+			remark = new String(decodeByte);
+			
+		}
+		
 		return remark;
 	}
 
 	public void setRemark(String remark) {
-		this.remark = remark;
+		
+		String encodeStr = "";
+		
+		if(StringUtils.isNotEmpty(remark)){
+			
+			byte[] encodeByte = Base64Utils.encode(remark.getBytes());
+			
+			encodeStr = new String(encodeByte);
+			
+		}
+		
+		this.remark = encodeStr;
 	}
 
 	public String getParentCode() {
