@@ -2,6 +2,9 @@ package com.uhutu.dcom.content.z.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
+import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 
 /**
@@ -136,5 +139,17 @@ public interface ISupportPraiseService {
 	 * @return 标签信息
 	 */
 	public int favored(String type, String userCode);
+	
+	/**
+	 * 根据条件查询分页信息
+	 * @param pageNum
+	 * 		页码
+	 * @param limit
+	 * 		每页展示数量
+	 * @param conditions
+	 * 		查询那条件
+	 * @return 分页信息
+	 */
+	public Page<CnSupportPraise> queryPageByCondition(int pageNum, int limit, QueryConditions conditions);
 	
 }

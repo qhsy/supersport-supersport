@@ -1,12 +1,11 @@
 package com.uhutu.dcom.content.z.dao;
 
 import java.util.List;
-
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 
 /**
@@ -15,7 +14,7 @@ import com.uhutu.dcom.content.z.entity.CnSupportPraise;
  * @author xiegj
  *
  */
-public interface ISupportPraiseDao extends CrudRepository<CnSupportPraise, String> {
+public interface ISupportPraiseDao extends JpaRepository<CnSupportPraise, String>,JpaSpecificationExecutor<CnSupportPraise> {
 
 	/**
 	 * 个人点赞或其他类型数据查询(分类型)

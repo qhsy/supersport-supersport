@@ -22,6 +22,7 @@ import com.uhutu.sportcenter.z.api.remark.ApiRemarkCount;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkList;
 import com.uhutu.sportcenter.z.api.user.ApiAttendList;
 import com.uhutu.sportcenter.z.api.user.ApiFansList;
+import com.uhutu.sportcenter.z.api.user.ApiFavorContentList;
 import com.uhutu.sportcenter.z.api.user.ApiForAttention;
 import com.uhutu.sportcenter.z.api.user.ApiForLogin;
 import com.uhutu.sportcenter.z.api.user.ApiLoginOut;
@@ -156,6 +157,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiFansList apiFansList;
+	
+	@Autowired
+	private ApiFavorContentList apiFavorContentList;
 	
 	
 	public ApiContentDetailInfo getContentDetailInfo() {
@@ -308,5 +312,9 @@ public class ApiFactory {
 
 	public ApiFansList getApiFansList() {
 		return apiFansList;
+	}
+
+	public ApiFavorContentList getApiFavorContentList() {
+		return apiFavorContentList;
 	}
 }

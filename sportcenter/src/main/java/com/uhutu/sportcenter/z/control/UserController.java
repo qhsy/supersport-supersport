@@ -11,6 +11,7 @@ import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.APiStartPageInput;
 import com.uhutu.sportcenter.z.input.ApiAttendListInput;
 import com.uhutu.sportcenter.z.input.ApiFansListInput;
+import com.uhutu.sportcenter.z.input.ApiFavorContentListInput;
 import com.uhutu.sportcenter.z.input.ApiForAttentionInput;
 import com.uhutu.sportcenter.z.input.ApiForLoginInput;
 import com.uhutu.sportcenter.z.input.ApiLoginOutInput;
@@ -26,6 +27,7 @@ import com.uhutu.sportcenter.z.input.ApiVersionInfoInput;
 import com.uhutu.sportcenter.z.result.APiStartPageResult;
 import com.uhutu.sportcenter.z.result.ApiAttendListResult;
 import com.uhutu.sportcenter.z.result.ApiFansListResult;
+import com.uhutu.sportcenter.z.result.ApiFavorContentListResult;
 import com.uhutu.sportcenter.z.result.ApiForAttentionResult;
 import com.uhutu.sportcenter.z.result.ApiForLoginResult;
 import com.uhutu.sportcenter.z.result.ApiLoginOutResult;
@@ -179,6 +181,15 @@ public class UserController {
 	public ApiFansListResult shareContent(@RequestBody ApiFansListInput input) {
 
 		return apiFactory.getApiFansList().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/favorContentList", method = RequestMethod.POST)
+	@ApiOperation(value = "用户喜欢的内容列表", notes = "用户相关")
+	public ApiFavorContentListResult favorContentList(@RequestBody ApiFavorContentListInput input) {
+
+		return apiFactory.getApiFavorContentList().api(input);
 
 	}
 	
