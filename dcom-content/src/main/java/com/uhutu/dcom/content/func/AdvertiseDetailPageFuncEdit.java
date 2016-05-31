@@ -27,7 +27,7 @@ public class AdvertiseDetailPageFuncEdit extends RootFunc {
 			}
 		}
 		if (result.upFlagTrue()) {
-			JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), input.getDataMap());
+			JdbcHelper.dataUpdate(extendPageDefine.getPageSource().getTableName(), input.getDataMap(), "", "za");
 		}
 		return result;
 	}
