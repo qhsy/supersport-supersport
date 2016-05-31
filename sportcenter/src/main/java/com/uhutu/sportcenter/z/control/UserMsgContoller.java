@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
+import com.uhutu.sportcenter.z.input.ApiMsgAdviceInput;
 import com.uhutu.sportcenter.z.input.ApiMsgAttendListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgNoticeListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgNumListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgPraiseListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgRemarkListInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateMsgStatusInput;
+import com.uhutu.sportcenter.z.result.ApiMsgAdviceResult;
 import com.uhutu.sportcenter.z.result.ApiMsgAttendListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgNoticeListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgNumListResult;
@@ -89,6 +91,15 @@ public class UserMsgContoller {
 	public ApiMsgNoticeListResult msgNoticeList(@RequestBody ApiMsgNoticeListInput input) {
 
 		return apiFactory.getApiMsgNoticeList().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/msgAdvice", method = RequestMethod.POST)
+	@ApiOperation(value = "意见反馈", notes = "用户中心")
+	public ApiMsgAdviceResult msgAdvice(@RequestBody ApiMsgAdviceInput input) {
+
+		return apiFactory.getApiMsgAdvice().api(input);
 
 	}
 	
