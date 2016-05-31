@@ -35,7 +35,7 @@ public class CnContentItem extends BaseEntity {
 
 	@ZooData(name = "排序(倒序)", element = DefineWebElement.Input, verify = { DefineWebVerify.Base_Number }, sort = {
 			DefineWebPage.Page_Query + "=0" }, require = "1")
-	private String sort;
+	private int sort;
 
 	@ZooData(name = "开始时间", element = DefineWebElement.Datehms, require = "1")
 	private String startTime;
@@ -70,14 +70,6 @@ public class CnContentItem extends BaseEntity {
 		this.status = status;
 	}
 
-	public String getSort() {
-		return sort;
-	}
-
-	public void setSort(String sort) {
-		this.sort = sort;
-	}
-
 	public String getStartTime() {
 		return startTime;
 	}
@@ -108,6 +100,14 @@ public class CnContentItem extends BaseEntity {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
 	}
 
 }
