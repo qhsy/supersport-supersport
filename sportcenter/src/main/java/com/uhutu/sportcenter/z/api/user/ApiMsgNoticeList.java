@@ -83,6 +83,8 @@ public class ApiMsgNoticeList extends RootApiToken<ApiMsgNoticeListInput, ApiMsg
 				
 				ucMsgNoticeUser.setZc(new Date());
 				
+				msgNoticeUsers.add(ucMsgNoticeUser);
+				
 			});
 			
 			userServiceFactory.getMsgNoticeUserService().save(msgNoticeUsers);
