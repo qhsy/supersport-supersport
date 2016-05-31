@@ -12,7 +12,6 @@
 		<item code="dmtg4107100210031003" nodeName="栏目与广告" parentCode="dmtg410710021003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemRelForAdvPage" pageIcon="glyphicon-heart" />
 		<item code="dmtg410710021002" nodeName="广告管理" parentCode="dmtg41071002" />
 		<item code="dmtg4107100210021001" nodeName="广告信息" parentCode="dmtg410710021002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_AdvertiseInfoPage" pageIcon="glyphicon-film" />
-		<item code="dmtg4107100210021002" nodeName="广告图片信息" parentCode="dmtg410710021002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_AdvertiseDetailPage" pageIcon="glyphicon-film" />
 		<item code="dmtg410710021005" nodeName="内容管理" parentCode="dmtg41071002" />
 		<item code="dmtg4107100210051002" nodeName="基本信息" parentCode="dmtg410710021005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoPage" pageIcon="glyphicon-adjust" />
 		<item code="dmtg4107100210051003" nodeName="文章信息" parentCode="dmtg410710021005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentDetailPage" pageIcon="glyphicon-adjust" />

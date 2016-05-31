@@ -6,6 +6,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebSort;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -18,8 +19,8 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @Entity
 public class CnAdvertiseDetail extends BaseEntity {
-	@ZooData(name = "广告标题", require = "1", element = DefineWebElement.Model, inc = {
-			DefineWebInc.Web_Component + "=dzcw410710010001" })
+	@ZooData(name = "广告标题", sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=code")
 	@ApiModelProperty(name = "广告编号", notes = "广告编号", example = "ADBH0001")
 	private String code;
 
