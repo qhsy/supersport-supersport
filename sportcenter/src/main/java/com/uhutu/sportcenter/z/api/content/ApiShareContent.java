@@ -2,6 +2,8 @@ package com.uhutu.sportcenter.z.api.content;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
@@ -15,6 +17,7 @@ import com.uhutu.zooweb.helper.ImageHelper;
  * @author 逄小帅
  *
  */
+@Component
 public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareContentResult> {
 	
 	@Autowired
