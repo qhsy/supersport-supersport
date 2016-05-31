@@ -4,6 +4,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebSort;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -14,8 +15,9 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  */
 public class CnContentItemRel extends BaseEntity {
 
-	@ZooData(name = "栏目名称", require = "1", element = DefineWebElement.Model, inc = {
-			DefineWebInc.Web_Component + "=dzcw410710010003" })
+	@ZooData(name = "栏目名称", sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process,
+			DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=itemCode")
 	private String itemCode;
 
 	@ZooData(value = "栏目类型", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Add + "=0",
@@ -28,7 +30,7 @@ public class CnContentItemRel extends BaseEntity {
 	private String contentCode;
 
 	@ZooData(name = "展示顺序(倒序)", require = "1")
-	private String sort;
+	private int sort;
 
 	@ZooData(name = "开始时间", element = DefineWebElement.Datehms, require = "1", sort = {
 			DefineWebPage.Page_Query + "=0" })
@@ -57,11 +59,11 @@ public class CnContentItemRel extends BaseEntity {
 		this.contentCode = contentCode;
 	}
 
-	public String getSort() {
+	public int getSort() {
 		return sort;
 	}
 
-	public void setSort(String sort) {
+	public void setSort(int sort) {
 		this.sort = sort;
 	}
 

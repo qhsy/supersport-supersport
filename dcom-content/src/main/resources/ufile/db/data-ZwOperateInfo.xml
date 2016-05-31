@@ -51,7 +51,7 @@
 			operateType="js"
 			operateLink="zstatic_operate.ope_pd('[[struct:pageUnique]]','[[data:za]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
-		<item code="dzoi41071013" operateName="维护广告图"
+		<item code="dzoi41071013" operateName="查看广告图"
 			operateFunc="" operateType="button"
 			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_AdvertiseDetailPage?u_code=[[data:code]]')"
 			parentCode="" noteRemark="" />
@@ -59,13 +59,21 @@
 			operateFunc="" operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_AdvertiseDetailPage?u_code=[[data:code]]')"
 			parentCode="" noteRemark="" />
-		<item code="dzoi41071015" operateName="维护内容"
+		<item code="dzoi41071015" operateName="查看内容"
 			operateFunc="" operateType="button"
 			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_ContentItemRelPage?u_itemCode=[[data:code]]')"
 			parentCode="" noteRemark="" />
 		<item code="dzoi41071016" operateName="添加内容"
 			operateFunc="" operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_ContentItemRelPage?u_itemCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071017" operateName="查看广告"
+			operateFunc="" operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_ContentItemRelForAdvPage?u_itemCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071018" operateName="添加广告"
+			operateFunc="" operateType="button"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_ContentItemRelForAdvPage?u_itemCode=[[data:code]]')"
 			parentCode="" noteRemark="" />
 	</data>
 
