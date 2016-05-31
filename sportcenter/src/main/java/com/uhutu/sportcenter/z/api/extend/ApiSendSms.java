@@ -62,7 +62,10 @@ public class ApiSendSms extends RootApiBase<ApiSendSmsInput, ApiSendSmsResult> {
 			sendSmsResult.setStatus(rr.getStatus());
 			sendSmsResult.setError(rr.getError());
 		}
-
+		if (sendSmsResult.getStatus() == 81090003) {// 特俗处理：一分钟之内多次发送验证码的话直接返回成功
+			sendSmsResult.setStatus(0);
+			sendSmsResult.setError("");
+		}
 		return sendSmsResult;
 	}
 
