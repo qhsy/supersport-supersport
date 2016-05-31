@@ -8,8 +8,8 @@ import com.uhutu.zoocom.root.RootPageSimple;
 import com.uhutu.zooweb.define.DefineZooWeb;
 
 @ZooPage(name = "文章管理", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = { DefineZooWeb.PAGE_DEFAULT_OPERATE,
-		DefineWebPage.Page_Add + "=dzoi41071009" }, deploy = DefineWebDeploy.Grid_Where
-				+ "=code in (select code from cn_content_basicinfo where content_type='dzsd4107100110030001') ")
+		DefineWebPage.Page_Add + "=dzoi41071009",
+		DefineWebPage.Page_Query + "=dzoi4699100110171001" }, deploy = DefineWebDeploy.Url_Query + "=code")
 public class ContentDetailPage extends RootPageSimple<CnContentDetail> {
 
 }

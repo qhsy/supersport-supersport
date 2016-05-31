@@ -4,6 +4,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebSort;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -14,12 +15,13 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  */
 public class CnContentDetail extends BaseEntity {
 
-	@ZooData(name = "内容标题", sort = { DefineWebPage.Page_Edit + "=0" }, require = "1", element = DefineWebElement.Model, inc = {
-			DefineWebInc.Web_Component + "=dzcw410710010007" })
+	@ZooData(name = "内容标题", sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process,
+			DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=code")
 	private String code;
 
-	@ZooData(name = "内容信息json串", element = DefineWebElement.Editor, require = "1", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "内容信息json串", element = DefineWebElement.Editor, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String content;
 
 	@ZooData(name = "内容简述", element = DefineWebElement.Textarea)
