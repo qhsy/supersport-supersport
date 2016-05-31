@@ -28,11 +28,11 @@ public class CnContentBasicinfo extends BaseEntity {
 			DefineWebPage.Page_Grid + "=0" })
 	private String cover;
 
-	@ZooData(name = "内容简介", element = DefineWebElement.Textarea, require = "1", sort = {
-			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "内容简介", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
 	private String aboutDesc;
 
-	@ZooData(name = "内容来源", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "内容来源", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String souce;
 
 	@ZooData(name = "发布状态", element = DefineWebElement.Select, inc = {
@@ -65,7 +65,7 @@ public class CnContentBasicinfo extends BaseEntity {
 	@ZooData(name = "定位经纬度", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String location;
 
-	@ZooData(name = "定位位置名称", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "定位位置名称", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String localtionName;
 
 	@ZooData(name = "业务类型", element = DefineWebElement.Select, inc = {
