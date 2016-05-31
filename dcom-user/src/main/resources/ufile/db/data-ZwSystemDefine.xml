@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
+	<data table="ZwSystemDefine">
+		<item code="dzsd41071002" defineName="app管理" parentCode="" />
+		<item code="dzsd410710021001" defineName="app系统类型" parentCode="dzsd41071002" />
+		<item code="dzsd4107100210010001" defineName="ios" parentCode="dzsd410710021001" />
+		<item code="dzsd4107100210010002" defineName="android" parentCode="dzsd410710021001" />
+		<item code="dzsd410710021002" defineName="app升级类型" parentCode="dzsd41071002" />
+		<item code="dzsd4107100210020001" defineName="调用失败" parentCode="dzsd410710021002" />
+		<item code="dzsd4107100210020002" defineName="强制升级" parentCode="dzsd410710021002" />
+		<item code="dzsd4107100210020003" defineName="不强制升级" parentCode="dzsd410710021002" />
+		<item code="dzsd4107100210020004" defineName="静默升级" parentCode="dzsd410710021002" />
+		<item code="dzsd4107100210020005" defineName="不用升级" parentCode="dzsd410710021002" />
+	</data>
+
+</db>

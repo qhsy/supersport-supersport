@@ -3,6 +3,8 @@ package com.uhutu.dcom.user.z.entity;
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebElement;
+import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -19,13 +21,13 @@ public class SpAppVersion extends BaseEntity {
 	@ZooData(value="升级内容")
 	private String upgradeContent;
 	
-	@ZooData(value="升级类型")
+	@ZooData(value="升级类型",element=DefineWebElement.Select,inc={DefineWebInc.System_Define+"=dzsd410710021001"})
 	private String upgradeType;
 	
 	@ZooData(value="app升级地址")
 	private String appUrl;
 	
-	@ZooData(value="系统类型")
+	@ZooData(value="系统类型",element=DefineWebElement.Select,inc={DefineWebInc.System_Define+"=dzsd410710021002"})
 	private String systemType;
 
 	public String getVersionNo() {

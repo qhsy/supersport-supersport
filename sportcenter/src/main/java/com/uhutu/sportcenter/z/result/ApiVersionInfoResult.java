@@ -6,13 +6,13 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class ApiVersionInfoResult extends RootApiResult {
 
-	@ApiModelProperty(value = "升级方式", notes = "参数说明：0、代表调用失败，1、代表强制升级，2、代表不强制升级，3、代表不用升级，4、代表静默升级")
+	@ApiModelProperty(value = "升级方式", notes = "参数说明：dzsd4107100210020001:代表调用失败，dzsd4107100210020002:代表强制升级，dzsd4107100210020003:代表不强制升级,dzsd4107100210020004:代表静默升级,dzsd4107100210020005:代表不用升级")
 	private String upgradeType = "3";
 	@ApiModelProperty(value = "升级版本号", notes = "用户设定升级到的版本号")
 	private String versionNo = "";
 	@ApiModelProperty(value = "升级内容", notes = "升级内容信息描述")
 	private String upgradeContent = "";
-	@ApiModelProperty(value = "ios Appstore地址", notes = "如果后台系统没有配置相应的数据，该字段为null,该字段只为ios提供")
+	@ApiModelProperty(value = "app地址")
 	private String appUrl = "";
 
 	public String getUpgradeType() {

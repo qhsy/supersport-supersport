@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class ApiVersionInfoInput  extends RootApiInput  {
 
-	@ApiModelProperty(value="手机系统类型",notes="对应手机当前手机类型，如：1代表ios,2代表andriod",required=true)
+	@ApiModelProperty(value="手机系统类型",notes="对应手机当前手机类型，如：dzsd4107100210010001:ios,dzsd4107100210010002:andriod",required=true)
 	private String systemType = "";
 	@ApiModelProperty(value="版本号",notes="对应App版本添加时的版本号，区分大小写。如：V1.0、V1.1、V1.3等",required=true)
 	private String versionNo = "";
