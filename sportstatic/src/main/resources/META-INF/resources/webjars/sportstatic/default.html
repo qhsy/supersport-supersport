@@ -53,16 +53,15 @@
 				$('.details-hgroup time').html(data.sportingMoment.publishTimeStr);
 				$('.details-photo').attr('id',data.sportingMoment.author).html('<img src="' + data.sportingMoment.aboutHead + '" />')
 				$('.details-name').html(data.sportingMoment.nickName);
-				$('.details-article').html(data.contentDetailInfo.content);
+				$('.details-article').html(data.contentDetailInfo.content.replace(/godovideobingo/gi, '<span style="display: block;" id="prismPlayer" class="prism-player"></span>'));
+				if(data.sportingMoment.tagName == ''){
+					$('.details-tag').remove();
+				}
 				$('.details-tag span').html(data.sportingMoment.tagName.replace(/\,/g, '<i></i>'));
 				if(data.sportingMoment.contentType == 'dzsd4107100110030002'){
 					InitPlayer(data.contentDetailInfo.videoUrl, data.contentDetailInfo.videoCover);
 				}
-				if(data.sportingMoment.tagName == ''){
-					$('.details-tag').css('display','none');
-				}
 				$('body').removeClass('ms-controller');
-				
 			},
 			error:function(xhr,status,error){
 					alert(error);
@@ -180,11 +179,11 @@
 			}
 		} else if(browser.android){
 			if(browser.microMessenger){
-				window.location.replace("http://www.baidu.com");
+				window.location.replace("");
 			}else{
 				openclient({
-					scheme: 'godosports://',
-					download: 'http://www.baidu.com'
+					scheme: '',
+					download: ''
 				});
 			}
 		}
