@@ -103,6 +103,8 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 		QueryConditions queryConditions = new QueryConditions();
 
 		queryConditions.setConditionEqual("busiType", ContentEnum.sportmoment.getCode());
+		
+		queryConditions.setConditionEqual("status", "dzsd4699100110010001");
 
 		queryConditions.setConditionEqual("author", userCode);
 
