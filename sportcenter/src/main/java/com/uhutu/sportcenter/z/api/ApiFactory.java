@@ -10,6 +10,7 @@ import com.uhutu.sportcenter.z.api.content.ApiContentPhotosDetailInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentRecommInfo;
 import com.uhutu.sportcenter.z.api.content.ApiPublishContentPhotos;
 import com.uhutu.sportcenter.z.api.content.ApiPublishSportingMoment;
+import com.uhutu.sportcenter.z.api.content.ApiShareContent;
 import com.uhutu.sportcenter.z.api.content.ApiSportingMoments;
 import com.uhutu.sportcenter.z.api.content.ApiSupportPraise;
 import com.uhutu.sportcenter.z.api.extend.ApiSendSms;
@@ -144,6 +145,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiMsgAdvice apiMsgAdvice;
+	
+	@Autowired
+	private ApiShareContent apiShareContent;
 	
 	
 	public ApiContentDetailInfo getContentDetailInfo() {
@@ -284,5 +288,9 @@ public class ApiFactory {
 
 	public ApiMsgAdvice getApiMsgAdvice() {
 		return apiMsgAdvice;
+	}
+
+	public ApiShareContent getApiShareContent() {
+		return apiShareContent;
 	}
 }
