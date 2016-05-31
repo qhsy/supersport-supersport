@@ -46,6 +46,11 @@
 			operateFunc="com.uhutu.dcom.content.func.AdvertiseDetailPageFuncAdd" operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071012" operateName="删除"
+			operateFunc="com.uhutu.dcom.content.func.CnContentBasicinfoFuncDelete"
+			operateType="js"
+			operateLink="zstatic_operate.ope_pd('[[struct:pageUnique]]','[[data:za]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
