@@ -76,8 +76,8 @@ a:hover {text-decoration: none; }
 <div class="wrap">
 	<div class="app-down">
 		<p class="down-txt"><em>GODO</em>为鲜美而动 !</p>
-		<a href="https://itunes.apple.com/us/app/guo-dong-yun-dong-shi-ke/id1107505487?l=zh&ls=1&mt=8" class="down-btn iphone">立即下载<em class="iconfont">&#xe600;</em></a>
-		<a href="http://ali-cfile.ichsy.com/cfiles/staticfiles/temp/app-release.apk" class="down-btn android">立即下载<em class="iconfont">&#xe601;</em></a>
+		<a href="javascript:;" class="down-btn iphone">立即下载<em class="iconfont">&#xe600;</em></a>
+		<a href="javascript:;" class="down-btn android">立即下载<em class="iconfont">&#xe601;</em></a>
 	</div>
 </div>
 <span class="donw-erwm"><img src="image/down/00f8f82f1358414ffff457cff260f4ac.png" alt=""></span>
@@ -97,12 +97,25 @@ a:hover {text-decoration: none; }
 		presto: u.indexOf('Presto') > -1,		//opera内核 
 		webKit: u.indexOf('AppleWebKit') > -1,		//苹果、谷歌内核 
 		gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,		//gecko
+		qq:u.indexOf('QQ') > -1,
 		microMessenger:u.indexOf('MicroMessenger') > -1		//QQ weixin
 	}
 	if(browser.ios || browser.iPad || browser.iPhone || browser.iPod){
 		document.querySelector('.android').style.display='none';
 	} else if(browser.android){
 		document.querySelector('.iphone').style.display='none';
+	}
+	document.querySelector('.iphone').onclick = function(){
+		if(browser.ios || browser.iPad || browser.iPhone || browser.iPod){
+			if(browser.microMessenger || browser.qq){
+				window.location.replace('')
+			}else{
+				window.location.replace('https://itunes.apple.com/us/app/guo-dong-yun-dong-shi-ke/id1107505487?l=zh&ls=1&mt=8');
+			}
+		}
+	}
+	document.querySelector('.android').onclick = function(){
+		window.location.href='http://ali-cfile.ichsy.com/cfiles/staticfiles/temp/app-release.apk';
 	}
 </script>
 </body>
