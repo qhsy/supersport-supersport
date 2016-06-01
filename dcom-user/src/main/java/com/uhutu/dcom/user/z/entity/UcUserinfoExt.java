@@ -37,6 +37,9 @@ public class UcUserinfoExt extends BaseEntity {
 	@ZooData(name="简介视频")
 	private String aboutVideo;
 	
+	@ZooData(name="简介视频封面")
+	private String aboutVideoCover;
+	
 	@ZooData(name="简介描述")
 	private String aboutDesc;
 	
@@ -219,6 +222,22 @@ public class UcUserinfoExt extends BaseEntity {
 
 	public void setAboutHead(String aboutHead) {
 		this.aboutHead = aboutHead;
+	}
+
+	public String getAboutVideoCover() {
+		return aboutVideoCover;
+	}
+
+	public void setAboutVideoCover(String aboutVideoCover) {
+		this.aboutVideoCover = aboutVideoCover;
+	}
+
+	public String getLocationName() {
+		return locationName;
+	}
+
+	public void setLocationName(String locationName) {
+		this.locationName = locationName;
 	}
 	
 

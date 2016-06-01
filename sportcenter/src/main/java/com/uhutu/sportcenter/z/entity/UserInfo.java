@@ -36,6 +36,9 @@ public class UserInfo {
 	@ApiModelProperty(value = "简介视频", notes = "简介视频")
 	private String aboutVideo = "";
 	
+	@ApiModelProperty(value = "简介视频封面", notes = "简介视频封面")
+	private String aboutVideoCover = "";
+	
 	@ApiModelProperty(value = "关注领域", notes = "关注领域集合")
 	private String domain = "";
 	
@@ -228,6 +231,14 @@ public class UserInfo {
 
 	public void setSocialFlag(String socialFlag) {
 		this.socialFlag = socialFlag;
+	}
+
+	public String getAboutVideoCover() {
+		return aboutVideoCover;
+	}
+
+	public void setAboutVideoCover(String aboutVideoCover) {
+		this.aboutVideoCover = aboutVideoCover;
 	}
 	
 
