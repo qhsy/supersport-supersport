@@ -2,7 +2,10 @@ package com.uhutu.dcom.user.z.page;
 
 import com.uhutu.dcom.user.z.page.vo.UcUserinfoExt;
 import com.uhutu.zoocom.baseannotation.ZooPage;
+import com.uhutu.zoocom.define.DefineWebDeploy;
+import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoocom.root.RootPageSimple;
+import com.uhutu.zooweb.define.DefineZooWeb;
 
 /**
  * 用户信息相关操作页面
@@ -10,7 +13,9 @@ import com.uhutu.zoocom.root.RootPageSimple;
  * @author pang_jhui
  *
  */
-@ZooPage(name = "用户相关操作", pages = { "pq=-查询&pg=-列表" }, operates = { "pg=dzoi469910011009&pq=dzoi469910011017" })
+@ZooPage(name = "详情", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = { DefineZooWeb.PAGE_DEFAULT_OPERATE,
+		DefineWebPage.Page_Query + "=dzoi4699100110171001",
+		DefineWebPage.Page_Grid + "=" }, deploy = { DefineWebDeploy.Url_Query + "=userCode" })
 public class UserInfoExtPage extends RootPageSimple<UcUserinfoExt> {
 
 }
