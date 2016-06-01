@@ -26,7 +26,7 @@ public class CnContentPhotos extends BaseEntity {
 	@ZooData(name = "图片路径", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0" })
 	private String picture;
 
-	@ZooData(name = "内容信息", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "图片简述", element = DefineWebElement.Textarea)
 	private String content;
 
 	public String getContentCode() {

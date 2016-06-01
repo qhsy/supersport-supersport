@@ -20,19 +20,19 @@ public class CnContentDetail extends BaseEntity {
 			DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=code")
 	private String code;
 
-	@ZooData(name = "内容信息", element = DefineWebElement.Editor, sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" })
-	private String content;
-
-	@ZooData(name = "内容简述", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
-	private String description;
-
-	@ZooData(name = "视频地址", require = "1", sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "视频地址", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String videoUrl;
 
 	@ZooData(name = "视频封面", require = "1", element = DefineWebElement.Upload, sort = {
 			DefineWebPage.Page_Query + "=0" })
 	private String videoCover;
+
+	@ZooData(name = "视频简述", element = DefineWebElement.Textarea)
+	private String description;
+
+	@ZooData(name = "内容信息", element = DefineWebElement.Editor, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
+	private String content;
 
 	public String getCode() {
 		return code;
