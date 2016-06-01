@@ -23,10 +23,13 @@ public enum UserEnum {
 	FLAG_LOGINOUT("用户登录退出","4"),
 	
 	/**普通用户*/
-	TYPE_CUSTOM("普通用户","01"),
+	TYPE_CUSTOM("普通用户","dzsd4107100310010001"),
 	
 	/**达人用户*/
-	TYPE_EXPERT("达人用户","02"),
+	TYPE_EXPERT("达人用户","dzsd4107100310010002"),
+	
+	/**马甲用户*/
+	TYPE_VEST("马甲用户","dzsd4107100310010003"),
 	
 	/**关注*/
 	ATTEND("关注","1"),
