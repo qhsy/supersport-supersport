@@ -43,6 +43,13 @@ public class CnContentBasicinfoFuncAdd extends RootFunc {
 		}
 		map.put("zz", "1");
 		JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), input.getDataMap());
+		if ("dzsd4107100110030001".equals(map.get("content_type"))
+				|| "dzsd4107100110030002".equals(map.get("content_type"))) {
+			MDataMap detail = new MDataMap();
+			detail.put("code", input.getDataMap().get("code"));
+			detail.put("zz", "1");
+			JdbcHelper.dataInsert("cn_content_detail", detail);
+		}
 		return new WebOperateResult();
 	}
 
