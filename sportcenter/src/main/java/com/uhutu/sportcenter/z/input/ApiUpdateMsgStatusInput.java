@@ -13,19 +13,8 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class ApiUpdateMsgStatusInput extends RootApiInput {
 	
-	@ApiModelProperty(value="用户编号")
-	private String userCode;
-	
-	@ApiModelProperty(value="消息类型")
+	@ApiModelProperty(value="消息类型",example="评论:remark,点赞:praise,关注:attend,通知:notice")
 	private String msgType;
-
-	public String getUserCode() {
-		return userCode;
-	}
-
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
-	}
 
 	public String getMsgType() {
 		return msgType;

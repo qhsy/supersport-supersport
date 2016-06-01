@@ -2,6 +2,8 @@ package com.uhutu.dcom.user.z.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -61,6 +63,14 @@ public class MsgNoticeUserServiceImpl implements IMsgNoticeUserService {
 		return msgNoticePage;
 		
 	
+	}
+
+	@Override
+	@Transactional
+	public int updateReadStatus(String userCode, String updateStatus, String whereStatus) {
+		
+		return userDaoFacotry.getMsgNoticeUserDao().updateReadStatus(userCode, updateStatus, whereStatus);
+		
 	}
 
 }

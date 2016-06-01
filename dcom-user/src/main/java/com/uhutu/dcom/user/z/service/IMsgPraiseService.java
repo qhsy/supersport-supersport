@@ -40,6 +40,18 @@ public interface IMsgPraiseService {
 	 */
 	public Page<UcMsgPraise> queryPageByUserCode(int pageNum, int limit,QueryConditions conditions);
 	
+	/**
+	 * 更新为已读状态
+	 * @param userCode
+	 * 		用户编号
+	 * @param updateStatus
+	 * 		更新状态
+	 * @param whereStatus
+	 * 		查询状态
+	 * @return 更新记录数
+	 */
+	public int updateReadStatus(String userCode,String updateStatus,String whereStatus);
+	
 	
 
 }

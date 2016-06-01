@@ -2,6 +2,8 @@ package com.uhutu.dcom.user.z.service.impl;
 
 import java.util.Date;
 
+import javax.transaction.Transactional;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -72,6 +74,13 @@ public class MsgPraiseServiceImpl implements IMsgPraiseService {
 		
 		return msgPraisePage;
 		
+	}
+
+	@Override
+	@Transactional
+	public int updateReadStatus(String userCode, String updateStatus, String whereStatus) {
+		
+		return userDaoFacotry.getMsgPraiseDao().updateReadStatus(userCode, updateStatus, whereStatus);
 	}
 
 }

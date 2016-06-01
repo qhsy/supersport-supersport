@@ -2,6 +2,7 @@ package com.uhutu.dcom.user.z.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import com.uhutu.dcom.user.z.entity.UcMsgAttention;
@@ -15,5 +16,9 @@ public interface IMsgAttentionDao extends JpaRepository<UcMsgAttention, String>,
 	
 	@Query("select count(1) from UcMsgAttention t where attnUserCode=:userCode and status=:status")
 	public int queryByCode(@Param("userCode") String userCode,@Param("status") String status);
+	
+	@Modifying
+	@Query("update UcMsgAttention t set t.status =:status where t.attnUserCode=:userCode and status=:whereStatus")
+	public int updateReadStatus(@Param("userCode") String userCode,@Param("status") String status,@Param("whereStatus") String whereStatus);
 
 }
