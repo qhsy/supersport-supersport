@@ -166,8 +166,6 @@ public class QueryConditions {
 
 		if (value == null)
 			return;
-		if (value instanceof String && value.toString().trim().equals(""))
-			return;
 		propertyNames.add(propertyName);
 
 		if (operator.equals(INCLUDE)) {
