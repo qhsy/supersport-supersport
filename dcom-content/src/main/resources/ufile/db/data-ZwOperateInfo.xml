@@ -46,11 +46,6 @@
 			operateFunc="com.uhutu.dcom.content.func.AdvertiseDetailPageFuncAdd" operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
-		<item code="dzoi41071012" operateName="删除"
-			operateFunc="com.uhutu.dcom.content.func.CnContentBasicinfoFuncDelete"
-			operateType="js"
-			operateLink="zstatic_operate.ope_pd('[[struct:pageUnique]]','[[data:za]]','[[operate:operateCode]]')"
-			parentCode="" noteRemark="" />
 		<item code="dzoi41071013" operateName="查看广告图"
 			operateFunc="" operateType="button"
 			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_AdvertiseDetailPage?u_code=[[data:code]]')"
@@ -98,6 +93,11 @@
 		<item code="dzoi41071024" operateName="添加图文"
 			operateFunc="" operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_ContentPhotosPage?u_contentCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071025" operateName="删除"
+			operateFunc="com.uhutu.dcom.content.func.CnContentBasicinfoFuncDelete"
+			operateType="js"
+			operateLink="zstatic_operate.ope_pd('[[struct:pageUnique]]','[[data:za]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
 	</data>
 
