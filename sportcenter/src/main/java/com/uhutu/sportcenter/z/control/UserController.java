@@ -23,6 +23,7 @@ import com.uhutu.sportcenter.z.input.ApiUpdateUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiUserRegInput;
 import com.uhutu.sportcenter.z.input.ApiUserResetPwdInput;
+import com.uhutu.sportcenter.z.input.ApiVerifyNickNameInput;
 import com.uhutu.sportcenter.z.input.ApiVersionInfoInput;
 import com.uhutu.sportcenter.z.result.APiStartPageResult;
 import com.uhutu.sportcenter.z.result.ApiAttendListResult;
@@ -39,6 +40,7 @@ import com.uhutu.sportcenter.z.result.ApiUpdateUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiUserRegResult;
 import com.uhutu.sportcenter.z.result.ApiUserResetPwdResult;
+import com.uhutu.sportcenter.z.result.ApiVerifyNickNameResult;
 import com.uhutu.sportcenter.z.result.ApiVersionInfoResult;
 
 import io.swagger.annotations.Api;
@@ -190,6 +192,15 @@ public class UserController {
 	public ApiFavorContentListResult favorContentList(@RequestBody ApiFavorContentListInput input) {
 
 		return apiFactory.getApiFavorContentList().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/verifyNickName", method = RequestMethod.POST)
+	@ApiOperation(value = "昵称校验", notes = "用户相关")
+	public ApiVerifyNickNameResult verifyNickName(@RequestBody ApiVerifyNickNameInput input) {
+
+		return apiFactory.getApiVerifyNickName().api(input);
 
 	}
 	

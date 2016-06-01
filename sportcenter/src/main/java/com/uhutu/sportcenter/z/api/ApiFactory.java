@@ -39,6 +39,7 @@ import com.uhutu.sportcenter.z.api.user.ApiUpdateUserInfo;
 import com.uhutu.sportcenter.z.api.user.ApiUserInfo;
 import com.uhutu.sportcenter.z.api.user.ApiUserRegister;
 import com.uhutu.sportcenter.z.api.user.ApiUserResetPwd;
+import com.uhutu.sportcenter.z.api.user.ApiVerifyNickName;
 import com.uhutu.sportcenter.z.api.user.ApiVersionInfo;
 
 /**
@@ -160,6 +161,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiFavorContentList apiFavorContentList;
+	
+	@Autowired
+	private ApiVerifyNickName apiVerifyNickName;
 	
 	
 	public ApiContentDetailInfo getContentDetailInfo() {
@@ -316,5 +320,9 @@ public class ApiFactory {
 
 	public ApiFavorContentList getApiFavorContentList() {
 		return apiFavorContentList;
+	}
+
+	public ApiVerifyNickName getApiVerifyNickName() {
+		return apiVerifyNickName;
 	}
 }

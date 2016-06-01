@@ -13,10 +13,10 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class ApiAttendListInput extends RootApiInput {
 	
-	@ApiModelProperty(value="页码")
+	@ApiModelProperty(value="页码",required=true)
 	private int pagination;
 	
-	@ApiModelProperty(value="用户编号")
+	@ApiModelProperty(value="用户编号",required=true)
 	private String userCode;
 
 	public int getPagination() {
