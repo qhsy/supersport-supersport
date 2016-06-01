@@ -12,6 +12,11 @@
 		<item code="dzsd4107100210020003" defineName="不强制升级" parentCode="dzsd410710021002" />
 		<item code="dzsd4107100210020004" defineName="静默升级" parentCode="dzsd410710021002" />
 		<item code="dzsd4107100210020005" defineName="不用升级" parentCode="dzsd410710021002" />
+		<item code="dzsd41071003" defineName="用户管理" parentCode="" />
+		<item code="dzsd410710031001" defineName="用户类型" parentCode="dzsd41071003" />
+		<item code="dzsd4107100310010001" defineName="普通用户" parentCode="dzsd410710031001" />
+		<item code="dzsd4107100310010002" defineName="体育达人" parentCode="dzsd410710031001" />
+		<item code="dzsd4107100310010003" defineName="马甲" parentCode="dzsd410710031001" />
 	</data>
 
 </db>
