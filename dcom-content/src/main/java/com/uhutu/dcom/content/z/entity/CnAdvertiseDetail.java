@@ -20,7 +20,8 @@ import io.swagger.annotations.ApiModelProperty;
 @Entity
 public class CnAdvertiseDetail extends BaseEntity {
 	@ZooData(name = "广告标题", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=code")
+			DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process,
+			DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=code")
 	@ApiModelProperty(name = "广告编号", notes = "广告编号", example = "ADBH0001")
 	private String code;
 
