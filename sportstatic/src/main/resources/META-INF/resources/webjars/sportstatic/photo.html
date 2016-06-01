@@ -24,9 +24,15 @@
 <!-- 达人 -->
 <aside class="photo-head"><em></em><i></i></aside>
 <script type="text/javascript" src="script/zepto.min.js"></script>
+<script type="text/javascript" src="script/share.js"></script>
 <script type="text/javascript">
 $(function(){
-	var jsonData,isHide = true,code = getCode(window.location.search);;
+	var share = urlFormat('share');
+	if(parseInt(share)){
+		var ele = $('<header class="open-app"><span class="app-logo"><img src="css/img/app_logo.png"></span><span class="app-con"><img src="css/img/text.png"></span><a href="javascript:;" class="app-btn">打开App</a></header>');
+		ele.prependTo('body');
+	}
+	var jsonData,isHide = true,code = urlFormat('code');;
 	$.ajax({
 		url:'/api/contentController/contentPhotosDetail',
 		type:'POST',
@@ -51,6 +57,9 @@ $(function(){
 				isHide?$('.photo-info,.photo-head').show():$('.photo-info,.photo-head').hide();
 			});
 		}
+	});
+	$('.app-btn').on('click',function(){
+		open();
 	});
 
 	//构造函数
@@ -194,6 +203,22 @@ $(function(){
 		if(typeof str != 'string') return;
 		var arr = str.substr(1).split('=');
 		return arr[1];
+	}
+	/* 通过URL获取CODE值 */
+	function urlFormat(arg){
+		// ?content_code=string&share=1
+		var url = window.location.search;
+		if(typeof url != 'string' || url == '') return;
+		var newUrl = url.substr(1);
+		var urlArr = newUrl.split('&');
+		for(var i=0; i<urlArr.length; i++){
+			var arr = urlArr[i].split('=');
+			for(j=0; j<arr.length; j++){
+				if(arg == arr[0]){
+					return arr[1]
+				}
+			}
+		}
 	}
 
 });
