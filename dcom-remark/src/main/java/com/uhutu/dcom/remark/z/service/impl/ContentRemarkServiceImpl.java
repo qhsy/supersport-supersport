@@ -17,7 +17,6 @@ import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.config.enums.PrexEnum;
 import com.uhutu.dcom.remark.z.dao.ContentRemarkDaoFactory;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
-import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.IContentRemarkService;
 import com.uhutu.zooweb.helper.WebHelper;
 
@@ -42,8 +41,6 @@ public class ContentRemarkServiceImpl implements IContentRemarkService {
 			daoFactory.getContentRemarkDao().save(cnContentRemark);
 
 		} else {
-
-			cnContentRemark.setStatus(RemarkEnum.FLAG_ENABLE.getCode());
 
 			cnContentRemark.setZc(new Date());
 
