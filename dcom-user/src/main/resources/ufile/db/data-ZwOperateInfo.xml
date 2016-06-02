@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
+	<data table="ZwOperateInfo">
+		<item code="dzoi41101001" operateName="详情" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_user_z_page_UserInfoExtPage?u_userCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+	</data>
+
+</db>

@@ -1,7 +1,9 @@
 package com.uhutu.dcom.user.z.page.vo;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebSort;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -14,7 +16,9 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class UcUserinfoExt extends BaseEntity {
 
-	@ZooData(name = "用户编号", sort = { DefineWebPage.Page_Query + "=0"})
+	@ZooData(name = "用户编号", sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process,
+			DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=userCode")
 	private String userCode;
 
 	@ApiModelProperty(name = "昵称", notes = "昵称", example = "papi酱")
@@ -36,16 +40,16 @@ public class UcUserinfoExt extends BaseEntity {
 	@ZooData(name = "简介视频", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String aboutVideo;
 
-	@ZooData(name = "简介描述", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "简介描述", sort = { DefineWebPage.Page_Query + "=0" })
 	private String aboutDesc;
 
 	@ZooData(name = "关注领域", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String domain;
 
-	@ZooData(name = "用户等级", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "用户等级", sort = { DefineWebPage.Page_Query + "=0" })
 	private String level;
 
-	@ZooData(name = "用户头像", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "用户头像", sort = { DefineWebPage.Page_Query + "=0" })
 	private String aboutHead;
 
 	/**
