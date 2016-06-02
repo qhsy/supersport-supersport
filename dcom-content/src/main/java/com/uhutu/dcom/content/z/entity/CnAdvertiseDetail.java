@@ -25,10 +25,18 @@ public class CnAdvertiseDetail extends BaseEntity {
 	@ApiModelProperty(name = "广告编号", notes = "广告编号", example = "ADBH0001")
 	private String code;
 
-	@ZooData(name = "图片(轮播:1080*608;单图:1080*420)", require = "1", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "图片(轮播:1080*608;单图:1080*420)", require = "1", element = DefineWebElement.Upload, sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@ApiModelProperty(name = "图片", notes = "轮播图图片", example = "http://www.ichsy.com")
 	private String picUrl;
+
+	@ZooData(name = "开始展示时间", element = DefineWebElement.Datehms, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0" })
+	private String startTime;
+
+	@ZooData(name = "结束展示时间", element = DefineWebElement.Datehms, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0" })
+	private String endTime;
 
 	@ZooData(name = "图片跳转类型", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd410710011005" })
@@ -69,6 +77,22 @@ public class CnAdvertiseDetail extends BaseEntity {
 
 	public void setPiclinkContent(String piclinkContent) {
 		this.piclinkContent = piclinkContent;
+	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 
 }

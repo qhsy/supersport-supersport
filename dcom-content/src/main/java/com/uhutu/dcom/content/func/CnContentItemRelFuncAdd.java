@@ -26,6 +26,7 @@ public class CnContentItemRelFuncAdd extends RootFunc {
 				|| DateHelper.parseDate(input.getDataMap().get("start_time"))
 						.after(DateHelper.parseDate(input.getDataMap().get("end_time")))) {
 			result.inError(810710004);
+			return result;
 		}
 		CnContentItem item = JdbcHelper.queryOne(CnContentItem.class, "code", input.getDataMap().get("item_code"));
 		CnContentBasicinfo binfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",

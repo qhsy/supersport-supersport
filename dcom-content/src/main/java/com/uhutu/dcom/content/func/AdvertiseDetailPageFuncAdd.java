@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.uhutu.dcom.content.z.entity.CnAdvertiseDetail;
 import com.uhutu.dcom.content.z.entity.CnAdvertiseInfo;
+import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.api.webpage.WebOperateInput;
 import com.uhutu.zooweb.api.webpage.WebOperateResult;
@@ -17,6 +18,12 @@ public class AdvertiseDetailPageFuncAdd extends RootFunc {
 	public WebOperateResult process(WebPageModel webPageModel, ExtendPageDefine extendPageDefine,
 			WebOperateInput input) {
 		WebOperateResult result = new WebOperateResult();
+		if (input.getDataMap().get("start_time").equals(input.getDataMap().get("end_time"))
+				|| DateHelper.parseDate(input.getDataMap().get("start_time"))
+						.after(DateHelper.parseDate(input.getDataMap().get("end_time")))) {
+			result.inError(810710004);
+			return result;
+		}
 		CnAdvertiseInfo info = JdbcHelper.queryOne(CnAdvertiseInfo.class, "code", input.getDataMap().get("code"));
 		if ("dzsd4107100110040001".equals(info.getType())) {
 			List<CnAdvertiseDetail> details = JdbcHelper.queryForList(CnAdvertiseDetail.class, "", "", "code=:code",
