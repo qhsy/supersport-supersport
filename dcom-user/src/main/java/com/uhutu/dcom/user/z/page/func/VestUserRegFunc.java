@@ -1,6 +1,12 @@
 package com.uhutu.dcom.user.z.page.func;
 
+import java.util.Date;
+
+import org.apache.commons.lang3.time.DateFormatUtils;
+
+import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.zoocom.define.DefineUser;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.api.webpage.WebOperateInput;
 import com.uhutu.zooweb.api.webpage.WebOperateResult;
@@ -46,7 +52,19 @@ public class VestUserRegFunc extends RootFunc {
 			
 			input.getDataMap().put("code", registResult.getUserCode());
 			
+			input.getDataMap().put("type", UserEnum.TYPE_VEST.getCode());
+			
+			input.getDataMap().put("flag", UserEnum.FLAG_ENABLE.getCode());
+			
+			input.getDataMap().put("last_time", DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+			
 			JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), input.getDataMap());
+			
+			MDataMap userInfExtMap = new MDataMap();
+			
+			userInfExtMap.put("user_code", registResult.getUserCode());
+			
+			JdbcHelper.dataInsert("uc_userinfo_ext", userInfExtMap);
 			
 		}else{
 			

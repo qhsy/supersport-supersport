@@ -6,6 +6,15 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_user_z_page_UserInfoExtPage?u_userCode=[[data:code]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41101002" operateName="详情" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_user_z_page_UserInfoExtMaJiaPage?u_userCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41101003" operateName="添加"
+			operateFunc="com.uhutu.dcom.user.z.page.func.VestUserRegFunc"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>

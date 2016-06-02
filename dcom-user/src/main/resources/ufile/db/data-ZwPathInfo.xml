@@ -4,15 +4,21 @@
 	<data>
 		<item code="dzpi45101001" nodeName="用户相关" parentCode="" />
 		<item code="dzpi451010010001" nodeName="用户管理" parentCode="dzpi45101001" />
-		<item code="dzpi4510100100010001" nodeName="用户基本信息" parentCode="dzpi451010010001"
-			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UserInfoOperPage" pageIcon="glyphicon-th" />
+		<item code="dzpi4510100100010001" nodeName="注册用户信息" parentCode="dzpi451010010001"
+			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UserInfoOperPage"
+			pageIcon="glyphicon-th" />
+		<item code="dzpi4510100100010002" nodeName="马甲信息" parentCode="dzpi451010010001"
+			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UserInfoMaJiaPage"
+			pageIcon="glyphicon-th" />
 		<item code="dzpi451010010002" nodeName="用户反馈" parentCode="dzpi45101001" />
 		<item code="dzpi4510100100020001" nodeName="反馈信息" parentCode="dzpi451010010002"
-			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_MsgAdvicePage" pageIcon="glyphicon-exclamation-sign" />	
+			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_MsgAdvicePage"
+			pageIcon="glyphicon-exclamation-sign" />
 		<item code="dzpi45101002" nodeName="app相关" parentCode="" />
 		<item code="dzpi451010020001" nodeName="app管理" parentCode="dzpi45101002" />
 		<item code="dzpi4510100200010001" nodeName="app版本信息" parentCode="dzpi451010020001"
-			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_AppVersionInfoPage" pageIcon="glyphicon-phone" />
+			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_AppVersionInfoPage"
+			pageIcon="glyphicon-phone" />
 	</data>
 
 </db>
