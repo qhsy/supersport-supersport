@@ -43,7 +43,7 @@ public interface IContentRemarkDao extends JpaRepository<CnContentRemark, String
 	 *            内容编号
 	 * @return 内容信息
 	 */
-	@Query("select count(1) from CnContentRemark cc where cc.contentCode=:contentCode")
-	public int queryCount(@Param("contentCode") String contentCode);
+	@Query("select count(1) from CnContentRemark cc where cc.contentCode=:contentCode and status=:status")
+	public int queryCount(@Param("contentCode") String contentCode,@Param("status") String status);
 	
 }

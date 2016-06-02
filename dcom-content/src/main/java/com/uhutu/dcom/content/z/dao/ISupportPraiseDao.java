@@ -99,8 +99,8 @@ public interface ISupportPraiseDao extends JpaRepository<CnSupportPraise, String
 	 * 		内容编号
 	 * @return 点赞数量
 	 */
-	@Query("select count(1) from CnSupportPraise cp where cp.contentCode=:contentCode")
-	public int queryCountByCode(@Param("contentCode") String contentCode);
+	@Query("select count(1) from CnSupportPraise cp where cp.contentCode=:contentCode and status=:status")
+	public int queryCountByCode(@Param("contentCode") String contentCode,@Param("status") String status);
 	
 	@Query("select t from CnSupportPraise t where t.type=:type and t.contentCode=:contentCode and t.userCode=:userCode")
 	public CnSupportPraise query(@Param("contentCode") String contentCode,@Param("userCode") String userCode,@Param("type") String type);

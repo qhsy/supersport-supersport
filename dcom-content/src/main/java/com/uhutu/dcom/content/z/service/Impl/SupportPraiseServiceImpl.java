@@ -85,9 +85,10 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 
 
 	@Override
-	public int queryCountByCode(String contentCode) {
+	public int queryCountByCode(String contentCode,String status) {
 		
-		return daoFacotry.getSupportPraiseDao().queryCountByCode(contentCode);
+		return daoFacotry.getSupportPraiseDao().queryCountByCode(contentCode, status);
+		
 	}
 
 

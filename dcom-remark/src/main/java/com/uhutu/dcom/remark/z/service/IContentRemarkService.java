@@ -54,8 +54,10 @@ public interface IContentRemarkService {
 	 * 根据内容编号查询数量
 	 * @param contentCode
 	 * 		内容编号
+	 * @param status
+	 * 		状态
 	 * @return 数量
 	 */
-	public int queryCount(String contentCode);
+	public int queryCount(String contentCode, String status);
 	
 }

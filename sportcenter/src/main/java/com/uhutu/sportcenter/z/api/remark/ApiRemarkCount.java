@@ -53,7 +53,7 @@ public class ApiRemarkCount extends RootApiBase<ApiRemarkCountInput, ApiRemarkCo
 	
 	public void remarkCount(ApiRemarkCountInput input,ApiRemarkCountResult remarkCountResult){
 		
-		int total = serviceFactory.getContentRemarkService().queryCount(input.getContentCode());
+		int total = serviceFactory.getContentRemarkService().queryCount(input.getContentCode(), RemarkEnum.FLAG_ENABLE.getCode());
 		
 		RemarkInfo remarkInfo = new RemarkInfo();
 		
@@ -69,7 +69,7 @@ public class ApiRemarkCount extends RootApiBase<ApiRemarkCountInput, ApiRemarkCo
 	
 	public void favorCount(ApiRemarkCountInput input,ApiRemarkCountResult remarkCountResult){
 		
-		int total = contentServiceFactory.getSupportPraiseService().queryCountByCode(input.getContentCode());
+		int total = contentServiceFactory.getSupportPraiseService().queryCountByCode(input.getContentCode(),RemarkEnum.FLAG_ENABLE.getCode());
 		
 		RemarkInfo remarkInfo = new RemarkInfo();
 		
