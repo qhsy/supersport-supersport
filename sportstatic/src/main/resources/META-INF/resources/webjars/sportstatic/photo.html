@@ -108,7 +108,7 @@ $(function(){
 		this.outer.style.cssText = 'width:' + this.scaleW + 'px';
 		wrap.style.height = window.innerHeight + 'px';
 		wrap.appendChild(this.outer);
-		this.time.innerHTML = this.data.contentBasicInfo['publishTime'];
+		this.time.innerHTML = this.data.contentBasicInfo['publishTimeStr'];
 		this.head.innerHTML = '<img src="' + this.data.contentBasicInfo['aboutHead'] + '"/>';
 		this.name.innerHTML = this.data.contentBasicInfo['nickName'];
 		this.title.innerHTML = this.data.contentBasicInfo['title'];
