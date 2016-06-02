@@ -16,12 +16,6 @@ public enum UserEnum {
 	/**用户状态：冻结*/
 	FLAG_FREEZE("用户冻结","2"),
 	
-	/**用户装填：已登录*/
-	FLAG_LOGIN("用户登录","3"),
-	
-	/**用户装填：已登录*/
-	FLAG_LOGINOUT("用户登录退出","4"),
-	
 	/**普通用户*/
 	TYPE_CUSTOM("普通用户","dzsd4107100310010001"),
 	

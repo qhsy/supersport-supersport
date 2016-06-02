@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
-import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiForLoginInput;
 import com.uhutu.sportcenter.z.result.ApiForLoginResult;
@@ -34,8 +33,6 @@ public class ApiForLogin extends RootApiBase<ApiForLoginInput, ApiForLoginResult
 		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(inputParam.getLoginName());
 
 		if (ucUserinfo != null) {
-
-			ucUserinfo.setFlag(UserEnum.FLAG_LOGIN.getCode());
 
 			ucUserinfo.setLastTime(new Date());
 
