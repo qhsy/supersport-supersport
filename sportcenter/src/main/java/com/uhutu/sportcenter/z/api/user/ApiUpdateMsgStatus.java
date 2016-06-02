@@ -27,19 +27,19 @@ public class ApiUpdateMsgStatus extends RootApiToken<ApiUpdateMsgStatusInput, Ap
 		
 		switch (input.getMsgType()) {
 		
-		case "remark":
+		case "02":
 			remarkStatus(upUserCode());
 			break;
 		
-		case "praise":
+		case "04":
 			praiseStatus(upUserCode());
 			break;
 			
-		case "attend":
+		case "01":
 			attendStatus(upUserCode());
 			break;
 			
-		case "notice":
+		case "03":
 			noticeStatus(upUserCode());
 			break;
 
