@@ -14,6 +14,9 @@ public class ApiSocialLoginResult extends RootApiResult {
 	@ApiModelProperty(value = "用户认证串", notes = "登陆成功后返回非空，用于需要用户授权api_token的操作")
 	private String userToken = "";
 	
+	@ApiModelProperty(value="用户编号")
+	private String userCode;
+	
 	@ApiModelProperty(value="是否是第一次登录")
 	private boolean firstLogin = false;
 
@@ -31,6 +34,14 @@ public class ApiSocialLoginResult extends RootApiResult {
 
 	public void setFirstLogin(boolean firstLogin) {
 		this.firstLogin = firstLogin;
+	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
 	}
 
 }

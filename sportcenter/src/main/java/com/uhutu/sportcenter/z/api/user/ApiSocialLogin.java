@@ -51,6 +51,8 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 		    result.setFirstLogin(true);
 		    
 		    result.setUserToken(userRegResult.getToken());
+		    
+		    result.setUserCode(userRegResult.getUserCode());
 	    	
 	    }else{
 	    	
