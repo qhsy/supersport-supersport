@@ -154,9 +154,9 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 
 		userInfoResult.setUserInfo(apiUserInfo);
 		
-		if(!inputParam.getZoo().getToken().trim().equals(inputParam.getUserCode())){
+		if(StringUtils.isNotBlank(inputParam.getZoo().getToken()) && StringUtils.isNotBlank(inputParam.getUserCode())){
 			UcAttentionInfo info = userServiceFactory.getAttentionInfoService()
-					.queryByBothCode(inputParam.getZoo().getToken().trim(), inputParam.getUserCode());
+					.queryByBothCode(inputParam.getZoo().getToken().trim(), inputParam.getUserCode(),UserEnum.ATTEND.getCode());
 			
 			if(info != null){
 				

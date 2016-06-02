@@ -52,6 +52,17 @@ public interface IAttentionInfoService {
 	public UcAttentionInfo queryByBothCode(String attention, String beAttention);
 	
 	/**
+	 * 我对某用户的关注信息
+	 * 
+	 * @param attention
+	 *            我的用户编号
+	 * @param beAttention
+	 *            对方的用户编号
+	 * @return
+	 */
+	public UcAttentionInfo queryByBothCode(String attention, String beAttention,String status);
+	
+	/**
 	 * 根据用户编号查询粉丝数目
 	 * @param userCode
 	 * 		用户编号

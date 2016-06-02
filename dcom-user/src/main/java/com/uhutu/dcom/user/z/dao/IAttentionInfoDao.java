@@ -48,6 +48,17 @@ public interface IAttentionInfoDao extends JpaRepository<UcAttentionInfo, String
 			@Param("beAttention") String beAttention);
 	
 	/**
+	 * 我对某用户的关注信息
+	 * 
+	 * @param attention
+	 *            我的用户编号
+	 * @return
+	 */
+	@Query("select t from UcAttentionInfo t where attention=:attention and beAttention=:beAttention and status=:status")
+	public UcAttentionInfo queryByBothCode(@Param("attention") String attention,
+			@Param("beAttention") String beAttention,@Param("status") String status);
+	
+	/**
 	 * 获取粉丝数量
 	 * 
 	 * @param userCode

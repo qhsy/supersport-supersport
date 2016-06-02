@@ -75,4 +75,11 @@ public class AttentionInfoServiceImpl implements IAttentionInfoService {
 		
 	}
 
+	@Override
+	public UcAttentionInfo queryByBothCode(String attention, String beAttention, String status) {
+		
+		return userDaoFacotry.getAttentionInfoDao().queryByBothCode(attention, beAttention, status);
+		
+	}
+
 }
