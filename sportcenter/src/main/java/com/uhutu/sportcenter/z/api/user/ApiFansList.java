@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
+import com.uhutu.dcom.user.z.enums.MsgEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.ApiAttendInfo;
 import com.uhutu.sportcenter.z.input.ApiFansListInput;
@@ -32,6 +33,8 @@ public class ApiFansList extends RootApiBase<ApiFansListInput, ApiFansListResult
 		QueryConditions conditions = new QueryConditions();
 		
 		conditions.setConditionEqual("beAttention", input.getUserCode());
+		
+		conditions.setConditionEqual("status", MsgEnum.ATTEND.getCode());
 		
 		Page<UcAttentionInfo> attendPage = userServiceFactory.getAttentionInfoService().queryPageByCondition(input.getPagination(), 10, conditions);
 		
