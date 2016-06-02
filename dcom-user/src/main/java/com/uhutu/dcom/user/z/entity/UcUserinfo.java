@@ -8,6 +8,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -19,28 +20,31 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class UcUserinfo extends BaseEntity {
 
-	@ZooData(name = "用户编号")
+	@ZooData(name = "用户编号", sort = { DefineWebPage.Page_Add + "=0" })
 	private String code;
 
 	@ZooData(name = "用户类型", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd410710031001" }, sort = { DefineWebPage.Page_Query + "=0",
-					DefineWebPage.Page_Edit + "=0" })
+					DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Add + "=0" })
 	private String type;
 
-	@ZooData(name = "登录名称")
+	@ZooData(name = "登录账号", require = "1", verify = DefineWebVerify.Base_Phone)
 	private String loginName;
 
-	@ZooData(name = "登录密码", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "登录密码", require = "1", verify = DefineWebVerify.Base_Password, sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String loginPwd;
 
 	@ZooData(name = "状态", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd410710041001" })
+			DefineWebInc.System_Define + "=dzsd410710041001" }, sort = { DefineWebPage.Page_Add + "=0" })
 	private String flag;
 
-	@ZooData(name = "最近登录时间", sort = { DefineWebPage.Page_Query + "=0" , DefineWebPage.Page_Grid + "=0"})
+	@ZooData(name = "最近登录时间", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
+			DefineWebPage.Page_Add + "=0" })
 	private Date lastTime;
 
-	@ZooData(name = "登录编号", sort = { DefineWebPage.Page_Query + "=0" , DefineWebPage.Page_Grid + "=0"})
+	@ZooData(name = "登录编号", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
+			DefineWebPage.Page_Add + "=0" })
 	private String loginCode;
 
 	/**
