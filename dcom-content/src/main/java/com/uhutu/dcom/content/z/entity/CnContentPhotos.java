@@ -23,7 +23,7 @@ public class CnContentPhotos extends BaseEntity {
 			DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=contentCode")
 	private String contentCode;
 
-	@ZooData(name = "图片路径", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "图片(宽：1080)", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0" })
 	private String picture;
 
 	@ZooData(name = "图片简述", element = DefineWebElement.Textarea)

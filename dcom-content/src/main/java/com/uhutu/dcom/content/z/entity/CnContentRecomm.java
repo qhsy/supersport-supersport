@@ -27,7 +27,7 @@ public class CnContentRecomm extends BaseEntity {
 	@ZooData(name = "推荐标题", verify = { DefineWebVerify.Max_Length + "=28" })
 	private String title;
 
-	@ZooData(name = "推荐封面", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
+	@ZooData(name = "推荐封面(1080*810)", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
 	private String cover;
 

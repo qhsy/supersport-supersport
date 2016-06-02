@@ -33,7 +33,7 @@ public class UcUserinfoExt extends BaseEntity {
 	@ZooData(name = "位置", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String location;
 
-	@ZooData(name = "简介封面", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
+	@ZooData(name = "简介封面(1080*1080)", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
 	private String aboutCover;
 
