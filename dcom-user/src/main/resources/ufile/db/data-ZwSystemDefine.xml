@@ -17,7 +17,7 @@
 		<item code="dzsd4107100310010001" defineName="普通用户" parentCode="dzsd410710031001" />
 		<item code="dzsd4107100310010002" defineName="体育达人" parentCode="dzsd410710031001" />
 		<item code="dzsd4107100310010003" defineName="马甲" parentCode="dzsd410710031001" />
-		<item code="dzsd410710041001" defineName="用户类型" parentCode="" />
+		<item code="dzsd410710041001" defineName="用户状态" parentCode="" />
 		<item code="0" defineName="无效" parentCode="dzsd410710041001" />
 		<item code="1" defineName="有效" parentCode="dzsd410710041001" />
 		<item code="2" defineName="冻结" parentCode="dzsd410710041001" />

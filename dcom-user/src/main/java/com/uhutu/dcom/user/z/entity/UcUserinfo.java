@@ -36,7 +36,7 @@ public class UcUserinfo extends BaseEntity {
 	private String loginPwd;
 
 	@ZooData(name = "状态", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd410710041001" }, sort = { DefineWebPage.Page_Add + "=0" })
+			DefineWebInc.System_Define + "=dzsd410710041001" }, sort = { DefineWebPage.Page_Query + "=0",DefineWebPage.Page_Add + "=0" })
 	private String flag;
 
 	@ZooData(name = "最近登录时间", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
