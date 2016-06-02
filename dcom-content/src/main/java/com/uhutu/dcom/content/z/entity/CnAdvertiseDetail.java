@@ -25,7 +25,7 @@ public class CnAdvertiseDetail extends BaseEntity {
 	@ApiModelProperty(name = "广告编号", notes = "广告编号", example = "ADBH0001")
 	private String code;
 
-	@ZooData(name = "图片", require = "1", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
+	@ZooData(name = "图片(轮播:1080*608;单图:1080*420)", require = "1", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
 	@ApiModelProperty(name = "图片", notes = "轮播图图片", example = "http://www.ichsy.com")
 	private String picUrl;

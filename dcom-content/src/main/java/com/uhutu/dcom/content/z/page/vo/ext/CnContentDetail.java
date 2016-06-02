@@ -23,7 +23,7 @@ public class CnContentDetail extends BaseEntity {
 	@ZooData(name = "视频地址", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String videoUrl;
 
-	@ZooData(name = "视频封面", require = "1", element = DefineWebElement.Upload, sort = {
+	@ZooData(name = "视频封面(1080*810)", require = "1", element = DefineWebElement.Upload, sort = {
 			DefineWebPage.Page_Query + "=0" })
 	private String videoCover;
 
