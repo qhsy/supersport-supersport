@@ -54,7 +54,7 @@ public class ApiForLogin extends RootApiBase<ApiForLoginInput, ApiForLoginResult
 				
 				result.setUserToken(loginResult.getToken());
 				
-				result.setUserCode(loginResult.getUserCode());
+				result.setUserCode(ucUserinfo.getCode());
 				
 			}else{
 				
