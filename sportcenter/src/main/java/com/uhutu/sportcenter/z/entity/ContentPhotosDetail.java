@@ -1,5 +1,6 @@
 package com.uhutu.sportcenter.z.entity;
 
+import com.uhutu.zooweb.io.ImageThumb;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -14,6 +15,9 @@ public class ContentPhotosDetail {
 	
 	@ApiModelProperty(value="图片信息",notes="图片信息")
 	private String picture = "";
+	
+	@ApiModelProperty(value="缩略图信息")
+	private ImageThumb thumb;
 	
 	@ApiModelProperty(value="内容信息",notes="内容信息")
 	private String content = "";
@@ -40,6 +44,14 @@ public class ContentPhotosDetail {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public ImageThumb getThumb() {
+		return thumb;
+	}
+
+	public void setThumb(ImageThumb thumb) {
+		this.thumb = thumb;
 	}
 
 }

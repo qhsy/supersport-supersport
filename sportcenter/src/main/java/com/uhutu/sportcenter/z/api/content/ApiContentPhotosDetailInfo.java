@@ -3,6 +3,7 @@ package com.uhutu.sportcenter.z.api.content;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ import com.uhutu.sportcenter.z.entity.ContentPhotosDetail;
 import com.uhutu.sportcenter.z.input.ApiContentPhotosInput;
 import com.uhutu.sportcenter.z.result.ApiContentPhotosResult;
 import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zooweb.helper.ImageHelper;
+import com.uhutu.zooweb.io.ImageThumb;
 
 /**
  * 图集详情接口
@@ -66,6 +69,14 @@ public class ApiContentPhotosDetailInfo extends RootApiBase<ApiContentPhotosInpu
 					ContentPhotosDetail contentPhotosDetail = new ContentPhotosDetail();
 					
 					BeanUtils.copyProperties(entity, contentPhotosDetail);
+					
+					if(StringUtils.isNotBlank(contentPhotosDetail.getPicture())){
+						
+						ImageThumb thumb = ImageHelper.upThumbWithHeight(contentPhotosDetail.getPicture(), 0);
+						
+						contentPhotosDetail.setThumb(thumb);
+						
+					}
 					
 					cnContentPhotosDetails.add(contentPhotosDetail);
 					
