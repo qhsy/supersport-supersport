@@ -8,6 +8,7 @@ import com.uhutu.dcom.extend.sms.RootApiResult;
 import com.uhutu.dcom.extend.sms.SmsSupport;
 import com.uhutu.dcom.extend.sms.SmsTypeEnum;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
+import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.enums.UserOperEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiSendSmsInput;
@@ -30,7 +31,7 @@ public class ApiSendSms extends RootApiBase<ApiSendSmsInput, ApiSendSmsResult> {
 
 		ApiSendSmsResult sendSmsResult = new ApiSendSmsResult();
 
-		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(inputParam.getMobileNO());
+		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(inputParam.getMobileNO(),UserEnum.FLAG_ENABLE.getCode());
 
 		if (ucUserinfo != null && StringUtils.equals(inputParam.getMsgType(), UserOperEnum.register.name())) {
 

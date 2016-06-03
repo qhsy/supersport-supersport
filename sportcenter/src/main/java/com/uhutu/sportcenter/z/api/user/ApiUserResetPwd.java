@@ -9,6 +9,7 @@ import com.uhutu.dcom.extend.sms.RootApiResult;
 import com.uhutu.dcom.extend.sms.SmsSupport;
 import com.uhutu.dcom.extend.sms.SmsTypeEnum;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
+import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiUserResetPwdInput;
 import com.uhutu.sportcenter.z.result.ApiUserResetPwdResult;
@@ -29,7 +30,7 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 	@Override
 	protected ApiUserResetPwdResult process(ApiUserResetPwdInput input) {
 
-		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(input.getLoginName());
+		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(input.getLoginName(),UserEnum.FLAG_ENABLE.getCode());
 
 		ApiUserResetPwdResult resetPwdResult = new ApiUserResetPwdResult();
 
