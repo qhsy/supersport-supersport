@@ -22,6 +22,8 @@ public class ContentPhotosFuncAdd extends RootFunc {
 			detail.put("picture", pics[i]);
 			if (StringUtils.isNotBlank(input.getDataMap().get("content"))) {
 				detail.put("content", input.getDataMap().get("content"));
+			} else {
+				detail.put("content", "");
 			}
 			detail.put("zz", "1");
 			JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), detail);
