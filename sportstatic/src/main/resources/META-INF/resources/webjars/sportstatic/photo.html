@@ -11,6 +11,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="author" content="">
 <link rel="stylesheet" href="css/main.css?version=20160509">
+<style type="text/css">
+body{background: #333; overflow: hidden;}
+</style>
 </head>
 <body class="ms-controller">
 <section class="photo" id="photo"></section>
@@ -94,14 +97,11 @@ $(function(){
 			li.style.width = window.innerWidth + 'px';
 			li.style.webkitTransform = 'translate3d(' + i * this.scaleW + 'px, 0, 0)';
 			if (item) {
-				//根据窗口的比例与图片的比例来确定
-				//图片是根据宽度来等比缩放还是根据高度来等比缩放
-				li.innerHTML = '<img src="' + item['picture'] + '">';
-				// if (item['height'] / item['width'] > this.radio) {
-				// 	li.innerHTML = '<img height="' + window.innerHeight + '" src="' + item['src'] + '">';
-				// } else {
-				// 	li.innerHTML = '<img width="' + window.innerWidth + '" src="' + item['src'] + '">';
-				// }
+				if (item['thumb']['sourceHeight'] / item['thumb']['sourceWidth'] > this.radio) {
+					li.innerHTML = '<img height="' + window.innerHeight + '" src="' + item['thumb']['sourceUrl'] + '">';
+				} else {
+					li.innerHTML = '<img width="' + window.innerWidth + '" src="' + item['thumb']['sourceUrl'] + '">';
+				}
 			}
 			this.outer.appendChild(li);
 		}
@@ -197,13 +197,7 @@ $(function(){
 		outer.addEventListener('touchmove', moveHandler);
 		outer.addEventListener('touchend', endHandler);
 	};
-	/* 通过URL获取CODE值 */
-	function getCode(str){
-		// ?content_code=string
-		if(typeof str != 'string') return;
-		var arr = str.substr(1).split('=');
-		return arr[1];
-	}
+
 	/* 通过URL获取CODE值 */
 	function urlFormat(arg){
 		// ?content_code=string&share=1
@@ -224,5 +218,6 @@ $(function(){
 });
 
 </script>
+<script type="text/javascript" src="http://172.20.1.106:9999/target/target-script-min.js#anonymous"></script>
 </body>
 </html>

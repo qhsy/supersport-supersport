@@ -46,15 +46,14 @@ a:hover {text-decoration: none; }
 /*图集*/
 .photo{width: 100%; height: 568px; overflow: hidden; background: #000;}
 .photo-list{width: 100%; height: 100%; overflow: hidden;}
-.photo-list li{height: 100%; position: absolute; transform:translate3d(0px,0px,0px); display: -webkit-box; transition: -webkit-transform 0.2s ease-out; -webkit-box-pack: center; -webkit-box-align: center;
-}
+.photo-list li{height: 100%; position: absolute; transform:translate3d(0px,0px,0px); display: -webkit-box; transition: -webkit-transform 0.2s ease-out; -webkit-box-pack: center; -webkit-box-align: center;}
 .photo-list li img{max-width: 100%; max-height: 100%;}
-.photo-info{width: 100%; padding: 0 0.15rem; box-sizing: border-box; position: fixed; left: 0; bottom: 0.55rem; background: rgba(0,0,0,0.9); color: #fff;}
+.photo-info{width: 100%; padding: 0 0.15rem; box-sizing: border-box; position: fixed; left: 0; bottom: 0.55rem; background: rgba(0,0,0,0.6); color: #fff;}
 .photo-num{position: absolute; left: 0.15rem; top: -0.4rem;}
 .photo-tit{padding: 0.13rem 0 0.03rem; font-size: 0.18rem; color: #aaa;}
 .photo-time{display: block; font-size: 0.12rem; color: #aaa;}
 .photo-time:after{content: ""; width: 0.15rem; height: 1px; margin: 0.1rem 0; background: #6f6f6f; display: block;}
-.photo-txt{height: 1.1rem; margin-bottom: 0.2rem; overflow: hidden; font-size: 0.14rem; line-height: 0.24rem;}
+.photo-txt{height: 0.8rem; margin-bottom: 0.2rem; overflow: hidden; font-size: 0.14rem; line-height: 0.24rem;}
 .photo-txt p{height: 1.1rem; overflow: auto;}
 .photo-head{width: 100%; padding: 0 0 0.2rem; display: -webkit-flex; display: flex; background: rgba(0,0,0,0.9); align-items: center; -webkit-align-items: center; position: fixed; left: 0; bottom: 0; color: #fff;}
 .photo-head em{width: 0.35rem; height: 0.35rem; display: block; margin: 0 0.15rem; box-sizing: border-box; border-radius: 50%; border: #fff 1px solid; overflow: hidden;}
