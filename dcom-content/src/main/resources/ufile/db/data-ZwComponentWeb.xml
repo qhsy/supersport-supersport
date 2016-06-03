@@ -26,6 +26,9 @@
 		<item code="dzcw410710010008" componentClass="com.uhutu.zooweb.component.DialogComponent"
 			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_ext_ContentBasicInfoPageThree&amp;max=1"
 			serverDefine="table=CnContentBasicinfo&amp;text=title&amp;value=code" />
+		<item code="dzcw410710010009" componentClass="com.uhutu.zooweb.component.DialogComponent"
+			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_AdvertiseDetailPage&amp;max=1"
+			serverDefine="table=CnAdvertiseDetail&amp;text=name&amp;value=code" />
 	</data>
 
 </db>

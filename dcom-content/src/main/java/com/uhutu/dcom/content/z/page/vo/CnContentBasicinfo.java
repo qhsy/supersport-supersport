@@ -69,11 +69,11 @@ public class CnContentBasicinfo extends BaseEntity {
 	private String localtionName;
 
 	@ZooData(name = "业务类型", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd410710011002" },sort={DefineWebPage.Page_Edit+"=0"})
+			DefineWebInc.System_Define + "=dzsd410710011002" })
 	private String busiType;
 
 	@ZooData(name = "内容类型", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd410710011003" }, sort = { DefineWebPage.Page_Query + "=0",DefineWebPage.Page_Edit+"=0" })
+			DefineWebInc.System_Define + "=dzsd410710011003" }, sort = { DefineWebPage.Page_Query + "=0"})
 	private String contentType;
 
 	public String getCover() {

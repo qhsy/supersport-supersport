@@ -1,6 +1,6 @@
 package com.uhutu.dcom.content.func;
 
-import com.uhutu.zoocom.helper.RegexHelper;
+import com.uhutu.dcom.component.z.util.XmlUtil;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.api.webpage.WebOperateInput;
 import com.uhutu.zooweb.api.webpage.WebOperateResult;
@@ -14,8 +14,11 @@ public class CnContentDetailFuncEdit extends RootFunc {
 	public WebOperateResult process(WebPageModel webPageModel, ExtendPageDefine extendPageDefine,
 			WebOperateInput input) {
 		WebOperateResult result = new WebOperateResult();
-		input.getDataMap().put("content",
-				RegexHelper.upRegexEmpty(input.getDataMap().get("content"), "\\sstyle=[\'\"][^\'\"]*[\'\"]"));
+		try {
+			input.getDataMap().put("content", XmlUtil.removeAttr(input.getDataMap().get("content"), "img", "style"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		JdbcHelper.dataUpdate(extendPageDefine.getPageSource().getTableName(), input.getDataMap(), "", "za");
 		return result;
 	}

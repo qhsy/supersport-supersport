@@ -7,7 +7,7 @@
 		<item code="dmtg4107100110031001" nodeName="内容栏目信息" parentCode="dmtg410710011003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemPage" pageIcon="glyphicon-heart-empty" />
 		<item code="dmtg4107100110031003" nodeName="广告栏目信息" parentCode="dmtg410710011003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForAdvPage" pageIcon="glyphicon-heart" />
 		<item code="dmtg410710011002" nodeName="广告管理" parentCode="dmtg41071001" />
-		<item code="dmtg4107100110021001" nodeName="广告信息" parentCode="dmtg410710011002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_AdvertiseInfoPage" pageIcon="glyphicon-film" />
+		<item code="dmtg4107100110021001" nodeName="广告图库" parentCode="dmtg410710011002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_AdvertiseDetailPage" pageIcon="glyphicon-film" />
 		<item code="dmtg410710011005" nodeName="内容管理" parentCode="dmtg41071001" />
 		<item code="dmtg4107100110051002" nodeName="文章信息" parentCode="dmtg410710011005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoPage" pageIcon="glyphicon-adjust" />
 		<item code="dmtg4107100110051004" nodeName="文章(含视频)信息" parentCode="dmtg410710011005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForVideoPage" pageIcon="glyphicon-adjust" />
