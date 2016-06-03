@@ -2,8 +2,8 @@ package com.uhutu.dcom.content.func;
 
 import java.util.List;
 
+import com.uhutu.dcom.component.z.util.XmlUtil;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
-import com.uhutu.zoocom.helper.RegexHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.api.webpage.WebOperateInput;
@@ -24,8 +24,12 @@ public class CnContentDetailFuncAdd extends RootFunc {
 		if (li != null && li.size() > 0) {
 			result.inError(810710006);
 		} else {
-			input.getDataMap().put("content",
-					RegexHelper.upRegexEmpty(input.getDataMap().get("content"), "\\sstyle=[\'\"][^\'\"]*[\'\"]"));
+			try {
+				input.getDataMap().put("content",
+						XmlUtil.removeAttr(input.getDataMap().get("content"), "img", "style"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), input.getDataMap());
 		}
 		return result;

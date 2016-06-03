@@ -6,7 +6,6 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
-import com.uhutu.zoocom.define.DefineWebSort;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -19,31 +18,29 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @Entity
 public class CnAdvertiseDetail extends BaseEntity {
-	@ZooData(name = "广告标题", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process,
-			DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=code")
-	@ApiModelProperty(name = "广告编号", notes = "广告编号", example = "ADBH0001")
+	// @ZooData(name = "广告标题", sort = { DefineWebPage.Page_Query + "=0",
+	// DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process,
+	// DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc =
+	// DefineWebInc.Url_Param + "=code")
+	@ZooData(name = "广告图编号", inc = DefineWebInc.Insert_Code + "=GGTBH", sort = { DefineWebPage.Page_Add + "=1",
+			DefineWebPage.Page_Edit + "=0" })
+	@ApiModelProperty(name = "广告图编号", notes = "广告编号", example = "ADBH0001")
 	private String code;
+
+	@ZooData(name = "广告图名称", require = "1")
+	private String name;
 
 	@ZooData(name = "图片(轮播:1080*608;单图:1080*420)", require = "1", element = DefineWebElement.Upload, sort = {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@ApiModelProperty(name = "图片", notes = "轮播图图片", example = "http://www.ichsy.com")
 	private String picUrl;
 
-	@ZooData(name = "开始展示时间", element = DefineWebElement.Datehms, require = "1", sort = {
-			DefineWebPage.Page_Query + "=0" })
-	private String startTime;
-
-	@ZooData(name = "结束展示时间", element = DefineWebElement.Datehms, require = "1", sort = {
-			DefineWebPage.Page_Query + "=0" })
-	private String endTime;
-
-	@ZooData(name = "图片跳转类型", element = DefineWebElement.Select, inc = {
+	@ZooData(name = "图片超链接跳转类型", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd410710011005" })
 	@ApiModelProperty(name = "图片超链接跳转类型", notes = "轮播图链接跳转类型01:超链接,02:运动时刻详情页,03:个人中心")
 	private String piclinkType;
 
-	@ZooData(name = "图片跳转内容")
+	@ZooData(name = "图片超链接跳转内容")
 	@ApiModelProperty(name = "图片超链接跳转内容", notes = "轮播图链接跳转内容", example = "http://www.ichsy.com")
 	private String piclinkContent;
 
@@ -79,20 +76,12 @@ public class CnAdvertiseDetail extends BaseEntity {
 		this.piclinkContent = piclinkContent;
 	}
 
-	public String getStartTime() {
-		return startTime;
+	public String getName() {
+		return name;
 	}
 
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
-
-	public String getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }
