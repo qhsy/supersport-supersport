@@ -60,9 +60,9 @@ public class UserInfoServiceImpl implements IUserInfoService {
 	}
 
 	@Override
-	public UcUserinfo queryByLoginName(String loginName) {
+	public UcUserinfo queryByLoginName(String loginName,String flag) {
 
-		return userDaoFacotry.getUserInfoDao().queryByLoginName(loginName);
+		return userDaoFacotry.getUserInfoDao().queryByLoginName(loginName,flag);
 
 	}
 	

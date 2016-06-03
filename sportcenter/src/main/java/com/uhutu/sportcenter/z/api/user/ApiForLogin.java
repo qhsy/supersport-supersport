@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
+import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiForLoginInput;
 import com.uhutu.sportcenter.z.result.ApiForLoginResult;
@@ -30,7 +31,7 @@ public class ApiForLogin extends RootApiBase<ApiForLoginInput, ApiForLoginResult
 
 		ApiForLoginResult result = new ApiForLoginResult();
 
-		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(inputParam.getLoginName());
+		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(inputParam.getLoginName(),UserEnum.FLAG_ENABLE.getCode());
 
 		if (ucUserinfo != null) {
 
@@ -67,9 +68,7 @@ public class ApiForLogin extends RootApiBase<ApiForLoginInput, ApiForLoginResult
 
 		} else {
 
-			result.setStatus(0);
-
-			result.setError("用户信息不存在，请确认输入登录账户");
+			result.inError(81100003);
 
 		}
 

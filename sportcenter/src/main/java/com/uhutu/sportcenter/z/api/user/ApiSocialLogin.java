@@ -57,16 +57,24 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 	    }else{
 	    	
 	    	UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().
-	    			queryByLoginName(inputParam.getAccountId());
+	    			queryByLoginName(inputParam.getAccountId(),UserEnum.FLAG_ENABLE.getCode());
 	    	
-	    	String token = userCallFactory.upAuthCode(ucUserinfo.getLoginCode(), 
-	    			ucUserinfo.getCode(), DefineUser.Login_System_Default);
-	    	
-	    	result.setFirstLogin(false);
-	    	
-	    	result.setUserToken(token);
-	    	
-	    	result.setUserCode(userRegResult.getUserCode());
+	    	if(ucUserinfo != null){
+	    		
+	    		String token = userCallFactory.upAuthCode(ucUserinfo.getLoginCode(), 
+		    			ucUserinfo.getCode(), DefineUser.Login_System_Default);
+		    	
+		    	result.setFirstLogin(false);
+		    	
+		    	result.setUserToken(token);
+		    	
+		    	result.setUserCode(userRegResult.getUserCode());
+	    		
+	    	}else{
+	    		
+	    		result.inError(81100003);
+	    		
+	    	}
 	    	
 	    	
 	    }
@@ -104,7 +112,7 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 	 */
 	public UcUserinfo saveUserInfo(UserReginsterResult userRegResult,ApiSocialLoginInput input){
 		
-		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(input.getAccountId());
+		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(input.getAccountId(),UserEnum.FLAG_ENABLE.getCode());
 		
 		if(ucUserinfo == null){
 			

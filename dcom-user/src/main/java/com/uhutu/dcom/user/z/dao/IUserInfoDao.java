@@ -16,7 +16,7 @@ public interface IUserInfoDao extends CrudRepository<UcUserinfo, String> {
 	@Query("select t from UcUserinfo t where code=:code")
 	public UcUserinfo queryByCode(@Param("code") String code);
 	
-	@Query("select t from UcUserinfo t where loginName=:loginName")
-	public UcUserinfo queryByLoginName(@Param("loginName") String loginName);
+	@Query("select t from UcUserinfo t where loginName=:loginName and flag=:flag")
+	public UcUserinfo queryByLoginName(@Param("loginName") String loginName,@Param("flag") String flag);
 
 }

@@ -36,9 +36,11 @@ public interface IUserInfoService {
 	 * 根据登录名称查询用户信息
 	 * @param loginName
 	 * 		登录名称
+	 * @param flag
+	 * 		用户状态
 	 * @return 用户信息
 	 */
-	public UcUserinfo queryByLoginName(String loginName);
+	public UcUserinfo queryByLoginName(String loginName, String flag);
 	
 	/**
 	 * 授权用户注册
