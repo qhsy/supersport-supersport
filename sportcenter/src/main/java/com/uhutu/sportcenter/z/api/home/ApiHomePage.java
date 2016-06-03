@@ -44,7 +44,9 @@ public class ApiHomePage extends RootApiBase<ApiHomePageInput, ApiHomePageResult
 		mDataMap.put("t2", t2);
 		mDataMap.put("status", "dzsd4699100110010001");
 		List<CnContentItem> items = JdbcHelper.queryForList(CnContentItem.class, "", "-sort,-start_time",
-				"startTime>=:t1 and startTime<:t2 and endTime>=NOW() and status=:status", mDataMap);
+				" ( (startTime>=:t1 and startTime<:t2 and endTime>=NOW() and type in ('dzsd4107100110060002','dzsd4107100110060003') )"
+						+ " or (startTime<=NOW() and endTime>=NOW() and type='dzsd4107100110060001') ) and status=:status",
+				mDataMap);
 		for (int i = 0; i < items.size(); i++) {
 			String itemType = items.get(i).getType();
 			String itemCode = items.get(i).getCode();
