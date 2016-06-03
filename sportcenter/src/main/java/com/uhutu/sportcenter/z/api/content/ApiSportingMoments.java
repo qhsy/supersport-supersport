@@ -19,6 +19,7 @@ import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
 import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 运动时刻
@@ -73,6 +74,8 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 				sportingMoment.setNickName(ucUserinfoExt.getNickName());
 				
 				sportingMoment.setTagName(labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
+				
+				sportingMoment.setCover(ImageHelper.upImageThumbnail(sportingMoment.getCover(), input.getWidth()));
 				
 				sportingMoment.setPublishTimeStr("MM-dd HH:mm");
 
