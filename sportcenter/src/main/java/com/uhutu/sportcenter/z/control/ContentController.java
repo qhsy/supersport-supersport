@@ -14,6 +14,7 @@ import com.uhutu.sportcenter.z.input.ApiContentRecommInput;
 import com.uhutu.sportcenter.z.input.ApiForLabelsInput;
 import com.uhutu.sportcenter.z.input.ApiForSportsInput;
 import com.uhutu.sportcenter.z.input.ApiHomePageInput;
+import com.uhutu.sportcenter.z.input.ApiOperContentInput;
 import com.uhutu.sportcenter.z.input.ApiPublishContentPhotosInput;
 import com.uhutu.sportcenter.z.input.ApiPublishSportingMomentInput;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
@@ -25,6 +26,7 @@ import com.uhutu.sportcenter.z.result.ApiContentRecommResult;
 import com.uhutu.sportcenter.z.result.ApiForLabelsResult;
 import com.uhutu.sportcenter.z.result.ApiForSportsResult;
 import com.uhutu.sportcenter.z.result.ApiHomePageResult;
+import com.uhutu.sportcenter.z.result.ApiOperContentResult;
 import com.uhutu.sportcenter.z.result.ApiPublishContentPhotosResult;
 import com.uhutu.sportcenter.z.result.ApiPublishSportingMomentResult;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
@@ -138,6 +140,15 @@ public class ContentController {
 	public ApiContentRecommResult contentRecomm(@RequestBody ApiContentRecommInput input) {
 
 		return apiFactory.getApiContentRecommInfo().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/delContent", method = RequestMethod.POST)
+	@ApiOperation(value = "内容逻辑删除", notes = "内容信息")
+	public ApiOperContentResult delContent(@RequestBody ApiOperContentInput input) {
+
+		return apiFactory.getApiOperContent().api(input);
 
 	}
 }
