@@ -17,7 +17,6 @@ import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
-import com.uhutu.dcom.user.z.enums.MsgEnum;
 import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
@@ -174,9 +173,9 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 	 */
 	public void initFansNum(UserInfo userInfo){
 		
-		int fansNum = userServiceFactory.getAttentionInfoService().queryFansCount(userInfo.getUserCode(), MsgEnum.ATTEND.getCode());
+		int fansNum = userServiceFactory.getAttentionInfoService().queryFansCount(userInfo.getUserCode(), UserEnum.ATTEND.getCode());
 		
-		int attendNum = userServiceFactory.getAttentionInfoService().queryAttendCount(userInfo.getUserCode(), MsgEnum.ATTEND.getCode());
+		int attendNum = userServiceFactory.getAttentionInfoService().queryAttendCount(userInfo.getUserCode(), UserEnum.ATTEND.getCode());
 		
 		int favorNum = serviceFactory.getSupportPraiseService().favored(ContentEnum.FAVOR_TYPE_LIKE.getCode(), userInfo.getUserCode());
 		
