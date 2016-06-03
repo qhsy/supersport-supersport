@@ -8,6 +8,7 @@ import com.uhutu.sportcenter.z.api.content.ApiComplainInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentDetailInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentPhotosDetailInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentRecommInfo;
+import com.uhutu.sportcenter.z.api.content.ApiOperContent;
 import com.uhutu.sportcenter.z.api.content.ApiPublishContentPhotos;
 import com.uhutu.sportcenter.z.api.content.ApiPublishSportingMoment;
 import com.uhutu.sportcenter.z.api.content.ApiShareContent;
@@ -164,6 +165,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiVerifyNickName apiVerifyNickName;
+	
+	@Autowired
+	private ApiOperContent apiOperContent;
 	
 	
 	public ApiContentDetailInfo getContentDetailInfo() {
@@ -324,5 +328,9 @@ public class ApiFactory {
 
 	public ApiVerifyNickName getApiVerifyNickName() {
 		return apiVerifyNickName;
+	}
+
+	public ApiOperContent getApiOperContent() {
+		return apiOperContent;
 	}
 }
