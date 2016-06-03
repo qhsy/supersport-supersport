@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
+import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
@@ -69,7 +70,7 @@ public class ApiRemarkCount extends RootApiBase<ApiRemarkCountInput, ApiRemarkCo
 	
 	public void favorCount(ApiRemarkCountInput input,ApiRemarkCountResult remarkCountResult){
 		
-		int total = contentServiceFactory.getSupportPraiseService().queryCountByCode(input.getContentCode(),RemarkEnum.FLAG_ENABLE.getCode());
+		int total = contentServiceFactory.getSupportPraiseService().queryCountByCode(input.getContentCode(),ContentEnum.FAVOR_STATUS_YES.getCode());
 		
 		RemarkInfo remarkInfo = new RemarkInfo();
 		
@@ -92,7 +93,7 @@ public class ApiRemarkCount extends RootApiBase<ApiRemarkCountInput, ApiRemarkCo
 		/*01点赞*/
 		CnSupportPraise praise = contentServiceFactory.getSupportPraiseService().query(input.getContentCode(),userCode, "01");
 		
-		if(praise != null && StringUtils.equals(praise.getStatus(), "1")){
+		if(praise != null && StringUtils.equals(praise.getStatus(), ContentEnum.FAVOR_STATUS_YES.getCode())){
 			
 			iffavor = RemarkEnum.ICON_LIGHT.getCode();
 			
