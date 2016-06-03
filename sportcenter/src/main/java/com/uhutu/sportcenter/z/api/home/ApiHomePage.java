@@ -50,7 +50,7 @@ public class ApiHomePage extends RootApiBase<ApiHomePageInput, ApiHomePageResult
 		for (int i = 0; i < items.size(); i++) {
 			String itemType = items.get(i).getType();
 			String itemCode = items.get(i).getCode();
-			result.getList().addAll(new HomePageSupport(userInfoSupport).getPageModels(itemCode, itemType, t1, t2));
+			result.getList().addAll(new HomePageSupport(userInfoSupport).getPageModels(itemCode, itemType, t1, t2,input.getWidth()));
 		}
 
 		return result;

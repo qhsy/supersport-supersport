@@ -23,6 +23,7 @@ import com.uhutu.sportcenter.z.entity.UserinfoExtForApi;
 import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
+import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 首页数据支撑类
@@ -74,7 +75,7 @@ public class HomePageSupport {
 		return flag;
 	}
 
-	public List<HomePageModel> getPageModels(String itemCode, String itemType, String t1, String t2) {
+	public List<HomePageModel> getPageModels(String itemCode, String itemType, String t1, String t2, String width) {
 		List<HomePageModel> li = new ArrayList<HomePageModel>();
 		MDataMap map = new MDataMap();
 		map.put("itemType", itemType);
@@ -128,6 +129,9 @@ public class HomePageSupport {
 							info.setTitle(
 									StringUtils.isNotBlank(recomm.getTitle()) ? recomm.getTitle() : info.getTitle());
 						}
+						if (StringUtils.isNotBlank(info.getCover()) && StringUtils.isNotBlank(width)) {
+							info.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(width)));
+						}
 						BeanUtils.copyProperties(info, infoApi);
 						infoApi.setNickName(userInfoApi.getNickName());
 						infoApi.setAboutHead(userInfoApi.getAboutHead());
@@ -153,6 +157,9 @@ public class HomePageSupport {
 						dfa.setType(cbi.getContentType());
 					}
 				}
+				if (StringUtils.isNotBlank(dfa.getPicUrl()) && StringUtils.isNotBlank(width)) {
+					dfa.setPicUrl(ImageHelper.upImageThumbnail(dfa.getPicUrl(), Integer.valueOf(width)));
+				}
 				hmp.getAdv().getDetails().add(dfa);
 				li.add(hmp);
 			} else if ("dzsd4107100110060001".equals(itemType)
@@ -166,6 +173,9 @@ public class HomePageSupport {
 					for (int j = 0; j < details.size(); j++) {
 						AdvertiseDetailForApi dfa = new AdvertiseDetailForApi();
 						BeanUtils.copyProperties(details.get(j), dfa);
+						if (StringUtils.isNotBlank(dfa.getPicUrl()) && StringUtils.isNotBlank(width)) {
+							dfa.setPicUrl(ImageHelper.upImageThumbnail(dfa.getPicUrl(), Integer.valueOf(width)));
+						}
 						hmp.getAdv().getDetails().add(dfa);
 					}
 					li.add(hmp);

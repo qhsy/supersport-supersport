@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class ApiHomePageInput extends RootApiInput {
 
-	@ApiModelProperty(value = "图片最大宽度", notes = "图片最大宽度", example = "1080", required = true)
+	@ApiModelProperty(value = "图片最大宽度", notes = "图片最大宽度(次参数为空，图片不压缩)", example = "1080", required = true)
 	private String width = "";
 
 	@ApiModelProperty(value = "展示的第几天数据", notes = "展示的第几天数据", example = "1", required = true)
