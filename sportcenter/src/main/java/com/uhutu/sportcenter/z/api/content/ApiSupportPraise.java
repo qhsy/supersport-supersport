@@ -2,13 +2,13 @@ package com.uhutu.sportcenter.z.api.content;
 
 import java.util.Date;
 import java.util.Optional;
-
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.uhutu.dcom.config.enums.PrexEnum;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
+import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcMsgPraise;
 import com.uhutu.dcom.user.z.enums.MsgEnum;
@@ -59,7 +59,11 @@ public class ApiSupportPraise extends RootApiToken<ApiSupportPraiseInput, ApiSup
 		
 		contentServiceFactory.getSupportPraiseService().save(praise);
 		
-		saveMsgPraise(praise);
+		if(StringUtils.equals(input.getIsLike(), ContentEnum.FAVOR_STATUS_YES.getCode())){
+			
+			saveMsgPraise(praise);
+			
+		}
 
 		return result;
 	}
