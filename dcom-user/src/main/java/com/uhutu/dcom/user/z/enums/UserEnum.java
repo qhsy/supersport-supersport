@@ -8,13 +8,13 @@ package com.uhutu.dcom.user.z.enums;
 public enum UserEnum {
 	
 	/**用户状态：有效*/
-	FLAG_ENABLE("用户有效","1"),
+	FLAG_ENABLE("用户有效","dzsd4107100410010002"),
 	
 	/**用户状态：失效*/
-	FLAG_DISABLE("用户失效","0"),
+	FLAG_DISABLE("用户失效","dzsd4107100410010001"),
 	
 	/**用户状态：冻结*/
-	FLAG_FREEZE("用户冻结","2"),
+	FLAG_FREEZE("用户冻结","dzsd4107100410010003"),
 	
 	/**普通用户*/
 	TYPE_CUSTOM("普通用户","dzsd4107100310010001"),
