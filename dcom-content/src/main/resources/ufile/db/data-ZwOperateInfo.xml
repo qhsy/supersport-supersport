@@ -95,6 +95,10 @@
 			operateType="js"
 			operateLink="zstatic_operate.ope_pd('[[struct:pageUnique]]','[[data:za]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071026" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.ContentPhotosFuncAdd" operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
