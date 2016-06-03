@@ -41,7 +41,10 @@ public enum UserEnum {
 	OPER_CUSTOM("普通用户","custom"),
 	
 	/**操作社交用户*/
-	OPER_SOCIAL("社交类用户","social");	
+	OPER_SOCIAL("社交类用户","social"),
+	
+	/**掩码*/
+	SALT("掩码","38D7A2F32F7B8B2571F9C3E37C933BB9");	
 	
 	private String code = "";
 	
