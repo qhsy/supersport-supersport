@@ -26,6 +26,7 @@ import com.uhutu.sportcenter.z.result.ApiUserInfoResult;
 import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoocom.z.bean.TopUserFactory;
+import com.uhutu.zooweb.user.UserCallFactory;
 
 /**
  * 用户信息展示
@@ -154,8 +155,13 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 		userInfoResult.setUserInfo(apiUserInfo);
 		
 		if(StringUtils.isNotBlank(inputParam.getZoo().getToken()) && StringUtils.isNotBlank(inputParam.getUserCode())){
+			
+			UserCallFactory userCallFactory = new UserCallFactory();
+			
+			String currUserCode = userCallFactory.upUserCodeByAuthToken(inputParam.getZoo().getToken(), DefineUser.Login_System_Default);
+			
 			UcAttentionInfo info = userServiceFactory.getAttentionInfoService()
-					.queryByBothCode(inputParam.getZoo().getToken().trim(), inputParam.getUserCode(),UserEnum.ATTEND.getCode());
+					.queryByBothCode(currUserCode, inputParam.getUserCode(),UserEnum.ATTEND.getCode());
 			
 			if(info != null){
 				
