@@ -6,6 +6,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebSort;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -17,7 +18,9 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class UcUserAlbum extends BaseEntity {
 
-	@ZooData(name = "达人姓名", sort = { DefineWebPage.Page_Query + "=0" }, inc = DefineWebInc.Url_Param + "=userCode")
+	@ZooData(name = "达人姓名", sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process,
+			DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=userCode")
 	private String userCode;
 
 	@ZooData(name = "达人签名图片", element = DefineWebElement.Upload, require = "1", sort = {
