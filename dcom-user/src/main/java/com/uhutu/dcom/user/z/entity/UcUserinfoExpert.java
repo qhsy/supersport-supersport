@@ -54,7 +54,7 @@ public class UcUserinfoExpert extends BaseEntity {
 	private String share_icon;
 
 	@ZooData(name = "状态是否正常", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd469910011001" }, sort = { DefineWebPage.Page_Edit + "=0" })
+			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String status;
 
 	@ZooData(name = "能量值", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0",
