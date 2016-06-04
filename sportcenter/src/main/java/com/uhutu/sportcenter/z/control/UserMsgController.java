@@ -35,7 +35,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping(value = "/api/userMsgController")
 @Api(tags = "用户消息中心接口")
-public class UserMsgContoller {
+public class UserMsgController {
 	
 	@Autowired
 	private ApiFactory apiFactory;
