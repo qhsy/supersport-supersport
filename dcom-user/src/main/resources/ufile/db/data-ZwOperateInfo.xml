@@ -19,9 +19,9 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_user_z_page_UcUserAlbumPage?u_userCode=[[data:userCode]]')"
 			parentCode="" noteRemark="" />
-		<item code="dzoi41101005" operateName="添加图片"
-			operateFunc="com.uhutu.zooweb.func.WebFuncAdd" operateType="button"
-			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+		<item code="dzoi41101005" operateName="添加图片" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_user_z_page_UcUserAlbumPage?u_userCode=[[data:userCode]]')"
 			parentCode="" noteRemark="" />
 	</data>
 
