@@ -1,6 +1,8 @@
 package com.uhutu.sportcenter.z.api.content;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiOperContentInput;
@@ -12,6 +14,7 @@ import com.uhutu.zoocom.root.RootApiToken;
  * @author 逄小帅
  *
  */
+@Component
 public class ApiOperContent extends RootApiToken<ApiOperContentInput, ApiOperContentResult> {
 	
 	@Autowired
