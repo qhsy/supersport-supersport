@@ -6,7 +6,6 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
-import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -22,7 +21,7 @@ public class UcUserinfoExpert extends BaseEntity {
 			DefineWebInc.Web_Component + "=dzcw451010010001" })
 	private String userCode;
 
-	@ZooData(name = "达人姓名", require = "1", verify = DefineWebVerify.Base_Phone)
+	@ZooData(name = "达人姓名", require = "1")
 	private String realName;
 
 	@ZooData(name = "达人签名图片", element = DefineWebElement.Upload, require = "1", sort = {

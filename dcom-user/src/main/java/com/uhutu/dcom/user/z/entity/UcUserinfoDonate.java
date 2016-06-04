@@ -8,7 +8,6 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
-import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -25,10 +24,10 @@ public class UcUserinfoDonate extends BaseEntity {
 					DefineWebInc.Web_Component + "=dzcw451010010001" })
 	private String userCode;
 
-	@ZooData(name = "最新能量值", require = "1", verify = DefineWebVerify.Base_Phone)
+	@ZooData(name = "最新能量值", require = "1")
 	private long currPower;
 
-	@ZooData(name = "可用能量值", require = "1", verify = DefineWebVerify.Base_Phone)
+	@ZooData(name = "可用能量值", require = "1")
 	private long freePower;
 
 	@ZooData(name = "当前日期", require = "1", sort = { DefineWebPage.Page_Query + "=0" })

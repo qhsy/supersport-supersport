@@ -6,7 +6,6 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
-import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -26,7 +25,7 @@ public class UcDonateFlow extends BaseEntity {
 	@ZooData(name = "达人姓名", sort = { DefineWebPage.Page_Add + "=0" })
 	private String beSupportCode;
 
-	@ZooData(name = "捐赠能量值", require = "1", verify = DefineWebVerify.Base_Phone)
+	@ZooData(name = "捐赠能量值", require = "1")
 	private long totalPower;
 
 	public String getSupportCode() {
