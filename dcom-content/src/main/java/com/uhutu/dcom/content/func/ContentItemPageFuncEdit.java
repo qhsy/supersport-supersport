@@ -29,7 +29,7 @@ public class ContentItemPageFuncEdit extends RootFunc {
 			map.put("endTime", input.getDataMap().get("end_time"));
 			map.put("za", input.getDataMap().get("za"));
 			List<CnContentItem> li = JdbcHelper.queryForList(CnContentItem.class, "", "",
-					" za!=:za and type='dzsd4107100110060001' and ((endTime>:startTime and endTime<:endTime) or (startTime>:startTime and startTime<:endTime) or (startTime<:startTime and endTime>:endTime) or (startTime>:startTime and endTime<:endTime)) ",
+					" za!=:za and type='dzsd4107100110060001' and ((endTime>=:startTime and endTime<=:endTime) or (startTime>=:startTime and startTime<=:endTime) or (startTime<=:startTime and endTime>=:endTime) or (startTime>=:startTime and endTime<=:endTime)) ",
 					map);
 			if (li != null && !li.isEmpty() && li.size() > 0) {
 				result.inError(810710005);

@@ -69,7 +69,7 @@ public class CnContentItemRelFuncAdd extends RootFunc {
 			map.put("itemCode", itemCode);
 			map.put("contentCode", contentCode);
 			List<CnContentItemRel> li = JdbcHelper.queryForList(CnContentItemRel.class, "", "",
-					" itemType=:itemType and itemCode=:itemCode and contentCode=:contentCode and ((endTime>:startTime and endTime<:endTime) or (startTime>:startTime and startTime<:endTime) or (startTime<:startTime and endTime>:endTime) or (startTime>:startTime and endTime<:endTime)) ",
+					" itemType=:itemType and itemCode=:itemCode and contentCode=:contentCode and ((endTime>=:startTime and endTime<=:endTime) or (startTime>=:startTime and startTime<=:endTime) or (startTime<=:startTime and endTime>=:endTime) or (startTime>=:startTime and endTime<=:endTime)) ",
 					map);
 			if (li != null && !li.isEmpty() && li.size() > 0) {
 				result.inError(810710010);
@@ -83,7 +83,7 @@ public class CnContentItemRelFuncAdd extends RootFunc {
 			map.put("itemType", "dzsd4107100110060002");
 			map.put("itemCode", itemCode);
 			List<CnContentItemRel> li = JdbcHelper.queryForList(CnContentItemRel.class, "", "",
-					" itemType=:itemType and itemCode=:itemCode and ((endTime>:startTime and endTime<:endTime) or (startTime>:startTime and startTime<:endTime) or (startTime<:startTime and endTime>:endTime) or (startTime>:startTime and endTime<:endTime)) ",
+					" itemType=:itemType and itemCode=:itemCode and ((endTime>=:startTime and endTime<=:endTime) or (startTime>=:startTime and startTime<=:endTime) or (startTime<=:startTime and endTime>=:endTime) or (startTime>=:startTime and endTime<=:endTime)) ",
 					map);
 			if (li != null && !li.isEmpty() && li.size() > 0) {
 				result.inError(810710009);
