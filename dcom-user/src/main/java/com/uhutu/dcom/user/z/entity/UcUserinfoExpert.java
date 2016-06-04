@@ -40,7 +40,8 @@ public class UcUserinfoExpert extends BaseEntity {
 			DefineWebPage.Page_Grid + "=0" })
 	private String adv_pic;
 
-	@ZooData(name = "运动经历", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "运动经历", require = "1", element = DefineWebElement.Textarea, sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String experience;
 
 	@ZooData(name = "分享标题", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
