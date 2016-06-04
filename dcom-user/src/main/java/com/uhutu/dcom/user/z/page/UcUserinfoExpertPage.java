@@ -12,8 +12,7 @@ import com.uhutu.zooweb.define.DefineZooWeb;
  * @author xiegj
  *
  */
-@ZooPage(name = "达人信息", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = { DefineZooWeb.PAGE_DEFAULT_OPERATE,
-		DefineWebPage.Page_Query + "=dzoi4699100110171001", DefineWebPage.Page_Grid + "=" })
+@ZooPage(name = "达人信息", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = { DefineZooWeb.PAGE_DEFAULT_OPERATE })
 public class UcUserinfoExpertPage extends RootPageSimple<UcUserinfoExpert> {
 
 }
