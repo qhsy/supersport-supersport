@@ -12,7 +12,7 @@ import com.uhutu.zooweb.define.DefineZooWeb;
 		DefineWebPage.Page_Query + "=dzoi4699100110171001" }, deploy = {
 				DefineWebDeploy.Grid_Where + "=itemType='dzsd4107100110060003' ",
 				DefineWebDeploy.Url_Query + "=itemCode",
-				DefineWebDeploy.Grid_Order + "= DATE_FORMAT(start_time,'%Y-%m-%d') desc, sort desc" })
+				DefineWebDeploy.Grid_Order + "= sort desc,DATE_FORMAT(start_time,'%Y-%m-%d') desc" })
 public class ContentItemRelPage extends RootPageSimple<CnContentItemRel> {
 
 }
