@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>十全十美 GODO达人大比拼</title>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <style type="text/css">
 html{font-size: 100px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
@@ -323,8 +323,12 @@ a:hover {text-decoration: none; }
 				//快速移动也能使得翻页
 				if(self.offsetX > 50){
 					self.goIndex('-1');
-				}else if(self.offsetX < -50){
+				} else if(self.offsetX < -50){
 					self.goIndex('+1');
+				} else if(self.offsetX == 0){
+					outer.parentNode.style.display = 'none';
+					outer.parentNode.innerHTML = '';				
+
 				}else{
 					self.goIndex('0');
 				}
