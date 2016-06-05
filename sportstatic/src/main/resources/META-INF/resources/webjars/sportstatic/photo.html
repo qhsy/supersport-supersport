@@ -64,6 +64,10 @@ $(function(){
 	$('.app-btn').on('click',function(){
 		open();
 	});
+	$('.photo-head').on('click',function(){
+		var id = $(this).attr('id');
+		callbackFunc(id);
+	});
 
 	//构造函数
 	function Slider(opts) {
@@ -110,6 +114,7 @@ $(function(){
 		wrap.appendChild(this.outer);
 		this.time.innerHTML = this.data.contentBasicInfo['publishTimeStr'];
 		this.head.innerHTML = '<img src="' + this.data.contentBasicInfo['aboutHead'] + '"/>';
+		this.head.setAttribute('id',this.data.contentBasicInfo.author)
 		this.name.innerHTML = this.data.contentBasicInfo['nickName'];
 		this.title.innerHTML = this.data.contentBasicInfo['title'];
 		this.text.innerHTML = '<p>' + this.data.contentPhotosDetails[0].content + '</p>';
@@ -197,7 +202,12 @@ $(function(){
 		outer.addEventListener('touchmove', moveHandler);
 		outer.addEventListener('touchend', endHandler);
 	};
-
+	function callbackFunc(code){
+		var userAgent = navigator.userAgent;
+		if(userAgent.indexOf('Android') != -1){
+			javascript:android.StartUserInfo(code);
+		}
+	}
 	/* 通过URL获取CODE值 */
 	function urlFormat(arg){
 		// ?content_code=string&share=1

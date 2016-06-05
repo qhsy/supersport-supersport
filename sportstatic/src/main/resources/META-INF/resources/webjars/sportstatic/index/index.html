@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+<title>支持手机端触摸滑动的JS幻灯片图片轮播特效插件iSlider - JS代码网</title>
+<link rel="stylesheet" href="css/jscss.css" />
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script src="js/islider.js"></script>
+</head>
+<body>
+<!-- 代码 开始 -->
+<div class="tips">通过走路获取能量值，支持喜欢的达人</div>
+<div id="animation-effect" class="iSlider-effect"></div>
+<a class="zan" id="touchArea">长按支持TA</a>
+<div class="foot">本活动最终解释权归GODO所有</div>
+<script>
+        var picList = [
+        {
+			name: 'images/name1.png',
+			number: 'images/num.png',
+            width: 150,
+            height: 207,
+            content: "images/1.jpg",
+			id: '1',
+			heat: '339,345',
+			energy: '93217',
+        },
+        {
+			name: 'images/name1.png',
+			number: 'images/num.png',
+            width: 150,
+            height: 207,
+            content: "images/2.jpg",
+			id: '2',
+			heat: '339,345',
+			energy: '93217',
+        },
+        {
+			name: 'images/name1.png',
+			number: 'images/num.png',
+            width: 150,
+            height: 207,
+            content: "images/3.jpg",
+			id: '3',
+			heat: '339,345',
+			energy: '93217',
+        },
+        {
+			name: 'images/name1.png',
+			number: 'images/num.png',
+            width: 150,
+            height: 207,
+            content:"images/4.jpg",
+			id: '4',
+			heat: '339,345',
+			energy: '93217',
+        },
+        {
+			name: 'images/name1.png',
+			number: 'images/num.png',
+            width: 150,
+            height: 207,
+            content:"images/5.jpg",
+			id: '5',
+			heat: '339,345',
+			energy: '93217',
+        },
+        {
+			name: 'images/name1.png',
+			number: 'images/num.png',
+            width: 300,
+            height: 414,
+            content:"images/6.jpg",
+			id: '6',
+			heat: '339,345',
+			energy: '01446',
+        },
+        {
+			name: 'images/name1.png',
+			number: 'images/num.png',
+            width: 150,
+            height: 207,
+            content:"images/7.jpg",
+			id: '7',
+			heat: '339,345',
+			energy: '00120',
+        },
+        {
+			name: 'images/name1.png',
+			number: 'images/num.png',
+            width: 150,
+            height: 207,
+            content:"images/8.jpg",
+			id: '8',
+			heat: '339,345',
+			energy: '00012',
+        }
+        ];
+        
+        //all animation effect
+        var islider1 = new iSlider({
+            data: picList,
+            dom: document.getElementById("animation-effect"),
+            duration: 2000,
+            animateType: 'depth',
+            isAutoplay: false,
+            isLooping: true,
+            // isVertical: true, 是否垂直滚动
+        });
+		var timeOutEvent=0;
+		var time;
+		$(function(){
+			$("#touchArea").on({
+				touchstart: function(e){
+					var b = $('.index div b i').html();
+					var d = $('.index div font i').html().replace(',','');
+					var c = parseInt(b);
+					var l = parseInt(d);
+					time = setInterval(function(){
+						$('.index div b i').html( c-- );
+						var num = l++;
+						$('.index div font i').html( formatCash(num) );
+					},10);
+					e.preventDefault();
+				},
+				touchmove: function(){
+						clearTimeout(time); 
+						timeOutEvent = 0; 
+				},
+				touchend: function(){
+					clearTimeout(time);
+					if(timeOutEvent!=0){ 
+						alert("你这是点击，不是长按"); 
+					} 
+					return false; 
+				}
+			})
+		});
+		//逗号分隔数字方法
+		function formatCash( cash )
+		{
+		var str_cash = cash + "";//转换成字符串
+		var ret_cash = "";
+		var counter = 0;
+		for(var i=str_cash.length-1;i>=0;i--)
+		{
+		ret_cash = str_cash.charAt(i) + ret_cash;
+		counter++;
+		if(counter==3)
+		{
+		counter = 0;
+		if(i!=0)
+		ret_cash = "," + ret_cash;
+		}
+		}
+		return ret_cash;
+		}
+</script>
+<!-- 代码 结束 -->
+</body>
+</html>

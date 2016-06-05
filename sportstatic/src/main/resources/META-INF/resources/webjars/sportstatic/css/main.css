@@ -55,7 +55,7 @@ a:hover {text-decoration: none; }
 .photo-time:after{content: ""; width: 0.15rem; height: 1px; margin: 0.1rem 0; background: #6f6f6f; display: block;}
 .photo-txt{height: 0.8rem; margin-bottom: 0.2rem; overflow: hidden; font-size: 0.14rem; line-height: 0.24rem;}
 .photo-txt p{height: 1.1rem; overflow: auto;}
-.photo-head{width: 100%; padding: 0 0 0.2rem; display: -webkit-flex; display: flex; background: rgba(0,0,0,0.9); align-items: center; -webkit-align-items: center; position: fixed; left: 0; bottom: 0; color: #fff;}
+.photo-head{width: 100%; padding: 0.1rem 0; display: -webkit-flex; display: flex; background: rgba(0,0,0,0.9); align-items: center; -webkit-align-items: center; position: fixed; left: 0; bottom: 0; color: #fff;}
 .photo-head em{width: 0.35rem; height: 0.35rem; display: block; margin: 0 0.15rem; box-sizing: border-box; border-radius: 50%; border: #fff 1px solid; overflow: hidden;}
 
 /*用户协议*/
