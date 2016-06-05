@@ -17,8 +17,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class UcUserinfoExpert extends BaseEntity {
 
-	@ZooData(name = "达人昵称", sort = { DefineWebPage.Page_Query + "=0" }, element = DefineWebElement.Model, inc = {
-			DefineWebInc.Web_Component + "=dzcw451010010001" })
+	@ZooData(name = "达人用户编号")
 	private String userCode;
 
 	@ZooData(name = "达人姓名", require = "1")
