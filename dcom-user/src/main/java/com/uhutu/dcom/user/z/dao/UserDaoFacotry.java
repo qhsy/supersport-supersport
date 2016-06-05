@@ -53,6 +53,12 @@ public class UserDaoFacotry {
 	
 	@Autowired
 	private IUserInfoDonateDao userInfoDonateDao;
+	
+	@Autowired
+	private IUserAlbumDao userAlbumDao;
+	
+	@Autowired
+	private IUserDonateInfoDao userDonateInfoDao;
 
 	/**
 	 * 用户信息数据访问
@@ -147,8 +153,12 @@ public class UserDaoFacotry {
 		return userInfoDonateDao;
 	}
 
-	public void setUserInfoDonateDao(IUserInfoDonateDao userInfoDonateDao) {
-		this.userInfoDonateDao = userInfoDonateDao;
+	public IUserAlbumDao getUserAlbumDao() {
+		return userAlbumDao;
+	}
+
+	public IUserDonateInfoDao getUserDonateInfoDao() {
+		return userDonateInfoDao;
 	}
 
 }

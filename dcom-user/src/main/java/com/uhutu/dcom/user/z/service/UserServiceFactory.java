@@ -54,6 +54,12 @@ public class UserServiceFactory {
 	@Autowired
 	private IUserInfoDonateService userInfoDonateService;
 	
+	@Autowired
+	private IUserAlbumService userAlbumService;
+	
+	@Autowired
+	private IUserDonateInfoService userDonateInfoService;
+	
 	/**
 	 * 获取用户业务实现
 	 * 
@@ -136,5 +142,13 @@ public class UserServiceFactory {
 
 	public IUserInfoDonateService getUserInfoDonateService() {
 		return userInfoDonateService;
+	}
+
+	public IUserAlbumService getUserAlbumService() {
+		return userAlbumService;
+	}
+
+	public IUserDonateInfoService getUserDonateInfoService() {
+		return userDonateInfoService;
 	}
 }

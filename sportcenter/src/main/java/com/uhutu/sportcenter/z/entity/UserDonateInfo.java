@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class UserDonateInfo {
 	
 	@ApiModelProperty(value="支持总能量值")
-	private String totalPower;
+	private long totalPower;
 	
 	@ApiModelProperty(value="支持者用户昵称")
 	private String nickName;
@@ -18,11 +18,11 @@ public class UserDonateInfo {
 	@ApiModelProperty(value="支持者用户头像")
 	private String headUrl;
 
-	public String getTotalPower() {
+	public long getTotalPower() {
 		return totalPower;
 	}
 
-	public void setTotalPower(String totalPower) {
+	public void setTotalPower(long totalPower) {
 		this.totalPower = totalPower;
 	}
 
