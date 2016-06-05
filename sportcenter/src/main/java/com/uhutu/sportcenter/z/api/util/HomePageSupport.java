@@ -165,8 +165,8 @@ public class HomePageSupport {
 			} else if ("dzsd4107100110060001".equals(itemType)
 					&& t1.substring(0, 10).equals(DateHelper.upNow().substring(0, 10))) {// 轮播广告
 
-				List<CnAdvertiseDetail> details = JdbcHelper.queryForList(CnAdvertiseDetail.class, "", "zc",
-						" code in(" + str.toString() + ")", new MDataMap());
+				List<CnAdvertiseDetail> details = JdbcHelper.queryForList(CnAdvertiseDetail.class, "",
+						" field(code," + str.toString() + ")", " code in(" + str.toString() + ")", new MDataMap());
 				if (details != null && !details.isEmpty() && details.size() > 0) {
 					HomePageModel hmp = new HomePageModel();
 					hmp.setShowType("dzsd4107100110060001");
