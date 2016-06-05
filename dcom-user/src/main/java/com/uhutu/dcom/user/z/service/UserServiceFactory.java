@@ -48,6 +48,12 @@ public class UserServiceFactory {
 	@Autowired
 	private IAppVersionService appVersionService;
 	
+	@Autowired
+	private IUserInfoExpertService userInfoExpertService;
+	
+	@Autowired
+	private IUserInfoDonateService userInfoDonateService;
+	
 	/**
 	 * 获取用户业务实现
 	 * 
@@ -124,4 +130,11 @@ public class UserServiceFactory {
 		return appVersionService;
 	}
 
+	public IUserInfoExpertService getUserInfoExpertService() {
+		return userInfoExpertService;
+	}
+
+	public IUserInfoDonateService getUserInfoDonateService() {
+		return userInfoDonateService;
+	}
 }

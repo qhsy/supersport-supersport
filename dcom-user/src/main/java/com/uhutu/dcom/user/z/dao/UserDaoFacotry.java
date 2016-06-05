@@ -47,6 +47,12 @@ public class UserDaoFacotry {
 	
 	@Autowired
 	private IAppVersionDao appVersionDao;
+	
+	@Autowired
+	private IUserInfoExpertDao userInfoExpertDao;
+	
+	@Autowired
+	private IUserInfoDonateDao userInfoDonateDao;
 
 	/**
 	 * 用户信息数据访问
@@ -131,6 +137,18 @@ public class UserDaoFacotry {
 
 	public IAppVersionDao getAppVersionDao() {
 		return appVersionDao;
+	}
+
+	public IUserInfoExpertDao getUserInfoExpertDao() {
+		return userInfoExpertDao;
+	}
+
+	public IUserInfoDonateDao getUserInfoDonateDao() {
+		return userInfoDonateDao;
+	}
+
+	public void setUserInfoDonateDao(IUserInfoDonateDao userInfoDonateDao) {
+		this.userInfoDonateDao = userInfoDonateDao;
 	}
 
 }

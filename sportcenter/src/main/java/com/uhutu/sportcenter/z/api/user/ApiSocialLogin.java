@@ -196,6 +196,8 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 			
 			social.setAccountName(input.getAccountName());
 			
+			social.setAccountType(input.getAccountType());
+			
 			social.setUserCode(userCode);
 			
 		}else{

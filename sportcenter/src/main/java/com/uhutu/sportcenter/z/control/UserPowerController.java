@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
+import com.uhutu.sportcenter.z.input.ApiUserExpertDetailInput;
 import com.uhutu.sportcenter.z.input.ApiUserExpertListInput;
 import com.uhutu.sportcenter.z.input.ApiUserPowerInitInput;
 import com.uhutu.sportcenter.z.input.ApiUserPowerShareInput;
+import com.uhutu.sportcenter.z.result.ApiUserExpertDetailResult;
 import com.uhutu.sportcenter.z.result.ApiUserExpertListResult;
 import com.uhutu.sportcenter.z.result.ApiUserPowerInitResult;
 import com.uhutu.sportcenter.z.result.ApiUserPowerShareResult;
@@ -56,6 +58,15 @@ public class UserPowerController {
 	public ApiUserPowerShareResult userPowerShare(@RequestBody ApiUserPowerShareInput input) {
 
 		return apiFactory.getApiUserPowerShare().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/userExpertDetail", method = RequestMethod.POST)
+	@ApiOperation(value = "达人详情信息", notes = "用户能量相关")
+	public ApiUserExpertDetailResult userExpertDetail(@RequestBody ApiUserExpertDetailInput input) {
+
+		return apiFactory.getApiUserExpertDetail().api(input);
 
 	}
 
