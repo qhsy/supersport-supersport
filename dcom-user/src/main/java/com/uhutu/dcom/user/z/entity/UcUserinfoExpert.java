@@ -6,6 +6,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -18,7 +19,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 public class UcUserinfoExpert extends BaseEntity {
 
 	@ZooData(name = "达人用户编号")
-	private String userCode;
+	private String code;
 
 	@ZooData(name = "达人姓名", require = "1")
 	private String realName;
@@ -27,7 +28,8 @@ public class UcUserinfoExpert extends BaseEntity {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String signPic;
 
-	@ZooData(name = "排名(倒序)", require = "1", sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "排名(倒序)", require = "1", verify = { DefineWebVerify.Base_Number }, sort = {
+			DefineWebPage.Page_Query + "=0" })
 	private int sort;
 
 	@ZooData(name = "封面图", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
@@ -38,14 +40,15 @@ public class UcUserinfoExpert extends BaseEntity {
 			DefineWebPage.Page_Grid + "=0" })
 	private String adv_pic;
 
-	@ZooData(name = "运动经历", require = "1", element = DefineWebElement.Textarea, sort = {
-			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "运动经历", require = "1", element = DefineWebElement.Editor, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
 	private String experience;
 
 	@ZooData(name = "分享标题", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String share_title;
 
-	@ZooData(name = "分享简介", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "分享简介", require = "1", element = DefineWebElement.Textarea, sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String share_desc;
 
 	@ZooData(name = "分享缩略图", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
@@ -60,12 +63,12 @@ public class UcUserinfoExpert extends BaseEntity {
 			DefineWebPage.Page_Add + "=0" })
 	private long power;
 
-	public String getUserCode() {
-		return userCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getRealName() {

@@ -7,6 +7,7 @@ import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoocom.define.DefineWebSort;
+import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -27,7 +28,8 @@ public class UcUserAlbum extends BaseEntity {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String picture;
 
-	@ZooData(name = "排名(倒序)", require = "1", sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "排名(倒序)", require = "1", verify = { DefineWebVerify.Base_Number }, sort = {
+			DefineWebPage.Page_Query + "=0" })
 	private int sort;
 
 	@ZooData(name = "状态是否正常", element = DefineWebElement.Select, inc = {

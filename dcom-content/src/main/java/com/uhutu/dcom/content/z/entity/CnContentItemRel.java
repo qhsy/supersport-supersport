@@ -7,6 +7,7 @@ import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoocom.define.DefineWebSort;
+import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -32,7 +33,7 @@ public class CnContentItemRel extends BaseEntity {
 			DefineWebInc.Web_Component + "=dzcw410710010002" })
 	private String contentCode;
 
-	@ZooData(name = "展示顺序(倒序)", require = "1")
+	@ZooData(name = "展示顺序(倒序)", require = "1", verify = { DefineWebVerify.Base_Number })
 	private int sort;
 
 	@ZooData(name = "开始时间", element = DefineWebElement.Datehms, require = "1", sort = {

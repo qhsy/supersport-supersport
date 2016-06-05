@@ -6,6 +6,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -24,7 +25,8 @@ public class SpSportCategory extends BaseEntity {
 	@ZooData(name = "运动名称", require = "1")
 	private String name;
 
-	@ZooData(name = "排序(倒序)", require = "1", sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "排序(倒序)", require = "1", verify = { DefineWebVerify.Base_Number }, sort = {
+			DefineWebPage.Page_Query + "=0" })
 	private int sort;
 
 	@ZooData(name = "运动图标", require = "1", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
