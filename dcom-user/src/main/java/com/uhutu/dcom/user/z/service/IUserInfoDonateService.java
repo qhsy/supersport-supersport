@@ -15,5 +15,11 @@ public interface IUserInfoDonateService {
 	 * @return
 	 */
 	public UcUserinfoDonate queryByUserCode(String userCode);
+	
+	/**
+	 * 保存用户捐赠信息
+	 * @param userInfoDonate
+	 */
+	public void save(UcUserinfoDonate userInfoDonate);
 
 }
