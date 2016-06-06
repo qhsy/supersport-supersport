@@ -80,7 +80,8 @@ public class HomePageSupport {
 		MDataMap map = new MDataMap();
 		map.put("itemType", itemType);
 		map.put("itemCode", itemCode);
-		List<CnContentItemRel> rels = JdbcHelper.queryForList(CnContentItemRel.class, "contentCode", "-sort",
+		List<CnContentItemRel> rels = JdbcHelper.queryForList(CnContentItemRel.class, "contentCode",
+				"sort desc,start_time desc,zc desc",
 				" itemCode=:itemCode and itemType=:itemType and endTime>=NOW() and startTime<=NOW() ", map);
 		StringBuffer str = new StringBuffer();
 		if (rels != null && !rels.isEmpty() && rels.size() > 0) {
