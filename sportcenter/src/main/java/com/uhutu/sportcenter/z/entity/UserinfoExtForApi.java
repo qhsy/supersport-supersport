@@ -9,16 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 
-public class UserinfoExtForApi {
-
-	@ApiModelProperty(name = "用户编号")
-	private String userCode;
-
-	@ApiModelProperty(name = "昵称", notes = "昵称", example = "papi酱")
-	private String nickName;
-
-	@ApiModelProperty(name = "用户类型", notes = "dzsd4107100310010001:普通用户,dzsd4107100310010002:体育达人")
-	private String type;
+public class UserinfoExtForApi extends UserBasicInfo {
 
 	@ApiModelProperty(name = "性别")
 	private String sex;
@@ -43,46 +34,7 @@ public class UserinfoExtForApi {
 
 	@ApiModelProperty(name = "用户等级")
 	private String level;
-
-	@ApiModelProperty(name = "头像图片链接", notes = "头像图片链接", example = "http://www.ichsy.com")
-	private String aboutHead;
-
-	/**
-	 * 获取用户编号
-	 * 
-	 * @return
-	 */
-	public String getUserCode() {
-		return userCode;
-	}
-
-	/**
-	 * 设置用户编号
-	 * 
-	 * @param userCode
-	 */
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
-	}
-
-	/**
-	 * 昵称
-	 * 
-	 * @return
-	 */
-	public String getNickName() {
-		return nickName;
-	}
-
-	/**
-	 * 设置昵称
-	 * 
-	 * @param nickName
-	 */
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-
+	
 	/**
 	 * 获取性别
 	 * 
@@ -225,22 +177,6 @@ public class UserinfoExtForApi {
 	 */
 	public void setLevel(String level) {
 		this.level = level;
-	}
-
-	public String getAboutHead() {
-		return aboutHead;
-	}
-
-	public void setAboutHead(String aboutHead) {
-		this.aboutHead = aboutHead;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 }

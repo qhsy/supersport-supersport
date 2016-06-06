@@ -7,13 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author pang_jhui
  *
  */
-public class UserInfo {
-	
-	@ApiModelProperty(value = "用户编号", notes = "用户编号")
-	private String userCode = "";
-	
-	@ApiModelProperty(value = "昵称", notes = "昵称")
-	private String nickName = "";
+public class UserInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value = "性别", notes = "性别")
 	private String sex = "";
@@ -48,9 +42,6 @@ public class UserInfo {
 	@ApiModelProperty(value = "用户等级", notes = "用户等级")
 	private String level = "";
 	
-	@ApiModelProperty(value = "简介头像", notes = "简介头像")
-	private String aboutHead = "";
-	
 	@ApiModelProperty(value="用户简介")
 	private String aboutDesc;
 
@@ -72,23 +63,6 @@ public class UserInfo {
 	@ApiModelProperty(value="用户操作标识",notes="社交类用户:social,普通用户:custom")
 	private String socialFlag;
 	
-
-	public String getUserCode() {
-		return userCode;
-	}
-
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
-	}
-
-	public String getNickName() {
-		return nickName;
-	}
-
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-
 	public String getSex() {
 		return sex;
 	}
@@ -143,14 +117,6 @@ public class UserInfo {
 
 	public void setLevel(String level) {
 		this.level = level;
-	}
-
-	public String getAboutHead() {
-		return aboutHead;
-	}
-
-	public void setAboutHead(String aboutHead) {
-		this.aboutHead = aboutHead;
 	}
 
 	public int getYears() {

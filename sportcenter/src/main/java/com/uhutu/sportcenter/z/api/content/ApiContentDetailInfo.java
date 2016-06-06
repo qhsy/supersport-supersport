@@ -4,14 +4,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
+import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
+import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.entity.ContentDetailInfo;
 import com.uhutu.sportcenter.z.entity.ContentRecommInfo;
@@ -35,7 +36,7 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 	private ContentLabelServiceFactory labelServiceFacotry;
 
 	@Autowired
-	private UserServiceFactory userServiceFactory;
+	private UserInfoSupport userInfoSupport;
 
 	@Override
 	protected ApiContentDetailResult process(ApiContentDetailInput input) {
@@ -60,12 +61,25 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 
 				BeanUtils.copyProperties(cnContentBasicinfo, contentBasicinfoForApi);
 
-				UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService()
-						.queryByUserCode(contentBasicinfoForApi.getAuthor());
+				UcUserinfo userInfo = userInfoSupport.getUserInfo(contentBasicinfoForApi.getAuthor());
+				
+				UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(contentBasicinfoForApi.getAuthor());
 
-				contentBasicinfoForApi.setAboutHead(ucUserinfoExt.getAboutHead());
+				if(ucUserinfoExt != null){
+					
+					contentBasicinfoForApi.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
 
-				contentBasicinfoForApi.setNickName(ucUserinfoExt.getNickName());
+					contentBasicinfoForApi.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+					
+				}
+				
+				if(userInfo != null){
+					
+					contentBasicinfoForApi.getUserBasicInfo().setType(userInfo.getType());
+					
+					contentBasicinfoForApi.getUserBasicInfo().setUserCode(userInfo.getCode());
+					
+				}
 				
 				contentBasicinfoForApi.setTagName(labelServiceFacotry.getContentLabelService().initTagName(cnContentBasicinfo.getTagCode()));
 				

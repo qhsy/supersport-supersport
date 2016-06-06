@@ -64,12 +64,9 @@ public class ContentBasicinfoForApi {
 
 	@ApiModelProperty(name = "展示类型", notes = " dzsd4107100110030001:展示图文 ,dzsd4107100110030002:视频,dzsd4107100110030003:图集", example = "dzsd4107100110030002")
 	private String contentType;
-
-	@ApiModelProperty(name = "用户头像")
-	private String aboutHead;
-
-	@ApiModelProperty(name = "昵称")
-	private String nickName;
+	
+	@ApiModelProperty(value="用户基本信息")
+	private UserBasicInfo userBasicInfo = new UserBasicInfo();
 
 	public String getCode() {
 		return code;
@@ -187,24 +184,8 @@ public class ContentBasicinfoForApi {
 		return contentType;
 	}
 
-	public String getNickName() {
-		return nickName;
-	}
-
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
-	}
-
-	public String getAboutHead() {
-		return aboutHead;
-	}
-
-	public void setAboutHead(String aboutHead) {
-		this.aboutHead = aboutHead;
 	}
 
 	public String getPublishTimeStr() {
@@ -227,6 +208,14 @@ public class ContentBasicinfoForApi {
 
 	public void setTagName(String tagName) {
 		this.tagName = tagName;
+	}
+
+	public UserBasicInfo getUserBasicInfo() {
+		return userBasicInfo;
+	}
+
+	public void setUserBasicInfo(UserBasicInfo userBasicInfo) {
+		this.userBasicInfo = userBasicInfo;
 	}
 
 }

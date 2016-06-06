@@ -29,21 +29,51 @@ public class UserInfoSupport {
 	public UserBasicInfo getUserBasicInfo(String userCode) {
 
 		UserBasicInfo userBasicInfo = new UserBasicInfo();
-
-		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByCode(userCode);
-
-		UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(userCode);
 		
-		UcUserinfoSocial userinfoSocial = userServiceFactory.getUserInfoSocialService().queryByUserCode(userCode);
+		userBasicInfo.setUcUserinfo(getUserInfo(userCode));
 		
-		userBasicInfo.setUcUserinfo(ucUserinfo);
+		userBasicInfo.setUcUserinfoExt(getUserInfoExt(userCode));
 		
-		userBasicInfo.setUcUserinfoExt(ucUserinfoExt);
-		
-		userBasicInfo.setUcUserinfoSocial(userinfoSocial);
+		userBasicInfo.setUcUserinfoSocial(getUserInfoSocial(userCode));
 		
 		return userBasicInfo;
 
+	}
+	
+	/**
+	 * 获取用户信息
+	 * @param userCode
+	 * 		用户编号
+	 * @return 用户信息
+	 */
+	public UcUserinfo getUserInfo(String userCode){
+		
+		return userServiceFactory.getUserInfoService().queryByCode(userCode);
+		
+	}
+	
+	/**
+	 * 用户扩展信息
+	 * @param userCode
+	 * 		用户编号
+	 * @return 用户扩展信息
+	 */
+	public UcUserinfoExt getUserInfoExt(String userCode){
+		
+		return userServiceFactory.getUserInfoExtService().queryByUserCode(userCode);
+		
+	}
+	
+	/**
+	 * 用户社交信息
+	 * @param userCode
+	 * 		用户编号
+	 * @return 用户社交信息
+	 */
+	public UcUserinfoSocial getUserInfoSocial(String userCode){
+		
+		return userServiceFactory.getUserInfoSocialService().queryByUserCode(userCode);
+		
 	}
 
 }

@@ -21,6 +21,8 @@ import com.uhutu.sportcenter.z.entity.UserInfoExpertDetail;
 import com.uhutu.sportcenter.z.input.ApiUserExpertDetailInput;
 import com.uhutu.sportcenter.z.result.ApiUserExpertDetailResult;
 import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zooweb.helper.ImageHelper;
+import com.uhutu.zooweb.io.ImageThumb;
 
 /**
  * 达人用户详情信息
@@ -86,6 +88,14 @@ public class ApiUserExpertDetail extends RootApiBase<ApiUserExpertDetailInput, A
 			UserAlbum userAlbum = new UserAlbum();
 			
 			BeanUtils.copyProperties(album, userAlbum);
+			
+			ImageThumb imageThumb = ImageHelper.upThumbWithHeight(userAlbum.getPicture(), 0);
+			
+			userAlbum.setWidth(imageThumb.getSourceWidth());
+			
+			userAlbum.setHeight(imageThumb.getSourceHeight());
+			
+			userAlbum.setIconUrl(ImageHelper.upImageThumbnail(userAlbum.getPicture(), 50));
 			
 			userAlbums.add(userAlbum);
 			
