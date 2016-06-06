@@ -21,16 +21,14 @@ public class CnContentLabel extends BaseEntity {
 	@ZooData(name = "标签名称")
 	private String name;
 
-	@ZooData(name = "账户类型", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" }, element = DefineWebElement.Model, inc = {
+	@ZooData(name = "创建用户", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0",
+			DefineWebPage.Page_Add + "=0" }, element = DefineWebElement.Model, inc = {
 					DefineWebInc.Web_Component + "=dzcw451010010001" })
 	private String type;
 
-	@ZooData(name = "位置经纬度", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
-	private String location;
-
-	@ZooData(name = "位置名称")
-	private String locationName;
+	@ZooData(name = "标签类型", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd412410011001" })
+	private String labelType;
 
 	@ZooData(name = "状态(是否可用)", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
@@ -68,19 +66,12 @@ public class CnContentLabel extends BaseEntity {
 		this.status = status;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getLabelType() {
+		return labelType;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setLabelType(String labelType) {
+		this.labelType = labelType;
 	}
 
-	public String getLocationName() {
-		return locationName;
-	}
-
-	public void setLocationName(String locationName) {
-		this.locationName = locationName;
-	}
 }

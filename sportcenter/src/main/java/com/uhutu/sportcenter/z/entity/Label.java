@@ -2,19 +2,19 @@ package com.uhutu.sportcenter.z.entity;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class Label{
+public class Label {
 
-	@ApiModelProperty(name="标签编号" ,notes="标签编号",example="lb001")
-	private String code="";
-	
-	@ApiModelProperty(name="标签" ,notes="标签",example="极限运动")
-	private String name="";
-	
-	@ApiModelProperty(name="位置经纬度" ,notes="位置经纬度",example="123456,456789")
-	private String location="";
-	
-	@ApiModelProperty(name="位置名称" ,notes="位置名称",example="金域国际大厦")
-	private String locationName="";
+	@ApiModelProperty(name = "标签编号", notes = "标签编号", example = "lb001")
+	private String code = "";
+
+	@ApiModelProperty(name = "标签", notes = "标签", example = "极限运动")
+	private String name = "";
+
+	@ApiModelProperty(name = "创建标签用户编号")
+	private String type;
+
+	@ApiModelProperty(name = "标签类型", notes = "dzsd4124100110010001:系统，dzsd4124100110010001:用户")
+	private String labelType;
 
 	public String getCode() {
 		return code;
@@ -31,21 +31,21 @@ public class Label{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public String getLocation() {
-		return location;
+
+	public String getType() {
+		return type;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public String getLocationName() {
-		return locationName;
+	public String getLabelType() {
+		return labelType;
 	}
 
-	public void setLocationName(String locationName) {
-		this.locationName = locationName;
+	public void setLabelType(String labelType) {
+		this.labelType = labelType;
 	}
 
 }
