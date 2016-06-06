@@ -9,25 +9,28 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
  * app版本信息
+ * 
  * @author 逄小帅
  *
  */
 @Entity
 public class SpAppVersion extends BaseEntity {
-	
-	@ZooData(value="版本号")
+
+	@ZooData(value = "版本号")
 	private String versionNo;
-	
-	@ZooData(value="升级内容")
+
+	@ZooData(value = "升级内容")
 	private String upgradeContent;
-	
-	@ZooData(value="升级类型",element=DefineWebElement.Select,inc={DefineWebInc.System_Define+"=dzsd410710021001"})
+
+	@ZooData(value = "升级类型", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd410710021002" })
 	private String upgradeType;
-	
-	@ZooData(value="app升级地址")
+
+	@ZooData(value = "app升级地址")
 	private String appUrl;
-	
-	@ZooData(value="系统类型",element=DefineWebElement.Select,inc={DefineWebInc.System_Define+"=dzsd410710021002"})
+
+	@ZooData(value = "系统类型", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd410710021001" })
 	private String systemType;
 
 	public String getVersionNo() {
