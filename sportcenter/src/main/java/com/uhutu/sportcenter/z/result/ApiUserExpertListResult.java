@@ -21,6 +21,9 @@ public class ApiUserExpertListResult extends RootApiResult {
 	
 	@ApiModelProperty(value="可用能量值",notes="当前用户可用能量值")
 	private long freePower;
+	
+	@ApiModelProperty(value="可用能量值")
+	private String freePowerStr;
 
 	public List<UserInfoExpert> getUserInfoExperts() {
 		return userInfoExperts;
@@ -36,6 +39,14 @@ public class ApiUserExpertListResult extends RootApiResult {
 
 	public void setFreePower(long freePower) {
 		this.freePower = freePower;
+	}
+
+	public String getFreePowerStr() {
+		return freePowerStr;
+	}
+
+	public void setFreePowerStr(String freePowerStr) {
+		this.freePowerStr = freePowerStr;
 	}
 	
 	
