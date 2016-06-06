@@ -7,13 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author 逄小帅
  *
  */
-public class MsgPraiseInfo {
-	
-	@ApiModelProperty(name="头像")
-	private String headUrl;
-	
-	@ApiModelProperty(name="昵称")
-	private String nickName;
+public class MsgPraiseInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(name="点赞者")
 	private String praiseUserCode;
@@ -23,22 +17,6 @@ public class MsgPraiseInfo {
 	
 	@ApiModelProperty(name="消息时间")
 	private String msgTime;
-
-	public String getHeadUrl() {
-		return headUrl;
-	}
-
-	public void setHeadUrl(String headUrl) {
-		this.headUrl = headUrl;
-	}
-
-	public String getNickName() {
-		return nickName;
-	}
-
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
 
 	public String getPraiseUserCode() {
 		return praiseUserCode;

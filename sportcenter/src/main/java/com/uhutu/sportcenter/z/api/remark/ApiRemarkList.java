@@ -13,6 +13,7 @@ import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
 import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
+import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.ContentRemarkInfo;
@@ -89,11 +90,15 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 			
 			UcUserinfoExt ucUserinfoExt = userSerivceFactory.getUserInfoExtService().queryByUserCode(remark.getAuthor());
 			
-			if(ucUserinfoExt != null){
+			UcUserinfo ucUserinfo = userSerivceFactory.getUserInfoService().queryByCode(remark.getAuthor());
+			
+			if(ucUserinfoExt != null && ucUserinfo != null){
 				
-				remarkInfo.setAuthorName(ucUserinfoExt.getNickName());
+				remarkInfo.setNickName(ucUserinfoExt.getNickName());
 				
-				remarkInfo.setHeadUrl(ucUserinfoExt.getAboutHead());
+				remarkInfo.setAboutHead(ucUserinfoExt.getAboutHead());
+				
+				remarkInfo.setType(ucUserinfo.getType());
 				
 			}
 			

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
+import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
@@ -58,11 +59,17 @@ public class ApiAttendList extends RootApiBase<ApiAttendListInput, ApiAttendList
 				
 				UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(attendInfo.getBeAttention());
 				
-				if(ucUserinfoExt != null){
+				UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByCode(attendInfo.getBeAttention());
+				
+				if(ucUserinfoExt != null && ucUserinfo != null){
 					
-					apiAttendInfo.setHeadUrl(ucUserinfoExt.getAboutHead());
+					apiAttendInfo.setAboutHead(ucUserinfoExt.getAboutHead());
 					
 					apiAttendInfo.setNickName(ucUserinfoExt.getNickName());
+					
+					apiAttendInfo.setType(ucUserinfo.getType());
+					
+					apiAttendInfo.setUserCode(ucUserinfo.getCode());
 					
 					result.getAttendList().add(apiAttendInfo);
 					

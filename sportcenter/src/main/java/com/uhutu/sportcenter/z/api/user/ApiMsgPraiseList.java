@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.entity.UcMsgPraise;
+import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.MsgPraiseInfo;
@@ -51,11 +52,15 @@ public class ApiMsgPraiseList extends RootApiToken<ApiMsgPraiseListInput, ApiMsg
 			
 			UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(msgPraise.getPraiseUserCode());
 			
-			if(ucUserinfoExt != null){
+			UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByCode(msgPraise.getPraiseUserCode());
+			
+			if(ucUserinfoExt != null && ucUserinfo != null){
 				
-				msgPraiseInfo.setHeadUrl(ucUserinfoExt.getAboutHead());
+				msgPraiseInfo.setAboutHead(ucUserinfoExt.getAboutHead());
 				
 				msgPraiseInfo.setNickName(ucUserinfoExt.getNickName());
+				
+				msgPraiseInfo.setType(ucUserinfo.getType());
 				
 			}
 			

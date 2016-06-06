@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.entity.UcMsgAttention;
+import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.MsgAttendInfo;
@@ -50,9 +51,17 @@ public class ApiMsgAttendList extends RootApiToken<ApiMsgAttendListInput, ApiMsg
 			
 			UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(msgAttend.getFansUserCode());
 			
-			msgAttendInfo.setHeadUrl(ucUserinfoExt.getAboutHead());
+			UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByCode(msgAttend.getFansUserCode());
 			
-			msgAttendInfo.setNickName(ucUserinfoExt.getNickName());
+			if(ucUserinfo != null && ucUserinfoExt != null){
+				
+				msgAttendInfo.setAboutHead(ucUserinfoExt.getAboutHead());
+				
+				msgAttendInfo.setNickName(ucUserinfoExt.getNickName());
+				
+				msgAttendInfo.setType(ucUserinfo.getType());
+				
+			}
 			
 			attendListResult.getMsgAttendInfos().add(msgAttendInfo);
 			

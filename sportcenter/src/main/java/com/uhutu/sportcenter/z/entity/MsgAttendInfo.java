@@ -7,13 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author 逄小帅
  *
  */
-public class MsgAttendInfo {
-	
-	@ApiModelProperty(name="用户头像")
-	private String headUrl;
-	
-	@ApiModelProperty(name="用户昵称")
-	private String nickName;
+public class MsgAttendInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(name="粉丝用户编号")
 	private String fansUserCode;
@@ -23,22 +17,6 @@ public class MsgAttendInfo {
 	
 	@ApiModelProperty(name="是否已关注")
 	private String attendStatus;
-
-	public String getHeadUrl() {
-		return headUrl;
-	}
-
-	public void setHeadUrl(String headUrl) {
-		this.headUrl = headUrl;
-	}
-
-	public String getNickName() {
-		return nickName;
-	}
-
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
 
 	public String getFansUserCode() {
 		return fansUserCode;

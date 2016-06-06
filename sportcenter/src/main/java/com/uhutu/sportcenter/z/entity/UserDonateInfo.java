@@ -7,16 +7,10 @@ import io.swagger.annotations.ApiModelProperty;
  * @author 逄小帅
  *
  */
-public class UserDonateInfo {
+public class UserDonateInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value="支持总能量值")
 	private long totalPower;
-	
-	@ApiModelProperty(value="支持者用户昵称")
-	private String nickName;
-	
-	@ApiModelProperty(value="支持者用户头像")
-	private String headUrl;
 	
 	@ApiModelProperty(value="格式化能量值")
 	private String totalPowerStr;
@@ -27,22 +21,6 @@ public class UserDonateInfo {
 
 	public void setTotalPower(long totalPower) {
 		this.totalPower = totalPower;
-	}
-
-	public String getNickName() {
-		return nickName;
-	}
-
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-
-	public String getHeadUrl() {
-		return headUrl;
-	}
-
-	public void setHeadUrl(String headUrl) {
-		this.headUrl = headUrl;
 	}
 
 	public String getTotalPowerStr() {

@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author 逄小帅
  *
  */
-public class ContentRemarkInfo {
+public class ContentRemarkInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value="评论编号",notes="评论编号")
 	private String code;
@@ -21,17 +21,11 @@ public class ContentRemarkInfo {
 	@ApiModelProperty(value="评论人用户编号",notes="评论人用户编号")
 	private String author;
 	
-	@ApiModelProperty(value="评论人用户名称",notes="评论人用户名称")
-	private String authorName;
-	
 	@ApiModelProperty(value="评论的父级编号",notes="评论的父级编号")
 	private String parentCode;
 	
 	@ApiModelProperty(value="评论状态",notes="评论状态")
 	private String status;
-	
-	@ApiModelProperty(value="用户头像")
-	private String headUrl;
 	
 	@ApiModelProperty(value="发布时间")
 	private String publishTime;
@@ -68,14 +62,6 @@ public class ContentRemarkInfo {
 		this.author = author;
 	}
 
-	public String getAuthorName() {
-		return authorName;
-	}
-
-	public void setAuthorName(String authorName) {
-		this.authorName = authorName;
-	}
-
 	public String getParentCode() {
 		return parentCode;
 	}
@@ -90,14 +76,6 @@ public class ContentRemarkInfo {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public String getHeadUrl() {
-		return headUrl;
-	}
-
-	public void setHeadUrl(String headUrl) {
-		this.headUrl = headUrl;
 	}
 
 	public String getPublishTime() {

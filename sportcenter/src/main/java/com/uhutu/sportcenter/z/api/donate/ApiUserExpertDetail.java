@@ -12,6 +12,7 @@ import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.user.z.entity.UcDonateInfo;
 import com.uhutu.dcom.user.z.entity.UcUserAlbum;
+import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExpert;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
@@ -128,15 +129,21 @@ public class ApiUserExpertDetail extends RootApiBase<ApiUserExpertDetailInput, A
 			
 			UcUserinfoExt userinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(donateInfo.getSupportCode());
 			
-			if(userinfoExt != null){
+			UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByCode(donateInfo.getSupportCode());
+			
+			if(userinfoExt != null && ucUserinfo != null){
 				
 				UserDonateInfo userDonateInfo = new UserDonateInfo();
 				
 				userDonateInfo.setTotalPower(donateInfo.getTotalPower());
 				
-				userDonateInfo.setNickName(userinfoExt.getAboutHead());
+				userDonateInfo.setAboutHead(userinfoExt.getAboutHead());
 				
 				userDonateInfo.setNickName(userinfoExt.getNickName());
+				
+				userDonateInfo.setType(ucUserinfo.getType());
+				
+				userDonateInfo.setUserCode(ucUserinfo.getCode());
 				
 				userDonateInfo.setTotalPowerStr(String.format("%,d", userDonateInfo.getTotalPower()));
 				

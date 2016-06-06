@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
+import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
@@ -58,11 +59,17 @@ public class ApiFansList extends RootApiBase<ApiFansListInput, ApiFansListResult
 				
 				UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(attendInfo.getBeAttention());
 				
+				UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByCode(attendInfo.getBeAttention());
+				
 				if(ucUserinfoExt != null){
 					
-					apiAttendInfo.setHeadUrl(ucUserinfoExt.getAboutHead());
+					apiAttendInfo.setAboutHead(ucUserinfoExt.getAboutHead());
 					
 					apiAttendInfo.setNickName(ucUserinfoExt.getNickName());
+					
+					apiAttendInfo.setUserCode(ucUserinfo.getCode());
+					
+					apiAttendInfo.setType(ucUserinfo.getType());
 					
 					result.getFansList().add(apiAttendInfo);
 					
