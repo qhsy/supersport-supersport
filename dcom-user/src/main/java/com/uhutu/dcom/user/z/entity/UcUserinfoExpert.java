@@ -32,12 +32,12 @@ public class UcUserinfoExpert extends BaseEntity {
 			DefineWebPage.Page_Query + "=0" })
 	private int sort;
 
-	@ZooData(name = "封面图", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "封面图(564*790)", element = DefineWebElement.Upload, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String cover_pic;
 
-	@ZooData(name = "广告图", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "宣传图(750*750)", element = DefineWebElement.Upload, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String adv_pic;
 
 	@ZooData(name = "运动经历", require = "1", element = DefineWebElement.Editor, sort = { DefineWebPage.Page_Query + "=0",

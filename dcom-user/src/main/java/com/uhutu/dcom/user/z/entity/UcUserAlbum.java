@@ -24,7 +24,7 @@ public class UcUserAlbum extends BaseEntity {
 			DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=userCode")
 	private String userCode;
 
-	@ZooData(name = "达人签名图片", element = DefineWebElement.Upload, require = "1", sort = {
+	@ZooData(name = "达人签名图片(750*750)", element = DefineWebElement.Upload, require = "1", sort = {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String picture;
 
