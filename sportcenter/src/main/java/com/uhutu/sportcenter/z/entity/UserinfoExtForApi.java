@@ -17,6 +17,9 @@ public class UserinfoExtForApi {
 	@ApiModelProperty(name = "昵称", notes = "昵称", example = "papi酱")
 	private String nickName;
 
+	@ApiModelProperty(name = "用户类型", notes = "dzsd4107100310010001:普通用户,dzsd4107100310010002:体育达人")
+	private String type;
+
 	@ApiModelProperty(name = "性别")
 	private String sex;
 
@@ -230,6 +233,14 @@ public class UserinfoExtForApi {
 
 	public void setAboutHead(String aboutHead) {
 		this.aboutHead = aboutHead;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

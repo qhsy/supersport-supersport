@@ -15,6 +15,7 @@ import com.uhutu.dcom.content.z.entity.CnContentItem;
 import com.uhutu.dcom.content.z.entity.CnContentItemRel;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
+import com.uhutu.dcom.user.z.entity.UserBasicInfo;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.AdvertiseDetailForApi;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
@@ -119,8 +120,9 @@ public class HomePageSupport {
 							if (ext == null) {
 								continue;
 							}
-							BeanUtils.copyProperties(
-									userInfoSupport.getUserBasicInfo(info.getAuthor()).getUcUserinfoExt(), userInfoApi);
+							UserBasicInfo ubi = userInfoSupport.getUserBasicInfo(info.getAuthor());
+							BeanUtils.copyProperties(ubi.getUcUserinfoExt(), userInfoApi);
+							userInfoApi.setType(ubi.getUcUserinfo().getType());
 						}
 						CnContentRecomm recomm = JdbcHelper.queryOne(CnContentRecomm.class, "contentCode",
 								info.getCode());
