@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class UserInfoExpert {
 	
 	@ApiModelProperty(value="用户编号")
-	private String userCode;
+	private String code;
 	
 	@ApiModelProperty(value="真实姓名")
 	private String realName;
@@ -30,12 +30,12 @@ public class UserInfoExpert {
 	@ApiModelProperty(value="能量值")
 	private long power;
 
-	public String getUserCode() {
-		return userCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getRealName() {

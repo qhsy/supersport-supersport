@@ -6,17 +6,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.uhutu.sportcenter.z.api.ApiFactory;
+import com.uhutu.sportcenter.z.input.ApiUpdateUserPowerInput;
 import com.uhutu.sportcenter.z.input.ApiUserExpertDetailInput;
 import com.uhutu.sportcenter.z.input.ApiUserExpertListInput;
 import com.uhutu.sportcenter.z.input.ApiUserPowerInitInput;
 import com.uhutu.sportcenter.z.input.ApiUserPowerShareInput;
+import com.uhutu.sportcenter.z.result.ApiUpdateUserPowerResult;
 import com.uhutu.sportcenter.z.result.ApiUserExpertDetailResult;
 import com.uhutu.sportcenter.z.result.ApiUserExpertListResult;
 import com.uhutu.sportcenter.z.result.ApiUserPowerInitResult;
 import com.uhutu.sportcenter.z.result.ApiUserPowerShareResult;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -67,6 +67,15 @@ public class UserPowerController {
 	public ApiUserExpertDetailResult userExpertDetail(@RequestBody ApiUserExpertDetailInput input) {
 
 		return apiFactory.getApiUserExpertDetail().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/updateUserPower", method = RequestMethod.POST)
+	@ApiOperation(value = "更新达人能量值", notes = "用户能量相关")
+	public ApiUpdateUserPowerResult updateUserPower(@RequestBody ApiUpdateUserPowerInput input) {
+
+		return apiFactory.getApiUpdateUserPower().api(input);
 
 	}
 

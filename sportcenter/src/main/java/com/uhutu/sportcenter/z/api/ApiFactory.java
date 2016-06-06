@@ -14,6 +14,7 @@ import com.uhutu.sportcenter.z.api.content.ApiPublishSportingMoment;
 import com.uhutu.sportcenter.z.api.content.ApiShareContent;
 import com.uhutu.sportcenter.z.api.content.ApiSportingMoments;
 import com.uhutu.sportcenter.z.api.content.ApiSupportPraise;
+import com.uhutu.sportcenter.z.api.donate.ApiUpdateUserPower;
 import com.uhutu.sportcenter.z.api.donate.ApiUserExpertDetail;
 import com.uhutu.sportcenter.z.api.donate.ApiUserExpertList;
 import com.uhutu.sportcenter.z.api.donate.ApiUserPowerInit;
@@ -184,6 +185,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiUserExpertDetail apiUserExpertDetail;
+	
+	@Autowired
+	private ApiUpdateUserPower apiUpdateUserPower;
 	
 	
 	public ApiContentDetailInfo getContentDetailInfo() {
@@ -368,5 +372,9 @@ public class ApiFactory {
 
 	public void setApiUserExpertDetail(ApiUserExpertDetail apiUserExpertDetail) {
 		this.apiUserExpertDetail = apiUserExpertDetail;
+	}
+
+	public ApiUpdateUserPower getApiUpdateUserPower() {
+		return apiUpdateUserPower;
 	}
 }
