@@ -15,7 +15,7 @@ import com.uhutu.zooweb.define.DefineZooWeb;
  */
 @ZooPage(name = "马甲账号", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = { DefineZooWeb.PAGE_DEFAULT_OPERATE,
 		DefineWebPage.Page_Grid + "=dzoi41101002", DefineWebPage.Page_Add + "=dzoi41101003" }, deploy = {
-				DefineWebDeploy.Url_Query + "=code", DefineWebDeploy.Grid_Where + "=type='dzsd4107100310010003' ", })
+				DefineWebDeploy.Url_Query + "=code", DefineWebDeploy.Grid_Where + "=mjFlag='dzsd4699100110010001' ", })
 public class UserInfoMaJiaPage extends RootPageSimple<UcUserinfo> {
 
 }

@@ -52,8 +52,6 @@ public class VestUserRegFunc extends RootFunc {
 			
 			input.getDataMap().put("code", registResult.getUserCode());
 			
-			input.getDataMap().put("type", UserEnum.TYPE_VEST.getCode());
-			
 			input.getDataMap().put("flag", UserEnum.FLAG_ENABLE.getCode());
 			
 			input.getDataMap().put("last_time", DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));

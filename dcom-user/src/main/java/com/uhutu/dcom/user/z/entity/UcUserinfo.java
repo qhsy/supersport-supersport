@@ -24,9 +24,12 @@ public class UcUserinfo extends BaseEntity {
 	private String code;
 
 	@ZooData(name = "用户类型", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd410710031001" }, sort = { DefineWebPage.Page_Query + "=0",
-					DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Add + "=0" })
+			DefineWebInc.System_Define + "=dzsd410710031001" })
 	private String type;
+
+	@ZooData(name = "是否马甲", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd469910011001" })
+	private String mjFlag;
 
 	@ZooData(name = "登录账号", require = "1", verify = DefineWebVerify.Base_Phone)
 	private String loginName;
@@ -152,6 +155,14 @@ public class UcUserinfo extends BaseEntity {
 
 	public void setLoginCode(String loginCode) {
 		this.loginCode = loginCode;
+	}
+
+	public String getMjFlag() {
+		return mjFlag;
+	}
+
+	public void setMjFlag(String mjFlag) {
+		this.mjFlag = mjFlag;
 	}
 
 }

@@ -22,9 +22,6 @@ public enum UserEnum {
 	/**达人用户*/
 	TYPE_EXPERT("达人用户","dzsd4107100310010002"),
 	
-	/**马甲用户*/
-	TYPE_VEST("马甲用户","dzsd4107100310010003"),
-	
 	/**关注*/
 	ATTEND("关注","1"),
 	
