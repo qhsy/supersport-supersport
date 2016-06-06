@@ -17,7 +17,7 @@ import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.UserAlbum;
 import com.uhutu.sportcenter.z.entity.UserDonateInfo;
-import com.uhutu.sportcenter.z.entity.UserInfoExpert;
+import com.uhutu.sportcenter.z.entity.UserInfoExpertDetail;
 import com.uhutu.sportcenter.z.input.ApiUserExpertDetailInput;
 import com.uhutu.sportcenter.z.result.ApiUserExpertDetailResult;
 import com.uhutu.zoocom.root.RootApiBase;
@@ -42,7 +42,7 @@ public class ApiUserExpertDetail extends RootApiBase<ApiUserExpertDetailInput, A
 		
 		if(ucUxpert != null){
 			
-			UserInfoExpert expertInfo = new UserInfoExpert();
+			UserInfoExpertDetail expertInfo = new UserInfoExpertDetail();
 			
 			BeanUtils.copyProperties(ucUxpert, expertInfo);
 			
