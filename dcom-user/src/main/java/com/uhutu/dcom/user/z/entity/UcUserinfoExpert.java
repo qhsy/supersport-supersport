@@ -34,26 +34,26 @@ public class UcUserinfoExpert extends BaseEntity {
 
 	@ZooData(name = "封面图(564*790)", element = DefineWebElement.Upload, require = "1", sort = {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
-	private String cover_pic;
+	private String coverPic;
 
 	@ZooData(name = "宣传图(750*750)", element = DefineWebElement.Upload, require = "1", sort = {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
-	private String adv_pic;
+	private String advPic;
 
 	@ZooData(name = "运动经历", require = "1", element = DefineWebElement.Editor, sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
 	private String experience;
 
 	@ZooData(name = "分享标题", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
-	private String share_title;
+	private String shareTitle;
 
 	@ZooData(name = "分享简介", require = "1", element = DefineWebElement.Textarea, sort = {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
-	private String share_desc;
+	private String shareDesc;
 
 	@ZooData(name = "分享缩略图", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
-	private String share_icon;
+	private String shareIcon;
 
 	@ZooData(name = "是否有效", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
@@ -95,54 +95,6 @@ public class UcUserinfoExpert extends BaseEntity {
 		this.sort = sort;
 	}
 
-	public String getCover_pic() {
-		return cover_pic;
-	}
-
-	public void setCover_pic(String cover_pic) {
-		this.cover_pic = cover_pic;
-	}
-
-	public String getAdv_pic() {
-		return adv_pic;
-	}
-
-	public void setAdv_pic(String adv_pic) {
-		this.adv_pic = adv_pic;
-	}
-
-	public String getExperience() {
-		return experience;
-	}
-
-	public void setExperience(String experience) {
-		this.experience = experience;
-	}
-
-	public String getShare_title() {
-		return share_title;
-	}
-
-	public void setShare_title(String share_title) {
-		this.share_title = share_title;
-	}
-
-	public String getShare_desc() {
-		return share_desc;
-	}
-
-	public void setShare_desc(String share_desc) {
-		this.share_desc = share_desc;
-	}
-
-	public String getShare_icon() {
-		return share_icon;
-	}
-
-	public void setShare_icon(String share_icon) {
-		this.share_icon = share_icon;
-	}
-
 	public String getStatus() {
 		return status;
 	}
@@ -157,6 +109,54 @@ public class UcUserinfoExpert extends BaseEntity {
 
 	public void setPower(long power) {
 		this.power = power;
+	}
+
+	public String getCoverPic() {
+		return coverPic;
+	}
+
+	public void setCoverPic(String coverPic) {
+		this.coverPic = coverPic;
+	}
+
+	public String getAdvPic() {
+		return advPic;
+	}
+
+	public void setAdvPic(String advPic) {
+		this.advPic = advPic;
+	}
+
+	public String getExperience() {
+		return experience;
+	}
+
+	public void setExperience(String experience) {
+		this.experience = experience;
+	}
+
+	public String getShareTitle() {
+		return shareTitle;
+	}
+
+	public void setShareTitle(String shareTitle) {
+		this.shareTitle = shareTitle;
+	}
+
+	public String getShareDesc() {
+		return shareDesc;
+	}
+
+	public void setShareDesc(String shareDesc) {
+		this.shareDesc = shareDesc;
+	}
+
+	public String getShareIcon() {
+		return shareIcon;
+	}
+
+	public void setShareIcon(String shareIcon) {
+		this.shareIcon = shareIcon;
 	}
 
 }
