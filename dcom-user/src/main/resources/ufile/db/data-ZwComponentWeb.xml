@@ -5,6 +5,9 @@
 		<item code="dzcw451010010001" componentClass="com.uhutu.zooweb.component.DialogComponent"
 			clientExtend="page=/pg/com_uhutu_dcom_user_z_page_component_UserInfoExtPage&amp;max=1"
 			serverDefine="table=UcUserinfoExt&amp;text=nick_name&amp;value=user_code" />
+		<item code="dzcw451010010002" componentClass="com.uhutu.zooweb.component.DialogComponent"
+			clientExtend="page=/pg/com_uhutu_dcom_user_z_page_component_UserInfoExtPage&amp;max=1"
+			serverDefine="table=UcUserinfoExt&amp;text=user_code&amp;value=user_code" />
 	</data>
 
 </db>
