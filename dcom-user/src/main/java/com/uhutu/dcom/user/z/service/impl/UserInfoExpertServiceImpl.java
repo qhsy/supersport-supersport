@@ -1,5 +1,8 @@
 package com.uhutu.dcom.user.z.service.impl;
 
+import java.util.Date;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,7 +47,25 @@ public class UserInfoExpertServiceImpl implements IUserInfoExpertService {
 	@Override
 	public UcUserinfoExpert queryByCode(String userCode) {
 		
-		return null;
+		return userDaoFactory.getUserInfoExpertDao().queryByCode(userCode);
+	}
+
+	@Override
+	public void save(UcUserinfoExpert userInfoExpert) {
+	
+		if(StringUtils.isNotBlank(userInfoExpert.getZa()) 
+				&& userDaoFactory.getUserInfoExpertDao().exists(userInfoExpert.getZa())){
+			
+			userInfoExpert.setZu(new Date());
+			
+		}else{
+			
+			userInfoExpert.setZc(new Date());
+			
+		}
+		
+		userDaoFactory.getUserInfoExpertDao().save(userInfoExpert);
+		
 	}
 
 }

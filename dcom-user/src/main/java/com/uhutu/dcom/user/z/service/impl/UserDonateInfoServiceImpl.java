@@ -46,4 +46,17 @@ public class UserDonateInfoServiceImpl implements IUserDonateInfoService {
 		
 	}
 
+	@Override
+	public UcDonateInfo queryByCode(String supportCode, String beSupportCode) {
+		
+		return userDaoFactory.getUserDonateInfoDao().queryByCode(supportCode, beSupportCode);
+	}
+
+	@Override
+	public void save(UcDonateInfo donateInfo) {
+		
+		userDaoFactory.getUserDonateInfoDao().save(donateInfo);
+		
+	}
+
 }

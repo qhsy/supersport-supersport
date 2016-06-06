@@ -30,5 +30,11 @@ public interface IUserInfoExpertService {
 	 * @return 达人用户信息
 	 */
 	public UcUserinfoExpert queryByCode(String userCode);
+	
+	/**
+	 * 达人用户信息更新
+	 * @param userInfoExpert
+	 */
+	public void save(UcUserinfoExpert userInfoExpert);
 
 }

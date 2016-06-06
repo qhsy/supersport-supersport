@@ -60,6 +60,9 @@ public class UserServiceFactory {
 	@Autowired
 	private IUserDonateInfoService userDonateInfoService;
 	
+	@Autowired
+	private IUserDonateFlowService userDonateFlowService;
+	
 	/**
 	 * 获取用户业务实现
 	 * 
@@ -150,5 +153,9 @@ public class UserServiceFactory {
 
 	public IUserDonateInfoService getUserDonateInfoService() {
 		return userDonateInfoService;
+	}
+
+	public IUserDonateFlowService getUserDonateFlowService() {
+		return userDonateFlowService;
 	}
 }

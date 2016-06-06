@@ -23,5 +23,21 @@ public interface IUserDonateInfoService {
 	 * @return 分页信息
 	 */
 	public Page<UcDonateInfo> queryPageByCondtions(int pageNum,int limit,QueryConditions conditions); 
+	
+	/**
+	 * 查询用户捐赠信息
+	 * @param supportCode
+	 * 		支持者
+	 * @param beSupportCode
+	 * 		被支持者
+	 * @return 用户捐赠信息
+	 */
+	public UcDonateInfo queryByCode(String supportCode,String beSupportCode);
+	
+	/**
+	 * 更新用户捐赠信息
+	 * @param donateInfo
+	 */
+	public void save(UcDonateInfo donateInfo);
 
 }
