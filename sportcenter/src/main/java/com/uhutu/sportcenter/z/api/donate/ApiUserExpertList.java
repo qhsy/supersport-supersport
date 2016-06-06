@@ -38,7 +38,7 @@ public class ApiUserExpertList extends RootApiBase<ApiUserExpertListInput, ApiUs
 		
 		conditions.setConditionEqual("status", SystemEnum.YES.getCode());
 		
-		Page<UcUserinfoExpert> expertPage = serviceFactory.getUserInfoExpertService().queryPageByConditon(1, 10, new QueryConditions());
+		Page<UcUserinfoExpert> expertPage = serviceFactory.getUserInfoExpertService().queryPageByConditon(1, 10, conditions);
 		
 		if(StringUtils.isNotBlank(input.getZoo().getToken())){
 			
