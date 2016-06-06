@@ -111,7 +111,7 @@ iSlider.prototype._setPlayWhenFocus = function() {
 iSlider.prototype._animateFuncs = {
     'depth': function (dom, axis, scale, i, offset) {
         var rotateDirect = (axis == "X") ? "Y" : "X";
-        var zoomScale = (4 - Math.abs(i - 1)) * 0.2;
+        var zoomScale = (4 - Math.abs(i - 1)) * 0.19;
         this.wrap.style.webkitPerspective = scale * 4;
         if (i == 1) {
             dom.style.zIndex = 100;
@@ -152,7 +152,6 @@ iSlider.prototype._setUpDamping = function () {
 iSlider.prototype._renderItem = function (i) {
     var item, html;
     var len = this.data.length;
-
     if (!this.isLooping) {
         item = this.data[i] || { empty : true };
     } else {
@@ -171,14 +170,14 @@ iSlider.prototype._renderItem = function (i) {
 
     if (this.type === 'pic') {
         html = item.height / item.width > this.ratio 
-        ? '<div id="' + item.id + '"><span><img class="name" src="' + item.number + '"><img class="name" src="' + item.name + '"></span><img width="' + this.width + '" src="' + item.content + '"><font>热力值<i>'+ item.heat +'</i></font><b>我的能量值：<i>' + item.energy + '</i></b></div>'
-        : '<div id="' + item.id + '"><span><img class="name" src="' + item.number + '"><img class="name" src="' + item.name + '"></span><img width="' + this.width + '" src="' + item.content + '"><font>热力值<i>'+ item.heat +'</i></font><b>我的能量值：<i>' + item.energy + '</i></b></div>';
+        ? '<div class="code" data-code="' + item.code + '" style="box-shadow:0 0 33px rgba(0,0,0,0.5);"><span><img class="name" src="' + item.sortPic + '"><img class="name" src="' + item.signPic + '"></span><img width="' + this.width + '" src="' + item.coverPic + '"><font data-power="' + item.power + '">热力值<i>'+ item.powerStr +'</i></font></div>'
+        : '<div class="code" data-code="' + item.code + '" style="box-shadow:0 0 33px rgba(0,0,0,0.5);"><span><img class="name" src="' + item.sortPic + '"><img class="name" src="' + item.signPic + '"></span><img width="' + this.width + '" src="' + item.coverPic + '"><font data-power="' + item.power + '">热力值<i>'+ item.powerStr +'</i></font></div>';
     } else if (this.type === 'dom') {
-        html = '<div id="' + item.id + '"><span><img class="name" src="' + item.number + '"><img class="name" src="' + item.name + '"></span><img width="' + this.width + '" src="' + item.content + '"><font>热力值<i>'+ item.heat +'</i></font><b>我的能量值：<i>' + item.energy + '</i></b></div>';
+        html = '<div class="code" data-code="' + item.code + '" style="box-shadow:0 0 33px rgba(0,0,0,0.5);"><span><img class="name" src="' + item.sortPic + '"><img class="name" src="' + item.signPic + '"></span><img width="' + this.width + '" src="' + item.coverPic + '"><font data-power="' + item.power + '">热力值<i>'+ item.powerStr +'</i></font></div>';
     } else if (this.type === 'overspread') {
         html = this.ratio < 1 
-        ? '<div style="height: 100%; width:100%; background:url(' + item.content + ') center no-repeat; background-size:' + this.width + 'px auto;"></div>'
-        : '<div style="height: 100%; width:100%; background:url(' + item.content + ') center no-repeat; background-size: auto ' + this.height + 'px;"></div>';
+        ? '<div style="height: 100%; width:100%; background:url(' + item.coverPic + ') center no-repeat; background-size:' + this.width + 'px auto;"></div>'
+        : '<div style="height: 100%; width:100%; background:url(' + item.coverPic + ') center no-repeat; background-size: auto ' + this.height + 'px;"></div>';
     }
 
     return html;
@@ -338,7 +337,7 @@ iSlider.prototype._bindHandler = function () {
     };
 
     var endHandler = function (evt) {
-        evt.preventDefault();
+        //evt.preventDefault();
 
         var boundary = self.scale / 2;
         var metric = self.offset;

@@ -62,104 +62,97 @@ a:hover {text-decoration: none; }
 </style>
 </head>
 <body>
-<section class="container">
+<section class="container" style="visibility: hidden;">
 	<header class="person-hd">
 		<h1>angelababy</h1>
-		<img src="image/demo_5.jpg" alt="">
+		<img src="" alt="">
 	</header>
 	<article class="person-value">
 		<span class="person-thermal"><em>热力值</em><i>No.1</i></span>	
-		<h1>339,884</h1>
+		<h1></h1>
 	</article>
 	<article class="person-experience">
 		<h1 class="person-title">运动经历</h1>
-		<p>
-			香港一代靓模，潮流女主<br>
-			被日本除阿妹获封为“香港女神”<br>
-			被封日系女神偶像，香港新模女王<br>
-			2011年福布斯中国名人榜第88名<br>
-			2011新京报中国最美50人－青春之美<br>
-			2012年福布斯中国名人榜第100名
-		</p>
-		<p>
-			angelababy出生在上海，手机厚度维护的午后顿悟打开分局为见你服务呢，分赴嗯分诶就诶就诶家。
-		</p>
 	</article>
-	<article class="person-photo">
-		<h1 class="person-title">相册</h1>
-		<ul class="photo-list">
-			<li><img src="image/demo_6.jpg" alt=""></li>
-			<li><img src="image/demo_6.jpg" alt=""></li>
-			<li><img src="image/demo_7.jpg" alt=""></li>
-			<li><img src="image/demo_7.jpg" alt=""></li>
-		</ul>
-	</article>
-	<footer class="person-top">
-		<h1 class="person-title">支持TA的人（TOP50）</h1>
-		<ul class="person-top-list">
-			<li><i>1</i><span><img src="image/demo_6.jpg" alt=""></span><em>小王</em>已支持 600000 能量值</li>
-			<li><i>2</i><span><img src="image/demo_6.jpg" alt=""></span><em>小王</em>已支持 600000 能量值</li>
-		</ul>
-	</footer>
+	<article class="person-photo"></article>
+	<footer class="person-top" style="display: none;"></footer>
 	<a href="javascript:;" class="person-btn">
 		<span>去支持TA</span>
 		<em>已支持2000热力值</em>
 	</a>
 </section>
 <section class="touch-main" id="touch-main"></section>
+<!-- 相册 -->
+<script id="thumb" type="text/html">
+	<h1 class="person-title">相册</h1>
+		<ul class="photo-list">
+		{{each userAlbum}}
+			<li><img src=" {{$value.iconUrl}} " alt=""></li>
+			
+		{{/each}}
+		</ul>
+</script>
+<!-- 排行榜 -->
+<script id="top" type="text/html">
+	<h1 class="person-title">支持TA的人（TOP50）</h1>
+	<ul class="person-top-list">
+	{{each userDonateInfos}}
+		<li><i>1</i><span><img src="image/demo_6.jpg" alt=""></span><em>小王</em>已支持 600000 能量值</li>
+	{{/each}}
+	</ul>
+</script>
+<script type="text/javascript" src="script/zepto.min.js"></script>
+<script type="text/javascript" src="script/template.js"></script>
 <script type="text/javascript">
-	window.onload=function(){
+	$(function(){
 		//所有的数据
-		var list = [{
-			height: 950,
-			width: 800,
-			img: "http://ali-cfile.ichsy.com/cfiles/staticfiles/zoofile/2735b/s-960-960/b3f216d473a245d4afa6d5de02593a0a.jpg"
-		},
-		{
-			height: 1187,
-			width: 900,
-			img: "http://ali-cfile.ichsy.com/cfiles/staticfiles/zoofile/2735b/s-368-388/c1bfa109e9954235b390f23771a37545.jpg"
-		},
-		{
-			height: 766,
-			width: 980,
-			img: "http://ali-cfile.ichsy.com/cfiles/staticfiles/zoofile/2735b/s-750-750/dee32251b709425ca29ceb1bec903535.jpg"
-		},
-		{
-			height: 754,
-			width: 980,
-			img: "http://ali-cfile.ichsy.com/cfiles/staticfiles/zoofile/2735b/s-530-677/917e0c9a4c234526ae7cd16ebad3ef03.jpg"
-		},
-		{
-			height: 1187,
-			width: 900,
-			img: "http://ali-cfile.ichsy.com/cfiles/staticfiles/zoofile/2735b/s-368-388/c1bfa109e9954235b390f23771a37545.jpg"
-		},
-		{
-			height: 766,
-			width: 980,
-			img: "http://ali-cfile.ichsy.com/cfiles/staticfiles/zoofile/2735b/s-750-750/dee32251b709425ca29ceb1bec903535.jpg"
-		},
-		{
-			height: 754,
-			width: 980,
-			img: "http://ali-cfile.ichsy.com/cfiles/staticfiles/zoofile/2735b/s-530-677/917e0c9a4c234526ae7cd16ebad3ef03.jpg"
-		}];
-		document.querySelector('.photo-list').addEventListener('touchstart', function(ev){
-			ev.stopPropagation();
-			ev.preventDefault();
-		},false);
-		document.querySelector('.photo-list').addEventListener('touchend', function(ev){
-			document.querySelector('.touch-main').style.display = 'block';
-			new Slider({
-				dom : document.getElementById('touch-main'),
-				list : list
-			});
-			ev.stopPropagation();
-			ev.preventDefault();
-		},false);
-		
-	}
+		var photoList;
+		$.ajax({
+			url:'/api/userPowerController/userExpertDetail',
+			type:'POST',
+			contentType: 'application/json',
+			dataType: 'json',
+			async:false,
+			data: '{"pagination": 1,"userCode": "' + urlFormat('code') + '","zoo": {"key": "tesetkey","token": " "}}',
+			success: function(data) {
+				$('.person-hd h1').text(data.userInfoExpert.realName);
+				$('.person-hd img').attr('src',data.userInfoExpert.advPic);
+				$('.person-value h1').text(data.userInfoExpert.powerStr);
+				$('.person-experience').append('<p>' + data.userInfoExpert.experience + '</p>');
+				if(data.userAlbum.length){
+					photoList = data.userAlbum;
+					var thumbHtml = template('thumb', data);
+					$('.person-photo').html(thumbHtml);
+					new Slider({
+						dom : document.getElementById('touch-main'),
+						list : data.userAlbum
+					});
+				}
+				if(data.userDonateInfos.length){
+					var topbHtml = template('top', data);
+					$('.person-top').html(topbHtml);
+					$('.person-top').css('display','block');
+				}
+				
+				$('.container').removeAttr('style');
+				
+			},
+			error: function(xhr, status, error) {
+				alert(error);
+			}
+		})
+		$('.photo-list').on('tap',function(){
+			var children = $('.touch-main').children();
+			if(!children.length){
+				new Slider({
+					dom : document.getElementById('touch-main'),
+					list : photoList
+				});
+			}
+			$('.touch-main').css('display','block');
+			
+		});
+	});
 	//构造函数
 	function Slider(opts){
 		//构造函数需要的参数
@@ -198,9 +191,9 @@ a:hover {text-decoration: none; }
 				//根据窗口的比例与图片的比例来确定
 				//图片是根据宽度来等比缩放还是根据高度来等比缩放
 				if(item['height']/item['width'] > this.radio){
-					li.innerHTML = '<img height="'+ window.innerHeight +'" src="'+ item['img'] +'">';
+					li.innerHTML = '<img height="'+ window.innerHeight +'" src="'+ item['picture'] +'">';
 				}else{
-					li.innerHTML = '<img width="'+ window.innerWidth +'" src="'+ item['img'] +'">';
+					li.innerHTML = '<img width="'+ window.innerWidth +'" src="'+ item['picture'] +'">';
 				}
 			}
 			this.outer.appendChild(li);
@@ -342,7 +335,22 @@ a:hover {text-decoration: none; }
 		outer.addEventListener('touchmove', moveHandler);
 		outer.addEventListener('touchend', endHandler);
 	};
-
+	/* 通过URL获取CODE值 */
+	function urlFormat(arg){
+		// ?content_code=string&share=1
+		var url = window.location.search;
+		if(typeof url != 'string' || url == '') return;
+		var newUrl = url.substr(1);
+		var urlArr = newUrl.split('&');
+		for(var i=0; i<urlArr.length; i++){
+			var arr = urlArr[i].split('=');
+			for(j=0; j<arr.length; j++){
+				if(arg == arr[0]){
+					return arr[1]
+				}
+			}
+		}
+	}
 		
 	</script>
 </body>

@@ -65,7 +65,7 @@ $(function(){
 		open();
 	});
 	$('.photo-head').on('click',function(){
-		var id = $(this).attr('id');
+		var id = $(this).find('em').attr('id');
 		callbackFunc(id);
 	});
 

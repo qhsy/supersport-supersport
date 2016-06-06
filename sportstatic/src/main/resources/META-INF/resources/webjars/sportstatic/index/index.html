@@ -5,157 +5,120 @@
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
 <title>十全十美 GODO达人大比拼</title>
 <link rel="stylesheet" href="css/jscss.css" />
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-<script src="js/islider.js"></script>
+<style type="text/css">
+.freePower{width: 100%; height: 30px; position: fixed; left: 0; bottom: 73px; font-weight: bold; text-align: center; line-height: 30px; font-size: 16px; color: #fff}
+.freePower i{display: inline-block; width: 136px; height: 30px; -webkit-transform: scale(0.8); transform: scale(0.8); background: url(images/number.png) no-repeat; background-size: 100%; color: #de6b1f; font-size: 18px; letter-spacing: 16px; white-space: nowrap; text-indent: 5px; text-align: center; line-height: 28px }
+@media screen and (min-width:414px){
+	.freePower{width: 100%; height: 30px; position: fixed; left: 0; bottom: 83px; font-weight: bold; text-align: center; line-height: 30px; font-size: 16px; color: #fff}
+}
+</style>
 </head>
 <body>
 <!-- 代码 开始 -->
 <div class="tips">通过走路获取能量值，支持喜欢的达人</div>
 <div id="animation-effect" class="iSlider-effect"></div>
+<aside class="freePower">我的能量值:<i>52124</i></aside>
 <a class="zan" id="touchArea">长按支持TA</a>
 <div class="foot">本活动最终解释权归GODO所有</div>
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script src="js/islider.js"></script>
 <script>
-        var picList = [
-        {
-			name: 'images/name1.png',
-			number: 'images/num.png',
-            width: 150,
-            height: 207,
-            content: "images/1.jpg",
-			id: '1',
-			heat: '339,345',
-			energy: '93217',
-        },
-        {
-			name: 'images/name1.png',
-			number: 'images/num.png',
-            width: 150,
-            height: 207,
-            content: "images/2.jpg",
-			id: '2',
-			heat: '339,345',
-			energy: '93217',
-        },
-        {
-			name: 'images/name1.png',
-			number: 'images/num.png',
-            width: 150,
-            height: 207,
-            content: "images/3.jpg",
-			id: '3',
-			heat: '339,345',
-			energy: '93217',
-        },
-        {
-			name: 'images/name1.png',
-			number: 'images/num.png',
-            width: 150,
-            height: 207,
-            content:"images/4.jpg",
-			id: '4',
-			heat: '339,345',
-			energy: '93217',
-        },
-        {
-			name: 'images/name1.png',
-			number: 'images/num.png',
-            width: 150,
-            height: 207,
-            content:"images/5.jpg",
-			id: '5',
-			heat: '339,345',
-			energy: '93217',
-        },
-        {
-			name: 'images/name1.png',
-			number: 'images/num.png',
-            width: 300,
-            height: 414,
-            content:"images/6.jpg",
-			id: '6',
-			heat: '339,345',
-			energy: '01446',
-        },
-        {
-			name: 'images/name1.png',
-			number: 'images/num.png',
-            width: 150,
-            height: 207,
-            content:"images/7.jpg",
-			id: '7',
-			heat: '339,345',
-			energy: '00120',
-        },
-        {
-			name: 'images/name1.png',
-			number: 'images/num.png',
-            width: 150,
-            height: 207,
-            content:"images/8.jpg",
-			id: '8',
-			heat: '339,345',
-			energy: '00012',
-        }
-        ];
-        
-        //all animation effect
-        var islider1 = new iSlider({
-            data: picList,
-            dom: document.getElementById("animation-effect"),
-            duration: 2000,
-            animateType: 'depth',
-            isAutoplay: false,
-            isLooping: true,
-            // isVertical: true, 是否垂直滚动
-        });
-		var timeOutEvent=0;
-		var time;
-		$(function(){
-			$("#touchArea").on({
-				touchstart: function(e){
-					var b = $('.index div b i').html();
-					var d = $('.index div font i').html().replace(',','');
-					var c = parseInt(b);
-					var l = parseInt(d);
-					time = setInterval(function(){
-						$('.index div b i').html( c-- );
-						var num = l++;
-						$('.index div font i').html( formatCash(num) );
-					},10);
-					e.preventDefault();
-				},
-				touchmove: function(){
-						clearTimeout(time); 
-						timeOutEvent = 0; 
-				},
-				touchend: function(){
-					clearTimeout(time);
-					if(timeOutEvent!=0){ 
-						alert("你这是点击，不是长按"); 
-					} 
-					return false; 
-				}
-			})
+var timeOutEvent = 0;
+var time;
+$(function() {
+	$.ajax({
+		url: '/api/userPowerController/userExpertList',
+		type: 'POST',
+		contentType: 'application/json',
+		dataType: 'json',
+		data: '{"zoo": {"key": "tesetkey","token": "e82009f7a341488a817d71e173eb0c1be6a719edbb73406d8fabe4fb0a8c5747375f89eb"}}',
+		success: function(data) {
+			var islider1 = new iSlider({
+				data: data.userInfoExperts,
+				dom: document.getElementById("animation-effect"),
+				duration: 2000,
+				animateType: 'depth',
+				isAutoplay: false,
+				isLooping: true,
+				// isVertical: true, 是否垂直滚动
+			});
+			$('.freePower i').text(data.freePower);
+		},
+		error: function(xhr, status, error) {
+			alert(error);
+		}
+	});
+	var currPower,nowPower;
+	$("#touchArea").on({
+		touchstart: function(e) {
+			var b = $('.freePower i').html();
+			var d = $('.index div font i').html().replace(',', '');
+			var c = parseInt(b);
+			var l = parseInt(d);
+			currPower = parseInt($('.freePower i').text());
+			time = setInterval(function() {
+				$('.freePower i').html(c--);
+				var num = l++;
+				$('.index div font i').html(formatCash(num));
+			}, 10);
+			e.preventDefault();
+		},
+		touchmove: function() {
+			clearTimeout(time);
+			timeOutEvent = 0;
+		},
+		touchend: function() {
+			clearTimeout(time);
+			nowPower = currPower - parseInt($('.freePower i').text());
+			var code = $('.index .code').attr('data-code');
+			ajaxFn(nowPower, code);
+			if (timeOutEvent != 0) {
+				alert("你这是点击，不是长按");
+			}
+			return false;
+		}
+	});
+
+	function ajaxFn(value, code){
+		$.ajax({
+			url: '/api/userPowerController/updateUserPower',
+			type: 'POST',
+			contentType: 'application/json',
+			dataType: 'json',
+			data: '{"donatePower": ' + value + ',"userCode": "' + code + '","zoo": {"key": "tesetkey","token": "e82009f7a341488a817d71e173eb0c1be6a719edbb73406d8fabe4fb0a8c5747375f89eb"}}',
+			success: function(data) {
+				console.log(data)
+			},
+			error: function(xhr, status, error) {
+				alert(error);
+			}
 		});
-		//逗号分隔数字方法
-		function formatCash( cash )
-		{
-		var str_cash = cash + "";//转换成字符串
-		var ret_cash = "";
-		var counter = 0;
-		for(var i=str_cash.length-1;i>=0;i--)
-		{
+	}
+
+	$('#animation-effect').on('click',function(){
+		var code = $(this).find('.code').attr('data-code');
+		window.location.href = 'http://localhost:2497/webjars/sportstatic/person.html?code=' + code;
+	});
+});
+function callBack(){
+	alert(1)
+}
+//逗号分隔数字方法
+function formatCash(cash) {
+	var str_cash = cash + ""; //转换成字符串
+	var ret_cash = "";
+	var counter = 0;
+	for (var i = str_cash.length - 1; i >= 0; i--) {
 		ret_cash = str_cash.charAt(i) + ret_cash;
 		counter++;
-		if(counter==3)
-		{
-		counter = 0;
-		if(i!=0)
-		ret_cash = "," + ret_cash;
+		if (counter == 3) {
+			counter = 0;
+			if (i != 0)
+				ret_cash = "," + ret_cash;
 		}
-		}
-		return ret_cash;
-		}
+	}
+	return ret_cash;
+}
 </script>
 <!-- 代码 结束 -->
 </body>

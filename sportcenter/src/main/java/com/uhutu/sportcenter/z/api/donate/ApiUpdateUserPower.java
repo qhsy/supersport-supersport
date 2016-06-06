@@ -30,17 +30,27 @@ public class ApiUpdateUserPower extends RootApiToken<ApiUpdateUserPowerInput, Ap
 		
 		ApiUpdateUserPowerResult result = new ApiUpdateUserPowerResult();
 		
-		/*更新捐赠者用户信息*/
-		long donatePower = updateUserDonate(upUserCode(), input.getDonatePower(), result);
+		if(input.getDonatePower() < 0){
+			
+			result.inError(81100008);
+			
+		}
 		
-		/*更新达人用户信息*/
-		updateUserExpert(input.getUserCode(), donatePower, result);
-		
-		/*更新用户捐赠信息*/
-		updateDonateInfo(upUserCode(), input.getUserCode(), donatePower, result);
-		
-		/*更新捐赠流水*/
-		saveDonateFlow(upUserCode(), input.getUserCode(), donatePower, result);
+		if(result.upFlagTrue()){
+			
+			/*更新捐赠者用户信息*/
+			long donatePower = updateUserDonate(upUserCode(), input.getDonatePower(), result);
+			
+			/*更新达人用户信息*/
+			updateUserExpert(input.getUserCode(), donatePower, result);
+			
+			/*更新用户捐赠信息*/
+			updateDonateInfo(upUserCode(), input.getUserCode(), donatePower, result);
+			
+			/*更新捐赠流水*/
+			saveDonateFlow(upUserCode(), input.getUserCode(), donatePower, result);
+			
+		}
 		
 		return result;
 	}

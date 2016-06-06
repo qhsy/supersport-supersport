@@ -473,8 +473,6 @@ footer {
 }
 .iSlider-effect ul li div font{display:block;height:103px;background:url(../images/yingying.png) no-repeat;background-size:100%;position:absolute;bottom:0;left:0;box-sizing:border-box;width:100%;padding:20px 18px 0 0;font-size:20px;color:#fff;border-radius:0 0 5% 5%;text-align:right;line-height:32px;text-shadow:1px 2px #8b5a45;font-weight:bold;}
 .iSlider-effect ul li div font i{display:block;font-size:30px;}
-.iSlider-effect ul li div b{font-weight:bold;display:block;position:absolute;bottom:-40px;text-align:center;width:100%;height:30px;line-height:30px;font-size:16px;color:#fff;left:-5px;}
-.iSlider-effect ul li div b i{display:inline-block;width:136px;height:30px;background:url(../images/number.png) no-repeat;background-size:100%;color:#de6b1f;font-size:18px;letter-spacing:16px;white-space:nowrap;overflow:hidden;text-indent:5px;text-align:center;line-height:28px;}
 
 #menu-select span {
   display: inline-block;
@@ -491,7 +489,7 @@ footer {
   width: 96%;
   height: 90%;
   position:fixed;
-  top:-1%;
+  top:-1.2%;
   left:2%;
 }
 
