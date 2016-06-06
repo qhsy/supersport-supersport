@@ -17,6 +17,9 @@ public class UserDonateInfo {
 	
 	@ApiModelProperty(value="支持者用户头像")
 	private String headUrl;
+	
+	@ApiModelProperty(value="格式化能量值")
+	private String totalPowerStr;
 
 	public long getTotalPower() {
 		return totalPower;
@@ -40,6 +43,14 @@ public class UserDonateInfo {
 
 	public void setHeadUrl(String headUrl) {
 		this.headUrl = headUrl;
+	}
+
+	public String getTotalPowerStr() {
+		return totalPowerStr;
+	}
+
+	public void setTotalPowerStr(String totalPowerStr) {
+		this.totalPowerStr = totalPowerStr;
 	}
 	
 	

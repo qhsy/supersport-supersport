@@ -29,6 +29,9 @@ public class UserInfoExpert {
 	
 	@ApiModelProperty(value="能量值")
 	private long power;
+	
+	@ApiModelProperty(value="能量值格式化")
+	private String powerStr;
 
 	public String getCode() {
 		return code;
@@ -84,6 +87,14 @@ public class UserInfoExpert {
 
 	public void setSortPic(String sortPic) {
 		this.sortPic = sortPic;
+	}
+
+	public String getPowerStr() {
+		return powerStr;
+	}
+
+	public void setPowerStr(String powerStr) {
+		this.powerStr = powerStr;
 	} 
 	
 	

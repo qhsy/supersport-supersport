@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.config.enums.SystemEnum;
+import com.uhutu.dcom.user.z.entity.UcUserinfoDonate;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExpert;
 import com.uhutu.dcom.user.z.enums.SortEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
@@ -46,9 +47,15 @@ public class ApiUserExpertList extends RootApiBase<ApiUserExpertListInput, ApiUs
 			
 			String userCode = userCallFactory.upUserCodeByAuthToken(input.getZoo().getToken(), DefineUser.Login_System_Default);
 			
-			UcUserinfoExpert expert = serviceFactory.getUserInfoExpertService().queryByCode(userCode);
+			UcUserinfoDonate donate = serviceFactory.getUserInfoDonateService().queryByUserCode(userCode);
 			
-			userExpertResult.setFreePower(expert.getPower());
+			if(donate != null){
+				
+				userExpertResult.setFreePower(donate.getFreePower());
+				
+				userExpertResult.setFreePowerStr(String.format("%,d", donate.getFreePower()));
+				
+			}
 			
 		}
 		
@@ -65,6 +72,8 @@ public class ApiUserExpertList extends RootApiBase<ApiUserExpertListInput, ApiUs
 				BeanUtils.copyProperties(expert, userInfoExpert);
 				
 				userInfoExpert.setSortPic(SortEnum.getByRank(i).getPicUrl());
+				
+				userInfoExpert.setPowerStr(String.format("%,d", userInfoExpert.getPower()));
 				
 				userExpertResult.getUserInfoExperts().add(userInfoExpert);
 				

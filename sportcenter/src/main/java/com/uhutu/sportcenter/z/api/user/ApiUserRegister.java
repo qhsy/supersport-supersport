@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.extend.sms.RootApiResult;
 import com.uhutu.dcom.extend.sms.SmsSupport;
 import com.uhutu.dcom.extend.sms.SmsTypeEnum;
@@ -55,6 +56,8 @@ public class ApiUserRegister extends RootApiBase<ApiUserRegInput, ApiUserRegResu
 				ucUserinfo.setCode(userAuthResult.getUserCode());
 				
 				ucUserinfo.setType(UserEnum.TYPE_CUSTOM.getCode());
+				
+				ucUserinfo.setMjFlag(SystemEnum.NO.getCode());
 
 				userServiceFactory.getUserInfoService().save(ucUserinfo);
 				
