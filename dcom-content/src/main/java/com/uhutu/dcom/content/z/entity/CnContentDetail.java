@@ -1,5 +1,6 @@
 package com.uhutu.dcom.content.z.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
@@ -12,21 +13,22 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  *
  */
 @Entity
-public class CnContentDetail extends BaseEntity{
+public class CnContentDetail extends BaseEntity {
 
 	@ZooData(name = "分类编号")
 	private String code;
-	
+
 	@ZooData(name = "内容信息json串")
+	@Column(columnDefinition = "longtext")
 	private String content;
 
 	@ZooData(name = "内容简述")
 	private String description;
-	
-	@ZooData(name="视频地址")
+
+	@ZooData(name = "视频地址")
 	private String videoUrl;
-	
-	@ZooData(name="视频封面")
+
+	@ZooData(name = "视频封面")
 	private String videoCover;
 
 	public String getCode() {

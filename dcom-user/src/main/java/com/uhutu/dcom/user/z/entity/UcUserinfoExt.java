@@ -1,5 +1,6 @@
 package com.uhutu.dcom.user.z.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
@@ -9,55 +10,59 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 用户信息扩展
+ * 
  * @author pang_jhui
  *
  */
 @Entity
 public class UcUserinfoExt extends BaseEntity {
-	
-	@ZooData(name="用户编号")
+
+	@ZooData(name = "用户编号")
 	private String userCode;
-	
-	@ApiModelProperty(name="昵称" ,notes="昵称",example="papi酱")
-	@ZooData(name="昵称")
+
+	@ApiModelProperty(name = "昵称", notes = "昵称", example = "papi酱")
+	@ZooData(name = "昵称")
 	private String nickName;
-	
-	@ZooData(name="性别")
+
+	@ZooData(name = "性别")
 	private String sex;
-	
-	@ZooData(name="位置")
+
+	@ZooData(name = "位置")
 	private String location;
-	
-	@ZooData(name="简介封面")
+
+	@ZooData(name = "简介封面")
 	private String aboutCover;
-	
-	@ZooData(name="简介标签")
+
+	@ZooData(name = "简介标签")
+	@Column(columnDefinition = "longtext")
 	private String aboutTag;
-	
-	@ZooData(name="简介视频")
+
+	@ZooData(name = "简介视频")
 	private String aboutVideo;
-	
-	@ZooData(name="简介视频封面")
+
+	@ZooData(name = "简介视频封面")
 	private String aboutVideoCover;
-	
-	@ZooData(name="简介描述")
+
+	@ZooData(name = "简介描述")
 	private String aboutDesc;
-	
-	@ZooData(name="关注领域")
+
+	@ZooData(name = "关注领域")
+	@Column(columnDefinition = "longtext")
 	private String domain;
-	
-	@ZooData(name="用户等级")
+
+	@ZooData(name = "用户等级")
 	private String level;
-	
-	@ApiModelProperty(name="头像图片链接",notes="头像图片链接",example="http://www.ichsy.com")
-	@ZooData(name="用户头像")
+
+	@ApiModelProperty(name = "头像图片链接", notes = "头像图片链接", example = "http://www.ichsy.com")
+	@ZooData(name = "用户头像")
 	private String aboutHead;
-	
-	@ZooData(name="地址名称")
+
+	@ZooData(name = "地址名称")
 	private String locationName;
 
 	/**
 	 * 获取用户编号
+	 * 
 	 * @return
 	 */
 	public String getUserCode() {
@@ -66,6 +71,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 设置用户编号
+	 * 
 	 * @param userCode
 	 */
 	public void setUserCode(String userCode) {
@@ -74,6 +80,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 昵称
+	 * 
 	 * @return
 	 */
 	public String getNickName() {
@@ -82,6 +89,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 设置昵称
+	 * 
 	 * @param nickName
 	 */
 	public void setNickName(String nickName) {
@@ -90,6 +98,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 获取性别
+	 * 
 	 * @return
 	 */
 	public String getSex() {
@@ -98,6 +107,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 设置性别
+	 * 
 	 * @param sex
 	 */
 	public void setSex(String sex) {
@@ -106,6 +116,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 获取定位
+	 * 
 	 * @return
 	 */
 	public String getLocation() {
@@ -114,6 +125,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 设置定位
+	 * 
 	 * @param location
 	 */
 	public void setLocation(String location) {
@@ -122,6 +134,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 获取简介封面
+	 * 
 	 * @return
 	 */
 	public String getAboutCover() {
@@ -130,6 +143,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 设置简介封面
+	 * 
 	 * @param aboutCover
 	 */
 	public void setAboutCover(String aboutCover) {
@@ -138,6 +152,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 获取简介标签
+	 * 
 	 * @return
 	 */
 	public String getAboutTag() {
@@ -146,6 +161,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 设置简介标签
+	 * 
 	 * @param aboutTag
 	 */
 	public void setAboutTag(String aboutTag) {
@@ -154,6 +170,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 获取简介视频
+	 * 
 	 * @return
 	 */
 	public String getAboutVideo() {
@@ -162,6 +179,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 设置简介视频
+	 * 
 	 * @param aboutVideo
 	 */
 	public void setAboutVideo(String aboutVideo) {
@@ -170,6 +188,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 获取简介描述
+	 * 
 	 * @return
 	 */
 	public String getAboutDesc() {
@@ -178,6 +197,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 设置简介表述
+	 * 
 	 * @param aboutDesc
 	 */
 	public void setAboutDesc(String aboutDesc) {
@@ -186,6 +206,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 获取关注领域
+	 * 
 	 * @return
 	 */
 	public String getDomain() {
@@ -194,6 +215,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 设置关注领域
+	 * 
 	 * @param domain
 	 */
 	public void setDomain(String domain) {
@@ -202,6 +224,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 获取用户等级
+	 * 
 	 * @return
 	 */
 	public String getLevel() {
@@ -210,6 +233,7 @@ public class UcUserinfoExt extends BaseEntity {
 
 	/**
 	 * 设置用户等级
+	 * 
 	 * @param level
 	 */
 	public void setLevel(String level) {
@@ -239,6 +263,5 @@ public class UcUserinfoExt extends BaseEntity {
 	public void setLocationName(String locationName) {
 		this.locationName = locationName;
 	}
-	
 
 }

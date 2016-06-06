@@ -1,5 +1,6 @@
 package com.uhutu.dcom.content.z.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
@@ -28,6 +29,7 @@ public class CnContentPhotos extends BaseEntity {
 	private String picture;
 
 	@ZooData(name = "图片简述", element = DefineWebElement.Textarea)
+	@Column(columnDefinition = "longtext")
 	private String content;
 
 	public String getContentCode() {
