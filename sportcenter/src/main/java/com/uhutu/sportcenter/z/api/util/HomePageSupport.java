@@ -145,7 +145,6 @@ public class HomePageSupport {
 						infoApi.getUserBasicInfo().setNickName(userInfoApi.getNickName());
 						infoApi.getUserBasicInfo().setAboutHead(userInfoApi.getAboutHead());
 						hmp.setInfo(infoApi);
-						hmp.setUe(userInfoApi);
 						hmp.setShowType("dzsd4107100110060003");
 						li.add(hmp);
 					}
