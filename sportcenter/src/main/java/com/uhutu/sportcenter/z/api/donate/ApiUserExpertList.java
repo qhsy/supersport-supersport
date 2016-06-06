@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExpert;
 import com.uhutu.dcom.user.z.enums.SortEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
@@ -32,6 +33,10 @@ public class ApiUserExpertList extends RootApiBase<ApiUserExpertListInput, ApiUs
 	protected ApiUserExpertListResult process(ApiUserExpertListInput input) {
 		
 		ApiUserExpertListResult userExpertResult = new ApiUserExpertListResult();
+		
+		QueryConditions conditions = new QueryConditions();
+		
+		conditions.setConditionEqual("status", SystemEnum.YES.getCode());
 		
 		Page<UcUserinfoExpert> expertPage = serviceFactory.getUserInfoExpertService().queryPageByConditon(1, 10, new QueryConditions());
 		
