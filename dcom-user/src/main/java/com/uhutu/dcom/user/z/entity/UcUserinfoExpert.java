@@ -21,14 +21,14 @@ public class UcUserinfoExpert extends BaseEntity {
 	@ZooData(name = "达人用户编号")
 	private String code;
 
-	@ZooData(name = "达人姓名", require = "1")
+	@ZooData(name = "达人真实姓名", require = "1")
 	private String realName;
 
 	@ZooData(name = "达人签名图片", element = DefineWebElement.Upload, require = "1", sort = {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String signPic;
 
-	@ZooData(name = "排名(倒序)", require = "1", verify = { DefineWebVerify.Base_Number }, sort = {
+	@ZooData(name = "缺省排名(倒序)", require = "1", verify = { DefineWebVerify.Base_Number }, sort = {
 			DefineWebPage.Page_Query + "=0" })
 	private int sort;
 
@@ -55,7 +55,7 @@ public class UcUserinfoExpert extends BaseEntity {
 			DefineWebPage.Page_Grid + "=0" })
 	private String share_icon;
 
-	@ZooData(name = "状态是否正常", element = DefineWebElement.Select, inc = {
+	@ZooData(name = "是否有效", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String status;
 

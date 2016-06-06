@@ -19,7 +19,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class UcUserAlbum extends BaseEntity {
 
-	@ZooData(name = "达人姓名", sort = { DefineWebPage.Page_Query + "=0",
+	@ZooData(name = "达人真实姓名", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
 			DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process,
 			DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=userCode")
 	private String userCode;
@@ -28,11 +28,11 @@ public class UcUserAlbum extends BaseEntity {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String picture;
 
-	@ZooData(name = "排名(倒序)", require = "1", verify = { DefineWebVerify.Base_Number }, sort = {
+	@ZooData(name = "位置(倒序)", require = "1", verify = { DefineWebVerify.Base_Number }, sort = {
 			DefineWebPage.Page_Query + "=0" })
 	private int sort;
 
-	@ZooData(name = "状态是否正常", element = DefineWebElement.Select, inc = {
+	@ZooData(name = "是否有效", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String status;
 
