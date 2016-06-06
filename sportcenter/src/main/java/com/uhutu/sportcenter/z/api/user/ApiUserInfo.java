@@ -15,6 +15,7 @@ import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
+import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
 import com.uhutu.dcom.user.z.enums.UserEnum;
@@ -64,11 +65,11 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 
 		UserInfo apiUserInfo = new UserInfo();
 
-		UcUserinfoExt ucUserinfoExt = new UcUserinfoExt();
+		UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(userCode);
+		
+		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByCode(userCode);
 
-		if (inputParam.getPagination() <= 1) {
-
-			ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(userCode);
+		if (inputParam.getPagination() <= 1) {		
 
 			if (ucUserinfoExt == null) {
 
@@ -121,9 +122,21 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 
 			BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
 
-			sportingMoment.setAboutHead(ucUserinfoExt.getAboutHead());
-
-			sportingMoment.setNickName(ucUserinfoExt.getNickName());
+			if(ucUserinfoExt != null){
+				
+				sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+				
+				sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+				
+			}
+			
+			if(ucUserinfo != null){
+				
+				sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
+				
+				sportingMoment.getUserBasicInfo().setUserCode(userCode);
+				
+			}
 
 			sports.add(sportingMoment);
 

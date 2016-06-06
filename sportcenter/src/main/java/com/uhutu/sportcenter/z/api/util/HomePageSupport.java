@@ -122,7 +122,13 @@ public class HomePageSupport {
 							}
 							UserBasicInfo ubi = userInfoSupport.getUserBasicInfo(info.getAuthor());
 							BeanUtils.copyProperties(ubi.getUcUserinfoExt(), userInfoApi);
-							userInfoApi.setType(ubi.getUcUserinfo().getType());
+							
+							if(ubi.getUcUserinfo() != null){
+								
+								userInfoApi.setType(ubi.getUcUserinfo().getType());
+								
+							}
+							
 						}
 						CnContentRecomm recomm = JdbcHelper.queryOne(CnContentRecomm.class, "contentCode",
 								info.getCode());
@@ -136,8 +142,8 @@ public class HomePageSupport {
 							info.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(width)));
 						}
 						BeanUtils.copyProperties(info, infoApi);
-						infoApi.setNickName(userInfoApi.getNickName());
-						infoApi.setAboutHead(userInfoApi.getAboutHead());
+						infoApi.getUserBasicInfo().setNickName(userInfoApi.getNickName());
+						infoApi.getUserBasicInfo().setAboutHead(userInfoApi.getAboutHead());
 						hmp.setInfo(infoApi);
 						hmp.setUe(userInfoApi);
 						hmp.setShowType("dzsd4107100110060003");

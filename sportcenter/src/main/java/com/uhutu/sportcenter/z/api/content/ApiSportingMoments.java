@@ -13,8 +13,9 @@ import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentBasicinfoServiceFactory;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
+import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
-import com.uhutu.dcom.user.z.service.UserServiceFactory;
+import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
@@ -34,7 +35,7 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 	private ContentBasicinfoServiceFactory serviceFactory;
 
 	@Autowired
-	private UserServiceFactory userServiceFactory;
+	private UserInfoSupport userInfoSupport;
 	
 	@Autowired
 	private ContentLabelServiceFactory labelServiceFactory;
@@ -63,15 +64,25 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 
 				BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
 
-				UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService()
-						.queryByUserCode(sportingMoment.getAuthor());
+				UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(contentBasicInfo.getAuthor());
+				
+				UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(contentBasicInfo.getAuthor());
 
-				if (ucUserinfoExt == null) {
-					continue;
+				if (ucUserinfoExt != null) {
+					
+					sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+					
+					sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+					
 				}
-				sportingMoment.setAboutHead(ucUserinfoExt.getAboutHead());
-
-				sportingMoment.setNickName(ucUserinfoExt.getNickName());
+				
+				if(ucUserinfo != null){
+					
+					sportingMoment.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
+					
+					sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
+					
+				}
 				
 				sportingMoment.setTagName(labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
 				
