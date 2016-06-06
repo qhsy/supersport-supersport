@@ -15,7 +15,7 @@ public class UserBasicInfo {
 	@ApiModelProperty(value = "昵称", notes = "昵称")
 	private String nickName = "";
 	
-	@ApiModelProperty(value="用户类型",notes = "dzsd4107100310010001:普通用户,dzsd4107100310010002:体育达人")
+	@ApiModelProperty(value="用户类型",example = "dzsd4107100310010001:普通用户,dzsd4107100310010002:体育达人")
 	private String type = "";
 	
 	@ApiModelProperty(value = "简介头像", notes = "简介头像")
