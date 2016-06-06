@@ -7,11 +7,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentPhotos;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
+import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
-import com.uhutu.dcom.user.z.service.UserServiceFactory;
+import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.ContentPhotosDetail;
 import com.uhutu.sportcenter.z.input.ApiContentPhotosInput;
 import com.uhutu.sportcenter.z.result.ApiContentPhotosResult;
@@ -32,7 +34,7 @@ public class ApiContentPhotosDetailInfo extends RootApiBase<ApiContentPhotosInpu
 	private ContentServiceFactory serviceFactory;
 	
 	@Autowired
-	private UserServiceFactory userServiceFactory;
+	private UserInfoSupport userInfoSupport;
 	
 	@Override
 	protected ApiContentPhotosResult process(ApiContentPhotosInput input) {
@@ -45,13 +47,23 @@ public class ApiContentPhotosDetailInfo extends RootApiBase<ApiContentPhotosInpu
 			
 			BeanUtils.copyProperties(cnContentBasicinfo, result.getContentBasicInfo());
 			
-			UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(cnContentBasicinfo.getAuthor());
+			UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(cnContentBasicinfo.getAuthor());
+			
+			UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(cnContentBasicinfo.getAuthor());
 			
 			if(ucUserinfoExt != null){
 				
-				result.getContentBasicInfo().setNickName(ucUserinfoExt.getNickName());
+				result.getContentBasicInfo().getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
 				
-				result.getContentBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+				result.getContentBasicInfo().getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+				
+			}
+			
+			if(ucUserinfo != null){
+				
+				result.getContentBasicInfo().getUserBasicInfo().setType(ucUserinfo.getType());
+				
+				result.getContentBasicInfo().getUserBasicInfo().setUserCode(ucUserinfo.getCode());
 				
 			}
 			
