@@ -46,6 +46,8 @@ public class ApiUserExpertDetail extends RootApiBase<ApiUserExpertDetailInput, A
 			
 			BeanUtils.copyProperties(ucUxpert, expertInfo);
 			
+			expertInfo.setPowerStr(String.format("%,d", expertInfo.getPower()));
+			
 			result.setUserInfoExpert(expertInfo);
 			
 			result.setUserAlbum(initUserAlbum(input.getUserCode()));
@@ -125,6 +127,8 @@ public class ApiUserExpertDetail extends RootApiBase<ApiUserExpertDetailInput, A
 				userDonateInfo.setNickName(userinfoExt.getAboutHead());
 				
 				userDonateInfo.setNickName(userinfoExt.getNickName());
+				
+				userDonateInfo.setTotalPowerStr(String.format("%,d", userDonateInfo.getTotalPower()));
 				
 				userDonateInfos.add(userDonateInfo);
 				
