@@ -12,6 +12,9 @@ public class ApiUserResetPwdResult extends RootApiResult {
 	
 	@ApiModelProperty(value="会话token")
 	private String userToken;
+	
+	@ApiModelProperty(value="用户编号")
+	private String userCode;
 
 	public String getUserToken() {
 		return userToken;
@@ -19,6 +22,14 @@ public class ApiUserResetPwdResult extends RootApiResult {
 
 	public void setUserToken(String userToken) {
 		this.userToken = userToken;
+	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
 	}
 
 }

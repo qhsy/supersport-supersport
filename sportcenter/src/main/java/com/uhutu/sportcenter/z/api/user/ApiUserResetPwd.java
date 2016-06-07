@@ -15,6 +15,8 @@ import com.uhutu.sportcenter.z.result.ApiUserResetPwdResult;
 import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zooweb.user.UserCallFactory;
+import com.uhutu.zooweb.user.UserLoginInput;
+import com.uhutu.zooweb.user.UserLoginResult;
 
 /**
  * 用户重置密码
@@ -27,6 +29,8 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 
 	@Autowired
 	private UserServiceFactory userServiceFactory;
+	
+	private UserCallFactory userCallFactory = new UserCallFactory();
 
 	@Override
 	protected ApiUserResetPwdResult process(ApiUserResetPwdInput input) {
@@ -93,7 +97,21 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 
 					userServiceFactory.getUserInfoService().save(ucUserinfo);
 
-					resetPwdResult.setUserToken(ucUserinfo.getCode());
+					UserLoginResult loginResult = userLogin(ucUserinfo.getLoginName(), ucUserinfo.getLoginPwd());
+					
+					if(loginResult.upFlagTrue()){
+						
+						resetPwdResult.setUserCode(loginResult.getUserCode());
+						
+						resetPwdResult.setUserToken(loginResult.getToken());
+						
+					}else{
+						
+						resetPwdResult.setError(loginResult.getError());
+						
+						resetPwdResult.setStatus(loginResult.getStatus());
+						
+					}
 					
 				}
 				
@@ -134,7 +152,7 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 			
 			if(StringUtils.equals(ucUserinfo.getLoginPwd(), input.getConfirmPwd())){
 				
-				int count = new UserCallFactory().resetPwd(input.getLoginName(), input.getLoginPwd());
+				int count = new UserCallFactory().resetPwd(ucUserinfo.getLoginName(), input.getLoginPwd());
 				
 				if(count == 1){
 					
@@ -142,9 +160,23 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 
 					ucUserinfo.setLastTime(new Date());
 
-					userServiceFactory.getUserInfoService().save(ucUserinfo);			
-
-					resetPwdResult.setUserToken(ucUserinfo.getCode());
+					userServiceFactory.getUserInfoService().save(ucUserinfo);	
+					
+					UserLoginResult loginResult = userLogin(ucUserinfo.getLoginName(), ucUserinfo.getLoginPwd());
+					
+					if(loginResult.upFlagTrue()){
+						
+						resetPwdResult.setUserCode(loginResult.getUserCode());
+						
+						resetPwdResult.setUserToken(loginResult.getToken());
+						
+					}else{
+						
+						resetPwdResult.setError(loginResult.getError());
+						
+						resetPwdResult.setStatus(loginResult.getStatus());
+						
+					}
 					
 				}else{
 					
@@ -159,6 +191,29 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 			}
 			
 		}
+		
+	}
+	
+	
+	/**
+	 * 用户登录
+	 * @param loginName
+	 * 		登录名
+	 * @param pwd
+	 * 		密码
+	 * @return 登录结果
+	 */
+	public UserLoginResult userLogin(String loginName,String pwd){
+		
+		UserLoginInput loginInput = new UserLoginInput();
+		
+		loginInput.setLoginName(loginName);
+		
+		loginInput.setLoginPass(pwd);
+		
+		loginInput.setLoginSystem(DefineUser.Login_System_Default);
+		
+		return userCallFactory.userLogin(loginInput);
 		
 	}
 
