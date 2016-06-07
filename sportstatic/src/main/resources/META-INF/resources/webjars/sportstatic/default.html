@@ -32,7 +32,7 @@
 	$(function(){
 		var share = urlFormat('share');
 		if(parseInt(share)){
-			var ele = $('<div style="height: 0.6rem;"></div><header class="open-app"><span class="app-logo"><img src="css/img/app_logo.png"></span><span class="app-con"><img src="css/img/text.png"></span><a href="javascript:;" class="app-btn">打开App</a></header>');
+			var ele = $('<div class="blank" style="height: 0.6rem;"></div><header class="open-app"><span class="app-logo"><img src="css/img/app_logo.png"></span><span class="app-con"><img src="css/img/text.png"></span><a href="javascript:;" class="app-btn">打开App</a></header>');
 			ele.prependTo('body');
 		}
 		$.ajax({
@@ -45,7 +45,12 @@
 				if(data.contentRecommInfo != null){
 					if(data.contentRecommInfo.content != ''){
 						var ele = $('<fieldset class="details-basten"><legend>果果推荐语</legend><p></p></fieldset>');
-							ele.prependTo('body');
+							if($('.blank').length){
+								ele.insertAfter('.blank');
+							}else{
+								ele.prependTo('body');
+							}
+							
 							ele.find('p').html(data.contentRecommInfo.content);
 					}
 				}

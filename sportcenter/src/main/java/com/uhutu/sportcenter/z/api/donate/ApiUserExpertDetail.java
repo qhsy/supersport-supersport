@@ -7,6 +7,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
@@ -30,99 +32,122 @@ import com.uhutu.zooweb.user.UserCallFactory;
 
 /**
  * 达人用户详情信息
+ * 
  * @author 逄小帅
  *
  */
 @Component
 public class ApiUserExpertDetail extends RootApiBase<ApiUserExpertDetailInput, ApiUserExpertDetailResult> {
-	
+
 	@Autowired
 	private UserServiceFactory userServiceFactory;
-	
+
 	@Override
 	protected ApiUserExpertDetailResult process(ApiUserExpertDetailInput input) {
-		
+
 		ApiUserExpertDetailResult result = new ApiUserExpertDetailResult();
-		
+
 		UcUserinfoExpert ucUxpert = userServiceFactory.getUserInfoExpertService().queryByCode(input.getUserCode());
-		
-		if(ucUxpert != null){
-			
+
+		if (ucUxpert != null) {
+
 			UserInfoExpertDetail expertInfo = new UserInfoExpertDetail();
-			
+
 			BeanUtils.copyProperties(ucUxpert, expertInfo);
-			
+
 			expertInfo.setPowerStr(String.format("%,d", expertInfo.getPower()));
+
+			List<UcUserinfoExpert> expertList = initPageList();
 			
-			result.setUserInfoExpert(expertInfo);
-			
-			result.setUserAlbum(initUserAlbum(input.getUserCode()));
-			
-			result.setUserDonateInfos(initUserDonateInfos(input.getUserCode(), input.getPagination()));
-			
-			if(StringUtils.isNotBlank(input.getZoo().getToken())){
-				
-				String supportUserCode = new UserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(), DefineUser.Login_System_Default);
-				
-				result.setSupportPower(supportPower(supportUserCode, input.getUserCode()));
-				
+			int i = 0;
+
+			for (UcUserinfoExpert expert : expertList) {
+
+				i++;
+
+				if (StringUtils.equals(expert.getCode(), ucUxpert.getCode())) {
+
+					break;
+
+				}
+
 			}
 			
-		}else{
-			
+			expertInfo.setSort(i);
+
+			result.setUserInfoExpert(expertInfo);
+
+			result.setUserAlbum(initUserAlbum(input.getUserCode()));
+
+			result.setUserDonateInfos(initUserDonateInfos(input.getUserCode(), input.getPagination()));
+
+			if (StringUtils.isNotBlank(input.getZoo().getToken())) {
+
+				String supportUserCode = new UserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(),
+						DefineUser.Login_System_Default);
+
+				result.setSupportPower(supportPower(supportUserCode, input.getUserCode()));
+
+			}
+
+		} else {
+
 			result.inError(81100003);
-			
-		}		
-		
+
+		}
+
 		return result;
 	}
-	
+
 	/**
 	 * 初始用户相册
+	 * 
 	 * @param userCode
-	 * 		用户编号
+	 *            用户编号
 	 * @return 用户相册集合
 	 */
-	public List<UserAlbum> initUserAlbum(String userCode){
-		
+	public List<UserAlbum> initUserAlbum(String userCode) {
+
 		List<UserAlbum> userAlbums = new ArrayList<UserAlbum>();
-		
+
 		QueryConditions conditions = new QueryConditions();
-		
+
 		conditions.setConditionEqual("status", SystemEnum.YES.getCode());
-		
+
 		conditions.setConditionEqual("userCode", userCode);
-		
-		Page<UcUserAlbum> userAlbumPage = userServiceFactory.getUserAlbumService().queryPageByCondition(1, 10, conditions);
-		
+
+		Page<UcUserAlbum> userAlbumPage = userServiceFactory.getUserAlbumService().queryPageByCondition(1, 10,
+				conditions);
+
 		userAlbumPage.getContent().forEach(album -> {
-			
+
 			UserAlbum userAlbum = new UserAlbum();
-			
+
 			BeanUtils.copyProperties(album, userAlbum);
-			
+
 			ImageThumb imageThumb = ImageHelper.upThumbWithHeight(userAlbum.getPicture(), 0);
-			
+
 			userAlbum.setWidth(imageThumb.getSourceWidth());
-			
+
 			userAlbum.setHeight(imageThumb.getSourceHeight());
-			
+
 			userAlbum.setIconUrl(ImageHelper.upImageThumbnail(userAlbum.getPicture(), 280));
-			
+
 			userAlbums.add(userAlbum);
-			
+
 		});
-		
+
 		return userAlbums;
-		
+
 	}
-	
+
 	/**
 	 * 初始用户捐赠信息排行
+	 * 
 	 * @param userCode
-	 * 		用户编号
+	 *            用户编号
 	 * @param pageNum
-	 * 		当前页码
+	 *            当前页码
 	 * @return 用户捐赠信息
 	 */
 	public List<UserDonateInfo> initUserDonateInfos(String userCode, int pageNum) {
@@ -135,60 +160,96 @@ public class ApiUserExpertDetail extends RootApiBase<ApiUserExpertDetailInput, A
 
 		Page<UcDonateInfo> donatePage = userServiceFactory.getUserDonateInfoService().queryPageByCondtions(pageNum, 5,
 				conditions);
-		
-		donatePage.getContent().forEach(donateInfo -> {			
-			
-			UcUserinfoExt userinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(donateInfo.getSupportCode());
-			
+
+		donatePage.getContent().forEach(donateInfo -> {
+
+			UcUserinfoExt userinfoExt = userServiceFactory.getUserInfoExtService()
+					.queryByUserCode(donateInfo.getSupportCode());
+
 			UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByCode(donateInfo.getSupportCode());
-			
-			if(userinfoExt != null && ucUserinfo != null){
-				
+
+			if (userinfoExt != null && ucUserinfo != null) {
+
 				UserDonateInfo userDonateInfo = new UserDonateInfo();
-				
+
 				userDonateInfo.setTotalPower(donateInfo.getTotalPower());
-				
+
 				userDonateInfo.setAboutHead(userinfoExt.getAboutHead());
-				
+
 				userDonateInfo.setNickName(userinfoExt.getNickName());
-				
+
 				userDonateInfo.setType(ucUserinfo.getType());
-				
+
 				userDonateInfo.setUserCode(ucUserinfo.getCode());
-				
+
 				userDonateInfo.setTotalPowerStr(String.format("%,d", userDonateInfo.getTotalPower()));
-				
+
 				userDonateInfos.add(userDonateInfo);
-				
+
 			}
-			
+
 		});
-		
+
 		return userDonateInfos;
 
 	}
-	
+
 	/**
 	 * 获取当前用户已支持的能量值
+	 * 
 	 * @param supportCode
-	 * 		支持者
+	 *            支持者
 	 * @param beSupportCode
-	 * 		被支持者
+	 *            被支持者
 	 * @return 累计能量值
 	 */
-	public long supportPower(String supportCode,String beSupportCode){
-		
+	public long supportPower(String supportCode, String beSupportCode) {
+
 		long power = 0;
-		
+
 		UcDonateInfo donateInfo = userServiceFactory.getUserDonateInfoService().queryByCode(supportCode, beSupportCode);
-		
-		if(donateInfo != null){
-			
+
+		if (donateInfo != null) {
+
 			power = donateInfo.getTotalPower();
-			
+
 		}
-		
+
 		return power;
+
+	}
+	
+	public List<UcUserinfoExpert> initPageList(){
+		
+		List<UcUserinfoExpert> expertList = new ArrayList<UcUserinfoExpert>();
+
+		QueryConditions conditions = new QueryConditions();
+
+		conditions.setConditionEqual("status", SystemEnum.YES.getCode());
+
+		conditions.setConditionGreaterThan("power", 0);
+
+		Sort powerSort = new Sort(Direction.DESC, "power");
+
+		Page<UcUserinfoExpert> expertPage = userServiceFactory.getUserInfoExpertService().queryPageByConditon(1, 10,
+				conditions, powerSort);
+
+		Sort zeroSort = new Sort(Direction.DESC, "sort");
+
+		QueryConditions zeroCondition = new QueryConditions();
+
+		zeroCondition.setConditionEqual("status", SystemEnum.YES.getCode());
+
+		zeroCondition.setConditionEqual("power", 0);
+
+		Page<UcUserinfoExpert> expertPowerPage = userServiceFactory.getUserInfoExpertService()
+				.queryPageByConditon(1, 10, zeroCondition, zeroSort);
+
+		expertList.addAll(expertPage.getContent());
+
+		expertList.addAll(expertPowerPage.getContent());
+		
+		return expertList;
 		
 	}
 
