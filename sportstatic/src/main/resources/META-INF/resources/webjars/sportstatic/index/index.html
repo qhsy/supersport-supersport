@@ -11,7 +11,12 @@
 @media screen and (min-width:414px){
 	.freePower{width: 100%; height: 30px; position: fixed; left: 0; bottom: 83px; font-weight: bold; text-align: center; line-height: 30px; font-size: 16px; color: #fff}
 }
-@media screen and (max-height:603px){
+@media screen and (max-height:570px){
+	.iSlider-effect{transform: scale(0.9); -webkit-transform: scale(0.9); -moz-transform: scale(1);}
+	.freePower{bottom: 90px;}
+	
+}
+@media screen and (min-height:603px){
 	.iSlider-effect{transform: scale(1.06); -webkit-transform: scale(1.06); -moz-transform: scale(1.06);}
 	.freePower{bottom: 90px;}
 	
@@ -51,16 +56,17 @@ $(function() {
 				isAutoplay: false,
 				isLooping: true,
 			});
-			console.log(data)
 			$('.freePower i').text(PrefixInteger('' + data.freePower));
 		},
 		error: function(xhr, status, error) {
 			alert(error);
 		}
 	});
-	var currPower,nowPower;
+	var currPower,nowPower,login;
 	$("#touchArea").on({
 		touchstart: function(e) {
+			login = urlFormat('token');
+			if(!login) return false;
 			var usable = parseInt($('.freePower i').html());
 			var total = parseInt($('.index div font i').text().replace(/\,/g,''));
 				currPower = parseInt($('.freePower i').text());
@@ -84,6 +90,10 @@ $(function() {
 			timeOutEvent = 0;
 		},
 		touchend: function() {
+			if(!login){
+				loginEvent()
+				return false;
+			}
 			clearTimeout(time);
 			nowPower = currPower - parseInt($('.freePower i').text());
 			var code = $('.index .code').attr('data-code');
@@ -101,7 +111,7 @@ $(function() {
 			type: 'POST',
 			contentType: 'application/json',
 			dataType: 'json',
-			data: '{"donatePower": ' + value + ',"userCode": "' + code + '","zoo": {"key": "tesetkey","token": "e82009f7a341488a817d71e173eb0c1be6a719edbb73406d8fabe4fb0a8c5747375f89eb"}}',
+			data: '{"donatePower": ' + value + ',"userCode": "' + code + '","zoo": {"key": "tesetkey","token": "' + urlFormat('token') + '"}}',
 			success: function(data) {
 				
 			},
@@ -119,6 +129,9 @@ $(function() {
 function targetInfo(){
 	var code = $('.index .code').attr('data-code');
 	return code
+}
+function loginEvent(){
+	console.log(1)
 }
 /* 通过URL获取CODE值 */
 function urlFormat(arg){
