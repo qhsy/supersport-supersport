@@ -24,8 +24,8 @@ public class CnContentBasicinfo extends BaseEntity {
 	@ZooData(name = "内容标题", require = "1", verify = { DefineWebVerify.Max_Length + "=28" })
 	private String title;
 
-	@ZooData(name = "内容封面(宽1080*高810)", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "内容封面(宽1080*高810)", element = DefineWebElement.Upload, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String cover;
 
 	@ZooData(name = "内容简介", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0",
@@ -49,9 +49,8 @@ public class CnContentBasicinfo extends BaseEntity {
 					DefineWebInc.Web_Component + "=dzcw412410010001" })
 	private String tagCode;
 
-	@ZooData(name = "内容作者", require = "1", sort = {
-			DefineWebPage.Page_Query + "=0" }, element = DefineWebElement.Model, inc = {
-					DefineWebInc.Web_Component + "=dzcw451010010001" })
+	@ZooData(name = "内容作者", require = "1", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw451010010001" })
 	private String author;
 
 	@ZooData(name = "发布时间", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0",
@@ -73,7 +72,7 @@ public class CnContentBasicinfo extends BaseEntity {
 	private String busiType;
 
 	@ZooData(name = "内容类型", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd410710011003" }, sort = { DefineWebPage.Page_Query + "=0"})
+			DefineWebInc.System_Define + "=dzsd410710011003" }, sort = { DefineWebPage.Page_Query + "=0" })
 	private String contentType;
 
 	public String getCover() {
