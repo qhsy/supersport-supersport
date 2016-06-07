@@ -66,7 +66,7 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 	}
 	
 	/**
-	 * 重置密码
+	 * 忘记密码
 	 * @param resetPwdResult
 	 * 		处理result
 	 * @param input
@@ -74,7 +74,7 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 	 * @param ucUserinfo
 	 * 		用户信息
 	 */
-	public void resetPwd(ApiUserResetPwdResult resetPwdResult,ApiUserResetPwdInput input,UcUserinfo ucUserinfo){
+	public void forgetPwd(ApiUserResetPwdResult resetPwdResult,ApiUserResetPwdInput input,UcUserinfo ucUserinfo){
 		
 		SmsTypeEnum verifyEnum = Enum.valueOf(SmsTypeEnum.class, input.getVerifyType());
 		
@@ -108,7 +108,7 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 	}
 	
 	/**
-	 * 忘记密码
+	 * 重置密码
 	 * @param resetPwdResult
 	 * 		处理result
 	 * @param input
@@ -116,7 +116,7 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 	 * @param ucUserinfo
 	 * 		用户信息
 	 */
-	public void forgetPwd(ApiUserResetPwdResult resetPwdResult,ApiUserResetPwdInput input,UcUserinfo ucUserinfo){
+	public void resetPwd(ApiUserResetPwdResult resetPwdResult,ApiUserResetPwdInput input,UcUserinfo ucUserinfo){
 		
 		if(StringUtils.equals(ucUserinfo.getLoginPwd(), input.getConfirmPwd())){
 			
