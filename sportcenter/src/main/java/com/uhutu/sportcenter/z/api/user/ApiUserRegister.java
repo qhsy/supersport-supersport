@@ -33,61 +33,62 @@ public class ApiUserRegister extends RootApiBase<ApiUserRegInput, ApiUserRegResu
 	public ApiUserRegResult process(ApiUserRegInput inputParam) {
 
 		ApiUserRegResult userRegResult = new ApiUserRegResult();
-		RootApiResult rootApiResult = new SmsSupport().upLastVerifyCode(SmsTypeEnum.register, inputParam.getLoginName(),
-				inputParam.getVerify_code());
-		if (rootApiResult.getStatus() == 1) {
-			
-			UserReginsterResult userAuthResult = userServiceFactory.getUserInfoService().regAuthUser(inputParam.getLoginName(), inputParam.getPassword());
+		// RootApiResult rootApiResult = new
+		// SmsSupport().upLastVerifyCode(SmsTypeEnum.register,
+		// inputParam.getLoginName(),
+		// inputParam.getVerify_code());
+		if (true) {
 
-			if(userAuthResult.upFlagTrue()){
-				
+			UserReginsterResult userAuthResult = userServiceFactory.getUserInfoService()
+					.regAuthUser(inputParam.getLoginName(), inputParam.getPassword());
+
+			if (userAuthResult.upFlagTrue()) {
+
 				UcUserinfo ucUserinfo = new UcUserinfo();
 
 				ucUserinfo.setLoginName(inputParam.getLoginName());
 
 				ucUserinfo.setLoginPwd(inputParam.getPassword());
-				
+
 				ucUserinfo.setFlag(UserEnum.FLAG_ENABLE.getCode());
-				
+
 				ucUserinfo.setLastTime(new Date());
-				
+
 				ucUserinfo.setLoginCode(userAuthResult.getLoginCode());
-				
+
 				ucUserinfo.setCode(userAuthResult.getUserCode());
-				
+
 				ucUserinfo.setType(UserEnum.TYPE_CUSTOM.getCode());
-				
+
 				ucUserinfo.setMjFlag(SystemEnum.NO.getCode());
 
 				userServiceFactory.getUserInfoService().save(ucUserinfo);
-				
+
 				UcUserinfoExt ucUserinfoExt = new UcUserinfoExt();
-				
+
 				ucUserinfoExt.setUserCode(ucUserinfo.getCode());
-				
+
 				ucUserinfoExt.setNickName(inputParam.getNickName());
-				
+
 				userServiceFactory.getUserInfoExtService().save(ucUserinfoExt);
 
 				userRegResult.setUserCode(userAuthResult.getUserCode());
 
 				userRegResult.setUserToken(userAuthResult.getToken());
-				
-			}else{
-				
+
+			} else {
+
 				userRegResult.inError(81100002);
-				
+
 			}
-			
-		} else {
-			userRegResult.setStatus(rootApiResult.getStatus());
-			userRegResult.setError(rootApiResult.getError());
 		}
+		// } else {
+		// userRegResult.setStatus(rootApiResult.getStatus());
+		// userRegResult.setError(rootApiResult.getError());
+		// }
 
 		return userRegResult;
 
 	}
-	
-	
 
 }
