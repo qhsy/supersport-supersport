@@ -6,6 +6,7 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 
 import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.zoocom.define.DefineUser;
+import com.uhutu.zoocom.helper.SecrurityHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.api.webpage.WebOperateInput;
@@ -33,6 +34,8 @@ public class VestUserRegFunc extends RootFunc {
 		String loginName = input.getDataMap().get("login_name");
 		
 		String loginPwd = input.getDataMap().get("login_pwd");
+		
+		loginPwd = SecrurityHelper.MD5(loginPwd+UserEnum.SALT.getCode()).toLowerCase();
 		
 		UserCallFactory userCallFactory = new UserCallFactory();
 		
