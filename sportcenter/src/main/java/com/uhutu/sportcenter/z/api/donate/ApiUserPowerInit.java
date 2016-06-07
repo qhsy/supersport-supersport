@@ -51,6 +51,8 @@ public class ApiUserPowerInit extends RootApiToken<ApiUserPowerInitInput, ApiUse
 						
 						userInfoDonate.setFreePower(freePower);
 						
+						userInfoDonate.setCurrPower(input.getCurrPower());
+						
 					}else{
 						
 						powerInitResult.inError(81100007);
