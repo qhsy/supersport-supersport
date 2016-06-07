@@ -100,6 +100,10 @@ public class ApiUserExpertList extends RootApiBase<ApiUserExpertListInput, ApiUs
 				
 				userInfoExpert.setPowerStr(String.format("%,d", userInfoExpert.getPower()));
 				
+				expert.setSort(i);
+				
+				serviceFactory.getUserInfoExpertService().save(expert);
+				
 				userExpertResult.getUserInfoExperts().add(userInfoExpert);
 				
 			}
