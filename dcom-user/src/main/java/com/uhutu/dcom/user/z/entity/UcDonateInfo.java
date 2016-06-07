@@ -1,6 +1,8 @@
 package com.uhutu.dcom.user.z.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
@@ -15,6 +17,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  *
  */
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames={"supportCode","beSupportCode"}))
 public class UcDonateInfo extends BaseEntity {
 
 	@ZooData(name = "粉丝昵称", require = "1", sort = {

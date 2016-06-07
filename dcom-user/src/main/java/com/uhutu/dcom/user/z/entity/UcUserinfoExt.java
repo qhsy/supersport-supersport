@@ -2,6 +2,8 @@ package com.uhutu.dcom.user.z.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
@@ -15,9 +17,11 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames={"userCode"}))
 public class UcUserinfoExt extends BaseEntity {
 
 	@ZooData(name = "用户编号")
+	@Column(length=50)
 	private String userCode;
 
 	@ApiModelProperty(name = "昵称", notes = "昵称", example = "papi酱")

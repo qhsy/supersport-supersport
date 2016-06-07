@@ -3,6 +3,8 @@ package com.uhutu.dcom.content.z.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
@@ -16,6 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames={"code"}))
 public class CnContentBasicinfo extends BaseEntity {
 
 	@ZooData(name = "内容编号")

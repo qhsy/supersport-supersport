@@ -2,7 +2,10 @@ package com.uhutu.dcom.user.z.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
@@ -18,9 +21,11 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  *
  */
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames={"code"}))
 public class UcUserinfo extends BaseEntity {
 
 	@ZooData(name = "用户编号", sort = { DefineWebPage.Page_Add + "=0" })
+	@Column(length=50)
 	private String code;
 
 	@ZooData(name = "用户类型", element = DefineWebElement.Select, inc = {
