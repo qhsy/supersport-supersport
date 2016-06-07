@@ -25,7 +25,7 @@ body{background: #333; overflow: hidden;}
 	<div class="photo-txt"></div>
 </section>
 <!-- 达人 -->
-<aside class="photo-head"><em></em><i></i></aside>
+<aside class="photo-head"><em><img src="image/normal_head.png" alt=""></em><i></i></aside>
 <script type="text/javascript" src="script/zepto.min.js"></script>
 <script type="text/javascript" src="script/share.js"></script>
 <script type="text/javascript">
@@ -113,7 +113,9 @@ $(function(){
 		wrap.style.height = window.innerHeight + 'px';
 		wrap.appendChild(this.outer);
 		this.time.innerHTML = this.data.contentBasicInfo['publishTimeStr'];
-		this.head.innerHTML = '<img src="' + this.data.contentBasicInfo.userBasicInfo['aboutHead'] + '"/>';
+		if(this.data.contentBasicInfo.userBasicInfo['aboutHead']){
+			this.head.innerHTML = '<img src="' + this.data.contentBasicInfo.userBasicInfo['aboutHead'] + '"/>';
+		}
 		this.head.setAttribute('id',this.data.contentBasicInfo.author)
 		this.name.innerHTML = this.data.contentBasicInfo.userBasicInfo['nickName'];
 		this.title.innerHTML = this.data.contentBasicInfo['title'];

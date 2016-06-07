@@ -16,7 +16,7 @@
 </head>
 <body class="ms-controller" >
 <section class="details-author">
-	<div class="details-photo"></div>
+	<div class="details-photo"><img src="image/normal_head.png"></div>
 	<h2 class="details-name"></h2>
 </section>
 <div class="details-hgroup">
@@ -52,7 +52,10 @@
 				$('.head').attr('src',data.sportingMoment.cover)
 				$('.details-hgroup h1').html(data.sportingMoment.title);
 				$('.details-hgroup time').html(data.sportingMoment.publishTimeStr);
-				$('.details-photo').attr('id',data.sportingMoment.author).html('<img src="' + data.sportingMoment.userBasicInfo.aboutHead + '" />')
+				if(data.sportingMoment.userBasicInfo.aboutHead){
+					$('.details-photo img').attr('src', data.sportingMoment.userBasicInfo.aboutHead);
+				}
+				$('.details-photo').attr('id',data.sportingMoment.author);
 				$('.details-name').html(data.sportingMoment.userBasicInfo.nickName);
 				$('.details-article').html(data.contentDetailInfo.content.replace('[godovideobingo]', '<span style="display: block;" id="prismPlayer" class="prism-player"></span>'));
 				if(data.sportingMoment.tagName == ''){
