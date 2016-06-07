@@ -1,6 +1,8 @@
 package com.uhutu.dcom.user.z.service;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExpert;
 
@@ -21,7 +23,7 @@ public interface IUserInfoExpertService {
 	 * 		查询条件
 	 * @return 分页信息
 	 */
-	public Page<UcUserinfoExpert> queryPageByConditon(int pageNum,int limit,QueryConditions conditions);
+	public Page<UcUserinfoExpert> queryPageByConditon(int pageNum,int limit,QueryConditions conditions,Sort sort);
 	
 	/**
 	 * 根据用户编号查询用户达人信息

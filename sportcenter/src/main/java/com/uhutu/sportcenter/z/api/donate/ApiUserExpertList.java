@@ -1,9 +1,14 @@
 package com.uhutu.sportcenter.z.api.donate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
@@ -33,13 +38,33 @@ public class ApiUserExpertList extends RootApiBase<ApiUserExpertListInput, ApiUs
 	@Override
 	protected ApiUserExpertListResult process(ApiUserExpertListInput input) {
 		
+		List<UcUserinfoExpert> expertList = new ArrayList<UcUserinfoExpert>();
+		
 		ApiUserExpertListResult userExpertResult = new ApiUserExpertListResult();
 		
 		QueryConditions conditions = new QueryConditions();
 		
 		conditions.setConditionEqual("status", SystemEnum.YES.getCode());
 		
-		Page<UcUserinfoExpert> expertPage = serviceFactory.getUserInfoExpertService().queryPageByConditon(1, 10, conditions);
+		conditions.setConditionGreaterThan("power", 0);
+		
+		Sort powerSort = new Sort(Direction.DESC,"power");
+		
+		Page<UcUserinfoExpert> expertPage = serviceFactory.getUserInfoExpertService().queryPageByConditon(1, 10, conditions,powerSort);
+		
+		Sort zeroSort = new Sort(Direction.DESC,"sort");
+		
+		QueryConditions zeroCondition = new QueryConditions();
+		
+		zeroCondition.setConditionEqual("status", SystemEnum.YES.getCode());
+		
+		zeroCondition.setConditionEqual("power", 0);
+		
+		Page<UcUserinfoExpert> expertPowerPage = serviceFactory.getUserInfoExpertService().queryPageByConditon(1, 10, zeroCondition, zeroSort);
+		
+		expertList.addAll(expertPage.getContent());
+		
+		expertList.addAll(expertPowerPage.getContent());
 		
 		if(StringUtils.isNotBlank(input.getZoo().getToken())){
 			
@@ -63,7 +88,7 @@ public class ApiUserExpertList extends RootApiBase<ApiUserExpertListInput, ApiUs
 			
 			int i = 0;
 			
-			for(UcUserinfoExpert expert : expertPage.getContent()){
+			for(UcUserinfoExpert expert : expertList){
 				
 				i++;
 				
