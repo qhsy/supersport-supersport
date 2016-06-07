@@ -6,6 +6,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 import io.swagger.annotations.ApiModel;
@@ -18,13 +19,16 @@ public class CnContentLabel extends BaseEntity {
 			DefineWebPage.Page_Edit + "=0" })
 	private String code;
 
-	@ZooData(name = "标签名称")
+	@ZooData(name = "标签名称", require = "1")
 	private String name;
 
-	@ZooData(name = "创建用户", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0",
-			DefineWebPage.Page_Add + "=0" }, element = DefineWebElement.Model, inc = {
+	@ZooData(name = "创建用户", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
+			DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Add + "=0" }, element = DefineWebElement.Model, inc = {
 					DefineWebInc.Web_Component + "=dzcw451010010001" })
 	private String type;
+
+	@ZooData(name = "展示顺序(倒序)", require = "1", verify = { DefineWebVerify.Base_Number })
+	private int sort;
 
 	@ZooData(name = "标签类型", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd412410011001" })
@@ -72,6 +76,14 @@ public class CnContentLabel extends BaseEntity {
 
 	public void setLabelType(String labelType) {
 		this.labelType = labelType;
+	}
+
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
 	}
 
 }
