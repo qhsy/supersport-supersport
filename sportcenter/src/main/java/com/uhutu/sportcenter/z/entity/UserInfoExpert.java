@@ -27,6 +27,9 @@ public class UserInfoExpert {
 	@ApiModelProperty(value="排名图片")
 	private String sortPic;
 	
+	@ApiModelProperty(value="排名")
+	private String sort;
+	
 	@ApiModelProperty(value="能量值")
 	private long power;
 	
@@ -95,6 +98,14 @@ public class UserInfoExpert {
 
 	public void setPowerStr(String powerStr) {
 		this.powerStr = powerStr;
+	}
+
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
 	} 
 	
 	
