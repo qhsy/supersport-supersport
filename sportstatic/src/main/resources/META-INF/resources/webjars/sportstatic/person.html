@@ -120,10 +120,11 @@ a:hover {text-decoration: none; }
 			type:'POST',
 			contentType: 'application/json',
 			dataType: 'json',
-			async:false,
 			data: '{"pagination": 1,"userCode": "' + urlFormat('code') + '","zoo": {"key": "tesetkey","token": "' + urlFormat('token') + '"}}',
 			success: function(data) {
+				$('.person-hd').attr('user-code',data.userInfoExpert.code);
 				$('.person-hd h1').text(data.userInfoExpert.realName);
+				
 				$('.person-hd img').attr('src',data.userInfoExpert.advPic);
 				$('.person-value h1').text(data.userInfoExpert.powerStr);
 				$('.person-thermal i').text('No.' + data.userInfoExpert.sort);
@@ -165,10 +166,8 @@ a:hover {text-decoration: none; }
 		$('.person-btn').on('tap',function(){
 			window.location.href = 'index/index.html?token=' + urlFormat('token');
 		});
-		function targetInfo(){
-			return urlFormat('code');
-		}
 	});
+	
 	//构造函数
 	function Slider(opts){
 		//构造函数需要的参数
@@ -351,6 +350,10 @@ a:hover {text-decoration: none; }
 		outer.addEventListener('touchmove', moveHandler);
 		outer.addEventListener('touchend', endHandler);
 	};
+	function targetInfo(){
+		var code = document.querySelector('.person-hd').getAttribute('user-code');
+		return code;
+	}
 	/* 通过URL获取CODE值 */
 	function urlFormat(arg){
 		// ?content_code=string&share=1
