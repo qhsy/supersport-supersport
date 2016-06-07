@@ -1,9 +1,12 @@
 package com.uhutu.sportcenter.z.api.donate;
 
 import java.util.Date;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import com.uhutu.dcom.user.z.entity.UcDonateDevice;
 import com.uhutu.dcom.user.z.entity.UcUserinfoDonate;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiUserPowerInitInput;
@@ -27,6 +30,41 @@ public class ApiUserPowerInit extends RootApiToken<ApiUserPowerInitInput, ApiUse
 		ApiUserPowerInitResult powerInitResult = new ApiUserPowerInitResult();
 
 		UcUserinfoDonate userInfoDonate = userServiceFactory.getUserInfoDonateService().queryByUserCode(upUserCode());
+		
+		UcDonateDevice ucDonateDevice = userServiceFactory.getUserDonateDeviceService().queryByDeviceId(input.getDeviceId());
+		
+		if(ucDonateDevice != null){
+			
+			if(DateUtils.isSameDay(new Date(), ucDonateDevice.getExpire())){
+				
+				if(!StringUtils.equals(upUserCode(), ucDonateDevice.getUserCode())){
+					
+					powerInitResult.inError(81100011);
+					
+				}
+				
+			}else{
+				
+				ucDonateDevice.setUserCode(upUserCode());
+				
+				userServiceFactory.getUserDonateDeviceService().save(ucDonateDevice);
+				
+			}
+			
+		}else{
+			
+			ucDonateDevice = new UcDonateDevice();
+			
+			ucDonateDevice.setDeviceId(input.getDeviceId());
+			
+			ucDonateDevice.setExpire(new Date());
+			
+			ucDonateDevice.setUserCode(upUserCode());
+			
+			userServiceFactory.getUserDonateDeviceService().save(ucDonateDevice);
+			
+		}
+		
 
 		/*初始热力值不能为负数*/
 		if(input.getCurrPower() < 0){

@@ -30,7 +30,7 @@ public class ApiUpdateUserPower extends RootApiToken<ApiUpdateUserPowerInput, Ap
 		
 		ApiUpdateUserPowerResult result = new ApiUpdateUserPowerResult();
 		
-		if(input.getDonatePower() < 0){
+		if(input.getDonatePower() <= 0){
 			
 			result.inError(81100008);
 			

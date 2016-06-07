@@ -101,7 +101,11 @@ a:hover {text-decoration: none; }
 	<h1 class="person-title">支持TA的人（TOP50）</h1>
 	<ul class="person-top-list">
 	{{each userDonateInfos}}
-		<li><i>{{$index+1}}</i><span><img src="{{$value.aboutHead}}" alt=""></span><em>{{$value.nickName}}</em>已支持 {{$value.totalPowerStr}} 能量值</li>
+		{{if $value.aboutHead}}
+			<li><i>{{$index+1}}</i><span><img src="{{$value.aboutHead}}" alt=""></span><em>{{$value.nickName}}</em>已支持 {{$value.totalPowerStr}} 能量值</li>
+		{{else}}
+		<li><i>{{$index+1}}</i><span><img src="image/normal_head.png" alt=""></span><em>{{$value.nickName}}</em>已支持 {{$value.totalPowerStr}} 能量值</li>
+		{{/if}}
 	{{/each}}
 	</ul>
 </script>
