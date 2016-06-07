@@ -29,7 +29,7 @@ public class ApiUserPowerInit extends RootApiToken<ApiUserPowerInitInput, ApiUse
 		UcUserinfoDonate userInfoDonate = userServiceFactory.getUserInfoDonateService().queryByUserCode(upUserCode());
 
 		/*初始热力值不能为负数*/
-		if(input.getCurrPower() >= 0){
+		if(input.getCurrPower() < 0){
 			
 			powerInitResult.inError(81100006);
 			
