@@ -37,7 +37,7 @@ public class ApiUserPowerShare extends RootApiBase<ApiUserPowerShareInput, ApiUs
 			
 			result.setShareIcon(userInfoExpert.getShareIcon());
 			
-			String shareUrl = "http://"+input.getServerIp()+path+"?code="+input.getUserCode()+"&share=0";
+			String shareUrl = input.getServerIp()+path+"?code="+input.getUserCode()+"&share=0";
 				
 			result.setShareUrl(shareUrl);
 			
