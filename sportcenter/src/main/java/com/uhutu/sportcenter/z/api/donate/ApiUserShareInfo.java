@@ -97,7 +97,7 @@ public class ApiUserShareInfo extends RootApiBase<ApiUserShareInfoInput, ApiUser
 			
 			expertInfo.setSort(i);
 			
-			expertInfo.setSortPic(SortEnum.getByRank(ucUxpert.getSort()).getPicUrl());
+			expertInfo.setSortPic(SortEnum.getByRank(expertInfo.getSort()).getPicUrl());
 			
 			result.getUserInfoExperts().add(expertInfo);
 			
