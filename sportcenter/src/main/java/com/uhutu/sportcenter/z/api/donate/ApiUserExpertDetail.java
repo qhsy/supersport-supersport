@@ -3,6 +3,7 @@ package com.uhutu.sportcenter.z.api.donate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,9 +22,11 @@ import com.uhutu.sportcenter.z.entity.UserDonateInfo;
 import com.uhutu.sportcenter.z.entity.UserInfoExpertDetail;
 import com.uhutu.sportcenter.z.input.ApiUserExpertDetailInput;
 import com.uhutu.sportcenter.z.result.ApiUserExpertDetailResult;
+import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zooweb.helper.ImageHelper;
 import com.uhutu.zooweb.io.ImageThumb;
+import com.uhutu.zooweb.user.UserCallFactory;
 
 /**
  * 达人用户详情信息
@@ -56,6 +59,14 @@ public class ApiUserExpertDetail extends RootApiBase<ApiUserExpertDetailInput, A
 			result.setUserAlbum(initUserAlbum(input.getUserCode()));
 			
 			result.setUserDonateInfos(initUserDonateInfos(input.getUserCode(), input.getPagination()));
+			
+			if(StringUtils.isNotBlank(input.getZoo().getToken())){
+				
+				String supportUserCode = new UserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(), DefineUser.Login_System_Default);
+				
+				result.setSupportPower(supportPower(supportUserCode, input.getUserCode()));
+				
+			}
 			
 		}else{
 			
@@ -155,6 +166,30 @@ public class ApiUserExpertDetail extends RootApiBase<ApiUserExpertDetailInput, A
 		
 		return userDonateInfos;
 
+	}
+	
+	/**
+	 * 获取当前用户已支持的能量值
+	 * @param supportCode
+	 * 		支持者
+	 * @param beSupportCode
+	 * 		被支持者
+	 * @return 累计能量值
+	 */
+	public long supportPower(String supportCode,String beSupportCode){
+		
+		long power = 0;
+		
+		UcDonateInfo donateInfo = userServiceFactory.getUserDonateInfoService().queryByCode(supportCode, beSupportCode);
+		
+		if(donateInfo != null){
+			
+			power = donateInfo.getTotalPower();
+			
+		}
+		
+		return power;
+		
 	}
 
 }

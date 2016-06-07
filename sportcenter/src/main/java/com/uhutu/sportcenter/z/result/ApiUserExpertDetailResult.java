@@ -27,6 +27,9 @@ public class ApiUserExpertDetailResult extends RootApiResult {
 	
 	@ApiModelProperty(value="支持者排名信息")
 	private List<UserDonateInfo> userDonateInfos = new ArrayList<UserDonateInfo>();
+	
+	@ApiModelProperty(value="已支持的能量")
+	private long supportPower;
 
 	public UserInfoExpert getUserInfoExpert() {
 		return userInfoExpert;
@@ -50,6 +53,14 @@ public class ApiUserExpertDetailResult extends RootApiResult {
 
 	public void setUserDonateInfos(List<UserDonateInfo> userDonateInfos) {
 		this.userDonateInfos = userDonateInfos;
+	}
+
+	public long getSupportPower() {
+		return supportPower;
+	}
+
+	public void setSupportPower(long supportPower) {
+		this.supportPower = supportPower;
 	}
 	
 	
