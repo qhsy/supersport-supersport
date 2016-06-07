@@ -101,7 +101,7 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 					
 					if(loginResult.upFlagTrue()){
 						
-						resetPwdResult.setUserCode(loginResult.getUserCode());
+						resetPwdResult.setUserCode(ucUserinfo.getCode());
 						
 						resetPwdResult.setUserToken(loginResult.getToken());
 						
@@ -166,7 +166,7 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 					
 					if(loginResult.upFlagTrue()){
 						
-						resetPwdResult.setUserCode(loginResult.getUserCode());
+						resetPwdResult.setUserCode(ucUserinfo.getCode());
 						
 						resetPwdResult.setUserToken(loginResult.getToken());
 						
