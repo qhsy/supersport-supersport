@@ -13,6 +13,7 @@ import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiUserResetPwdInput;
 import com.uhutu.sportcenter.z.result.ApiUserResetPwdResult;
 import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zooweb.user.UserCallFactory;
 
 /**
  * 用户重置密码
@@ -35,6 +36,22 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 
 		if (ucUserinfo != null) {
 			
+			switch (input.getVerifyType()) {
+			case "resetpwd":
+				
+				resetPwd(resetPwdResult, input, ucUserinfo);
+				
+				break;
+				
+			case "forgetpwd":
+				
+				forgetPwd(resetPwdResult, input, ucUserinfo);
+				
+				break;
+
+			default:
+				break;
+			}
 			
 
 		} else {
@@ -48,6 +65,15 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 		return resetPwdResult;
 	}
 	
+	/**
+	 * 重置密码
+	 * @param resetPwdResult
+	 * 		处理result
+	 * @param input
+	 * 		输入参数
+	 * @param ucUserinfo
+	 * 		用户信息
+	 */
 	public void resetPwd(ApiUserResetPwdResult resetPwdResult,ApiUserResetPwdInput input,UcUserinfo ucUserinfo){
 		
 		SmsTypeEnum verifyEnum = Enum.valueOf(SmsTypeEnum.class, input.getVerifyType());
@@ -57,13 +83,19 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 
 		if(rootApiResult.upFlagTrue()){
 			
-			ucUserinfo.setLoginPwd(input.getLoginPwd());
+			int count = new UserCallFactory().resetPwd(input.getLoginName(), input.getLoginPwd());
+			
+			if(count == 1){
+				
+				ucUserinfo.setLoginPwd(input.getLoginPwd());
 
-			ucUserinfo.setLastTime(new Date());
+				ucUserinfo.setLastTime(new Date());
 
-			userServiceFactory.getUserInfoService().save(ucUserinfo);
+				userServiceFactory.getUserInfoService().save(ucUserinfo);
 
-			resetPwdResult.setUserToken(ucUserinfo.getCode());
+				resetPwdResult.setUserToken(ucUserinfo.getCode());
+				
+			}
 			
 		}else{
 			
@@ -75,17 +107,36 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 		
 	}
 	
+	/**
+	 * 忘记密码
+	 * @param resetPwdResult
+	 * 		处理result
+	 * @param input
+	 * 		输入参数
+	 * @param ucUserinfo
+	 * 		用户信息
+	 */
 	public void forgetPwd(ApiUserResetPwdResult resetPwdResult,ApiUserResetPwdInput input,UcUserinfo ucUserinfo){
 		
 		if(StringUtils.equals(ucUserinfo.getLoginPwd(), input.getConfirmPwd())){
 			
-			ucUserinfo.setLoginPwd(input.getLoginPwd());
+			int count = new UserCallFactory().resetPwd(input.getLoginName(), input.getLoginPwd());
+			
+			if(count == 1){
+				
+				ucUserinfo.setLoginPwd(input.getLoginPwd());
 
-			ucUserinfo.setLastTime(new Date());
+				ucUserinfo.setLastTime(new Date());
 
-			userServiceFactory.getUserInfoService().save(ucUserinfo);
+				userServiceFactory.getUserInfoService().save(ucUserinfo);			
 
-			resetPwdResult.setUserToken(ucUserinfo.getCode());
+				resetPwdResult.setUserToken(ucUserinfo.getCode());
+				
+			}else{
+				
+				resetPwdResult.inError(81100009);
+				
+			}
 			
 		}else{
 			

@@ -16,7 +16,7 @@ public class ApiUserResetPwdInput extends RootApiInput {
 	@ApiModelProperty(value = "用户名", notes = "用户名", example = "13512345678", required = true)
 	private String loginName = "";
 	
-	@ApiModelProperty(value = "登录密码", notes = "登录密码", required = true)
+	@ApiModelProperty(value = "（新）登录密码", notes = "（新）登录密码", required = true)
 	private String loginPwd = "";
 	
 	@ApiModelProperty(value="确认密码")

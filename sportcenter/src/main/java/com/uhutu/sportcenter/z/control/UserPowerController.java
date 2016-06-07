@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.control;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,7 +57,7 @@ public class UserPowerController {
 	@ResponseBody
 	@RequestMapping(value = "/userPowerShare", method = RequestMethod.POST)
 	@ApiOperation(value = "达人信息分享", notes = "用户能量相关")
-	public ApiUserPowerShareResult userPowerShare(@RequestBody ApiUserPowerShareInput input) {
+	public ApiUserPowerShareResult userPowerShare(@RequestBody ApiUserPowerShareInput input,HttpServletRequest request) {
 
 		return apiFactory.getApiUserPowerShare().api(input);
 
