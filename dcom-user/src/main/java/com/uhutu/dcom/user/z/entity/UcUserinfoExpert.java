@@ -22,13 +22,16 @@ public class UcUserinfoExpert extends BaseEntity {
 	@ZooData(name = "达人编号", require = "1", sort = {
 			DefineWebPage.Page_Query + "=0" }, element = DefineWebElement.Model, inc = {
 					DefineWebInc.Web_Component + "=dzcw451010010002" })
+	@Column(length=50,unique=true)
 	private String code;
 
 	@ZooData(name = "达人真实姓名", require = "1")
+	@Column(length=255)
 	private String realName;
 
 	@ZooData(name = "达人签名图片", element = DefineWebElement.Upload, require = "1", sort = {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@Column(length=255)
 	private String signPic;
 
 	@ZooData(name = "缺省排名(倒序)", require = "1", verify = { DefineWebVerify.Base_Number }, sort = {
@@ -37,10 +40,12 @@ public class UcUserinfoExpert extends BaseEntity {
 
 	@ZooData(name = "封面图(564*790)", element = DefineWebElement.Upload, require = "1", sort = {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@Column(length=255)
 	private String coverPic;
 
 	@ZooData(name = "宣传图(750*750)", element = DefineWebElement.Upload, require = "1", sort = {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@Column(length=255)
 	private String advPic;
 
 	@ZooData(name = "运动经历", require = "1", element = DefineWebElement.Editor, sort = { DefineWebPage.Page_Query + "=0",
@@ -49,18 +54,22 @@ public class UcUserinfoExpert extends BaseEntity {
 	private String experience;
 
 	@ZooData(name = "分享标题", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@Column(length=255)
 	private String shareTitle;
 
 	@ZooData(name = "分享简介", require = "1", element = DefineWebElement.Textarea, sort = {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@Column(length=255)
 	private String shareDesc;
 
 	@ZooData(name = "分享缩略图", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
+	@Column(length=255)
 	private String shareIcon;
 
 	@ZooData(name = "是否有效", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
+	@Column(length=50)
 	private String status;
 
 	@ZooData(name = "能量值", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0",
