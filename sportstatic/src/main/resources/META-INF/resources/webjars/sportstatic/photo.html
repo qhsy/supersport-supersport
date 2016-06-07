@@ -113,9 +113,9 @@ $(function(){
 		wrap.style.height = window.innerHeight + 'px';
 		wrap.appendChild(this.outer);
 		this.time.innerHTML = this.data.contentBasicInfo['publishTimeStr'];
-		this.head.innerHTML = '<img src="' + this.data.contentBasicInfo['aboutHead'] + '"/>';
+		this.head.innerHTML = '<img src="' + this.data.contentBasicInfo.userBasicInfo['aboutHead'] + '"/>';
 		this.head.setAttribute('id',this.data.contentBasicInfo.author)
-		this.name.innerHTML = this.data.contentBasicInfo['nickName'];
+		this.name.innerHTML = this.data.contentBasicInfo.userBasicInfo['nickName'];
 		this.title.innerHTML = this.data.contentBasicInfo['title'];
 		this.text.innerHTML = '<p>' + this.data.contentPhotosDetails[0].content + '</p>';
 		this.sum.innerHTML = this.data.totalCount;
