@@ -343,7 +343,7 @@ iSlider.prototype._bindHandler = function () {
 
         boundary = endTime - self.startTime > 300 ? boundary : 14;
         if(!metric && !urlFormat('share')){
-            window.location.href = 'http://172.20.1.106:2497/webjars/sportstatic/person.html?code=' + $('.index .code').attr('data-code') + '&token=' + urlFormat('token');
+            window.location.href = '/webjars/sportstatic/person.html?code=' + $('.index .code').attr('data-code') + '&token=' + urlFormat('token');
         } else if (metric >= boundary) {
             self._slide(-1);
         } else if (metric < -boundary) {
