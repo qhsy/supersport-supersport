@@ -87,6 +87,12 @@ public class ApiUserPowerInit extends RootApiToken<ApiUserPowerInitInput, ApiUse
 			
 			if(powerInitResult.upFlagTrue()){
 				
+				if(userInfoDonate.getFreePower() > 99999){
+					
+					userInfoDonate.setFreePower(99999);
+					
+				}
+				
 				userServiceFactory.getUserInfoDonateService().save(userInfoDonate);
 				
 			}
