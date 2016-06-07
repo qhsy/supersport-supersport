@@ -131,7 +131,7 @@ public class ApiUpdateUserPower extends RootApiToken<ApiUpdateUserPowerInput, Ap
 				
 			}else{
 				
-				result.inError(81100003);
+				result.inError(81100010);
 				
 			}
 			
