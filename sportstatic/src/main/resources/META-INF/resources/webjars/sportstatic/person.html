@@ -68,7 +68,7 @@ a:hover {text-decoration: none; }
 		<img src="" alt="">
 	</header>
 	<article class="person-value">
-		<span class="person-thermal"><em>热力值</em><i>No.1</i></span>	
+		<span class="person-thermal"><em>热力值</em><i></i></span>	
 		<h1></h1>
 	</article>
 	<article class="person-experience">
@@ -78,7 +78,7 @@ a:hover {text-decoration: none; }
 	<footer class="person-top" style="display: none;"></footer>
 	<a href="javascript:;" class="person-btn">
 		<span>去支持TA</span>
-		<em>已支持2000热力值</em>
+		<em></em>
 	</a>
 </section>
 <section class="touch-main" id="touch-main"></section>
@@ -113,11 +113,12 @@ a:hover {text-decoration: none; }
 			contentType: 'application/json',
 			dataType: 'json',
 			async:false,
-			data: '{"pagination": 1,"userCode": "' + urlFormat('code') + '","zoo": {"key": "tesetkey","token": " "}}',
+			data: '{"pagination": 1,"userCode": "' + urlFormat('code') + '","zoo": {"key": "tesetkey","token": "' + urlFormat('token') + '"}}',
 			success: function(data) {
 				$('.person-hd h1').text(data.userInfoExpert.realName);
 				$('.person-hd img').attr('src',data.userInfoExpert.advPic);
 				$('.person-value h1').text(data.userInfoExpert.powerStr);
+				$('.person-thermal i').text('No.' + data.userInfoExpert.sort);
 				$('.person-experience').append('<p>' + data.userInfoExpert.experience + '</p>');
 				if(data.userAlbum.length){
 					photoList = data.userAlbum;
@@ -133,7 +134,7 @@ a:hover {text-decoration: none; }
 					$('.person-top').html(topbHtml);
 					$('.person-top').css('display','block');
 				}
-				
+				$('.person-btn em').text('已支持' + data.supportPower + '热力值');
 				$('.container').removeAttr('style');
 				
 			},
@@ -151,6 +152,9 @@ a:hover {text-decoration: none; }
 			}
 			$('.touch-main').css('display','block');
 			
+		});
+		$('.person-btn').on('tap',function(){
+			window.location.href = 'index/index.html?token=' + urlFormat('token');
 		});
 	});
 	//构造函数

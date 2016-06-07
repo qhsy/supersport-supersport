@@ -13,6 +13,9 @@ public class ApiUserPowerShareInput extends RootApiInput {
 	
 	@ApiModelProperty(value="用户编号")
 	private String userCode;
+	
+	@ApiModelProperty(value="分享地址")
+	private String serverIp;
 
 	public String getUserCode() {
 		return userCode;
@@ -20,6 +23,14 @@ public class ApiUserPowerShareInput extends RootApiInput {
 
 	public void setUserCode(String userCode) {
 		this.userCode = userCode;
+	}
+
+	public String getServerIp() {
+		return serverIp;
+	}
+
+	public void setServerIp(String serverIp) {
+		this.serverIp = serverIp;
 	}
 	
 	

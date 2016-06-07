@@ -1,13 +1,12 @@
 package com.uhutu.sportcenter.z.control;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiUpdateUserPowerInput;
 import com.uhutu.sportcenter.z.input.ApiUserExpertDetailInput;
@@ -20,6 +19,7 @@ import com.uhutu.sportcenter.z.result.ApiUserExpertDetailResult;
 import com.uhutu.sportcenter.z.result.ApiUserExpertListResult;
 import com.uhutu.sportcenter.z.result.ApiUserPowerInitResult;
 import com.uhutu.sportcenter.z.result.ApiUserPowerShareResult;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -58,7 +58,7 @@ public class UserPowerController {
 	@ResponseBody
 	@RequestMapping(value = "/userPowerShare", method = RequestMethod.POST)
 	@ApiOperation(value = "达人信息分享", notes = "用户能量相关")
-	public ApiUserPowerShareResult userPowerShare(@RequestBody ApiUserPowerShareInput input,HttpServletRequest request) {
+	public ApiUserPowerShareResult userPowerShare(@RequestBody ApiUserPowerShareInput input) {
 
 		return apiFactory.getApiUserPowerShare().api(input);
 

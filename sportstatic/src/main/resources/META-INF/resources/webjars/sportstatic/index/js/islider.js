@@ -170,10 +170,10 @@ iSlider.prototype._renderItem = function (i) {
 
     if (this.type === 'pic') {
         html = item.height / item.width > this.ratio 
-        ? '<div class="code" data-code="' + item.code + '" style="box-shadow:0 0 33px rgba(0,0,0,0.5);"><span><img class="name" src="' + item.sortPic + '"><img class="name" src="' + item.signPic + '"></span><img width="' + this.width + '" src="' + item.coverPic + '"><font data-power="' + item.power + '">热力值<i>'+ item.powerStr +'</i></font></div>'
-        : '<div class="code" data-code="' + item.code + '" style="box-shadow:0 0 33px rgba(0,0,0,0.5);"><span><img class="name" src="' + item.sortPic + '"><img class="name" src="' + item.signPic + '"></span><img width="' + this.width + '" src="' + item.coverPic + '"><font data-power="' + item.power + '">热力值<i>'+ item.powerStr +'</i></font></div>';
+        ? '<div class="code" data-code="' + item.code + '"><span><img class="name" src="images/No.@2x.png"><img class="name" src="' + item.sortPic + '"><img class="name" src="' + item.signPic + '"></span><img class="coverPic" width="' + this.width + '" src="' + item.coverPic + '"><font data-power="' + item.power + '">热力值<i>'+ item.powerStr +'</i></font></div>'
+        : '<div class="code" data-code="' + item.code + '"><span><img class="name" src="images/No.@2x.png"><img class="name" src="' + item.sortPic + '"><img class="name" src="' + item.signPic + '"></span><img class="coverPic" width="' + this.width + '" src="' + item.coverPic + '"><font data-power="' + item.power + '">热力值<i>'+ item.powerStr +'</i></font></div>';
     } else if (this.type === 'dom') {
-        html = '<div class="code" data-code="' + item.code + '" style="box-shadow:0 0 33px rgba(0,0,0,0.5);"><span><img class="name" src="' + item.sortPic + '"><img class="name" src="' + item.signPic + '"></span><img width="' + this.width + '" src="' + item.coverPic + '"><font data-power="' + item.power + '">热力值<i>'+ item.powerStr +'</i></font></div>';
+        html = '<div class="code" data-code="' + item.code + '"><span><img class="name" src="images/No.@2x.png"><img class="name" src="' + item.sortPic + '"><img class="name" src="' + item.signPic + '"></span><img class="coverPic" width="' + this.width + '" src="' + item.coverPic + '"><font data-power="' + item.power + '">热力值<i>'+ item.powerStr +'</i></font></div>';
     } else if (this.type === 'overspread') {
         html = this.ratio < 1 
         ? '<div style="height: 100%; width:100%; background:url(' + item.coverPic + ') center no-repeat; background-size:' + this.width + 'px auto;"></div>'
@@ -337,17 +337,14 @@ iSlider.prototype._bindHandler = function () {
     };
 
     var endHandler = function (evt) {
-        //evt.preventDefault();
-
         var boundary = self.scale / 2;
         var metric = self.offset;
         var endTime = new Date().getTime();
 
-        //a quick slide time must under 300ms
-        //a quick slide should also slide at least 14 px
         boundary = endTime - self.startTime > 300 ? boundary : 14;
-
-        if (metric >= boundary) {
+        if(!metric && !urlFormat('share')){
+            window.location.href = 'http://172.20.1.106:2497/webjars/sportstatic/person.html?code=' + $('.index .code').attr('data-code') + '&token=' + urlFormat('token');
+        } else if (metric >= boundary) {
             self._slide(-1);
         } else if (metric < -boundary) {
             self._slide(1);
@@ -359,6 +356,7 @@ iSlider.prototype._bindHandler = function () {
         self.offset = 0;
         self.onslideend && self.onslideend();
         self.log('Event: afterslide');
+        evt.preventDefault();
     };
 
     var orientationchangeHandler = function (evt) {
