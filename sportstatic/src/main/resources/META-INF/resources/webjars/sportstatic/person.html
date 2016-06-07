@@ -27,7 +27,7 @@ a:hover {text-decoration: none; }
 /*container*/
 .container{padding-bottom: 0.2rem; background: #ffa21e url(css/img/container.png) repeat-y left top; background-size: cover;}
 .person-hd{position: relative; box-shadow: 0 0.03rem 0.3rem rgba(139,69,16, 0.5);}
-.person-hd h1{width: 100%; position: absolute; top: 0.1rem; font-size: 0.24rem; color: #fff; text-align: center; line-height: 0.3rem; font-style: italic; }
+.person-hd h1{width: 30px; position: absolute; top: 0.2rem; left: 0.2rem; font-size: 0.24rem; color: #fff; text-align: center; line-height: 0.3rem; font-style: italic; }
 
 .person-title{padding: 0 0.2rem; font-size: 0.14rem; font-weight: 700; color: #fff; line-height: 0.3rem;}
 .person-title:after{content: ""; width: 0.04rem; height: 0.12rem; margin: 0.09rem 0.09rem 0 0; display: block; float: left; background: #fff; border-radius: 0.1rem;}
@@ -88,7 +88,6 @@ a:hover {text-decoration: none; }
 		<ul class="photo-list">
 		{{each userAlbum}}
 			<li><img src=" {{$value.iconUrl}} " alt=""></li>
-			
 		{{/each}}
 		</ul>
 </script>
@@ -97,7 +96,7 @@ a:hover {text-decoration: none; }
 	<h1 class="person-title">支持TA的人（TOP50）</h1>
 	<ul class="person-top-list">
 	{{each userDonateInfos}}
-		<li><i>1</i><span><img src="image/demo_6.jpg" alt=""></span><em>小王</em>已支持 600000 能量值</li>
+		<li><i>{{$index+1}}</i><span><img src="{{$value.aboutHead}}" alt=""></span><em>{{$value.nickName}}</em>已支持 {{$value.totalPowerStr}} 能量值</li>
 	{{/each}}
 	</ul>
 </script>
@@ -131,6 +130,7 @@ a:hover {text-decoration: none; }
 				}
 				if(data.userDonateInfos.length){
 					var topbHtml = template('top', data);
+
 					$('.person-top').html(topbHtml);
 					$('.person-top').css('display','block');
 				}

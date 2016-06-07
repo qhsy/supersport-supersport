@@ -12,6 +12,7 @@ import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiUserResetPwdInput;
 import com.uhutu.sportcenter.z.result.ApiUserResetPwdResult;
+import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zooweb.user.UserCallFactory;
 
@@ -30,36 +31,25 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 	@Override
 	protected ApiUserResetPwdResult process(ApiUserResetPwdInput input) {
 
-		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(input.getLoginName(),UserEnum.FLAG_ENABLE.getCode());
+		UcUserinfo ucUserinfo = null;
 
 		ApiUserResetPwdResult resetPwdResult = new ApiUserResetPwdResult();
 
-		if (ucUserinfo != null) {
-			
-			switch (input.getVerifyType()) {
-			case "resetpwd":
-				
-				resetPwd(resetPwdResult, input, ucUserinfo);
-				
-				break;
-				
-			case "forgetpwd":
-				
-				forgetPwd(resetPwdResult, input, ucUserinfo);
-				
-				break;
+		switch (input.getVerifyType()) {
+		case "resetpwd":
 
-			default:
-				break;
-			}
-			
+			resetPwd(resetPwdResult, input, ucUserinfo);
 
-		} else {
+			break;
 
-			resetPwdResult.setError("该用户信息不存在");
+		case "forgetpwd":
 
-			resetPwdResult.setStatus(0);
+			forgetPwd(resetPwdResult, input, ucUserinfo);
 
+			break;
+
+		default:
+			break;
 		}
 
 		return resetPwdResult;
@@ -76,32 +66,44 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 	 */
 	public void forgetPwd(ApiUserResetPwdResult resetPwdResult,ApiUserResetPwdInput input,UcUserinfo ucUserinfo){
 		
-		SmsTypeEnum verifyEnum = Enum.valueOf(SmsTypeEnum.class, input.getVerifyType());
+		ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(input.getLoginName(),UserEnum.FLAG_ENABLE.getCode());
 		
-		RootApiResult rootApiResult = new SmsSupport().upLastVerifyCode(verifyEnum, input.getLoginName(),
-				input.getVerifyCode());
+		if(ucUserinfo == null){
+			
+			resetPwdResult.inError(81100003);
+			
+		}
+		
+		if(resetPwdResult.upFlagTrue()){
+			
+			SmsTypeEnum verifyEnum = Enum.valueOf(SmsTypeEnum.class, input.getVerifyType());
+			
+			RootApiResult rootApiResult = new SmsSupport().upLastVerifyCode(verifyEnum, input.getLoginName(),
+					input.getVerifyCode());
 
-		if(rootApiResult.upFlagTrue()){
-			
-			int count = new UserCallFactory().resetPwd(input.getLoginName(), input.getLoginPwd());
-			
-			if(count == 1){
+			if(rootApiResult.upFlagTrue()){
 				
-				ucUserinfo.setLoginPwd(input.getLoginPwd());
+				int count = new UserCallFactory().resetPwd(input.getLoginName(), input.getLoginPwd());
+				
+				if(count == 1){
+					
+					ucUserinfo.setLoginPwd(input.getLoginPwd());
 
-				ucUserinfo.setLastTime(new Date());
+					ucUserinfo.setLastTime(new Date());
 
-				userServiceFactory.getUserInfoService().save(ucUserinfo);
+					userServiceFactory.getUserInfoService().save(ucUserinfo);
 
-				resetPwdResult.setUserToken(ucUserinfo.getCode());
+					resetPwdResult.setUserToken(ucUserinfo.getCode());
+					
+				}
+				
+			}else{
+				
+				resetPwdResult.setError(rootApiResult.getError());
+				
+				resetPwdResult.setStatus(rootApiResult.getStatus());
 				
 			}
-			
-		}else{
-			
-			resetPwdResult.setError(rootApiResult.getError());
-			
-			resetPwdResult.setStatus(rootApiResult.getStatus());
 			
 		}
 		
@@ -118,29 +120,43 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 	 */
 	public void resetPwd(ApiUserResetPwdResult resetPwdResult,ApiUserResetPwdInput input,UcUserinfo ucUserinfo){
 		
-		if(StringUtils.equals(ucUserinfo.getLoginPwd(), input.getConfirmPwd())){
+		String userCode = new UserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(), DefineUser.Login_System_Default);
+		
+		ucUserinfo = userServiceFactory.getUserInfoService().queryByCode(userCode);
+		
+		if(ucUserinfo == null){
 			
-			int count = new UserCallFactory().resetPwd(input.getLoginName(), input.getLoginPwd());
+			resetPwdResult.inError(81100003);
 			
-			if(count == 1){
+		}
+		
+		if(resetPwdResult.upFlagTrue()){
+			
+			if(StringUtils.equals(ucUserinfo.getLoginPwd(), input.getConfirmPwd())){
 				
-				ucUserinfo.setLoginPwd(input.getLoginPwd());
+				int count = new UserCallFactory().resetPwd(input.getLoginName(), input.getLoginPwd());
+				
+				if(count == 1){
+					
+					ucUserinfo.setLoginPwd(input.getLoginPwd());
 
-				ucUserinfo.setLastTime(new Date());
+					ucUserinfo.setLastTime(new Date());
 
-				userServiceFactory.getUserInfoService().save(ucUserinfo);			
+					userServiceFactory.getUserInfoService().save(ucUserinfo);			
 
-				resetPwdResult.setUserToken(ucUserinfo.getCode());
+					resetPwdResult.setUserToken(ucUserinfo.getCode());
+					
+				}else{
+					
+					resetPwdResult.inError(81100009);
+					
+				}
 				
 			}else{
 				
-				resetPwdResult.inError(81100009);
+				resetPwdResult.inError(81100005);
 				
 			}
-			
-		}else{
-			
-			resetPwdResult.inError(81100005);
 			
 		}
 		

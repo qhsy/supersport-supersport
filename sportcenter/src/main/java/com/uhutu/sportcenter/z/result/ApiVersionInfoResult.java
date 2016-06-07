@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class ApiVersionInfoResult extends RootApiResult {
 
-	@ApiModelProperty(value = "升级方式", notes = "参数说明：dzsd4107100210020001:代表调用失败，dzsd4107100210020002:代表强制升级，dzsd4107100210020003:代表不强制升级,dzsd4107100210020004:代表静默升级,dzsd4107100210020005:代表不用升级")
+	@ApiModelProperty(value = "升级方式", example = "参数说明：dzsd4107100210020001:代表调用失败，dzsd4107100210020002:代表强制升级，dzsd4107100210020003:代表不强制升级,dzsd4107100210020004:代表静默升级,dzsd4107100210020005:代表不用升级")
 	private String upgradeType = "3";
 	@ApiModelProperty(value = "升级版本号", notes = "用户设定升级到的版本号")
 	private String versionNo = "";
