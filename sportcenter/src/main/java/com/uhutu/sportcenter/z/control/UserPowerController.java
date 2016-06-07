@@ -14,6 +14,7 @@ import com.uhutu.sportcenter.z.input.ApiUserExpertDetailInput;
 import com.uhutu.sportcenter.z.input.ApiUserExpertListInput;
 import com.uhutu.sportcenter.z.input.ApiUserPowerInitInput;
 import com.uhutu.sportcenter.z.input.ApiUserPowerShareInput;
+import com.uhutu.sportcenter.z.input.ApiUserShareInfoInput;
 import com.uhutu.sportcenter.z.result.ApiUpdateUserPowerResult;
 import com.uhutu.sportcenter.z.result.ApiUserExpertDetailResult;
 import com.uhutu.sportcenter.z.result.ApiUserExpertListResult;
@@ -80,5 +81,16 @@ public class UserPowerController {
 		return apiFactory.getApiUpdateUserPower().api(input);
 
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/shareUserInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "分享用户信息", notes = "用户能量相关")
+	public ApiUserExpertListResult updateUserPower(@RequestBody ApiUserShareInfoInput input) {
+
+		return apiFactory.getApiUserShareInfo().api(input);
+
+	}
+	
+	
 
 }
