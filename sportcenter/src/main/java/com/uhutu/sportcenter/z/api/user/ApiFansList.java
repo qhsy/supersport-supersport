@@ -57,9 +57,9 @@ public class ApiFansList extends RootApiBase<ApiFansListInput, ApiFansListResult
 				
 				apiAttendInfo.setUserCode(attendInfo.getBeAttention());
 				
-				UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(attendInfo.getBeAttention());
+				UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(attendInfo.getAttention());
 				
-				UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByCode(attendInfo.getBeAttention());
+				UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByCode(attendInfo.getAttention());
 				
 				if(ucUserinfoExt != null){
 					
