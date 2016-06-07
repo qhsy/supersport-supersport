@@ -51,6 +51,7 @@ $(function() {
 				isAutoplay: false,
 				isLooping: true,
 			});
+			console.log(data)
 			$('.freePower i').text(PrefixInteger('' + data.freePower));
 		},
 		error: function(xhr, status, error) {
