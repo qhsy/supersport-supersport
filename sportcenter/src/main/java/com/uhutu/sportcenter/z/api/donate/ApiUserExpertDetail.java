@@ -107,7 +107,7 @@ public class ApiUserExpertDetail extends RootApiBase<ApiUserExpertDetailInput, A
 			
 			userAlbum.setHeight(imageThumb.getSourceHeight());
 			
-			userAlbum.setIconUrl(ImageHelper.upImageThumbnail(userAlbum.getPicture(), 140));
+			userAlbum.setIconUrl(ImageHelper.upImageThumbnail(userAlbum.getPicture(), 280));
 			
 			userAlbums.add(userAlbum);
 			
