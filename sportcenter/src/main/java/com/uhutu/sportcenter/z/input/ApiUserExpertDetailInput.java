@@ -16,6 +16,9 @@ public class ApiUserExpertDetailInput extends RootApiInput {
 	
 	@ApiModelProperty(value="当前页码")
 	private int pagination;
+	
+	@ApiModelProperty(value="操作标识",example="share:分享")
+	private String operFalg;
 
 	public String getUserCode() {
 		return userCode;
@@ -31,6 +34,14 @@ public class ApiUserExpertDetailInput extends RootApiInput {
 
 	public void setPagination(int pagination) {
 		this.pagination = pagination;
+	}
+
+	public String getOperFalg() {
+		return operFalg;
+	}
+
+	public void setOperFalg(String operFalg) {
+		this.operFalg = operFalg;
 	}
 	
 	

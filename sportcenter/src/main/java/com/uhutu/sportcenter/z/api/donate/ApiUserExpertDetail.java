@@ -3,6 +3,7 @@ package com.uhutu.sportcenter.z.api.donate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -53,9 +54,13 @@ public class ApiUserExpertDetail extends RootApiBase<ApiUserExpertDetailInput, A
 			
 			result.setUserInfoExpert(expertInfo);
 			
-			result.setUserAlbum(initUserAlbum(input.getUserCode()));
-			
-			result.setUserDonateInfos(initUserDonateInfos(input.getUserCode(), input.getPagination()));
+			if(!StringUtils.equals("share", input.getOperFalg())){
+				
+				result.setUserAlbum(initUserAlbum(input.getUserCode()));
+				
+				result.setUserDonateInfos(initUserDonateInfos(input.getUserCode(), input.getPagination()));
+				
+			}
 			
 		}else{
 			
