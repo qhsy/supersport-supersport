@@ -194,6 +194,13 @@ public class SmsSupport extends RootClass {
 			JdbcHelper.dataInsert("cm_send_sms", insert);
 			
 			result.setVerifyNumber(mVerifyCodeGenerate.getVerifyNumber());
+			
+			if(!re.equals("ok")){
+				
+				result.setError("验证码超出同号码天发送上限");
+				result.setStatus(0);
+			}
+			
 		}
 		return result;
 	}
