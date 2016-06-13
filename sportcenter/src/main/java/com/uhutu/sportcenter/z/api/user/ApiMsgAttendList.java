@@ -55,7 +55,7 @@ public class ApiMsgAttendList extends RootApiToken<ApiMsgAttendListInput, ApiMsg
 			
 			if(ucUserinfo != null && ucUserinfoExt != null){
 				
-				msgAttendInfo.setAboutHead(ucUserinfoExt.getAboutHead());
+				msgAttendInfo.setAboutHead(ucUserinfoExt.getThumbUrl());
 				
 				msgAttendInfo.setNickName(ucUserinfoExt.getNickName());
 				

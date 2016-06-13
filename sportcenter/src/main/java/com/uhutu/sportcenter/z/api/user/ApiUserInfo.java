@@ -124,7 +124,7 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 
 			if(ucUserinfoExt != null){
 				
-				sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+				sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getThumbUrl());
 				
 				sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
 				

@@ -93,7 +93,7 @@ public class ApiMsgRemarkList extends RootApiToken<ApiMsgRemarkListInput, ApiMsg
 				
 				remarkInfo.setNickName(ucUserinfoExt.getNickName());
 				
-				remarkInfo.setAboutHead(ucUserinfoExt.getAboutHead());
+				remarkInfo.setAboutHead(ucUserinfoExt.getThumbUrl());
 				
 				remarkInfo.setType(ucUserinfo.getType());
 				

@@ -174,7 +174,7 @@ public class ApiUserExpertDetail extends RootApiBase<ApiUserExpertDetailInput, A
 
 				userDonateInfo.setTotalPower(donateInfo.getTotalPower());
 
-				userDonateInfo.setAboutHead(userinfoExt.getAboutHead());
+				userDonateInfo.setAboutHead(userinfoExt.getThumbUrl());
 
 				userDonateInfo.setNickName(userinfoExt.getNickName());
 

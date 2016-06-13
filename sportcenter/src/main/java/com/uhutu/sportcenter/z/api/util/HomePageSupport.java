@@ -123,6 +123,8 @@ public class HomePageSupport {
 							UserBasicInfo ubi = userInfoSupport.getUserBasicInfo(info.getAuthor());
 							BeanUtils.copyProperties(ubi.getUcUserinfoExt(), userInfoApi);
 							
+							userInfoApi.setAboutHead(ubi.getUcUserinfoExt().getThumbUrl());
+							
 							if(ubi.getUcUserinfo() != null){
 								
 								userInfoApi.setType(ubi.getUcUserinfo().getType());

@@ -7,6 +7,7 @@ import javax.persistence.UniqueConstraint;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
+import com.uhutu.zooweb.helper.ImageHelper;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -266,6 +267,20 @@ public class UcUserinfoExt extends BaseEntity {
 
 	public void setLocationName(String locationName) {
 		this.locationName = locationName;
+	}
+	
+	public String getThumbUrl(int... width){
+		
+		int iwidth = 180;
+		
+		if(width != null && width.length > 0){
+			
+			iwidth = width[0];
+			
+		}
+		
+		return ImageHelper.upImageThumbnail(this.getAboutHead(), iwidth);
+		
 	}
 
 }

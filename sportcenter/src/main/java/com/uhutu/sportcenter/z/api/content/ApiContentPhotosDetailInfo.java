@@ -55,7 +55,7 @@ public class ApiContentPhotosDetailInfo extends RootApiBase<ApiContentPhotosInpu
 				
 				result.getContentBasicInfo().getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
 				
-				result.getContentBasicInfo().getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+				result.getContentBasicInfo().getUserBasicInfo().setAboutHead(ucUserinfoExt.getThumbUrl());
 				
 			}
 			
