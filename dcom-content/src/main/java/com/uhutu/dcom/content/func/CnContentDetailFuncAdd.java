@@ -25,6 +25,7 @@ public class CnContentDetailFuncAdd extends RootFunc {
 			result.inError(810710006);
 		} else {
 			try {
+				input.getDataMap().put("content", input.getDataMap().get("content").replaceAll("&nbsp;"," "));
 				input.getDataMap().put("content",
 						XmlUtil.removeAttr(input.getDataMap().get("content"), "img", "style"));
 			} catch (Exception e) {

@@ -15,6 +15,7 @@ public class CnContentDetailFuncEdit extends RootFunc {
 			WebOperateInput input) {
 		WebOperateResult result = new WebOperateResult();
 		try {
+			input.getDataMap().put("content", input.getDataMap().get("content").replaceAll("&nbsp;"," "));
 			input.getDataMap().put("content", XmlUtil.removeAttr(input.getDataMap().get("content"), "img", "style"));
 		} catch (Exception e) {
 			e.printStackTrace();
