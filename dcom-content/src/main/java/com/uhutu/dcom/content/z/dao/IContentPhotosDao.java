@@ -16,7 +16,7 @@ public interface IContentPhotosDao extends CrudRepository<CnContentPhotos, Strin
 	 *            内容编号
 	 * @return 内容信息
 	 */
-	@Query("select cc from CnContentPhotos cc where cc.contentCode=:code order by zc asc")
+	@Query("select cc from CnContentPhotos cc where cc.contentCode=:code order by sort asc")
 	public List<CnContentPhotos> queryByCode(@Param("code") String code);
 
 }

@@ -1,6 +1,8 @@
 package com.uhutu.sportcenter.z.api.content;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentPhotos;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
+import com.uhutu.sportcenter.z.entity.ContentPhotosDetail;
 import com.uhutu.sportcenter.z.input.ApiPublishContentPhotosInput;
 import com.uhutu.sportcenter.z.result.ApiPublishContentPhotosResult;
 import com.uhutu.zoocom.root.RootApiToken;
@@ -40,7 +43,13 @@ public class ApiPublishContentPhotos extends RootApiToken<ApiPublishContentPhoto
 			
 			serviceFactory.getContentBasicinfoService().save(contentBasicinfo);
 			
-			input.getContentPhotos().forEach(entity -> {
+			int sort = 0;
+			
+			List<CnContentPhotos> cnContentPhotos = new ArrayList<CnContentPhotos>();
+			
+			for(ContentPhotosDetail entity : input.getContentPhotos()){
+				
+				sort++;
 				
 				CnContentPhotos temp = new CnContentPhotos();
 				
@@ -50,11 +59,13 @@ public class ApiPublishContentPhotos extends RootApiToken<ApiPublishContentPhoto
 				
 				temp.setZc(new Date());
 				
-				serviceFactory.getContentPhotosService().save(temp);
+				temp.setSort(sort);
 				
-			});
+				cnContentPhotos.add(temp);
+				
+			}
 			
-			
+			serviceFactory.getContentPhotosService().save(cnContentPhotos);
 			
 
 		} else {

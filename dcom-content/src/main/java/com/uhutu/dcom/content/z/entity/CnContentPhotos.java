@@ -31,6 +31,9 @@ public class CnContentPhotos extends BaseEntity {
 	@ZooData(name = "图片简述", element = DefineWebElement.Textarea)
 	@Column(columnDefinition = "longtext")
 	private String content;
+	
+	@ZooData(value="排序")
+	private int sort;
 
 	public String getContentCode() {
 		return contentCode;
@@ -54,6 +57,14 @@ public class CnContentPhotos extends BaseEntity {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
 	}
 
 }
