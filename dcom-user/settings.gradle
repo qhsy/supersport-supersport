@@ -7,6 +7,9 @@ project(':zoodata').projectDir = new File(settingsDir, '../../zoouhutu/zoodata')
 include ':zooweb'
 project(':zooweb').projectDir = new File(settingsDir, '../../zoouhutu/zooweb')
 
+include ':zooxanadu'
+project(':zooxanadu').projectDir = new File(settingsDir, '../../zoouhutu/zooxanadu')
+
 include ':zoozero'
 project(':zoozero').projectDir = new File(settingsDir, '../../zoouhutu/zoozero')
 

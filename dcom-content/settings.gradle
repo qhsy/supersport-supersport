@@ -1,14 +1,3 @@
-include ':zoocom'
-project(':zoocom').projectDir = new File(settingsDir, '../../zoouhutu/zoocom')
-
-include ':zoodata'
-project(':zoodata').projectDir = new File(settingsDir, '../../zoouhutu/zoodata')
-
-include ':zooweb'
-project(':zooweb').projectDir = new File(settingsDir, '../../zoouhutu/zooweb')
-
-include ':zoozero'
-project(':zoozero').projectDir = new File(settingsDir, '../../zoouhutu/zoozero')
 
 include ':dcom-config'
 project(':dcom-config').projectDir = new File(settingsDir, '../dcom-config')
