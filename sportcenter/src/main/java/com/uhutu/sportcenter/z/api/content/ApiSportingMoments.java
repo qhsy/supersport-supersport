@@ -70,7 +70,7 @@ public class ApiSportingMoments extends RootApiBase<ApiSportingMomentsInput, Api
 
 				if (ucUserinfoExt != null) {
 					
-					sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getThumbUrl());
+					sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
 					
 					sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
 					

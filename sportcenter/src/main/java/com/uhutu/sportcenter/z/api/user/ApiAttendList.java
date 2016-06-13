@@ -63,7 +63,7 @@ public class ApiAttendList extends RootApiBase<ApiAttendListInput, ApiAttendList
 				
 				if(ucUserinfoExt != null && ucUserinfo != null){
 					
-					apiAttendInfo.setAboutHead(ucUserinfoExt.getThumbUrl());
+					apiAttendInfo.setAboutHead(ucUserinfoExt.getAboutHead());
 					
 					apiAttendInfo.setNickName(ucUserinfoExt.getNickName());
 					

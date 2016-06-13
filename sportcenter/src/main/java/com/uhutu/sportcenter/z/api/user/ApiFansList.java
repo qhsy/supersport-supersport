@@ -63,7 +63,7 @@ public class ApiFansList extends RootApiBase<ApiFansListInput, ApiFansListResult
 				
 				if(ucUserinfoExt != null){
 					
-					apiAttendInfo.setAboutHead(ucUserinfoExt.getThumbUrl());
+					apiAttendInfo.setAboutHead(ucUserinfoExt.getAboutHead());
 					
 					apiAttendInfo.setNickName(ucUserinfoExt.getNickName());
 					

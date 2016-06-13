@@ -11,6 +11,7 @@ import com.uhutu.sportcenter.z.entity.UserInfo;
 import com.uhutu.sportcenter.z.input.ApiUpdateUserInfoInput;
 import com.uhutu.sportcenter.z.result.ApiUpdateUserInfoResult;
 import com.uhutu.zoocom.root.RootApiToken;
+import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 更新用户信息
@@ -41,6 +42,10 @@ public class ApiUpdateUserInfo extends RootApiToken<ApiUpdateUserInfoInput, ApiU
 			if(userInfoExtOptional.isPresent()){
 				
 				BeanUtils.copyProperties(input.getUserInfo(), ucUserinfoExt);
+				
+				String headUrl = ImageHelper.upImageThumbnail(ucUserinfoExt.getAboutHead(), 180);
+				
+				ucUserinfoExt.setAboutHead(headUrl);
 				
 				userServiceFactory.getUserInfoExtService().save(ucUserinfoExt);
 				

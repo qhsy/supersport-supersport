@@ -96,7 +96,7 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 				
 				remarkInfo.setNickName(ucUserinfoExt.getNickName());
 				
-				remarkInfo.setAboutHead(ucUserinfoExt.getThumbUrl());
+				remarkInfo.setAboutHead(ucUserinfoExt.getAboutHead());
 				
 				remarkInfo.setType(ucUserinfo.getType());
 				

@@ -56,7 +56,7 @@ public class ApiMsgPraiseList extends RootApiToken<ApiMsgPraiseListInput, ApiMsg
 			
 			if(ucUserinfoExt != null && ucUserinfo != null){
 				
-				msgPraiseInfo.setAboutHead(ucUserinfoExt.getThumbUrl());
+				msgPraiseInfo.setAboutHead(ucUserinfoExt.getAboutHead());
 				
 				msgPraiseInfo.setNickName(ucUserinfoExt.getNickName());
 				

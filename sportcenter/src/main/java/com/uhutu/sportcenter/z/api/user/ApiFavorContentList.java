@@ -80,7 +80,7 @@ public class ApiFavorContentList extends RootApiBase<ApiFavorContentListInput, A
 
 					if (ucUserinfoExt != null) {
 						
-						basicinfoForApi.getUserBasicInfo().setAboutHead(ucUserinfoExt.getThumbUrl());
+						basicinfoForApi.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
 						
 						basicinfoForApi.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
 						
