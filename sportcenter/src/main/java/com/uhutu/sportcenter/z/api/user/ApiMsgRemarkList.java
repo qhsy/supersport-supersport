@@ -44,7 +44,7 @@ public class ApiMsgRemarkList extends RootApiToken<ApiMsgRemarkListInput, ApiMsg
 		
 		QueryConditions conditions = new QueryConditions();
 		
-		conditions.setConditionEqual("contentAuthor", userCode);
+		conditions.setConditionEqual("userCode", userCode);
 		
 		Page<UcMsgRemark> msgRemarkPage = userSerivceFactory.getMsgRemarkService()
 				.queryPageByUserCode(input.getPagination(), 10, conditions);
