@@ -3,12 +3,12 @@ package com.uhutu.sportcenter.z.api.content;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
-import com.uhutu.dcom.content.z.entity.CnContentDetail;
+import com.uhutu.dcom.content.z.entity.CnContentRecomm;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiShareContentInput;
 import com.uhutu.sportcenter.z.result.ApiShareContentResult;
+import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zooweb.helper.ImageHelper;
 
@@ -30,7 +30,7 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 		
 		CnContentBasicinfo basicInfo = contentServiceFactory.getContentBasicinfoService().queryByCode(input.getContentCode());
 		
-		CnContentDetail detailInfo = contentServiceFactory.getContentDetailService().queryByCode(input.getContentCode());
+		CnContentRecomm recomm = contentServiceFactory.getContentRecommService().queryEntityByCode(input.getContentCode());
 		
 		if(basicInfo != null){
 			
@@ -40,23 +40,21 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 				
 				shareResult.setIconUrl(ImageHelper.upImageThumbnail(basicInfo.getCover(), 120));
 				
-				if(detailInfo != null){
+				if(recomm != null){
 					
-					if(StringUtils.isNotBlank(detailInfo.getContent())){
+					if(StringUtils.isNotBlank(recomm.getContent())){
 						
-						String content = StringUtils.substring(detailInfo.getContent(), 0, 20);
-						
-						shareResult.setContent(content);
+						shareResult.setContent(recomm.getContent());
 						
 					}else{
 						
-						shareResult.setContent(basicInfo.getTitle());
+						shareResult.setContent(TopHelper.upInfo(810710011));
 						
 					}
 					
 				}else{
 					
-					shareResult.setContent(basicInfo.getTitle());
+					shareResult.setContent(TopHelper.upInfo(810710011));
 					
 				}
 				
