@@ -2,6 +2,9 @@ package com.uhutu.dcom.content.z.service.Impl;
 
 import java.util.Date;
 import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -99,6 +102,7 @@ public class ContentBasicinfoServiceImpl implements IContentBasicinfoService {
 	}
 
 	@Override
+	@Transactional
 	public int updateStatus(String code, String status) {
 		
 		return daoFacotry.getContentBasicinfoDao().updateStatus(code, status);
