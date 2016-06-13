@@ -38,6 +38,9 @@ public class UcMsgRemark extends BaseEntity {
 	
 	@ZooData(value="评论引用")
 	private String remarkParentCode;
+	
+	@ZooData(value="用户编号")
+	private String userCode;
 
 	public String getMsgTitle() {
 		return msgTitle;
@@ -101,6 +104,14 @@ public class UcMsgRemark extends BaseEntity {
 
 	public void setRemarkParentCode(String remarkParentCode) {
 		this.remarkParentCode = remarkParentCode;
+	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
 	}
 
 }

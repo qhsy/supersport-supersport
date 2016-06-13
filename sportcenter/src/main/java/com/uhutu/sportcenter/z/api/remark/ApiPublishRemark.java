@@ -138,6 +138,18 @@ public class ApiPublishRemark extends RootApiToken<ApiPublishRemarkInput, ApiPub
 			
 			ucMsgRemark.setStatus(MsgEnum.FLAG_UNREAD.getCode());
 			
+			if(StringUtils.isEmpty(remark.getParentCode())){
+				
+				ucMsgRemark.setUserCode(contentBasicInfo.getAuthor());
+				
+			}else{
+				
+				CnContentRemark parentRemarkInfo = servieFactory.getContentRemarkService().queryByCode(remark.getParentCode());
+				
+				ucMsgRemark.setUserCode(parentRemarkInfo.getAuthor());
+				
+			}
+			
 		}
 		
 		userServiceFactory.getMsgRemarkService().save(ucMsgRemark);
