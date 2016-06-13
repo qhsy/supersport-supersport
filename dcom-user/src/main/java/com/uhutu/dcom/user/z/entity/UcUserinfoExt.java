@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 import com.uhutu.zooweb.helper.ImageHelper;
@@ -283,7 +281,7 @@ public class UcUserinfoExt extends BaseEntity {
 		
 		String imagUrl = ImageHelper.upImageThumbnail(this.getAboutHead(), iwidth);
 		
-		if(StringUtils.isEmpty(imagUrl)){
+		if(!imagUrl.contains("http")){
 			
 			imagUrl = this.getAboutHead();
 			
