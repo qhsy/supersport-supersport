@@ -34,4 +34,11 @@ public class ContentPhotosServiceImpl implements IContentPhotosService {
 		
 	}
 
+	@Override
+	public void save(CnContentPhotos cnContentPhotos) {
+	
+		daoFactory.getContentPhotosDao().save(cnContentPhotos);
+		
+	}
+
 }

@@ -1,8 +1,6 @@
 package com.uhutu.sportcenter.z.api.content;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +40,6 @@ public class ApiPublishContentPhotos extends RootApiToken<ApiPublishContentPhoto
 			
 			serviceFactory.getContentBasicinfoService().save(contentBasicinfo);
 			
-			List<CnContentPhotos> cnContentPhotos = new ArrayList<CnContentPhotos>();
-			
 			input.getContentPhotos().forEach(entity -> {
 				
 				CnContentPhotos temp = new CnContentPhotos();
@@ -54,11 +50,11 @@ public class ApiPublishContentPhotos extends RootApiToken<ApiPublishContentPhoto
 				
 				temp.setZc(new Date());
 				
-				cnContentPhotos.add(temp);
+				serviceFactory.getContentPhotosService().save(temp);
 				
 			});
 			
-			serviceFactory.getContentPhotosService().save(cnContentPhotos);
+			
 			
 
 		} else {

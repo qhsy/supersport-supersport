@@ -25,4 +25,10 @@ public interface IContentPhotosService {
 	 */
 	public List<CnContentPhotos> queryByContentCode(String code);
 
+	/**
+	 * 内容图集
+	 * @param cnContentPhotos
+	 */
+	public void save(CnContentPhotos cnContentPhotos);
+	
 }
