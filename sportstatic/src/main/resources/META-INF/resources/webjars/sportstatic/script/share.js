@@ -21,7 +21,7 @@
 		}
 		if(browser.ios || browser.iPad || browser.iPhone || browser.iPod){
 			if(browser.microMessenger){
-				window.location.replace("");
+				window.location.replace("http://web.sport.bigtiyu.com/webjars/sportstatic/down.html");
 			}else{
 				openclient({
 					scheme: 'xtyjgd://',
@@ -30,11 +30,11 @@
 			}
 		} else if(browser.android){
 			if(browser.microMessenger){
-				window.location.replace("");
+				window.location.replace("http://web.sport.bigtiyu.com/webjars/sportstatic/down.html");
 			}else{
 				openclient({
 					scheme: 'godosports://',
-					download: ''
+					download: 'http://web.sport.bigtiyu.com/webjars/sportstatic/down.html'
 				});
 			}
 		}
