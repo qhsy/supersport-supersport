@@ -10,14 +10,14 @@ buildscript {
 apply plugin: 'spring-boot'
 
 jar {
-	baseName = 'dcom-pay'
+	baseName = 'dcom-order'
 	version = zooInitVersion
 }
 
 
 
 dependencies {
-	
+
 	compile project(':dcom-component'){version=zooInitVersion;group=zooInitGroupId}
 	
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
