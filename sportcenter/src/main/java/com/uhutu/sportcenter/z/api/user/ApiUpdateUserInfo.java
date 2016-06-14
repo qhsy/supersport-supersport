@@ -1,6 +1,8 @@
 package com.uhutu.sportcenter.z.api.user;
 
 import java.util.Optional;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -41,9 +43,15 @@ public class ApiUpdateUserInfo extends RootApiToken<ApiUpdateUserInfoInput, ApiU
 			
 			if(userInfoExtOptional.isPresent()){
 				
-				BeanUtils.copyProperties(input.getUserInfo(), ucUserinfoExt);
+				String headUrl = input.getUserInfo().getAboutHead();
 				
-				String headUrl = ImageHelper.upImageThumbnail(ucUserinfoExt.getAboutHead(), 180);
+				if(!StringUtils.equals(headUrl, ucUserinfoExt.getAboutHead())){
+					
+					headUrl = ImageHelper.upImageThumbnail(headUrl, 180);
+					
+				}
+				
+				BeanUtils.copyProperties(input.getUserInfo(), ucUserinfoExt);
 				
 				ucUserinfoExt.setAboutHead(headUrl);
 				
