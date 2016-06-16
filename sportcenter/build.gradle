@@ -25,8 +25,8 @@ dependencies {
 	compile project(':dcom-extend'){version=zooInitVersion;group=zooInitGroupId}
 	compile project(':dcom-activity'){version=zooInitVersion;group=zooInitGroupId}
 	compile project(':dcom-order'){version=zooInitVersion;group=zooInitGroupId}
-	testCompile('org.springframework.boot:spring-boot-starter-test') 
-	
+	compile project(':dcom-pay'){version=zooInitVersion;group=zooInitGroupId}
+	testCompile('org.springframework.boot:spring-boot-starter-test') 	
 	
 }
 

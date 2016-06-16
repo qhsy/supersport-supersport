@@ -27,6 +27,9 @@ project(':dcom-activity').projectDir = new File(settingsDir, '../dcom-activity')
 include ':dcom-order'
 project(':dcom-order').projectDir = new File(settingsDir, '../dcom-order')
 
+include ':dcom-pay'
+project(':dcom-pay').projectDir = new File(settingsDir, '../dcom-pay')
+
 include ':sportcenter'
 project(':sportcenter').projectDir = new File(settingsDir, '../sportcenter')
 
