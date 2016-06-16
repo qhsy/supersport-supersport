@@ -67,7 +67,8 @@ public class AcActivityInfo extends BaseEntity {
 	private String recommenFlag;
 
 	@ZooData(name = "活动状态", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd411310011001" },sort = { DefineWebPage.Page_Add + "=0",DefineWebPage.Page_Edit + "=0" })
+			DefineWebInc.System_Define + "=dzsd411310011001" }, sort = { DefineWebPage.Page_Add + "=0",
+					DefineWebPage.Page_Edit + "=0" })
 	@Column(length = 30)
 	private String status;
 
@@ -77,7 +78,8 @@ public class AcActivityInfo extends BaseEntity {
 	@Column(length = 50)
 	private String recommendation;
 
-	@ZooData(name = "活动发起人")
+	@ZooData(name = "活动发起人", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Add + "=0",
+			DefineWebPage.Page_Edit + "=0" })
 	@Column(length = 50)
 	private String author;
 
