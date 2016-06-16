@@ -18,5 +18,8 @@ project(':dcom-tag').projectDir = new File(settingsDir, '../dcom-tag')
 include ':dcom-remark'
 project(':dcom-remark').projectDir = new File(settingsDir, '../dcom-remark')
 
+include ':dcom-activity'
+project(':dcom-activity').projectDir = new File(settingsDir, '../dcom-activity')
+
 include ':dcom-extend'
 project(':dcom-extend').projectDir = new File(settingsDir, '../dcom-extend')
