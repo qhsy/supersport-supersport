@@ -67,8 +67,9 @@ public class HomePageSupport {
 		MDataMap mDataMap = new MDataMap();
 		mDataMap.put("t1", t1);
 		mDataMap.put("t2", t2);
+		mDataMap.put("status", "dzsd4699100110010001");
 		List<CnContentItem> list = JdbcHelper.queryForList(CnContentItem.class, "", "",
-				"startTime>=:t1 and startTime<=:t2 and endTime>=NOW() and type in ('dzsd4107100110060002','dzsd4107100110060003')",
+				"startTime>=:t1 and startTime<=:t2 and endTime>=NOW() and type in ('dzsd4107100110060002','dzsd4107100110060003') and status=:status",
 				mDataMap);
 		if (list != null && !list.isEmpty() && list.size() > 0) {
 			flag = true;
@@ -122,13 +123,13 @@ public class HomePageSupport {
 							}
 							UserBasicInfo ubi = userInfoSupport.getUserBasicInfo(info.getAuthor());
 							BeanUtils.copyProperties(ubi.getUcUserinfoExt(), userInfoApi);
-							
-							if(ubi.getUcUserinfo() != null){
-								
+
+							if (ubi.getUcUserinfo() != null) {
+
 								userInfoApi.setType(ubi.getUcUserinfo().getType());
-								
+
 							}
-							
+
 						}
 						CnContentRecomm recomm = JdbcHelper.queryOne(CnContentRecomm.class, "contentCode",
 								info.getCode());
