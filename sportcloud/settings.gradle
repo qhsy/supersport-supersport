@@ -24,6 +24,9 @@ project(':dcom-remark').projectDir = new File(settingsDir, '../dcom-remark')
 include ':dcom-activity'
 project(':dcom-activity').projectDir = new File(settingsDir, '../dcom-activity')
 
+include ':dcom-order'
+project(':dcom-order').projectDir = new File(settingsDir, '../dcom-order')
+
 include ':sportcenter'
 project(':sportcenter').projectDir = new File(settingsDir, '../sportcenter')
 
