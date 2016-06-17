@@ -1,0 +1,70 @@
+package com.uhutu.dcom.order.z.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoodata.dbbase.BaseEntity;
+
+/**
+ * 订单基本信息
+ * 
+ * @author xiegj
+ *
+ */
+@Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "orderCode" }), indexes = { @Index(columnList = "orderCode") })
+public class OcOrderDetail extends BaseEntity {
+
+	@ZooData(name = "订单编号")
+	@Column(length = 50)
+	private String orderCode;
+
+	@ZooData(name = "商品编号", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
+	@Column(length = 30)
+	private String productCode;
+
+	@ZooData(name = "商品名称", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
+	@Column(length = 30)
+	private String productName;
+
+	@ZooData(name = "商品金额")
+	private double productPrice;
+
+	public String getOrderCode() {
+		return orderCode;
+	}
+
+	public void setOrderCode(String orderCode) {
+		this.orderCode = orderCode;
+	}
+
+	public String getProductCode() {
+		return productCode;
+	}
+
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public double getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(double productPrice) {
+		this.productPrice = productPrice;
+	}
+
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
+	<data table="ZwSystemDefine">
+		<item code="dzsd411210011001" defineName="订单类型" parentCode="dzsd41121001" />
+		<item code="dzsd4112100110010001" defineName="活动订单" parentCode="dzsd411210011001" />
+		<item code="dzsd4112100110010002" defineName="达人订单" parentCode="dzsd411210011001" />
+		<item code="dzsd411210011002" defineName="订单来源" parentCode="dzsd41121001" />
+		<item code="dzsd4112100110020001" defineName="app订单" parentCode="dzsd411210011002" />
+		<item code="dzsd4112100110020002" defineName="wap订单" parentCode="dzsd411210011002" />
+		<item code="dzsd411210011003" defineName="订单状态" parentCode="dzsd41121001" />
+		<item code="dzsd4112100110030001" defineName="未付款" parentCode="dzsd411210011003" />
+		<item code="dzsd4112100110030002" defineName="付款完成" parentCode="dzsd411210011003" />
+		<item code="dzsd4112100110030003" defineName="已结束" parentCode="dzsd411210011003" />
+		<item code="dzsd411210011004" defineName="支付类型" parentCode="dzsd41121001" />
+		<item code="dzsd4112100110040001" defineName="支付宝" parentCode="dzsd411210011004" />
+		<item code="dzsd4112100110040002" defineName="微信" parentCode="dzsd411210011004" />
+	</data>
+
+</db>

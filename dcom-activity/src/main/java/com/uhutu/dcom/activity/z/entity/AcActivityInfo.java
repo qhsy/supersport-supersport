@@ -53,7 +53,7 @@ public class AcActivityInfo extends BaseEntity {
 	private String cityCode;
 
 	@ZooData(name = "费用")
-	private long price;
+	private double price;
 
 	@ZooData(name = "报名截止时间", element = DefineWebElement.Datehms, require = "1")
 	private String closeTime;
@@ -151,11 +151,11 @@ public class AcActivityInfo extends BaseEntity {
 		this.cityCode = cityCode;
 	}
 
-	public long getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(long price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
