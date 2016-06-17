@@ -21,11 +21,11 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  *
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames={"code"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "code" }))
 public class UcUserinfo extends BaseEntity {
 
-	@ZooData(name = "用户编号", sort = { DefineWebPage.Page_Add + "=0" })
-	@Column(length=50)
+	@ZooData(name = "用户编号", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
+	@Column(length = 50)
 	private String code;
 
 	@ZooData(name = "用户类型", element = DefineWebElement.Select, inc = {
@@ -33,27 +33,28 @@ public class UcUserinfo extends BaseEntity {
 	private String type;
 
 	@ZooData(name = "是否马甲", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd469910011001" })
+			DefineWebInc.System_Define + "=dzsd469910011001" }, sort = { DefineWebPage.Page_Edit + "=0" })
 	private String mjFlag;
 
-	@ZooData(name = "登录账号", require = "1", verify = DefineWebVerify.Base_Phone)
+	@ZooData(name = "登录账号", require = "1", verify = DefineWebVerify.Base_Phone, sort = {
+			DefineWebPage.Page_Edit + "=0" })
 	private String loginName;
 
 	@ZooData(name = "登录密码", require = "1", verify = DefineWebVerify.Base_Password, sort = {
-			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0", DefineWebPage.Page_Edit + "=0" })
 	private String loginPwd;
 
 	@ZooData(name = "状态", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd410710041001" }, sort = { DefineWebPage.Page_Query + "=0",
-					DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Grid + "=0" })
+					DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Grid + "=0", DefineWebPage.Page_Edit + "=0" })
 	private String flag;
 
 	@ZooData(name = "最近登录时间", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
-			DefineWebPage.Page_Add + "=0" })
+			DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
 	private Date lastTime;
 
 	@ZooData(name = "登录编号", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
-			DefineWebPage.Page_Add + "=0" })
+			DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
 	private String loginCode;
 
 	/**
