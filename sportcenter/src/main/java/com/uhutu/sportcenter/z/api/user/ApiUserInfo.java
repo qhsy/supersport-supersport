@@ -164,6 +164,12 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 		String socialFlag = initSocialFlag(apiUserInfo.getUserCode());
 		
 		apiUserInfo.setSocialFlag(socialFlag);
+		
+		if(ucUserinfo != null){
+			
+			apiUserInfo.setType(ucUserinfo.getType());
+			
+		}
 
 		userInfoResult.setUserInfo(apiUserInfo);
 		
