@@ -16,7 +16,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  *
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "activityCode", "orderCode" }), indexes = {
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "activityCode", "playerMobile" }), indexes = {
 		@Index(columnList = "activityCode") })
 public class AcActivityPersons extends BaseEntity {
 
@@ -38,7 +38,7 @@ public class AcActivityPersons extends BaseEntity {
 
 	@ZooData(name = "参与人头像")
 	@Column(length = 300)
-	private String closeTime;
+	private String headUrl;
 
 	public String getOrderCode() {
 		return orderCode;
@@ -72,12 +72,12 @@ public class AcActivityPersons extends BaseEntity {
 		this.playerMobile = playerMobile;
 	}
 
-	public String getCloseTime() {
-		return closeTime;
+	public String getHeadUrl() {
+		return headUrl;
 	}
 
-	public void setCloseTime(String closeTime) {
-		this.closeTime = closeTime;
+	public void setHeadUrl(String headUrl) {
+		this.headUrl = headUrl;
 	}
 
 }
