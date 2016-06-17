@@ -16,7 +16,7 @@
 </head>
 <body class="ms-controller" >
 <section class="details-author">
-	<div class="details-photo"><img src="image/normal_head.png"></div>
+	<div class="details-photo"><img src="image/normal_head.png"><em class="icon-markbig"></em></div>
 	<h2 class="details-name"></h2>
 </section>
 <div class="details-hgroup">
@@ -59,6 +59,9 @@
 				$('.details-hgroup time').html(data.sportingMoment.publishTimeStr);
 				if(data.sportingMoment.userBasicInfo.aboutHead){
 					$('.details-photo img').attr('src', data.sportingMoment.userBasicInfo.aboutHead);
+				}
+				if(!data.sportingMoment.userBasicInfo.type){
+					$('.icon-markbig').css('display', 'none');
 				}
 				$('.details-photo').attr('id',data.sportingMoment.author);
 				$('.details-name').html(data.sportingMoment.userBasicInfo.nickName);

@@ -28,8 +28,9 @@ a:hover {text-decoration: none; }
 .details-basten{padding: 0.2rem 0.3rem;; margin: 0.3rem 0.15rem 0; border: #c1c1c1 1px dashed; border-radius: 0.05rem;}
 .details-basten legend{margin: auto; background: #fff; font-size: 0.14rem; color: #3c3c3c;}
 .details-basten p{font-style: italic;}
-.details-photo{width: 0.45rem; height: 0.45rem; margin: 0.3rem auto 0; overflow: hidden; border: #fff 1px solid; border-radius: 50%;}
-.details-photo img{width: 100%; height: 100%;}
+.details-photo{width: 0.55rem; height: 0.55rem; margin: 0.3rem auto 0; border: #fff 1px solid; border-radius: 50%; position: relative;}
+.details-photo img{width: 100%; height: 100%; border-radius: 50%;}
+.details-photo .icon-markbig{width: 0.2rem; height: 0.2rem; display: block; background: url(img/icon_markbig.png) no-repeat center center; background-size: cover; position: absolute; bottom: -2px; right: -1px;}
 .details-name{margin: 0.04rem 0 0; text-align: center; color: #3c3c3c;}
 .details-hgroup{padding: 0.2rem 0; text-align: center;}
 .details-hgroup h1{padding: 0 0.25rem; font-size:0.21rem; line-height: 0.32rem;}
@@ -57,8 +58,9 @@ a:hover {text-decoration: none; }
 .photo-txt{height: 0.8rem; margin-bottom: 0.2rem; overflow: hidden; font-size: 0.14rem; line-height: 0.24rem;}
 .photo-txt p{height: 1.1rem; overflow: auto;}
 .photo-head{width: 100%; padding: 0.1rem 0; display: -webkit-flex; display: flex; background: rgba(0,0,0,0.9); align-items: center; -webkit-align-items: center; position: fixed; left: 0; bottom: 0; color: #fff;}
-.photo-head em{width: 0.35rem; height: 0.35rem; display: block; margin: 0 0.15rem; box-sizing: border-box; border-radius: 50%; border: #fff 1px solid; overflow: hidden;}
-
+.photo-head em{width: 0.35rem; height: 0.35rem; display: block; margin: 0 0.15rem; box-sizing: border-box;}
+.photo-head img{width: 100%; height: 100%; border-radius: 50%; border: #fff 1px solid;}
+.icon-markbig{width: 0.15rem; height: 0.15rem; display: block; background: url(img/icon_markbig.png) no-repeat center center; background-size: cover; position: fixed; left: 0.4rem; bottom: 0.07rem;}
 /*鐢ㄦ埛鍗忚*/
 .agreement{padding: 0.1rem 0.15rem;}
 .agreement h1{margin-bottom: 0.1rem; padding: 0.1rem 0 0.15rem; font-size: 0.18rem; text-align: center;}
