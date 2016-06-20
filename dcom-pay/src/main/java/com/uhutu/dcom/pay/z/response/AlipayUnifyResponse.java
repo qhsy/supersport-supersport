@@ -1,13 +1,14 @@
 package com.uhutu.dcom.pay.z.response;
 
 import com.uhutu.dcom.pay.z.face.IPayResponse;
+import com.uhutu.zoocom.model.MResult;
 
 /**
  * 支付宝支付公共请求参数基类
  * @author pang_jhui
  *
  */
-public class AlipayUnifyResponse implements IPayResponse {
+public class AlipayUnifyResponse extends MResult implements IPayResponse {
 	
 	
 	/*接口名称*/

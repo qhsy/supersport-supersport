@@ -13,26 +13,37 @@ import com.uhutu.dcom.pay.z.face.IPayConfig;
 @Component
 public class AlipayConfig implements IPayConfig{
 	
+	/*商户私钥*/
 	@Value("${alipay_private_key}")
 	private String privateKey;
 	
+	/*支付宝公钥*/
 	@Value("${alipay_public_key}")
 	private String publickey;
 	
+	/*接口名称*/
 	@Value("${alipay_service}")
 	private String service;
 	
-	@Value("${alipay_service}")
+	/*商户编号*/
+	@Value("${alipay_partner_id}")
 	private String partnerId;
 	
+	/*参数编码*/
 	@Value("${alipay_input_charset}")
 	private String inputCharset;
 	
+	/*签名类型*/
 	@Value("${alipay_sign_type}")
 	private String signType;
 	
+	/*支付宝通知路径*/
 	@Value("${alipay_notify_url}")
 	private String notifyUrl;
+	
+	/*支付类型*/
+	@Value("${alipay_payment_type}")
+	private String paymentType;
 
 	/**
 	 * 获取商户加密私钥
@@ -88,6 +99,10 @@ public class AlipayConfig implements IPayConfig{
 	 */
 	public String getNotifyUrl() {
 		return notifyUrl;
+	}
+
+	public String getPaymentType() {
+		return paymentType;
 	}
 	
 	
