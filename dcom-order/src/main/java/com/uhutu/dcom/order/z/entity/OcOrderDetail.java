@@ -17,7 +17,8 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  *
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "orderCode" }), indexes = { @Index(columnList = "orderCode") })
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "orderCode" }), indexes = {
+		@Index(columnList = "orderCode") })
 public class OcOrderDetail extends BaseEntity {
 
 	@ZooData(name = "订单编号")
@@ -34,6 +35,10 @@ public class OcOrderDetail extends BaseEntity {
 
 	@ZooData(name = "商品金额")
 	private double productPrice;
+
+	@ZooData(name = "商品数量", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
+	@Column(length = 30)
+	private int num;
 
 	public String getOrderCode() {
 		return orderCode;
@@ -65,6 +70,14 @@ public class OcOrderDetail extends BaseEntity {
 
 	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 }
