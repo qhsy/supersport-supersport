@@ -26,6 +26,10 @@ public class WechatConfig {
 	/*微信主动通知地址*/
 	@Value("${wechat_notify_url}")
 	private String notifyUrl;
+	
+	/*统一下单接口地址*/
+	@Value("${unifiedorder_url}")
+	private String orderUrl;
 
 	/**
 	 * 获取app编号
@@ -57,6 +61,10 @@ public class WechatConfig {
 	 */
 	public String getNotifyUrl() {
 		return notifyUrl;
+	}
+
+	public String getOrderUrl() {
+		return orderUrl;
 	}
 	
 	

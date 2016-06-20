@@ -1,46 +1,32 @@
 package com.uhutu.dcom.pay.z.response;
 
-import com.uhutu.dcom.pay.z.face.IPayResponse;
-import com.uhutu.zoocom.model.MResult;
-
 /**
- * 微信公共请求参数
+ * 微信后台接口统一响应参数
  * @author 逄小帅
  *
  */
-public class WechatUnifyResponse extends MResult implements IPayResponse {
+public class WechatUnifyResponse{
 	
-	/*应用Id*/
-	private String appid;
+	/*返回状态码*/
+	private String return_code;
 	
-	/*随机字符串*/
-	private String noncestr;
-	
-	/*签名*/
-	private String sign;
+	/*返回信息*/
+	private String return_msg;
 
-	public String getAppid() {
-		return appid;
+	public String getReturn_code() {
+		return return_code;
 	}
 
-	public void setAppid(String appid) {
-		this.appid = appid;
+	public void setReturn_code(String return_code) {
+		this.return_code = return_code;
 	}
 
-	public String getNoncestr() {
-		return noncestr;
+	public String getReturn_msg() {
+		return return_msg;
 	}
 
-	public void setNoncestr(String noncestr) {
-		this.noncestr = noncestr;
-	}
-
-	public String getSign() {
-		return sign;
-	}
-
-	public void setSign(String sign) {
-		this.sign = sign;
+	public void setReturn_msg(String return_msg) {
+		this.return_msg = return_msg;
 	}
 
 }
