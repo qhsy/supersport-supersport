@@ -14,6 +14,7 @@ import com.uhutu.sportcenter.z.input.ApiFansListInput;
 import com.uhutu.sportcenter.z.input.ApiFavorContentListInput;
 import com.uhutu.sportcenter.z.input.ApiForAttentionInput;
 import com.uhutu.sportcenter.z.input.ApiForLoginInput;
+import com.uhutu.sportcenter.z.input.ApiForTecentSigInput;
 import com.uhutu.sportcenter.z.input.ApiLoginOutInput;
 import com.uhutu.sportcenter.z.input.ApiSendSmsInput;
 import com.uhutu.sportcenter.z.input.ApiSetUserFavoerInput;
@@ -31,6 +32,7 @@ import com.uhutu.sportcenter.z.result.ApiFansListResult;
 import com.uhutu.sportcenter.z.result.ApiFavorContentListResult;
 import com.uhutu.sportcenter.z.result.ApiForAttentionResult;
 import com.uhutu.sportcenter.z.result.ApiForLoginResult;
+import com.uhutu.sportcenter.z.result.ApiForTecentSigResult;
 import com.uhutu.sportcenter.z.result.ApiLoginOutResult;
 import com.uhutu.sportcenter.z.result.ApiSendSmsResult;
 import com.uhutu.sportcenter.z.result.ApiSetUserFavorResult;
@@ -118,6 +120,15 @@ public class UserController {
 	}
 
 	@ResponseBody
+	@RequestMapping(value = "/tecentSig", method = RequestMethod.POST)
+	@ApiOperation(value = "用户获取腾讯云sig信息", notes = "用户相关")
+	public ApiForTecentSigResult login(@RequestBody ApiForTecentSigInput input) {
+
+		return apiFactory.getApiForTecentSig().api(input);
+
+	}
+
+	@ResponseBody
 	@RequestMapping(value = "/userInfo", method = RequestMethod.POST)
 	@ApiOperation(value = "用户信息接口", notes = "用户相关")
 	public ApiUserInfoResult userInfo(@RequestBody ApiUserInfoInput infoInput) {
@@ -149,7 +160,7 @@ public class UserController {
 		return apiFactory.getApiForAttention().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
 	@ApiOperation(value = "用户信息更新", notes = "用户相关")
@@ -158,7 +169,7 @@ public class UserController {
 		return apiFactory.getApiUpdateUserInfo().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/shareContent", method = RequestMethod.POST)
 	@ApiOperation(value = "分享内容", notes = "用户相关")
@@ -167,7 +178,7 @@ public class UserController {
 		return apiFactory.getApiShareContent().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/attendList", method = RequestMethod.POST)
 	@ApiOperation(value = "关注列表", notes = "用户相关")
@@ -176,7 +187,7 @@ public class UserController {
 		return apiFactory.getApiAttendList().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/fansList", method = RequestMethod.POST)
 	@ApiOperation(value = "粉丝列表", notes = "用户相关")
@@ -185,7 +196,7 @@ public class UserController {
 		return apiFactory.getApiFansList().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/favorContentList", method = RequestMethod.POST)
 	@ApiOperation(value = "用户喜欢的内容列表", notes = "用户相关")
@@ -194,7 +205,7 @@ public class UserController {
 		return apiFactory.getApiFavorContentList().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/verifyNickName", method = RequestMethod.POST)
 	@ApiOperation(value = "昵称校验", notes = "用户相关")
@@ -203,5 +214,5 @@ public class UserController {
 		return apiFactory.getApiVerifyNickName().api(input);
 
 	}
-	
+
 }

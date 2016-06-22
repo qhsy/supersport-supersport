@@ -32,6 +32,7 @@ import com.uhutu.sportcenter.z.api.user.ApiFansList;
 import com.uhutu.sportcenter.z.api.user.ApiFavorContentList;
 import com.uhutu.sportcenter.z.api.user.ApiForAttention;
 import com.uhutu.sportcenter.z.api.user.ApiForLogin;
+import com.uhutu.sportcenter.z.api.user.ApiForTecentSig;
 import com.uhutu.sportcenter.z.api.user.ApiLoginOut;
 import com.uhutu.sportcenter.z.api.user.ApiMsgAdvice;
 import com.uhutu.sportcenter.z.api.user.ApiMsgAttendList;
@@ -111,89 +112,91 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiSetUserFavor apiSetUserFavor;
-	
+
 	@Autowired
 	private ApiComplainInfo apiComplainInfo;
-	
+
 	@Autowired
 	private ApiPublishContentPhotos apiPublishContentPhotos;
-	
+
 	@Autowired
 	private ApiContentRecommInfo apiContentRecommInfo;
-	
+
 	@Autowired
 	private ApiPublishRemark apiPublishRemark;
-	
+
 	@Autowired
 	private ApiRemarkList apiRemarkList;
-	
+
 	@Autowired
 	private ApiRemarkCount apiRemarkCount;
-	
+
 	@Autowired
 	private ApiMsgNumList apiMsgNumList;
-	
+
 	@Autowired
 	private ApiUpdateMsgStatus apiUpdateMsgStatus;
-	
+
 	@Autowired
 	private ApiMsgRemarkList apiMsgRemarkList;
-	
+
 	@Autowired
 	private ApiMsgPraiseList apiMsgPraiseList;
 
 	@Autowired
 	private ApiForAttention apiForAttention;
-	
+
 	@Autowired
 	private ApiMsgAttendList apiMsgAttendList;
-	
+
 	@Autowired
 	private ApiMsgNoticeList apiMsgNoticeList;
-	
+
 	@Autowired
 	private ApiUpdateUserInfo apiUpdateUserInfo;
-	
+
 	@Autowired
 	private ApiMsgAdvice apiMsgAdvice;
-	
+
 	@Autowired
 	private ApiShareContent apiShareContent;
-	
+
 	@Autowired
 	private ApiAttendList apiAttendList;
-	
+
 	@Autowired
 	private ApiFansList apiFansList;
-	
+
 	@Autowired
 	private ApiFavorContentList apiFavorContentList;
-	
+
 	@Autowired
 	private ApiVerifyNickName apiVerifyNickName;
-	
+
 	@Autowired
 	private ApiOperContent apiOperContent;
-	
+
 	@Autowired
 	private ApiUserPowerInit apiUserPowerInit;
-	
+
 	@Autowired
 	private ApiUserExpertList apiUserExpertList;
-	
+
 	@Autowired
 	private ApiUserPowerShare apiUserPowerShare;
-	
+
 	@Autowired
 	private ApiUserExpertDetail apiUserExpertDetail;
-	
+
 	@Autowired
 	private ApiUpdateUserPower apiUpdateUserPower;
-	
+
 	@Autowired
 	private ApiUserShareInfo apiUserShareInfo;
-	
-	
+
+	@Autowired
+	private ApiForTecentSig apiForTecentSig;
+
 	public ApiContentDetailInfo getContentDetailInfo() {
 		return contentDetailInfo;
 	}
@@ -385,4 +388,9 @@ public class ApiFactory {
 	public ApiUserShareInfo getApiUserShareInfo() {
 		return apiUserShareInfo;
 	}
+
+	public ApiForTecentSig getApiForTecentSig() {
+		return apiForTecentSig;
+	}
+	
 }
