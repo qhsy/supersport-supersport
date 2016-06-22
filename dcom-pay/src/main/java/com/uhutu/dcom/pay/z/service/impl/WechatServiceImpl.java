@@ -2,6 +2,8 @@ package com.uhutu.dcom.pay.z.service.impl;
 
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.uhutu.dcom.component.z.util.WebClientComponent;
 import com.uhutu.dcom.pay.z.config.WechatConfig;
 import com.uhutu.dcom.pay.z.face.IPayRequest;
@@ -21,6 +23,7 @@ import com.uhutu.zoocom.model.MDataMap;
  * @author 逄小帅
  *
  */
+@Service
 public class WechatServiceImpl implements IWechatService {
 	
 	@Autowired
