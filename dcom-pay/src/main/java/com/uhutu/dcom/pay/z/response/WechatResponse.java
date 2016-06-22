@@ -1,5 +1,8 @@
 package com.uhutu.dcom.pay.z.response;
 
+import org.apache.commons.lang3.StringUtils;
+import com.uhutu.dcom.pay.z.common.WechatUnifyResultCodeEnum;
+
 /**
  * 微信错误处理结果
  * @author 逄小帅
@@ -82,6 +85,42 @@ public class WechatResponse extends WechatUnifyResponse{
 
 	public void setResult_code(String result_code) {
 		this.result_code = result_code;
+	}
+	
+	/**
+	 * 判断请求是否处理成功
+	 * @return boolean
+	 */
+	public boolean upReturnFalg(){
+		
+		boolean flag = true;
+		
+		if(StringUtils.equals(getReturn_code(), WechatUnifyResultCodeEnum.FAIL.name())){
+			
+			flag = false;
+			
+		}
+		
+		return flag;
+		
+	}
+	
+	/**
+	 * 判断业务处理结果
+	 * @return
+	 */
+	public boolean upResultFlag(){
+		
+		boolean flag = true;
+		
+		if(StringUtils.equals(getResult_code(), WechatUnifyResultCodeEnum.FAIL.name())){
+			
+			flag = false;
+			
+		}
+		
+		return flag;
+		
 	}
 
 }

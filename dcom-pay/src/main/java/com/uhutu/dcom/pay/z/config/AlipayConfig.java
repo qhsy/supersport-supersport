@@ -3,7 +3,11 @@ package com.uhutu.dcom.pay.z.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.pay.z.common.Constants;
 import com.uhutu.dcom.pay.z.face.IPayConfig;
+import com.uhutu.dcom.pay.z.util.BeanComponent;
+import com.uhutu.dcom.pay.z.util.RSA;
+import com.uhutu.zoocom.model.MDataMap;
 
 /**
  * 支付宝配置信息
@@ -44,6 +48,10 @@ public class AlipayConfig implements IPayConfig{
 	/*支付类型*/
 	@Value("${alipay_payment_type}")
 	private String paymentType;
+	
+	/*rsa使用算法*/
+	@Value("${alipay_sign_algorithms}")
+	private String algorithms;
 
 	/**
 	 * 获取商户加密私钥
@@ -101,8 +109,46 @@ public class AlipayConfig implements IPayConfig{
 		return notifyUrl;
 	}
 
+	/**
+	 * 支付类型
+	 * @return
+	 */
 	public String getPaymentType() {
 		return paymentType;
+	}
+	
+	/**
+	 * 获取rsa签名算法
+	 * @return
+	 */
+	public String getAlgorithms() {
+		return algorithms;
+	}
+
+	/**
+	 * 获取签名
+	 * @param paramDataMap
+	 * 		参数集合
+	 * @return 签名
+	 */
+	public String getSign(MDataMap paramDataMap){
+		
+		if(paramDataMap.containsKey("sign")){
+			
+			paramDataMap.remove("sign");
+			
+		}
+		
+		if(paramDataMap.containsKey("sign_type")){
+			
+			paramDataMap.remove("sign_type");
+			
+		}
+		
+		String content = BeanComponent.getInstance().sortParam(Constants.SIGN_PARAM_SPLIT_AND, paramDataMap);
+
+		return RSA.sign(content, getPrivateKey(), getInputCharset(), getAlgorithms());
+		
 	}
 	
 	
