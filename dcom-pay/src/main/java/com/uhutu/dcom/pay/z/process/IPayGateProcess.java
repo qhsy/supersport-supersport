@@ -5,6 +5,7 @@ import com.uhutu.dcom.pay.z.face.IPayProcess;
 import com.uhutu.dcom.pay.z.face.IPayRequest;
 import com.uhutu.dcom.pay.z.face.IPayResponse;
 import com.uhutu.dcom.pay.z.face.IPayService;
+import com.uhutu.zoocom.model.MDataMap;
 
 /**
  * 支付宝解析
@@ -19,9 +20,11 @@ public interface IPayGateProcess extends IPayProcess {
 	 * 		请求信息
 	 * @param processEnum
 	 * 		解析枚举
+	 * @param paramMap
+	 * 		参数集合
 	 * @return 响应信息
 	 */
-	public IPayResponse process(PayProcessEnum processEnum,IPayRequest request);
+	public IPayResponse process(PayProcessEnum processEnum,IPayRequest request,MDataMap paramMap);
 	
 	/**
 	 * 获取业务实现类

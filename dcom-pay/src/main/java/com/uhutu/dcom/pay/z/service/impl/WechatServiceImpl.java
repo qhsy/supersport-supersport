@@ -27,7 +27,7 @@ public class WechatServiceImpl implements IWechatService {
 	private WechatConfig wechatConfig;
 
 	@Override
-	public IPayResponse doProcess(IPayRequest request) {
+	public IPayResponse doProcess(IPayRequest request,MDataMap paramMap) {
 		
 		WechatBizContentRequest bizContentRequest = (WechatBizContentRequest) request;
 		

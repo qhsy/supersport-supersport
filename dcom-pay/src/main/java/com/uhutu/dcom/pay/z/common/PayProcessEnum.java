@@ -10,6 +10,10 @@ public enum PayProcessEnum {
 	/*支付宝*/
 	ALIPAY,
 	/*微信*/
-	WECHAT;
+	WECHAT,	
+	/*微信回调*/
+	WECHAT_NOTIFY,	
+	/*支付宝回调*/
+	ALIPAY_NOTIFY;
 
 }

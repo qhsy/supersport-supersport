@@ -6,12 +6,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
-import org.json.JSONObject;
 import com.uhutu.zoocom.model.MDataMap;
 
 /**
@@ -343,10 +343,25 @@ public class BeanComponent {
 		
 	}
 	
-	public static JSONObject dataMapToJSONObject(MDataMap mDataMap){
-		Map<String,Object> map = new HashMap<String, Object>((int)(mDataMap.size()/0.75+1));
-		map.putAll(mDataMap);
-		return new JSONObject(map);
+	/**
+	 * 转换reques的值
+	 * 
+	 * @param hRequest
+	 * 		请求信息
+	 * @return map集合
+	 */
+	public MDataMap convertRequest(HttpServletRequest hRequest) {
+		MDataMap mReqMap = new MDataMap();
+		
+		Enumeration<String> eKey = hRequest.getParameterNames();
+
+		while (eKey.hasMoreElements()) {
+			String string = eKey.nextElement();
+			mReqMap.put(string,
+					StringUtils.join(hRequest.getParameterValues(string), ","));
+		}
+
+		return mReqMap;
 	}
 
 }

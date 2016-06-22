@@ -25,7 +25,7 @@ public class AlipayServiceImpl implements IAlipayService {
 	private AlipayConfig alipayConfig;
 
 	@Override
-	public IPayResponse doProcess(IPayRequest request) {
+	public IPayResponse doProcess(IPayRequest request,MDataMap paramMap) {
 		
 		/*请求信息*/
 		AlipayBizContentRequest bizContentRequest = null;
