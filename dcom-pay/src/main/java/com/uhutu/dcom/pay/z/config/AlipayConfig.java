@@ -52,6 +52,10 @@ public class AlipayConfig implements IPayConfig{
 	/*rsa使用算法*/
 	@Value("${alipay_sign_algorithms}")
 	private String algorithms;
+	
+	/*卖家支付宝帐号*/
+	@Value("alipay_seller_id")
+	private String sellerId;
 
 	/**
 	 * 获取商户加密私钥
@@ -123,6 +127,14 @@ public class AlipayConfig implements IPayConfig{
 	 */
 	public String getAlgorithms() {
 		return algorithms;
+	}
+
+	/**
+	 * 获取卖家编号
+	 * @return
+	 */
+	public String getSellerId() {
+		return sellerId;
 	}
 
 	/**

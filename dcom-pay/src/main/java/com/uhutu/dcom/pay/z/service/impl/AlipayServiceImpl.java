@@ -1,5 +1,6 @@
 package com.uhutu.dcom.pay.z.service.impl;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,6 +63,30 @@ public class AlipayServiceImpl implements IAlipayService {
 		try {
 			
 			MDataMap dataMap = BeanComponent.getInstance().objectToMap(bizContentResponse, null, false);
+			
+			bizContentResponse.set_input_charset(alipayConfig.getInputCharset());
+			
+			bizContentResponse.setBody(bizConentRequest.getBody());
+			
+			bizContentResponse.setIt_b_pay(DateFormatUtils.format(bizConentRequest.getExpire(), "yyyy-MM-dd HH:mm:ss"));
+			
+			bizContentResponse.setNotify_url(alipayConfig.getNotifyUrl());
+			
+			bizContentResponse.setOut_trade_no(bizConentRequest.getOrderCode());
+			
+			bizContentResponse.setPartner(alipayConfig.getPartnerId());
+			
+			bizContentResponse.setPayment_type(alipayConfig.getPaymentType());
+			
+			bizContentResponse.setSeller_id(alipayConfig.getSellerId());
+			
+			bizContentResponse.setService(alipayConfig.getService());
+			
+			bizContentResponse.setSubject(bizConentRequest.getSubject());
+			
+			bizContentResponse.setTotal_fee(bizConentRequest.getTotal_fee().setScale(2));
+			
+			bizContentResponse.setSign_type(alipayConfig.getSignType());
 			
 			String sign = alipayConfig.getSign(dataMap);
 			
