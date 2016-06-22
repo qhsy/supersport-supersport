@@ -24,8 +24,8 @@ public class TecentSigSupport {
 		String sig = null;
 		try {
 			SettingsDcomUser settingsDcomUser = ConfigDcomUser.upConfig();
-			sig = tls_sigature.GenTLSSignatureEx(Integer.valueOf(settingsDcomUser.getTlsSkdAppid()),
-					settingsDcomUser.getTlsTecentAdmin(), settingsDcomUser.getTlsPrivateKey(),
+			sig = tls_sigature.GenTLSSignatureEx(Integer.valueOf(settingsDcomUser.getTlsSkdAppid()), sUserCode,
+					settingsDcomUser.getTlsPrivateKey(),
 					Integer.valueOf(settingsDcomUser.getTlsExpireTime()) * 3600 * 24).urlSig;
 			UcSigInfo ucSigInfo = new UcSigInfo();
 			ucSigInfo.setSig(sig);
