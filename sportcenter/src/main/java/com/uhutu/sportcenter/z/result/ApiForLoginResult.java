@@ -6,16 +6,18 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 
- * @author xiegj
- * 短信验证登录输出类
+ * @author xiegj 短信验证登录输出类
  */
 public class ApiForLoginResult extends RootApiResult {
 
 	@ApiModelProperty(value = "用户认证串", notes = "登陆成功后返回非空，用于需要用户授权api_token的操作")
 	private String userToken = "";
-	
-	@ApiModelProperty(value="用户编号")
+
+	@ApiModelProperty(value = "用户编号")
 	private String userCode;
+
+	@ApiModelProperty(value = "sig信息")
+	private String sig;
 
 	public String getUserToken() {
 		return userToken;
@@ -32,4 +34,13 @@ public class ApiForLoginResult extends RootApiResult {
 	public void setUserCode(String userCode) {
 		this.userCode = userCode;
 	}
+
+	public String getSig() {
+		return sig;
+	}
+
+	public void setSig(String sig) {
+		this.sig = sig;
+	}
+
 }
