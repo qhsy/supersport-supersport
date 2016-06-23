@@ -17,6 +17,9 @@ public class ApiUserRegResult extends RootApiResult {
 	@ApiModelProperty(value="会话token")
 	private String userToken;
 
+	@ApiModelProperty(value = "sig信息")
+	private String sig;
+
 	public String getUserCode() {
 		return userCode;
 	}
@@ -31,6 +34,14 @@ public class ApiUserRegResult extends RootApiResult {
 
 	public void setUserToken(String userToken) {
 		this.userToken = userToken;
+	}
+
+	public String getSig() {
+		return sig;
+	}
+
+	public void setSig(String sig) {
+		this.sig = sig;
 	}
 	
 	

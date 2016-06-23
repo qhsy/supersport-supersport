@@ -10,6 +10,7 @@ import com.uhutu.dcom.extend.sms.SmsTypeEnum;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
+import com.uhutu.dcom.user.z.support.TecentSigSupport;
 import com.uhutu.sportcenter.z.input.ApiUserResetPwdInput;
 import com.uhutu.sportcenter.z.result.ApiUserResetPwdResult;
 import com.uhutu.zoocom.define.DefineUser;
@@ -29,7 +30,7 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 
 	@Autowired
 	private UserServiceFactory userServiceFactory;
-	
+
 	private UserCallFactory userCallFactory = new UserCallFactory();
 
 	@Override
@@ -55,42 +56,46 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 		default:
 			break;
 		}
-
+		if (StringUtils.isNotBlank(resetPwdResult.getUserCode())) {
+			resetPwdResult.setSig(new TecentSigSupport().upSigCodeByUserCode(resetPwdResult.getUserCode()));
+		}
 		return resetPwdResult;
 	}
-	
+
 	/**
 	 * 忘记密码
+	 * 
 	 * @param resetPwdResult
-	 * 		处理result
+	 *            处理result
 	 * @param input
-	 * 		输入参数
+	 *            输入参数
 	 * @param ucUserinfo
-	 * 		用户信息
+	 *            用户信息
 	 */
-	public void forgetPwd(ApiUserResetPwdResult resetPwdResult,ApiUserResetPwdInput input,UcUserinfo ucUserinfo){
-		
-		ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(input.getLoginName(),UserEnum.FLAG_ENABLE.getCode());
-		
-		if(ucUserinfo == null){
-			
+	public void forgetPwd(ApiUserResetPwdResult resetPwdResult, ApiUserResetPwdInput input, UcUserinfo ucUserinfo) {
+
+		ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(input.getLoginName(),
+				UserEnum.FLAG_ENABLE.getCode());
+
+		if (ucUserinfo == null) {
+
 			resetPwdResult.inError(81100003);
-			
+
 		}
-		
-		if(resetPwdResult.upFlagTrue()){
-			
+
+		if (resetPwdResult.upFlagTrue()) {
+
 			SmsTypeEnum verifyEnum = Enum.valueOf(SmsTypeEnum.class, input.getVerifyType());
-			
+
 			RootApiResult rootApiResult = new SmsSupport().upLastVerifyCode(verifyEnum, input.getLoginName(),
 					input.getVerifyCode());
 
-			if(rootApiResult.upFlagTrue()){
-				
+			if (rootApiResult.upFlagTrue()) {
+
 				int count = new UserCallFactory().resetPwd(input.getLoginName(), input.getLoginPwd());
-				
-				if(count == 1){
-					
+
+				if (count == 1) {
+
 					ucUserinfo.setLoginPwd(input.getLoginPwd());
 
 					ucUserinfo.setLastTime(new Date());
@@ -98,123 +103,125 @@ public class ApiUserResetPwd extends RootApiBase<ApiUserResetPwdInput, ApiUserRe
 					userServiceFactory.getUserInfoService().save(ucUserinfo);
 
 					UserLoginResult loginResult = userLogin(ucUserinfo.getLoginName(), ucUserinfo.getLoginPwd());
-					
-					if(loginResult.upFlagTrue()){
-						
+
+					if (loginResult.upFlagTrue()) {
+
 						resetPwdResult.setUserCode(ucUserinfo.getCode());
-						
+
 						resetPwdResult.setUserToken(loginResult.getToken());
-						
-					}else{
-						
+
+					} else {
+
 						resetPwdResult.setError(loginResult.getError());
-						
+
 						resetPwdResult.setStatus(loginResult.getStatus());
-						
+
 					}
-					
+
 				}
-				
-			}else{
-				
+
+			} else {
+
 				resetPwdResult.setError(rootApiResult.getError());
-				
+
 				resetPwdResult.setStatus(rootApiResult.getStatus());
-				
+
 			}
-			
+
 		}
-		
+
 	}
-	
+
 	/**
 	 * 重置密码
+	 * 
 	 * @param resetPwdResult
-	 * 		处理result
+	 *            处理result
 	 * @param input
-	 * 		输入参数
+	 *            输入参数
 	 * @param ucUserinfo
-	 * 		用户信息
+	 *            用户信息
 	 */
-	public void resetPwd(ApiUserResetPwdResult resetPwdResult,ApiUserResetPwdInput input,UcUserinfo ucUserinfo){
-		
-		String userCode = new UserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(), DefineUser.Login_System_Default);
-		
+	public void resetPwd(ApiUserResetPwdResult resetPwdResult, ApiUserResetPwdInput input, UcUserinfo ucUserinfo) {
+
+		String userCode = new UserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(),
+				DefineUser.Login_System_Default);
+
 		ucUserinfo = userServiceFactory.getUserInfoService().queryByCode(userCode);
-		
-		if(ucUserinfo == null){
-			
+
+		if (ucUserinfo == null) {
+
 			resetPwdResult.inError(81100003);
-			
+
 		}
-		
-		if(resetPwdResult.upFlagTrue()){
-			
-			if(StringUtils.equals(ucUserinfo.getLoginPwd(), input.getConfirmPwd())){
-				
+
+		if (resetPwdResult.upFlagTrue()) {
+
+			if (StringUtils.equals(ucUserinfo.getLoginPwd(), input.getConfirmPwd())) {
+
 				int count = new UserCallFactory().resetPwd(ucUserinfo.getLoginName(), input.getLoginPwd());
-				
-				if(count == 1){
-					
+
+				if (count == 1) {
+
 					ucUserinfo.setLoginPwd(input.getLoginPwd());
 
 					ucUserinfo.setLastTime(new Date());
 
-					userServiceFactory.getUserInfoService().save(ucUserinfo);	
-					
+					userServiceFactory.getUserInfoService().save(ucUserinfo);
+
 					UserLoginResult loginResult = userLogin(ucUserinfo.getLoginName(), ucUserinfo.getLoginPwd());
-					
-					if(loginResult.upFlagTrue()){
-						
+
+					if (loginResult.upFlagTrue()) {
+
 						resetPwdResult.setUserCode(ucUserinfo.getCode());
-						
+
 						resetPwdResult.setUserToken(loginResult.getToken());
-						
-					}else{
-						
+
+					} else {
+
 						resetPwdResult.setError(loginResult.getError());
-						
+
 						resetPwdResult.setStatus(loginResult.getStatus());
-						
+
 					}
-					
-				}else{
-					
+
+				} else {
+
 					resetPwdResult.inError(81100009);
-					
+
 				}
-				
-			}else{
-				
+
+			} else {
+
 				resetPwdResult.inError(81100005);
-				
+
 			}
-			
+
 		}
-		
+
 	}
-	
-	
+
 	/**
 	 * 用户登录
+	 * 
 	 * @param loginName
-	 * 		登录名
+	 *            登录名
 	 * @param pwd
-	 * 		密码
+	 *            密码
 	 * @return 登录结果
 	 */
-	public UserLoginResult userLogin(String loginName,String pwd){
-		
+	public UserLoginResult userLogin(String loginName, String pwd) {
+
 		UserLoginInput loginInput = new UserLoginInput();
-		
+
 		loginInput.setLoginName(loginName);
-		
+
 		loginInput.setLoginPass(pwd);
-		
+
 		loginInput.setLoginSystem(DefineUser.Login_System_Default);
-		
+
 		return userCallFactory.userLogin(loginInput);
-		
+
 	}
 
 }
