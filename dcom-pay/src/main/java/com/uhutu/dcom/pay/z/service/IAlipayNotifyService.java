@@ -7,6 +7,6 @@ import com.uhutu.dcom.pay.z.face.IPayService;
  * @author 逄小帅
  *
  */
-public interface IPayGateNotifyService extends IPayService {
+public interface IAlipayNotifyService extends IPayService {
 
 }

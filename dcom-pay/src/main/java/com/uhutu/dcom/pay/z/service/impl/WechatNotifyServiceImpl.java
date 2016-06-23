@@ -1,10 +1,9 @@
 package com.uhutu.dcom.pay.z.service.impl;
 
 import org.springframework.stereotype.Service;
-
 import com.uhutu.dcom.pay.z.face.IPayRequest;
 import com.uhutu.dcom.pay.z.face.IPayResponse;
-import com.uhutu.dcom.pay.z.service.IPayGateNotifyService;
+import com.uhutu.dcom.pay.z.service.IWechatNotifyService;
 import com.uhutu.zoocom.model.MDataMap;
 
 /**
@@ -13,7 +12,7 @@ import com.uhutu.zoocom.model.MDataMap;
  *
  */
 @Service
-public class PayGateNotifyServiceImpl implements IPayGateNotifyService {
+public class WechatNotifyServiceImpl implements IWechatNotifyService {
 
 	@Override
 	public IPayResponse doProcess(IPayRequest request,MDataMap paramMap) {

@@ -2,6 +2,11 @@ package com.uhutu.dcom.pay.z.service;
 
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.face.IPayResponse;
+import com.uhutu.dcom.pay.z.response.AlipayNotifyResponse;
+import com.uhutu.dcom.pay.z.response.WechatNotifyResponse;
+import com.uhutu.dcom.pay.z.util.BeanComponent;
+import com.uhutu.dcom.pay.z.util.XmlUtil;
+import com.uhutu.zoocom.model.MDataMap;
 
 /**
  * 支付通知组件
@@ -49,7 +54,29 @@ public class PayNotifyComponent {
 		
 		String notifyStr = "";
 		
+		if(payResponse instanceof WechatNotifyResponse){
+			
+			WechatNotifyResponse notifyResponse = (WechatNotifyResponse) payResponse;
+			
+			try {
+				
+				MDataMap dataMap = BeanComponent.getInstance().objectToMap(notifyResponse, null, false);
+				
+				notifyStr = XmlUtil.getInstance().mDataMapToXml(dataMap);
+				
+				
+				
+			} catch (Exception e) {
+				
+				notifyStr = e.getMessage();
+				
+			}
+			
+		}
+		
 		return notifyStr;
+		
+	
 		
 	}
 	
@@ -62,6 +89,18 @@ public class PayNotifyComponent {
 	public static String praseAlipayNotify(IPayResponse payResponse){
 		
 		String notifyStr = "";
+		
+		if(payResponse instanceof AlipayNotifyResponse){
+			
+			AlipayNotifyResponse notifyResponse = (AlipayNotifyResponse) payResponse;
+			
+			if(notifyResponse.upFlagTrue()){
+				
+				notifyStr = Boolean.TRUE.toString();
+				
+			}
+			
+		}
 		
 		return notifyStr;
 		
