@@ -1,9 +1,8 @@
 package com.uhutu.dcom.pay.z.service.impl;
 
-import java.util.Date;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.uhutu.dcom.component.z.util.WebClientComponent;
 import com.uhutu.dcom.pay.z.config.WechatConfig;
 import com.uhutu.dcom.pay.z.face.IPayRequest;
@@ -14,6 +13,7 @@ import com.uhutu.dcom.pay.z.response.WechatOrderResponse;
 import com.uhutu.dcom.pay.z.response.WechatPayResponse;
 import com.uhutu.dcom.pay.z.service.IWechatService;
 import com.uhutu.dcom.pay.z.util.BeanComponent;
+import com.uhutu.dcom.pay.z.util.WechatUtil;
 import com.uhutu.dcom.pay.z.util.XmlUtil;
 import com.uhutu.zoocom.helper.GsonHelper;
 import com.uhutu.zoocom.model.MDataMap;
@@ -108,9 +108,9 @@ public class WechatServiceImpl implements IWechatService {
 		
 		payResponse.setPrepayid(orderResponse.getPrepay_id());
 		
-		Date sendTime = new Date();
+		payResponse.setNoncestr(WechatUtil.getNonceStr());
 		
-		payResponse.setTimestamp(Long.toString(sendTime.getTime()));
+		payResponse.setTimestamp(WechatUtil.getTimeStamp());
 		
 		try {
 			
@@ -145,19 +145,21 @@ public class WechatServiceImpl implements IWechatService {
 		
 		orderRequest.setAppid(wechatConfig.getAppId());
 		
-		orderRequest.setBody("");
+		orderRequest.setBody(bizContentRequest.getBody());
 		
 		orderRequest.setMch_id(wechatConfig.getMchId());
 		
-		orderRequest.setNoncestr("");
+		orderRequest.setNoncestr(WechatUtil.getNonceStr());
 		
-		orderRequest.setNotify_url(wechatConfig.getNotifyUrl());
+		String notifyUrl = bizContentRequest.getRequestIP() + wechatConfig.getNotifyUrl();
 		
-		orderRequest.setOut_trade_no("");
+		orderRequest.setNotify_url(notifyUrl);
 		
-		orderRequest.setTime_expire("");
+		orderRequest.setOut_trade_no(bizContentRequest.getOrderCode());
 		
-		orderRequest.setTime_start("");
+		orderRequest.setTime_expire(DateFormatUtils.format(bizContentRequest.getTime_expire(), "yyyyMMddHHmmss"));
+		
+		orderRequest.setTime_start(DateFormatUtils.format(bizContentRequest.getTime_start(), "yyyyMMddHHmmss"));
 		
 		orderRequest.setTrade_type(wechatConfig.getTradeType());
 		

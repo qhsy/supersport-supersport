@@ -24,6 +24,9 @@ public class AlipayBizContentRequest extends AlipayUnifyRequest {
 	
 	/*订单有效时间*/
 	private Date expire; 
+	
+	/*请求ip地址*/
+	private String requestIP;
 
 	/**
 	 * 获取订单编号
@@ -103,6 +106,22 @@ public class AlipayBizContentRequest extends AlipayUnifyRequest {
 	 */
 	public void setExpire(Date expire) {
 		this.expire = expire;
+	}
+
+	/**
+	 * 请求地址
+	 * @return
+	 */
+	public String getRequestIP() {
+		return requestIP;
+	}
+
+	/**
+	 * 设置请求地址
+	 * @param requestIP
+	 */
+	public void setRequestIP(String requestIP) {
+		this.requestIP = requestIP;
 	}
 	
 }

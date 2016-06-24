@@ -70,7 +70,9 @@ public class AlipayServiceImpl implements IAlipayService {
 			
 			bizContentResponse.setIt_b_pay(DateFormatUtils.format(bizConentRequest.getExpire(), "yyyy-MM-dd HH:mm:ss"));
 			
-			bizContentResponse.setNotify_url(alipayConfig.getNotifyUrl());
+			String requestUrl = bizConentRequest.getRequestIP() + alipayConfig.getNotifyUrl();
+			
+			bizContentResponse.setNotify_url(requestUrl);
 			
 			bizContentResponse.setOut_trade_no(bizConentRequest.getOrderCode());
 			
