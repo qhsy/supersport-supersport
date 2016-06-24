@@ -145,6 +145,7 @@ public class HomePageSupport {
 						BeanUtils.copyProperties(info, infoApi);
 						infoApi.getUserBasicInfo().setNickName(userInfoApi.getNickName());
 						infoApi.getUserBasicInfo().setAboutHead(userInfoApi.getAboutHead());
+						infoApi.getUserBasicInfo().setType(userInfoApi.getType());
 						hmp.setInfo(infoApi);
 						hmp.setShowType("dzsd4107100110060003");
 						li.add(hmp);
