@@ -1,5 +1,5 @@
 #org.springsource.ide.eclipse.gradle.core.preferences.GradleProjectPreferences
-#Tue Jun 14 17:22:45 CST 2016
+#Fri Jun 24 14:26:15 CST 2016
 build.family.org.gradle.tooling.model.eclipse.HierarchicalEclipseProject=;../dcom-component;../dcom-config;
 org.springsource.ide.eclipse.gradle.linkedresources=
-org.springsource.ide.eclipse.gradle.rootprojectloc=
+org.springsource.ide.eclipse.gradle.rootprojectloc=../sportcloud

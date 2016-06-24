@@ -1,7 +1,6 @@
 package com.uhutu.dcom.pay.z.service.impl;
 
 import org.springframework.stereotype.Service;
-
 import com.uhutu.dcom.pay.z.face.IPayRequest;
 import com.uhutu.dcom.pay.z.face.IPayResponse;
 import com.uhutu.dcom.pay.z.service.IAlipayNotifyService;
@@ -17,8 +16,6 @@ public class AlipayNotifyServiceImpl implements IAlipayNotifyService {
 
 	@Override
 	public IPayResponse doProcess(IPayRequest request,MDataMap paramMap) {
-		
-		
 		
 		return null;
 		
