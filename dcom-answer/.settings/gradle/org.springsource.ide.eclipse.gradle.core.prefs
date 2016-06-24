@@ -1,0 +1,5 @@
+#org.springsource.ide.eclipse.gradle.core.preferences.GradleProjectPreferences
+#Fri Jun 24 15:22:50 CST 2016
+build.family.org.gradle.tooling.model.eclipse.HierarchicalEclipseProject=;../dcom-component;../dcom-config;
+org.springsource.ide.eclipse.gradle.linkedresources=
+org.springsource.ide.eclipse.gradle.rootprojectloc=
