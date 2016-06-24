@@ -29,3 +29,9 @@ project(':dcom-extend').projectDir = new File(settingsDir, '../dcom-extend')
 
 include ':dcom-pay'
 project(':dcom-pay').projectDir = new File(settingsDir, '../dcom-pay')
+
+include ':dcom-answer'
+project(':dcom-answer').projectDir = new File(settingsDir, '../dcom-answer')
+
+include ':dcom-evaluate'
+project(':dcom-evaluate').projectDir = new File(settingsDir, '../dcom-evaluate')
