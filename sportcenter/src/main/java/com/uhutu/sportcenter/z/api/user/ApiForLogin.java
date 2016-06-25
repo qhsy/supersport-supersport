@@ -85,9 +85,9 @@ public class ApiForLogin extends RootApiBase<ApiForLoginInput, ApiForLoginResult
 			MsgBody msgBody = new MsgBody();
 			msgBody.setMsgType(MsgTypeEnum.TIMTextElem.name());
 			TIMTextElem textElem = new TIMTextElem();
-			textElem.setText("您家水表已被查,您的登录手机号为：" + ucUserinfo.getCode());
+			textElem.setText("您家水表已被查,您的登录手机号为：" + ucUserinfo.getLoginName());
 			msgBody.setMsgContent(textElem);
-			msgInfo.getMsgBody()[0]=msgBody;
+			msgInfo.getMsgBody()[0] = msgBody;
 			TecentJoinBase base = new TecentJoinBase();
 			TecentResult tecentResult = base.postTecent(ConfigDcomUser.upConfig().getLoginSdkSendmsg(), msgInfo);
 			System.out.println(tecentResult.getActionStatus());
