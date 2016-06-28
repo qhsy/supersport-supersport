@@ -17,13 +17,12 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  *
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "orderCode" }), indexes = {
-		@Index(columnList = "orderCode") })
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "code" }), indexes = { @Index(columnList = "code") })
 public class OcOrderDetail extends BaseEntity {
 
 	@ZooData(name = "订单编号")
 	@Column(length = 50)
-	private String orderCode;
+	private String code;
 
 	@ZooData(name = "商品编号", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
 	@Column(length = 30)
@@ -40,12 +39,12 @@ public class OcOrderDetail extends BaseEntity {
 	@Column(length = 30)
 	private int num;
 
-	public String getOrderCode() {
-		return orderCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setOrderCode(String orderCode) {
-		this.orderCode = orderCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getProductCode() {

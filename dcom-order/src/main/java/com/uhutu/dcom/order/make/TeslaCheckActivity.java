@@ -5,18 +5,16 @@ import com.uhutu.dcom.order.orderResult.TeslaXResult;
 import com.uhutu.dcom.order.top.TeslaTopOrderMake;
 
 /**
- * 校验是否存在登录账户,不存在就新创建一个
+ * 创建订单
  * 
  * @author xiegj
  *
  */
-public class TeslaCheckLogin extends TeslaTopOrderMake {
+public class TeslaCheckActivity extends TeslaTopOrderMake {
 
 	public TeslaXResult doRefresh(TeslaXOrder teslaOrder) {
 		TeslaXResult result = new TeslaXResult();
-		
-		
-		
+
 		return result;
 	}
 

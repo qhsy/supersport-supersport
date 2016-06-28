@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
+	<data table="ZwSystemDefine">
+		<item code="dzsd488810011001" defineName="问题状态" parentCode="dzsd48881001" />
+		<item code="dzsd4888100110010001" defineName="待回答" parentCode="dzsd488810011001" />
+		<item code="dzsd4888100110010002" defineName="已回答" parentCode="dzsd488810011001" />
+		<item code="dzsd4888100110010003" defineName="已拒绝回答" parentCode="dzsd488810011001" />
+		<item code="dzsd488810011002" defineName="分享范围" parentCode="dzsd48881001" />
+		<item code="dzsd4888100110020001" defineName="私密" parentCode="dzsd488810011002" />
+		<item code="dzsd4888100110020002" defineName="公开" parentCode="dzsd488810011002" />
+	</data>
+
+</db>

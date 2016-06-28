@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
+	<data>
+<!-- 		<item code="dmtg48881001" nodeName="活动管理" parentCode="" /> -->
+<!-- 		<item code="dmtg488810011001" nodeName="活动管理" parentCode="dmtg48881001" /> -->
+<!-- 		<item code="dmtg4888100110011001" nodeName="活动信息" parentCode="dmtg488810011001" pageUrl="/zpage/pg/com_uhutu_dcom_activity_z_page_AdvertiseInfoPage" pageIcon="glyphicon-heart-empty" /> -->
+	</data>
+
+</db>
