@@ -18,6 +18,11 @@ jar {
 dependencies {
 	compile group: zooInitGroupId, name: 'zoozero', version: zooInitVersion, changing: true
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile group: 'commons-beanutils', name: 'commons-beanutils', version: zooVersionCommonsBeanutils
+	compile group: 'commons-collections', name: 'commons-collections', version: zooVersionCommonsCollections
+	compile group: 'commons-logging', name: 'commons-logging', version: zooVersionCommonsLogging
+	compile group: 'net.sf.ezmorph', name: 'ezmorph', version: zooVersionEzmorph
+	compile group: 'netsf', name: 'jsonlib', version: zooVersionJsonLib
 	compile group: 'com.google.code.gson', name: 'gson', version: zooVersionGson
 	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: zooVersionApacheHttpClient
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
