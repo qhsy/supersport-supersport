@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.pay.z.common.Constants;
 import com.uhutu.dcom.pay.z.util.BeanComponent;
 import com.uhutu.dcom.pay.z.util.MD5;
+import com.uhutu.zoocom.helper.SecrurityHelper;
 import com.uhutu.zoocom.model.MDataMap;
 
 /**
@@ -37,8 +38,24 @@ public class WechatConfig {
 	private String orderUrl;
 	
 	/*签名key*/
-	@Value("wechat_sign_key")
+	@Value("${wechat_sign_key}")
 	private String signKey;
+	
+	/*服务号appid*/
+	@Value("${wx_service_appid}")
+	private String serviceAppId;
+	
+	/*服务号密钥*/
+	@Value("${wx_service_key}")
+	private String serviceKey;
+	
+	/*微信token url*/
+	@Value("${wechat_token_url}")
+	private String serviceTokenUrl;
+	
+	/*微信ticket url*/
+	@Value("${wechat_ticket_url}")
+	private String serviceTicketUrl;
 
 	/**
 	 * 获取app编号
@@ -109,6 +126,52 @@ public class WechatConfig {
 		content = content + Constants.SIGN_PARAM_SPLIT_AND + "key=" + getSignKey();
 		
 		return MD5.sign(content, Constants.CHARSET_UTF8).toUpperCase();
+		
+	}
+
+	/**
+	 * 获取服务号appid
+	 * @return
+	 */
+	public String getServiceAppId() {
+		return serviceAppId;
+	}
+
+	/**
+	 * 服务密钥
+	 * @return
+	 */
+	public String getServiceKey() {
+		return serviceKey;
+	}
+
+	/**
+	 * 公众号访问token路径
+	 * @return
+	 */
+	public String getServiceTokenUrl() {
+		return serviceTokenUrl;
+	}
+
+	/**
+	 * jsapi ticket 请求路径
+	 * @return
+	 */
+	public String getServiceTicketUrl() {
+		return serviceTicketUrl;
+	}
+	
+	/**
+	 * 获取sha1加密后的签名
+	 * @param mDataMap
+	 * 		参数集合
+	 * @return 签名字符串
+	 */
+	public String getShaSign(MDataMap mDataMap){
+		
+		String content = BeanComponent.getInstance().sortParam(Constants.SIGN_PARAM_SPLIT_AND, mDataMap);
+		
+		return SecrurityHelper.sha1(content);
 		
 	}
 	
