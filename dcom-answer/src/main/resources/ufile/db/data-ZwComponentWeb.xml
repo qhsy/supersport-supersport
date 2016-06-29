@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
+	<data table="ZwComponentWeb">
+		<item code="dzcw488810010001" componentClass="com.uhutu.zooweb.component.DialogComponent"
+			clientExtend="page=/pg/com_uhutu_dcom_answer_z_page_component_AwQuestionInfoPage&amp;max=10"
+			serverDefine="table=AwQuestionInfo&amp;text=content&amp;value=code" />
+	</data>
+
+</db>

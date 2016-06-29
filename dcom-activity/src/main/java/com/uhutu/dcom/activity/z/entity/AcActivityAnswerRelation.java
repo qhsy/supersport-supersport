@@ -7,6 +7,10 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebElement;
+import com.uhutu.zoocom.define.DefineWebInc;
+import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebSort;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -20,11 +24,15 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 		@Index(columnList = "activityCode") })
 public class AcActivityAnswerRelation extends BaseEntity {
 
-	@ZooData(name = "活动编号")
+	@ZooData(name = "活动名称", sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process,
+			DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param
+					+ "=activityCode")
 	@Column(length = 50)
 	private String activityCode;
 
-	@ZooData(name = "问答编号")
+	@ZooData(name = "问答标题", require = "1", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw488810010001" })
 	@Column(length = 50)
 	private String answerCode;
 

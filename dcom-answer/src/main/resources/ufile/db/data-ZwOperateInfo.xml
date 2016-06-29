@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
+	<data table="ZwOperateInfo">
+		<item code="dzoi48880001" operateName="已关联活动" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_activity_z_page_AcActivityAnswerRelPage?u_activityCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi48880002" operateName="关联" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_activity_z_page_AcActivityAnswerRelPage?u_activityCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+	</data>
+
+</db>
