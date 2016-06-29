@@ -6,6 +6,9 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebElement;
+import com.uhutu.zoocom.define.DefineWebInc;
+import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -26,37 +29,39 @@ public class AwQuestionInfo extends BaseEntity {
 	@Column(length = 255)
 	private String content;
 
-	@ZooData(name = "提问人用户编号")
+	@ZooData(name = "提问人", element = DefineWebElement.Model, inc = { DefineWebInc.Web_Component + "=dzcw451010010001" })
 	@Column(length = 50)
 	private String questionUserCode;
 
-	@ZooData(name = "回答人用户编号")
+	@ZooData(name = "回答人", element = DefineWebElement.Model, inc = { DefineWebInc.Web_Component + "=dzcw451010010001" })
 	@Column(length = 50)
 	private String answerUserCode;
 
-	@ZooData(name = "提问金额")
+	@ZooData(name = "提问金额(RMB)", sort = { DefineWebPage.Page_Query + "=0" })
 	private int money;
 
-	@ZooData(name = "偷听金额")
+	@ZooData(name = "偷听金额(RMB)", sort = { DefineWebPage.Page_Query + "=0" })
 	private int sellMoney;
 
-	@ZooData(name = "状态", demo = "dzsd4888100110010001:待回答,dzsd4888100110010002:已回答,dzsd4888100110010003:已拒绝回答")
+	@ZooData(name = "状态", element = DefineWebElement.Select, inc = { DefineWebInc.System_Define
+			+ "=dzsd488810011001" }, demo = "dzsd4888100110010001:待回答,dzsd4888100110010002:已回答,dzsd4888100110010003:已拒绝回答")
 	@Column(length = 50)
 	private String status;
 
-	@ZooData(name = "分享范围", demo = "dzsd4888100110020001:私密,dzsd4888100110020002:公开")
+	@ZooData(name = "分享范围", element = DefineWebElement.Select, inc = { DefineWebInc.System_Define
+			+ "=dzsd488810011002" }, demo = "dzsd4888100110020001:私密,dzsd4888100110020002:公开")
 	@Column(length = 50)
 	private String scope;
 
-	@ZooData(name = "语音路径")
+	@ZooData(name = "语音路径", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 500)
 	private String url;
 
-	@ZooData(name = "提问时间")
+	@ZooData(name = "提问时间", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 50)
 	private String questionTime;
 
-	@ZooData(name = "回答时间")
+	@ZooData(name = "回答时间", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 50)
 	private String answerTime;
 
