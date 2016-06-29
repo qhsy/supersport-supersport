@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.pay.z.common.Constants;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
-import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
 import com.uhutu.dcom.pay.z.util.BeanComponent;
 import com.uhutu.dcom.pay.z.util.MD5;
 import com.uhutu.zoocom.helper.SecrurityHelper;
