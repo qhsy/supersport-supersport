@@ -1,9 +1,9 @@
 package com.uhutu.dcom.pay.z.service.impl;
 
-import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.uhutu.dcom.component.z.util.WebClientComponent;
+
+import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.config.WechatConfig;
 import com.uhutu.dcom.pay.z.face.IPayRequest;
 import com.uhutu.dcom.pay.z.face.IPayResponse;
@@ -11,11 +11,10 @@ import com.uhutu.dcom.pay.z.request.WechatBizContentRequest;
 import com.uhutu.dcom.pay.z.request.WechatOrderRequest;
 import com.uhutu.dcom.pay.z.response.WechatOrderResponse;
 import com.uhutu.dcom.pay.z.response.WechatPayResponse;
+import com.uhutu.dcom.pay.z.service.IWechatOrderService;
 import com.uhutu.dcom.pay.z.service.IWechatService;
 import com.uhutu.dcom.pay.z.util.BeanComponent;
 import com.uhutu.dcom.pay.z.util.WechatUtil;
-import com.uhutu.dcom.pay.z.util.XmlUtil;
-import com.uhutu.zoocom.helper.GsonHelper;
 import com.uhutu.zoocom.model.MDataMap;
 
 /**
@@ -25,6 +24,9 @@ import com.uhutu.zoocom.model.MDataMap;
  */
 @Service
 public class WechatServiceImpl implements IWechatService {
+	
+	@Autowired
+	private IWechatOrderService wechatOrderService;
 	
 	@Autowired
 	private WechatConfig wechatConfig;
@@ -40,17 +42,9 @@ public class WechatServiceImpl implements IWechatService {
 			
 			try {
 				
-				WechatOrderResponse orderResponse = new WechatOrderResponse();
+				WechatOrderRequest orderRequest = wechatOrderService.initOrderRequest(bizContentRequest,PayProcessEnum.WECHAT);
 				
-				WechatOrderRequest orderRequest = initOrderRequest(bizContentRequest);
-				
-				MDataMap requestContentMap = BeanComponent.getInstance().objectToMap(orderRequest, null, false);
-				
-				String xmlStr = XmlUtil.getInstance().mDataMapToXml(requestContentMap);
-				
-				String responseMsg = WebClientComponent.doXmpRequest(wechatConfig.getOrderUrl(), xmlStr);
-				
-				orderResponse = GsonHelper.fromJson(responseMsg, orderResponse);
+				WechatOrderResponse orderResponse = (WechatOrderResponse) wechatOrderService.doProcess(orderRequest, new MDataMap());
 				
 				if(orderResponse.upReturnFalg()){
 					
@@ -116,7 +110,7 @@ public class WechatServiceImpl implements IWechatService {
 			
 			MDataMap dataMap = BeanComponent.getInstance().objectToMap(payResponse, null, false);
 			
-			String sign = wechatConfig.getSign(dataMap);
+			String sign = wechatConfig.getSign(dataMap,PayProcessEnum.WECHAT);
 			
 			payResponse.setSign(sign);
 			
@@ -130,54 +124,6 @@ public class WechatServiceImpl implements IWechatService {
 		
 		return payResponse;
 		
-		
-	}
-	
-	/**
-	 * 初始化统一下单请求信息
-	 * @param bizContentRequest
-	 * 		业务内容请求信息
-	 * @return 微信订单请求对象
-	 */
-	public WechatOrderRequest initOrderRequest(WechatBizContentRequest bizContentRequest){
-		
-		WechatOrderRequest orderRequest = new WechatOrderRequest();
-		
-		orderRequest.setAppid(wechatConfig.getAppId());
-		
-		orderRequest.setBody(bizContentRequest.getBody());
-		
-		orderRequest.setMch_id(wechatConfig.getMchId());
-		
-		orderRequest.setNoncestr(WechatUtil.getNonceStr());
-		
-		String notifyUrl = bizContentRequest.getRequestIP() + wechatConfig.getNotifyUrl();
-		
-		orderRequest.setNotify_url(notifyUrl);
-		
-		orderRequest.setOut_trade_no(bizContentRequest.getOrderCode());
-		
-		orderRequest.setTime_expire(DateFormatUtils.format(bizContentRequest.getTime_expire(), "yyyyMMddHHmmss"));
-		
-		orderRequest.setTime_start(DateFormatUtils.format(bizContentRequest.getTime_start(), "yyyyMMddHHmmss"));
-		
-		orderRequest.setTrade_type(wechatConfig.getTradeType());
-		
-		try {
-			
-			MDataMap mDataMap = BeanComponent.getInstance().objectToMap(orderRequest, null, false);
-			
-			String sign = wechatConfig.getSign(mDataMap);
-			
-			orderRequest.setSign(sign);
-			
-		} catch (Exception e) {
-			
-			orderRequest = null;
-			
-		}
-		
-		return orderRequest;
 		
 	}
 

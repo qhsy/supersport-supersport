@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.pay.z.common.Constants;
+import com.uhutu.dcom.pay.z.common.PayProcessEnum;
+import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
 import com.uhutu.dcom.pay.z.util.BeanComponent;
 import com.uhutu.dcom.pay.z.util.MD5;
 import com.uhutu.zoocom.helper.SecrurityHelper;
@@ -45,17 +47,21 @@ public class WechatConfig {
 	@Value("${wx_service_appid}")
 	private String serviceAppId;
 	
-	/*服务号密钥*/
+	/*微信服务号密钥*/
 	@Value("${wx_service_key}")
 	private String serviceKey;
 	
-	/*微信token url*/
+	/*微信公众号token url*/
 	@Value("${wechat_token_url}")
 	private String serviceTokenUrl;
 	
-	/*微信ticket url*/
+	/*微信公众号ticket url*/
 	@Value("${wechat_ticket_url}")
 	private String serviceTicketUrl;
+	
+	/*微信公众号商户编号*/
+	@Value("${wechat_service_mchid}")
+	private String serviceMchId;
 
 	/**
 	 * 获取app编号
@@ -106,6 +112,30 @@ public class WechatConfig {
 	public String getSignKey() {
 		return signKey;
 	}
+	
+	/**
+	 * 获取签名密钥
+	 * @return
+	 */
+	public String getSignKey(PayProcessEnum processEnum) {
+		
+		String key = "";
+		
+		switch (processEnum) {
+		case WECHAT_SERVICE_CONFIG:
+			key = getServiceKey();
+			break;
+		
+		case WECHAT:
+			key = getSignKey();
+			break;
+
+		default:
+			break;
+		}
+		
+		return key;
+	}
 
 	/**
 	 * 获取签名
@@ -113,17 +143,11 @@ public class WechatConfig {
 	 * 		参数集合
 	 * @return 签名
 	 */
-	public String getSign(MDataMap paramMap){
-		
-		if(paramMap.containsKey("sign")){
-			
-			paramMap.remove("sign");
-			
-		}
+	public String getSign(MDataMap paramMap,PayProcessEnum processEnum){
 		
 		String content = BeanComponent.getInstance().sortParam(Constants.SIGN_PARAM_SPLIT_AND, paramMap);
 		
-		content = content + Constants.SIGN_PARAM_SPLIT_AND + "key=" + getSignKey();
+		content = content + Constants.SIGN_PARAM_SPLIT_AND + "key=" + getSignKey(processEnum);
 		
 		return MD5.sign(content, Constants.CHARSET_UTF8).toUpperCase();
 		
@@ -161,6 +185,10 @@ public class WechatConfig {
 		return serviceTicketUrl;
 	}
 	
+	public String getServiceMchId() {
+		return serviceMchId;
+	}
+
 	/**
 	 * 获取sha1加密后的签名
 	 * @param mDataMap
@@ -172,6 +200,60 @@ public class WechatConfig {
 		String content = BeanComponent.getInstance().sortParam(Constants.SIGN_PARAM_SPLIT_AND, mDataMap);
 		
 		return SecrurityHelper.sha1(content);
+		
+	}
+	
+	/**
+	 * 获取appid
+	 * @param processEnum
+	 * 		枚举类型
+	 * @return appid
+	 */
+	public String getAppId(PayProcessEnum processEnum){
+		
+		String appid = "";
+		
+		switch (processEnum) {
+		case WECHAT_SERVICE_CONFIG:
+			appid = getServiceAppId();
+			break;
+		
+		case WECHAT:
+			appid = getAppId();
+			break;
+
+		default:
+			break;
+		}
+		
+		return appid;
+		
+	}
+	
+	/**
+	 * 获取mchid
+	 * @param processEnum
+	 * 		枚举类型
+	 * @return mchid
+	 */
+	public String getMchId(PayProcessEnum processEnum){
+		
+		String mchid = "";
+		
+		switch (processEnum) {
+		case WECHAT_SERVICE_CONFIG:
+			mchid = getServiceMchId();
+			break;
+		
+		case WECHAT:
+			mchid = getMchId();
+			break;
+
+		default:
+			break;
+		}
+		
+		return mchid;
 		
 	}
 	

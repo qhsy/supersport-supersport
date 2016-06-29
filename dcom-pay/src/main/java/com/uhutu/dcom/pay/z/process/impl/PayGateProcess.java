@@ -11,6 +11,7 @@ import com.uhutu.dcom.pay.z.process.IPayGateProcess;
 import com.uhutu.dcom.pay.z.service.IAlipayNotifyService;
 import com.uhutu.dcom.pay.z.service.IAlipayService;
 import com.uhutu.dcom.pay.z.service.IWechatConfigService;
+import com.uhutu.dcom.pay.z.service.IWechatH5PayService;
 import com.uhutu.dcom.pay.z.service.IWechatNotifyService;
 import com.uhutu.dcom.pay.z.service.IWechatService;
 import com.uhutu.zoocom.model.MDataMap;
@@ -37,6 +38,9 @@ public class PayGateProcess implements IPayGateProcess {
 	
 	@Autowired
 	private IWechatConfigService wechatConfigService;
+	
+	@Autowired
+	private IWechatH5PayService wechatH5PayService;
 
 	@Override
 	public IPayResponse process(PayProcessEnum processEnum,IPayRequest request,MDataMap paramMap) {
@@ -66,6 +70,9 @@ public class PayGateProcess implements IPayGateProcess {
 			break;
 		case WECHAT_SERVICE_CONFIG:
 			payService = wechatConfigService;
+			break;
+		case WECHAT_H5:
+			payService = wechatH5PayService;
 			break;
 
 		default:

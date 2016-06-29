@@ -1,11 +1,13 @@
 package com.uhutu.dcom.pay.z.response;
 
+import com.uhutu.dcom.pay.z.face.IPayResponse;
+
 /**
  * 微信后台接口统一响应参数
  * @author 逄小帅
  *
  */
-public class WechatUnifyResponse{
+public class WechatUnifyResponse implements IPayResponse{
 	
 	/*返回状态码*/
 	private String return_code;
