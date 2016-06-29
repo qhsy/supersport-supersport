@@ -161,7 +161,7 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 		initFansNum(apiUserInfo);
 		
 		/*初始化用户操作标识*/
-		String socialFlag = initSocialFlag(apiUserInfo.getUserCode());
+		String socialFlag = initSocialFlag(userCode);
 		
 		apiUserInfo.setSocialFlag(socialFlag);
 		
