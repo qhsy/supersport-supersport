@@ -4,7 +4,7 @@
 	<data>
 		<item code="dmtg41131001" nodeName="活动管理" parentCode="" />
 		<item code="dmtg411310011001" nodeName="活动管理" parentCode="dmtg41131001" />
-		<item code="dmtg4113100110011001" nodeName="活动信息" parentCode="dmtg411310011001" pageUrl="/zpage/pg/com_uhutu_dcom_activity_z_page_AdvertiseInfoPage" pageIcon="glyphicon-heart-empty" />
+		<item code="dmtg4113100110011001" nodeName="活动信息" parentCode="dmtg411310011001" pageUrl="/zpage/pg/com_uhutu_dcom_activity_z_page_AcActivityAnswerInfoPage" pageIcon="glyphicon-heart-empty" />
 	</data>
 
 </db>

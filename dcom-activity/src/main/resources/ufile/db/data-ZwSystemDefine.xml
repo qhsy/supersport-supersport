@@ -3,9 +3,8 @@
 	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
 	<data table="ZwSystemDefine">
 		<item code="dzsd411310011001" defineName="活动状态" parentCode="dzsd41131001" />
-		<item code="dzsd4113100110010001" defineName="报名中" parentCode="dzsd411310011001" />
-		<item code="dzsd4113100110010002" defineName="报名截止" parentCode="dzsd411310011001" />
-		<item code="dzsd4113100110010003" defineName="已结束" parentCode="dzsd411310011001" />
+		<item code="dzsd4113100110010001" defineName="未发布" parentCode="dzsd411310011001" />
+		<item code="dzsd4113100110010002" defineName="已发布" parentCode="dzsd411310011001" />
 	</data>
 
 </db>

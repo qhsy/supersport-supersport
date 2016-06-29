@@ -70,12 +70,6 @@ public class OcOrderInfo extends BaseEntity {
 	@Column(length = 50)
 	private String appVersion;
 
-	OcOrderDetail detail = new OcOrderDetail();
-
-	OcOrderPay pay = new OcOrderPay();
-
-	OcOrderActivity activity = new OcOrderActivity();
-
 	public String getCode() {
 		return code;
 	}
@@ -154,30 +148,6 @@ public class OcOrderInfo extends BaseEntity {
 
 	public void setAppVersion(String appVersion) {
 		this.appVersion = appVersion;
-	}
-
-	public OcOrderDetail getDetail() {
-		return detail;
-	}
-
-	public void setDetail(OcOrderDetail detail) {
-		this.detail = detail;
-	}
-
-	public OcOrderPay getPay() {
-		return pay;
-	}
-
-	public void setPay(OcOrderPay pay) {
-		this.pay = pay;
-	}
-
-	public OcOrderActivity getActivity() {
-		return activity;
-	}
-
-	public void setActivity(OcOrderActivity activity) {
-		this.activity = activity;
 	}
 
 }
