@@ -10,6 +10,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -22,20 +23,20 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "code" }), indexes = { @Index(columnList = "code") })
 public class AcActivityAnswerInfo extends BaseEntity {
 
-	@ZooData(name = "活动编号")
+	@ZooData(name = "活动编号", inc = DefineWebInc.Insert_Code + "=ACBH", sort = { DefineWebPage.Page_Add + "=1",
+			DefineWebPage.Page_Edit + "=0" })
 	@Column(length = 50)
 	private String code;
 
-	@ZooData(name = "活动名称")
+	@ZooData(name = "活动名称", require = "1")
 	@Column(length = 255)
 	private String name;
 
-	@ZooData(name = "活动价格")
+	@ZooData(name = "活动价格", require = "1", verify = { DefineWebVerify.Base_Number })
 	private double price;
 
 	@ZooData(name = "活动状态", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd411310011001" }, sort = { DefineWebPage.Page_Add + "=0",
-					DefineWebPage.Page_Edit + "=0" })
+			DefineWebInc.System_Define + "=dzsd411310011001" }, require = "1")
 	@Column(length = 30)
 	private String status;
 

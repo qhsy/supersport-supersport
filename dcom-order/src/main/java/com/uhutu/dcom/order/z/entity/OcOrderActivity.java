@@ -32,6 +32,9 @@ public class OcOrderActivity extends BaseEntity {
 	@Column(length = 30)
 	private String activityCode;
 
+	@ZooData(name = "商品金额")
+	private double productPrice;
+
 	@ZooData(name = "商品活动金额")
 	private double productActivityPrice;
 
@@ -67,5 +70,12 @@ public class OcOrderActivity extends BaseEntity {
 		this.productActivityPrice = productActivityPrice;
 	}
 
-	
+	public double getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(double productPrice) {
+		this.productPrice = productPrice;
+	}
+
 }

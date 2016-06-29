@@ -14,6 +14,7 @@
 		<item code="dzsd4112100110030001" defineName="未付款" parentCode="dzsd411210011003" />
 		<item code="dzsd4112100110030002" defineName="付款完成" parentCode="dzsd411210011003" />
 		<item code="dzsd4112100110030003" defineName="已结束" parentCode="dzsd411210011003" />
+		<item code="dzsd4112100110030004" defineName="已取消" parentCode="dzsd411210011003" />
 		<item code="dzsd411210011004" defineName="支付类型" parentCode="dzsd41121001" />
 		<item code="dzsd4112100110040001" defineName="支付宝" parentCode="dzsd411210011004" />
 		<item code="dzsd4112100110040002" defineName="微信" parentCode="dzsd411210011004" />
