@@ -24,6 +24,7 @@ import com.uhutu.sportcenter.z.api.extend.ApiSendSms;
 import com.uhutu.sportcenter.z.api.home.APiStartPage;
 import com.uhutu.sportcenter.z.api.home.ApiHomePage;
 import com.uhutu.sportcenter.z.api.label.ApiForLabels;
+import com.uhutu.sportcenter.z.api.pay.ApiWechatConfigInfo;
 import com.uhutu.sportcenter.z.api.remark.ApiPublishRemark;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkCount;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkList;
@@ -196,6 +197,9 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiForTecentSig apiForTecentSig;
+	
+	@Autowired
+	private ApiWechatConfigInfo apiWechatConfigInfo;
 
 	public ApiContentDetailInfo getContentDetailInfo() {
 		return contentDetailInfo;
@@ -391,6 +395,10 @@ public class ApiFactory {
 
 	public ApiForTecentSig getApiForTecentSig() {
 		return apiForTecentSig;
+	}
+
+	public ApiWechatConfigInfo getApiWechatConfigInfo() {
+		return apiWechatConfigInfo;
 	}
 	
 }
