@@ -61,7 +61,7 @@ public class WechatTicketServiceImpl implements IWechatTicketService {
 				
 				String paramStr = WechatUtil.conact(mdataMap, Constants.SIGN_PARAM_SPLIT_QUEAL, Constants.SIGN_PARAM_SPLIT_QUEAL);
 				
-				String sUrl = payConfigFactory.getWechatConfig().getServiceTicketUrl()+"?"+paramStr;
+				String sUrl = payConfigFactory.getWechatConfig().getServiceTicketUrl()+paramStr;
 				
 				String returnMsg = WebClientSupport.create().doGet(sUrl);
 				

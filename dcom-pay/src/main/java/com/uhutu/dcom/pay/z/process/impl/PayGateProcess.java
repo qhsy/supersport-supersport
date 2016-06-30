@@ -8,12 +8,7 @@ import com.uhutu.dcom.pay.z.face.IPayRequest;
 import com.uhutu.dcom.pay.z.face.IPayResponse;
 import com.uhutu.dcom.pay.z.face.IPayService;
 import com.uhutu.dcom.pay.z.process.IPayGateProcess;
-import com.uhutu.dcom.pay.z.service.IAlipayNotifyService;
-import com.uhutu.dcom.pay.z.service.IAlipayService;
-import com.uhutu.dcom.pay.z.service.IWechatConfigService;
-import com.uhutu.dcom.pay.z.service.IWechatH5PayService;
-import com.uhutu.dcom.pay.z.service.IWechatNotifyService;
-import com.uhutu.dcom.pay.z.service.IWechatService;
+import com.uhutu.dcom.pay.z.service.PayServiceFactory;
 import com.uhutu.zoocom.model.MDataMap;
 
 /**
@@ -25,22 +20,7 @@ import com.uhutu.zoocom.model.MDataMap;
 public class PayGateProcess implements IPayGateProcess {
 	
 	@Autowired
-	private IAlipayService alipayService;
-	
-	@Autowired
-	private IWechatService wechatService;
-	
-	@Autowired 
-	private IAlipayNotifyService alipayNotifyService;
-	
-	@Autowired
-	private IWechatNotifyService wechatNotifyService;
-	
-	@Autowired
-	private IWechatConfigService wechatConfigService;
-	
-	@Autowired
-	private IWechatH5PayService wechatH5PayService;
+	private PayServiceFactory payServiceFactory;
 
 	@Override
 	public IPayResponse process(PayProcessEnum processEnum,IPayRequest request,MDataMap paramMap) {
@@ -55,24 +35,28 @@ public class PayGateProcess implements IPayGateProcess {
 
 		switch (processEnum) {
 		case ALIPAY:
-			payService = alipayService;
+			payService = payServiceFactory.getAlipayService();
 			break;
-
 		case WECHAT:
-			payService = wechatService;
-			break;
-		
+			payService = payServiceFactory.getWechatService();
+			break;		
 		case WECHAT_NOTIFY:
-			payService = wechatNotifyService;
+			payService = payServiceFactory.getWechatNotifyService();
 			break;
 		case ALIPAY_NOTIFY:
-			payService = alipayNotifyService;
+			payService = payServiceFactory.getWechatNotifyService();
 			break;
 		case WECHAT_SERVICE_CONFIG:
-			payService = wechatConfigService;
+			payService = payServiceFactory.getWechatConfigService();
 			break;
 		case WECHAT_H5:
-			payService = wechatH5PayService;
+			payService = payServiceFactory.getWechatH5PayService();
+			break;
+		case WECHAT_AUTH:
+			payService = payServiceFactory.getWechatAuthService();
+			break;
+		case WECHAT_USER:
+			payService = payServiceFactory.getWechatUserInfoService();
 			break;
 
 		default:

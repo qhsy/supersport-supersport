@@ -71,7 +71,7 @@ public class WechatAccessTokenServiceImpl implements IWechatAccessTokenService {
 				
 				String paramStr = WechatUtil.conact(mdataMap, Constants.SIGN_PARAM_SPLIT_QUEAL, Constants.SIGN_PARAM_SPLIT_QUEAL);
 				
-				String sUrl = payConfigFactory.getWechatConfig().getServiceTokenUrl()+"?"+paramStr;
+				String sUrl = payConfigFactory.getWechatConfig().getServiceTokenUrl()+paramStr;
 				
 				String returnMsg = WebClientSupport.create().doGet(sUrl);
 				

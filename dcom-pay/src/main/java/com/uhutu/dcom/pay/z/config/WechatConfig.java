@@ -61,6 +61,12 @@ public class WechatConfig {
 	/*微信公众号商户编号*/
 	@Value("${wechat_service_mchid}")
 	private String serviceMchId;
+	
+	@Value("${wechat_auth_url}")
+	private String serviceAuthUrl;
+	
+	@Value("${wechat_userinfo_url}")
+	private String serviceUserInfoUrl;
 
 	/**
 	 * 获取app编号
@@ -188,6 +194,10 @@ public class WechatConfig {
 		return serviceMchId;
 	}
 
+	public String getServiceAuthUrl() {
+		return serviceAuthUrl;
+	}
+
 	/**
 	 * 获取sha1加密后的签名
 	 * @param mDataMap
@@ -254,6 +264,10 @@ public class WechatConfig {
 		
 		return mchid;
 		
+	}
+
+	public String getServiceUserInfoUrl() {
+		return serviceUserInfoUrl;
 	}
 	
 	
