@@ -10,7 +10,6 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
-import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -32,7 +31,7 @@ public class AcActivityAnswerInfo extends BaseEntity {
 	@Column(length = 255)
 	private String name;
 
-	@ZooData(name = "活动价格", require = "1", verify = { DefineWebVerify.Base_Number })
+	@ZooData(name = "活动价格", require = "1")
 	private double price;
 
 	@ZooData(name = "活动状态", element = DefineWebElement.Select, inc = {

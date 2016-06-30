@@ -31,7 +31,7 @@ public class AcActivityAnswerRelation extends BaseEntity {
 	@Column(length = 50)
 	private String activityCode;
 
-	@ZooData(name = "问答标题", require = "1", element = DefineWebElement.Model, inc = {
+	@ZooData(name = "问达", require = "1", element = DefineWebElement.Model, inc = {
 			DefineWebInc.Web_Component + "=dzcw488810010001" })
 	@Column(length = 50)
 	private String answerCode;
