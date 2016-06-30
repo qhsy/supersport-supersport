@@ -2,9 +2,6 @@ package com.uhutu.dcom.activity.z.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Index;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
@@ -20,8 +17,6 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  *
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "activityCode" }), indexes = {
-		@Index(columnList = "activityCode") })
 public class AcActivityAnswerRelation extends BaseEntity {
 
 	@ZooData(name = "活动名称", sort = { DefineWebPage.Page_Query + "=0",
