@@ -30,5 +30,13 @@ public interface IUserInfoSocialService {
 	 * @return 社交类用户信息
 	 */
 	public UcUserinfoSocial queryByUserCode(String userCode);
+	
+	/**
+	 * 根据openid获取用户信息
+	 * @param openId
+	 * 		开放标识
+	 * @return 用户社交信息
+	 */
+	public UcUserinfoSocial queryByOpenId(String openId);
 
 }

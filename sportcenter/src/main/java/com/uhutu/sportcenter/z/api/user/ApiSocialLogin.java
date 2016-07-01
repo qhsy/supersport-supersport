@@ -36,11 +36,13 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 
 	public ApiSocialLoginResult process(ApiSocialLoginInput inputParam) {
 		
-	    ApiSocialLoginResult result = new ApiSocialLoginResult();
+	    ApiSocialLoginResult result = null;
 		
 	    UserReginsterResult userRegResult = userRegister(inputParam.getAccountId());
 	    
 	    if(userRegResult.upFlagTrue()){
+	    	
+	    	result = new ApiSocialLoginResult();
 	    	
 	    	saveUserInfo(userRegResult, inputParam);
 		    
@@ -56,26 +58,7 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 	    	
 	    }else{
 	    	
-	    	UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().
-	    			queryByLoginName(inputParam.getAccountId(),UserEnum.FLAG_ENABLE.getCode());
-	    	
-	    	if(ucUserinfo != null){
-	    		
-	    		String token = userCallFactory.upAuthCode(ucUserinfo.getLoginCode(), 
-		    			ucUserinfo.getCode(), DefineUser.Login_System_Default);
-		    	
-		    	result.setFirstLogin(false);
-		    	
-		    	result.setUserToken(token);
-		    	
-		    	result.setUserCode(ucUserinfo.getCode());
-	    		
-	    	}else{
-	    		
-	    		result.inError(81100003);
-	    		
-	    	}
-	    	
+	    	result = loginSytem(inputParam.getAccountId());
 	    	
 	    }
 
@@ -233,6 +216,40 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 		}
 		
 		return nickName;
+		
+	}
+	
+	/**
+	 * 系统登录
+	 * @param openId
+	 * 		社交平台openId
+	 * @return 社交账户登录信息
+	 */
+	public ApiSocialLoginResult loginSytem(String openId){
+		
+		ApiSocialLoginResult loginResult = new ApiSocialLoginResult();
+		
+    	UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().
+    			queryByLoginName(openId,UserEnum.FLAG_ENABLE.getCode());
+    	
+    	if(ucUserinfo != null){
+    		
+    		String token = userCallFactory.upAuthCode(ucUserinfo.getLoginCode(), 
+	    			ucUserinfo.getCode(), DefineUser.Login_System_Default);
+	    	
+    		loginResult.setFirstLogin(false);
+	    	
+    		loginResult.setUserToken(token);
+	    	
+    		loginResult.setUserCode(ucUserinfo.getCode());
+    		
+    	}else{
+    		
+    		loginResult.inError(81100003);
+    		
+    	}
+    
+		return loginResult;
 		
 	}
 	

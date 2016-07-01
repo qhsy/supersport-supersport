@@ -15,5 +15,8 @@ public interface IUserInfoSocialDao extends CrudRepository<UcUserinfoSocial, Str
 	
 	@Query("select t from UcUserinfoSocial t where userCode=:userCode")
 	public UcUserinfoSocial queryByUserCode(@Param("userCode") String userCode);
+	
+	@Query("select t from UcUserinfoSocial t where accountId=:openId")
+	public UcUserinfoSocial queryByOpenId(@Param("openId") String openId);
 
 }

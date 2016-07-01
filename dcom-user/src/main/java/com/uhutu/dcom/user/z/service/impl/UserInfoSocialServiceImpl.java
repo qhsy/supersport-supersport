@@ -52,4 +52,11 @@ public class UserInfoSocialServiceImpl implements IUserInfoSocialService {
 		
 	}
 
+	@Override
+	public UcUserinfoSocial queryByOpenId(String openId) {
+		
+		return userDaoFacotry.getUserInfoSocialDao().queryByOpenId(openId);
+		
+	}
+
 }
