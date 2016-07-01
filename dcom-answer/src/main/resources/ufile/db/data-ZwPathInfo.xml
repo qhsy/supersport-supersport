@@ -5,6 +5,9 @@
 		<item code="dmtg48881001" nodeName="问达相关" parentCode="" />
 		<item code="dmtg488810011001" nodeName="问达管理" parentCode="dmtg48881001" />
 		<item code="dmtg4888100110011001" nodeName="问达信息" parentCode="dmtg488810011001" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwQuestionInfoPage" pageIcon="glyphicon-heart-empty" />
+		<item code="dmtg488810011002" nodeName="推荐管理" parentCode="dmtg48881001" />
+		<item code="dmtg4888100110021001" nodeName="热门问题" parentCode="dmtg488810011002" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwQuestionHotPage" pageIcon="glyphicon-heart-empty" />
+		<item code="dmtg4888100110021002" nodeName="最新问题" parentCode="dmtg488810011002" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwQuestionNewPage" pageIcon="glyphicon-heart-empty" />
 	</data>
 
 </db>

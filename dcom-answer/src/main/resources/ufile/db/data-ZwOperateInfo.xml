@@ -10,6 +10,26 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_activity_z_page_AcActivityAnswerRelPage?u_activityCode=[[data:code]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi48880003" operateName="添加"
+			operateFunc="com.uhutu.dcom.answer.func.AwQuestionHotPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi48880004" operateName="修改"
+			operateFunc="com.uhutu.dcom.answer.func.AwQuestionHotPageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi48880005" operateName="添加"
+			operateFunc="com.uhutu.dcom.answer.func.AwQuestionNewPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi48880006" operateName="修改"
+			operateFunc="com.uhutu.dcom.answer.func.AwQuestionNewPageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
