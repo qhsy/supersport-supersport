@@ -65,6 +65,12 @@ public class AwQuestionInfo extends BaseEntity {
 	@Column(length = 50)
 	private String answerTime;
 
+	@ZooData(name = "已收听数", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	private long listen;
+
+	@ZooData(name = "已赞数量", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	private long love;
+
 	public String getCode() {
 		return code;
 	}
@@ -151,6 +157,22 @@ public class AwQuestionInfo extends BaseEntity {
 
 	public void setAnswerTime(String answerTime) {
 		this.answerTime = answerTime;
+	}
+
+	public long getListen() {
+		return listen;
+	}
+
+	public void setListen(long listen) {
+		this.listen = listen;
+	}
+
+	public long getLove() {
+		return love;
+	}
+
+	public void setLove(long love) {
+		this.love = love;
 	}
 
 }
