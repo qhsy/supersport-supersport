@@ -9,6 +9,7 @@
 		<item code="dmtg4888100110021001" nodeName="热门问题" parentCode="dmtg488810011002" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwQuestionHotPage" pageIcon="glyphicon-heart-empty" />
 		<item code="dmtg4888100110021002" nodeName="最新问题" parentCode="dmtg488810011002" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwQuestionNewPage" pageIcon="glyphicon-heart-empty" />
 		<item code="dmtg4888100110021003" nodeName="才华榜" parentCode="dmtg488810011002" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwQuestionRichPage" pageIcon="glyphicon-heart-empty" />
+		<item code="dmtg4888100110021004" nodeName="推荐达人" parentCode="dmtg488810011002" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwDoyensPage" pageIcon="glyphicon-heart-empty" />
 	</data>
 
 </db>

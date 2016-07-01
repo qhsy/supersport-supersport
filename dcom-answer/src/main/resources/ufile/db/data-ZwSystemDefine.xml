@@ -13,6 +13,7 @@
 		<item code="dzsd4888100110030001" defineName="热门问题" parentCode="dzsd488810011003" />
 		<item code="dzsd4888100110030002" defineName="最新问题" parentCode="dzsd488810011003" />
 		<item code="dzsd4888100110030003" defineName="才华榜" parentCode="dzsd488810011003" />
+		<item code="dzsd4888100110030004" defineName="推荐达人" parentCode="dzsd488810011003" />
 	</data>
 
 </db>
