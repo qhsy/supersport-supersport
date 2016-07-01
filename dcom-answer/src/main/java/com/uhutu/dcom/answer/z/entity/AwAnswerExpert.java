@@ -1,5 +1,7 @@
 package com.uhutu.dcom.answer.z.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -21,16 +23,25 @@ public class AwAnswerExpert extends BaseEntity {
 	@Column(length=50)
 	private String userCode;
 	
-	@ZooData(name="评价得分")
-	private double score;
+	@ZooData(name="提问收费")
+	private BigDecimal charge;
+	
+	@ZooData(name="收入")
+	private BigDecimal income;
+	
+	@ZooData(name="收益")
+	private BigDecimal profit;
 	
 	@ZooData(name="用户问答状态")
 	@Column(length=50)
 	private String status;
 	
-	@ZooData(name="人生经历")
-	@Column(columnDefinition = "longtext")
-	private String experience;
+	@ZooData(name="你擅长回答的问题")
+	private String ability;
+	
+	@ZooData(name="头衔")
+	@Column(length=50)
+	private String title;
 
 	public String getUserCode() {
 		return userCode;
@@ -40,12 +51,28 @@ public class AwAnswerExpert extends BaseEntity {
 		this.userCode = userCode;
 	}
 
-	public double getScore() {
-		return score;
+	public BigDecimal getCharge() {
+		return charge;
 	}
 
-	public void setScore(double score) {
-		this.score = score;
+	public void setCharge(BigDecimal charge) {
+		this.charge = charge;
+	}
+
+	public BigDecimal getIncome() {
+		return income;
+	}
+
+	public void setIncome(BigDecimal income) {
+		this.income = income;
+	}
+
+	public BigDecimal getProfit() {
+		return profit;
+	}
+
+	public void setProfit(BigDecimal profit) {
+		this.profit = profit;
 	}
 
 	public String getStatus() {
@@ -56,12 +83,21 @@ public class AwAnswerExpert extends BaseEntity {
 		this.status = status;
 	}
 
-	public String getExperience() {
-		return experience;
+	public String getAbility() {
+		return ability;
 	}
 
-	public void setExperience(String experience) {
-		this.experience = experience;
+	public void setAbility(String ability) {
+		this.ability = ability;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	
 }
