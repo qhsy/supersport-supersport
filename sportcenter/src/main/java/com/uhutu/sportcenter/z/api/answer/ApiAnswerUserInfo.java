@@ -33,17 +33,33 @@ public class ApiAnswerUserInfo extends RootApiToken<ApiAnswerUserInfoInput, ApiA
 		
 		AwAnswerExpert expert = answerServiceFactory.getAwAnswerExpertService().getByUserCode(upUserCode());
 		
-		AnswerUserInfo answerUserInfo = new AnswerUserInfo();
-		
-		BeanUtils.copyProperties(expert, answerUserInfo);
-		
-		UcUserinfoExt userInfoExt = userInfoSupport.getUserInfoExt(upUserCode());
-		
-		answerUserInfo.setNickName(userInfoExt.getNickName());
-		
-		answerUserInfo.setAboutHead(userInfoExt.getAboutHead());
-		
-		result.setAnswerUserInfo(answerUserInfo);
+		if(expert != null){
+			
+			AnswerUserInfo answerUserInfo = new AnswerUserInfo();
+			
+			BeanUtils.copyProperties(expert, answerUserInfo);
+			
+			UcUserinfoExt userInfoExt = userInfoSupport.getUserInfoExt(upUserCode());
+			
+			if(userInfoExt != null){
+				
+				answerUserInfo.setNickName(userInfoExt.getNickName());
+				
+				answerUserInfo.setAboutHead(userInfoExt.getAboutHead());
+				
+			}else{
+				
+				result.inError(88880005);
+				
+			}
+			
+			result.setAnswerUserInfo(answerUserInfo);
+			
+		}else{
+			
+			result.inError(88880004);
+			
+		}
 		
 		return result;
 		
