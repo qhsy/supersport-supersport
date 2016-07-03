@@ -16,5 +16,11 @@ public interface IAwAnswerExpertDao {
 	 * @return
 	 */
 	public AwAnswerExpert queryByCode(String userCode);
+	
+	/**
+	 * 保存问答用户信息
+	 * @param expert
+	 */
+	public int save(AwAnswerExpert expert);
 
 }

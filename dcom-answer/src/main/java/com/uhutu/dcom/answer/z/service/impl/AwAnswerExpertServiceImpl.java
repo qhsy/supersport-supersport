@@ -25,4 +25,10 @@ public class AwAnswerExpertServiceImpl implements IAwAnswerExpertService {
 		
 	}
 
+	@Override
+	public int save(AwAnswerExpert expert) {
+		
+		return awAnswerExpertDao.save(expert);
+	}
+
 }

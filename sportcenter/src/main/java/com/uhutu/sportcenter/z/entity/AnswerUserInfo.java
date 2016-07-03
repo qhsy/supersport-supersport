@@ -11,13 +11,13 @@ import io.swagger.annotations.ApiModelProperty;
 public class AnswerUserInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value="提问收费")
-	private BigDecimal charge;
+	private BigDecimal charge = BigDecimal.ZERO;
 	
 	@ApiModelProperty(value="收入")
-	private BigDecimal income;
+	private BigDecimal income = BigDecimal.ZERO;
 	
 	@ApiModelProperty(value="收益")
-	private BigDecimal profit;
+	private BigDecimal profit = BigDecimal.ZERO;
 	
 	@ApiModelProperty(value="用户问答状态")
 	private String status;

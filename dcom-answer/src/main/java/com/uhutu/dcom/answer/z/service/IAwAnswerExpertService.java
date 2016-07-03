@@ -16,5 +16,13 @@ public interface IAwAnswerExpertService {
 	 * @return 达人用户信息
 	 */
 	public AwAnswerExpert getByUserCode(String userCode);
+	
+	/**
+	 * 保存达人用户信息
+	 * @param expert
+	 * 		达人用户信息
+	 * @return 更新结果
+	 */
+	public int save(AwAnswerExpert expert);
 
 }
