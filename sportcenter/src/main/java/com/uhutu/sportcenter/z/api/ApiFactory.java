@@ -3,6 +3,7 @@ package com.uhutu.sportcenter.z.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.sportcenter.z.api.answer.ApiAnswerUserInfo;
 import com.uhutu.sportcenter.z.api.answer.ApiForAnswerOrder;
 import com.uhutu.sportcenter.z.api.category.ApiForSports;
 import com.uhutu.sportcenter.z.api.content.ApiComplainInfo;
@@ -204,6 +205,9 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiWechatConfigInfo apiWechatConfigInfo;
+	
+	@Autowired
+	private ApiAnswerUserInfo apiAnswerUserInfo;
 
 	public ApiContentDetailInfo getContentDetailInfo() {
 		return contentDetailInfo;
@@ -407,6 +411,10 @@ public class ApiFactory {
 
 	public ApiWechatConfigInfo getApiWechatConfigInfo() {
 		return apiWechatConfigInfo;
+	}
+
+	public ApiAnswerUserInfo getApiAnswerUserInfo() {
+		return apiAnswerUserInfo;
 	}
 
 }
