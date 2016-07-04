@@ -13,7 +13,7 @@ import com.uhutu.dcom.extend.z.properties.ConfigDcomExtend;
 
 import net.sf.json.JSONObject;
 
-public class support {
+public class PushSupport {
 
 	/**
 	 * 
