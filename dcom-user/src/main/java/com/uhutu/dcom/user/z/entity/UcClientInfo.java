@@ -50,8 +50,12 @@ public class UcClientInfo extends BaseEntity {
 	@ZooData(value = "网络状态")
 	private String net_type = "";
 
-	@ZooData(value="用户编号")
-	private String user_code="";
+	@ZooData(value = "用户编号")
+	private String user_code = "";
+
+	@ZooData(value = "百度云推送id")
+	private String channelId = "";
+
 	public String getApp_vision() {
 		return app_vision;
 	}
@@ -154,6 +158,14 @@ public class UcClientInfo extends BaseEntity {
 
 	public void setUser_code(String user_code) {
 		this.user_code = user_code;
+	}
+
+	public String getChannelId() {
+		return channelId;
+	}
+
+	public void setChannelId(String channelId) {
+		this.channelId = channelId;
 	}
 
 }

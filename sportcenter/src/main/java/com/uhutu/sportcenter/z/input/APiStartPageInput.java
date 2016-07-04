@@ -4,13 +4,13 @@ import com.uhutu.zoocom.root.RootApiInput;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
 @ApiModel
 public class APiStartPageInput extends RootApiInput {
 
-	
-	@ApiModelProperty(value = "app版本信息", notes = "app版本信息",required=true, example = "1.0.0")
+	@ApiModelProperty(value = "app版本信息", notes = "app版本信息", required = true, example = "1.0.0")
 	private String app_vision = "";
-	
+
 	@ApiModelProperty(value = "手机型号", notes = "手机型号", example = "mi3")
 	private String model = "";
 
@@ -19,7 +19,7 @@ public class APiStartPageInput extends RootApiInput {
 
 	@ApiModelProperty(value = "设备的唯一编号", notes = "设备的唯一编号", example = "advertisingIdentifier")
 	private String idfa = "";
-	
+
 	@ApiModelProperty(value = "mac地址", notes = "mac地址", example = "mac")
 	private String mac = "";
 
@@ -43,6 +43,9 @@ public class APiStartPageInput extends RootApiInput {
 
 	@ApiModelProperty(value = "网络状态", notes = "网络状态", example = "wifi")
 	private String net_type = "";
+
+	@ApiModelProperty(value = "百度云推送id", notes = "百度云推送id", example = "wifi")
+	private String channelId = "";
 
 	public String getApp_vision() {
 		return app_vision;
@@ -138,6 +141,14 @@ public class APiStartPageInput extends RootApiInput {
 
 	public void setNet_type(String net_type) {
 		this.net_type = net_type;
+	}
+
+	public String getChannelId() {
+		return channelId;
+	}
+
+	public void setChannelId(String channelId) {
+		this.channelId = channelId;
 	}
 
 }
