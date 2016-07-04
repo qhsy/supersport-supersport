@@ -7,6 +7,9 @@ import com.uhutu.sportcenter.z.api.answer.ApiAnswerUserInfo;
 import com.uhutu.sportcenter.z.api.answer.ApiForAnswerOrder;
 import com.uhutu.sportcenter.z.api.answer.ApiForAnswerQuestion;
 import com.uhutu.sportcenter.z.api.answer.ApiForAskQuestion;
+import com.uhutu.sportcenter.z.api.answer.ApiHotQuestions;
+import com.uhutu.sportcenter.z.api.answer.ApiNewQuestions;
+import com.uhutu.sportcenter.z.api.answer.ApiRichAnswers;
 import com.uhutu.sportcenter.z.api.answer.ApiUpdateAnswerUser;
 import com.uhutu.sportcenter.z.api.category.ApiForSports;
 import com.uhutu.sportcenter.z.api.content.ApiComplainInfo;
@@ -225,7 +228,27 @@ public class ApiFactory {
 	@Autowired
 	private ApiForAnswerQuestion apiForAnswerQuestion;
 
+	@Autowired
+	private ApiRichAnswers apiRichAnswers;
+
+	@Autowired
+	private ApiHotQuestions apiHotQuestions;
+
+	@Autowired
+	private ApiNewQuestions apiNewQuestions;
 	
+	public ApiRichAnswers getApiRichAnswers() {
+		return apiRichAnswers;
+	}
+
+	public ApiHotQuestions getApiHotQuestions() {
+		return apiHotQuestions;
+	}
+
+	public ApiNewQuestions getApiNewQuestions() {
+		return apiNewQuestions;
+	}
+
 	public ApiForAnswerQuestion getApiForAnswerQuestion() {
 		return apiForAnswerQuestion;
 	}
