@@ -18,6 +18,10 @@ public class PayConfigFactory {
 	/*微信配置信息*/
 	@Autowired
 	private WechatConfig wechatConfig;
+	
+	/*微信消息推送*/
+	@Autowired
+	private WechatMsgConfig wechatMsgConfig;
 
 	/**
 	 * 获取支付宝配置信息
@@ -33,6 +37,14 @@ public class PayConfigFactory {
 	 */
 	public WechatConfig getWechatConfig() {
 		return wechatConfig;
+	}
+
+	/**
+	 * 微信消息配置信息
+	 * @return
+	 */
+	public WechatMsgConfig getWechatMsgConfig() {
+		return wechatMsgConfig;
 	}
 
 }

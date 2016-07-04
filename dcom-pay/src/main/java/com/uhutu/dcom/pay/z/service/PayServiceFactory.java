@@ -34,6 +34,9 @@ public class PayServiceFactory {
 	
 	@Autowired 
 	private IWechatUserInfoService wechatUserInfoService;
+	
+	@Autowired
+	private IWechatAccessTokenService wechatAccessTokenService;
 
 	public IAlipayService getAlipayService() {
 		return alipayService;
@@ -65,6 +68,10 @@ public class PayServiceFactory {
 
 	public IWechatUserInfoService getWechatUserInfoService() {
 		return wechatUserInfoService;
+	}
+
+	public IWechatAccessTokenService getWechatAccessTokenService() {
+		return wechatAccessTokenService;
 	}
 
 }

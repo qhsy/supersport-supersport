@@ -55,6 +55,9 @@ public class PayGateProcess implements IPayGateProcess {
 		case WECHAT_AUTH:
 			payService = payServiceFactory.getWechatAuthService();
 			break;
+		case WECHAT_TOKEN:
+			payService = payServiceFactory.getWechatAccessTokenService();
+			break;
 		case WECHAT_USER:
 			payService = payServiceFactory.getWechatUserInfoService();
 			break;
