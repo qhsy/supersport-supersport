@@ -57,6 +57,9 @@ public class AwQuestionInfo extends BaseEntity {
 	@Column(length = 500)
 	private String url;
 
+	@ZooData(name = "语音长度(秒)", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	private int lengh;
+
 	@ZooData(name = "提问时间", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 50)
 	private String questionTime;
@@ -173,6 +176,14 @@ public class AwQuestionInfo extends BaseEntity {
 
 	public void setLove(long love) {
 		this.love = love;
+	}
+
+	public int getLengh() {
+		return lengh;
+	}
+
+	public void setLengh(int lengh) {
+		this.lengh = lengh;
 	}
 
 }
