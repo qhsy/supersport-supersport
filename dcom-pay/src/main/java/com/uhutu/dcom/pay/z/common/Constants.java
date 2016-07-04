@@ -27,5 +27,11 @@ public class Constants {
 	
 	/**jsapi*/
 	public final static String TYPE_JSAPI = "jsapi";
+	
+	/**openId*/
+	public final static String KEY_OPENID = "openId";
+	
+	/**模板标识*/
+	public final static String KEY_TEMPLETID = "templetId";
 
 }
