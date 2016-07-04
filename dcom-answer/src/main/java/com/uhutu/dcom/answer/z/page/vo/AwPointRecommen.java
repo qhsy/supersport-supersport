@@ -24,7 +24,7 @@ public class AwPointRecommen extends BaseEntity {
 	private String type;
 
 	@ZooData(name = "达人", require = "1", element = DefineWebElement.Model, inc = {
-			DefineWebInc.Web_Component + "=dzcw451010010001" })
+			DefineWebInc.Web_Component + "=dzcw451010010003" })
 	@Column(length = 50)
 	private String answerCode;
 
