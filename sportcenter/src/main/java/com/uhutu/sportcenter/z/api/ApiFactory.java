@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.sportcenter.z.api.answer.ApiAnswerUserInfo;
 import com.uhutu.sportcenter.z.api.answer.ApiForAnswerOrder;
+import com.uhutu.sportcenter.z.api.answer.ApiForAskQuestion;
 import com.uhutu.sportcenter.z.api.answer.ApiUpdateAnswerUser;
 import com.uhutu.sportcenter.z.api.category.ApiForSports;
 import com.uhutu.sportcenter.z.api.content.ApiComplainInfo;
@@ -216,6 +217,13 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiRecommendExpert apiRecommendExpert;
+
+	@Autowired
+	private ApiForAskQuestion apiForAskQuestion;
+
+	public ApiForAskQuestion getApiForAskQuestion() {
+		return apiForAskQuestion;
+	}
 
 	public ApiRecommendExpert getApiRecommendExpert() {
 		return apiRecommendExpert;

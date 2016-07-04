@@ -1,5 +1,7 @@
 package com.uhutu.dcom.activity.z.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Index;
@@ -32,7 +34,7 @@ public class AcActivityAnswerInfo extends BaseEntity {
 	private String name;
 
 	@ZooData(name = "活动价格", require = "1")
-	private double price;
+	private BigDecimal price;
 
 	@ZooData(name = "活动状态", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd411310011001" }, require = "1")
@@ -72,11 +74,11 @@ public class AcActivityAnswerInfo extends BaseEntity {
 		this.name = name;
 	}
 
-	public double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

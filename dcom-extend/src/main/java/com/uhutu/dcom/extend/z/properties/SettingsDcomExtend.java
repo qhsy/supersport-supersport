@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties
-public class SettingsDcomUser {
+public class SettingsDcomExtend {
 	@Value("${dcom-extend.baidu_push_api_key}")
 	private String baiduPushApiKey;
 

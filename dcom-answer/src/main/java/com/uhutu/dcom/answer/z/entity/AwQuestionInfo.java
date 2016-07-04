@@ -1,5 +1,7 @@
 package com.uhutu.dcom.answer.z.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -38,10 +40,10 @@ public class AwQuestionInfo extends BaseEntity {
 	private String answerUserCode;
 
 	@ZooData(name = "提问金额(RMB)", sort = { DefineWebPage.Page_Query + "=0" })
-	private int money;
+	private BigDecimal money;
 
 	@ZooData(name = "偷听金额(RMB)", sort = { DefineWebPage.Page_Query + "=0" })
-	private int sellMoney;
+	private BigDecimal sellMoney;
 
 	@ZooData(name = "状态", element = DefineWebElement.Select, inc = { DefineWebInc.System_Define
 			+ "=dzsd488810011001" }, demo = "dzsd4888100110010001:待回答,dzsd4888100110010002:已回答,dzsd4888100110010003:已拒绝回答")
@@ -106,19 +108,19 @@ public class AwQuestionInfo extends BaseEntity {
 		this.answerUserCode = answerUserCode;
 	}
 
-	public int getMoney() {
+	public BigDecimal getMoney() {
 		return money;
 	}
 
-	public void setMoney(int money) {
+	public void setMoney(BigDecimal money) {
 		this.money = money;
 	}
 
-	public int getSellMoney() {
+	public BigDecimal getSellMoney() {
 		return sellMoney;
 	}
 
-	public void setSellMoney(int sellMoney) {
+	public void setSellMoney(BigDecimal sellMoney) {
 		this.sellMoney = sellMoney;
 	}
 

@@ -1,5 +1,7 @@
 package com.uhutu.dcom.order.z.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Index;
@@ -33,7 +35,7 @@ public class OcOrderDetail extends BaseEntity {
 	private String productName;
 
 	@ZooData(name = "商品金额")
-	private double productPrice;
+	private BigDecimal productPrice;
 
 	@ZooData(name = "商品数量", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
 	@Column(length = 30)
@@ -63,11 +65,11 @@ public class OcOrderDetail extends BaseEntity {
 		this.productName = productName;
 	}
 
-	public double getProductPrice() {
+	public BigDecimal getProductPrice() {
 		return productPrice;
 	}
 
-	public void setProductPrice(double productPrice) {
+	public void setProductPrice(BigDecimal productPrice) {
 		this.productPrice = productPrice;
 	}
 

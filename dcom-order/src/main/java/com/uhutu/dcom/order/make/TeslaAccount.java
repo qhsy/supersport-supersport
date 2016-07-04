@@ -1,5 +1,7 @@
 package com.uhutu.dcom.order.make;
 
+import java.math.BigDecimal;
+
 /**
  * 订单金额计算
  * 
@@ -21,8 +23,8 @@ public class TeslaAccount extends TeslaTopOrderMake {
 		for (int i = 0; i < teslaOrder.getDetail().size(); i++) {
 			teslaOrder.getDetail().get(i).setCode(teslaOrder.getOrderInfo().getCode());
 			teslaOrder.getOrderInfo().setStatus("dzsd4112100110030001");// 待付款状态
-			teslaOrder.getOrderInfo().setOrderMoney(teslaOrder.getOrderInfo().getOrderMoney()
-					+ teslaOrder.getDetail().get(i).getProductPrice() * teslaOrder.getDetail().get(i).getNum());
+			teslaOrder.getOrderInfo().setOrderMoney(teslaOrder.getOrderInfo().getOrderMoney().add(teslaOrder.getDetail()
+					.get(i).getProductPrice().multiply(BigDecimal.valueOf(teslaOrder.getDetail().get(i).getNum()))));
 		}
 		return result;
 	}

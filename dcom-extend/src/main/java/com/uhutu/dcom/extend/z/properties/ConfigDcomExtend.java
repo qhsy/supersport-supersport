@@ -6,18 +6,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@EnableConfigurationProperties(SettingsDcomUser.class)
+@EnableConfigurationProperties(SettingsDcomExtend.class)
 @PropertySource(value = "classpath:application-dcom-extend.properties")
-public class ConfigDcomUser {
+public class ConfigDcomExtend {
 
-	private static SettingsDcomUser setting;
+	private static SettingsDcomExtend setting;
 
 	@Autowired
-	private void setConfig(SettingsDcomUser dcomUserettings) {
+	private void setConfig(SettingsDcomExtend dcomUserettings) {
 		setting = dcomUserettings;
 	}
 
-	public static SettingsDcomUser upConfig() {
+	public static SettingsDcomExtend upConfig() {
 		return setting;
 	}
 

@@ -9,7 +9,7 @@ import com.uhutu.dcom.extend.baiduPush.exception.PushClientException;
 import com.uhutu.dcom.extend.baiduPush.exception.PushServerException;
 import com.uhutu.dcom.extend.baiduPush.model.PushMsgToSingleDeviceRequest;
 import com.uhutu.dcom.extend.baiduPush.model.PushMsgToSingleDeviceResponse;
-import com.uhutu.dcom.extend.z.properties.ConfigDcomUser;
+import com.uhutu.dcom.extend.z.properties.ConfigDcomExtend;
 
 import net.sf.json.JSONObject;
 
@@ -27,8 +27,8 @@ public class support {
 	 */
 	public void push(String systemType, String content, String channelId)
 			throws PushClientException, PushServerException {
-		PushKeyPair pair = new PushKeyPair(ConfigDcomUser.upConfig().getBaiduPushApiKey(),
-				ConfigDcomUser.upConfig().getBaiduPushSecretKey());
+		PushKeyPair pair = new PushKeyPair(ConfigDcomExtend.upConfig().getBaiduPushApiKey(),
+				ConfigDcomExtend.upConfig().getBaiduPushSecretKey());
 		BaiduPushClient pushClient = new BaiduPushClient(pair, BaiduPushConstants.CHANNEL_REST_URL);
 		try {
 			if (StringUtils.isNotBlank(systemType) && "ios".equals(systemType)) {// ios

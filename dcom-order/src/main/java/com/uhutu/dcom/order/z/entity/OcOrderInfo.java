@@ -1,5 +1,7 @@
 package com.uhutu.dcom.order.z.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Index;
@@ -45,7 +47,7 @@ public class OcOrderInfo extends BaseEntity {
 	private String status;
 
 	@ZooData(name = "订单金额")
-	private double orderMoney;
+	private BigDecimal orderMoney;
 
 	@ZooData(name = "支付类型", sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" }, element = DefineWebElement.Select, inc = {
@@ -54,7 +56,7 @@ public class OcOrderInfo extends BaseEntity {
 	private String payType;
 
 	@ZooData(name = "已支付金额")
-	private double payedMoney;
+	private BigDecimal payedMoney;
 
 	@ZooData(name = "卖家编号", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Add + "=0",
 			DefineWebPage.Page_Edit + "=0" })
@@ -102,28 +104,12 @@ public class OcOrderInfo extends BaseEntity {
 		this.status = status;
 	}
 
-	public double getOrderMoney() {
-		return orderMoney;
-	}
-
-	public void setOrderMoney(double orderMoney) {
-		this.orderMoney = orderMoney;
-	}
-
 	public String getPayType() {
 		return payType;
 	}
 
 	public void setPayType(String payType) {
 		this.payType = payType;
-	}
-
-	public double getPayedMoney() {
-		return payedMoney;
-	}
-
-	public void setPayedMoney(double payedMoney) {
-		this.payedMoney = payedMoney;
 	}
 
 	public String getSellerCode() {
@@ -149,5 +135,22 @@ public class OcOrderInfo extends BaseEntity {
 	public void setAppVersion(String appVersion) {
 		this.appVersion = appVersion;
 	}
+
+	public BigDecimal getOrderMoney() {
+		return orderMoney;
+	}
+
+	public void setOrderMoney(BigDecimal orderMoney) {
+		this.orderMoney = orderMoney;
+	}
+
+	public BigDecimal getPayedMoney() {
+		return payedMoney;
+	}
+
+	public void setPayedMoney(BigDecimal payedMoney) {
+		this.payedMoney = payedMoney;
+	}
+	
 
 }
