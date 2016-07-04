@@ -11,7 +11,7 @@ import com.uhutu.dcom.extend.z.properties.ConfigDcomExtend;
 
 import net.sf.json.JSONObject;
 
-public class PushSupport {
+public class AppPushSupport {
 
 	/**
 	 * 
