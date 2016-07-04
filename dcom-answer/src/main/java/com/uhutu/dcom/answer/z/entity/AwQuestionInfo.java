@@ -76,6 +76,12 @@ public class AwQuestionInfo extends BaseEntity {
 	@ZooData(name = "已赞数量", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private long love;
 
+	@ZooData(name = "提问者分层金额(RMB)", sort = { DefineWebPage.Page_Query + "=0" })
+	private BigDecimal askAmount;
+
+	@ZooData(name = "回答者分层金额(RMB)", sort = { DefineWebPage.Page_Query + "=0" })
+	private BigDecimal answerAmount;
+
 	public String getCode() {
 		return code;
 	}
@@ -186,6 +192,22 @@ public class AwQuestionInfo extends BaseEntity {
 
 	public void setLengh(int lengh) {
 		this.lengh = lengh;
+	}
+
+	public BigDecimal getAskAmount() {
+		return askAmount;
+	}
+
+	public void setAskAmount(BigDecimal askAmount) {
+		this.askAmount = askAmount;
+	}
+
+	public BigDecimal getAnswerAmount() {
+		return answerAmount;
+	}
+
+	public void setAnswerAmount(BigDecimal answerAmount) {
+		this.answerAmount = answerAmount;
 	}
 
 }
