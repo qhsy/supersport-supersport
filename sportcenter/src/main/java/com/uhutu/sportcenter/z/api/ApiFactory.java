@@ -44,6 +44,7 @@ import com.uhutu.sportcenter.z.api.user.ApiMsgNoticeList;
 import com.uhutu.sportcenter.z.api.user.ApiMsgNumList;
 import com.uhutu.sportcenter.z.api.user.ApiMsgPraiseList;
 import com.uhutu.sportcenter.z.api.user.ApiMsgRemarkList;
+import com.uhutu.sportcenter.z.api.user.ApiRecommendExpert;
 import com.uhutu.sportcenter.z.api.user.ApiSetUserFavor;
 import com.uhutu.sportcenter.z.api.user.ApiSocialLogin;
 import com.uhutu.sportcenter.z.api.user.ApiUpdateMsgStatus;
@@ -206,12 +207,19 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiWechatConfigInfo apiWechatConfigInfo;
-	
+
 	@Autowired
 	private ApiAnswerUserInfo apiAnswerUserInfo;
-	
+
 	@Autowired
 	private ApiUpdateAnswerUser apiUpdateAnswerUser;
+
+	@Autowired
+	private ApiRecommendExpert apiRecommendExpert;
+
+	public ApiRecommendExpert getApiRecommendExpert() {
+		return apiRecommendExpert;
+	}
 
 	public ApiContentDetailInfo getContentDetailInfo() {
 		return contentDetailInfo;
