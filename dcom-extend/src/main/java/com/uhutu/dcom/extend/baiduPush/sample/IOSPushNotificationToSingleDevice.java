@@ -37,10 +37,11 @@ public class IOSPushNotificationToSingleDevice {
 			JSONObject notification = new JSONObject();
 			JSONObject jsonAPS = new JSONObject();
 			jsonAPS.put("alert", "Hello Baidu Push");
+			notification.put("type", "1");
 			notification.put("aps", jsonAPS);
 
 			PushMsgToSingleDeviceRequest request = new PushMsgToSingleDeviceRequest()
-					.addChannelId("5333855758334574849").addMsgExpires(new Integer(3600)). // 设置message的有效时间
+					.addChannelId("4821573614764451774").addMsgExpires(new Integer(3600)). // 设置message的有效时间
 					addMessageType(1).// 1：通知,0:透传消息.默认为0 注：IOS只有通知.
 					addMessage(notification.toString()).addDeployStatus(1). // IOS,
 																			// DeployStatus

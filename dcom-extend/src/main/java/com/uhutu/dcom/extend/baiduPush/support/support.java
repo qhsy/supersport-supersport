@@ -37,7 +37,7 @@ public class support {
 				JSONObject jsonAPS = new JSONObject();
 				jsonAPS.put("alert", content);
 				notification.put("aps", jsonAPS);
-
+				notification.put("type", "1");
 				PushMsgToSingleDeviceRequest request = new PushMsgToSingleDeviceRequest().addChannelId(channelId)
 						.addMsgExpires(new Integer(3600)). // 设置message的有效时间
 						addMessageType(1).// 1：通知,0:透传消息.默认为0 注：IOS只有通知.
@@ -53,7 +53,7 @@ public class support {
 				notification.put("open_type", 1);
 				notification.put("url", "http://push.baidu.com");
 				JSONObject jsonCustormCont = new JSONObject();
-				jsonCustormCont.put("key", "value"); // 自定义内容，key-value
+				jsonCustormCont.put("type", "1"); // 自定义内容，key-value
 				notification.put("custom_content", jsonCustormCont);
 
 				PushMsgToSingleDeviceRequest request = new PushMsgToSingleDeviceRequest().addChannelId(channelId)

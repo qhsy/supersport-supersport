@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiAnswerUserInfoInput;
+import com.uhutu.sportcenter.z.input.ApiForAnswerQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiForAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateAnswerUserInput;
 import com.uhutu.sportcenter.z.result.ApiAnswerUserInfoResult;
+import com.uhutu.sportcenter.z.result.ApiForAnswerQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiForAskQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiUpdateAnswerUserResult;
 
@@ -54,6 +56,14 @@ public class AnswerController {
 	public ApiForAskQuestionResult saveQuestion(@RequestBody ApiForAskQuestionInput input) {
 
 		return apiFactory.getApiForAskQuestion().api(input);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/answerQuestion", method = RequestMethod.POST)
+	@ApiOperation(value = "回答问题", notes = "回答提出的问题")
+	public ApiForAnswerQuestionResult answerQuestion(@RequestBody ApiForAnswerQuestionInput input) {
+
+		return apiFactory.getApiForAnswerQuestion().api(input);
 	}
 
 }
