@@ -1,0 +1,34 @@
+package com.uhutu.dcom.answer.z.service;
+
+import java.util.List;
+
+import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
+
+/**
+ * 问题信息业务接口
+ * @author 逄小帅
+ *
+ */
+public interface IQuestionInfoService {
+	
+	/**
+	 * 根据用户编号查询提问问题数量
+	 * @param userCode
+	 * 		用户编号
+	 * @return 提问的数量
+	 */
+	public int queryCount(String userCode);
+	
+	/**
+	 * 根据用户编号查询问题信息列表
+	 * @param userCode
+	 * 		用户编号
+	 * @param iStart
+	 * 		开始索引
+	 * @param iNumber
+	 * 		查询的数量
+	 * @return 问题列表
+	 */
+	public List<AwQuestionInfo> queryList(String userCode,int iStart, int iNumber);
+
+}

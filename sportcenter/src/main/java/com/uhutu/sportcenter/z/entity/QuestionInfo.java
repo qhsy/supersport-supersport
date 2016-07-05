@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author 逄小帅
  *
  */
-public class AwQuestionInfo extends UserBasicInfo {
+public class QuestionInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value="问题编号")
 	private String code;

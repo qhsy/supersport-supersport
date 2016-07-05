@@ -13,9 +13,16 @@ public class AnswerServiceFactory {
 	
 	@Autowired
 	private IAwAnswerExpertService awAnswerExpertService;
+	
+	@Autowired
+	private IQuestionInfoService questionInfoService;
 
 	public IAwAnswerExpertService getAwAnswerExpertService() {
 		return awAnswerExpertService;
+	}
+
+	public IQuestionInfoService getQuestionInfoService() {
+		return questionInfoService;
 	}
 
 }

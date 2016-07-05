@@ -10,6 +10,7 @@ import com.uhutu.sportcenter.z.api.answer.ApiForAskQuestion;
 import com.uhutu.sportcenter.z.api.answer.ApiHotQuestions;
 import com.uhutu.sportcenter.z.api.answer.ApiNewQuestions;
 import com.uhutu.sportcenter.z.api.answer.ApiQuestionDetail;
+import com.uhutu.sportcenter.z.api.answer.ApiQuestionInfoList;
 import com.uhutu.sportcenter.z.api.answer.ApiRichAnswers;
 import com.uhutu.sportcenter.z.api.answer.ApiUpdateAnswerUser;
 import com.uhutu.sportcenter.z.api.category.ApiForSports;
@@ -240,6 +241,9 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiQuestionDetail apiQuestionDetail;
+	
+	@Autowired
+	private ApiQuestionInfoList apiQuestionInfoList;
 
 	public ApiQuestionDetail getApiQuestionDetail() {
 		return apiQuestionDetail;
@@ -479,6 +483,10 @@ public class ApiFactory {
 
 	public ApiUpdateAnswerUser getApiUpdateAnswerUser() {
 		return apiUpdateAnswerUser;
+	}
+
+	public ApiQuestionInfoList getApiQuestionInfoList() {
+		return apiQuestionInfoList;
 	}
 
 }
