@@ -33,6 +33,9 @@ public class QuestionForShow extends RootClass {
 	@ApiModelProperty(name = "已收听数")
 	private long listen;
 
+	@ApiModelProperty(name = "时间展示")
+	private String timeShow;
+
 	public String getCode() {
 		return code;
 	}
@@ -103,6 +106,14 @@ public class QuestionForShow extends RootClass {
 
 	public void setListen(long listen) {
 		this.listen = listen;
+	}
+
+	public String getTimeShow() {
+		return timeShow;
+	}
+
+	public void setTimeShow(String timeShow) {
+		this.timeShow = timeShow;
 	}
 
 }

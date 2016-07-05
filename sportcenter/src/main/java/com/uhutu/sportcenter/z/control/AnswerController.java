@@ -13,6 +13,7 @@ import com.uhutu.sportcenter.z.input.ApiForAnswerQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiForAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiHotQuestionsInput;
 import com.uhutu.sportcenter.z.input.ApiNewQuestionsInput;
+import com.uhutu.sportcenter.z.input.ApiQuestionDetailInput;
 import com.uhutu.sportcenter.z.input.ApiRichAnswersInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateAnswerUserInput;
 import com.uhutu.sportcenter.z.result.ApiAnswerUserInfoResult;
@@ -20,6 +21,7 @@ import com.uhutu.sportcenter.z.result.ApiForAnswerQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiForAskQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiHotQuestionsResult;
 import com.uhutu.sportcenter.z.result.ApiNewQuestionsResult;
+import com.uhutu.sportcenter.z.result.ApiQuestionDetailResult;
 import com.uhutu.sportcenter.z.result.ApiRichAnswersResult;
 import com.uhutu.sportcenter.z.result.ApiUpdateAnswerUserResult;
 
@@ -94,5 +96,13 @@ public class AnswerController {
 	public ApiNewQuestionsResult newQuestions(@RequestBody ApiNewQuestionsInput input) {
 
 		return apiFactory.getApiNewQuestions().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/questionDetail", method = RequestMethod.POST)
+	@ApiOperation(value = "问题详情", notes = "问题详情")
+	public ApiQuestionDetailResult questionDetail(@RequestBody ApiQuestionDetailInput input) {
+
+		return apiFactory.getApiQuestionDetail().api(input);
 	}
 }
