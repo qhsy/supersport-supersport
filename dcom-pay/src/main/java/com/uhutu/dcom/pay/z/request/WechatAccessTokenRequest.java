@@ -16,7 +16,7 @@ public class WechatAccessTokenRequest implements IPayRequest {
 	private String appid;
 	
 	/*第三方用户唯一凭证密钥*/
-	private String appsecret;
+	private String secret;
 
 	public String getGrant_type() {
 		return grant_type;
@@ -34,12 +34,12 @@ public class WechatAccessTokenRequest implements IPayRequest {
 		this.appid = appid;
 	}
 
-	public String getAppsecret() {
-		return appsecret;
+	public String getSecret() {
+		return secret;
 	}
 
-	public void setAppsecret(String appsecret) {
-		this.appsecret = appsecret;
+	public void setSecret(String secret) {
+		this.secret = secret;
 	}
 
 }

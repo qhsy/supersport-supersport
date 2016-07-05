@@ -43,11 +43,11 @@ public class WechatConfig {
 	private String signKey;
 	
 	/*服务号appid*/
-	@Value("${wx_service_appid}")
+	@Value("${wechat_service_appid}")
 	private String serviceAppId;
 	
 	/*微信服务号密钥*/
-	@Value("${wx_service_key}")
+	@Value("${wechat_service_key}")
 	private String serviceKey;
 	
 	/*微信公众号token url*/
