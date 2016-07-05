@@ -1,13 +1,11 @@
-package com.uhutu.dcom.answer.z.entity;
+package com.uhutu.dcom.answer.z.page.vo.ext;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
-import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -16,7 +14,6 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author xiegj
  *
  */
-@Entity
 public class AwPointRecommen extends BaseEntity {
 
 	@ZooData(name = "类型", element = DefineWebElement.Select, sort = { DefineWebPage.Page_Query + "=0",
@@ -30,9 +27,9 @@ public class AwPointRecommen extends BaseEntity {
 	@Column(length = 50)
 	private String answerCode;
 
-	@ZooData(name = "展示排序(倒序)", require = "1", verify = { DefineWebVerify.Base_Number }, sort = {
-			DefineWebPage.Page_Query + "=0" })
-	private int sort;
+	@ZooData(name = "展示排序(倒序)", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Add + "=0",
+			DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Grid + "=0" })
+	private int sort = 0;
 
 	public String getType() {
 		return type;

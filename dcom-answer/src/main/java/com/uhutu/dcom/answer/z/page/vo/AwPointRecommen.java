@@ -48,4 +48,12 @@ public class AwPointRecommen extends BaseEntity {
 		this.answerCode = answerCode;
 	}
 
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
+	}
+
 }
