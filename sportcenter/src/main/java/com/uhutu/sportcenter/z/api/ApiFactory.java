@@ -64,6 +64,7 @@ import com.uhutu.sportcenter.z.api.user.ApiUserRegister;
 import com.uhutu.sportcenter.z.api.user.ApiUserResetPwd;
 import com.uhutu.sportcenter.z.api.user.ApiVerifyNickName;
 import com.uhutu.sportcenter.z.api.user.ApiVersionInfo;
+import com.uhutu.sportcenter.z.api.user.ApiWechatUserLogin;
 
 /**
  * api工厂
@@ -256,6 +257,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiAnswerListenList apiAnswerListenList;
+	
+	@Autowired
+	private ApiWechatUserLogin apiWechatUserLogin;
 	
 	public ApiSaveWechatVoice getApiSaveWechatVoice() {
 		return apiSaveWechatVoice;
@@ -511,6 +515,10 @@ public class ApiFactory {
 
 	public ApiAnswerListenList getApiAnswerListenList() {
 		return apiAnswerListenList;
+	}
+
+	public ApiWechatUserLogin getApiWechatUserLogin() {
+		return apiWechatUserLogin;
 	}
 
 }
