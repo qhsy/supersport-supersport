@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class ApiForSportsResult extends RootApiResult {
 
-	@ApiModelProperty(name = "运动实体", notes = "运动实体")
+	@ApiModelProperty(value = "运动实体", notes = "运动实体")
 	private List<SportCategoryForApi> sports = new ArrayList<SportCategoryForApi>();
 
 	public List<SportCategoryForApi> getSports() {

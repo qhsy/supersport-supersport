@@ -16,7 +16,7 @@ import java.util.List;
 @ApiModel
 public class ApiMsgPraiseListResult extends RootApiResult {
 	
-	@ApiModelProperty(name="点赞消息列表")
+	@ApiModelProperty(value="点赞消息列表")
 	private List<MsgPraiseInfo> msgPraiseInfos = new ArrayList<MsgPraiseInfo>();
 	
 	@ApiModelProperty(value="是否还有下一页")

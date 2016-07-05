@@ -10,7 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class ApiForLabelsResult extends RootApiResult {
 
-	@ApiModelProperty(name="运动标签" ,notes="标签")
+	@ApiModelProperty(value="运动标签" ,notes="标签")
 	private List<Label> labels = new ArrayList<Label>();
 
 	public List<Label> getLabels() {

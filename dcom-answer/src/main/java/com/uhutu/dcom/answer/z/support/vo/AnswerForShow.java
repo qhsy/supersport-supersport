@@ -6,22 +6,22 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class AnswerForShow extends RootClass {
 
-	@ApiModelProperty(name = "用户编号")
+	@ApiModelProperty(value = "用户编号")
 	private String userCode;
 
-	@ApiModelProperty(name = "用户类型")
+	@ApiModelProperty(value = "用户类型")
 	private String type;
 
-	@ApiModelProperty(name = "用户昵称")
+	@ApiModelProperty(value = "用户昵称")
 	private String nickName;
 
-	@ApiModelProperty(name = "用户头像")
+	@ApiModelProperty(value = "用户头像")
 	private String headUrl;
 
-	@ApiModelProperty(name = "用户头衔")
+	@ApiModelProperty(value = "用户头衔")
 	private String title;
 
-	@ApiModelProperty(name = "已回答数")
+	@ApiModelProperty(value = "已回答数")
 	private long answer;
 
 	public String getUserCode() {

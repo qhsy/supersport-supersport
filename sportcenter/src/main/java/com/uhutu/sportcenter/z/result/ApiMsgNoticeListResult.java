@@ -17,7 +17,7 @@ import java.util.List;
 @ApiModel
 public class ApiMsgNoticeListResult extends RootApiResult {
 	
-	@ApiModelProperty(name="消息通知列表")
+	@ApiModelProperty(value="消息通知列表")
 	private List<MsgNoticeInfo> msgNoticeInfos = new ArrayList<MsgNoticeInfo>();
 	
 	@ApiModelProperty(value="是否还有下一页")

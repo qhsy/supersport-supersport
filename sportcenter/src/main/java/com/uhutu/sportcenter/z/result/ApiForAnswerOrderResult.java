@@ -8,7 +8,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class ApiForAnswerOrderResult extends RootApiResult {
 
-	@ApiModelProperty(name = "订单金额")
+	@ApiModelProperty(value = "订单金额")
 	private BigDecimal orderMoney = BigDecimal.ZERO;
 
 	public BigDecimal getOrderMoney() {

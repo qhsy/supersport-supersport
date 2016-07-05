@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 public class ApiQuestionDetailInput extends RootApiInput {
-	@ApiModelProperty(name = "问题编号", required = true)
+	@ApiModelProperty(value = "问题编号", required = true)
 	private String code;
 
 	public String getCode() {

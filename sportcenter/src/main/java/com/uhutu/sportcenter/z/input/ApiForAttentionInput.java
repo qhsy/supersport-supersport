@@ -17,7 +17,7 @@ public class ApiForAttentionInput extends RootApiInput {
 	@ApiModelProperty(value = "被关注的用户编号", notes = "用户编号", required = true)
 	private String userCode = "";
 
-	@ApiModelProperty(name = "是否关注", example = "0", required = true)
+	@ApiModelProperty(value = "是否关注", example = "0", required = true)
 	private String flag = "";
 
 	public String getUserCode() {

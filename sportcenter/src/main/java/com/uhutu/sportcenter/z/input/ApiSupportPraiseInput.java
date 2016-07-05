@@ -37,5 +37,5 @@ import io.swagger.annotations.ApiModelProperty;
 		public void setIsLike(String isLike) {
 			this.isLike = isLike;
 		}
-
+ 
 }

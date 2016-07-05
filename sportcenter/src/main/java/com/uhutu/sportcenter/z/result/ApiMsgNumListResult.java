@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class ApiMsgNumListResult extends RootApiResult {
 	
-	@ApiModelProperty(name = "消息数量列表", notes = "消息数量列表")
+	@ApiModelProperty(value = "消息数量列表", notes = "消息数量列表")
 	List<MsgNumInfo> msgNumInfos = new ArrayList<MsgNumInfo>();
 
 	public List<MsgNumInfo> getMsgNumInfos() {

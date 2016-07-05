@@ -15,10 +15,10 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class ApiQuestionDetailResult extends RootApiResult {
 
-	@ApiModelProperty(name = "问题详情")
+	@ApiModelProperty(value = "问题详情")
 	private QuestionDetailForshow detail = new QuestionDetailForshow();
 
-	@ApiModelProperty(name = "值得一听")
+	@ApiModelProperty(value = "值得一听")
 	private List<QuestionForShow> recommons = new ArrayList<QuestionForShow>();
 
 	public QuestionDetailForshow getDetail() {

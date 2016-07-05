@@ -9,16 +9,16 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 public class ApiForAnswerQuestionInput extends RootApiInput {
-	@ApiModelProperty(name = "问题编号")
+	@ApiModelProperty(value = "问题编号")
 	private String code;
 
-	@ApiModelProperty(name = "语音路径")
+	@ApiModelProperty(value = "语音路径")
 	private String url;
 
-	@ApiModelProperty(name = "语音长度(秒)")
+	@ApiModelProperty(value = "语音长度(秒)")
 	private int lengh;
 
-	@ApiModelProperty(name = "拒绝回答", notes = "true:拒绝回答,false:回答")
+	@ApiModelProperty(value = "拒绝回答", notes = "true:拒绝回答,false:回答")
 	private boolean refuse;
 
 	public String getCode() {

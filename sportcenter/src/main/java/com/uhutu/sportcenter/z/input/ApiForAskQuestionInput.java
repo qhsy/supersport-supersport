@@ -9,13 +9,13 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 public class ApiForAskQuestionInput extends RootApiInput {
-	@ApiModelProperty(name = "问题内容", required = true)
+	@ApiModelProperty(value = "问题内容", required = true)
 	private String content;
 
-	@ApiModelProperty(name = "需要回答问题者", required = true)
+	@ApiModelProperty(value = "需要回答问题者", required = true)
 	private String answerUserCode;
 
-	@ApiModelProperty(name = "分享范围", value = "dzsd4888100110020001:私密,dzsd4888100110020002:公开", required = true)
+	@ApiModelProperty(value = "分享范围", notes = "dzsd4888100110020001:私密,dzsd4888100110020002:公开", required = true)
 	private String scope;
 
 	public String getContent() {
