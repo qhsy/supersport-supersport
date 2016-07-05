@@ -16,6 +16,9 @@ public class AnswerServiceFactory {
 	
 	@Autowired
 	private IQuestionInfoService questionInfoService;
+	
+	@Autowired
+	private IAnswerListenService answerListenService;
 
 	public IAwAnswerExpertService getAwAnswerExpertService() {
 		return awAnswerExpertService;
@@ -23,6 +26,10 @@ public class AnswerServiceFactory {
 
 	public IQuestionInfoService getQuestionInfoService() {
 		return questionInfoService;
+	}
+
+	public IAnswerListenService getAnswerListenService() {
+		return answerListenService;
 	}
 
 }

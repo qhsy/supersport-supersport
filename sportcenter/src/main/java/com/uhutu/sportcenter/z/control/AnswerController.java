@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiAnswerInfoListInput;
+import com.uhutu.sportcenter.z.input.ApiAnswerListenListInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiForAnswerQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiForAskQuestionInput;
@@ -20,6 +21,7 @@ import com.uhutu.sportcenter.z.input.ApiRichAnswersInput;
 import com.uhutu.sportcenter.z.input.ApiSaveWechatVoiceInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateAnswerUserInput;
 import com.uhutu.sportcenter.z.result.ApiAnswerInfoListResult;
+import com.uhutu.sportcenter.z.result.ApiAnswerListenListResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiForAnswerQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiForAskQuestionResult;
@@ -126,6 +128,15 @@ public class AnswerController {
 	public ApiAnswerInfoListResult myAnswers(@RequestBody ApiAnswerInfoListInput input) {
 
 		return apiFactory.getApiAnswerInfoList().api(input);
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/myListens", method = RequestMethod.POST)
+	@ApiOperation(value = "个人中心我听", notes = "问答相关")
+	public ApiAnswerListenListResult myListens(@RequestBody ApiAnswerListenListInput input) {
+
+		return apiFactory.getApiAnswerListenList().api(input);
 		
 	}
 	

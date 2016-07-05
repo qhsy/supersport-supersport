@@ -54,5 +54,13 @@ public interface IQuestionInfoService {
 	 * @return 问题列表
 	 */
 	public List<AwQuestionInfo> queryAnswerList(String userCode,String status,int iStart, int iNumber);
+	
+	/**
+	 * 根据问题编号获取问题信息
+	 * @param code
+	 * 		问题编号
+	 * @return 问题信息
+	 */
+	public AwQuestionInfo queryByCode(String code);
 
 }

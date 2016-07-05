@@ -64,6 +64,12 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 		
 		return JdbcHelper.queryForList(AwQuestionInfo.class, "", "", "", mWhereMap, iStart, iNumber);
 	}
+
+	@Override
+	public AwQuestionInfo queryByCode(String code) {
+		
+		return JdbcHelper.queryOne(AwQuestionInfo.class, "code",code);
+	}
 	
 
 }
