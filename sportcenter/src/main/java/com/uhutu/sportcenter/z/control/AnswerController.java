@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
+import com.uhutu.sportcenter.z.input.ApiAnswerInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiForAnswerQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiForAskQuestionInput;
@@ -17,6 +18,7 @@ import com.uhutu.sportcenter.z.input.ApiQuestionDetailInput;
 import com.uhutu.sportcenter.z.input.ApiQuestionInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiRichAnswersInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateAnswerUserInput;
+import com.uhutu.sportcenter.z.result.ApiAnswerInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiForAnswerQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiForAskQuestionResult;
@@ -114,6 +116,15 @@ public class AnswerController {
 	public ApiQuestionInfoListResult myQuestions(@RequestBody ApiQuestionInfoListInput input) {
 
 		return apiFactory.getApiQuestionInfoList().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/myAnswers", method = RequestMethod.POST)
+	@ApiOperation(value = "个人中心答", notes = "问答相关")
+	public ApiAnswerInfoListResult myAnswers(@RequestBody ApiAnswerInfoListInput input) {
+
+		return apiFactory.getApiAnswerInfoList().api(input);
+		
 	}
 	
 }

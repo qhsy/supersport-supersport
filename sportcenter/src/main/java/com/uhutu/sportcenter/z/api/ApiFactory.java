@@ -3,6 +3,7 @@ package com.uhutu.sportcenter.z.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.sportcenter.z.api.answer.ApiAnswerInfoList;
 import com.uhutu.sportcenter.z.api.answer.ApiAnswerUserInfo;
 import com.uhutu.sportcenter.z.api.answer.ApiForAnswerOrder;
 import com.uhutu.sportcenter.z.api.answer.ApiForAnswerQuestion;
@@ -244,6 +245,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiQuestionInfoList apiQuestionInfoList;
+	
+	@Autowired
+	private ApiAnswerInfoList apiAnswerInfoList;
 
 	public ApiQuestionDetail getApiQuestionDetail() {
 		return apiQuestionDetail;
@@ -487,6 +491,10 @@ public class ApiFactory {
 
 	public ApiQuestionInfoList getApiQuestionInfoList() {
 		return apiQuestionInfoList;
+	}
+
+	public ApiAnswerInfoList getApiAnswerInfoList() {
+		return apiAnswerInfoList;
 	}
 
 }

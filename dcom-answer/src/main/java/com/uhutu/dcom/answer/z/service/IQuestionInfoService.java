@@ -30,5 +30,29 @@ public interface IQuestionInfoService {
 	 * @return 问题列表
 	 */
 	public List<AwQuestionInfo> queryList(String userCode,int iStart, int iNumber);
+	
+	/**
+	 * 获取我答问题数量
+	 * @param userCode
+	 * 		用户编号
+	 * @param status
+	 * 		状态
+	 * @return 数量
+	 */
+	public int queryAnswerCount(String userCode,String status);
+	
+	/**
+	 * 根据用户编号查询问题信息列表
+	 * @param userCode
+	 * 		用户编号(回答人)
+	 * @param status
+	 * 		状态
+	 * @param iStart
+	 * 		开始索引
+	 * @param iNumber
+	 * 		查询的数量
+	 * @return 问题列表
+	 */
+	public List<AwQuestionInfo> queryAnswerList(String userCode,String status,int iStart, int iNumber);
 
 }
