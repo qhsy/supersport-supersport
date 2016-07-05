@@ -17,6 +17,7 @@ import com.uhutu.sportcenter.z.input.ApiNewQuestionsInput;
 import com.uhutu.sportcenter.z.input.ApiQuestionDetailInput;
 import com.uhutu.sportcenter.z.input.ApiQuestionInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiRichAnswersInput;
+import com.uhutu.sportcenter.z.input.ApiSaveWechatVoiceInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateAnswerUserInput;
 import com.uhutu.sportcenter.z.result.ApiAnswerInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerUserInfoResult;
@@ -27,6 +28,7 @@ import com.uhutu.sportcenter.z.result.ApiNewQuestionsResult;
 import com.uhutu.sportcenter.z.result.ApiQuestionDetailResult;
 import com.uhutu.sportcenter.z.result.ApiQuestionInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiRichAnswersResult;
+import com.uhutu.sportcenter.z.result.ApiSaveWechatVoiceResult;
 import com.uhutu.sportcenter.z.result.ApiUpdateAnswerUserResult;
 
 import io.swagger.annotations.Api;
@@ -127,4 +129,11 @@ public class AnswerController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/saveWechatVoice", method = RequestMethod.POST)
+	@ApiOperation(value = "获取微信服务器上录制的语音", notes = "获取微信服务器上录制的语音")
+	public ApiSaveWechatVoiceResult saveWechatVoice(@RequestBody ApiSaveWechatVoiceInput input) {
+
+		return apiFactory.getApiSaveWechatVoice().api(input);
+	}
 }

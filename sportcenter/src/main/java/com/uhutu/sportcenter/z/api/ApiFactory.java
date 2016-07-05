@@ -13,6 +13,7 @@ import com.uhutu.sportcenter.z.api.answer.ApiNewQuestions;
 import com.uhutu.sportcenter.z.api.answer.ApiQuestionDetail;
 import com.uhutu.sportcenter.z.api.answer.ApiQuestionInfoList;
 import com.uhutu.sportcenter.z.api.answer.ApiRichAnswers;
+import com.uhutu.sportcenter.z.api.answer.ApiSaveWechatVoice;
 import com.uhutu.sportcenter.z.api.answer.ApiUpdateAnswerUser;
 import com.uhutu.sportcenter.z.api.category.ApiForSports;
 import com.uhutu.sportcenter.z.api.content.ApiComplainInfo;
@@ -248,6 +249,13 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiAnswerInfoList apiAnswerInfoList;
+
+	@Autowired
+	private ApiSaveWechatVoice apiSaveWechatVoice;
+	
+	public ApiSaveWechatVoice getApiSaveWechatVoice() {
+		return apiSaveWechatVoice;
+	}
 
 	public ApiQuestionDetail getApiQuestionDetail() {
 		return apiQuestionDetail;
