@@ -1,0 +1,80 @@
+package com.uhutu.dcom.pay.z.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoodata.dbbase.BaseEntity;
+
+/**
+ * 接口调用日志信息
+ * @author 逄小帅
+ *
+ */
+@Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "busiCode","incType" }))
+public class PaInclogInfo extends BaseEntity {
+	
+	@ZooData(name="业务编号")
+	@Column(length=50)
+	private String busiCode;
+	
+	@ZooData(name="接口类型")
+	@Column(length=30)
+	private String incType;
+	
+	@ZooData(name="接口地址")
+	@Column(columnDefinition = "longtext")
+	private String requestUrl;
+	
+	@ZooData(name="请求信息")
+	@Column(columnDefinition = "longtext")
+	private String requestData;
+	
+	@ZooData(name="响应信息")
+	@Column(columnDefinition = "longtext")
+	private String responseData;
+
+	public String getBusiCode() {
+		return busiCode;
+	}
+
+	public void setBusiCode(String busiCode) {
+		this.busiCode = busiCode;
+	}
+
+	public String getIncType() {
+		return incType;
+	}
+
+	public void setIncType(String incType) {
+		this.incType = incType;
+	}
+
+	public String getRequestUrl() {
+		return requestUrl;
+	}
+
+	public void setRequestUrl(String requestUrl) {
+		this.requestUrl = requestUrl;
+	}
+
+	public String getRequestData() {
+		return requestData;
+	}
+
+	public void setRequestData(String requestData) {
+		this.requestData = requestData;
+	}
+
+	public String getResponseData() {
+		return responseData;
+	}
+
+	public void setResponseData(String responseData) {
+		this.responseData = responseData;
+	}
+
+}
