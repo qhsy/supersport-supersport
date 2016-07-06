@@ -69,21 +69,18 @@
 		data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": " "}}',
 		success:function(res){
 			if(res.stauts == '1'){
-				appId = res.appId;
-				timestamp = res.timestamp;
-				nonceStr = res.nonceStr;
-				signature = res.signature;
+				wx.config({    
+					debug: false,
+					appId: res.appId,
+					timestamp: res.timestamp,
+					nonceStr: res.nonceStr,
+					signature: res.signature,
+					jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice']
+					});
 			}
 		}
 	});
-	wx.config({    
-		debug: false,
-		appId: appId,
-		timestamp: timestamp,
-		nonceStr: nonceStr,
-		signature: signature,
-		jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice']
-		});
+	
 	wx.ready(function () {
 		var voice = {
 			localId: '',
