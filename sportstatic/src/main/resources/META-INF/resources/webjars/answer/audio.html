@@ -92,12 +92,11 @@
 		wx.checkJsApi({
 			jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice'],
 			success: function (res) {
-				alert(JSON.stringify(res));
+				console.log(JSON.stringify(res));
 			}
 		});
 
 		document.querySelector('.init').onclick = function() {
-			alert(1)
 			wx.startRecord({
 				cancel: function () {
 					alert('用户拒绝授权录音');
