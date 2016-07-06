@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.sportcenter.z.api.answer.ApiAnswerInfoList;
 import com.uhutu.sportcenter.z.api.answer.ApiAnswerListenList;
 import com.uhutu.sportcenter.z.api.answer.ApiAnswerUserInfo;
+import com.uhutu.sportcenter.z.api.answer.ApiAskQuestion;
 import com.uhutu.sportcenter.z.api.answer.ApiForAnswerOrder;
 import com.uhutu.sportcenter.z.api.answer.ApiForAnswerQuestion;
 import com.uhutu.sportcenter.z.api.answer.ApiForAskQuestion;
@@ -245,22 +246,29 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiQuestionDetail apiQuestionDetail;
-	
+
 	@Autowired
 	private ApiQuestionInfoList apiQuestionInfoList;
-	
+
 	@Autowired
 	private ApiAnswerInfoList apiAnswerInfoList;
 
 	@Autowired
 	private ApiSaveWechatVoice apiSaveWechatVoice;
-	
+
 	@Autowired
 	private ApiAnswerListenList apiAnswerListenList;
-	
+
 	@Autowired
 	private ApiWechatUserLogin apiWechatUserLogin;
+
+	@Autowired
+	private ApiAskQuestion apiAskQuestion;
 	
+	public ApiAskQuestion getApiAskQuestion() {
+		return apiAskQuestion;
+	}
+
 	public ApiSaveWechatVoice getApiSaveWechatVoice() {
 		return apiSaveWechatVoice;
 	}

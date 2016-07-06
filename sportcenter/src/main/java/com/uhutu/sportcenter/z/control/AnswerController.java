@@ -11,6 +11,7 @@ import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiAnswerInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerListenListInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerUserInfoInput;
+import com.uhutu.sportcenter.z.input.ApiAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiForAnswerQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiForAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiHotQuestionsInput;
@@ -23,6 +24,7 @@ import com.uhutu.sportcenter.z.input.ApiUpdateAnswerUserInput;
 import com.uhutu.sportcenter.z.result.ApiAnswerInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerListenListResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerUserInfoResult;
+import com.uhutu.sportcenter.z.result.ApiAskQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiForAnswerQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiForAskQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiHotQuestionsResult;
@@ -89,7 +91,7 @@ public class AnswerController {
 
 		return apiFactory.getApiRichAnswers().api(input);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/hotQuestions", method = RequestMethod.POST)
 	@ApiOperation(value = "热门问题", notes = "热门问题")
@@ -97,7 +99,7 @@ public class AnswerController {
 
 		return apiFactory.getApiHotQuestions().api(input);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/newQuestions", method = RequestMethod.POST)
 	@ApiOperation(value = "最新问题", notes = "最新问题")
@@ -105,7 +107,7 @@ public class AnswerController {
 
 		return apiFactory.getApiNewQuestions().api(input);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/questionDetail", method = RequestMethod.POST)
 	@ApiOperation(value = "问题详情", notes = "问题详情")
@@ -113,7 +115,7 @@ public class AnswerController {
 
 		return apiFactory.getApiQuestionDetail().api(input);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/myQuestions", method = RequestMethod.POST)
 	@ApiOperation(value = "个人中心我问", notes = "问答相关")
@@ -121,30 +123,38 @@ public class AnswerController {
 
 		return apiFactory.getApiQuestionInfoList().api(input);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/myAnswers", method = RequestMethod.POST)
 	@ApiOperation(value = "个人中心答", notes = "问答相关")
 	public ApiAnswerInfoListResult myAnswers(@RequestBody ApiAnswerInfoListInput input) {
 
 		return apiFactory.getApiAnswerInfoList().api(input);
-		
+
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/myListens", method = RequestMethod.POST)
 	@ApiOperation(value = "个人中心我听", notes = "问答相关")
 	public ApiAnswerListenListResult myListens(@RequestBody ApiAnswerListenListInput input) {
 
 		return apiFactory.getApiAnswerListenList().api(input);
-		
+
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/saveWechatVoice", method = RequestMethod.POST)
 	@ApiOperation(value = "获取微信服务器上录制的语音", notes = "获取微信服务器上录制的语音")
 	public ApiSaveWechatVoiceResult saveWechatVoice(@RequestBody ApiSaveWechatVoiceInput input) {
 
 		return apiFactory.getApiSaveWechatVoice().api(input);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/askQuestion", method = RequestMethod.POST)
+	@ApiOperation(value = "提问时所需要的个人信息", notes = "提问时所需要的个人信息")
+	public ApiAskQuestionResult askQuestion(@RequestBody ApiAskQuestionInput input) {
+
+		return apiFactory.getApiAskQuestion().api(input);
 	}
 }
