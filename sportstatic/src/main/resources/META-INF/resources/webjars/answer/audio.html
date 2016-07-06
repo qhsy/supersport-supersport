@@ -71,7 +71,7 @@
 			success:function(res){
 				if(eval(res.status) == 1){
 					wx.config({    
-						debug: true,
+						debug: false,
 						appId: res.appId,
 						timestamp: res.timestamp,
 						nonceStr: res.nonceStr,
