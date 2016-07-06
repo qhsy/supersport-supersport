@@ -130,7 +130,7 @@ public class QuestionSupport extends RootClass {
 			if(questions==null){
 				questions=new ArrayList<AwQuestionInfo>();
 			}
-			List<AwQuestionInfo> others = JdbcHelper.queryForList(AwQuestionInfo.class, "", "listen desc",
+			List<AwQuestionInfo> others = JdbcHelper.queryForList(AwQuestionInfo.class, "", "answer_time desc",
 					"scope='dzsd4888100110020002' and status='dzsd4888100110010002' and code not in (select answer_code from aw_point_recommen where type='dzsd4888100110030002')",
 					new MDataMap(), (page - 1) * num-questions.size(), num-questions.size());
 			questions.addAll(others);
@@ -169,6 +169,7 @@ public class QuestionSupport extends RootClass {
 	 */
 	public List<AnswerForShow> getHotAnswers(int page, int num) {
 		List<AnswerForShow> result = new ArrayList<AnswerForShow>();
+		
 		return result;
 	}
 
