@@ -57,9 +57,12 @@ public class QuestionSupport extends RootClass {
 					}
 				}
 			}
+			if(questions==null){
+				questions=new ArrayList<AwQuestionInfo>();
+			}
 			List<AwQuestionInfo> others = JdbcHelper.queryForList(AwQuestionInfo.class, "", "listen desc",
 					"scope='dzsd4888100110020002' and status='dzsd4888100110010002' and code not in (select answer_code from aw_point_recommen where type='dzsd4888100110030001')",
-					new MDataMap(), (page - 1) * num-questions.size(), num);
+					new MDataMap(), (page - 1) * num-questions.size(), num-questions.size());
 			questions.addAll(others);
 			if(questions!=null&&!questions.isEmpty()&&questions.size()>0){
 				for (int i = 0; i < questions.size(); i++) {
@@ -124,9 +127,12 @@ public class QuestionSupport extends RootClass {
 					}
 				}
 			}
+			if(questions==null){
+				questions=new ArrayList<AwQuestionInfo>();
+			}
 			List<AwQuestionInfo> others = JdbcHelper.queryForList(AwQuestionInfo.class, "", "listen desc",
 					"scope='dzsd4888100110020002' and status='dzsd4888100110010002' and code not in (select answer_code from aw_point_recommen where type='dzsd4888100110030002')",
-					new MDataMap(), (page - 1) * num-questions.size(), num);
+					new MDataMap(), (page - 1) * num-questions.size(), num-questions.size());
 			questions.addAll(others);
 			if(questions!=null&&!questions.isEmpty()&&questions.size()>0){
 				for (int i = 0; i < questions.size(); i++) {
