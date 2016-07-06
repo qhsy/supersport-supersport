@@ -34,6 +34,7 @@ public class ApiForAskQuestion extends RootApiToken<ApiForAskQuestionInput, ApiF
 			qtInfo.setQuestionTime(DateHelper.upNow());
 			qtInfo.setMoney(answerExpert.getCharge());
 			qtInfo.setCode(WebHelper.upCode("WDBH"));
+			JdbcHelper.insert(qtInfo);
 		} else {
 			result.inError(88880007);
 		}
