@@ -16,7 +16,7 @@ public class QuestionForShow extends RootClass {
 	private String soundContent;
 
 	@ApiModelProperty(name = "语音长度")
-	private String length;
+	private int length;
 
 	@ApiModelProperty(name = "回答者编号")
 	private String userCode;
@@ -60,11 +60,11 @@ public class QuestionForShow extends RootClass {
 		this.soundContent = soundContent;
 	}
 
-	public String getLength() {
+	public int getLength() {
 		return length;
 	}
 
-	public void setLength(String length) {
+	public void setLength(int length) {
 		this.length = length;
 	}
 
