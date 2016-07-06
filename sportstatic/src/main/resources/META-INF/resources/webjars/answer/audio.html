@@ -59,27 +59,30 @@
 <script type="text/javascript" src="js/vue.min.js"></script>
 <script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
 <script>
-	var appId,timestamp,nonceStr,signature;
-	$.ajax({
-		url:'/api/wechatController/configInfo',
-		type:'POST',
-		contentType:'application/json',
-		dataType:'json',
-		async:false,
-		data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": " "}}',
-		success:function(res){
-			if(res.stauts == '1'){
-				wx.config({    
-					debug: false,
-					appId: res.appId,
-					timestamp: res.timestamp,
-					nonceStr: res.nonceStr,
-					signature: res.signature,
-					jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice']
-					});
+	
+	$(function(){
+		$.ajax({
+			url:'/api/wechatController/configInfo',
+			type:'POST',
+			contentType:'application/json',
+			dataType:'json',
+			async:false,
+			data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": " "}}',
+			success:function(res){
+				if(eval(res.status) == 1){
+					wx.config({    
+						debug: true,
+						appId: res.appId,
+						timestamp: res.timestamp,
+						nonceStr: res.nonceStr,
+						signature: res.signature,
+						jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice']
+						});
+				}
 			}
-		}
-	});
+		});
+		
+	})
 	
 	wx.ready(function () {
 		var voice = {
