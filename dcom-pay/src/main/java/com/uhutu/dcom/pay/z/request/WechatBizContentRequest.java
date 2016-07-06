@@ -24,6 +24,9 @@ public class WechatBizContentRequest implements IPayRequest {
 	
 	/*请求地址*/
 	private String requestIP;
+	
+	/*远端ip地址*/
+	private String romoteIp;
 
 	public String getOrderCode() {
 		return orderCode;
@@ -63,6 +66,14 @@ public class WechatBizContentRequest implements IPayRequest {
 
 	public void setTime_expire(Date time_expire) {
 		this.time_expire = time_expire;
+	}
+
+	public String getRomoteIp() {
+		return romoteIp;
+	}
+
+	public void setRomoteIp(String romoteIp) {
+		this.romoteIp = romoteIp;
 	}
 
 }

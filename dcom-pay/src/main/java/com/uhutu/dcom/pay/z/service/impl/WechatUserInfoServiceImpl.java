@@ -44,6 +44,8 @@ public class WechatUserInfoServiceImpl implements IWechatUserInfoService {
 			
 			String returnMsg = WebClientSupport.create().doGet(sUrl);
 			
+			returnMsg = new String(returnMsg.getBytes("ISO-8859-1"),"UTF-8");
+			
 			userInfoResponse = GsonHelper.fromJson(returnMsg, userInfoResponse);
 			
 		} catch (Exception e) {

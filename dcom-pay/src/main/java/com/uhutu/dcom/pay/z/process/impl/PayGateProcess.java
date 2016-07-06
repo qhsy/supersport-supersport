@@ -64,6 +64,9 @@ public class PayGateProcess implements IPayGateProcess {
 		case WECHAT_MSG:
 			payService = payServiceFactory.getWechatMsgService();
 			break;
+		case WECHAT_ORDER:
+			payService = payServiceFactory.getWechatOrderService();
+			break;
 
 		default:
 			break;

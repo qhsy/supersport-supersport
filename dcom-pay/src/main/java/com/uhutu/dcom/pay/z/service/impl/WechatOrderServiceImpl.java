@@ -86,6 +86,8 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 		
 		orderRequest.setTrade_type(configFactory.getWechatConfig().getTradeType());
 		
+		orderRequest.setSpbill_create_ip(bizContentRequest.getRomoteIp());
+		
 		try {
 			
 			MDataMap mDataMap = BeanComponent.getInstance().objectToMap(orderRequest, null, false);

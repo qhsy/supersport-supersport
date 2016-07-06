@@ -93,7 +93,7 @@ public class WechatAuthResponse implements IPayResponse {
 		
 		boolean flag = true;
 		
-		if(StringUtils.isNoneBlank(getErrcode())){
+		if(StringUtils.isNotBlank(getErrcode())){
 			
 			flag = false;
 			

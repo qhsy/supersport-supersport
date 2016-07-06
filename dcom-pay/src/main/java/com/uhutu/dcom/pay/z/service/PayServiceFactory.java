@@ -40,6 +40,9 @@ public class PayServiceFactory {
 	
 	@Autowired
 	private IWechatMsgService wechatMsgService;
+	
+	@Autowired
+	private IWechatOrderService wechatOrderService;
 
 	public IAlipayService getAlipayService() {
 		return alipayService;
@@ -79,6 +82,10 @@ public class PayServiceFactory {
 
 	public IWechatMsgService getWechatMsgService() {
 		return wechatMsgService;
+	}
+
+	public IWechatOrderService getWechatOrderService() {
+		return wechatOrderService;
 	}
 
 }

@@ -49,6 +49,16 @@ public class ApiWechatUserLogin extends RootApiBase<ApiWechatUserLoginInput, Api
 		WechatAuthResponse authResponse = (WechatAuthResponse) payServiceFactory.getWechatAuthService()
 				.doProcess(authRequest, new MDataMap());
 		
+		if(!authResponse.upFlag()){
+			
+			userLoginResult.setStatus(0);
+			
+			userLoginResult.setError(authResponse.getErrmsg());
+			
+			return userLoginResult;
+			
+		}
+		
 		UcUserinfoSocial userInfoSocial = userServiceFactory.getUserInfoSocialService().queryByOpenId(authResponse.getOpenid());
 
 		/*根据openid判断用户是否已经注册过，若是没有则进行注册*/

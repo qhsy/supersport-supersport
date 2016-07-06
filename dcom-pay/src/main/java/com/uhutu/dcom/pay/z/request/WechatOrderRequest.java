@@ -29,6 +29,9 @@ public class WechatOrderRequest extends WechatUnifyRequest {
 	
 	/*支付类型*/
 	private String trade_type;
+	
+	/*发起微信支付的ip*/
+	private String spbill_create_ip;
 
 	public String getBody() {
 		return body;
@@ -84,6 +87,14 @@ public class WechatOrderRequest extends WechatUnifyRequest {
 
 	public void setTrade_type(String trade_type) {
 		this.trade_type = trade_type;
+	}
+
+	public String getSpbill_create_ip() {
+		return spbill_create_ip;
+	}
+
+	public void setSpbill_create_ip(String spbill_create_ip) {
+		this.spbill_create_ip = spbill_create_ip;
 	}
 
 }
