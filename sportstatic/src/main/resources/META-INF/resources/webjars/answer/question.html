@@ -21,13 +21,50 @@
 			<h2><em>骨灰级健身教练</em>运动爱好者</h2>
 		</header>
 		<div class="cont">
-			<textarea name="" id="" cols="30" rows="10" class="text" placeholder="向壁咚提问，等他语音回答；超过48小时未回答，将按支付路径全额退款"></textarea>
+			<textarea name="" id="" cols="30" rows="10" class="text" v-model="content" v-on:input="change" placeholder="向壁咚提问，等他语音回答；超过48小时未回答，将按支付路径全额退款"></textarea>
 			<em class="sum"><i>0</i>/60</em>	
-			<p class="status"><i class="iconfont">&#xe602;</i>公开提问，答案每被偷偷听1次，你从中分成￥0.5</p>
+			<p class="status"><i class="iconfont" v-bind:class="{'overt': overt}" v-on:click="overtFn">&#xe602;</i>公开提问，答案每被偷偷听1次，你从中分成￥0.5</p>
 		</div>
 		<span class="price">￥198</span>
-		<a href="javascript:;" class="submit">写好了</a>
+		<a href="javascript:;" class="submit" v-on:click="submitFn">写好了</a>
 	</article>
 </section>
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript">
+var question = new Vue({
+	el:'.question',
+	data:{
+		content:'',
+		overt:true
+	},
+	methods:{
+		overtFn:function(){
+			this.overt = !this.overt;
+		},
+		change:function(){
+
+		},
+		submitFn:function(){
+			var self = this;
+			$.ajax({
+				url:'/api/answerController/saveQuestion',
+				type:'POST',
+				contentType:'application/json',
+				dataType:'json',
+				data:'{"answerUserCode": "string","content": "' + self.content + '","scope": "' + self.overt + '","zoo": {"key": "tesetkey","token": "3303e5ccaed544dbb3c260ad06a3320347d4a3b401db4dc7947e355977ae7ae6ceec054c"}}',
+				success:function(res){
+					console.log(self.content)
+					if(res.status != '1'){
+						alert(res.error);
+					}else{
+						alert('提交成功')
+					}
+				}
+			})
+		}
+	}
+});
+</script>
 </body>
 </html>
