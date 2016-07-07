@@ -17,7 +17,6 @@ import com.uhutu.dcom.pay.z.service.IWechatOrderService;
 import com.uhutu.dcom.pay.z.util.BeanComponent;
 import com.uhutu.dcom.pay.z.util.WechatUtil;
 import com.uhutu.dcom.pay.z.util.XmlUtil;
-import com.uhutu.zoocom.helper.GsonHelper;
 import com.uhutu.zoocom.model.MDataMap;
 
 /**
@@ -47,7 +46,9 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 			
 			String responseMsg = WebClientComponent.doXmpRequest(configFactory.getWechatConfig().getOrderUrl(), xmlStr);
 			
-			orderResponse = GsonHelper.fromJson(responseMsg, orderResponse);
+			MDataMap mdDataMap = XmlUtil.getInstance().xmlToMDataMap(responseMsg);
+			
+			orderResponse = BeanComponent.getInstance().invoke(orderResponse.getClass(), mdDataMap, true);
 			
 		} catch (Exception e) {
 			

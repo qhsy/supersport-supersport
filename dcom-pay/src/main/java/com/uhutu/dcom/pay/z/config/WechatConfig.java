@@ -67,6 +67,9 @@ public class WechatConfig {
 	
 	@Value("${wechat_userinfo_url}")
 	private String serviceUserInfoUrl;
+	
+	@Value("${wechat_compay_url}")
+	private String serviceComPayUrl;
 
 	/**
 	 * 获取app编号
@@ -268,6 +271,14 @@ public class WechatConfig {
 
 	public String getServiceUserInfoUrl() {
 		return serviceUserInfoUrl;
+	}
+
+	/**
+	 * 获取企业支付url
+	 * @return
+	 */
+	public String getServiceComPayUrl() {
+		return serviceComPayUrl;
 	}
 	
 	
