@@ -21,6 +21,7 @@ import com.uhutu.sportcenter.z.input.ApiOpenAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiPersonHomeInput;
 import com.uhutu.sportcenter.z.input.ApiQuestionDetailInput;
 import com.uhutu.sportcenter.z.input.ApiQuestionInfoListInput;
+import com.uhutu.sportcenter.z.input.ApiQuestionPraiseInput;
 import com.uhutu.sportcenter.z.input.ApiRichAnswersInput;
 import com.uhutu.sportcenter.z.input.ApiSaveWechatVoiceInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateAnswerUserInput;
@@ -39,6 +40,7 @@ import com.uhutu.sportcenter.z.result.ApiQuestionDetailResult;
 import com.uhutu.sportcenter.z.result.ApiQuestionInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiRichAnswersResult;
 import com.uhutu.sportcenter.z.result.ApiSaveWechatVoiceResult;
+import com.uhutu.sportcenter.z.result.ApiSupportPraiseResult;
 import com.uhutu.sportcenter.z.result.ApiUpdateAnswerUserResult;
 
 import io.swagger.annotations.Api;
@@ -163,7 +165,7 @@ public class AnswerController {
 
 		return apiFactory.getApiAskQuestion().api(input);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/openAskQuestion", method = RequestMethod.POST)
 	@ApiOperation(value = "开通问达", notes = "开通问达")
@@ -171,7 +173,7 @@ public class AnswerController {
 
 		return apiFactory.getApiOpenAskQuestion().api(input);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/answerQuestionDetail", method = RequestMethod.POST)
 	@ApiOperation(value = "回答问题时所需要的展示信息", notes = "回答问题时所需要的展示信息")
@@ -179,12 +181,20 @@ public class AnswerController {
 
 		return apiFactory.getAnswerQuestionDetail().api(input);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/personHomePage", method = RequestMethod.POST)
 	@ApiOperation(value = "个人主页信息", notes = "个人主页信息")
 	public ApiPersonHomeResult personHomePage(@RequestBody ApiPersonHomeInput input) {
 
 		return apiFactory.getApiPersonHome().api(input);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/questionPraise", method = RequestMethod.POST)
+	@ApiOperation(value = "问达点赞", notes = "问达点赞")
+	public ApiSupportPraiseResult personHomePage(@RequestBody ApiQuestionPraiseInput input) {
+
+		return apiFactory.getApiQuestionPraise().api(input);
 	}
 }

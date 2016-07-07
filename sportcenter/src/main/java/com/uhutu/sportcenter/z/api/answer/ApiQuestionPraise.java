@@ -1,13 +1,19 @@
 package com.uhutu.sportcenter.z.api.answer;
 
 import java.util.Date;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.stereotype.Component;
+
+import com.uhutu.dcom.answer.z.entity.AwAnswerListen;
+import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.config.enums.PrexEnum;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
-import com.uhutu.sportcenter.z.input.ApiSupportPraiseInput;
+import com.uhutu.sportcenter.z.input.ApiQuestionPraiseInput;
 import com.uhutu.sportcenter.z.result.ApiSupportPraiseResult;
+import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.root.RootApiToken;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /***
  * 问达信息赞的接口
@@ -16,23 +22,49 @@ import com.uhutu.zoocom.root.RootApiToken;
  *
  */
 @Component
-public class ApiQuestionPraise extends RootApiToken<ApiSupportPraiseInput, ApiSupportPraiseResult> {
+public class ApiQuestionPraise extends RootApiToken<ApiQuestionPraiseInput, ApiSupportPraiseResult> {
 
-
-	protected ApiSupportPraiseResult process(ApiSupportPraiseInput input) {
-		CnSupportPraise praise = new CnSupportPraise();
-//		praise.setCode(PrexEnum.CNE.toString() + DateFormatUtils.format(new Date(), "yyyyMMddhhmmssSSS"));
-//		praise.setContentCode(input.getContentCode());
-//		praise.setType(input.getType());
-//		praise.setUserCode(upUserCode());
-//		if ("0".equals(input.getIsLike())) {// 取消点赞或者取消点嘘嘘
-//			serviceFactory.getSupportPraiseService().cancelbyCCAndUCAndType(input.getContentCode(), upUserCode(),
-//					input.getType());
-//		} else {// 点赞或者点嘘嘘
-//			serviceFactory.getSupportPraiseService().save(praise);
-//		}
-
-		return new ApiSupportPraiseResult();
+	protected ApiSupportPraiseResult process(ApiQuestionPraiseInput input) {
+		ApiSupportPraiseResult result = new ApiSupportPraiseResult();
+		if (StringUtils.isNotBlank(input.getCode())) {
+			AwQuestionInfo questionInfo = JdbcHelper.queryOne(AwQuestionInfo.class, "code", input.getCode());
+			if ("dzsd4888100110020001".equals(questionInfo.getScope())) {// 私密和未回答问题不能赞
+				result.inError(88880011);
+				result.setError(TopHelper.upInfo(88880011));
+			} else if (!"dzsd4888100110010002".equals(questionInfo.getStatus())) {
+				result.inError(88880012);
+				result.setError(TopHelper.upInfo(88880012));
+			}
+			if (result.upFlagTrue()) {// 已赞过的不能赞
+				CnSupportPraise cnSupportPraise = JdbcHelper.queryOne(CnSupportPraise.class, "user_code", upUserCode(),
+						"content_code", input.getCode());
+				if (cnSupportPraise != null) {
+					result.inError(88880013);
+					result.setError(TopHelper.upInfo(88880013));
+				}
+				if (result.upFlagTrue()) {// 提问人和回答人或者已支付的偷听人才能赞
+					AwAnswerListen listen = JdbcHelper.queryOne(AwAnswerListen.class, "question_code",
+							questionInfo.getCode(), "user_code", upUserCode());
+					if (listen != null || upUserCode().equals(questionInfo.getQuestionUserCode())
+							|| upUserCode().equals(questionInfo.getAnswerUserCode())) {
+						CnSupportPraise praise = new CnSupportPraise();
+						praise.setCode(
+								PrexEnum.CNE.toString() + DateFormatUtils.format(new Date(), "yyyyMMddhhmmssSSS"));
+						praise.setContentCode(input.getCode());
+						praise.setType("01");
+						praise.setUserCode(upUserCode());
+						praise.setStatus("1");
+						JdbcHelper.insert(praise);
+						questionInfo.setLove(questionInfo.getLove() + 1);
+						JdbcHelper.update(questionInfo, "love", "za");
+					} else {
+						result.inError(88880014);
+						result.setError(TopHelper.upInfo(88880014));
+					}
+				}
+			}
+		}
+		return result;
 	}
 
 }

@@ -17,6 +17,7 @@ import com.uhutu.sportcenter.z.api.answer.ApiOpenAskQuestion;
 import com.uhutu.sportcenter.z.api.answer.ApiPersonHome;
 import com.uhutu.sportcenter.z.api.answer.ApiQuestionDetail;
 import com.uhutu.sportcenter.z.api.answer.ApiQuestionInfoList;
+import com.uhutu.sportcenter.z.api.answer.ApiQuestionPraise;
 import com.uhutu.sportcenter.z.api.answer.ApiRichAnswers;
 import com.uhutu.sportcenter.z.api.answer.ApiSaveWechatVoice;
 import com.uhutu.sportcenter.z.api.answer.ApiUpdateAnswerUser;
@@ -277,7 +278,13 @@ public class ApiFactory {
 	@Autowired
 	private ApiAnswerQuestionDetail answerQuestionDetail;
 	
+	@Autowired
+	private ApiQuestionPraise apiQuestionPraise;
 	
+	public ApiQuestionPraise getApiQuestionPraise() {
+		return apiQuestionPraise;
+	}
+
 	public ApiAnswerQuestionDetail getAnswerQuestionDetail() {
 		return answerQuestionDetail;
 	}
