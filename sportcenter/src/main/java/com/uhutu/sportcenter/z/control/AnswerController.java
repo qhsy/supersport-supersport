@@ -18,6 +18,7 @@ import com.uhutu.sportcenter.z.input.ApiForAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiHotQuestionsInput;
 import com.uhutu.sportcenter.z.input.ApiNewQuestionsInput;
 import com.uhutu.sportcenter.z.input.ApiOpenAskQuestionInput;
+import com.uhutu.sportcenter.z.input.ApiPersonHomeInput;
 import com.uhutu.sportcenter.z.input.ApiQuestionDetailInput;
 import com.uhutu.sportcenter.z.input.ApiQuestionInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiRichAnswersInput;
@@ -33,6 +34,7 @@ import com.uhutu.sportcenter.z.result.ApiForAskQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiHotQuestionsResult;
 import com.uhutu.sportcenter.z.result.ApiNewQuestionsResult;
 import com.uhutu.sportcenter.z.result.ApiOpenAskQuestionResult;
+import com.uhutu.sportcenter.z.result.ApiPersonHomeResult;
 import com.uhutu.sportcenter.z.result.ApiQuestionDetailResult;
 import com.uhutu.sportcenter.z.result.ApiQuestionInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiRichAnswersResult;
@@ -176,5 +178,13 @@ public class AnswerController {
 	public ApiAnswerQuestionDetailResult answerQuestionDetail(@RequestBody ApiAnswerQuestionDetailInput input) {
 
 		return apiFactory.getAnswerQuestionDetail().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/personHomePage", method = RequestMethod.POST)
+	@ApiOperation(value = "个人主页信息", notes = "个人主页信息")
+	public ApiPersonHomeResult personHomePage(@RequestBody ApiPersonHomeInput input) {
+
+		return apiFactory.getApiPersonHome().api(input);
 	}
 }
