@@ -31,6 +31,9 @@ public class QuestionInfo extends UserBasicInfo {
 	@ApiModelProperty(value="偷听人数")
 	private long listen;
 	
+	@ApiModelProperty(value="语音长度")
+	private int lengh;
+	
 	@ApiModelProperty(value="问题提出者分成")
 	private BigDecimal answerAmount;
 
@@ -97,6 +100,16 @@ public class QuestionInfo extends UserBasicInfo {
 	public void setAnswerAmount(BigDecimal answerAmount) {
 		this.answerAmount = answerAmount;
 	}
+
+	public int getLengh() {
+		return lengh;
+	}
+
+	public void setLengh(int lengh) {
+		this.lengh = lengh;
+	}
+
+
 	
 
 }
