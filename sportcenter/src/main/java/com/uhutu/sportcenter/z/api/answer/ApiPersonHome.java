@@ -50,29 +50,29 @@ public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHome
 			
 			int count = answerServiceFactory.getQuestionInfoService().queryAnswerCount(input.getUserCode(), Constants.STATUS_ANSWERED);
 			
-			result.setCount(count);
-			
 			int iStart = (input.getPagination() - 1)*20;
 			
 			List<AwQuestionInfo> awQuestionInfos = answerServiceFactory.getQuestionInfoService().queryAnswerList(input.getUserCode(), Constants.STATUS_ANSWERED, iStart, 20);
 			
 			result.setQuestionInfos(convert(awQuestionInfos));
 			
+			AnswerUserInfo answerUserInfo = new AnswerUserInfo();
+			
+			BeanUtils.copyProperties(answerExpert, answerUserInfo);
+			
+			UserBasicInfo userBasicInfo = userInfoSupport.getUserBasicInfo(input.getUserCode());
+			
+			answerUserInfo.setAboutHead(userBasicInfo.getUcUserinfoExt().getAboutHead());
+			
+			answerUserInfo.setNickName(userBasicInfo.getUcUserinfoExt().getNickName());
+			
+			answerUserInfo.setAnswerCount(count);
+			
+			answerUserInfo.setType(userBasicInfo.getUcUserinfo().getType());
+			
+			result.setAnswerUserInfo(answerUserInfo);
+			
 		}
-		
-		AnswerUserInfo answerUserInfo = new AnswerUserInfo();
-		
-		BeanUtils.copyProperties(answerExpert, answerUserInfo);
-		
-		UserBasicInfo userBasicInfo = userInfoSupport.getUserBasicInfo(input.getUserCode());
-		
-		answerUserInfo.setAboutHead(userBasicInfo.getUcUserinfoExt().getAboutHead());
-		
-		answerUserInfo.setNickName(userBasicInfo.getUcUserinfoExt().getNickName());
-		
-		answerUserInfo.setType(userBasicInfo.getUcUserinfo().getType());
-		
-		result.setAnswerUserInfo(answerUserInfo);
 		
 		return result;
 	}

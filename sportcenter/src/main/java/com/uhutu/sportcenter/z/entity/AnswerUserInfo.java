@@ -28,6 +28,9 @@ public class AnswerUserInfo extends UserBasicInfo {
 	@ApiModelProperty(value="是否已经关注",example="是：dzsd4699100110010001 否：dzsd4699100110010002")
 	private String attendFlag;
 
+	@ApiModelProperty(value="总共回答的问题数")
+	private int answerCount;
+
 	public BigDecimal getCharge() {
 		return charge;
 	}
@@ -66,6 +69,22 @@ public class AnswerUserInfo extends UserBasicInfo {
 
 	public void setAbility(String ability) {
 		this.ability = ability;
+	}
+
+	public String getAttendFlag() {
+		return attendFlag;
+	}
+
+	public void setAttendFlag(String attendFlag) {
+		this.attendFlag = attendFlag;
+	}
+
+	public int getAnswerCount() {
+		return answerCount;
+	}
+
+	public void setAnswerCount(int answerCount) {
+		this.answerCount = answerCount;
 	}
 
 }

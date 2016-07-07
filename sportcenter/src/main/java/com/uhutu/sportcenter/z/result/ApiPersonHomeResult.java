@@ -20,9 +20,6 @@ public class ApiPersonHomeResult extends RootApiResult {
 	@ApiModelProperty(value="问答用户信息")
 	private AnswerUserInfo answerUserInfo;
 	
-	@ApiModelProperty(value="总共回答的问题数")
-	private int count;
-	
 	@ApiModelProperty(value="回答过的问题列表")
 	private List<QuestionInfo> questionInfos;
 
@@ -32,14 +29,6 @@ public class ApiPersonHomeResult extends RootApiResult {
 
 	public void setAnswerUserInfo(AnswerUserInfo answerUserInfo) {
 		this.answerUserInfo = answerUserInfo;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
 	}
 
 	public List<QuestionInfo> getQuestionInfos() {
