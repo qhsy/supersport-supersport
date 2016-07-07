@@ -30,6 +30,9 @@ public class AnswerUserInfo extends UserBasicInfo {
 
 	@ApiModelProperty(value="总共回答的问题数")
 	private int answerCount;
+	
+	@ApiModelProperty(value="头衔")
+	private String title;
 
 	public BigDecimal getCharge() {
 		return charge;
@@ -85,6 +88,14 @@ public class AnswerUserInfo extends UserBasicInfo {
 
 	public void setAnswerCount(int answerCount) {
 		this.answerCount = answerCount;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }
