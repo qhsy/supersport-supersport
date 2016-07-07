@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiAnswerInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerListenListInput;
+import com.uhutu.sportcenter.z.input.ApiAnswerQuestionDetailInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiForAnswerQuestionInput;
@@ -24,6 +25,7 @@ import com.uhutu.sportcenter.z.input.ApiSaveWechatVoiceInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateAnswerUserInput;
 import com.uhutu.sportcenter.z.result.ApiAnswerInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerListenListResult;
+import com.uhutu.sportcenter.z.result.ApiAnswerQuestionDetailResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiAskQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiForAnswerQuestionResult;
@@ -166,5 +168,13 @@ public class AnswerController {
 	public ApiOpenAskQuestionResult openAskQuestion(@RequestBody ApiOpenAskQuestionInput input) {
 
 		return apiFactory.getApiOpenAskQuestion().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/answerQuestionDetail", method = RequestMethod.POST)
+	@ApiOperation(value = "回答问题时所需要的展示信息", notes = "回答问题时所需要的展示信息")
+	public ApiAnswerQuestionDetailResult answerQuestionDetail(@RequestBody ApiAnswerQuestionDetailInput input) {
+
+		return apiFactory.getAnswerQuestionDetail().api(input);
 	}
 }
