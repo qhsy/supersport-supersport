@@ -16,6 +16,7 @@ import com.uhutu.sportcenter.z.input.ApiForAnswerQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiForAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiHotQuestionsInput;
 import com.uhutu.sportcenter.z.input.ApiNewQuestionsInput;
+import com.uhutu.sportcenter.z.input.ApiOpenAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiQuestionDetailInput;
 import com.uhutu.sportcenter.z.input.ApiQuestionInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiRichAnswersInput;
@@ -29,6 +30,7 @@ import com.uhutu.sportcenter.z.result.ApiForAnswerQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiForAskQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiHotQuestionsResult;
 import com.uhutu.sportcenter.z.result.ApiNewQuestionsResult;
+import com.uhutu.sportcenter.z.result.ApiOpenAskQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiQuestionDetailResult;
 import com.uhutu.sportcenter.z.result.ApiQuestionInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiRichAnswersResult;
@@ -156,5 +158,13 @@ public class AnswerController {
 	public ApiAskQuestionResult askQuestion(@RequestBody ApiAskQuestionInput input) {
 
 		return apiFactory.getApiAskQuestion().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/openAskQuestion", method = RequestMethod.POST)
+	@ApiOperation(value = "开通问达", notes = "开通问达")
+	public ApiOpenAskQuestionResult openAskQuestion(@RequestBody ApiOpenAskQuestionInput input) {
+
+		return apiFactory.getApiOpenAskQuestion().api(input);
 	}
 }
