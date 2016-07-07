@@ -250,5 +250,28 @@ public class QuestionSupport extends RootClass {
 		}
 		return result;
 	}
+	
+	/**
+	 * 根据问题编号查询活动名称
+	 * @param questionCode
+	 * 		问题编号
+	 * @return 活动名称
+	 */
+	public static String soundContent(String questionCode){
+		
+		String soundContent = ConfigDcomAnswer.upConfig().getAnswerVideoShow();
+		
+		AcActivityAnswerInfo activityInfo = new AnswerActivitySupport()
+				.getActivityInfoByAnswerCode(questionCode);
+		
+		if (activityInfo != null) {
+			
+			soundContent = activityInfo.getName();
+			
+		}
+		
+		return soundContent;
+		
+	}
 
 }
