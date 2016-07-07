@@ -1,6 +1,8 @@
 package com.uhutu.dcom.answer.z.support;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -178,41 +180,65 @@ public class QuestionSupport extends RootClass {
 	 */
 	public List<AnswerForShow> getHotAnswers(int page, int num) {
 		List<AnswerForShow> result = new ArrayList<AnswerForShow>();
-		List<String> codes = new ArrayList<String>();
+		LinkedHashMap<String, String> cns = new LinkedHashMap<String, String>();// key用户编号value已回答数量
 		if (page > 0 && num > 0) {
 			List<AwPointRecommen> res = JdbcHelper.queryForList(AwPointRecommen.class, "", " sort desc ",
 					" type='dzsd4888100110030003'", new MDataMap(), (page - 1) * num, num);
+			StringBuffer str = new StringBuffer();
+			for (int i = 0; i < res.size(); i++) {
+				if (i == res.size() - 1) {
+					str.append("'" + res.get(i).getAnswerCode() + "'");
+				} else {
+					str.append("'" + res.get(i).getAnswerCode() + "',");
+				}
+			}
+			if (!StringUtils.isNotBlank(str.toString())) {
+				str.append("''");
+			}
+			List<MDataMap> alres = JdbcHelper.dataQuery("aw_question_info", " answer_user_code ,count(*) as num ", "",
+					"status='dzsd4888100110010002' and answer_user_code in (" + str.toString()
+							+ ") GROUP BY answer_user_code order by num desc ",
+					new MDataMap(), 0, 0);
+			if (alres != null && !alres.isEmpty()) {
+				for (int i = 0; i < alres.size(); i++) {
+					cns.put(alres.get(i).get("answer_user_code"), alres.get(i).get("num"));
+				}
+			}
 			if (res != null && !res.isEmpty() && res.size() > 0) {// 运营推荐
 				for (int i = 0; i < res.size(); i++) {
-					codes.add(res.get(i).getAnswerCode());
-				}
-			}
-			List<MDataMap> reals = JdbcHelper.dataQuery("aw_question_info",
-					" answer_user_code as code,count(*)*(8/10)+SUM(listen)*(2/10) as tj ", "",
-					"status='dzsd4888100110010002' and answer_user_code not in (select answer_code from aw_point_recommen where type='dzsd4888100110030003')  GROUP BY answer_user_code order by tj desc ",
-					new MDataMap(), page == 1 ? 0 : ((page - 1) * num - codes.size()), num - codes.size());
-			if (reals != null && !reals.isEmpty() && reals.size() > 0) {// 真实排行
-				for (int i = 0; i < reals.size(); i++) {
-					codes.add(reals.get(i).get("code"));
-				}
-			}
-			if (codes.size() < num) {
-				List<AwAnswerExpert> others = JdbcHelper.queryForList(AwAnswerExpert.class, "", "zc desc",
-						"user_code not in (select answer_user_code from aw_question_info where status='dzsd4888100110010002') and user_code not in (select answer_code from aw_point_recommen where type='dzsd4888100110030003')",
-						new MDataMap(), page == 1 ? 0 : ((page - 1) * num - codes.size()), num - codes.size());
-				if (others != null && !others.isEmpty() && others.size() > 0) {// 运营推荐
-					for (int i = 0; i < others.size(); i++) {
-						codes.add(others.get(i).getUserCode());
+					if (!cns.containsKey(res.get(i).getAnswerCode())) {
+						cns.put(res.get(i).getAnswerCode(), "0");
 					}
 				}
 			}
-			if (codes != null && !codes.isEmpty() && codes.size() > 0) {
-				for (int i = 0; i < codes.size(); i++) {
+			List<MDataMap> reals = JdbcHelper.dataQuery("aw_question_info",
+					" answer_user_code as code,count(*) as num,count(*)*(8/10)+SUM(listen)*(2/10) as tj ", "",
+					"status='dzsd4888100110010002' and answer_user_code not in (select answer_code from aw_point_recommen where type='dzsd4888100110030003')  GROUP BY answer_user_code order by tj desc ",
+					new MDataMap(), page == 1 ? 0 : ((page - 1) * num - cns.size()), num - cns.size());
+			if (reals != null && !reals.isEmpty() && reals.size() > 0) {// 真实排行
+				for (int i = 0; i < reals.size(); i++) {
+					cns.put(reals.get(i).get("code"), reals.get(i).get("num"));
+				}
+			}
+			if (cns.size() < num) {
+				List<AwAnswerExpert> others = JdbcHelper.queryForList(AwAnswerExpert.class, "", "zc desc",
+						"user_code not in (select answer_user_code from aw_question_info where status='dzsd4888100110010002') and user_code not in (select answer_code from aw_point_recommen where type='dzsd4888100110030003')",
+						new MDataMap(), page == 1 ? 0 : ((page - 1) * num - cns.size()), num - cns.size());
+				if (others != null && !others.isEmpty() && others.size() > 0) {// 开通问达但没回答问题的人
+					for (int i = 0; i < others.size(); i++) {
+						cns.put(others.get(i).getUserCode(), "0");
+					}
+				}
+			}
+			if (cns != null && !cns.isEmpty() && cns.size() > 0) {
+				Iterator<String> iterator = cns.keySet().iterator();
+				while (iterator.hasNext()) {
+					String code = (String) iterator.next();
 					AnswerForShow show = new AnswerForShow();
-					UcUserinfo info = JdbcHelper.queryOne(UcUserinfo.class, "code", codes.get(i));
-					UcUserinfoExt ext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", codes.get(i));
-					AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "user_code", codes.get(i));
-					// show.setAnswer(answer);
+					UcUserinfo info = JdbcHelper.queryOne(UcUserinfo.class, "code", code);
+					UcUserinfoExt ext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", code);
+					AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "user_code", code);
+					show.setAnswer(Integer.valueOf(cns.get(code)));
 					show.setHeadUrl(ext.getAboutHead());
 					show.setNickName(ext.getNickName());
 					show.setTitle(expert.getTitle());

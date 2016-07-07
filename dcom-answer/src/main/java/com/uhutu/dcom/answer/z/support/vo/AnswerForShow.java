@@ -22,7 +22,7 @@ public class AnswerForShow extends RootClass {
 	private String title;
 
 	@ApiModelProperty(value = "已回答数")
-	private long answer;
+	private int answer;
 
 	public String getUserCode() {
 		return userCode;
@@ -64,11 +64,11 @@ public class AnswerForShow extends RootClass {
 		this.title = title;
 	}
 
-	public long getAnswer() {
+	public int getAnswer() {
 		return answer;
 	}
 
-	public void setAnswer(long answer) {
+	public void setAnswer(int answer) {
 		this.answer = answer;
 	}
 
