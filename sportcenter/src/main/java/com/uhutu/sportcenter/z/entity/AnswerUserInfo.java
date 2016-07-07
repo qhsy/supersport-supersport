@@ -25,7 +25,7 @@ public class AnswerUserInfo extends UserBasicInfo {
 	@ApiModelProperty(value="你擅长回答的问题")
 	private String ability;
 	
-	@ApiModelProperty(value="是否已经关注",example="是：dzsd4699100110010001 否：dzsd4699100110010002")
+	@ApiModelProperty(value="是否已经关注",example="如果获取的用户信息不是自己，则使用本参数,1:已关注，0:未关注")
 	private String attendFlag;
 
 	@ApiModelProperty(value="总共回答的问题数")

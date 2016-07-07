@@ -11,13 +11,17 @@ import com.uhutu.dcom.answer.z.common.Constants;
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
+import com.uhutu.dcom.answer.z.support.QuestionSupport;
+import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
 import com.uhutu.dcom.user.z.entity.UserBasicInfo;
+import com.uhutu.dcom.user.z.enums.UserEnum;
+import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.AnswerUserInfo;
 import com.uhutu.sportcenter.z.entity.QuestionInfo;
 import com.uhutu.sportcenter.z.input.ApiPersonHomeInput;
 import com.uhutu.sportcenter.z.result.ApiPersonHomeResult;
-import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zoocom.root.RootApiToken;
 
 /**
  * 个人主页
@@ -25,13 +29,16 @@ import com.uhutu.zoocom.root.RootApiBase;
  *
  */
 @Component
-public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHomeResult> {
+public class ApiPersonHome extends RootApiToken<ApiPersonHomeInput, ApiPersonHomeResult> {
 	
 	@Autowired
 	private AnswerServiceFactory answerServiceFactory;
 	
 	@Autowired
 	private UserInfoSupport userInfoSupport;
+	
+	@Autowired
+	private UserServiceFactory userServiceFactory;
 
 	@Override
 	protected ApiPersonHomeResult process(ApiPersonHomeInput input) {
@@ -70,6 +77,19 @@ public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHome
 			
 			answerUserInfo.setType(userBasicInfo.getUcUserinfo().getType());
 			
+			UcAttentionInfo attendInfo = userServiceFactory.getAttentionInfoService()
+					.queryByBothCode(upUserCode(), input.getUserCode(),UserEnum.ATTEND.getCode());
+			
+			if(attendInfo != null){
+				
+				answerUserInfo.setAttendFlag(attendInfo.getStatus());
+				
+			}else{
+				
+				answerUserInfo.setAttendFlag(UserEnum.UN_ATTEND.getCode());
+				
+			}
+			
 			result.setAnswerUserInfo(answerUserInfo);
 			
 		}
@@ -102,6 +122,10 @@ public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHome
 			questionInfo.setNickName(userBasicInfo.getUcUserinfoExt().getNickName());
 			
 			questionInfo.setType(userBasicInfo.getUcUserinfo().getType());
+			
+			questionInfo.setPraiseNum(0);
+			
+			questionInfo.setSoundContent(QuestionSupport.soundContent(awQuestionInfo.getCode()));
 			
 			questionInfos.add(questionInfo);
 			

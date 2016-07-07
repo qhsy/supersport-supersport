@@ -36,6 +36,15 @@ public class QuestionInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value="问题提出者分成")
 	private BigDecimal answerAmount;
+	
+	@ApiModelProperty(value="语音路径")
+	private String url;
+	
+	@ApiModelProperty(value="语音内容")
+	private String soundContent;
+	
+	@ApiModelProperty(value="点赞数量")
+	private int praiseNum;
 
 	public String getCode() {
 		return code;
@@ -107,6 +116,30 @@ public class QuestionInfo extends UserBasicInfo {
 
 	public void setLengh(int lengh) {
 		this.lengh = lengh;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getSoundContent() {
+		return soundContent;
+	}
+
+	public void setSoundContent(String soundContent) {
+		this.soundContent = soundContent;
+	}
+
+	public int getPraiseNum() {
+		return praiseNum;
+	}
+
+	public void setPraiseNum(int praiseNum) {
+		this.praiseNum = praiseNum;
 	}
 
 
