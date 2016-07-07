@@ -12,68 +12,77 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class QuestionDetailForshow {
 
-	@ApiModelProperty(name = "问题编号")
+	@ApiModelProperty(value = "问题编号")
 	private String code;
 
-	@ApiModelProperty(name = "问题内容")
+	@ApiModelProperty(value = "问题内容")
 	private String content;
 
-	@ApiModelProperty(name = "提问人编号")
+	@ApiModelProperty(value = "提问人编号")
 	private String questionUserCode;
 
-	@ApiModelProperty(name = "提问人昵称")
+	@ApiModelProperty(value = "提问人类型")
+	private String questionUserType;
+
+	@ApiModelProperty(value = "提问人昵称")
 	private String questionUserNickName;
 
-	@ApiModelProperty(name = "提问人头像")
+	@ApiModelProperty(value = "提问人头像")
 	private String questionUserHeadUrl;
 
-	@ApiModelProperty(name = "回答人编号")
+	@ApiModelProperty(value = "回答人编号")
 	private String answerUserCode;
 
-	@ApiModelProperty(name = "回答人昵称")
+	@ApiModelProperty(value = "回答人类型")
+	private String answerUserType;
+
+	@ApiModelProperty(value = "回答人昵称")
 	private String answerUserNickName;
 
-	@ApiModelProperty(name = "回答人头像")
+	@ApiModelProperty(value = "回答人头像")
 	private String answerUserHeadUrl;
 
-	@ApiModelProperty(name = "回答人头衔")
+	@ApiModelProperty(value = "回答人头衔")
 	private String answerUserTitle;
 
-	@ApiModelProperty(name = "回答人粉丝数")
+	@ApiModelProperty(value = "回答人粉丝数")
 	private int answerUserFans;
 
-	@ApiModelProperty(name = "提问金额(RMB)")
+	@ApiModelProperty(value = "提问金额(RMB)")
 	private BigDecimal money;
 
-	@ApiModelProperty(name = "偷听金额(RMB)")
+	@ApiModelProperty(value = "偷听金额(RMB)")
 	private BigDecimal sellMoney;
 
-	@ApiModelProperty(name = "状态", notes = "dzsd4888100110010001:待回答,dzsd4888100110010002:已回答,dzsd4888100110010003:已拒绝回答")
+	@ApiModelProperty(value = "状态", notes = "dzsd4888100110010001:待回答,dzsd4888100110010002:已回答,dzsd4888100110010003:已拒绝回答")
 	private String status;
 
-	@ApiModelProperty(name = "语音路径")
+	@ApiModelProperty(value = "语音路径")
 	private String videoUrl;
 
-	@ApiModelProperty(name = "语音长度(秒)")
+	@ApiModelProperty(value = "语音长度(秒)")
 	private int videoLengh;
 
-	@ApiModelProperty(name = "语音文字展示")
-	private int videoShow;
+	@ApiModelProperty(value = "语音文字展示")
+	private String videoShow;
 
-	@ApiModelProperty(name = "时间展示")
+	@ApiModelProperty(value = "时间展示")
 	private String timeShow;
 
-	@ApiModelProperty(name = "已收听数")
+	@ApiModelProperty(value = "已收听数")
 	private long listen;
 
-	@ApiModelProperty(name = "已赞数量")
+	@ApiModelProperty(value = "已赞数量")
 	private long love;
 
-	@ApiModelProperty(name = "是否已赞")
-	private boolean loveFlag;
+	@ApiModelProperty(value = "是否已赞")
+	private boolean loveFlag = false;
 
-	@ApiModelProperty(name = "是否可直接听")
-	private boolean listenFlag;
+	@ApiModelProperty(value = "是否可直接听")
+	private boolean listenFlag = false;
+
+	@ApiModelProperty(value = "分享范围", notes = "dzsd4888100110020001:私密,dzsd4888100110020002:公开")
+	private String scope;
 
 	public String getCode() {
 		return code;
@@ -195,11 +204,11 @@ public class QuestionDetailForshow {
 		this.videoLengh = videoLengh;
 	}
 
-	public int getVideoShow() {
+	public String getVideoShow() {
 		return videoShow;
 	}
 
-	public void setVideoShow(int videoShow) {
+	public void setVideoShow(String videoShow) {
 		this.videoShow = videoShow;
 	}
 
@@ -241,6 +250,30 @@ public class QuestionDetailForshow {
 
 	public void setListenFlag(boolean listenFlag) {
 		this.listenFlag = listenFlag;
+	}
+
+	public String getQuestionUserType() {
+		return questionUserType;
+	}
+
+	public void setQuestionUserType(String questionUserType) {
+		this.questionUserType = questionUserType;
+	}
+
+	public String getAnswerUserType() {
+		return answerUserType;
+	}
+
+	public void setAnswerUserType(String answerUserType) {
+		this.answerUserType = answerUserType;
+	}
+
+	public String getScope() {
+		return scope;
+	}
+
+	public void setScope(String scope) {
+		this.scope = scope;
 	}
 
 }

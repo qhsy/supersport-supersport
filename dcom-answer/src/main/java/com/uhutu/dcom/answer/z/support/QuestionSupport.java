@@ -250,28 +250,68 @@ public class QuestionSupport extends RootClass {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 根据问题编号查询活动名称
+	 * 
 	 * @param questionCode
-	 * 		问题编号
+	 *            问题编号
 	 * @return 活动名称
 	 */
-	public static String soundContent(String questionCode){
-		
+	public static String soundContent(String questionCode) {
+
 		String soundContent = ConfigDcomAnswer.upConfig().getAnswerVideoShow();
-		
-		AcActivityAnswerInfo activityInfo = new AnswerActivitySupport()
-				.getActivityInfoByAnswerCode(questionCode);
-		
+
+		AcActivityAnswerInfo activityInfo = new AnswerActivitySupport().getActivityInfoByAnswerCode(questionCode);
+
 		if (activityInfo != null) {
-			
+
 			soundContent = activityInfo.getName();
-			
+
 		}
-		
+
 		return soundContent;
-		
+
+	}
+
+	/***
+	 * 校验此用户是否可直接听此问达
+	 * 
+	 */
+	public boolean checkUserLitenTheQuestion(String userCode, String questionCode) {
+		boolean flag = false;
+		AwQuestionInfo questionInfo = JdbcHelper.queryOne(AwQuestionInfo.class, "code", questionCode);
+		if (userCode.equals(questionInfo.getAnswerUserCode()) || userCode.equals(questionInfo.getQuestionUserCode())) {// 如果此人为提问人或者回答人可直接听
+			flag = true;
+		} else {
+			MDataMap where = new MDataMap();
+			where.put("order_type", "dzsd4112100110010004");
+			where.put("buyer_code", userCode);
+			where.put("status", "dzsd4112100110030002");
+			where.put("seller_code", questionInfo.getQuestionUserCode());
+			List<MDataMap> orders = JdbcHelper.dataQuery("oc_order_info", "", "",
+					"order_type = :order_type and buyer_code=:buyer_code and status=:status and seller_code=:seller_code",
+					where, 0, 0);
+			String orderCodes = "";
+			if (orders != null && !orders.isEmpty()) {
+				for (int i = 0; i < orders.size(); i++) {
+					if (i == orders.size() - 1) {
+						orderCodes = orderCodes + ("'" + orders.get(i).get("code") + "'");
+					} else {
+						orderCodes = orderCodes + ("'" + orders.get(i).get("code") + "',");
+					}
+				}
+				if (StringUtils.isNotBlank(orderCodes)) {
+					List<MDataMap> li = JdbcHelper.dataQuery("oc_order_info", "", "",
+							"code in (" + orderCodes + ") and product_code='" + questionInfo.getCode() + "'",
+							new MDataMap(), 0, 0);
+					if (li != null && !li.isEmpty()) {
+						flag = true;
+					}
+				}
+			}
+		}
+		return flag;
 	}
 
 }

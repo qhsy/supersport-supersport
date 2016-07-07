@@ -9,3 +9,6 @@ project(':dcom-activity').projectDir = new File(settingsDir, '../dcom-activity')
 
 include ':dcom-user'
 project(':dcom-user').projectDir = new File(settingsDir, '../dcom-user')
+
+include ':dcom-order'
+project(':dcom-order').projectDir = new File(settingsDir, '../dcom-order')
