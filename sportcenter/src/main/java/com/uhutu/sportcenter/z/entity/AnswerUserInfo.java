@@ -19,11 +19,14 @@ public class AnswerUserInfo extends UserBasicInfo {
 	@ApiModelProperty(value="收益")
 	private BigDecimal profit = BigDecimal.ZERO;
 	
-	@ApiModelProperty(value="用户问答状态")
+	@ApiModelProperty(value="用户问答状态",example="是：dzsd4699100110010001 否：dzsd4699100110010002")
 	private String status;
 	
 	@ApiModelProperty(value="你擅长回答的问题")
 	private String ability;
+	
+	@ApiModelProperty(value="是否已经关注",example="是：dzsd4699100110010001 否：dzsd4699100110010002")
+	private String attendFlag;
 
 	public BigDecimal getCharge() {
 		return charge;
