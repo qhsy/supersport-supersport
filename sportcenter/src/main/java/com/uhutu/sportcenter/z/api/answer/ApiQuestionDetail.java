@@ -1,14 +1,20 @@
 package com.uhutu.sportcenter.z.api.answer;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.uhutu.dcom.activity.z.entity.AcActivityAnswerInfo;
 import com.uhutu.dcom.activity.z.support.AnswerActivitySupport;
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
+import com.uhutu.dcom.answer.z.entity.AwPointRecommen;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.properties.ConfigDcomAnswer;
 import com.uhutu.dcom.answer.z.support.QuestionSupport;
+import com.uhutu.dcom.answer.z.support.vo.QuestionForShow;
+import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.enums.UserEnum;
@@ -16,6 +22,7 @@ import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiQuestionDetailInput;
 import com.uhutu.sportcenter.z.result.ApiQuestionDetailResult;
 import com.uhutu.zoocom.helper.DateHelper;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiForMember;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 
@@ -54,9 +61,11 @@ public class ApiQuestionDetail extends RootApiForMember<ApiQuestionDetailInput, 
 		if (isFlagLogin()) {
 			result.getDetail().setListenFlag(
 					new QuestionSupport().checkUserLitenTheQuestion(upUserCode(), questionInfo.getCode()));
+			CnSupportPraise praise = JdbcHelper.queryOne(CnSupportPraise.class, "content_code", questionInfo.getCode(),
+					"user_code", upUserCode());
+			result.getDetail().setLoveFlag(praise != null ? true : false);
 		}
 		result.getDetail().setLove(questionInfo.getLove());
-		// result.getDetail().setLoveFlag("");
 		result.getDetail().setMoney(questionInfo.getMoney());
 		result.getDetail().setQuestionUserCode(askUserInfo.getCode());
 		result.getDetail().setQuestionUserHeadUrl(askUserExt.getAboutHead());
@@ -75,6 +84,7 @@ public class ApiQuestionDetail extends RootApiForMember<ApiQuestionDetailInput, 
 
 		result.getDetail().setVideoUrl(questionInfo.getUrl());
 		result.getDetail().setScope(questionInfo.getScope());
+		result.getRecommons().add(randomSomthing());
 		return result;
 	}
 
@@ -122,4 +132,27 @@ public class ApiQuestionDetail extends RootApiForMember<ApiQuestionDetailInput, 
 		return str;
 	}
 
+	private QuestionForShow randomSomthing() {
+		QuestionForShow show = new QuestionForShow();
+		List<AwPointRecommen> list = JdbcHelper.queryForList(AwPointRecommen.class, "", "",
+				"type='dzsd4888100110030005'", new MDataMap());
+		Random rand = new Random();
+		String code = list.get(rand.nextInt(list.size())).getAnswerCode();
+		AwQuestionInfo info = JdbcHelper.queryOne(AwQuestionInfo.class, "code", code);
+		UcUserinfoExt userinfoExt = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", info.getAnswerUserCode());
+		AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "user_code", info.getAnswerUserCode());
+		UcUserinfo userinfo = JdbcHelper.queryOne(UcUserinfo.class, "code", info.getAnswerUserCode());
+		show.setCode(info.getCode());
+		show.setContent(info.getContent());
+		show.setHeadUrl(userinfoExt.getAboutHead());
+		show.setLength(info.getLengh());
+		show.setListen(info.getListen());
+		show.setNickName(userinfoExt.getNickName());
+		show.setSoundContent(QuestionSupport.soundContent(info.getCode()));
+		show.setTimeShow(getTimeShow(info.getZc()));
+		show.setTitle(expert.getTitle());
+		show.setUserCode(info.getAnswerUserCode());
+		show.setUserType(userinfo.getType());
+		return show;
+	}
 }

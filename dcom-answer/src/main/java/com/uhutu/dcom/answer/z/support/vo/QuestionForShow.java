@@ -6,34 +6,37 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class QuestionForShow extends RootClass {
 
-	@ApiModelProperty(name = "问题编号")
+	@ApiModelProperty(value = "问题编号")
 	private String code;
 
-	@ApiModelProperty(name = "问题详情")
+	@ApiModelProperty(value = "问题详情")
 	private String content;
 
-	@ApiModelProperty(name = "语音展示文字")
+	@ApiModelProperty(value = "语音展示文字")
 	private String soundContent;
 
-	@ApiModelProperty(name = "语音长度")
+	@ApiModelProperty(value = "语音长度")
 	private int length;
 
-	@ApiModelProperty(name = "回答者编号")
+	@ApiModelProperty(value = "回答者编号")
 	private String userCode;
 
-	@ApiModelProperty(name = "回答者昵称")
+	@ApiModelProperty(value = "回答者昵称")
 	private String nickName;
 
-	@ApiModelProperty(name = "回答者头像")
+	@ApiModelProperty(value = "回答者头像")
 	private String headUrl;
 
-	@ApiModelProperty(name = "回答者头衔")
+	@ApiModelProperty(value = "回答者用户类型",notes="dzsd4107100310010001:普通用户，dzsd4107100310010002：体育达人")
+	private String userType;
+	
+	@ApiModelProperty(value = "回答者头衔")
 	private String title;
 
-	@ApiModelProperty(name = "已收听数")
+	@ApiModelProperty(value = "已收听数")
 	private long listen;
 
-	@ApiModelProperty(name = "时间展示")
+	@ApiModelProperty(value = "时间展示")
 	private String timeShow;
 
 	public String getCode() {
@@ -114,6 +117,14 @@ public class QuestionForShow extends RootClass {
 
 	public void setTimeShow(String timeShow) {
 		this.timeShow = timeShow;
+	}
+
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 
 }
