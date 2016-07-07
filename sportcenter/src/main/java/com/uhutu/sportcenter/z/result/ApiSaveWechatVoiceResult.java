@@ -1,28 +1,28 @@
 package com.uhutu.sportcenter.z.result;
 
-import com.uhutu.sportcenter.z.entity.AnswerUserInfo;
 import com.uhutu.zoocom.root.RootApiResult;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * 问答用户信息
- * @author 逄小帅
+ * 获取微信sdk录音文件
+ * 
+ * @author xiegj
  *
  */
 @ApiModel
 public class ApiSaveWechatVoiceResult extends RootApiResult {
-	
-	@ApiModelProperty(value="问答用户信息")
-	private AnswerUserInfo answerUserInfo;
 
-	public AnswerUserInfo getAnswerUserInfo() {
-		return answerUserInfo;
+	@ApiModelProperty(value = "问答用户信息")
+	private String voiceUrl = "";
+
+	public String getVoiceUrl() {
+		return voiceUrl;
 	}
 
-	public void setAnswerUserInfo(AnswerUserInfo answerUserInfo) {
-		this.answerUserInfo = answerUserInfo;
+	public void setVoiceUrl(String voiceUrl) {
+		this.voiceUrl = voiceUrl;
 	}
 
 }
