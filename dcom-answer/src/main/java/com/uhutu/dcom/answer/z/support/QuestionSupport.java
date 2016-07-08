@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.uhutu.dcom.activity.z.entity.AcActivityAnswerInfo;
 import com.uhutu.dcom.activity.z.support.AnswerActivitySupport;
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
+import com.uhutu.dcom.answer.z.entity.AwAnswerListen;
 import com.uhutu.dcom.answer.z.entity.AwPointRecommen;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.properties.ConfigDcomAnswer;
@@ -281,35 +282,11 @@ public class QuestionSupport extends RootClass {
 	public boolean checkUserLitenTheQuestion(String userCode, String questionCode) {
 		boolean flag = false;
 		AwQuestionInfo questionInfo = JdbcHelper.queryOne(AwQuestionInfo.class, "code", questionCode);
-		if (userCode.equals(questionInfo.getAnswerUserCode()) || userCode.equals(questionInfo.getQuestionUserCode())) {// 如果此人为提问人或者回答人可直接听
+		AwAnswerListen listen = JdbcHelper.queryOne(AwAnswerListen.class, "question_code", questionCode, "user_code",
+				userCode);
+		if (userCode.equals(questionInfo.getAnswerUserCode()) || userCode.equals(questionInfo.getQuestionUserCode())
+				|| listen != null) {// 如果此人为提问人或者回答人可直接听
 			flag = true;
-		} else {
-			MDataMap where = new MDataMap();
-			where.put("order_type", "dzsd4112100110010004");
-			where.put("buyer_code", userCode);
-			where.put("status", "dzsd4112100110030002");
-			where.put("seller_code", questionInfo.getQuestionUserCode());
-			List<MDataMap> orders = JdbcHelper.dataQuery("oc_order_info", "", "",
-					"order_type = :order_type and buyer_code=:buyer_code and status=:status and seller_code=:seller_code",
-					where, 0, 0);
-			String orderCodes = "";
-			if (orders != null && !orders.isEmpty()) {
-				for (int i = 0; i < orders.size(); i++) {
-					if (i == orders.size() - 1) {
-						orderCodes = orderCodes + ("'" + orders.get(i).get("code") + "'");
-					} else {
-						orderCodes = orderCodes + ("'" + orders.get(i).get("code") + "',");
-					}
-				}
-				if (StringUtils.isNotBlank(orderCodes)) {
-					List<MDataMap> li = JdbcHelper.dataQuery("oc_order_info", "", "",
-							"code in (" + orderCodes + ") and product_code='" + questionInfo.getCode() + "'",
-							new MDataMap(), 0, 0);
-					if (li != null && !li.isEmpty()) {
-						flag = true;
-					}
-				}
-			}
 		}
 		return flag;
 	}
