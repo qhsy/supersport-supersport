@@ -18,8 +18,10 @@ public class WechatMsgRequest implements IPayRequest {
 	/*顶层颜色*/
 	private String topcolor = "#FF0000";
 	
+	private String url = "";
+	
 	/*请求的数据*/
-	private String data;
+	private IPayRequest data;
 
 	public String getTouser() {
 		return touser;
@@ -45,12 +47,20 @@ public class WechatMsgRequest implements IPayRequest {
 		this.topcolor = topcolor;
 	}
 
-	public String getData() {
+	public IPayRequest getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(IPayRequest data) {
 		this.data = data;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }
