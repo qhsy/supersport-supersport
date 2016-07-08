@@ -7,7 +7,7 @@ import com.uhutu.dcom.pay.z.face.IPayRequest;
  * @author 逄小帅
  *
  */
-public class WechatMsgRemarkRequest implements IPayRequest {
+public class WechatMsgAnswerRequest implements IPayRequest {
 	
 	/*内容提示信息*/
 	private WechatMsgContent first;
