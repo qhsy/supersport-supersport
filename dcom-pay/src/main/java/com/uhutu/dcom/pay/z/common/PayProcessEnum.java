@@ -28,6 +28,8 @@ public enum PayProcessEnum {
 	/*微信token*/
 	WECHAT_TOKEN,
 	/*微信统一下单*/
-	WECHAT_ORDER;
+	WECHAT_ORDER,
+	/*微信企业支付*/
+	WECHAT_COM;
 
 }
