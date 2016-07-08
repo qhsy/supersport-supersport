@@ -38,5 +38,31 @@ public class WebClientComponent {
 		return WebClientSupport.create().poolRequest(url, httpEntity, headerDataMap);
 
 	}
+	
+	/**
+	 * 获取请求链接
+	 * 
+	 * @param sUrl
+	 * @param sPost
+	 * @return
+	 */
+	public static String upRequest(String sUrl, String sPost) throws Exception {
+
+		StringEntity httpEntity = null;
+
+		try {
+			
+			httpEntity = new StringEntity(sPost,"UTF-8");
+			
+			httpEntity.setContentType("application/json");
+			
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		return WebClientSupport.create().doRequest(sUrl, httpEntity);
+
+	}
 
 }
