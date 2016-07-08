@@ -35,13 +35,15 @@ public class WechatMsgComponent {
 	 * 		消息模版信息
 	 * @return 消息响应信息
 	 */
-	public WechatMsgResponse sendMsg(String openId,PayProcessEnum processEnum,IPayRequest payRequest) {
+	public WechatMsgResponse sendMsg(String openId,String param,PayProcessEnum processEnum,IPayRequest payRequest) {
 
 		MDataMap mDataMap = new MDataMap();
 
 		mDataMap.put(Constants.KEY_OPENID, openId);
 
 		mDataMap.put(Constants.KEY_TEMPLETID, getTempletId(processEnum));
+		
+		mDataMap.put(Constants.KEY_REDIRECTURL,getRedirectUrl(processEnum, param));
 
 		return (WechatMsgResponse) payGateProcess.process(PayProcessEnum.WECHAT_MSG, payRequest,
 				mDataMap);
@@ -74,6 +76,20 @@ public class WechatMsgComponent {
 		}
 		
 		return templetId;
+		
+	}
+	
+	/**
+	 * 获取跳转路径
+	 * @param processEnum
+	 * 		消息类型
+	 * @param param
+	 * 		跳转路径参数值
+	 * @return 路径信息
+	 */
+	public String getRedirectUrl(PayProcessEnum processEnum,String param){
+		
+		return "";
 		
 	}
 

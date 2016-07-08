@@ -6,10 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.uhutu.dcom.pay.z.common.PayProcessEnum;
-import com.uhutu.dcom.pay.z.request.WechatMsgAskRequest;
-import com.uhutu.dcom.pay.z.util.WechatMsgComponent;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.APiStartPageInput;
 import com.uhutu.sportcenter.z.input.ApiAttendListInput;
@@ -66,30 +62,14 @@ public class UserController {
 
 	@Autowired
 	private ApiFactory apiFactory;
-	
-	@Autowired
-	private WechatMsgComponent msgComponent;
 
 	@ResponseBody
 	@RequestMapping(value = "/versionInfo", method = RequestMethod.POST)
 	@ApiOperation(value = "app版本升级提示接口", notes = "版本升级")
 	public ApiVersionInfoResult versionInfo(@RequestBody ApiVersionInfoInput input) {
 		
-		WechatMsgAskRequest askRequest = new WechatMsgAskRequest();
-		
-		askRequest.getFirst().setValue("向你扔了一个瓶子");
-		
-		askRequest.getKeyword1().setValue("作为研发人员职场提成？");
-		
-		askRequest.getKeyword2().setValue("公开");
-		
-		askRequest.getKeyword3().setValue("2015-05-20");
-		
-		askRequest.getRemark().setValue("速去回答问题");
-		
-		msgComponent.sendMsg("oTZAcsyeG15UwbS4W-YHZUmoe7Uw", PayProcessEnum.WECHAT_MSG_ASK, askRequest);
-
 		return apiFactory.getApiVersionInfo().api(input);
+	
 	}
 
 	@ResponseBody

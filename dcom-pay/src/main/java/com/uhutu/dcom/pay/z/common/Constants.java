@@ -33,5 +33,8 @@ public class Constants {
 	
 	/**模板标识*/
 	public final static String KEY_TEMPLETID = "templetId";
+	
+	/**跳转路径*/
+	public final static String KEY_REDIRECTURL = "redirectUrl";
 
 }
