@@ -1,6 +1,9 @@
 package com.uhutu.sportcenter.z.entity;
 
 import java.math.BigDecimal;
+
+import com.uhutu.dcom.answer.z.common.AnswerEnum;
+
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -45,6 +48,9 @@ public class QuestionInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value="点赞数量")
 	private int praiseNum;
+	
+	@ApiModelProperty(value="状态文本")
+	private String statusText;
 
 	public String getCode() {
 		return code;
@@ -142,7 +148,10 @@ public class QuestionInfo extends UserBasicInfo {
 		this.praiseNum = praiseNum;
 	}
 
-
-	
+	public String getStatusText() {
+		
+		return AnswerEnum.praseText(getStatus());
+		
+	}
 
 }
