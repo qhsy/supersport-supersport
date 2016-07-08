@@ -1,10 +1,11 @@
 package com.uhutu.dcom.pay.z.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.pay.z.common.Constants;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
-import com.uhutu.dcom.pay.z.config.WechatMsgConfig;
+import com.uhutu.dcom.pay.z.config.PayConfigFactory;
 import com.uhutu.dcom.pay.z.face.IPayRequest;
 import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
 import com.uhutu.dcom.pay.z.response.WechatMsgResponse;
@@ -15,40 +16,14 @@ import com.uhutu.zoocom.model.MDataMap;
  * @author 逄小帅
  *
  */
+@Component
 public class WechatMsgComponent {
-	
-	/*实体bean处理处理实例*/
-	private volatile static WechatMsgComponent INSTANCE = null;
 	
 	@Autowired
 	private PayGateProcess payGateProcess;
 	
 	@Autowired
-	private WechatMsgConfig wechatMsgConfig;
-	
-	/**
-	 * 获取实体bean处理实例
-	 * @return WechatMsgComponent
-	 */
-	public static WechatMsgComponent getInstance(){
-		
-		if(INSTANCE == null){
-			
-			synchronized (WechatMsgComponent.class) {
-				
-				if(INSTANCE == null){
-					
-					INSTANCE = new WechatMsgComponent();
-					
-				}
-				
-			}
-			
-		}
-		
-		return INSTANCE;
-		
-	}
+	private PayConfigFactory configFactory;
 	
 	/**
 	 * 微信消息发送
@@ -85,13 +60,13 @@ public class WechatMsgComponent {
 		
 		switch (processEnum) {
 		case WECHAT_MSG_ANSWER:
-			templetId = wechatMsgConfig.getAnswerId();
+			templetId = configFactory.getWechatMsgConfig().getAnswerId();
 			break;
 		case WECHAT_MSG_REFUND:
-			templetId = wechatMsgConfig.getRefundId();
+			templetId = configFactory.getWechatMsgConfig().getRefundId();
 			break;
 		case WECHAT_MSG_ASK:
-			templetId = wechatMsgConfig.getAskId();
+			templetId = configFactory.getWechatMsgConfig().getAskId();
 			break;
 
 		default:
