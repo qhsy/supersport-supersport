@@ -16,8 +16,8 @@ public class WechatMsgConfig {
 	private String sendUrl;
 	
 	/*收到回复通知模版id*/
-	@Value("${wechat_msg_templet_remark}")
-	private String remarkId;
+	@Value("${wechat_msg_templet_answer}")
+	private String answerId;
 	
 	/*用户提问通知模版id*/
 	@Value("${wechat_msg_templet_ask}")
@@ -39,8 +39,8 @@ public class WechatMsgConfig {
 	 * 获取收到回复通知模板id
 	 * @return
 	 */
-	public String getRemarkId() {
-		return remarkId;
+	public String getAnswerId() {
+		return answerId;
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package com.uhutu.dcom.pay.z.response;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.uhutu.dcom.pay.z.face.IPayResponse;
 
 /**
@@ -40,6 +42,20 @@ public class WechatMsgResponse implements IPayResponse {
 
 	public void setMsgid(String msgid) {
 		this.msgid = msgid;
+	}
+	
+	public boolean upFlag(){
+		
+		boolean flag = false;
+		
+		if(StringUtils.equals(getErrmsg(), "ok")){
+			
+			flag = true;
+			
+		}
+		
+		return flag;
+		
 	}
 
 }

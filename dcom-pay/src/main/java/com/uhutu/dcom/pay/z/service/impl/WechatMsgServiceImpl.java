@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.pay.z.common.Constants;
-import com.uhutu.dcom.pay.z.common.WechatMsgEnum;
 import com.uhutu.dcom.pay.z.config.PayConfigFactory;
 import com.uhutu.dcom.pay.z.face.IPayRequest;
 import com.uhutu.dcom.pay.z.face.IPayResponse;
@@ -43,9 +42,7 @@ public class WechatMsgServiceImpl implements IWechatMsgService {
 		
 		msgRequest.setTouser(paramMap.get(Constants.KEY_OPENID));
 		
-		String name = paramMap.get(Constants.KEY_TEMPLETID);
-		
-		msgRequest.setTemplate_id(templetId(name));
+		msgRequest.setTemplate_id(paramMap.get(Constants.KEY_TEMPLETID));
 		
 		msgRequest.setData(data);
 		
@@ -71,33 +68,4 @@ public class WechatMsgServiceImpl implements IWechatMsgService {
 		
 		return msgResponse;
 	}
-	
-	/**
-	 * 模板标识
-	 * @param name
-	 * 		枚举名称
-	 * @return 模版标识
-	 */
-	public String templetId(String name){
-		
-		String templetId = "";
-		
-		switch (WechatMsgEnum.valueOf(name)) {
-		case ASK:
-			templetId = configFactory.getWechatMsgConfig().getAskId();
-			break;
-		case REFUND:
-			templetId = configFactory.getWechatMsgConfig().getRefundId();
-			break;
-		case REMARK:
-			templetId = configFactory.getWechatMsgConfig().getRemarkId();
-			break;
-		default:
-			break;
-		}
-		
-		return templetId;
-		
-	}
-
 }

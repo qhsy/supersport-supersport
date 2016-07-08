@@ -7,29 +7,35 @@ package com.uhutu.dcom.pay.z.common;
  */
 public enum PayProcessEnum {
 	
-	/*支付宝*/
+	/**支付宝*/
 	ALIPAY,
-	/*微信*/
+	/**微信*/
 	WECHAT,	
-	/*微信回调*/
+	/**微信回调*/
 	WECHAT_NOTIFY,	
-	/*支付宝回调*/
+	/**支付宝回调*/
 	ALIPAY_NOTIFY,
-	/*微信公众号配置信息*/
+	/**微信公众号配置信息*/
 	WECHAT_SERVICE_CONFIG,
-	/*微信h5支付*/
+	/**微信h5支付*/
 	WECHAT_H5,
-	/*微信授权*/
+	/**微信授权*/
 	WECHAT_AUTH,
-	/*微信用户信息*/
+	/**微信用户信息*/
 	WECHAT_USER,
-	/*微信消息推送*/
+	/**微信消息推送*/
 	WECHAT_MSG,
-	/*微信token*/
+	/**微信token*/
 	WECHAT_TOKEN,
-	/*微信统一下单*/
+	/**微信统一下单*/
 	WECHAT_ORDER,
-	/*微信企业支付*/
-	WECHAT_COM;
+	/**微信企业支付*/
+	WECHAT_COM,
+	/**微信消息提问*/
+	WECHAT_MSG_ASK,
+	/**微信消息回答*/
+	WECHAT_MSG_ANSWER,
+	/**微信消息退款*/
+	WECHAT_MSG_REFUND;
 
 }
