@@ -15,5 +15,11 @@ public class Constants {
 	
 	/**问题状态：拒绝回答*/
 	public static final String STATUS_REANSWER = "dzsd4888100110010003";
+	
+	/**问题状态：到期未答*/
+	public static final String STATUS_OVERTIME = "dzsd4888100110010004";
+	
+	/**问题状态：已撤回*/
+	public static final String STATUS_RECALL = "dzsd4888100110010005";
 
 }

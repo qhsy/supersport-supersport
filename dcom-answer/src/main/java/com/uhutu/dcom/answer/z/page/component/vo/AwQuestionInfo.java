@@ -41,7 +41,7 @@ public class AwQuestionInfo extends BaseEntity {
 	private int sellMoney;
 
 	@ZooData(name = "状态", element = DefineWebElement.Select, inc = { DefineWebInc.System_Define
-			+ "=dzsd488810011001" }, demo = "dzsd4888100110010001:待回答,dzsd4888100110010002:已回答,dzsd4888100110010003:已拒绝回答", sort = {
+			+ "=dzsd488810011001" }, demo = "dzsd4888100110010001:待回答,dzsd4888100110010002:已回答,dzsd4888100110010003:已拒绝回答,dzsd4888100110010004:到期未答,dzsd4888100110010005:已撤回", sort = {
 					DefineWebPage.Page_Query + "=0" })
 	@Column(length = 50)
 	private String status;

@@ -21,7 +21,7 @@ public class ApiAnswerInfoListInput extends RootApiInput {
 	@ApiModelProperty(value="每页展示数量")
 	private int pageNum;
 	
-	@ApiModelProperty(value="问题状态",example="默认全部, dzsd4888100110010001:待回答,dzsd4888100110010002:已回答,dzsd4888100110010003:已拒绝回答")
+	@ApiModelProperty(value="问题状态",example="默认全部, dzsd4888100110010001:待回答,dzsd4888100110010002:已回答,dzsd4888100110010003:已拒绝回答,dzsd4888100110010004:到期未答,dzsd4888100110010005:已撤回")
 	private String status;
 
 	public String getStatus() {

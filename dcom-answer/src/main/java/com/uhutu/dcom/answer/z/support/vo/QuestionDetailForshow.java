@@ -54,7 +54,7 @@ public class QuestionDetailForshow {
 	@ApiModelProperty(value = "偷听金额(RMB)")
 	private BigDecimal sellMoney;
 
-	@ApiModelProperty(value = "状态", notes = "dzsd4888100110010001:待回答,dzsd4888100110010002:已回答,dzsd4888100110010003:已拒绝回答")
+	@ApiModelProperty(value = "状态", notes = "dzsd4888100110010001:待回答,dzsd4888100110010002:已回答,dzsd4888100110010003:已拒绝回答,dzsd4888100110010004:到期未答,dzsd4888100110010005:已撤回")
 	private String status;
 
 	@ApiModelProperty(value = "语音路径")
