@@ -31,7 +31,7 @@ public class AwAnswerExpertDaoImpl implements IAwAnswerExpertDao {
 		
 		if(count > 0){
 			
-			JdbcHelper.update(expert, "charge,ability,title", "userCode");
+			result = JdbcHelper.update(expert, "charge,ability,title", "userCode");
 			
 		}else{
 			
