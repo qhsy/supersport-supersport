@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="sound">
 <head>
 <meta charset="UTF-8">
 <title>回答</title>
@@ -11,9 +11,32 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="author" content="">
 <link rel="stylesheet" href="style/style.css">
+<script type="text/javascript">
+var require = {
+	baseUrl:'js/',
+	paths:{
+		vue:'vue.min',
+		zepto:'zepto.min',
+		jssdk:'jweixin-1.0.0',
+		common:'common',
+		extend:'vue.extend'
+	},
+	shim:{
+		zepto:{
+			exports:'$'
+		},
+		common:{
+			exports:'common'
+		},
+		jssdk:{
+			exports:'wx'
+		}
+	}
+};
+</script>
 </head>
 <body>
-<section class="wrap">
+<section class="wrap" v-cloak>
 	<article class="audio">
 		<div class="user">
 			<span class="photo"><img src="images/demo_2.jpg" alt=""></span>
@@ -28,156 +51,46 @@
 	</article>
 	<article class="sound">
 		<h1 class="text">这是一个私密问题，回答也是私密的</h1>
+		<template v-if="status == 1">
 		<div class="status">
 			<i class="time"></i>
-			<span class="init"></span>
+			<span class="init" @click="startRecord"></span>
 			<em class="reset">重录</em>
 		</div>
 		<p class="notes">点击开始录音，最多可录制60”</p>
+		</template>
+		<template v-if="status == 2">
 		<div class="status">
-			<i class="time">60”</i>
-			<span class="load"></span>
+			<i class="time">{{length}}”</i>
+			<span class="load" @click="stopRecord"></span>
 			<em class="reset">重录</em>
 		</div>
 		<p class="notes">录制中，再次点击停止录制</p>
+		</template>
+		<template v-if="status == 3">
 		<div class="status">
-			<i class="time">60”</i>
-			<span class="play"><i class="iconfont">&#xe603;</i></span>
-			<em class="reset curr">重录</em>
+			<i class="time">{{length}}”</i>
+			<span class="play" @click="playRecord"><i class="iconfont">&#xe603;</i></span>
+			<em class="reset">重录</em>
 		</div>
 		<p class="notes">播放试听</p>
+		</template>
+		<template v-if="status == 4">
 		<div class="status">
-			<i class="time">60”</i>
-			<span class="stop"></span>
-			<em class="reset curr">重录</em>
+			<i class="time">{{length}}”</i>
+			<span class="stop" @click="stopVoice"></span>
+			<em class="reset">重录</em>
 		</div>
 		<p class="notes">播放试听</p>
-		<a href="javascript:;" class="submit curr">确定发送</a>
+		</template>
+		<a href="javascript:;" class="submit">确定发送</a>
 	</article>
 </section>
-<script type="text/javascript" src="js/zepto.min.js"></script>
-<script type="text/javascript" src="js/vue.min.js"></script>
-<script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="js/require.min.js"></script>
+<script type="text/javascript" src="js/app/sound.js"></script>
 <script>
 	
-	$(function(){
-		$.ajax({
-			url:'/api/wechatController/configInfo',
-			type:'POST',
-			contentType:'application/json',
-			dataType:'json',
-			async:false,
-			data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": " "}}',
-			success:function(res){
-				if(eval(res.status) == 1){
-					wx.config({    
-						debug: false,
-						appId: res.appId,
-						timestamp: res.timestamp,
-						nonceStr: res.nonceStr,
-						signature: res.signature,
-						jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice']
-						});
-				}
-			}
-		});
-		
-	})
 	
-	wx.ready(function () {
-		var voice = {
-			localId: '',
-			serverId: ''
-		};
-		wx.checkJsApi({
-			jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice'],
-			success: function (res) {
-				console.log(JSON.stringify(res));
-			}
-		});
-
-		document.querySelector('.init').onclick = function() {
-			wx.startRecord({
-				cancel: function () {
-					alert('用户拒绝授权录音');
-				}
-			});
-		};
-		// 4.3 停止录音
-		document.querySelector('.load').onclick = function() {
-		    wx.stopRecord({
-		        success: function(res) {
-		            voice.localId = res.localId;
-		        },
-		        fail: function(res) {
-		            alert(JSON.stringify(res));
-		        }
-		    });
-		};
-		// 4.4 监听录音自动停止
-		wx.onVoiceRecordEnd({
-		    complete: function(res) {
-		        voice.localId = res.localId;
-		        alert('录音时间已超过一分钟');
-		    }
-		});
-		// 4.5 播放音频
-		document.querySelector('.play').onclick = function() {
-		    if (voice.localId == '') {
-		        alert('请先使用 startRecord 接口录制一段声音');
-		        return;
-		    }
-		    wx.playVoice({
-		        localId: voice.localId
-		    });
-		};
-		// 4.6 暂停播放音频
-		document.querySelector('.stop').onclick = function() {
-		    wx.pauseVoice({
-		        localId: voice.localId
-		    });
-		};
-		// 4.7 停止播放音频
-		// document.querySelector('#stopVoice').onclick = function() {
-		//     wx.stopVoice({
-		//         localId: voice.localId
-		//     });
-		// };
-		// 4.8 监听录音播放停止
-		wx.onVoicePlayEnd({
-		    complete: function(res) {
-		        alert('录音（' + res.localId + '）播放结束');
-		    }
-		});
-		// 4.8 上传语音
-		// document.querySelector('#uploadVoice').onclick = function() {
-		//     if (voice.localId == '') {
-		//         alert('请先使用 startRecord 接口录制一段声音');
-		//         return;
-		//     }
-		//     wx.uploadVoice({
-		//         localId: voice.localId,
-		//         success: function(res) {
-		//             alert('上传语音成功，serverId 为' + res.serverId);
-		//             voice.serverId = res.serverId;
-		//         }
-		//     });
-		// };
-		// 4.9 下载语音
-		// document.querySelector('#downloadVoice').onclick = function() {
-		//     if (voice.serverId == '') {
-		//         alert('请先使用 uploadVoice 上传声音');
-		//         return;
-		//     }
-		//     wx.downloadVoice({
-		//         serverId: voice.serverId,
-		//         success: function(res) {
-		//             alert('下载语音成功，localId 为' + res.localId);
-		//             voice.localId = res.localId;
-		//         }
-		//     });
-		// };
-	});
 </script>
 </body>
 </html>

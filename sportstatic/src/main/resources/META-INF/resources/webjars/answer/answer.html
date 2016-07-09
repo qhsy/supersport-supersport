@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="answer">
 <head>
 <meta charset="UTF-8">
 <title>热门问题</title>
@@ -11,51 +11,51 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="author" content="">
 <link rel="stylesheet" href="style/style.css">
+<script type="text/javascript">
+var require = {
+	baseUrl:'js/',
+	paths:{
+		vue:'vue.min',
+		zepto:'zepto.min',
+		jssdk:'jweixin-1.0.0',
+		common:'common',
+		extend:'vue.extend'
+	},
+	shim:{
+		zepto:{
+			exports:'$'
+		},
+		common:{
+			exports:'common'
+		}
+	}
+};
+</script>
 </head>
 <body>
 <section class="wrap">
-	<nav class="nav-head">
-		<a href="index.html" class="curr">热门问题</a><a href="">最新问题</a><a href="top.html">才华排行</a>
-	</nav>
-	<ul class="answer-wrap">
+	<header-nav></header-nav>
+	<ul class="answer-wrap" v-cloak>
+		<template v-if=questions.length>
 		<li class="answer-item" v-for="item in questions">
-			<a href="details.html">
+			<a href="details.html?id={{item.code}}">
 				<h1 class="title">{{item.title}}</h1>
 				<div class="nickname"><em>{{item.nickName}}</em>{{item.title}}</div>
 				<div class="user">
-					<span class="photo"><img v-attr="src:item.headUrl" alt="" title=""></span>
+					<span class="photo"><img :src="item.headUrl" alt="" title=""></span>
 					<span class="hear"><i class="iconfont">&#xe600;</i>{{item.soundContent}}</span>
 					<em class="num">听过 <i>{{item.listen}}</i></em>
 				</div>
 			</a>
 		</li>
+		</template>
+		<template v-else>
+			<li class="no-data"></li>
+		</template>
 	</ul>
-	<nav class="nav-foot">
-		<a href="" class="curr">问达</a><a href="">关注</a><a href="">我的</a>
-	</nav>
+	<footer-nav></footer-nav>
 </section>
-<script type="text/javascript" src="js/zepto.min.js"></script>
-<script type="text/javascript" src="js/vue.min.js"></script>
-<script type="text/javascript">
-var answer = new Vue({
-		el: '.answer-wrap',
-		data: {
-			questions: [],
-	},
-	created:function(){
-		var self = this;
-		$.ajax({
-			url:'/api/answerController/hotQuestions',
-			type:'POST',
-			contentType:'application/json',
-			dataType:'json',
-			data:'{"page": 0,"zoo": {"key": "tesetkey","token": " "}}',
-			success:function(data){
-				
-			}
-		})
-	}
-})
-</script>
+<script type="text/javascript" src="js/require.min.js"></script>
+<script type="text/javascript" src="js/app/answer.js"></script>
 </body>
 </html>

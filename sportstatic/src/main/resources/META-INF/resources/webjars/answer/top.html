@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="top">
 <head>
 <meta charset="UTF-8">
-<title>才华榜</title>
+<title>才华排行</title>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta name="format-detection" content="telephone=no">
 <meta name="format-detection" content="email=no" >
@@ -11,97 +11,50 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="author" content="">
 <link rel="stylesheet" href="style/style.css">
+<script type="text/javascript">
+var require = {
+	baseUrl:'js/',
+	paths:{
+		vue:'vue.min',
+		zepto:'zepto.min',
+		jssdk:'jweixin-1.0.0',
+		common:'common',
+		extend:'vue.extend'
+	},
+	shim:{
+		zepto:{
+			exports:'$'
+		},
+		common:{
+			exports:'common'
+		}
+	}
+};
+</script>
 </head>
 <body>
 <section class="wrap">
-	<nav class="nav-head">
-		<a href="index.html">热门问题</a><a href="">最新问题</a><a href="top.html" class="curr">才华排行</a>
-	</nav>
-	<ul class="top-wrap">
-		<li class="top-item">
-			<a href="">
-				<span class="photo"><img src="images/demo_3.jpg" alt=""></span>
+	<header-nav></header-nav>
+	<ul class="top-wrap" v-cloak>
+		<template v-if=answers.length>
+		<li class="top-item" v-for="item in answers">
+			<a href="personal.html">
+				<span class="photo"><img :src="item:headUrl" alt=""></span>
 				<div class="nickname">
-					<h1>壁咚的天气</h1>
-					<h2>骨灰级健身教练     运动爱好者</h2>
-					<p>1788个回答</p>
+					<h1>{{item.nickName}}</h1>
+					<h2>{{item.title}}     {{item.type}}</h2>
+					<p>{{item.answer}}个回答</p>
 				</div>
 			</a>
 		</li>
-		<li class="top-item">
-			<a href="">
-				<span class="photo"><img src="images/demo_3.jpg" alt=""></span>
-				<div class="nickname">
-					<h1>壁咚的天气</h1>
-					<h2>骨灰级健身教练     运动爱好者</h2>
-					<p>1788个回答</p>
-				</div>
-			</a>
-		</li>
-		<li class="top-item">
-			<a href="">
-				<span class="photo"><img src="images/demo_3.jpg" alt=""></span>
-				<div class="nickname">
-					<h1>壁咚的天气</h1>
-					<h2>骨灰级健身教练     运动爱好者</h2>
-					<p>1788个回答</p>
-				</div>
-			</a>
-		</li>
-		<li class="top-item">
-			<a href="">
-				<span class="photo"><img src="images/demo_3.jpg" alt=""></span>
-				<div class="nickname">
-					<h1>壁咚的天气</h1>
-					<h2>骨灰级健身教练     运动爱好者</h2>
-					<p>1788个回答</p>
-				</div>
-			</a>
-		</li>
-		<li class="top-item">
-			<a href="">
-				<span class="photo"><img src="images/demo_3.jpg" alt=""></span>
-				<div class="nickname">
-					<h1>壁咚的天气</h1>
-					<h2>骨灰级健身教练     运动爱好者</h2>
-					<p>1788个回答</p>
-				</div>
-			</a>
-		</li>
-		<li class="top-item">
-			<a href="">
-				<span class="photo"><img src="images/demo_3.jpg" alt=""></span>
-				<div class="nickname">
-					<h1>壁咚的天气</h1>
-					<h2>骨灰级健身教练     运动爱好者</h2>
-					<p>1788个回答</p>
-				</div>
-			</a>
-		</li>
-		<li class="top-item">
-			<a href="">
-				<span class="photo"><img src="images/demo_3.jpg" alt=""></span>
-				<div class="nickname">
-					<h1>壁咚的天气</h1>
-					<h2>骨灰级健身教练     运动爱好者</h2>
-					<p>1788个回答</p>
-				</div>
-			</a>
-		</li>
-		<li class="top-item">
-			<a href="">
-				<span class="photo"><img src="images/demo_3.jpg" alt=""></span>
-				<div class="nickname">
-					<h1>壁咚的天气</h1>
-					<h2>骨灰级健身教练     运动爱好者</h2>
-					<p>1788个回答</p>
-				</div>
-			</a>
-		</li>
+		</template>
+		<template v-else>
+		<li class="no-data"></li>
+		</template>
 	</ul>
-	<nav class="nav-foot">
-		<a href="" class="curr">问达</a><a href="">关注</a><a href="">我的</a>
-	</nav>
+	<footer-nav></footer-nav>
 </section>
+<script type="text/javascript" src="js/require.min.js"></script>
+<script type="text/javascript" src="js/app/top.js"></script>
 </body>
 </html>

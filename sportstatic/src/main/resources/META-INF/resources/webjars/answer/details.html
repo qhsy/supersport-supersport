@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="details">
 <head>
 <meta charset="UTF-8">
 <title>问题详情</title>
@@ -11,36 +11,67 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="author" content="">
 <link rel="stylesheet" href="style/style.css">
+<script type="text/javascript">
+var require = {
+	baseUrl:'js/',
+	paths:{
+		vue:'vue.min',
+		zepto:'zepto.min',
+		jssdk:'jweixin-1.0.0',
+		common:'common',
+		extend:'vue.extend'
+	},
+	shim:{
+		zepto:{
+			exports:'$'
+		},
+		common:{
+			exports:'common'
+		}
+	}
+};
+</script>
 </head>
 <body>
 <section class="wrap">
-	<article class="details">
+	<article class="details" v-cloak>
 		<div class="details-item">
-			<div class="ask"><span class="ask-photo"><img src="images/demo_2.jpg" alt=""></span><em>匆匆雨天</em><i>￥198</i></div>
-			<h1 class="title">为什么认为体育可以改变人生对于普通人也是这样的吗？</h1>
+			<div class="ask"><span class="ask-photo"><a href="personal.html?code={{result.detail.questionUserCode}}"><img :src="result.detail.questionUserHeadUrl" alt=""></a></span><em>{{result.detail.questionUserNickName}}</em><i>￥{{result.detail.money}}</i></div>
+			<h1 class="title">{{result.detail.content}}</h1>
 			<div class="user">
-				<span class="photo"><img src="images/demo_2.jpg" alt="" title=""></span>
-				<span class="hear"><i class="iconfont">&#xe600;</i>1元偷偷听</span>
-				<em class="time">59”</em>
+				<span class="photo"><a href="personal.html?code={{result.detail.answerUserCode}}"><img :src="result.detail.answerUserHeadUrl" alt="" title=""></a></span>
+				<span class="hear"><i class="iconfont">&#xe600;</i>{{result.detail.videoShow}}</span>
+				<em class="time">{{result.detail.videoLengh}}”</em>
 			</div>
-			<div class="status"><em>听过102</em>赞78<i>13天前</i></div>
+			<div class="status"><em>听过{{result.detail.listen}}</em>赞{{result.detail.love}}<i>{{result.detail.timeShow}}天前</i></div>
 			<div class="follows">
-				<a href="">
-					<span>壁咚的天气<i>1788个粉丝</i></span>
-					<p>骨灰级健身教练     运动爱好者</p>
+				<a href="personal.html?code={{result.detail.answerUserCode}}">
+					<span>{{result.detail.answerUserNickName}}<i>{{result.detail.answerUserFans}}个粉丝</i></span>
+					<p>{{result.detail.answerUserTitle}}</p>
 				</a>
 			</div>
-			<a href="javascript:;" class="assist">赞</a>
+			<template v-if="result.detail.loveFlag">
+			<a href="javascript:;" class="assist is">已赞</a>
+			</template>
+			<template v-else>
+			<a href="javascript:;" class="assist" v-on:click="assistFn">赞</a>
+			</template>
 		</div>
 	</article>
-	<dl class="recommend">
+	<dl class="recommend" v-cloak>
 		<dt>值得一听</dt>
-		<dd class="recommend-item">
-			<h1 class="title">为什么认为体育可以改变人生对于普通人也是这样的吗？</h1>
-			<div class="info">壁咚的天气<em class="tag">央视体育记者，健身达人秀</em></div>
-			<div class="status"><em>106人听过</em><em>23天前回答</em></div>
+		<dd class="recommend-item" v-for="item in result.recommons">
+			<a href="details.html?id={{item.code}}">
+				<h1 class="title">{{item.content}}</h1>
+				<div class="info">{{item.nickName}}<em class="tag">{{item.title}}</em></div>
+				<div class="status"><em>{{item.listen}}人听过</em><em>{{item.timeShow}}天前回答</em></div>
+			</a>
 		</dd>
 	</dl>
+	
 </section>
+<footer-nav></footer-nav>
+<script type="text/javascript" src="js/require.min.js"></script>
+<script type="text/javascript" src="js/app/details.js"></script>
 </body>
 </html>
