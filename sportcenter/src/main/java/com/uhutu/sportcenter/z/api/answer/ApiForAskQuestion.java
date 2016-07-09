@@ -80,7 +80,7 @@ public class ApiForAskQuestion extends RootApiToken<ApiForAskQuestionInput, ApiF
 		
 		WechatMsgAskRequest askRequest = new WechatMsgAskRequest();
 		
-		UserBasicInfo userBasicInfo = userInfoSupport.getUserBasicInfo(upUserCode());
+		UserBasicInfo userBasicInfo = userInfoSupport.getUserBasicInfo(questionInfo.getAnswerUserCode());
 		
 		askRequest.getFirst().setValue(TopHelper.upInfo(88880015, userBasicInfo.getUcUserinfoExt().getNickName()));
 		
