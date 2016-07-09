@@ -47,7 +47,7 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 					success:function(res){
 						console.log(self.content)
 						if(res.status == 1){
-							window.location.href = 'details.html';
+							window.location.href = 'details.html?id=' + res.code;
 						}else{
 							alert(res.error);
 						}
