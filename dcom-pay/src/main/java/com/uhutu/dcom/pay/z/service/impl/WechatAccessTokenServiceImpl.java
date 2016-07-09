@@ -55,7 +55,7 @@ public class WechatAccessTokenServiceImpl implements IWechatAccessTokenService {
 			
 			String accessTokenStr = "";
 			
-			if(accessToken.exists(key)){
+			if(accessToken.exists(key) && accessToken.ttl(key) > 0){
 				
 				accessTokenStr = accessToken.get(key);
 				

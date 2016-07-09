@@ -45,7 +45,7 @@ public class WechatTicketServiceImpl implements IWechatTicketService {
 			
 			String jsapiTicketStr = "";
 			
-			if(apiTicket.exists(key)){
+			if(apiTicket.exists(key) && apiTicket.ttl(key) > 0){
 				
 				jsapiTicketStr = apiTicket.get(key);
 				
