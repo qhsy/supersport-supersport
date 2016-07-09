@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class ApiSaveWechatVoiceResult extends RootApiResult {
 
-	@ApiModelProperty(value = "问答用户信息")
+	@ApiModelProperty(value = "服务器语音地址")
 	private String voiceUrl = "";
 
 	public String getVoiceUrl() {

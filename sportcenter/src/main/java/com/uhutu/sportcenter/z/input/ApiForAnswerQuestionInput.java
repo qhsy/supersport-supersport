@@ -15,11 +15,22 @@ public class ApiForAnswerQuestionInput extends RootApiInput {
 	@ApiModelProperty(value = "语音路径")
 	private String url;
 
+	@ApiModelProperty(value = "微信录音文件编号", required = true)
+	private String wechatVoiceId = "";
+	
 	@ApiModelProperty(value = "语音长度(秒)")
 	private int lengh;
 
 	@ApiModelProperty(value = "拒绝回答", notes = "true:拒绝回答,false:回答")
 	private boolean refuse;
+
+	public String getWechatVoiceId() {
+		return wechatVoiceId;
+	}
+
+	public void setWechatVoiceId(String wechatVoiceId) {
+		this.wechatVoiceId = wechatVoiceId;
+	}
 
 	public String getCode() {
 		return code;
