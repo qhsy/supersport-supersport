@@ -85,10 +85,10 @@ var require = {
 		</div>
 		<p class="notes">播放试听</p>
 		</template>
-		<template v-if="status==3">
+		<template v-if="status==3 || status==4">
 		<a href="javascript:;" class="submit curr" @click="uploadVoice">确定发送</a>
 		</template>
-		<template>
+		<template v-else>
 		<a href="javascript:;" class="submit">确定发送</a>
 		</template>
 	</article>

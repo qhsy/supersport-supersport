@@ -25,19 +25,19 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 			});
 		}
 	});
-	// $.ajax({
-	// 	url:'/api/wechatController/authLogin',
-	// 	type:'POST',
-	// 	contentType:'application/json',
-	// 	dataType:'json',
-	// 	data:'{"code": "' + wxCode + '","zoo": {"key": "tesetkey","token": " "}}',
-	// 	success:function(res){
-	// 		if(res.status == 1){
-	// 			sessionStorage.setItem('code',res.userCode);
-	// 			sessionStorage.setItem('token',res.userToken);
-	// 		}else{
-	// 			alert(res.error);
-	// 		}
-	// 	}
-	// });
+	$.ajax({
+		url:'/api/wechatController/authLogin',
+		type:'POST',
+		contentType:'application/json',
+		dataType:'json',
+		data:'{"code": "' + wxCode + '","zoo": {"key": "tesetkey","token": " "}}',
+		success:function(res){
+			if(res.status == 1){
+				sessionStorage.setItem('code',res.userCode);
+				sessionStorage.setItem('token',res.userToken);
+			}else{
+				alert(res.error);
+			}
+		}
+	});
 })

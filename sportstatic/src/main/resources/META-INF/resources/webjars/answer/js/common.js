@@ -1,6 +1,5 @@
 (function(window) {
 	var common = {};
-	sessionStorage.setItem('token','88f0df20a5f24935aa288e1ddc36a6f2eb127e53084e48ea907f8ca521c658d9899e41f4');
 	common.paramFn = function (arg){
 		var url = window.location.search;
 		if(typeof url != 'string' || url == '') return;

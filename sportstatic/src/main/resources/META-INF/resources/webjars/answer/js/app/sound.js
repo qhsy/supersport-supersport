@@ -75,7 +75,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			playRecord:function(){
 				var self = this;
 				if (self.voiceLocalId == '') {
-			        alert('请先使用 startRecord 接口录制一段声音');
+			        alert('请先录制声音');
 			        return;
 			    }
 			    wx.playVoice({
@@ -95,7 +95,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			    });
 			    wx.onVoicePlayEnd({
 				    complete: function(res) {
-				        alert('录音（' + res.localId + '）播放结束');
+				        alert('录音播放结束');
 				    }
 				});
 				self.status = 3;
@@ -103,7 +103,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			uploadVoice:function(){
 				var self = this;
 				if (self.voiceLocalId == '') {
-			        alert('请先使用 startRecord 接口录制一段声音');
+			        alert('请先录制声音');
 			        return;
 			    }
 			    wx.uploadVoice({
