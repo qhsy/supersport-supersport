@@ -136,7 +136,7 @@ a:hover {text-decoration: none;}
 .personal .cent-txt{padding: 0.28rem 0 0.18rem; font-size: 0.12rem; line-height: 0.16rem; color: #9B9B9B;}
 .personal .cent-txt:before{content: ""; width: 2px; height: 0.11rem; float: left; display: block; background: #9B9B9B; transform: translate3d(-7px,2px,0); transform: -webkit-translate3d(-7px,2px,0);}
 .personal .cent-profit{padding: 0.12rem 0 0.18rem; font-size: 0.12rem; line-height: 0.24rem; color: #F99653;}
-.personal .cent-profit:before{content: ""; width: 2px; height: 0.11rem; float: left; display: block; background: #F99653; transform: translate3d(-7px,2px,0); transform: -webkit-translate3d(-7px,2px,0);}
+.personal .cent-profit:before{content: ""; width: 2px; height: 0.11rem; float: left; display: block; background: #F99653; transform: translate3d(-7px,6px,0); transform: -webkit-translate3d(-7px,6px,0);}
 .personal .quiz{width: 0.89rem; height: 0.36rem; display: block; margin: 0 auto 0.18rem; background: #F38540; border-radius: 1rem; text-align: center; color: #fff; line-height: 0.36rem;}
 .personal .edit{width: 0.3rem; height: 0.3rem; display: block; background: url(img/bj-icon.png) no-repeat center center; background-size: 0.15rem; position: absolute; right: 0.15rem; top: 0.15rem;}
 .personal .open{width: 1.15rem; height: 0.4rem; display: block; margin: 0.1rem auto 0; background: #F99653; border-radius: 4px; color: #fff; line-height: 0.4rem; text-align: center;}

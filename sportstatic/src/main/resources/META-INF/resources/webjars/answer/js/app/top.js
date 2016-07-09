@@ -1,5 +1,5 @@
 require(['zepto','vue','common','extend'],function($,Vue,comm){
-	var page = 0;
+	var page = 1;
 	var answer = new Vue({
 		el: '#top',
 		data: {
