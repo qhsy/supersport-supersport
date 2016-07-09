@@ -51,6 +51,9 @@ public class QuestionInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value="状态文本")
 	private String statusText;
+	
+	@ApiModelProperty(value="回答人用户信息")
+	private AnswerUserInfo answerUserInfo;
 
 	public String getCode() {
 		return code;
@@ -152,6 +155,14 @@ public class QuestionInfo extends UserBasicInfo {
 		
 		return AnswerEnum.praseText(getStatus());
 		
+	}
+
+	public AnswerUserInfo getAnswerUserInfo() {
+		return answerUserInfo;
+	}
+
+	public void setAnswerUserInfo(AnswerUserInfo answerUserInfo) {
+		this.answerUserInfo = answerUserInfo;
 	}
 
 }
