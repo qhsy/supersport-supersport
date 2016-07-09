@@ -38,11 +38,11 @@ var require = {
 	<ul class="top-wrap" v-cloak>
 		<template v-if=answers.length>
 		<li class="top-item" v-for="item in answers">
-			<a href="personal.html">
-				<span class="photo"><img :src="item:headUrl" alt=""></span>
+			<a href="personal.html?code={{item.userCode}}">
+				<span class="photo"><img :src="item.headUrl" alt=""></span>
 				<div class="nickname">
 					<h1>{{item.nickName}}</h1>
-					<h2>{{item.title}}     {{item.type}}</h2>
+					<h2>{{item.title}}</h2>
 					<p>{{item.answer}}个回答</p>
 				</div>
 			</a>
