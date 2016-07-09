@@ -20,9 +20,9 @@ public enum AnswerEnum {
 
 	STATUS_RECALL("dzsd4888100110010005","已撤回"),
 	
-	scope_public("dzsd4888100110020002","公开"),
+	SCOPE_PUBLIC("dzsd4888100110020002","公开"),
 	
-	scope_private("dzsd4888100110020001","私密");
+	SCOPE_PRIVATE("dzsd4888100110020001","私密");
 
 	/* 编号 */
 	private String code;
