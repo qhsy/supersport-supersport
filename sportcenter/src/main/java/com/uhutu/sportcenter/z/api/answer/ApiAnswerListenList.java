@@ -5,12 +5,16 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
 import com.uhutu.dcom.answer.z.entity.AwAnswerListen;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
 import com.uhutu.dcom.component.z.page.PageInfo;
+import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.entity.UserBasicInfo;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
+import com.uhutu.sportcenter.z.entity.AnswerUserInfo;
 import com.uhutu.sportcenter.z.entity.QuestionInfo;
 import com.uhutu.sportcenter.z.input.ApiAnswerListenListInput;
 import com.uhutu.sportcenter.z.result.ApiAnswerListenListResult;
@@ -82,6 +86,20 @@ public class ApiAnswerListenList extends RootApiToken<ApiAnswerListenListInput, 
 			questionInfo.setNickName(userBasicInfo.getUcUserinfoExt().getNickName());
 			
 			questionInfo.setType(userBasicInfo.getUcUserinfo().getType());
+			
+			AnswerUserInfo answerUserInfo = new AnswerUserInfo();
+			
+			UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(awQuestionInfo.getAnswerUserCode());
+			
+			answerUserInfo.setNickName(ucUserinfoExt.getNickName());
+			
+			answerUserInfo.setAboutHead(ucUserinfoExt.getAboutHead());
+			
+			AwAnswerExpert expert = answerServiceFactory.getAwAnswerExpertService().getByUserCode(awQuestionInfo.getAnswerUserCode());
+			
+			answerUserInfo.setTitle(expert.getTitle());
+			
+			questionInfo.setAnswerUserInfo(answerUserInfo);
 			
 			questionInfos.add(questionInfo);
 			
