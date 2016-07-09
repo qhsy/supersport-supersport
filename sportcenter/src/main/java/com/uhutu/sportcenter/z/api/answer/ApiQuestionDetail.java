@@ -84,7 +84,13 @@ public class ApiQuestionDetail extends RootApiForMember<ApiQuestionDetailInput, 
 
 		result.getDetail().setVideoUrl(questionInfo.getUrl());
 		result.getDetail().setScope(questionInfo.getScope());
-		result.getRecommons().add(randomSomthing());
+		
+		if(randomSomthing() != null){
+			
+			result.getRecommons().add(randomSomthing());
+			
+		}
+		
 		return result;
 	}
 
@@ -133,26 +139,37 @@ public class ApiQuestionDetail extends RootApiForMember<ApiQuestionDetailInput, 
 	}
 
 	private QuestionForShow randomSomthing() {
-		QuestionForShow show = new QuestionForShow();
+		
+		QuestionForShow show = null;
+		
 		List<AwPointRecommen> list = JdbcHelper.queryForList(AwPointRecommen.class, "", "",
 				"type='dzsd4888100110030005'", new MDataMap());
-		Random rand = new Random();
-		String code = list.get(rand.nextInt(list.size())).getAnswerCode();
-		AwQuestionInfo info = JdbcHelper.queryOne(AwQuestionInfo.class, "code", code);
-		UcUserinfoExt userinfoExt = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", info.getAnswerUserCode());
-		AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "user_code", info.getAnswerUserCode());
-		UcUserinfo userinfo = JdbcHelper.queryOne(UcUserinfo.class, "code", info.getAnswerUserCode());
-		show.setCode(info.getCode());
-		show.setContent(info.getContent());
-		show.setHeadUrl(userinfoExt.getAboutHead());
-		show.setLength(info.getLengh());
-		show.setListen(info.getListen());
-		show.setNickName(userinfoExt.getNickName());
-		show.setSoundContent(QuestionSupport.soundContent(info.getCode()));
-		show.setTimeShow(getTimeShow(info.getZc()));
-		show.setTitle(expert.getTitle());
-		show.setUserCode(info.getAnswerUserCode());
-		show.setUserType(userinfo.getType());
+		
+		if(list.size() > 0){
+			
+			show = new QuestionForShow();
+				
+			
+			Random rand = new Random();
+			String code = list.get(rand.nextInt(list.size())).getAnswerCode();
+			AwQuestionInfo info = JdbcHelper.queryOne(AwQuestionInfo.class, "code", code);
+			UcUserinfoExt userinfoExt = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", info.getAnswerUserCode());
+			AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "user_code", info.getAnswerUserCode());
+			UcUserinfo userinfo = JdbcHelper.queryOne(UcUserinfo.class, "code", info.getAnswerUserCode());
+			show.setCode(info.getCode());
+			show.setContent(info.getContent());
+			show.setHeadUrl(userinfoExt.getAboutHead());
+			show.setLength(info.getLengh());
+			show.setListen(info.getListen());
+			show.setNickName(userinfoExt.getNickName());
+			show.setSoundContent(QuestionSupport.soundContent(info.getCode()));
+			show.setTimeShow(getTimeShow(info.getZc()));
+			show.setTitle(expert.getTitle());
+			show.setUserCode(info.getAnswerUserCode());
+			show.setUserType(userinfo.getType());
+			
+		}
+		
 		return show;
 	}
 }
