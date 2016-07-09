@@ -63,8 +63,8 @@ var require = {
 		<template v-if="status == 2">
 		<div class="status">
 			<i class="time">{{length}}”</i>
-			<span class="load" @click="stopRecord"></span>
-			<span class="load-text">录制中</span>
+			<span class="load"></span>
+			<span class="load-text" @click="stopRecord">录制中</span>
 			<em class="reset">重录</em>
 		</div>
 		<p class="notes">录制中，再次点击停止录制</p>
