@@ -43,7 +43,7 @@ public class ApiAnswerUserInfo extends RootApiToken<ApiAnswerUserInfoInput, ApiA
 			
 		}else{
 			
-			answerUserInfo.setStatus(SystemEnum.YES.getCode());
+			answerUserInfo.setStatus(SystemEnum.NO.getCode());
 			
 		}
 
