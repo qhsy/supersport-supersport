@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" id="personal">
+<head>
+<meta charset="UTF-8">
+<title>个人主页</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<link rel="stylesheet" href="style/style.css">
+<script type="text/javascript">
+var require = {
+	baseUrl:'js/',
+	paths:{
+		vue:'vue.min',
+		zepto:'zepto.min',
+		jssdk:'jweixin-1.0.0',
+		common:'common',
+		extend:'vue.extend'
+	},
+	shim:{
+		zepto:{
+			exports:'$'
+		},
+		common:{
+			exports:'common'
+		}
+	}
+};
+</script>
+</head>
+<body>
+<section class="wrap">
+	<article class="personal" v-cloak>
+		<header class="head">
+			<span class="photo"><img :src="res.answerUserInfo.aboutHead" alt=""></span>
+			<h1 class="name">{{res.answerUserInfo.nickName}}</h1>
+			<h2 class="tag">健身达人 / GODO认证 / 塑形</h2>
+			<a href="javascript:;" class="follow">关注</a>
+		</header>
+		<div class="info">
+			<p class="about">
+				{{res.answerUserInfo.ability}}
+			</p>
+			<a href="question.html?code={{res.answerUserInfo.userCode}}" class="quiz">提问</a>
+		</div>
+	</article>
+	<dl class="personal-dl" v-cloak>
+		<dt>回答了{{res.answerUserInfo.answerCount}}个问题</dt>
+		<dd class="details-item" v-for="item in res.questionInfos">
+			<a href="details.html?id={{item.code}}">
+				<div class="ask"><span class="ask-photo"><img :src="item.aboutHead" alt=""></span><em>{{item.nickName}}</em><i>{{item.money}}</i></div>
+				<h1 class="title">{{item.content}}</h1>
+				<div class="user">
+					<span class="photo"><img :src="res.answerUserInfo.aboutHead" alt="" title=""></span>
+					<span class="hear"><i class="iconfont">&#xe600;</i>1元偷偷听</span>
+					<em class="time">{{item.lengh}}”</em>
+				</div>
+				<div class="status"><em>听过{{item.listen}}</em>赞{{item.praiseNum}}<i>{{item.questionTime}}天前</i></div>
+			</a>
+		</dd>
+	</dl>
+</section>
+<footer-nav></footer-nav>
+<script type="text/javascript" src="js/require.min.js"></script>
+<script type="text/javascript" src="js/app/personal.js"></script>
+</body>
+</html>

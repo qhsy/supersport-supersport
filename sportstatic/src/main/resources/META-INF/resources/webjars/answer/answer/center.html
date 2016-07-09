@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" id="center">
+<head>
+<meta charset="UTF-8">
+<title>个人中心</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<link rel="stylesheet" href="style/style.css">
+<script type="text/javascript">
+var require = {
+    baseUrl:'js/',
+    paths:{
+        vue:'vue.min',
+        zepto:'zepto.min',
+        jssdk:'jweixin-1.0.0',
+        common:'common',
+        extend:'vue.extend'
+    },
+    shim:{
+        zepto:{
+            exports:'$'
+        },
+        common:{
+            exports:'common'
+        }
+    }
+};
+</script>
+</head>
+<body>
+<section class="wrap">
+    <article class="personal" v-cloak>
+        <header class="head" v-cloak>
+            <span class="photo"><img :src="result.answerUserInfo.aboutHead" alt=""></span>
+            <h1 class="name">{{result.answerUserInfo.nickName}}</h1>
+            <h2 class="tag">{{result.answerUserInfo.title}}</h2>
+            <a href="center_edit.html" class="edit" v-if="result.answerUserInfo.status == 'dzsd4699100110010001'"></a>
+            <a href="javascript:;" class="open" v-on:click="open" v-if="result.answerUserInfo.status == 'dzsd4699100110010002'">开通问答</a>
+        </header>
+        <div class="info" v-if="result.answerUserInfo.status == 'dzsd4699100110010001'">
+            <p class="cent-txt">
+                {{result.answerUserInfo.ability}}
+            </p>
+            <p class="cent-profit">
+                向我提问需要支付￥{{result.answerUserInfo.charge}}<br>
+                回答{{result.answerUserInfo.answerCount}}个问题，{{result.answerUserInfo.answerCount}}人收听。总收入￥{{result.answerUserInfo.income}}，总收益￥{{result.answerUserInfo.profit}}<br>
+                收入的90%归您，每夜结算，自动入库微信钱包
+            </p>
+        </div>
+    </article>
+    <ul class="personal-nav">
+        <li><a href="my_questions.html">我问</a></li>
+        <li><a href="">我答</a></li>
+        <li><a href="">我听</a></li>
+        <li><a href="">成为达人</a></li>
+    </ul>
+    <ul class="personal-nav">
+        <li><a href="">结算说明</a></li>
+    </ul>
+</section>
+<footer-nav></footer-nav>
+<script type="text/javascript" src="js/require.min.js"></script>
+<script type="text/javascript" src="js/app/center.js"></script>
+</body>
+</html>
