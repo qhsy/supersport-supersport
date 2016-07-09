@@ -2,15 +2,15 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 	var num = 0;
 	var currPage = 0;
 	var sumsPage = 0;
-	var quiz = new Vue({
-		el:'#my-questions',
+	var listens = new Vue({
+		el:'#listens',
 		data:{
 			result:{}
 		},
 		created:function(){
 			var self = this;
 			$.ajax({
-				url:'/api/answerController/myQuestions',
+				url:'/api/answerController/myListens',
 				type:'POST',
 				contentType:'application/json',
 				dataType:'json',

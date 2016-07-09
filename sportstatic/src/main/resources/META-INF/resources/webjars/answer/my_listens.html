@@ -1,8 +1,8 @@
  <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="listens">
 <head>
 <meta charset="UTF-8">
-<title>问达</title>
+<title>我听</title>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta name="format-detection" content="telephone=no">
 <meta name="format-detection" content="email=no" >
@@ -11,29 +11,48 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="author" content="">
 <link rel="stylesheet" href="style/style.css">
-<link rel="stylesheet" href="style/leon.css">
+<script type="text/javascript">
+var require = {
+    baseUrl:'js/',
+    paths:{
+        vue:'vue.min',
+        zepto:'zepto.min',
+        jssdk:'jweixin-1.0.0',
+        common:'common',
+        extend:'vue.extend'
+    },
+    shim:{
+        zepto:{
+            exports:'$'
+        },
+        common:{
+            exports:'common'
+        }
+    }
+};
+</script>
 </head>
 <body>
-<section class="leon-hear">
-	<h1>我听<i>2</i>个</h1>
-    <ul class="bd">
-    	<li>
-            <p><b>[私密]</b>为什么认为体育可以改变人生对于普通人也是这样的吗？</p>
-            <h2><span>13天前</span><img src="images/demo_5.jpg" alt=""><b>壁咚的天气</b><font>骨灰级健身教练<i>|</i>运动爱好者</font></h2>
-        </li>
-    	<li>
-            <p>为什么认为体育可以改变人生对于普通人也是这样的吗？</p>
-            <h2><span>13天前</span><img src="images/demo_5.jpg" alt=""><b>壁咚的天气</b><font>骨灰级健身教练<i>|</i>运动爱好者</font></h2>
-        </li>
-    	<li>
-            <p>为什么认为体育可以改变人生对于普通人也是这样的吗？</p>
-            <h2><span>13天前</span><img src="images/demo_5.jpg" alt=""><b>壁咚的天气</b><font>骨灰级健身教练<i>|</i>运动爱好者</font></h2>
-        </li>
-    	<li>
-            <p>为什么认为体育可以改变人生对于普通人也是这样的吗？</p>
-            <h2><span>13天前</span><img src="images/demo_5.jpg" alt=""><b>壁咚的天气</b><font>骨灰级健身教练<i>|</i>运动爱好者</font></h2>
-        </li>
-    </ul>
+<section class="wrap">
+    <section class="leon-hear" v-cloak>
+        <template v-if="result.questionInfos.length">
+        <h1>我听<i>{{result.total}}</i>个</h1>
+        <ul class="bd">
+            <li v-for="item in result.questionInfos">
+                <a href="details.html?id={{item.code}}">
+                    <p><b>[私密]</b>{{item.content}}</p>
+                    <h2><span>{{item.questionTime}}天前</span><img src="images/demo_5.jpg" alt=""><b>{{item.nickName}}</b><font>骨灰级健身教练<i>|</i>运动爱好者</font></h2>
+                </a>
+            </li>
+        </ul>
+        </template v-else>
+        <div class="no-data"></div>
+        <template>
+        </template>
+    </section>
 </section>
+<footer-nav></footer-nav>
+<script type="text/javascript" src="js/require.min.js"></script>
+<script type="text/javascript" src="js/app/my_listens.js"></script>
 </body>
 </html>

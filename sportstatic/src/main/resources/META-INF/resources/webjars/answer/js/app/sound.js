@@ -1,13 +1,27 @@
 require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
+	var code = comm.paramFn('id');
 	var sound = new Vue({
 		el: '#sound',
 		data: {
 			status:1,
 			length:0,
-			voiceLocalId:''
+			voiceLocalId:'',
+			result:{}
 		},
 		created:function(){
-		var self = this;
+			var self = this;
+			$.ajax({
+				url:'/api/answerController/answerQuestionDetail',
+				type:'POST',
+				contentType:'application/json',
+				dataType:'json',
+				data:'{"code": "' + code + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
+				success:function(res){
+					if(res.status == 1){
+						self.result = res;
+					}
+				}
+			});
 			$.ajax({
 				url:'/api/wechatController/configInfo',
 				type:'POST',
@@ -43,12 +57,19 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 				var self = this;
 				wx.stopRecord({
 			        success: function(res) {
+			        	console.log(res)
 			            self.voiceLocalId = res.localId;
 			        },
 			        fail: function(res) {
 			            alert(JSON.stringify(res));
 			        }
 			    });
+			    wx.onVoiceRecordEnd({
+				    complete: function(res) {
+				        self.voiceLocalId = res.localId;
+				        self.status = 3;
+				    }
+				});
 			    self.status = 3;
 			},
 			playRecord:function(){
@@ -60,6 +81,11 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			    wx.playVoice({
 			        localId: self.voiceLocalId
 			    });
+			    wx.onVoicePlayEnd({
+				    complete: function(res) {
+				        self.status = 3;
+				    }
+				});
 			    self.status = 4;
 			},
 			stopVoice:function(){
@@ -72,6 +98,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 				        alert('录音（' + res.localId + '）播放结束');
 				    }
 				});
+				self.status = 3;
 			},
 			uploadVoice:function(){
 				var self = this;
@@ -82,9 +109,39 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			    wx.uploadVoice({
 			        localId: self.voiceLocalId,
 			        success: function(res) {
-			            alert('上传语音成功，serverId 为' + res.serverId);
-			            voice.serverId = res.serverId;
+			            self.voiceLocalId = res.serverId;
+			            $.ajax({
+							url:'/api/answerController/answerQuestion',
+							type:'POST',
+							contentType:'application/json',
+							dataType:'json',
+							data:'{"code": "' + self.result.show.answerCode + '","lengh": ' + self.length + ',"refuse": true,"url": "string","wechatVoiceId": "' + self.voiceLocalId + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
+							success:function(res){
+								if(res.status == 1){
+									window.location.href = 'details.html?id=' + self.result.show.answerCode;
+								}else{
+									alert(res.error);
+								}
+							}
+						});
 			        }
+				});
+			},
+			refuse:function(){
+				var self = this;
+				$.ajax({
+					url:'/api/answerController/answerQuestion',
+					type:'POST',
+					contentType:'application/json',
+					dataType:'json',
+					data:'{"code": "' + self.result.show.answerCode + '","lengh":"","refuse": false,"url": "string","wechatVoiceId": "","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
+					success:function(res){
+						if(res.status == 1){
+							window.location.href = 'details.html?id=' + self.result.show.answerCode;
+						}else{
+							alert(res.error);
+						}
+					}
 				});
 			}
 		}

@@ -1,6 +1,6 @@
 require(['zepto','vue','common','extend'],function($,Vue,comm){
 	var page = 1;
-	var answer = new Vue({
+	var vm = new Vue({
 		el: '#new-questions',
 		data: {
 			questions: [],
