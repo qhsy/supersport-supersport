@@ -1,7 +1,8 @@
-(function(window) {
+define(['zepto'],function($){
 	var common = {};
 	//sessionStorage.setItem('token','b261172782724d45804fa428e22780cbd1321d58ec8749a8973e3abd3efac5166cd5bf7c');
 	if(!sessionStorage.getItem('token')){
+		var wxCode = comm.paramFn('code');
 		$.ajax({
 			url:'/api/wechatController/authLogin',
 			type:'POST',
@@ -39,7 +40,5 @@
 			return '';
 		}
 	}
-	// 全局变量
-	window.common = common;
-  
-})(window);
+	return common;
+});

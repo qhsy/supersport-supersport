@@ -1,5 +1,4 @@
 require(['zepto','vue','common','extend'],function($,Vue,comm){
-	var wxCode = comm.paramFn('code');
 	var page = 1;
 	var answer = new Vue({
 		el: '#answer',
