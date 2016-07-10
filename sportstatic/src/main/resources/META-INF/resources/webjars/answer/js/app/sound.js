@@ -62,6 +62,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			        success: function(res) {
 			        	console.log(res)
 			            voice.localId = res.localId;
+			            alert(voice.localId);
 			        },
 			        fail: function(res) {
 			            alert(JSON.stringify(res));
@@ -86,6 +87,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			    });
 			    wx.onVoicePlayEnd({
 				    complete: function(res) {
+				    	alert(voice.localId);
 				        self.status = 3;
 				    }
 				});
@@ -96,11 +98,6 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			 	wx.stopVoice({
 			        localId: voice.localId
 			    });
-			    wx.onVoicePlayEnd({
-				    complete: function(res) {
-				        alert('录音播放结束');
-				    }
-				});
 				self.status = 3;
 			},
 			uploadVoice:function(){
@@ -113,6 +110,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			        localId: voice.localId,
 			        success: function(res) {
 			            var localId = res.serverId;
+			            alert(voice.localId + '||' + localId);
 			            $.ajax({
 							url:'/api/answerController/answerQuestion',
 							type:'POST',
