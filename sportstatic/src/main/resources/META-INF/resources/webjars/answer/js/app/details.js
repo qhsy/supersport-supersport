@@ -22,6 +22,25 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 					}
 				}
 			});
+			$.ajax({
+				url:'/api/wechatController/configInfo',
+				type:'POST',
+				contentType:'application/json',
+				dataType:'json',
+				data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + comm.token() + '"}}',
+				success:function(res){
+					if(res.status == 1){
+						return wx.config({    
+							debug: false,
+							appId: res.appId,
+							timestamp: res.timestamp,
+							nonceStr: res.nonceStr,
+							signature: res.signature,
+							jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice']
+						});
+					}
+				}
+			});
 		},
 		methods:{
 			audioPlay:function(){
@@ -55,60 +74,32 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 				// 		}     
 				// 	}); 
 				// }
-				audioPlay();
-				function audioPlay(){
-					wxConfig();
-					$.ajax({
-						url:'/api/answerController/playAudio',
-						type:'POST',
-						contentType:'application/json',
-						dataType:'json',
-						async:false,
-						data:'{"audioUrl": "http://img-cdn.bigtiyu.com/wsc/sport/273c6/a6cadf1cfe8d41be85f1c5bf6543de4e.amr","questionCode": "WDBH160709110002","zoo": {"key": "tesetkey","token": " "}}',
-						success:function(res){
-							if(res.status == 1){
-								wx.downloadVoice({
-									serverId: res.mediaId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
-									success: function (res) {
-										localId = res.localId; // 返回音频的本地ID
-									}
-								});
-							}
+				$.ajax({
+					url:'/api/answerController/playAudio',
+					type:'POST',
+					contentType:'application/json',
+					dataType:'json',
+					async:false,
+					data:'{"audioUrl": "http://img-cdn.bigtiyu.com/wsc/sport/273c6/a6cadf1cfe8d41be85f1c5bf6543de4e.amr","questionCode": "WDBH160709110002","zoo": {"key": "tesetkey","token": " "}}',
+					success:function(res){
+						if(res.status == 1){
+							wx.downloadVoice({
+								serverId: res.mediaId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+								success: function (res) {
+									localId = res.localId; // 返回音频的本地ID
+								}
+							});
 						}
-					});
-					wx.playVoice({
-				        localId: localId
-				    });
-				    wx.onVoicePlayEnd({
-					    complete: function(res) {
-					        console.log('播放结束');
-					    }
-					});
-					
-				}
-				function wxConfig(){
-					$.ajax({
-						url:'/api/wechatController/configInfo',
-						type:'POST',
-						contentType:'application/json',
-						dataType:'json',
-						async:false,
-						data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + comm.token() + '"}}',
-						success:function(res){
-							if(res.status == 1){
-								return wx.config({    
-									debug: false,
-									appId: res.appId,
-									timestamp: res.timestamp,
-									nonceStr: res.nonceStr,
-									signature: res.signature,
-									jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice']
-								});
-							}
-						}
-					});
-					
-				}
+					}
+				});
+				wx.playVoice({
+			        localId: localId
+			    });
+			    wx.onVoicePlayEnd({
+				    complete: function(res) {
+				        console.log('播放结束');
+				    }
+				});
 
 			}
 				
