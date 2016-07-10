@@ -124,7 +124,7 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 			while ((count = resEntity.getContent().read(bytes)) != -1) {
 				bos.write(bytes, 0, count);
 			}
-			webUploadResult = new WebUploadSupport().remoteUpload("wenda", name, bytes);
+			webUploadResult = new WebUploadSupport().remoteUpload("wenda", name, bos.toByteArray());
 			if (webUploadResult.upFlagTrue()) {
 				voiceUrl = webUploadResult.getFileUrl();
 			}
