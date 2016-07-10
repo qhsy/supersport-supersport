@@ -12,6 +12,7 @@ import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.request.WechatMsgAskRequest;
 import com.uhutu.dcom.pay.z.response.WechatMsgResponse;
 import com.uhutu.dcom.pay.z.util.WechatMsgComponent;
+import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
 import com.uhutu.dcom.user.z.entity.UserBasicInfo;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.input.ApiForAskQuestionInput;
@@ -95,6 +96,8 @@ public class ApiForAskQuestion extends RootApiToken<ApiForAskQuestionInput, ApiF
 		
 		UserBasicInfo userBasicInfo = userInfoSupport.getUserBasicInfo(questionInfo.getQuestionUserCode());
 		
+		UcUserinfoSocial answerSocial = userInfoSupport.getUserInfoSocial(questionInfo.getAnswerUserCode());
+		
 		askRequest.getFirst().setValue(TopHelper.upInfo(88880015, userBasicInfo.getUcUserinfoExt().getNickName()));
 		
 		askRequest.getKeyword1().setValue(questionInfo.getContent());
@@ -105,7 +108,7 @@ public class ApiForAskQuestion extends RootApiToken<ApiForAskQuestionInput, ApiF
 		
 		askRequest.getRemark().setValue(TopHelper.upInfo(88880016, questionInfo.getMoney().setScale(2).toString()));
 		
-		return wechatMsgCompoent.sendMsg(userBasicInfo.getUcUserinfoSocial().getAccountId(), "",PayProcessEnum.WECHAT_MSG_ASK, askRequest);
+		return wechatMsgCompoent.sendMsg(answerSocial.getAccountId(), "",PayProcessEnum.WECHAT_MSG_ASK, askRequest);
 		
 	}
 
