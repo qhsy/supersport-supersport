@@ -1,11 +1,14 @@
 require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 	var code = comm.paramFn('id');
+	var voice = {
+		localId: '',
+		serverId: ''
+	};
 	var sound = new Vue({
 		el: '#sound',
 		data: {
 			status:1,
 			length:0,
-			voiceLocalId:'',
 			result:{}
 		},
 		created:function(){
@@ -58,7 +61,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 				wx.stopRecord({
 			        success: function(res) {
 			        	console.log(res)
-			            self.voiceLocalId = res.localId;
+			            voice.localId = res.localId;
 			        },
 			        fail: function(res) {
 			            alert(JSON.stringify(res));
@@ -66,7 +69,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			    });
 			    wx.onVoiceRecordEnd({
 				    complete: function(res) {
-				        self.voiceLocalId = res.localId;
+				        voice.localId = res.localId;
 				        self.status = 3;
 				    }
 				});
@@ -74,12 +77,12 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			},
 			playRecord:function(){
 				var self = this;
-				if (self.voiceLocalId == '') {
+				if (voice.localId == '') {
 			        alert('请先录制声音');
 			        return;
 			    }
 			    wx.playVoice({
-			        localId: self.voiceLocalId
+			        localId: voice.localId
 			    });
 			    wx.onVoicePlayEnd({
 				    complete: function(res) {
@@ -91,7 +94,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			stopVoice:function(){
 				var self = this;
 			 	wx.stopVoice({
-			        localId: self.voiceLocalId
+			        localId: voice.localId
 			    });
 			    wx.onVoicePlayEnd({
 				    complete: function(res) {
@@ -102,12 +105,12 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			},
 			uploadVoice:function(){
 				var self = this;
-				if (self.voiceLocalId == '') {
+				if (voice.localId == '') {
 			        alert('请先录制声音');
 			        return;
 			    }
 			    wx.uploadVoice({
-			        localId: self.voiceLocalId,
+			        localId: voice.localId,
 			        success: function(res) {
 			            var localId = res.serverId;
 			            $.ajax({
