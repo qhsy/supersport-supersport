@@ -109,13 +109,13 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			    wx.uploadVoice({
 			        localId: self.voiceLocalId,
 			        success: function(res) {
-			            self.voiceLocalId = res.serverId;
+			            var localId = res.serverId;
 			            $.ajax({
 							url:'/api/answerController/answerQuestion',
 							type:'POST',
 							contentType:'application/json',
 							dataType:'json',
-							data:'{"code": "' + self.result.show.answerCode + '","lengh": ' + self.length + ',"refuse": true,"url": "string","wechatVoiceId": "' + self.voiceLocalId + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
+							data:'{"code": "' + self.result.show.answerCode + '","lengh": ' + self.length + ',"refuse": false,"url": "string","wechatVoiceId": "' + localId + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
 							success:function(res){
 								if(res.status == 1){
 									window.location.href = 'details.html?id=' + self.result.show.answerCode;
@@ -134,7 +134,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 					type:'POST',
 					contentType:'application/json',
 					dataType:'json',
-					data:'{"code": "' + self.result.show.answerCode + '","lengh":"","refuse": false,"url": "string","wechatVoiceId": "","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
+					data:'{"code": "' + self.result.show.answerCode + '","lengh":"","refuse": true,"url": "string","wechatVoiceId": "","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
 					success:function(res){
 						if(res.status == 1){
 							window.location.href = 'details.html?id=' + self.result.show.answerCode;
