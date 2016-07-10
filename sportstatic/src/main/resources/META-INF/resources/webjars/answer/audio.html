@@ -73,7 +73,7 @@ var require = {
 		<div class="status">
 			<i class="time">{{length}}”</i>
 			<span class="play" @click="playRecord"><i class="iconfont">&#xe603;</i></span>
-			<em class="reset" v-bind:class="{curr:status==3}" @click="startRecord">重录</em>
+			<em class="reset curr" @click="startRecord">重录</em>
 		</div>
 		<p class="notes">播放试听</p>
 		</template>
@@ -81,7 +81,7 @@ var require = {
 		<div class="status">
 			<i class="time">{{length}}”</i>
 			<span class="stop" @click="stopVoice"></span>
-			<em class="reset" v-bind:class="{curr:status==3}" @click="startRecord">重录</em>
+			<em class="reset curr" @click="startRecord">重录</em>
 		</div>
 		<p class="notes">播放试听</p>
 		</template>

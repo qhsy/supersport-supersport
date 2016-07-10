@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.uhutu.sportcenter.z.api.ApiFactory;
-import com.uhutu.sportcenter.z.input.ApiWechatConfigInfoInput;
-import com.uhutu.sportcenter.z.result.ApiWechatConfigInfoResult;
+import com.uhutu.sportcenter.z.input.ApiWechatH5PayInput;
+import com.uhutu.sportcenter.z.result.ApiWechatH5PayResult;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -21,11 +23,11 @@ public class PayController {
 	private ApiFactory apiFactory;
 	
 	@ResponseBody
-	@RequestMapping(value = "/wechatConfigInfo", method = RequestMethod.POST)
-	@ApiOperation(value = "微信配置信息", notes = "微信")
-	public ApiWechatConfigInfoResult wechatConfigInfo(@RequestBody ApiWechatConfigInfoInput input) {
+	@RequestMapping(value = "/wechatH5Pay", method = RequestMethod.POST)
+	@ApiOperation(value = "微信h5支付", notes = "微信h5支付")
+	public ApiWechatH5PayResult wechatConfigInfo(@RequestBody ApiWechatH5PayInput input) {
 
-		return apiFactory.getApiWechatConfigInfo().api(input);
+		return apiFactory.getApiWechatH5Pay().api(input);
 	}
 
 }

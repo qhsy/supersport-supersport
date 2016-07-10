@@ -13,22 +13,14 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class ApiWechatH5PayInput extends RootApiInput {
 	
-	@ApiModelProperty(value="订单编号")
-	private String orderCode;
+	@ApiModelProperty(value="问题编号")
+	private String questionCode;
 	
 	@ApiModelProperty(value="服务ip")
 	private String serveIP;
 	
 	@ApiModelProperty(value="终端IP")
 	private String romoteIP;
-
-	public String getOrderCode() {
-		return orderCode;
-	}
-
-	public void setOrderCode(String orderCode) {
-		this.orderCode = orderCode;
-	}
 
 	public String getServeIP() {
 		return serveIP;
@@ -44,6 +36,14 @@ public class ApiWechatH5PayInput extends RootApiInput {
 
 	public void setRomoteIP(String romoteIP) {
 		this.romoteIP = romoteIP;
+	}
+
+	public String getQuestionCode() {
+		return questionCode;
+	}
+
+	public void setQuestionCode(String questionCode) {
+		this.questionCode = questionCode;
 	}
 
 }

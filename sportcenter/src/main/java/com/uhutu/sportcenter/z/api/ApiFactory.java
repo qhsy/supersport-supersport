@@ -44,6 +44,7 @@ import com.uhutu.sportcenter.z.api.home.APiStartPage;
 import com.uhutu.sportcenter.z.api.home.ApiHomePage;
 import com.uhutu.sportcenter.z.api.label.ApiForLabels;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatConfigInfo;
+import com.uhutu.sportcenter.z.api.pay.ApiWechatH5Pay;
 import com.uhutu.sportcenter.z.api.remark.ApiPublishRemark;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkCount;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkList;
@@ -284,6 +285,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiPlayAudio apiPlayAudio;
+	
+	@Autowired
+	private ApiWechatH5Pay apiWechatH5Pay;
 	
 	public ApiQuestionPraise getApiQuestionPraise() {
 		return apiQuestionPraise;
@@ -567,6 +571,10 @@ public class ApiFactory {
 
 	public ApiPlayAudio getApiPlayAudio() {
 		return apiPlayAudio;
+	}
+
+	public ApiWechatH5Pay getApiWechatH5Pay() {
+		return apiWechatH5Pay;
 	}
 
 }

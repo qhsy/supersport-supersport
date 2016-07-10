@@ -1,6 +1,6 @@
 define(['zepto'],function($){
 	var common = {};
-	//sessionStorage.setItem('token','b261172782724d45804fa428e22780cbd1321d58ec8749a8973e3abd3efac5166cd5bf7c');
+	sessionStorage.setItem('token','f8ede4925ec74374a032d453afd7f6d5d101126d930e4f52b24bc20f1cc9f0aabb9d5953');
 
 	common.paramFn = function (arg){
 		var url = window.location.search;
@@ -23,7 +23,7 @@ define(['zepto'],function($){
 			return '';
 		}
 	}
-	if(!sessionStorage.getItem('code')){
+	if(!sessionStorage.getItem('token')){
 		var wxCode = common.paramFn('code');
 		$.ajax({
 			url:'/api/wechatController/authLogin',

@@ -4,6 +4,8 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 		localId: '',
 		serverId: ''
 	};
+	var startTime = 0;
+	var endTime = 0;
 	var sound = new Vue({
 		el: '#sound',
 		data: {
@@ -49,6 +51,8 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 		methods:{
 			startRecord:function(){
 				var self = this;
+				self.length = 0;
+				startTime = new Date().getTime();
 				wx.startRecord({
 					cancel: function () {
 						alert('用户拒绝授权录音');
@@ -58,11 +62,10 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			},
 			stopRecord:function(){
 				var self = this;
+				endTime = new Date().getTime();
 				wx.stopRecord({
 			        success: function(res) {
-			        	console.log(res)
 			            voice.localId = res.localId;
-			            alert(voice.localId);
 			        },
 			        fail: function(res) {
 			            alert(JSON.stringify(res));
@@ -71,9 +74,11 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			    wx.onVoiceRecordEnd({
 				    complete: function(res) {
 				        voice.localId = res.localId;
+				        self.length = (endTime - startTime) / 1000;
 				        self.status = 3;
 				    }
 				});
+				self.length = ((endTime - startTime) / 1000).toFixed(1);
 			    self.status = 3;
 			},
 			playRecord:function(){
@@ -87,7 +92,6 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			    });
 			    wx.onVoicePlayEnd({
 				    complete: function(res) {
-				    	alert(voice.localId);
 				        self.status = 3;
 				    }
 				});
@@ -110,7 +114,6 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			        localId: voice.localId,
 			        success: function(res) {
 			            var localId = res.serverId;
-			            alert(voice.localId + '||' + localId);
 			            $.ajax({
 							url:'/api/answerController/answerQuestion',
 							type:'POST',

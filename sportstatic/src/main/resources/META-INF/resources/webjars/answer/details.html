@@ -41,7 +41,7 @@ var require = {
 			<template v-if="result.detail.status == 'dzsd4888100110010002'">
 				<div class="user">
 					<span class="photo"><a href="personal.html?code={{result.detail.answerUserCode}}"><img :src="result.detail.answerUserHeadUrl" alt="" title=""></a></span>
-					<span class="hear"><i class="iconfont">&#xe600;</i>{{result.detail.videoShow}}</span>
+					<span class="hear" @click="audioPlay"><i class="iconfont">&#xe600;</i>{{result.detail.videoShow}}</span>
 					<em class="time">{{result.detail.videoLengh}}”</em>
 				</div>
 				<div class="status"><em>听过{{result.detail.listen}}</em>赞{{result.detail.love}}<i>{{result.detail.timeShow}}</i></div>

@@ -3,7 +3,7 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 	var answer = new Vue({
 		el: '#answer',
 		data: {
-			questions:[],
+			result:{},
 			isCurr: 1
 	},
 	created:function(){
@@ -13,10 +13,10 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 				type:'POST',
 				contentType:'application/json',
 				dataType:'json',
-				data:'{"page": ' + page + ',"zoo": {"key": "tesetkey","token": " "}}',
+				data:'{"page": ' + page + ',"zoo": {"key": "tesetkey","token": ""}}',
 				success:function(res){
 					if(res.status == 1){
-						self.questions = res.questions;
+						self.result = res;
 					}else{
 						alert(res.error);
 					}
