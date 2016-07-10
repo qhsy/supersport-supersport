@@ -3,7 +3,7 @@ define(['vue'],function(Vue){
 	var answer = url.search('answer.html') != -1?true:false;
 	var question = url.search('new_question.html') != -1?true:false;
 	var top = url.search('top.html') != -1?true:false;
-	var center = url.search('center.html') != -1 || url.search('my_questions.html') != -1 || url.search('my_listens.html') != -1 || url.search('center.html') != -1?true:false;
+	var center = url.search('center.html') != -1 || url.search('my_questions.html') != -1 || url.search('my_answers.html') != -1 || url.search('my_listens.html') != -1 || url.search('center.html') != -1?true:false;
 	var footnav = url.search('answer.html') != -1 || url.search('new_question.html') != -1 || url.search('top.html') != -1 || url.search('details.html') != -1?true:false;
 	/**
 	 * [headNav description]

@@ -147,6 +147,21 @@ a:hover {text-decoration: none;}
 .personal-nav li{padding: 0 0 0 0.27rem; font-size: 0.12rem; line-height: 0.45rem;}
 .personal-nav li a{color: #9B9B9B; display: block;}
 
+/* 我答 */
+.my-answers .nav{height: 0.37rem; margin-bottom: 8px; background: #fff; display: -webkit-flex; display: flex; justify-content: space-around; -webkit-justify-content: space-around; box-shadow: 0 1px 3px rgba(214,214,214,0.5); color: #4A4A4A; line-height: 0.37rem;}
+.my-answers .nav a{color: #AAAAAA;}
+.my-answers .nav a.curr{color: #F38540; border-bottom: #F38540 2px solid;}
+.my-answers .item{padding: 0.18rem 0.16rem 0.2rem; margin: 4px; background: #fff; box-shadow: 0 1px 3px rgba(214,214,214,0.5);}
+.my-answers .user{line-height: 0.36rem; color: #AAAAAA; font-size: 0.13rem;}
+.my-answers .photo{width: 0.36rem; height: 0.36rem; margin-right: 0.1rem; float: left; overflow: hidden; border-radius: 50%;}
+.my-answers .status{float: right;}
+.my-answers .price{padding-right: 0.35rem; float: right; font-size: 0.14rem; color: #F99653;}
+.my-answers .col{color: #F99653;}
+.my-answers .title{padding: 0.17rem 0 0.3rem; line-height: 0.24rem; color: #4A4A4A;}
+.my-answers .info{font-size: 0.12rem; color: #AAAAAA; line-height: 0.16rem;}
+.my-answers .info i{padding: 0 0.08rem; color: #F99653;}
+.my-answers .time{float: right;}
+
 /*=个人主页*/
 .leon-head{overflow:hidden;position:relative;text-align:center;box-sizing:border-box;padding:.44rem 0 0 0;height:2.25rem; background: url(img/share_bg.png) no-repeat center top; background-size: cover;}
 .leon-head img{width:.86rem;height:.86rem;border:1px solid #fff;border-radius:.44rem;box-shadow:0 0 10px #000;}

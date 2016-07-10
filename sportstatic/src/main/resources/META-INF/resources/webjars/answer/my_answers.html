@@ -1,5 +1,5 @@
  <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="my-answers">
 <head>
 <meta charset="UTF-8">
 <title>问达</title>
@@ -11,44 +11,63 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="author" content="">
 <link rel="stylesheet" href="style/style.css">
-<link rel="stylesheet" href="style/leon.css">
+<script type="text/javascript">
+var require = {
+    baseUrl:'js/',
+    paths:{
+        vue:'vue.min',
+        zepto:'zepto.min',
+        jssdk:'jweixin-1.0.0',
+        common:'common',
+        extend:'vue.extend'
+    },
+    shim:{
+        zepto:{
+            exports:'$'
+        },
+        common:{
+            exports:'common'
+        }
+    }
+};
+</script>
 </head>
 <body>
-<section class="leon-answer">
-	<ul class="hd">
-    	<li><i>待回答1</i></li>
-    	<li class="curr"><i>全部2</i></li>
-    </ul>
-    <ul class="bd">
-    	<li>
-            <a href="audio.html?id=WDBH160707110003">
-            	<h2><span>￥198<i class="i1">待回答</i></span><img src="images/demo_5.jpg" alt="">壁咚的天气</h2>
-                <p>为什么认为体育可以改变人生对于普通人也是这样的吗？</p>
-                <font><span>13天前</span></font>
-            </a>
-        </li>
-        <li>
-        	<a href="audio.html?id=WDBH160707110003">
-                <h2><span>￥198<i class="i1">待回答</i></span><img src="images/demo_5.jpg" alt="">壁咚的天气</h2>
-                <p>为什么认为体育可以改变人生对于普通人也是这样的吗？</p>
-                <font><span>13天前</span></font>
-            </a>
-        </li>
-        <li>
-        	<a href="audio.html?id=WDBH160707110003">
-                <h2><span>￥198<i class="i1">待回答</i></span><img src="images/demo_5.jpg" alt="">壁咚的天气</h2>
-                <p>为什么认为体育可以改变人生对于普通人也是这样的吗？</p>
-                <font><span>13天前</span></font>
-            </a>
-        </li>
-        <li>
-        	<a href="audio.html?id=WDBH160707110003">
-                <h2><span>￥198<i class="i1">待回答</i></span><img src="images/demo_5.jpg" alt="">壁咚的天气</h2>
-                <p>为什么认为体育可以改变人生对于普通人也是这样的吗？</p>
-                <font><span>13天前</span></font>
-            </a>
-        </li>
-    </ul>
+<section class="wrap">
+    <article class="my-answers" v-cloak>
+        <nav class="nav">
+            <a href="javascript:;" @click="tab(1)" v-bind:class="{curr:currClass==1}">待回答{{result.total}}</a>
+            <a href="javascript:;" @click="tab(0)" v-bind:class="{curr:currClass==0}">全部{{result.allTotal}}</a>
+        </nav>
+        <template v-if="result.questionInfos.length">
+            <ul class="list">
+                <li class="item" v-for="item in result.questionInfos">
+                    <a href="audio.html?id={{item.code}}" v-if="item.status == 'dzsd4888100110010001'">
+                    <a href="details.html?id={{item.code}}" v-if="item.status != 'dzsd4888100110010001'">
+                        <div class="user">
+                            <span class="photo"><img :src="item.aboutHead" alt=""></span>
+                            <em class="name">{{item.nickName}}</em>
+                            <i class="status col">待回答</i>
+                            <em class="price">￥{{item.money}}</em>
+                        </div>
+                        <h1 class="title">
+                            {{item.content}}
+                        </h1>
+                        <div class="info">
+                            偷偷听<i>{{item.listen}}</i>　分成收入<i>￥{{item.answerAmount}}</i>
+                            <em class="time">{{item.questionTime}}</em>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </template>
+        <template v-else>
+            <div class="no-data"></div>
+        </template>
+    </article>
 </section>
+<footer-nav></footer-nav>
+<script type="text/javascript" src="js/require.min.js"></script>
+<script type="text/javascript" src="js/app/my_answers.js"></script>
 </body>
 </html>
