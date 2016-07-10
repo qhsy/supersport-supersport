@@ -16,7 +16,7 @@ public class WechatUnifyRequest implements IPayRequest {
 	private String mch_id;
 	
 	/*随机字符串*/
-	private String noncestr;
+	private String nonce_str;
 	
 	/*签名*/
 	private String sign;
@@ -28,15 +28,7 @@ public class WechatUnifyRequest implements IPayRequest {
 	public void setAppid(String appid) {
 		this.appid = appid;
 	}
-
-	public String getNoncestr() {
-		return noncestr;
-	}
-
-	public void setNoncestr(String noncestr) {
-		this.noncestr = noncestr;
-	}
-
+	
 	public String getSign() {
 		return sign;
 	}
@@ -51,6 +43,14 @@ public class WechatUnifyRequest implements IPayRequest {
 
 	public void setMch_id(String mch_id) {
 		this.mch_id = mch_id;
+	}
+
+	public String getNonce_str() {
+		return nonce_str;
+	}
+
+	public void setNonce_str(String nonce_str) {
+		this.nonce_str = nonce_str;
 	}
 
 }

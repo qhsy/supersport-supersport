@@ -91,7 +91,17 @@ public class WechatConfig {
 	 * 获取交易类型
 	 * @return
 	 */
-	public String getTradeType() {
+	public String getTradeType(PayProcessEnum payProcessEnum) {
+		
+		switch (payProcessEnum) {
+		case WECHAT_SERVICE_CONFIG:
+			tradeType = "JSAPI";
+			break;
+
+		default:
+			break;
+		}
+		
 		return tradeType;
 	}
 

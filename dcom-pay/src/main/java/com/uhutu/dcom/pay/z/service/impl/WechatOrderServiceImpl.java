@@ -3,7 +3,6 @@ package com.uhutu.dcom.pay.z.service.impl;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.uhutu.dcom.component.z.util.WebClientComponent;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.common.WechatUnifyResultCodeEnum;
@@ -12,6 +11,7 @@ import com.uhutu.dcom.pay.z.face.IPayRequest;
 import com.uhutu.dcom.pay.z.face.IPayResponse;
 import com.uhutu.dcom.pay.z.request.WechatBizContentRequest;
 import com.uhutu.dcom.pay.z.request.WechatOrderRequest;
+import com.uhutu.dcom.pay.z.request.WechatUnifyRequest;
 import com.uhutu.dcom.pay.z.response.WechatOrderResponse;
 import com.uhutu.dcom.pay.z.service.IWechatOrderService;
 import com.uhutu.dcom.pay.z.util.BeanComponent;
@@ -40,7 +40,7 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 		
 		try {
 			
-			MDataMap requestContentMap = BeanComponent.getInstance().objectToMap(orderRequest, null, false);
+			MDataMap requestContentMap = BeanComponent.getInstance().objectToMap(orderRequest, WechatUnifyRequest.class, true);
 			
 			String xmlStr = XmlUtil.getInstance().mDataMapToXml(requestContentMap);
 			
@@ -73,7 +73,7 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 		
 		orderRequest.setMch_id(configFactory.getWechatConfig().getMchId(processEnum));
 		
-		orderRequest.setNoncestr(WechatUtil.getNonceStr());
+		orderRequest.setNonce_str(WechatUtil.getNonceStr());
 		
 		String notifyUrl = bizContentRequest.getRequestIP() + configFactory.getWechatConfig().getNotifyUrl();
 		
@@ -81,11 +81,19 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 		
 		orderRequest.setOut_trade_no(bizContentRequest.getOrderCode());
 		
-		orderRequest.setTime_expire(DateFormatUtils.format(bizContentRequest.getTime_expire(), "yyyyMMddHHmmss"));
+		if(bizContentRequest.getTime_expire() != null){
+			
+			orderRequest.setTime_expire(DateFormatUtils.format(bizContentRequest.getTime_expire(), "yyyyMMddHHmmss"));
+			
+		}
 		
-		orderRequest.setTime_start(DateFormatUtils.format(bizContentRequest.getTime_start(), "yyyyMMddHHmmss"));
+		if(bizContentRequest.getTime_start() != null){
+			
+			orderRequest.setTime_start(DateFormatUtils.format(bizContentRequest.getTime_start(), "yyyyMMddHHmmss"));
+			
+		}
 		
-		orderRequest.setTrade_type(configFactory.getWechatConfig().getTradeType());
+		orderRequest.setTrade_type(configFactory.getWechatConfig().getTradeType(processEnum));
 		
 		orderRequest.setSpbill_create_ip(bizContentRequest.getRomoteIp());
 		

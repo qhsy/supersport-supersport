@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.control;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +27,14 @@ public class PayController {
 	@ResponseBody
 	@RequestMapping(value = "/wechatH5Pay", method = RequestMethod.POST)
 	@ApiOperation(value = "微信h5支付", notes = "微信h5支付")
-	public ApiWechatH5PayResult wechatConfigInfo(@RequestBody ApiWechatH5PayInput input) {
+	public ApiWechatH5PayResult wechatConfigInfo(@RequestBody ApiWechatH5PayInput input,HttpServletRequest request) {
 
+		input.setRomoteIP(request.getRemoteHost());
+		
+		System.out.println(request.getRemoteAddr());
+		
+		input.setServeIP(request.getLocalAddr()+":"+request.getLocalPort());
+		
 		return apiFactory.getApiWechatH5Pay().api(input);
 	}
 
