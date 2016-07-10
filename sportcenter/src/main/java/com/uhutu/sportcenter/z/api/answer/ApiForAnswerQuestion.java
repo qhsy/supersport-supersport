@@ -113,7 +113,7 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 		FileUploadResult webUploadResult = new FileUploadResult();
 		WechatAccessTokenResponse tokenResponse = (WechatAccessTokenResponse) payGateProcess
 				.process(PayProcessEnum.WECHAT_TOKEN, null, new MDataMap());
-		String name = TopHelper.upUuid() + ".mp3";
+		String name = TopHelper.upUuid() + ".amr";
 		try {
 			HttpEntity resEntity = WebClientSupport.create()
 					.upEntity("http://file.api.weixin.qq.com/cgi-bin/media/get?access_token="
