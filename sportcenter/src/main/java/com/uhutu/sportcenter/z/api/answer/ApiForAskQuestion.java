@@ -2,9 +2,9 @@ package com.uhutu.sportcenter.z.api.answer;
 
 import java.math.BigDecimal;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.uhutu.dcom.answer.z.common.AnswerEnum;
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
@@ -44,7 +44,20 @@ public class ApiForAskQuestion extends RootApiToken<ApiForAskQuestionInput, ApiF
 		if (answerExpert != null && "dzsd4699100110010001".equals(answerExpert.getStatus())) {
 			qtInfo.setAnswerUserCode(input.getAnswerUserCode());
 			qtInfo.setContent(input.getContent());
-			qtInfo.setScope(input.getScope());
+			
+			if(StringUtils.isNotEmpty(input.getScope())){
+				
+				boolean scope = Boolean.valueOf(input.getScope());
+				
+				qtInfo.setScope(scope?AnswerEnum.SCOPE_PUBLIC.getCode():AnswerEnum.SCOPE_PRIVATE.getCode());
+				
+				
+			}else{
+				
+				qtInfo.setScope(AnswerEnum.SCOPE_PUBLIC.getCode());
+				
+			}
+			
 			qtInfo.setStatus("dzsd4888100110010001");
 			qtInfo.setSellMoney(BigDecimal.valueOf(1));
 			qtInfo.setQuestionUserCode(upUserCode());
