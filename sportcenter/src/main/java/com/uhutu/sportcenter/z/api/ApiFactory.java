@@ -15,6 +15,7 @@ import com.uhutu.sportcenter.z.api.answer.ApiHotQuestions;
 import com.uhutu.sportcenter.z.api.answer.ApiNewQuestions;
 import com.uhutu.sportcenter.z.api.answer.ApiOpenAskQuestion;
 import com.uhutu.sportcenter.z.api.answer.ApiPersonHome;
+import com.uhutu.sportcenter.z.api.answer.ApiPlayAudio;
 import com.uhutu.sportcenter.z.api.answer.ApiQuestionDetail;
 import com.uhutu.sportcenter.z.api.answer.ApiQuestionInfoList;
 import com.uhutu.sportcenter.z.api.answer.ApiQuestionPraise;
@@ -280,6 +281,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiQuestionPraise apiQuestionPraise;
+	
+	@Autowired
+	private ApiPlayAudio apiPlayAudio;
 	
 	public ApiQuestionPraise getApiQuestionPraise() {
 		return apiQuestionPraise;
@@ -559,6 +563,10 @@ public class ApiFactory {
 
 	public ApiPersonHome getApiPersonHome() {
 		return apiPersonHome;
+	}
+
+	public ApiPlayAudio getApiPlayAudio() {
+		return apiPlayAudio;
 	}
 
 }

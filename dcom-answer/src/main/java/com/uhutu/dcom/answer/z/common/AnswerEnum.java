@@ -22,7 +22,9 @@ public enum AnswerEnum {
 	
 	SCOPE_PUBLIC("dzsd4888100110020002","公开"),
 	
-	SCOPE_PRIVATE("dzsd4888100110020001","私密");
+	SCOPE_PRIVATE("dzsd4888100110020001","私密"),
+	
+	REDIS_AUDIO("258600","wechat-mediaId-");
 
 	/* 编号 */
 	private String code;

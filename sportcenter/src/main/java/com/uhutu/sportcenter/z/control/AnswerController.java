@@ -19,6 +19,7 @@ import com.uhutu.sportcenter.z.input.ApiHotQuestionsInput;
 import com.uhutu.sportcenter.z.input.ApiNewQuestionsInput;
 import com.uhutu.sportcenter.z.input.ApiOpenAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiPersonHomeInput;
+import com.uhutu.sportcenter.z.input.ApiPlayAudioInput;
 import com.uhutu.sportcenter.z.input.ApiQuestionDetailInput;
 import com.uhutu.sportcenter.z.input.ApiQuestionInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiQuestionPraiseInput;
@@ -36,6 +37,7 @@ import com.uhutu.sportcenter.z.result.ApiHotQuestionsResult;
 import com.uhutu.sportcenter.z.result.ApiNewQuestionsResult;
 import com.uhutu.sportcenter.z.result.ApiOpenAskQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiPersonHomeResult;
+import com.uhutu.sportcenter.z.result.ApiPlayAudioResult;
 import com.uhutu.sportcenter.z.result.ApiQuestionDetailResult;
 import com.uhutu.sportcenter.z.result.ApiQuestionInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiRichAnswersResult;
@@ -197,4 +199,14 @@ public class AnswerController {
 
 		return apiFactory.getApiQuestionPraise().api(input);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/playAudio", method = RequestMethod.POST)
+	@ApiOperation(value = "语音播放", notes = "语音播放")
+	public ApiPlayAudioResult playAudio(@RequestBody ApiPlayAudioInput input) {
+
+		return apiFactory.getApiPlayAudio().api(input);
+		
+	}
+	
 }
