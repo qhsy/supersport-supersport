@@ -42,22 +42,41 @@ var require = {
         <template v-if="result.questionInfos.length">
             <ul class="list">
                 <li class="item" v-for="item in result.questionInfos">
-                    <a href="audio.html?id={{item.code}}" v-if="item.status == 'dzsd4888100110010001'">
-                    <a href="details.html?id={{item.code}}" v-if="item.status != 'dzsd4888100110010001'">
-                        <div class="user">
-                            <span class="photo"><img :src="item.aboutHead" alt=""></span>
-                            <em class="name">{{item.nickName}}</em>
-                            <i class="status col">待回答</i>
-                            <em class="price">￥{{item.money}}</em>
-                        </div>
-                        <h1 class="title">
-                            {{item.content}}
-                        </h1>
-                        <div class="info">
-                            偷偷听<i>{{item.listen}}</i>　分成收入<i>￥{{item.answerAmount}}</i>
-                            <em class="time">{{item.questionTime}}</em>
-                        </div>
-                    </a>
+                    <template v-if="item.status == 'dzsd4888100110010001'">
+                        <a href="audio.html?id={{item.code}}">
+                            <div class="user">
+                                <span class="photo"><img :src="item.aboutHead" alt=""></span>
+                                <em class="name">{{item.nickName}}</em>
+                                <i class="status col">待回答</i>
+                                <em class="price">￥{{item.money}}</em>
+                            </div>
+                            <h1 class="title">
+                                {{item.content}}
+                            </h1>
+                            <div class="info">
+                                偷偷听<i>{{item.listen}}</i>　分成收入<i>￥{{item.answerAmount}}</i>
+                                <em class="time">{{item.questionTime}}</em>
+                            </div>
+                        </a>
+                    </template>
+                    <template v-else>
+                        <a href="details.html?id={{item.code}}">
+                            <div class="user">
+                                <span class="photo"><img :src="item.aboutHead" alt=""></span>
+                                <em class="name">{{item.nickName}}</em>
+                                <i class="status col">待回答</i>
+                                <em class="price">￥{{item.money}}</em>
+                            </div>
+                            <h1 class="title">
+                                {{item.content}}
+                            </h1>
+                            <div class="info">
+                                偷偷听<i>{{item.listen}}</i>　分成收入<i>￥{{item.answerAmount}}</i>
+                                <em class="time">{{item.questionTime}}</em>
+                            </div>
+                        </a>
+                    </template>
+                        
                 </li>
             </ul>
         </template>
