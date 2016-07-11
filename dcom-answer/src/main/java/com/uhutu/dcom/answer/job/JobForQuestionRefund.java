@@ -5,10 +5,14 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.uhutu.dcom.answer.z.entity.AwAnswerRefundJob;
 import com.uhutu.dcom.answer.z.entity.AwAnswerRefundLog;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
@@ -44,30 +48,61 @@ public class JobForQuestionRefund extends RootJob {
 	public MResult process() {
 		List<AwAnswerRefundJob> jobs = JdbcHelper.queryForList(AwAnswerRefundJob.class, "", "zc desc ",
 				"status='1' and un_amount>0", new MDataMap());
-		WechatComPayBizRequest request = new WechatComPayBizRequest();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		if (jobs != null && !jobs.isEmpty()) {
 			for (int i = 0; i < jobs.size(); i++) {
 				AwAnswerRefundJob job = jobs.get(i);
-				request.setAmount(job.getAmount());
-				request.setOpenid(job.getWechatOpenId());
-				request.setOrderCode(job.getOrderCode());
-				request.setRomoteIP(ipconfig());
-				WechatComPayResponse response = (WechatComPayResponse) payGateProcess.process(PayProcessEnum.WECHAT_COM,
-						request, new MDataMap());
-				if (StringUtils.isNotBlank(response.getResult_code()) && "SUCCESS".equals(response.getResult_code())) {// 先不校验金额进行退款操作
-					saveLog(job.getCode(), job.getAmount());
-					job.setAlAmount(job.getAmount());
-					job.setUnAmount(BigDecimal.ZERO);
-					job.setStatus("1");
-					JdbcHelper.update(job, "al_amount,un_amount,status", "za");
-				} else if (true) {// 校验两万额度
-
-				} else if (true) {// 校验两千额度
-
+				AwAnswerRefundLog log = JdbcHelper.queryOne(AwAnswerRefundLog.class, "", "",
+						"LEFT(time,10)='" + format.format(new Date()) + "' and status='1'", new MDataMap());
+				if (log != null) {// 每个账号允许每天打款一次
+					continue;
+				} else {
+					if (job.getUnAmount().compareTo(BigDecimal.valueOf(2000)) >= 0) {// 校验两千以上额度
+						if (!tranMoneyAndSaveLog(job, job.getUnAmount().compareTo(BigDecimal.valueOf(20000)) > 0
+								? BigDecimal.valueOf(20000) : job.getUnAmount())) {// 两千~两万额度转账失败再试两千及以下额度
+							if (!tranMoneyAndSaveLog(job, BigDecimal.valueOf(2000))) {
+								// 没有微信登录的发邮件通知运营处理
+							}
+						}
+					} else if (job.getUnAmount().compareTo(BigDecimal.valueOf(2000)) < 0) {// 校验两千以下额度
+						if (!tranMoneyAndSaveLog(job, job.getUnAmount())) {
+							// 没有微信登录的发邮件通知运营处理
+						}
+					}
 				}
 			}
 		}
 		return new MResult();
+	}
+
+	/**
+	 * 
+	 * @param job
+	 *            转账任务
+	 * @param money
+	 *            本次转账金额
+	 * @return
+	 */
+	private boolean tranMoneyAndSaveLog(AwAnswerRefundJob job, BigDecimal money) {
+		boolean flag = true;
+		WechatComPayBizRequest request = new WechatComPayBizRequest();
+		request.setAmount(job.getAmount());
+		request.setOpenid(job.getWechatOpenId());
+		request.setOrderCode(job.getOrderCode());
+		request.setRomoteIP(ipconfig());
+		request.setAmount(money);
+		WechatComPayResponse bigRes = (WechatComPayResponse) payGateProcess.process(PayProcessEnum.WECHAT_COM, request,
+				new MDataMap());
+		if (StringUtils.isNotBlank(bigRes.getResult_code()) && "SUCCESS".equals(bigRes.getResult_code())) {
+			saveLog(job.getCode(), money, job.getWechatOpenId(), bigRes.getReturn_msg());
+			job.setAlAmount(job.getAlAmount().add(money));
+			job.setUnAmount(job.getUnAmount().subtract(money));
+			job.setStatus(job.getUnAmount().compareTo(BigDecimal.ZERO) == 0 ? "1" : "0");
+			JdbcHelper.update(job, "al_amount,un_amount,status", "za");
+		} else {
+			flag = false;
+		}
+		return flag;
 	}
 
 	private String ipconfig() {
@@ -77,7 +112,6 @@ public class JobForQuestionRefund extends RootJob {
 			InetAddress ip = null;
 			while (allNetInterfaces.hasMoreElements()) {
 				NetworkInterface netInterface = (NetworkInterface) allNetInterfaces.nextElement();
-				System.out.println(netInterface.getName());
 				Enumeration addresses = netInterface.getInetAddresses();
 				while (addresses.hasMoreElements()) {
 					ip = (InetAddress) addresses.nextElement();
@@ -91,18 +125,25 @@ public class JobForQuestionRefund extends RootJob {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 退款日志
-	 * @param jobCode 退款任务编号
-	 * @param money 本次退款金额
+	 * 
+	 * @param jobCode
+	 *            退款任务编号
+	 * @param money
+	 *            本次退款金额
+	 * @param userWechatId
+	 *            用户微信编号
 	 */
-	private void saveLog(String jobCode,BigDecimal money){
+	private void saveLog(String jobCode, BigDecimal money, String userWechatId, String errorMsg) {
 		AwAnswerRefundLog log = new AwAnswerRefundLog();
 		log.setAmount(money);
 		log.setCode(jobCode);
 		log.setStatus("1");
 		log.setTime(DateHelper.upNow());
+		log.setWechatOpenId(userWechatId);
+		log.setResponse(errorMsg);
 		JdbcHelper.insert(log);
 	}
 }

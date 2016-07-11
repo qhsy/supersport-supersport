@@ -48,7 +48,7 @@ public class JobForCancelOverTimeAskQuestionOrder extends RootJob {
 					job.setAlAmount(BigDecimal.ZERO);
 					job.setRemark("问题48小时内未回答，退款处理");
 					job.setStatus("0");
-					job.setUnAmount(BigDecimal.ZERO);
+					job.setUnAmount(info.getMoney());
 					job.setUserCode(info.getQuestionUserCode());
 					UcUserinfoSocial us = JdbcHelper.queryOne(UcUserinfoSocial.class, "user_code",
 							info.getQuestionUserCode(), "account_type", SocialEnum.wechat.name());

@@ -21,6 +21,10 @@ public class AwAnswerRefundLog extends BaseEntity {
 	@Column(length = 50)
 	private String code;
 
+	@ZooData(value = "收款人微信授权登录openid")
+	@Column(length = 50)
+	private String wechatOpenId;
+
 	@ZooData(value = "本次退款金额 ")
 	private BigDecimal amount;
 
@@ -41,6 +45,14 @@ public class AwAnswerRefundLog extends BaseEntity {
 
 	public String getCode() {
 		return code;
+	}
+
+	public String getWechatOpenId() {
+		return wechatOpenId;
+	}
+
+	public void setWechatOpenId(String wechatOpenId) {
+		this.wechatOpenId = wechatOpenId;
 	}
 
 	public void setCode(String code) {
