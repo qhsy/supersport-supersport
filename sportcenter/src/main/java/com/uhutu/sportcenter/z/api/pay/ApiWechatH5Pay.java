@@ -5,8 +5,6 @@ import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
-import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
 import com.uhutu.dcom.pay.z.request.WechatBizContentRequest;
@@ -34,9 +32,6 @@ public class ApiWechatH5Pay extends RootApiToken<ApiWechatH5PayInput, ApiWechatH
 	private PayGateProcess payGateProcess;
 	
 	@Autowired
-	private AnswerServiceFactory answerServiceFactory;
-	
-	@Autowired
 	private PayServiceFactory payServiceFactory;
 	
 	@Autowired
@@ -57,11 +52,7 @@ public class ApiWechatH5Pay extends RootApiToken<ApiWechatH5PayInput, ApiWechatH
 			
 		}
 		
-		AwQuestionInfo awQuestionInfo = answerServiceFactory.getQuestionInfoService().queryByCode(input.getQuestionCode());
-		
 		WechatBizContentRequest bizContentRequest = new WechatBizContentRequest();
-		
-		bizContentRequest.setBody(awQuestionInfo.getContent());
 		
 		bizContentRequest.setOrderCode(input.getQuestionCode());
 		
