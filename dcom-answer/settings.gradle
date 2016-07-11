@@ -12,3 +12,6 @@ project(':dcom-user').projectDir = new File(settingsDir, '../dcom-user')
 
 include ':dcom-order'
 project(':dcom-order').projectDir = new File(settingsDir, '../dcom-order')
+
+include ':dcom-pay'
+project(':dcom-pay').projectDir = new File(settingsDir, '../dcom-pay')

@@ -23,12 +23,20 @@ public class AwAnswerRefundJob extends BaseEntity {
 	@ZooData(value = "退款编号")
 	@Column(length = 50)
 	private String code;
+	
+	@ZooData(value = "退款类型")
+	@Column(length = 50)
+	private String type;
 
 	@ZooData(value = "订单编号")
 	@Column(length = 50)
 	private String orderCode;
 
-	@ZooData(value = "微信授权登录openid")
+	@ZooData(value = "收款人用户编号")
+	@Column(length = 50)
+	private String userCode;
+	
+	@ZooData(value = "收款人微信授权登录openid")
 	@Column(length = 50)
 	private String wechatOpenId;
 
@@ -111,6 +119,22 @@ public class AwAnswerRefundJob extends BaseEntity {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
 	}
 
 }

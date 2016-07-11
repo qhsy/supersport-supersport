@@ -1,12 +1,17 @@
 package com.uhutu.sportcenter.z.api.answer;
 
 import java.io.ByteArrayOutputStream;
+import java.math.BigDecimal;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.uhutu.dcom.answer.z.entity.AwAnswerRefundJob;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
+import com.uhutu.dcom.config.enums.SocialEnum;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
 import com.uhutu.dcom.pay.z.request.WechatMsgAnswerRequest;
@@ -25,6 +30,7 @@ import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoocom.support.WebClientSupport;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
+import com.uhutu.zooweb.helper.WebHelper;
 import com.uhutu.zooweb.support.WebUploadSupport;
 
 /**
@@ -59,6 +65,7 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 			qtInfo.setCode(input.getCode());
 			if (input.isRefuse()) {
 				qtInfo.setStatus("dzsd4888100110010003");
+				sentToRefund(qtInfo.getQuestionUserCode(), qtInfo.getCode(), qtInfo.getMoney());
 			} else {
 				qtInfo.setStatus("dzsd4888100110010002");
 				qtInfo.setLengh(input.getLengh());
@@ -132,6 +139,30 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 			e.printStackTrace();
 		}
 		return voiceUrl;
+	}
+
+	// 拒绝回答后生成退款任务
+	private void sentToRefund(String userCode, String questionCode, BigDecimal questionMoney) {
+		if (JdbcHelper.queryOne(AwAnswerRefundJob.class, "order_code", questionCode) == null) {
+			AwAnswerRefundJob job = new AwAnswerRefundJob();
+			job.setOrderCode(questionCode);
+			job.setType("dzsd4888100110040002");// 拒绝回答
+			job.setCode(WebHelper.upCode("TK"));
+			job.setAmount(questionMoney);
+			job.setAlAmount(BigDecimal.ZERO);
+			job.setRemark("达人拒绝回答，退款处理");
+			job.setStatus("0");
+			job.setUnAmount(BigDecimal.ZERO);
+			job.setUserCode(userCode);
+			UcUserinfoSocial us = JdbcHelper.queryOne(UcUserinfoSocial.class, "user_code", userCode, "account_type",
+					SocialEnum.wechat.name());
+			if (us != null && StringUtils.isNotBlank(us.getAccountId())) {
+				job.setWechatOpenId(us.getAccountId());
+				JdbcHelper.insert(job);
+			} else {
+				// 没有微信登录的发邮件通知运营处理
+			}
+		}
 	}
 
 }
