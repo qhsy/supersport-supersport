@@ -1,5 +1,6 @@
 package com.uhutu.dcom.pay.z.request;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import com.uhutu.dcom.pay.z.face.IPayRequest;
 
@@ -27,6 +28,12 @@ public class WechatBizContentRequest implements IPayRequest {
 	
 	/*远端ip地址*/
 	private String romoteIp;
+	
+	/*支付金额*/
+	private BigDecimal payMoney = BigDecimal.ZERO;
+	
+	/*微信用户标识*/
+	private String openid;
 
 	public String getOrderCode() {
 		return orderCode;
@@ -74,6 +81,22 @@ public class WechatBizContentRequest implements IPayRequest {
 
 	public void setRomoteIp(String romoteIp) {
 		this.romoteIp = romoteIp;
+	}
+
+	public BigDecimal getPayMoney() {
+		return payMoney;
+	}
+
+	public void setPayMoney(BigDecimal payMoney) {
+		this.payMoney = payMoney;
+	}
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
 
 }

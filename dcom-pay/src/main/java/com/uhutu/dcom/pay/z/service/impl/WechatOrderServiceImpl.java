@@ -1,5 +1,7 @@
 package com.uhutu.dcom.pay.z.service.impl;
 
+import java.math.BigDecimal;
+
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +46,8 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 			
 			String xmlStr = XmlUtil.getInstance().mDataMapToXml(requestContentMap);
 			
+			xmlStr = new String(xmlStr.getBytes(),"ISO8859-1");
+			
 			String responseMsg = WebClientComponent.doXmpRequest(configFactory.getWechatConfig().getOrderUrl(), xmlStr);
 			
 			MDataMap mdDataMap = XmlUtil.getInstance().xmlToMDataMap(responseMsg);
@@ -69,7 +73,7 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 		
 		orderRequest.setAppid(configFactory.getWechatConfig().getAppId(processEnum));
 		
-		orderRequest.setBody(bizContentRequest.getBody());
+		orderRequest.setBody("Godo运动-"+"问答支付");
 		
 		orderRequest.setMch_id(configFactory.getWechatConfig().getMchId(processEnum));
 		
@@ -93,13 +97,17 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 			
 		}
 		
+		orderRequest.setTotal_fee(bizContentRequest.getPayMoney().multiply(new BigDecimal(100)).setScale(2).intValue());
+		
 		orderRequest.setTrade_type(configFactory.getWechatConfig().getTradeType(processEnum));
 		
 		orderRequest.setSpbill_create_ip(bizContentRequest.getRomoteIp());
 		
+		orderRequest.setOpenid(bizContentRequest.getOpenid());
+		
 		try {
 			
-			MDataMap mDataMap = BeanComponent.getInstance().objectToMap(orderRequest, null, false);
+			MDataMap mDataMap = BeanComponent.getInstance().objectToMap(orderRequest, WechatUnifyRequest.class, true);
 			
 			String sign = configFactory.getWechatConfig().getSign(mDataMap,processEnum);
 			

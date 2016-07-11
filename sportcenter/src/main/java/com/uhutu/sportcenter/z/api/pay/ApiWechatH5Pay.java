@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.api.pay;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +15,8 @@ import com.uhutu.dcom.pay.z.request.WechatOrderRequest;
 import com.uhutu.dcom.pay.z.response.WechatH5PayResponse;
 import com.uhutu.dcom.pay.z.response.WechatOrderResponse;
 import com.uhutu.dcom.pay.z.service.PayServiceFactory;
+import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
+import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.input.ApiWechatH5PayInput;
 import com.uhutu.sportcenter.z.result.ApiWechatH5PayResult;
 import com.uhutu.zoocom.model.MDataMap;
@@ -34,11 +38,24 @@ public class ApiWechatH5Pay extends RootApiToken<ApiWechatH5PayInput, ApiWechatH
 	
 	@Autowired
 	private PayServiceFactory payServiceFactory;
+	
+	@Autowired
+	private UserInfoSupport userInfoSupport;
 
 	@Override
 	protected ApiWechatH5PayResult process(ApiWechatH5PayInput input) {
 		
 		ApiWechatH5PayResult h5PayResult = new ApiWechatH5PayResult();
+		
+		UcUserinfoSocial ucUserinfoSocial = userInfoSupport.getUserInfoSocial(upUserCode());
+		
+		if(ucUserinfoSocial == null){
+			
+			h5PayResult.inError(81110004);
+			
+			return h5PayResult;
+			
+		}
 		
 		AwQuestionInfo awQuestionInfo = answerServiceFactory.getQuestionInfoService().queryByCode(input.getQuestionCode());
 		
@@ -51,6 +68,10 @@ public class ApiWechatH5Pay extends RootApiToken<ApiWechatH5PayInput, ApiWechatH
 		bizContentRequest.setRequestIP(input.getServeIP());
 
 		bizContentRequest.setRomoteIp(input.getRomoteIP());
+		
+		bizContentRequest.setPayMoney(new BigDecimal(12));
+		
+		bizContentRequest.setOpenid(ucUserinfoSocial.getAccountId());
 		
 		WechatOrderRequest orderRequest = payServiceFactory.getWechatOrderService().initOrderRequest(bizContentRequest, PayProcessEnum.WECHAT_SERVICE_CONFIG);
 		

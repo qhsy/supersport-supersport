@@ -1,7 +1,5 @@
 package com.uhutu.dcom.pay.z.request;
 
-import java.math.BigDecimal;
-
 /**
  * 微信统一下单请求信息
  * @author 逄小帅
@@ -16,7 +14,7 @@ public class WechatOrderRequest extends WechatUnifyRequest {
 	private String out_trade_no;
 	
 	/*总金额*/
-	private BigDecimal total_fee = BigDecimal.ZERO;
+	private int total_fee = 0;
 	
 	/*交易起始时间 yyyyMMddHHmmss*/
 	private String time_start;
@@ -32,6 +30,9 @@ public class WechatOrderRequest extends WechatUnifyRequest {
 	
 	/*发起微信支付的ip*/
 	private String spbill_create_ip;
+	
+	/*支付用户openid*/
+	private String openid = "";
 
 	public String getBody() {
 		return body;
@@ -49,11 +50,11 @@ public class WechatOrderRequest extends WechatUnifyRequest {
 		this.out_trade_no = out_trade_no;
 	}
 
-	public BigDecimal getTotal_fee() {
+	public int getTotal_fee() {
 		return total_fee;
 	}
 
-	public void setTotal_fee(BigDecimal total_fee) {
+	public void setTotal_fee(int total_fee) {
 		this.total_fee = total_fee;
 	}
 
@@ -95,6 +96,14 @@ public class WechatOrderRequest extends WechatUnifyRequest {
 
 	public void setSpbill_create_ip(String spbill_create_ip) {
 		this.spbill_create_ip = spbill_create_ip;
+	}
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
 
 }

@@ -45,6 +45,8 @@ public class WechatH5PayServiceImpl implements IWechatH5PayService {
 		
 		h5PayResponse.setTimeStamp(WechatUtil.getTimeStamp());
 		
+		h5PayResponse.setPrepay_id(prepayId);
+		
 		try {
 			MDataMap mDataMap = BeanComponent.getInstance().objectToMap(h5PayResponse, null, false);
 			

@@ -29,11 +29,13 @@ public class PayController {
 	@ApiOperation(value = "微信h5支付", notes = "微信h5支付")
 	public ApiWechatH5PayResult wechatConfigInfo(@RequestBody ApiWechatH5PayInput input,HttpServletRequest request) {
 
-		input.setRomoteIP(request.getRemoteHost());
+		String[] paths = request.getRequestURL().toString().split("/");
 		
-		System.out.println(request.getRemoteAddr());
+		String path = paths[0]+"//"+paths[2];
 		
-		input.setServeIP(request.getLocalAddr()+":"+request.getLocalPort());
+		input.setServeIP(path);
+		
+		input.setRomoteIP(request.getRemoteAddr());
 		
 		return apiFactory.getApiWechatH5Pay().api(input);
 	}
