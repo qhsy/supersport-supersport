@@ -5,6 +5,7 @@ define(['vue'],function(Vue){
 	var top = url.search('top.html') != -1?true:false;
 	var center = url.search('center.html') != -1 || url.search('my_questions.html') != -1 || url.search('my_answers.html') != -1 || url.search('my_listens.html') != -1 || url.search('center.html') != -1?true:false;
 	var footnav = url.search('answer.html') != -1 || url.search('new_question.html') != -1 || url.search('top.html') != -1 || url.search('details.html') != -1?true:false;
+	var follow = url.search('follow.html') != -1?true:false;
 	/**
 	 * [headNav description]
 	 * @type {[type]}
@@ -18,7 +19,7 @@ define(['vue'],function(Vue){
 	 * @type {[type]}
 	 */
 	var footNav = Vue.extend({
-	  template: '<nav class="nav-foot"><a href="answer.html" v-bind:class="{curr: ' + footnav + '}">问达</a><a href="">关注</a><a href="center.html" v-bind:class="{curr: ' + center + '}">我的</a></nav>'
+	  template: '<nav class="nav-foot"><a href="answer.html" v-bind:class="{curr: ' + footnav + '}">问达</a><a href="follow.html" v-bind:class="{curr: ' + follow + '}">关注</a><a href="center.html" v-bind:class="{curr: ' + center + '}">我的</a></nav>'
 	});
 
 	/**

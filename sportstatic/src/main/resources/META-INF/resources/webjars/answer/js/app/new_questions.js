@@ -17,7 +17,7 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 					if(res.status == 1){
 						self.questions = res.questions;
 					}else{
-						alert(res.error);
+						comm.tost(res.error);
 					}
 				}
 			});

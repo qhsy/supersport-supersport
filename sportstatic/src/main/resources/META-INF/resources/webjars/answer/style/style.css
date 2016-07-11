@@ -31,12 +31,14 @@ a:hover {text-decoration: none;}
 .answer-wrap{padding-top: 0.05rem;}
 .answer-item{margin: 0.04rem; padding: 0 0 0.2rem; background: #fff; border-radius: 2px; box-shadow: 0 1px 3px rgba(214,214,214,0.5);}
 .answer-item .title{padding: 0.2rem 0.2rem 0.23rem 0.16rem; font-size: 0.15rem; line-height: 0.2rem; font-weight: 700; color: #4A4A4A;}
-.answer-item .nickname{padding: 0 0 0.12rem 0.16rem; font-size: 0.12rem; color: #aaa; line-height: 0.12rem;}
+.answer-item .nickname{padding: 0 0.2rem 0.12rem 0.16rem; font-size: 0.12rem; color: #aaa; line-height: 0.12rem;}
 .answer-item .nickname em{padding: 0 0.1rem 0 0; margin-right: 0.1rem; border-right: 1px solid #aaa;}
 .answer-item .user{padding: 0 0.28rem 0 0.16rem; display: -webkit-flex; display: flex; line-height: 0.36rem; align-items: center; -webkit-align-items: center; justify-content: space-between; -webkit-justify-content: space-between; font-size: 0.12rem;}
 .answer-item .photo{width: 0.36rem; height: 0.36rem; border-radius: 50%; overflow: hidden;}
 .answer-item .hear{width: 1.97rem; height: 0.36rem; background: #F99653; border-radius: 0.2rem; color: #fff; font-size: 0.14rem; position: absolute; left: 0.72rem;}
 .answer-item .hear:before{content: ""; width: 0.28rem; height: 0.22rem; display: block; background: url(img/audio_arr.png) no-repeat; background-size: cover; transform: translate3d(-0.10rem,0.14rem,0); transform: -webkit-translate3d(-0.10rem,0.14rem,0); position: absolute;}
+.answer-item .listen-flag{width: 1.97rem; height: 0.36rem; background: #98D15E; border-radius: 0.2rem; color: #fff; font-size: 0.14rem;}
+.answer-item .listen-flag:before{content: ""; width: 0.28rem; height: 0.22rem; display: block; background: url(img/listen_flag.png) no-repeat; background-size: cover; transform: translate3d(-0.10rem,0.14rem,0); transform: -webkit-translate3d(-0.10rem,0.14rem,0); position: absolute;}
 .answer-item .iconfont{padding: 0 0.25rem 0 0.2rem; font-size: 0.16rem;}
 .answer-item .num{color: #aaa;}
 .answer-item .num i{color: #F38540;}
@@ -47,7 +49,7 @@ a:hover {text-decoration: none;}
 .top-item .photo{width: 0.6rem; height: 0.6rem; display: inline-block; border-radius: 50%; overflow: hidden;}
 .top-item .nickname{padding-left: 0.15rem; display: inline-block; vertical-align: top;}
 .top-item .nickname h1{padding: 0.04rem 0 0.06rem; font-size: 0.13rem; line-height: 0.15rem; font-weight: 700; color: #4A4A4A;}
-.top-item .nickname h2{padding-bottom: 0.06rem; font-size: 0.12rem; line-height: 0.14rem; color: #aaa;}
+.top-item .nickname h2{width: 2rem; padding-bottom: 0.06rem; font-size: 0.12rem; line-height: 0.14rem; color: #aaa;}
 .top-item .nickname p{font-size: 0.12rem; line-height: 0.14rem; color: #CCCCCC;}
 
 /* question */
@@ -103,6 +105,8 @@ a:hover {text-decoration: none;}
 .details-item .photo{width: 0.36rem; height: 0.36rem; border-radius: 50%; overflow: hidden; margin-right: 0.16rem;}
 .details-item .hear{width: 1.97rem; height: 0.36rem; background: #F99653; border-radius: 0.2rem; color: #fff; font-size: 0.14rem;}
 .details-item .hear:before{content: ""; width: 0.28rem; height: 0.22rem; display: block; background: url(img/audio_arr.png) no-repeat; background-size: cover; transform: translate3d(-0.10rem,0.14rem,0); transform: -webkit-translate3d(-0.10rem,0.14rem,0); position: absolute;}
+.details-item .listen-flag{width: 1.97rem; height: 0.36rem; background: #98D15E; border-radius: 0.2rem; color: #fff; font-size: 0.14rem;}
+.details-item .listen-flag:before{content: ""; width: 0.28rem; height: 0.22rem; display: block; background: url(img/listen_flag.png) no-repeat; background-size: cover; transform: translate3d(-0.10rem,0.14rem,0); transform: -webkit-translate3d(-0.10rem,0.14rem,0); position: absolute;}
 .details-item .iconfont{padding: 0 0.25rem 0 0.2rem; font-size: 0.16rem;}
 .details-item .time{padding-left: 0.13rem; color: #F99653; font-size: 0.18rem; font-family: "STHeitiSC-Light";}
 .details-item .status{padding: 0.12rem 0 0.2rem; font-size: 0.12rem; color: #9B9B9B;}
@@ -111,7 +115,7 @@ a:hover {text-decoration: none;}
 .details-item .follows{padding: 0.08rem 0 0.12rem; border-top: #D9D9D9 1px solid; border-bottom: #D9D9D9 1px solid; position: relative;}
 .details-item .follows span{display: block; color: #4A4A4A; font-size: 0.13rem; line-height: 0.19rem;}
 .details-item .follows span i{padding-left: 0.07rem; font-size: 0.12rem;}
-.details-item .follows p{color: #D9D9D9; font-size: 0.12rem; line-height: 0.13rem;}
+.details-item .follows p{padding-right: 0.4rem; color: #D9D9D9; font-size: 0.12rem; line-height: 0.13rem;}
 .details-item .follows:after{content: ""; width: 0.13rem; height: 0.13rem; overflow: hidden; border-right: #D9D9D9 2px solid; border-top: #D9D9D9 2px solid; position: absolute; right: 0.15rem; top: 0.19rem; -webkit-transform: rotate(45deg); transform: rotate(45deg);}
 .details-item .assist{width: 0.8rem; height: 0.4rem; margin: 0.24rem auto 0.08rem; display: block; border-radius: 4px; background: #F99653; font-size: 0.18rem; color: #fff; text-align: center; line-height: 0.4rem;}
 .details-item .assist.is{background: #DADADA;}
@@ -130,7 +134,7 @@ a:hover {text-decoration: none;}
 .personal .head{overflow: auto; padding-bottom: 0.22rem; background: url(img/share_bg.png) no-repeat center 70%; background-size: cover; color: #fff; position: relative;}
 .personal .photo{width: 0.86rem; height: 0.86rem; display: block; margin: 0.44rem auto 0.3rem; border-radius: 100%; overflow: hidden;}
 .personal .name{text-align: center; font-size: 0.16rem;}
-.personal .tag{text-align: center; font-size: 0.12rem; opacity: 0.62;}
+.personal .tag{padding: 0 0.3rem; text-align: center; font-size: 0.12rem; opacity: 0.7;}
 .personal .follow{width: 0.86rem; height: 0.36rem; margin: 0.06rem auto 0; display: block; background: #fff; border-radius: 100px; text-align: center; line-height: 0.36rem; color: #F99653;}
 .personal .info{padding: 0 0.52rem;}
 .personal .about{padding: 0.12rem 0 0.18rem; font-size: 0.12rem; line-height: 0.16rem; color: #9B9B9B;}

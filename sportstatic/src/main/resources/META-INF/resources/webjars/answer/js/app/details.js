@@ -5,7 +5,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 	var details = new Vue({
 		el: '#details',
 		data: {
-			result:null
+			result:{}
 		},
 		created:function(){
 			var self = this;
@@ -19,7 +19,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 					if(res.status == 1){
 						self.result = res;
 					}else{
-						alert(res.error);
+						comm.tost(res.error);
 					}
 				}
 			});
@@ -59,19 +59,20 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 								serverId: res.mediaId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
 								success: function (res) {
 									localId = res.localId; // 返回音频的本地ID
+									wx.playVoice({
+								        localId: localId
+								    });
+								    wx.onVoicePlayEnd({
+									    complete: function(res) {
+									        console.log('播放结束');
+									    }
+									});
 								}
 							});
 						}
 					}
 				});
-				wx.playVoice({
-			        localId: localId
-			    });
-			    wx.onVoicePlayEnd({
-				    complete: function(res) {
-				        console.log('播放结束');
-				    }
-				});
+				
 				// if(self.result.detail.listenFlag){
 				// 	audioPlay();
 				// }else{
@@ -149,9 +150,9 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 					data:'{"code": "' + code + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
 					success:function(res){
 						if(res.status == 1){
-							result.detail.loveFlag = false;
+							self.result.detail.loveFlag = true;
 						}else{
-							alert(res.error)
+							comm.tost(res.error)
 						}
 					}
 				});

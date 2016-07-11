@@ -42,7 +42,7 @@ var require = {
                     <a href="details.html?id={{item.code}}">
                     	<h2><span>￥{{item.money}}<i v-bind:class="{i1:item.statusText=='未回答',i2:item.statusText=='已回答'}">{{item.statusText}}</i></span><img :src="item.aboutHead" alt="">{{item.nickName}}</h2>
                         <p>{{item.content}}</p>
-                        <font><span>{{item.questionTime}}天前</span></font>
+                        <font><span>{{item.questionTimeStr}}天前</span></font>
                     </a>
                 </li>
             </ul>

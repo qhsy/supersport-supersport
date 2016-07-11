@@ -21,7 +21,7 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 					if(res.status == 1){
 						self.result = res.show;
 					}else{
-						alert(res.error);
+						comm.tost(res.error);
 					}
 				}
 			})
@@ -49,7 +49,7 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 						if(res.status == 1){
 							window.location.href = 'details.html?id=' + res.code;
 						}else{
-							alert(res.error);
+							comm.tost(res.error);
 						}
 					}
 				});

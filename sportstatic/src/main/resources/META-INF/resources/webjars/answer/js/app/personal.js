@@ -5,9 +5,9 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 	var personal = new Vue({
 		el: '#personal',
 		data: {
-			res:{}
+			result:{}
 		},
-		ready:function(){
+		created:function(){
 			var self = this;
 				$.ajax({
 					url:'/api/answerController/personHomePage',
@@ -17,12 +17,31 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 					data:'{"pagination": ' + page + ',"userCode": "' + userCode + '","zoo": {"key": "tesetkey","token": "' + token + '"}}',
 					success:function(res){
 						if(res.status == 1){
-							self.res = res;
+							self.result = res;
 						}else{
-							alert(res.error);
+							comm.tost(res.error);
 						}
 					}
 				});
+			},
+			methods:{
+				attendFlag:function(){
+					var self = this;
+					$.ajax({
+						url:'/api/userController/userAttention',
+						type:'POST',
+						contentType:'application/json',
+						dataType:'json',
+						data:'{"flag": "0","userCode": "' + self.result.answerUserInfo.userCode + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
+						success:function(res){
+							if(res.status == 1){
+								self.result.answerUserInfo.attendFlag = '1';
+							}else{
+								comm.tost(res.error);
+							}
+						}
+					});
+				}
 			}
 		});
 })

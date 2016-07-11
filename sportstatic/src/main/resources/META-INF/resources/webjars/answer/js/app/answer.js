@@ -18,7 +18,7 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 					if(res.status == 1){
 						self.result = res;
 					}else{
-						alert(res.error);
+						comm.tost(res.error);
 					}
 				}
 			});

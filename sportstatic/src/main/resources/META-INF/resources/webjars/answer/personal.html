@@ -36,26 +36,31 @@ var require = {
 <section class="wrap">
 	<article class="personal" v-cloak>
 		<header class="head">
-			<span class="photo"><img :src="res.answerUserInfo.aboutHead" alt=""></span>
-			<h1 class="name">{{res.answerUserInfo.nickName}}</h1>
-			<h2 class="tag">{{res.answerUserInfo.title}}</h2>
-			<a href="javascript:;" class="follow">关注</a>
+			<span class="photo"><img :src="result.answerUserInfo.aboutHead" alt=""></span>
+			<h1 class="name">{{result.answerUserInfo.nickName}}</h1>
+			<h2 class="tag">{{result.answerUserInfo.title}}</h2>
+			<template v-if="result.answerUserInfo.attendFlag == '0'">
+				<a href="javascript:;" class="follow" @click="attendFlag">关注</a>
+			</template>
+			<template v-else>
+			<a href="javascript:;" class="follow">已关注</a>
+			</template>
 		</header>
 		<div class="info">
 			<p class="about">
-				{{res.answerUserInfo.ability}}
+				{{result.answerUserInfo.ability}}
 			</p>
-			<a href="question.html?code={{res.answerUserInfo.userCode}}" class="quiz">提问</a>
+			<a href="question.html?code={{result.answerUserInfo.userCode}}" class="quiz">提问</a>
 		</div>
 	</article>
 	<dl class="personal-dl" v-cloak>
-		<dt>回答了{{res.answerUserInfo.answerCount}}个问题</dt>
-		<dd class="details-item" v-for="item in res.questionInfos">
+		<dt>回答了{{result.answerUserInfo.answerCount}}个问题</dt>
+		<dd class="details-item" v-for="item in result.questionInfos">
 			<a href="details.html?id={{item.code}}">
 				<div class="ask"><span class="ask-photo"><img :src="item.aboutHead" alt=""></span><em>{{item.nickName}}</em><i>{{item.money}}</i></div>
 				<h1 class="title">{{item.content}}</h1>
 				<div class="user">
-					<span class="photo"><img :src="res.answerUserInfo.aboutHead" alt="" title=""></span>
+					<span class="photo"><img :src="result.answerUserInfo.aboutHead" alt="" title=""></span>
 					<span class="hear"><i class="iconfont">&#xe600;</i>1元偷偷听</span>
 					<em class="time">{{item.lengh}}”</em>
 				</div>

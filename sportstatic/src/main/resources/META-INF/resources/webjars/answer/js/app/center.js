@@ -16,7 +16,7 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 					if(res.status == 1){
 						self.result = res;
 					}else{
-						alert(res.error);
+						comm.tost(res.error);
 					}
 				}
 			})
@@ -34,7 +34,7 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 							window.location.href = 'center_edit.html'
 
 						}else{
-							alert(res.error);
+							comm.tost(res.error);
 						}
 					}
 				})
@@ -51,7 +51,7 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 						if(res.status == 1){
 							window.location.href = 'center.html'
 						}else{
-							alert(res.error);
+							comm.tost(res.error);
 						}
 					}
 				})
@@ -63,7 +63,8 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 			},
 			isCharge:function(){
 				var self = this;
-				var reg = /^[0-9]*[1-9][0-9]*$/g
+				//var reg = /^[0-9]*[1-9][0-9]*$/g
+				var reg = /^(([1-9][0-9]*)|(([0]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/;
 				if(!reg.test($.trim(self.result.answerUserInfo.charge))){
 					comm.tost('请输入正确的金额！')
 				}
