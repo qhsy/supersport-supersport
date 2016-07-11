@@ -20,6 +20,8 @@ public enum AnswerEnum {
 
 	STATUS_RECALL("dzsd4888100110010005","已撤回"),
 	
+	STATUS_UNPAY("dzsd4888100110010006","待付款"),
+	
 	SCOPE_PUBLIC("dzsd4888100110020002","公开"),
 	
 	SCOPE_PRIVATE("dzsd4888100110020001","私密"),

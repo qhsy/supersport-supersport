@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.control;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -81,8 +83,11 @@ public class AnswerController {
 	@ResponseBody
 	@RequestMapping(value = "/saveQuestion", method = RequestMethod.POST)
 	@ApiOperation(value = "提问", notes = "保存提问的问题")
-	public ApiForAskQuestionResult saveQuestion(@RequestBody ApiForAskQuestionInput input) {
-
+	public ApiForAskQuestionResult saveQuestion(@RequestBody ApiForAskQuestionInput input,HttpServletRequest request) {
+		String[] paths = request.getRequestURL().toString().split("/");
+		String path = paths[0]+"//"+paths[2];
+		input.setServeIP(path);
+		input.setRomoteIP(request.getRemoteAddr());
 		return apiFactory.getApiForAskQuestion().api(input);
 	}
 

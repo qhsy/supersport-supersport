@@ -23,6 +23,7 @@ public class TeslaAccount extends TeslaTopOrderMake {
 		for (int i = 0; i < teslaOrder.getDetail().size(); i++) {
 			teslaOrder.getDetail().get(i).setCode(teslaOrder.getOrderInfo().getCode());
 			teslaOrder.getOrderInfo().setStatus("dzsd4112100110030001");// 待付款状态
+			teslaOrder.getOrderInfo().setOrderMoney(teslaOrder.getOrderInfo().getOrderMoney()==null?BigDecimal.ZERO:teslaOrder.getOrderInfo().getOrderMoney());
 			teslaOrder.getOrderInfo().setOrderMoney(teslaOrder.getOrderInfo().getOrderMoney().add(teslaOrder.getDetail()
 					.get(i).getProductPrice().multiply(BigDecimal.valueOf(teslaOrder.getDetail().get(i).getNum()))));
 		}

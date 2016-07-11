@@ -21,5 +21,8 @@ public class Constants {
 	
 	/**问题状态：已撤回*/
 	public static final String STATUS_RECALL = "dzsd4888100110010005";
+	
+	/**问题状态：待付款*/
+	public static final String STATUS_UNPAY = "dzsd4888100110010006";
 
 }
