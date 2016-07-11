@@ -70,6 +70,9 @@ public class WechatConfig {
 	
 	@Value("${wechat_compay_url}")
 	private String serviceComPayUrl;
+	
+	@Value("${wechat_service_secret}")
+	private String appSecret;
 
 	/**
 	 * 获取app编号
@@ -289,6 +292,14 @@ public class WechatConfig {
 	 */
 	public String getServiceComPayUrl() {
 		return serviceComPayUrl;
+	}
+
+	public String getTradeType() {
+		return tradeType;
+	}
+
+	public String getAppSecret() {
+		return appSecret;
 	}
 	
 	

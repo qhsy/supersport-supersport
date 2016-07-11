@@ -34,7 +34,7 @@ public class WechatAuthServiceImpl implements IWechatAuthService {
 		
 		authRequest.setAppid(configFactory.getWechatConfig().getServiceAppId());
 		
-		authRequest.setSecret(configFactory.getWechatConfig().getServiceKey());
+		authRequest.setSecret(configFactory.getWechatConfig().getAppSecret());
 		
 		WechatAuthResponse authResponse = new WechatAuthResponse();
 		
