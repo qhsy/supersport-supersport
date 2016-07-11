@@ -1,6 +1,7 @@
 package com.uhutu.dcom.answer.z.support;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -15,10 +16,8 @@ import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.properties.ConfigDcomAnswer;
 import com.uhutu.dcom.answer.z.support.vo.AnswerForShow;
 import com.uhutu.dcom.answer.z.support.vo.QuestionForShow;
-import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
-import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootClass;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
@@ -184,7 +183,7 @@ public class QuestionSupport extends RootClass {
 		List<AnswerForShow> result = new ArrayList<AnswerForShow>();
 		LinkedHashMap<String, String> cns = new LinkedHashMap<String, String>();// key用户编号value已回答数量
 		if (page > 0 && num > 0) {
-			/*List<AwPointRecommen> res = JdbcHelper.queryForList(AwPointRecommen.class, "", " sort desc ",
+			List<AwPointRecommen> res = JdbcHelper.queryForList(AwPointRecommen.class, "", " sort desc ",
 					" type='dzsd4888100110030003'", new MDataMap(), (page - 1) * num, num);
 			StringBuffer str = new StringBuffer();
 			for (int i = 0; i < res.size(); i++) {
@@ -248,24 +247,7 @@ public class QuestionSupport extends RootClass {
 					show.setUserCode(info.getCode());
 					result.add(show);
 				}
-			}*/
-			
-			List<AwAnswerExpert>  answerExperts = JdbcHelper.queryForList(AwAnswerExpert.class, "", "", "", MapHelper.initMap("status",SystemEnum.YES.getCode()), (page-1)*num, num);
-			
-			for (AwAnswerExpert awAnswerExpert : answerExperts) {
-				
-				AnswerForShow show = new AnswerForShow();
-				UcUserinfoExt ext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", awAnswerExpert.getUserCode());
-				UcUserinfo info = JdbcHelper.queryOne(UcUserinfo.class, "code", awAnswerExpert.getUserCode());
-				show.setHeadUrl(ext.getAboutHead());
-				show.setNickName(ext.getNickName());
-				show.setTitle(awAnswerExpert.getTitle());
-				show.setType(info.getType());
-				show.setUserCode(awAnswerExpert.getUserCode());
-				result.add(show);
-				
 			}
-			
 		}
 		return result;
 	}
