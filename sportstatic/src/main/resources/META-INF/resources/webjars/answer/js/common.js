@@ -1,6 +1,6 @@
 define(['zepto'],function($){
 	var common = {};
-	sessionStorage.setItem('token','f8ede4925ec74374a032d453afd7f6d5d101126d930e4f52b24bc20f1cc9f0aabb9d5953');
+	//sessionStorage.setItem('token','f8ede4925ec74374a032d453afd7f6d5d101126d930e4f52b24bc20f1cc9f0aabb9d5953');
 
 	common.paramFn = function (arg){
 		var url = window.location.search;
