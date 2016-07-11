@@ -23,7 +23,7 @@ public class QuestionInfo extends UserBasicInfo {
 	private String scope;
 	
 	@ApiModelProperty(value="提问金额")
-	private String money;
+	private BigDecimal money;
 	
 	@ApiModelProperty(value="问题与状态")
 	private String status;
@@ -79,11 +79,18 @@ public class QuestionInfo extends UserBasicInfo {
 		this.scope = scope;
 	}
 
-	public String getMoney() {
+	public BigDecimal getMoney() {
+		
+		if(money == null){
+			
+			setMoney(BigDecimal.ZERO);
+			
+		}
+		
 		return money;
 	}
 
-	public void setMoney(String money) {
+	public void setMoney(BigDecimal money) {
 		this.money = money;
 	}
 
@@ -112,6 +119,13 @@ public class QuestionInfo extends UserBasicInfo {
 	}
 
 	public BigDecimal getAnswerAmount() {
+		
+		if(answerAmount == null){
+			
+			setAnswerAmount(BigDecimal.ZERO);
+			
+		}
+		
 		return answerAmount;
 	}
 
