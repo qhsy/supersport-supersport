@@ -1,6 +1,5 @@
 package com.uhutu.sportcenter.z.api.answer;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -14,6 +13,7 @@ import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.properties.ConfigDcomAnswer;
 import com.uhutu.dcom.answer.z.support.QuestionSupport;
 import com.uhutu.dcom.answer.z.support.vo.QuestionForShow;
+import com.uhutu.dcom.component.z.util.CalendarUtil;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
@@ -73,7 +73,7 @@ public class ApiQuestionDetail extends RootApiForMember<ApiQuestionDetailInput, 
 		result.getDetail().setQuestionUserType(askUserInfo.getType());
 		result.getDetail().setSellMoney(questionInfo.getSellMoney());
 		result.getDetail().setStatus(questionInfo.getStatus());
-		result.getDetail().setTimeShow(getTimeShow(questionInfo.getZc()));
+		result.getDetail().setTimeShow(CalendarUtil.formateTip(DateHelper.parseDate(questionInfo.getQuestionTime())));
 		result.getDetail().setVideoLengh(questionInfo.getLengh());
 		result.getDetail().setVideoShow(ConfigDcomAnswer.upConfig().getAnswerVideoShow());
 		AcActivityAnswerInfo activityInfo = new AnswerActivitySupport()
@@ -93,50 +93,7 @@ public class ApiQuestionDetail extends RootApiForMember<ApiQuestionDetailInput, 
 		
 		return result;
 	}
-
-	private String getTimeShow(Date start) {
-		long month = 0;
-		long day = 0;
-		long hour = 0;
-		long min = 0;
-		long sec = 0;
-		long time1 = new Date().getTime();
-		long time2 = start.getTime();
-		long diff;
-		if (time1 < time2) {
-			diff = time2 - time1;
-		} else {
-			diff = time1 - time2;
-		}
-		month = diff / (24 * 60 * 60 * 1000 * 30);
-		day = (diff / (24 * 60 * 60 * 1000) - month * 30);
-		hour = (diff / (60 * 60 * 1000) - month * 30 * 24 - day * 24);
-		min = ((diff / (60 * 1000)) - month * 30 * 24 * 60 - day * 24 * 60 - hour * 60);
-		sec = (diff / 1000 - month * 30 * 24 * 60 * 60 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
-		String str = "";
-		if (month > 12) {// 大于12个月直接展示提问时间
-			str = DateHelper.upDate(start);
-		} else if (month < 12 && month > 0) {
-			str = month + "月前";
-		} else if (month == 0) {
-			if (day > 0) {
-				str = day + "天前";
-			} else if (day == 0) {
-				if (hour > 0) {
-					str = hour + "小时前";
-				} else if (hour == 0) {
-					if (min > 0) {
-						str = min + "分钟前";
-					} else if (min == 0) {
-						if (sec > 0) {
-							str = sec + "秒前";
-						}
-					}
-				}
-			}
-		}
-		return str;
-	}
+	
 
 	private QuestionForShow randomSomthing() {
 		
@@ -163,7 +120,7 @@ public class ApiQuestionDetail extends RootApiForMember<ApiQuestionDetailInput, 
 			show.setListen(info.getListen());
 			show.setNickName(userinfoExt.getNickName());
 			show.setSoundContent(QuestionSupport.soundContent(info.getCode()));
-			show.setTimeShow(getTimeShow(info.getZc()));
+			show.setTimeShow(CalendarUtil.formateTip(DateHelper.parseDate(info.getQuestionTime())));
 			show.setTitle(expert.getTitle());
 			show.setUserCode(info.getAnswerUserCode());
 			show.setUserType(userinfo.getType());

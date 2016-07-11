@@ -36,6 +36,9 @@ public class QuestionInfo extends UserBasicInfo {
 	@ApiModelProperty(value="问题时间")
 	private String questionTime;
 	
+	@ApiModelProperty(value="问题时间展示")
+	private String questionTimeStr;
+	
 	@ApiModelProperty(value="偷听人数")
 	private long listen;
 	
@@ -109,17 +112,7 @@ public class QuestionInfo extends UserBasicInfo {
 
 	public String getQuestionTime() {
 		
-		String temp = questionTime;
-		
-		if(StringUtils.isNotBlank(questionTime)){
-			
-			Date questionDate = DateHelper.parseDate(questionTime);
-			
-			temp = CalendarUtil.formateTip(questionDate);
-			
-		}
-		
-		return temp;
+		return questionTime;
 	}
 
 	public void setQuestionTime(String questionTime) {
@@ -193,6 +186,22 @@ public class QuestionInfo extends UserBasicInfo {
 
 	public void setAnswerUserInfo(AnswerUserInfo answerUserInfo) {
 		this.answerUserInfo = answerUserInfo;
+	}
+
+	public String getQuestionTimeStr() {
+		
+		String temp = questionTime;
+		
+		if(StringUtils.isNotBlank(questionTime)){
+			
+			Date questionDate = DateHelper.parseDate(questionTime);
+			
+			temp = CalendarUtil.formateTip(questionDate);
+			
+		}
+		
+		return temp;
+		
 	}
 
 }
