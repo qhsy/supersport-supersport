@@ -39,7 +39,7 @@ var require = {
     	<h2>您的头衔（18字以内）</h2>
     	<textarea v-model="result.answerUserInfo.title" v-on:blur="lengthFn(result.answerUserInfo.title,18)"></textarea>
     	<h2>简介（100字以内）</h2>
-    	<textarea class="big" v-on:change="lengthFn(result.answerUserInfo.title,100)" v-model="result.answerUserInfo.ability" placeholder="关于这些，尽情问我···"></textarea>
+    	<textarea class="big" v-on:change="lengthFn(result.answerUserInfo.ability,100)" v-model="result.answerUserInfo.ability" placeholder="关于这些，尽情问我···"></textarea>
         <p>向我提问需要支付<input type="text" v-model="result.answerUserInfo.charge" v-on:blur="isCharge">元。</p>
         <a href="javascript:;" v-on:click="submit">保存</a>
 	</article>
