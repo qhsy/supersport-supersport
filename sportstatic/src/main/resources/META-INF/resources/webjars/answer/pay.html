@@ -10,41 +10,53 @@
 <body>
 	<button class="btn">支付</button>
 	<script type="text/javascript">
-		$('.btn').click(function(){
-			if (typeof WeixinJSBridge == "undefined"){
-				if( document.addEventListener ){
-					document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-				} else if (document.attachEvent){
-					document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
-					document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
-				}
-			} else {
-				onBridgeReady();
+	$.ajax({
+		url:'/api/wechatController/configInfo',
+		type:'POST',
+		contentType:'application/json',
+		dataType:'json',
+		async:false,
+		data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": ""}}',
+		success:function(res){
+			if(res.status == 1){
+				wx.config({    
+					debug: false,
+					appId: res.appId,
+					timestamp: res.timestamp,
+					nonceStr: res.nonceStr,
+					signature: res.signature,
+					jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice','chooseWXPay']
+				});
 			}
-		})
-		function onBridgeReady(){
+		}
+	});
+		$('.btn').click(function(){
+			var result = {}
 			$.ajax({
 				url:'/api/payController/wechatH5Pay',
 				type:'POST',
 				contentType:'application/json',
 				dataType:'json',
 				async:false,
-				data:'{"questionCode": "4512478","romoteIP": "string","serveIP": "string","zoo": {"key": "tesetkey","token": "acf12405a4d749f0a6512ac79a3c6b82c417f55036c84f24b833ef480b6de8e4215af695"}}',
+				data:'{"questionCode": "WDBH160709110002","romoteIP": "string","serveIP": "string","zoo": {"key": "tesetkey","token": "acf12405a4d749f0a6512ac79a3c6b82c417f55036c84f24b833ef480b6de8e4215af695"}}',
 				success:function(res){
 					if(res.status == 1){
-						//getBrandWCPayRequest = res.wechatH5PayInfo;
-						WeixinJSBridge.invoke('getBrandWCPayRequest',res.wechatH5PayInfo,function(res){
-							if(res.err_msg == "get_brand_wcpay_request：ok" ) {
-								self.result.detail.listenFlag = true;
-								self.result.detail.videoShow = '';
-								audioPlay();
-							}     
-						}); 
+						result = res.wechatH5PayInfo;
 					}
 				}
 			});
-			
-		}
+			wx.chooseWXPay({
+			    timestamp: result.timeStamp, 
+			    nonceStr: result.nonceStr, // 支付签名随机串，不长于 32 位
+			    package: 'prepay_id=' + result.prepay_id, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+			    signType: result.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+			    paySign: result.paySign, // 支付签名
+			    success: function (res) {
+			        alert(res)
+			    }
+			});
+		})
+		
 	</script>
 </body>
 </html>
