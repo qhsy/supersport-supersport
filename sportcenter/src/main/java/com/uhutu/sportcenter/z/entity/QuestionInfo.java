@@ -1,8 +1,13 @@
 package com.uhutu.sportcenter.z.entity;
 
 import java.math.BigDecimal;
+import java.util.Date;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.uhutu.dcom.answer.z.common.AnswerEnum;
+import com.uhutu.dcom.component.z.util.CalendarUtil;
+import com.uhutu.zoocom.helper.DateHelper;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -103,7 +108,18 @@ public class QuestionInfo extends UserBasicInfo {
 	}
 
 	public String getQuestionTime() {
-		return questionTime;
+		
+		String temp = questionTime;
+		
+		if(StringUtils.isNotBlank(questionTime)){
+			
+			Date questionDate = DateHelper.parseDate(questionTime);
+			
+			temp = CalendarUtil.formateTip(questionDate);
+			
+		}
+		
+		return temp;
 	}
 
 	public void setQuestionTime(String questionTime) {
