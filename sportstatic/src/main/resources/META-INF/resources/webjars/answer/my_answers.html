@@ -64,7 +64,18 @@ var require = {
                             <div class="user">
                                 <span class="photo"><img :src="item.aboutHead" alt=""></span>
                                 <em class="name">{{item.nickName}}</em>
-                                <i class="status col">待回答</i>
+                                <template v-if="item.statusText == '已回答'">
+                                    <i class="status">已回答</i>
+                                </template>
+                                <template v-if="item.statusText == '已拒绝回答'">
+                                    <i class="status">已拒绝回答</i>
+                                </template>
+                                <template v-if="item.statusText == '到期未答'">
+                                    <i class="status">到期未答</i>
+                                </template>
+                                <template v-if="item.statusText == '已撤回'">
+                                    <i class="status">已撤回</i>
+                                </template>
                                 <em class="price">￥{{item.money}}</em>
                             </div>
                             <h1 class="title">

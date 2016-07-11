@@ -13,6 +13,8 @@ a{-webkit-appearance: none; outline: none; -webkit-tap-highlight-color: rgba(0, 
 a:hover {text-decoration: none;}
 .wrap{margin: auto; padding-bottom: 0.52rem;}
 .no-data{width: 100%; height: 100%; background: url(img/no_data.png) no-repeat center 40%; background-size: 1.6rem; position: fixed;}
+.tost{width: 100%; height: 100%; background: rgba(255,255,255,0.25); display: -webkit-box; display: box; -webkit-box-pack:center; -webkit-box-align:center; position: fixed; left: 0; top: 0;}
+.tost em{padding: 0 0.2rem; display: block; border-radius: 5px; background: rgba(0,0,0,0.8); color: #fff; line-height: 0.4rem; font-size: 0.12rem;}
 [v-cloak] {display: none;}
 
 /* nav head */
@@ -91,7 +93,7 @@ a:hover {text-decoration: none;}
 .sound .submit.curr{background: #F38540;}
 
 /* details */
-.details-item{padding: 0.13rem 0.16rem 0; margin: 0.04rem; background: #fff; border-radius: 2px; overflow: auto; box-shadow: 0 1px 3px rgba(214,214,214,0.5); color: #4A4A4A;}
+.details-item{padding: 0.13rem 0.16rem 0.1rem; margin: 0.04rem; background: #fff; border-radius: 2px; overflow: auto; box-shadow: 0 1px 3px rgba(214,214,214,0.5); color: #4A4A4A;}
 .details-item .ask{margin-bottom: 0.14rem; line-height: 0.28rem;}
 .details-item .ask em{padding-left: 0.12rem; color: #AAAAAA;}
 .details-item .ask i{color: #F99653; float: right;}
@@ -111,7 +113,7 @@ a:hover {text-decoration: none;}
 .details-item .follows span i{padding-left: 0.07rem; font-size: 0.12rem;}
 .details-item .follows p{color: #D9D9D9; font-size: 0.12rem; line-height: 0.13rem;}
 .details-item .follows:after{content: ""; width: 0.13rem; height: 0.13rem; overflow: hidden; border-right: #D9D9D9 2px solid; border-top: #D9D9D9 2px solid; position: absolute; right: 0.15rem; top: 0.19rem; -webkit-transform: rotate(45deg); transform: rotate(45deg);}
-.details-item .assist{width: 0.8rem; height: 0.4rem; margin: 0.24rem auto 0.18rem; display: block; border-radius: 4px; background: #F99653; font-size: 0.18rem; color: #fff; text-align: center; line-height: 0.4rem;}
+.details-item .assist{width: 0.8rem; height: 0.4rem; margin: 0.24rem auto 0.08rem; display: block; border-radius: 4px; background: #F99653; font-size: 0.18rem; color: #fff; text-align: center; line-height: 0.4rem;}
 .details-item .assist.is{background: #DADADA;}
 
 /* recommend */
@@ -147,6 +149,14 @@ a:hover {text-decoration: none;}
 .personal-nav li{padding: 0 0 0 0.27rem; font-size: 0.12rem; line-height: 0.45rem;}
 .personal-nav li a{color: #9B9B9B; display: block; border-bottom: #F0F0F0 1px solid;}
 .personal-nav li a:after{content: ""; width: 0.06rem; height: 0.06rem; margin: 0.2rem 0.14rem 0 0; display: block; float: right; border-top: #AAAAAA 1px solid; border-right: #AAAAAA 1px solid; transform: rotate(45deg);}
+.personal-nav li .iconfont{padding-right: 0.05rem; font-size: 0.13rem;}
+
+.personal-nav li:nth-child(1) .iconfont{padding-right: 0.06rem;}
+.personal-nav li:nth-child(2) .iconfont{margin-left: -1px; font-size: 0.16rem;}
+.personal-nav li:nth-child(3) .iconfont{margin-left: -1px; font-size: 0.16rem;}
+.personal-nav li:nth-child(4) .iconfont{padding-right: 0.08rem; font-size: 0.12rem;}
+.personal-nav li .last-icon{font-size: 0.15rem;}
+
 
 /* 我答 */
 .my-answers .nav{height: 0.37rem; margin-bottom: 8px; background: #fff; display: -webkit-flex; display: flex; justify-content: space-around; -webkit-justify-content: space-around; box-shadow: 0 1px 3px rgba(214,214,214,0.5); color: #4A4A4A; line-height: 0.37rem;}
@@ -228,14 +238,15 @@ a:hover {text-decoration: none;}
 .leon-hear .bd li h2 span{position:absolute;right:0;line-height:.36rem;font-size:.12rem;color:#aaa;}
 
 
+
 /* font */
 @font-face {
-  font-family: 'iconfont';
-  src: url('http://at.alicdn.com/t/font_1467269318_8435817.eot'); /* IE9*/
-  src: url('http://at.alicdn.com/t/font_1467269318_8435817.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('http://at.alicdn.com/t/font_1467269318_8435817.woff') format('woff'), /* chrome、firefox */
-  url('http://at.alicdn.com/t/font_1467269318_8435817.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-  url('http://at.alicdn.com/t/font_1467269318_8435817.svg#iconfont') format('svg'); /* iOS 4.1- */
+	font-family: 'iconfont';
+    src: url('font/iconfont.eot'); /* IE9*/
+    src: url('font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('font/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
                                         
                     

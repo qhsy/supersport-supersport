@@ -55,7 +55,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 				startTime = new Date().getTime();
 				wx.startRecord({
 					cancel: function () {
-						alert('用户拒绝授权录音');
+						comm.tost('用户拒绝授权录音');
 					}
 				});
 				self.status = 2;
@@ -68,23 +68,23 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			            voice.localId = res.localId;
 			        },
 			        fail: function(res) {
-			            alert(JSON.stringify(res));
+			            comm.tost(JSON.stringify(res));
 			        }
 			    });
 			    wx.onVoiceRecordEnd({
 				    complete: function(res) {
 				        voice.localId = res.localId;
-				        self.length = (endTime - startTime) / 1000;
+				        self.length = Math.ceil((endTime - startTime) / 1000);
 				        self.status = 3;
 				    }
 				});
-				self.length = ((endTime - startTime) / 1000).toFixed(1);
+				self.length = Math.ceil((endTime - startTime) / 1000);
 			    self.status = 3;
 			},
 			playRecord:function(){
 				var self = this;
 				if (voice.localId == '') {
-			        alert('请先录制声音');
+			        comm.tost('请先录制声音');
 			        return;
 			    }
 			    wx.playVoice({
@@ -107,7 +107,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			uploadVoice:function(){
 				var self = this;
 				if (voice.localId == '') {
-			        alert('请先录制声音');
+			        comm.tost('请先录制声音');
 			        return;
 			    }
 			    wx.uploadVoice({
@@ -124,7 +124,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 								if(res.status == 1){
 									window.location.href = 'details.html?id=' + self.result.show.answerCode;
 								}else{
-									alert(res.error);
+									comm.tost(res.error);
 								}
 							}
 						});
@@ -143,7 +143,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 						if(res.status == 1){
 							window.location.href = 'details.html?id=' + self.result.show.answerCode;
 						}else{
-							alert(res.error);
+							comm.tost(res.error);
 						}
 					}
 				});

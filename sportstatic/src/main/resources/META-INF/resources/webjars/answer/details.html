@@ -60,17 +60,18 @@ var require = {
 			</template>
 		</div>
 	</article>
-	<dl class="recommend" v-cloak>
-		<dt>值得一听</dt>
-		<dd class="recommend-item" v-for="item in result.recommons">
-			<a href="details.html?id={{item.code}}">
-				<h1 class="title">{{item.content}}</h1>
-				<div class="info">{{item.nickName}}<em class="tag">{{item.title}}</em></div>
-				<div class="status"><em>{{item.listen}}人听过</em><em>{{item.timeShow}}天前回答</em></div>
-			</a>
-		</dd>
-	</dl>
-	
+	<template v-if="result.recommons.length">
+		<dl class="recommend" v-cloak>
+			<dt>值得一听</dt>
+			<dd class="recommend-item" v-for="item in result.recommons">
+				<a href="details.html?id={{item.code}}">
+					<h1 class="title">{{item.content}}</h1>
+					<div class="info">{{item.nickName}}<em class="tag">{{item.title}}</em></div>
+					<div class="status"><em>{{item.listen}}人听过</em><em>{{item.timeShow}}天前回答</em></div>
+				</a>
+			</dd>
+		</dl>
+	</template>
 </section>
 <footer-nav></footer-nav>
 <script type="text/javascript" src="js/require.min.js"></script>

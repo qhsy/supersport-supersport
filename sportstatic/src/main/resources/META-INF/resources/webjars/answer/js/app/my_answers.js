@@ -4,8 +4,8 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 	var answer = new Vue({
 		el: '#my-answers',
 		data: {
-			status:['dzsd4888100110010001','dzsd4888100110010002'],
-			currStatus:'dzsd4888100110010001',
+			status:['','dzsd4888100110010001'],
+			currStatus:'',
 			currClass:0,
 			result:{}
 		},
@@ -29,7 +29,7 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 						if(res.status == 1){
 							self.result = res;
 						}else{
-							alert(res.error);
+							comm.tost(res.error);
 						}
 					}
 				});

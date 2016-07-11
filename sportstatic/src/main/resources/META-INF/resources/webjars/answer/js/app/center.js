@@ -55,6 +55,18 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 						}
 					}
 				})
+			},
+			lengthFn:function(mes, num){
+				if(mes.length > num){
+					comm.tost('请输入的内容超过限制字符数！')
+				}
+			},
+			isCharge:function(){
+				var self = this;
+				var reg = /^[0-9]*[1-9][0-9]*$/g
+				if(!reg.test($.trim(self.result.answerUserInfo.charge))){
+					comm.tost('请输入正确的金额！')
+				}
 			}
 		}
 	});

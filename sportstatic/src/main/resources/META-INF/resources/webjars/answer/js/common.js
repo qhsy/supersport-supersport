@@ -23,6 +23,13 @@ define(['zepto'],function($){
 			return '';
 		}
 	}
+	common.tost = function(mes){
+		var element = $('<div class="tost"><em>' + mes + '</em></div>');
+		var tost = element.appendTo('body');
+		setTimeout(function(){
+			tost.remove();
+		}, 1500)
+	}
 	if(!sessionStorage.getItem('token')){
 		var wxCode = common.paramFn('code');
 		$.ajax({

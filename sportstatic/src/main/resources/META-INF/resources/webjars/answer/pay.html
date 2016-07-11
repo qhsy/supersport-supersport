@@ -10,26 +10,26 @@
 <body>
 	<button class="btn">支付</button>
 	<script type="text/javascript">
-	$.ajax({
-		url:'/api/wechatController/configInfo',
-		type:'POST',
-		contentType:'application/json',
-		dataType:'json',
-		async:false,
-		data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": ""}}',
-		success:function(res){
-			if(res.status == 1){
-				wx.config({    
-					debug: false,
-					appId: res.appId,
-					timestamp: res.timestamp,
-					nonceStr: res.nonceStr,
-					signature: res.signature,
-					jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice','chooseWXPay']
-				});
+		$.ajax({
+			url:'/api/wechatController/configInfo',
+			type:'POST',
+			contentType:'application/json',
+			dataType:'json',
+			async:false,
+			data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + comm.token() + '"}}',
+			success:function(res){
+				if(res.status == 1){
+					wx.config({    
+						debug: false,
+						appId: res.appId,
+						timestamp: res.timestamp,
+						nonceStr: res.nonceStr,
+						signature: res.signature,
+						jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice','chooseWXPay']
+					});
+				}
 			}
-		}
-	});
+		});
 		$('.btn').click(function(){
 			var result = {}
 			$.ajax({
