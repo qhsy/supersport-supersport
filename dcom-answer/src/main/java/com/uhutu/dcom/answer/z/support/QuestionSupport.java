@@ -1,5 +1,6 @@
 package com.uhutu.dcom.answer.z.support;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -284,8 +285,11 @@ public class QuestionSupport extends RootClass {
 		AwQuestionInfo questionInfo = JdbcHelper.queryOne(AwQuestionInfo.class, "code", questionCode);
 		AwAnswerListen listen = JdbcHelper.queryOne(AwAnswerListen.class, "question_code", questionCode, "user_code",
 				userCode);
+		AcActivityAnswerInfo activity = new AnswerActivitySupport().getActivityInfoByAnswerCode(questionCode);
 		if (userCode.equals(questionInfo.getAnswerUserCode()) || userCode.equals(questionInfo.getQuestionUserCode())
-				|| listen != null) {// 如果此人为提问人或者回答人可直接听
+				|| listen != null || (activity != null && BigDecimal.ZERO.compareTo(activity.getPrice()) == 0)) {// 如果此人为提问人或者回答人可直接听
+																													// 已经支付的人也可直接听
+																													// 免费听的也可直接听
 			flag = true;
 		}
 		return flag;
