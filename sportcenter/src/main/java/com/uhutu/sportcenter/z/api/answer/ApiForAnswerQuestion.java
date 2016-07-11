@@ -8,6 +8,7 @@ import org.apache.http.HttpEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.answer.z.common.AnswerEnum;
 import com.uhutu.dcom.answer.z.entity.AwAnswerRefundJob;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
@@ -23,12 +24,14 @@ import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.input.ApiForAnswerQuestionInput;
 import com.uhutu.sportcenter.z.result.ApiForAnswerQuestionResult;
+import com.uhutu.zoocom.face.IKvCall;
 import com.uhutu.zoocom.file.FileUploadResult;
 import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoocom.support.WebClientSupport;
+import com.uhutu.zoocom.z.helper.KvHelper;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.helper.WebHelper;
 import com.uhutu.zooweb.support.WebUploadSupport;
@@ -57,7 +60,20 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 
 		ApiForAnswerQuestionResult result = new ApiForAnswerQuestionResult();
 		AwQuestionInfo qtInfo = answerServiceFactory.getQuestionInfoService().queryByCode(input.getCode());
-		if (StringUtils.isNoneBlank(input.getWechatVoiceId())) {
+		if (StringUtils.isNotBlank(input.getWechatVoiceId())) {
+			
+			String key = AnswerEnum.REDIS_AUDIO.getText() + input.getCode();
+
+			IKvCall redisMediaId = KvHelper.upFactory(key);
+				
+			if(!redisMediaId.exists(key)){
+				
+				redisMediaId.set(key, input.getWechatVoiceId());
+				
+				redisMediaId.expire(key, Integer.valueOf(AnswerEnum.REDIS_AUDIO.getCode()));
+				
+			}		
+			
 			input.setUrl(getWechatVoiceUrl(input.getWechatVoiceId()));
 		}
 		if (qtInfo != null) {

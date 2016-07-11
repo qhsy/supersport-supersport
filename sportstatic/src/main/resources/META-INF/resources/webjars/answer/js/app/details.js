@@ -52,7 +52,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 					contentType:'application/json',
 					dataType:'json',
 					async:false,
-					data:'{"audioUrl": "' + self.result.videoUrl + '","questionCode": "' + code + '","zoo": {"key": "tesetkey","token": ""}}',
+					data:'{"audioUrl": "' + self.result.detail.videoUrl + '","questionCode": "' + code + '","zoo": {"key": "tesetkey","token": ""}}',
 					success:function(res){
 						if(res.status == 1){
 							wx.downloadVoice({
