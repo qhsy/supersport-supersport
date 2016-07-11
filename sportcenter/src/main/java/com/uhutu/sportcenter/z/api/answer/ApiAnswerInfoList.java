@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.answer.z.common.AnswerEnum;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
 import com.uhutu.dcom.component.z.page.PageInfo;
@@ -38,7 +39,15 @@ public class ApiAnswerInfoList extends RootApiToken<ApiAnswerInfoListInput, ApiA
 		
 		ApiAnswerInfoListResult result = new ApiAnswerInfoListResult();
 		
-		int total = answerServiceFactory.getQuestionInfoService().queryAnswerCount(upUserCode(), input.getStatus());
+		String status = "";
+		
+		if(StringUtils.isBlank(input.getStatus())){
+			
+			status = AnswerEnum.STATUS_UNANSWER.getCode();
+			
+		}
+		
+		int total = answerServiceFactory.getQuestionInfoService().queryAnswerCount(upUserCode(), status);
 		
 		int allTotal = answerServiceFactory.getQuestionInfoService().queryAnswerCount(upUserCode(), "");
 		
