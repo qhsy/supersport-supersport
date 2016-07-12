@@ -46,9 +46,10 @@ public class ApiForAnswerOrder extends RootApiToken<ApiForAnswerOrderInput, ApiF
 			result.setError(reTeslaXResult.getError());
 		} else {
 			ApiWechatH5PayInput ai = new ApiWechatH5PayInput();
-			ai.setQuestionCode(teslaXOrder.getOrderInfo().getCode());
+			ai.setOrderCode(teslaXOrder.getOrderInfo().getCode());
 			ai.setRomoteIP(input.getRomoteIP());
 			ai.setServeIP(input.getServeIP());
+			ai.setPayMoney(teslaXOrder.getOrderInfo().getOrderMoney());
 			ai.setZoo(input.getZoo());
 			ApiWechatH5PayResult payResult = apiFactory.getApiWechatH5Pay().api(ai);
 			if(payResult.upFlagTrue()){

@@ -95,7 +95,7 @@ public class WechatResponse extends WechatUnifyResponse{
 		
 		boolean flag = true;
 		
-		if(StringUtils.equals(getReturn_code(), WechatUnifyResultCodeEnum.FAIL.name())){
+		if(!StringUtils.equals(getReturn_code(), WechatUnifyResultCodeEnum.SUCCESS.name())){
 			
 			flag = false;
 			
@@ -113,7 +113,7 @@ public class WechatResponse extends WechatUnifyResponse{
 		
 		boolean flag = true;
 		
-		if(StringUtils.equals(getResult_code(), WechatUnifyResultCodeEnum.FAIL.name())){
+		if(!StringUtils.equals(getResult_code(), WechatUnifyResultCodeEnum.SUCCESS.name())){
 			
 			flag = false;
 			

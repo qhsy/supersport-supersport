@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.input;
 
+import java.math.BigDecimal;
+
 import com.uhutu.zoocom.root.RootApiInput;
 
 import io.swagger.annotations.ApiModel;
@@ -13,14 +15,17 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class ApiWechatH5PayInput extends RootApiInput {
 	
-	@ApiModelProperty(value="问题编号")
-	private String questionCode;
+	@ApiModelProperty(value="订单编号")
+	private String orderCode;
 	
 	@ApiModelProperty(value="服务ip")
 	private String serveIP;
 	
 	@ApiModelProperty(value="终端IP")
 	private String romoteIP;
+	
+	@ApiModelProperty(value="支付金额")
+	private BigDecimal payMoney = BigDecimal.ZERO;
 
 	public String getServeIP() {
 		return serveIP;
@@ -38,12 +43,20 @@ public class ApiWechatH5PayInput extends RootApiInput {
 		this.romoteIP = romoteIP;
 	}
 
-	public String getQuestionCode() {
-		return questionCode;
+	public String getOrderCode() {
+		return orderCode;
 	}
 
-	public void setQuestionCode(String questionCode) {
-		this.questionCode = questionCode;
+	public void setOrderCode(String orderCode) {
+		this.orderCode = orderCode;
+	}
+
+	public BigDecimal getPayMoney() {
+		return payMoney;
+	}
+
+	public void setPayMoney(BigDecimal payMoney) {
+		this.payMoney = payMoney;
 	}
 
 }

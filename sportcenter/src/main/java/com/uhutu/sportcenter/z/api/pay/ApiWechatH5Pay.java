@@ -1,7 +1,6 @@
 package com.uhutu.sportcenter.z.api.pay;
 
-import java.math.BigDecimal;
-
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -54,13 +53,13 @@ public class ApiWechatH5Pay extends RootApiToken<ApiWechatH5PayInput, ApiWechatH
 		
 		WechatBizContentRequest bizContentRequest = new WechatBizContentRequest();
 		
-		bizContentRequest.setOrderCode(input.getQuestionCode());
+		bizContentRequest.setOrderCode(input.getOrderCode());
 		
 		bizContentRequest.setRequestIP(input.getServeIP());
 
 		bizContentRequest.setRomoteIp(input.getRomoteIP());
 		
-		bizContentRequest.setPayMoney(new BigDecimal(12));
+		bizContentRequest.setPayMoney(input.getPayMoney());
 		
 		bizContentRequest.setOpenid(ucUserinfoSocial.getAccountId());
 		
@@ -82,7 +81,21 @@ public class ApiWechatH5Pay extends RootApiToken<ApiWechatH5PayInput, ApiWechatH
 			
 			h5PayResult.setStatus(0);
 			
-			h5PayResult.setError(orderResponse.getErr_code_des());
+			String returnMsg = "";
+			
+			if(StringUtils.isNotBlank(orderResponse.getErr_code_des())){
+				
+				returnMsg = returnMsg + orderResponse.getErr_code_des(); 
+				
+			}
+			
+			if(StringUtils.isNotBlank(orderResponse.getReturn_msg())){
+				
+				returnMsg = returnMsg + orderResponse.getReturn_msg();
+				
+			}
+			
+			h5PayResult.setError(returnMsg);
 			
 		}
 		
