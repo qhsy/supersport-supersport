@@ -3,10 +3,9 @@ package com.uhutu.dcom.pay.z.aspect.impl;
 import java.util.Map;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
+
 import com.uhutu.dcom.pay.z.aspect.IPayGateWayAspect;
 import com.uhutu.dcom.pay.z.face.IPayRequest;
 import com.uhutu.dcom.pay.z.face.IPayResponse;
@@ -21,11 +20,11 @@ import com.uhutu.zoocom.model.MDataMap;
 @Aspect
 public class PayGateWayAspectImpl implements IPayGateWayAspect {
 
-	@Pointcut("execution(* com.uhutu.dcom.pay.z.service.impl.*NotifyServiceImpl.doProcess(..))")
+	//@Pointcut("execution(* com.uhutu.dcom.pay.z.service.impl.*NotifyServiceImpl.doProcess(..))")
 	public void pointOut(){}
 	
 	@Override
-	@Around("pointOut()")
+	//@Around("pointOut()")
 	public IPayResponse doAround(ProceedingJoinPoint joinPoint) throws Throwable {
 		
 		return null;

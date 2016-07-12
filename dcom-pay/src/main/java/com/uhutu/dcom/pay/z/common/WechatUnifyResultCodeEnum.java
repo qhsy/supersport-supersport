@@ -10,6 +10,12 @@ public enum WechatUnifyResultCodeEnum {
 	FAIL,
 	
 	/**成功*/
-	SUCCESS;
+	SUCCESS,
+	
+	/**处理成功*/
+	OK,
+	
+	/**解析类型*/
+	processType;
 	
 }
