@@ -62,7 +62,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 					return false;
 				}
 				$.ajax({
-					url:'/api/payController/wechatH5Pay',
+					url:'/api/answerController/saveQuestion',
 					type:'POST',
 					contentType:'application/json',
 					dataType:'json',
