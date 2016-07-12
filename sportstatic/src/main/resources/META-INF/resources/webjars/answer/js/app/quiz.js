@@ -1,4 +1,4 @@
-require(['zepto','vue','common','extend'],function($,Vue,comm){
+require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 	var userCode = comm.paramFn('code');
 	var token = sessionStorage.getItem('token');
 	var quiz = new Vue({
@@ -24,7 +24,27 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 						comm.tost(res.error);
 					}
 				}
-			})
+			});
+			$.ajax({
+				url:'/api/wechatController/configInfo',
+				type:'POST',
+				contentType:'application/json',
+				dataType:'json',
+				async:false,
+				data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + comm.token() + '"}}',
+				success:function(res){
+					if(res.status == 1){
+						wx.config({    
+							debug: false,
+							appId: res.appId,
+							timestamp: res.timestamp,
+							nonceStr: res.nonceStr,
+							signature: res.signature,
+							jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice','chooseWXPay']
+						});
+					}
+				}
+			});
 		},
 		methods:{
 			overtFn:function(){
@@ -37,22 +57,53 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 			},
 			submitFn:function(){
 				var self = this;
-				if(self.content.length > 60) return false;
+				if(self.content.length > 60){
+					comm.tost('输入的内容超过限制！')
+					return false;
+				}
 				$.ajax({
-					url:'/api/answerController/saveQuestion',
+					url:'/api/payController/wechatH5Pay',
 					type:'POST',
 					contentType:'application/json',
 					dataType:'json',
-					data:'{"answerUserCode": "' + userCode + '","content": "' + self.content + '","scope": "' + self.overt + '","zoo": {"key": "tesetkey","token": "' + token + '"}}',
+					async:false,
+					data:'{"answerUserCode": "' + userCode + '","content": "' + self.content + '","orderSource": "dzsd4112100110020002","romoteIP": "","scope": "' + self.overt + '","serveIP": "","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
 					success:function(res){
-						console.log(self.content)
 						if(res.status == 1){
-							window.location.href = 'details.html?id=' + res.code;
-						}else{
-							comm.tost(res.error);
+							wx.chooseWXPay({
+							    timestamp: res.wechatH5PayResponse.timeStamp, 
+							    nonceStr: res.wechatH5PayResponse.nonceStr, // 支付签名随机串，不长于 32 位
+							    package: 'prepay_id=' + res.wechatH5PayResponse.prepay_id, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+							    signType: res.wechatH5PayResponse.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+							    paySign: res.wechatH5PayResponse.paySign, // 支付签名
+							    success: function (data) {
+							       console.log(data);
+							    }
+							});
 						}
 					}
 				});
+				
+
+
+
+
+
+				// $.ajax({
+				// 	url:'/api/answerController/saveQuestion',
+				// 	type:'POST',
+				// 	contentType:'application/json',
+				// 	dataType:'json',
+				// 	data:'{"answerUserCode": "' + userCode + '","content": "' + self.content + '","scope": "' + self.overt + '","zoo": {"key": "tesetkey","token": "' + token + '"}}',
+				// 	success:function(res){
+				// 		console.log(self.content)
+				// 		if(res.status == 1){
+				// 			window.location.href = 'details.html?id=' + res.code;
+				// 		}else{
+				// 			comm.tost(res.error);
+				// 		}
+				// 	}
+				// });
 			}
 		}
 	});
