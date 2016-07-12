@@ -15,10 +15,10 @@ public class ApiForAskQuestionInput extends RootApiInput {
 	@ApiModelProperty(value = "需要回答问题者", required = true)
 	private String answerUserCode;
 
-	@ApiModelProperty(value = "分享范围", notes = "dzsd4888100110020001:私密,dzsd4888100110020002:公开", required = true)
+	@ApiModelProperty(value = "分享范围  dzsd4888100110020001:私密,dzsd4888100110020002:公开", required = true)
 	private String scope;
 
-	@ApiModelProperty(value = "来源", notes = "dzsd4112100110020001:app订单,dzsd4112100110020002:wap订单", example = "dzsd4112100110020002", required = true)
+	@ApiModelProperty(value = "来源 dzsd4112100110020001:app订单,dzsd4112100110020002:wap订单", example = "dzsd4112100110020002", required = true)
 	private String orderSource;
 	
 	@ApiModelProperty(value="服务ip(此参数无须输入)")
