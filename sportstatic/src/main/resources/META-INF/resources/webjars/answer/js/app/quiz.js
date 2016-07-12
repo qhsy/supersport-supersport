@@ -71,11 +71,11 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 					success:function(res){
 						if(res.status == 1){
 							wx.chooseWXPay({
-							    timestamp: res.wechatH5PayInfo.timeStamp,
-							    nonceStr: res.wechatH5PayInfo.nonceStr, // 支付签名随机串，不长于 32 位
-							    package: 'prepay_id=' + res.wechatH5PayInfo.prepay_id, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
-							    signType: res.wechatH5PayInfo.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-							    paySign: res.wechatH5PayInfo.paySign, // 支付签名
+							    timestamp: res.wechatH5PayResponse.timeStamp,
+							    nonceStr: res.wechatH5PayResponse.nonceStr, // 支付签名随机串，不长于 32 位
+							    package: 'prepay_id=' + res.wechatH5PayResponse.prepay_id, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+							    signType: res.wechatH5PayResponse.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+							    paySign: res.wechatH5PayResponse.paySign, // 支付签名
 							    success: function (data) {
 							       console.log(data);
 							    }
