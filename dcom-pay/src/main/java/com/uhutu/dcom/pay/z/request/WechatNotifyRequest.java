@@ -50,6 +50,9 @@ public class WechatNotifyRequest extends WechatUnifyResponse implements IPayRequ
 	/*现金支付金额*/
 	private int cash_fee;
 	
+	/*微信交易流水号*/
+	private String transaction_id;
+	
 	/*微信支付订单号*/
 	private String out_trade_no;
 	
@@ -185,6 +188,14 @@ public class WechatNotifyRequest extends WechatUnifyResponse implements IPayRequ
 
 	public void setProcessType(PayProcessEnum processType) {
 		this.processType = processType;
+	}
+
+	public String getTransaction_id() {
+		return transaction_id;
+	}
+
+	public void setTransaction_id(String transaction_id) {
+		this.transaction_id = transaction_id;
 	}
 	
 	

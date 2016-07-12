@@ -150,6 +150,9 @@ public class WechatConfig {
 		case WECHAT:
 			key = getSignKey();
 			break;
+		case WECHATH5_NOTIFY:
+			key = getServiceKey();
+			break;
 
 		default:
 			break;

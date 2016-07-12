@@ -39,6 +39,10 @@ public class WechatNotifyServiceImpl implements IWechatNotifyService {
 		
 		try {
 			
+			notifyRequest.setAppid(configFactory.getWechatConfig().getServiceAppId());
+			
+			notifyRequest.setMch_id(configFactory.getWechatConfig().getServiceMchId());
+			
 			MDataMap requestMap = BeanComponent.getInstance().objectToMap(notifyRequest, WechatUnifyResponse.class, true);
 			
 			requestMap.remove("sign");
@@ -103,11 +107,11 @@ public class WechatNotifyServiceImpl implements IWechatNotifyService {
 		String className = "";
 		
 		switch (processEnum) {
-		case WECHAT:
+		case WECHAT_NOTIFY:
 			className = "";
 			break;
-		case WECHAT_H5:
-			className = "";
+		case WECHATH5_NOTIFY:
+			className = "com.uhutu.sportcenter.z.pay.func.WechatH5PayNotifyFunc";
 			break;
 
 		default:

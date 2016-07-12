@@ -13,6 +13,8 @@ public enum PayProcessEnum {
 	WECHAT,	
 	/**微信回调*/
 	WECHAT_NOTIFY,	
+	/**微信h5回调*/
+	WECHATH5_NOTIFY,
 	/**支付宝回调*/
 	ALIPAY_NOTIFY,
 	/**微信公众号配置信息*/

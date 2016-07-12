@@ -91,7 +91,7 @@ public class OcOrderPay extends BaseEntity {
 		return tradeNo;
 	}
 
-	public void setTradeCode(String tradeNo) {
+	public void setTradeNo(String tradeNo) {
 		this.tradeNo = tradeNo;
 	}
 
