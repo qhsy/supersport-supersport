@@ -64,7 +64,7 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 			isCharge:function(){
 				var self = this;
 				//var reg = /^[0-9]*[1-9][0-9]*$/g
-				var reg = /^(([1-9][0-9]*)|(([0]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/;
+				var reg = /^(([1-9][0-9]*)|(([1]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/;
 				if(!reg.test($.trim(self.result.answerUserInfo.charge))){
 					comm.tost('请输入正确的金额！')
 				}

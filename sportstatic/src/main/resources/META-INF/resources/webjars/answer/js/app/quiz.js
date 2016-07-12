@@ -77,33 +77,12 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 							    signType: res.wechatH5PayResponse.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
 							    paySign: res.wechatH5PayResponse.paySign, // 支付签名
 							    success: function (data) {
-							       console.log(data);
+							    	window.location.href = 'details.html?id=' + res.code;
 							    }
 							});
 						}
 					}
 				});
-				
-
-
-
-
-
-				// $.ajax({
-				// 	url:'/api/answerController/saveQuestion',
-				// 	type:'POST',
-				// 	contentType:'application/json',
-				// 	dataType:'json',
-				// 	data:'{"answerUserCode": "' + userCode + '","content": "' + self.content + '","scope": "' + self.overt + '","zoo": {"key": "tesetkey","token": "' + token + '"}}',
-				// 	success:function(res){
-				// 		console.log(self.content)
-				// 		if(res.status == 1){
-				// 			window.location.href = 'details.html?id=' + res.code;
-				// 		}else{
-				// 			comm.tost(res.error);
-				// 		}
-				// 	}
-				// });
 			}
 		}
 	});
