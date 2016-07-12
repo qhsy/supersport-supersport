@@ -33,7 +33,7 @@ public class WechatNotifyServiceImpl implements IWechatNotifyService {
 	@Override
 	public IPayResponse doProcess(IPayRequest request,MDataMap paramMap) {
 		
-		WechatNotifyRequest notifyRequest = new WechatNotifyRequest();
+		WechatNotifyRequest notifyRequest = (WechatNotifyRequest) request;
 		
 		WechatNotifyResponse notifyResponse = new WechatNotifyResponse();
 		

@@ -31,6 +31,15 @@ public class Constants {
 	/**openId*/
 	public final static String KEY_OPENID = "openId";
 	
+	/**busiCode*/
+	public final static String KEY_BUSICODE = "busiCode";
+	
+	/**remark*/
+	public final static String KEY_REMARK = "remark";
+	
+	/**接口类型*/
+	public final static String KEY_INCTYPE = "incType";
+	
 	/**模板标识*/
 	public final static String KEY_TEMPLETID = "templetId";
 	

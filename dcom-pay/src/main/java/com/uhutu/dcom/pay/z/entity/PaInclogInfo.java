@@ -25,9 +25,9 @@ public class PaInclogInfo extends BaseEntity {
 	@Column(length=30)
 	private String incType;
 	
-	@ZooData(name="接口地址")
+	@ZooData(name="备注")
 	@Column(columnDefinition = "longtext")
-	private String requestUrl;
+	private String remark;
 	
 	@ZooData(name="请求信息")
 	@Column(columnDefinition = "longtext")
@@ -53,14 +53,6 @@ public class PaInclogInfo extends BaseEntity {
 		this.incType = incType;
 	}
 
-	public String getRequestUrl() {
-		return requestUrl;
-	}
-
-	public void setRequestUrl(String requestUrl) {
-		this.requestUrl = requestUrl;
-	}
-
 	public String getRequestData() {
 		return requestData;
 	}
@@ -75,6 +67,14 @@ public class PaInclogInfo extends BaseEntity {
 
 	public void setResponseData(String responseData) {
 		this.responseData = responseData;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }

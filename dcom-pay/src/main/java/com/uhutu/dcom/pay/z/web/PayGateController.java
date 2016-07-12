@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.uhutu.dcom.pay.z.common.Constants;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.common.WechatUnifyResultCodeEnum;
 import com.uhutu.dcom.pay.z.face.IPayResponse;
@@ -122,8 +123,14 @@ public class PayGateController{
 			WechatNotifyRequest notifyRequest = BeanComponent.getInstance().invoke(WechatNotifyRequest.class, requestMap, true);
 			
 			notifyRequest.setProcessType(processEnum);
+			
+			MDataMap dataMap = new MDataMap();
+			
+			dataMap.put(Constants.KEY_BUSICODE, notifyRequest.getOut_trade_no());
+			
+			dataMap.put(Constants.KEY_REMARK, requestContent);
 
-			payResponse = payGateProcess.process(processEnum, notifyRequest, new MDataMap());			
+			payResponse = payGateProcess.process(processEnum, notifyRequest, dataMap);			
 			
 			
 		} catch (Exception ex) {

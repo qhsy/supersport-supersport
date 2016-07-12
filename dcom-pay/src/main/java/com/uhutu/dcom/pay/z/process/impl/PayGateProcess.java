@@ -1,7 +1,7 @@
 package com.uhutu.dcom.pay.z.process.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.face.IPayRequest;
@@ -16,7 +16,7 @@ import com.uhutu.zoocom.model.MDataMap;
  * @author 逄小帅
  *
  */
-@Component
+@Service
 public class PayGateProcess implements IPayGateProcess {
 	
 	@Autowired
