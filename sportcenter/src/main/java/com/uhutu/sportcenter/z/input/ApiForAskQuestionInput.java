@@ -21,10 +21,10 @@ public class ApiForAskQuestionInput extends RootApiInput {
 	@ApiModelProperty(value = "来源", notes = "dzsd4112100110020001:app订单,dzsd4112100110020002:wap订单", example = "dzsd4112100110020002", required = true)
 	private String orderSource;
 	
-	@ApiModelProperty(value="服务ip")
+	@ApiModelProperty(value="服务ip(此参数无须输入)")
 	private String serveIP;
 	
-	@ApiModelProperty(value="终端IP")
+	@ApiModelProperty(value="终端IP(此参数无须输入)")
 	private String romoteIP;
 	
 	public String getOrderSource() {

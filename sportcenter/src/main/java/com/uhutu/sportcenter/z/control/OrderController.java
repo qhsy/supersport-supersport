@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.control;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +33,11 @@ public class OrderController {
 	@ResponseBody
 	@RequestMapping(value = "/answerOrder", method = RequestMethod.POST)
 	@ApiOperation(value = "问答订单接口", notes = "问答订单创建")
-	public ApiForAnswerOrderResult versionInfo(@RequestBody ApiForAnswerOrderInput input) {
-
+	public ApiForAnswerOrderResult versionInfo(@RequestBody ApiForAnswerOrderInput input,HttpServletRequest request) {
+		String[] paths = request.getRequestURL().toString().split("/");
+		String path = paths[0]+"//"+paths[2];
+		input.setServeIP(path);
+		input.setRomoteIP(request.getRemoteAddr());
 		return apiFactory.getApiForAnswerOrder().api(input);
 	}
 

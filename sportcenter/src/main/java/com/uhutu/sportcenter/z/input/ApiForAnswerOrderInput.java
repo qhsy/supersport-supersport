@@ -22,6 +22,12 @@ public class ApiForAnswerOrderInput extends RootApiInput {
 
 	@ApiModelProperty(value = "app版本信息")
 	private String appVersion;
+	
+	@ApiModelProperty(value="服务ip(此参数无须输入)")
+	private String serveIP;
+	
+	@ApiModelProperty(value="终端IP(此参数无须输入)")
+	private String romoteIP;
 
 	public String getAnswerCode() {
 		return answerCode;
@@ -61,6 +67,22 @@ public class ApiForAnswerOrderInput extends RootApiInput {
 
 	public void setAppVersion(String appVersion) {
 		this.appVersion = appVersion;
+	}
+
+	public String getServeIP() {
+		return serveIP;
+	}
+
+	public void setServeIP(String serveIP) {
+		this.serveIP = serveIP;
+	}
+
+	public String getRomoteIP() {
+		return romoteIP;
+	}
+
+	public void setRomoteIP(String romoteIP) {
+		this.romoteIP = romoteIP;
 	}
 
 }
