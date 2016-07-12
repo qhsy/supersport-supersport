@@ -70,6 +70,14 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 		
 		return JdbcHelper.queryOne(AwQuestionInfo.class, "code",code);
 	}
+
+	@Override
+	public int updateStatus(AwQuestionInfo awQuestionInfo) {
+		
+		return JdbcHelper.update(awQuestionInfo, "status", "code");
+	}
+	
+	
 	
 
 }

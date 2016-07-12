@@ -42,6 +42,10 @@ public class OcOrderPay extends BaseEntity {
 	@ZooData(name = "支付时间")
 	@Column(length = 50)
 	private String payTime;
+	
+	@ZooData(name = "交易流水号")
+	@Column(length = 50)
+	private String tradeNo;
 
 	public String getCode() {
 		return code;
@@ -81,6 +85,14 @@ public class OcOrderPay extends BaseEntity {
 
 	public void setPayTime(String payTime) {
 		this.payTime = payTime;
+	}
+
+	public String getTradeNo() {
+		return tradeNo;
+	}
+
+	public void setTradeCode(String tradeNo) {
+		this.tradeNo = tradeNo;
 	}
 
 }

@@ -62,5 +62,13 @@ public interface IQuestionInfoService {
 	 * @return 问题信息
 	 */
 	public AwQuestionInfo queryByCode(String code);
+	
+	/**
+	 * 更新问题信息状态
+	 * @param awQuestionInfo
+	 * 		问题信息
+	 * @return 更新记录数
+	 */
+	public int updateStatus(AwQuestionInfo awQuestionInfo);
 
 }
