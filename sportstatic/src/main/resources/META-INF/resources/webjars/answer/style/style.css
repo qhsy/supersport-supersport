@@ -66,6 +66,7 @@ a:hover {text-decoration: none;}
 .question .sum{color: #aaa; font-size: 0.12rem; position: absolute; right: 0.08rem; top: 0.55rem;}
 .question .overt{color: #F99653;}
 .question .red{color: red;}
+.question .is{background: #aaa;}
 
 /* audio */
 .audio{margin: 0.04rem; padding: 0.18rem 0 0.18rem 0.18rem; background: #fff; border-radius: 2px; box-shadow: 0 1px 3px rgba(214,214,214,0.5);}

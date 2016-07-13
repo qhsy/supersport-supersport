@@ -46,7 +46,12 @@ var require = {
 			<p class="status"><i class="iconfont" v-bind:class="{'overt': overt}" v-on:click="overtFn">&#xe602;</i>公开提问，答案每被偷偷听1次，你从中分成￥{{result.askMoney}}</p>
 		</div>
 		<span class="price">￥{{result.askMoney}}</span>
-		<a href="javascript:;" class="submit" v-on:click="submitFn">写好了</a>
+		<template v-if="isSubmit">
+			<a href="javascript:;" class="submit" v-on:click="submitFn">写好了</a>
+		</template>
+		<template v-else>
+			<a href="javascript:;" class="submit is">提交中</a>
+		</template>
 	</article>
 </section>
 <footer-nav></footer-nav>
