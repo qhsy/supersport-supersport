@@ -74,7 +74,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			    wx.onVoiceRecordEnd({
 				    complete: function(res) {
 				        voice.localId = res.localId;
-				        self.length = Math.ceil((endTime - startTime) / 1000);
+				        self.length = 60;
 				        self.status = 3;
 				    }
 				});
