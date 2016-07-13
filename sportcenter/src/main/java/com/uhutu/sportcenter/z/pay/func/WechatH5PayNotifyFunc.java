@@ -294,15 +294,7 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 			
 			BigDecimal profit = income.multiply(new BigDecimal(0.9)).setScale(2, BigDecimal.ROUND_DOWN);
 			
-			if(expert.getProfit() == null){
-				
-				expert.setProfit(BigDecimal.ZERO);
-				
-			}
-			
-			BigDecimal totalProfit = expert.getProfit().add(profit);
-			
-			expert.setProfit(totalProfit);
+			expert.setProfit(profit);
 			
 			JdbcHelper.update(expert, "income,profit", "userCode");
 			
