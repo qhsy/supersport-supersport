@@ -33,7 +33,7 @@ public class JobForCancelOverTimeAskQuestionOrder extends RootJob {
 	public MResult process() {
 
 		List<AwQuestionInfo> infos = JdbcHelper.queryForList(AwQuestionInfo.class, "", "zc",
-				"zc<DATE_SUB(NOW(),48 HOUR) and status='dzsd4888100110010001'", new MDataMap());
+				"zc<DATE_SUB(NOW(),INTERVAL 48 HOUR) and status='dzsd4888100110010001'", new MDataMap());
 		if (infos != null && !infos.isEmpty()) {
 			for (int i = 0; i < infos.size(); i++) {
 				AwQuestionInfo info = infos.get(i);// 更新问达状态
