@@ -24,25 +24,25 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 					}
 				}
 			});
-			// $.ajax({
-			// 	url:'/api/wechatController/configInfo',
-			// 	type:'POST',
-			// 	contentType:'application/json',
-			// 	dataType:'json',
-			// 	data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + comm.token() + '"}}',
-			// 	success:function(res){
-			// 		if(res.status == 1){
-			// 			return wx.config({    
-			// 				debug: false,
-			// 				appId: res.appId,
-			// 				timestamp: res.timestamp,
-			// 				nonceStr: res.nonceStr,
-			// 				signature: res.signature,
-			// 				jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice']
-			// 			});
-			// 		}
-			// 	}
-			// });
+			$.ajax({
+				url:'/api/wechatController/configInfo',
+				type:'POST',
+				contentType:'application/json',
+				dataType:'json',
+				data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + comm.token() + '"}}',
+				success:function(res){
+					if(res.status == 1){
+						return wx.config({    
+							debug: false,
+							appId: res.appId,
+							timestamp: res.timestamp,
+							nonceStr: res.nonceStr,
+							signature: res.signature,
+							jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice']
+						});
+					}
+				}
+			});
 		},
 		methods:{
 			audioPlay:function(){
@@ -63,7 +63,6 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 					}
 				}
 				function onBridgeReady() {
-
 					$.ajax({
 						url:'/api/orderController/answerOrder',
 						type:'POST',
@@ -86,6 +85,8 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 										self.result.detail.listenFlag = true;
 								    	self.result.detail.videoShow = '';
 								    	play();
+									}else{
+										
 									}
 								})
 							}

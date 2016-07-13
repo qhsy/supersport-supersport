@@ -108,8 +108,14 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 												}
 											}
 										});
+									}else{
+										comm.tost('支付失败，请重新支付！');
+										self.isSubmit = true;
 									}
 								})
+							}else{
+								comm.tost(res.error);
+								self.isSubmit = true;
 							}
 						}
 					});
