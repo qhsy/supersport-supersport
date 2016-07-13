@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import com.uhutu.dcom.answer.z.common.AnswerEnum;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.service.IQuestionInfoService;
 import com.uhutu.zoocom.helper.MapHelper;
@@ -22,14 +23,18 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 	@Override
 	public int queryCount(String userCode) {
 		
-		return JdbcHelper.count(AwQuestionInfo.class, "", MapHelper.initMap("questionUserCode",userCode));
+		String whereStr = "status<>'"+AnswerEnum.STATUS_UNPAY.getCode()+"'";
+		
+		return JdbcHelper.count(AwQuestionInfo.class, whereStr, MapHelper.initMap("questionUserCode",userCode));
 		
 	}
 
 	@Override
 	public List<AwQuestionInfo> queryList(String userCode,int iStart, int iNumber) {
 		
-		return JdbcHelper.queryForList(AwQuestionInfo.class, "", "", "", MapHelper.initMap("questionUserCode",userCode), iStart, iNumber);
+		String whereStr = "status<>'"+AnswerEnum.STATUS_UNPAY.getCode()+"'";
+		
+		return JdbcHelper.queryForList(AwQuestionInfo.class, "", "", whereStr, MapHelper.initMap("questionUserCode",userCode), iStart, iNumber);
 	}
 
 	@Override
@@ -37,15 +42,21 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 		
 		MDataMap mWhereMap = new MDataMap();
 		
+		String whereStr = "";
+		
 		mWhereMap.put("answerUserCode", userCode);
 		
 		if(StringUtils.isNotBlank(status)){
 			
 			mWhereMap.put("status", status);
 			
+		}else{
+			
+			whereStr = "status<>'"+AnswerEnum.STATUS_UNPAY.getCode()+"'";
+			
 		}
 		
-		return JdbcHelper.count(AwQuestionInfo.class, "", mWhereMap);
+		return JdbcHelper.count(AwQuestionInfo.class, whereStr, mWhereMap);
 		
 	}
 
@@ -54,15 +65,21 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 		
 		MDataMap mWhereMap = new MDataMap();
 		
+		String whereStr = "";
+		
 		mWhereMap.put("answerUserCode", userCode);
 		
 		if(StringUtils.isNotBlank(status)){
 			
 			mWhereMap.put("status", status);
 			
+		}else{
+			
+			whereStr = "status<>'"+AnswerEnum.STATUS_UNPAY.getCode()+"'";
+			
 		}
 		
-		return JdbcHelper.queryForList(AwQuestionInfo.class, "", "", "", mWhereMap, iStart, iNumber);
+		return JdbcHelper.queryForList(AwQuestionInfo.class, "", "", whereStr, mWhereMap, iStart, iNumber);
 	}
 
 	@Override
