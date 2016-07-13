@@ -230,6 +230,14 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 					
 					JdbcHelper.insert(answerListen);
 					
+					long listen = questionInfo.getListen() + 1;
+					
+					questionInfo.setListen(listen);
+					
+					questionInfo.setZu(new Date());
+					
+					JdbcHelper.update(questionInfo, "listen,zu", "code");
+					
 				}
 				
 			}
