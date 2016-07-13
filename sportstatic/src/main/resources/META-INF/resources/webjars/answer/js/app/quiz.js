@@ -87,12 +87,12 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 							if(res.status == 1){
 								var that = res;
 								WeixinJSBridge.invoke('getBrandWCPayRequest', {
-									"appId"：res.wechatH5PayResponse.appId,
-									"timeStamp"：res.wechatH5PayResponse.timeStamp,
-									"nonceStr"：	res.wechatH5PayResponse.nonceStr,
-									"package"："prepay_id=" + res.wechatH5PayResponse.prepay_id,
-									"signType"：res.wechatH5PayResponse.signType,
-									"paySign"：res.wechatH5PayResponse.paySign
+									"appId":res.wechatH5PayResponse.appId,
+									"timeStamp":res.wechatH5PayResponse.timeStamp,
+									"nonceStr":	res.wechatH5PayResponse.nonceStr,
+									"package":"prepay_id=" + res.wechatH5PayResponse.prepay_id,
+									"signType":res.wechatH5PayResponse.signType,
+									"paySign":res.wechatH5PayResponse.paySign
 								}, function(res) {
 									if (res.err_msg == "get_brand_wcpay_request：ok") {
 										$.ajax({
