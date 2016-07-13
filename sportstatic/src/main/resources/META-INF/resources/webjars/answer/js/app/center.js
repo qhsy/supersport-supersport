@@ -41,6 +41,18 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 			},
 			submit:function(){
 				var self = this;
+				if(self.result.answerUserInfo.title.length == 0){
+					comm.tost('请设置您的头衔！')
+					return ;
+				}
+				if(self.result.answerUserInfo.ability.length == 0){
+					comm.tost('请设置您的简介！')
+					return ;
+				}
+				if(self.result.answerUserInfo.charge == ''){
+					comm.tost('请设置支付金额！')
+					return ;
+				}
 				$.ajax({
 					url:'/api/answerController/updateUserInfo',
 					type:'POST',
@@ -64,7 +76,7 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 			isCharge:function(){
 				var self = this;
 				//var reg = /^[0-9]*[1-9][0-9]*$/g
-				var reg = /^(([1-9][0-9]*)|(([1]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/;
+				var reg = /^(([1-9][0-9]*)|(([0]\.[0-9][1-9]{1,2}|[0]\.[1-9]{1,2}|[1-9][0-9]*\.\d{1,2})))$/;
 				if(!reg.test($.trim(self.result.answerUserInfo.charge))){
 					comm.tost('请输入正确的金额！')
 				}

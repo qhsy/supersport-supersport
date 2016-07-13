@@ -43,7 +43,7 @@ define(['zepto'],function($){
 					sessionStorage.setItem('code',res.userCode);
 					sessionStorage.setItem('token',res.userToken);
 				}else{
-					alert(res.error);
+					common.token(res.error);
 				}
 			}
 		});

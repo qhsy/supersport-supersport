@@ -39,7 +39,7 @@ var require = {
 			<span class="photo"><img :src="result.answerUserInfo.aboutHead" alt=""></span>
 			<h1 class="name">{{result.answerUserInfo.nickName}}</h1>
 			<h2 class="tag">{{result.answerUserInfo.title}}</h2>
-			<template v-if="result.answerUserInfo.attendFlag == '1'">
+			<template v-if="result.answerUserInfo.attendFlag == '0'">
 				<a href="javascript:;" class="follow" @click="attendFlag">关注</a>
 			</template>
 			<template v-else>

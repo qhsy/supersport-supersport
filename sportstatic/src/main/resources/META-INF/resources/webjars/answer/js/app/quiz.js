@@ -70,6 +70,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 					data:'{"answerUserCode": "' + userCode + '","content": "' + self.content + '","orderSource": "dzsd4112100110020002","romoteIP": "","scope": "' + self.overt + '","serveIP": "","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
 					success:function(res){
 						if(res.status == 1){
+							var that = res;
 							wx.chooseWXPay({
 							    timestamp: res.wechatH5PayResponse.timeStamp,
 							    nonceStr: res.wechatH5PayResponse.nonceStr, // 支付签名随机串，不长于 32 位
@@ -77,7 +78,19 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 							    signType: res.wechatH5PayResponse.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
 							    paySign: res.wechatH5PayResponse.paySign, // 支付签名
 							    success: function (data) {
-							    	window.location.href = 'details.html?id=' + res.code;
+							    	$.ajax({
+										url:'/api/answerController/sendAskWxMsg',
+										type:'POST',
+										contentType:'application/json',
+										dataType:'json',
+										async:false,
+										data:'{"questionCode": "' + that.code + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
+										success:function(res){
+											if(res.status == 1){
+												window.location.href = 'details.html?id=' + that.code;
+											}
+										}
+									});
 							    }
 							});
 						}
