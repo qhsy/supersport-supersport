@@ -47,7 +47,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 		methods:{
 			audioPlay:function(){
 				var self = this;
-				var code = self.result.detail.answerUserCode;
+				var id = self.result.detail.code;
 				if(self.result.detail.listenFlag){
 					play();
 				}else{
@@ -69,7 +69,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 						contentType:'application/json',
 						dataType:'json',
 						async:false,
-						data:'{"answerCode": "' + code + '","appVersion": "","orderSource": "dzsd4112100110020002","orderType": "dzsd4112100110010004","payType": "dzsd4112100110040002","romoteIP": "","serveIP": "","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
+						data:'{"answerCode": "' + id + '","appVersion": "","orderSource": "dzsd4112100110020002","orderType": "dzsd4112100110010004","payType": "dzsd4112100110040002","romoteIP": "","serveIP": "","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
 						success:function(res){
 							if(res.status == 1){
 								var that = res;
@@ -100,7 +100,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 						contentType:'application/json',
 						dataType:'json',
 						async:false,
-						data:'{"audioUrl": "' + self.result.detail.videoUrl + '","questionCode": "' + code + '","zoo": {"key": "tesetkey","token": ""}}',
+						data:'{"audioUrl": "' + self.result.detail.videoUrl + '","questionCode": "' + id + '","zoo": {"key": "tesetkey","token": ""}}',
 						success:function(data){
 							var thisData = data;
 							if(thisData.status == 1){
@@ -113,7 +113,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 									    });
 									    wx.onVoicePlayEnd({
 										    complete: function(res) {
-										    	
+
 										    }
 										});
 									}
