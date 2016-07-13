@@ -116,17 +116,17 @@ public class PayGateController{
 			
 			requestContent = requestBuffer.toString();
 			
+			MDataMap dataMap = new MDataMap();
+			
+			dataMap.put(Constants.KEY_REMARK, requestContent);
+			
 			MDataMap requestMap = XmlUtil.getInstance().xmlToMDataMap(requestContent);
 			
 			WechatNotifyRequest notifyRequest = BeanComponent.getInstance().invoke(WechatNotifyRequest.class, requestMap, true);
 			
 			notifyRequest.setProcessType(processEnum);
 			
-			MDataMap dataMap = new MDataMap();
-			
 			dataMap.put(Constants.KEY_BUSICODE, notifyRequest.getOut_trade_no());
-			
-			dataMap.put(Constants.KEY_REMARK, requestContent);
 
 			payResponse = payGateProcess.process(processEnum, notifyRequest, dataMap);			
 			
