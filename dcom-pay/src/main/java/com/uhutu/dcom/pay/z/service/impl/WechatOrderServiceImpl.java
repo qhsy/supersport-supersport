@@ -79,7 +79,7 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 		
 		orderRequest.setNonce_str(WechatUtil.getNonceStr());
 		
-		String notifyUrl = bizContentRequest.getRequestIP() + configFactory.getWechatConfig().getNotifyUrl();
+		String notifyUrl = bizContentRequest.getRequestIP() + configFactory.getWechatConfig().getWechatNotifyUrl(processEnum);
 		
 		orderRequest.setNotify_url(notifyUrl);
 		

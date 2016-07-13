@@ -73,6 +73,9 @@ public class WechatConfig {
 	
 	@Value("${wechat_service_secret}")
 	private String appSecret;
+	
+	@Value("${wechat_service_notifyUrl}")
+	private String serviceNotifyUrl;
 
 	/**
 	 * 获取app编号
@@ -123,6 +126,31 @@ public class WechatConfig {
 	public String getOrderUrl() {
 		
 		return orderUrl;
+		
+	}
+	
+	/**
+	 * 获取微信通知页面
+	 * @return url
+	 */
+	public String getWechatNotifyUrl(PayProcessEnum processEnum) {
+		
+		String notifyUrl = "";
+		
+		switch (processEnum) {
+		case WECHAT_SERVICE_CONFIG:
+			notifyUrl = getServiceNotifyUrl();
+			break;
+		
+		case WECHAT:
+			notifyUrl = getNotifyUrl();
+			break;
+
+		default:
+			break;
+		}
+		
+		return notifyUrl;
 		
 	}
 	
@@ -303,6 +331,10 @@ public class WechatConfig {
 
 	public String getAppSecret() {
 		return appSecret;
+	}
+
+	public String getServiceNotifyUrl() {
+		return serviceNotifyUrl;
 	}
 	
 	
