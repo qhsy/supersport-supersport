@@ -118,6 +118,8 @@ public class PayGateController{
 			
 			requestContent = requestBuffer.toString();
 			
+			requestContent = new String(requestContent.getBytes(),"ISO8859-1");
+			
 			MDataMap requestMap = XmlUtil.getInstance().xmlToMDataMap(requestContent);
 			
 			WechatNotifyRequest notifyRequest = BeanComponent.getInstance().invoke(WechatNotifyRequest.class, requestMap, true);
