@@ -94,8 +94,6 @@ public class PayGateController{
 	@RequestMapping(value = "/wechatNotify/{notifyType}")
 	public String wechatNotify(@PathVariable("notifyType") String notifyType,HttpServletRequest request,HttpServletResponse response) {
 		
-		response.setContentType("text/html;charset=UTF-8");
-		
 		PayProcessEnum processEnum = PayProcessEnum.valueOf(notifyType);
 		
 		IPayResponse payResponse = null;
@@ -117,8 +115,6 @@ public class PayGateController{
 			}
 			
 			requestContent = requestBuffer.toString();
-			
-			requestContent = new String(requestContent.getBytes(),"ISO8859-1");
 			
 			MDataMap requestMap = XmlUtil.getInstance().xmlToMDataMap(requestContent);
 			
