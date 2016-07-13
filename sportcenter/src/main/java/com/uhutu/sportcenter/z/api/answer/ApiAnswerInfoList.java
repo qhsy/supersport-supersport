@@ -45,6 +45,10 @@ public class ApiAnswerInfoList extends RootApiToken<ApiAnswerInfoListInput, ApiA
 			
 			status = AnswerEnum.STATUS_UNANSWER.getCode();
 			
+		}else{
+			
+			status = input.getStatus();
+			
 		}
 		
 		int total = answerServiceFactory.getQuestionInfoService().queryAnswerCount(upUserCode(), status);
