@@ -2,8 +2,6 @@ package com.uhutu.dcom.pay.z.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
@@ -14,7 +12,6 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  *
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "busiCode","incType" }))
 public class PaInclogInfo extends BaseEntity {
 	
 	@ZooData(name="业务编号")

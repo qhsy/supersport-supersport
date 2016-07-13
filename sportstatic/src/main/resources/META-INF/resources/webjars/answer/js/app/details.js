@@ -51,6 +51,18 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 				if(self.result.detail.listenFlag){
 					play();
 				}else{
+					if (typeof WeixinJSBridge == "undefined") {
+						if (document.addEventListener) {
+							document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+						} else if (document.attachEvent) {
+							document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+							document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+						}
+					} else {
+						onBridgeReady();
+					}
+				}
+				function onBridgeReady() {
 					$.ajax({
 						url:'/api/orderController/answerOrder',
 						type:'POST',
@@ -60,18 +72,21 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 						data:'{"answerCode": "' + code + '","appVersion": "","orderSource": "dzsd4112100110020002","orderType": "dzsd4112100110010004","payType": "dzsd4112100110040002","romoteIP": "","serveIP": "","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
 						success:function(res){
 							if(res.status == 1){
-								wx.chooseWXPay({
-								    timestamp: res.wechatH5PayResponse.timeStamp,
-								    nonceStr: res.wechatH5PayResponse.nonceStr,
-								    package: 'prepay_id=' + res.wechatH5PayResponse.prepay_id,
-								    signType: res.wechatH5PayResponse.signType,
-								    paySign: res.wechatH5PayResponse.paySign,
-								    success: function (data) {
-								    	self.result.detail.listenFlag = true;
+								var that = res;
+								WeixinJSBridge.invoke('getBrandWCPayRequest', {
+									"appId"：res.wechatH5PayResponse.appId,
+									"timeStamp"：res.wechatH5PayResponse.timeStamp,
+									"nonceStr"：	res.wechatH5PayResponse.nonceStr,
+									"package"："prepay_id=" + res.wechatH5PayResponse.prepay_id,
+									"signType"：res.wechatH5PayResponse.signType,
+									"paySign"：res.wechatH5PayResponse.paySign
+								}, function(res) {
+									if (res.err_msg == "get_brand_wcpay_request：ok") {
+										self.result.detail.listenFlag = true;
 								    	self.result.detail.videoShow = '';
 								    	play();
-								    }
-								});
+									}
+								})
 							}
 						}
 					});

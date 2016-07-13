@@ -49,7 +49,7 @@ public class WechatNotifyServiceImpl implements IWechatNotifyService {
 			
 			requestMap.remove(WechatUnifyResultCodeEnum.processType.name());
 			
-			String requestSign = configFactory.getWechatConfig().getSign(paramMap, notifyRequest.getProcessType());
+			String requestSign = configFactory.getWechatConfig().getSign(requestMap, notifyRequest.getProcessType());
 			
 			if(StringUtils.equals(requestSign, notifyRequest.getSign())){
 				

@@ -64,6 +64,18 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 				}
 				if(self.isSubmit){
 					self.isSubmit = false;
+					if (typeof WeixinJSBridge == "undefined") {
+						if (document.addEventListener) {
+							document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+						} else if (document.attachEvent) {
+							document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+							document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+						}
+					} else {
+						onBridgeReady();
+					}
+				}
+				function onBridgeReady() {
 					$.ajax({
 						url:'/api/answerController/saveQuestion',
 						type:'POST',
@@ -74,14 +86,16 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 						success:function(res){
 							if(res.status == 1){
 								var that = res;
-								wx.chooseWXPay({
-								    timestamp: res.wechatH5PayResponse.timeStamp,
-								    nonceStr: res.wechatH5PayResponse.nonceStr, // 支付签名随机串，不长于 32 位
-								    package: 'prepay_id=' + res.wechatH5PayResponse.prepay_id, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
-								    signType: res.wechatH5PayResponse.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-								    paySign: res.wechatH5PayResponse.paySign, // 支付签名
-								    success: function (data) {
-								    	$.ajax({
+								WeixinJSBridge.invoke('getBrandWCPayRequest', {
+									"appId"：res.wechatH5PayResponse.appId,
+									"timeStamp"：res.wechatH5PayResponse.timeStamp,
+									"nonceStr"：	res.wechatH5PayResponse.nonceStr,
+									"package"："prepay_id=" + res.wechatH5PayResponse.prepay_id,
+									"signType"：res.wechatH5PayResponse.signType,
+									"paySign"：res.wechatH5PayResponse.paySign
+								}, function(res) {
+									if (res.err_msg == "get_brand_wcpay_request：ok") {
+										$.ajax({
 											url:'/api/answerController/sendAskWxMsg',
 											type:'POST',
 											contentType:'application/json',
@@ -94,8 +108,8 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 												}
 											}
 										});
-								    }
-								});
+									}
+								})
 							}
 						}
 					});

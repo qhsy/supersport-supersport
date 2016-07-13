@@ -56,10 +56,8 @@ public class WechatNotifyRequest extends WechatUnifyResponse implements IPayRequ
 	/*微信支付订单号*/
 	private String out_trade_no;
 	
-	/*金额类型*/
+	/*费用类型*/
 	private String fee_type;
-	
-	private String sub_mch_id;
 	
 	/*业务处理*/
 	private PayProcessEnum processType;
@@ -209,14 +207,6 @@ public class WechatNotifyRequest extends WechatUnifyResponse implements IPayRequ
 
 	public void setFee_type(String fee_type) {
 		this.fee_type = fee_type;
-	}
-
-	public String getSub_mch_id() {
-		return sub_mch_id;
-	}
-
-	public void setSub_mch_id(String sub_mch_id) {
-		this.sub_mch_id = sub_mch_id;
 	}
 	
 	

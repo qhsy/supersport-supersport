@@ -1,5 +1,7 @@
 package com.uhutu.dcom.order.z.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Index;
@@ -37,7 +39,7 @@ public class OcOrderPay extends BaseEntity {
 	private String payType;
 
 	@ZooData(name = "已支付金额")
-	private double payedMoney;
+	private BigDecimal payedMoney;
 
 	@ZooData(name = "支付时间")
 	@Column(length = 50)
@@ -71,11 +73,11 @@ public class OcOrderPay extends BaseEntity {
 		this.payType = payType;
 	}
 
-	public double getPayedMoney() {
+	public BigDecimal getPayedMoney() {
 		return payedMoney;
 	}
 
-	public void setPayedMoney(double payedMoney) {
+	public void setPayedMoney(BigDecimal payedMoney) {
 		this.payedMoney = payedMoney;
 	}
 

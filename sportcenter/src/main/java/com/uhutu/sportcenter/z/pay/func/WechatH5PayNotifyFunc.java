@@ -63,6 +63,12 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 						
 					}
 					
+					if(mResult.upFlagTrue()){
+						
+						updateQuestionInfo(orderDetail.getProductCode(), ocOrderInfo.getBuyerCode(), mResult);
+						
+					}
+					
 					
 					
 					
@@ -153,7 +159,7 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 			
 			ocOrderPay.setOrderType(orderType);
 			
-			ocOrderPay.setPayedMoney(notifyRequest.getTotal_fee());
+			ocOrderPay.setPayedMoney(new BigDecimal(notifyRequest.getTotal_fee()/100).setScale(2));
 			
 			Date date;
 			try {
