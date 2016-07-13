@@ -3,10 +3,13 @@ package com.uhutu.sportcenter.z.pay.func;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
+
 import com.uhutu.dcom.answer.z.common.AnswerEnum;
+import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
 import com.uhutu.dcom.answer.z.entity.AwAnswerListen;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.order.enumer.OrderEnum;
@@ -65,7 +68,7 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 					
 					if(mResult.upFlagTrue()){
 						
-						updateQuestionInfo(orderDetail.getProductCode(), ocOrderInfo.getBuyerCode(), mResult);
+						updateQuestionInfo(orderDetail.getProductCode(), payedMoney,ocOrderInfo.getBuyerCode(), mResult);
 						
 					}
 					
@@ -206,7 +209,7 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 	 * @param mResult
 	 * 		处理结果
 	 */
-	public void updateQuestionInfo(String questionCode,String userCode,MResult mResult){
+	public void updateQuestionInfo(String questionCode,BigDecimal payMoney,String userCode,MResult mResult){
 		
 		AwQuestionInfo questionInfo = JdbcHelper.queryOne(AwQuestionInfo.class, "code",questionCode);
 		
@@ -217,6 +220,22 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 				questionInfo.setStatus(AnswerEnum.STATUS_UNANSWER.getCode());
 				
 				questionInfo.setZu(new Date());
+				
+				AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "userCode",questionInfo.getAnswerUserCode());
+				
+				if(expert != null){
+					
+					BigDecimal income = expert.getIncome().add(payMoney).setScale(2);
+					
+					expert.setIncome(income);
+					
+					BigDecimal profit = expert.getIncome().multiply(new BigDecimal(0.9)).setScale(2, BigDecimal.ROUND_DOWN);
+					
+					expert.setProfit(profit);
+					
+					JdbcHelper.update(expert, "income,profit", "userCode");
+					
+				}
 				
 				JdbcHelper.update(questionInfo, "status,zu", "code");
 				
@@ -244,6 +263,18 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 					
 					JdbcHelper.update(questionInfo, "listen,zu", "code");
 					
+					/*更新问题提问人*/
+					
+					BigDecimal askPayMoney = payMoney.multiply(new BigDecimal(0.5)).setScale(2, BigDecimal.ROUND_DOWN);
+					
+					updateAnswerExpert(askPayMoney, questionInfo.getQuestionUserCode());
+					
+					/*更新问题回答人*/
+					BigDecimal answerPayMoney = payMoney.multiply(new BigDecimal(0.5)).setScale(2, BigDecimal.ROUND_DOWN);
+					
+					updateAnswerExpert(answerPayMoney, questionInfo.getAnswerUserCode());
+					
+					
 				}
 				
 			}
@@ -256,6 +287,26 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 			
 		}
 		
+		
+	}
+	
+	public void updateAnswerExpert(BigDecimal payMoney,String userCode){
+		
+		AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "userCode",userCode);
+		
+		if(expert != null){
+			
+			BigDecimal income = expert.getIncome().add(payMoney).setScale(2);
+			
+			expert.setIncome(income);
+			
+			BigDecimal profit = expert.getIncome().multiply(new BigDecimal(0.9)).setScale(2, BigDecimal.ROUND_DOWN);
+			
+			expert.setProfit(profit);
+			
+			JdbcHelper.update(expert, "income,profit", "userCode");
+			
+		}
 		
 	}
 	
