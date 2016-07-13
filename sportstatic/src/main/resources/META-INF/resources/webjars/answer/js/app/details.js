@@ -113,7 +113,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 									    });
 									    wx.onVoicePlayEnd({
 										    complete: function(res) {
-
+										    	self.result.detail.loveFlag = true;
 										    }
 										});
 									}
@@ -126,21 +126,24 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			},
 			assistFn:function(){
 				var self = this;
-				$.ajax({
-					url:'/api/answerController/questionPraise',
-					type:'POST',
-					contentType:'application/json',
-					dataType:'json',
-					async:false,
-					data:'{"code": "' + code + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
-					success:function(res){
-						if(res.status == 1){
-							self.result.detail.loveFlag = true;
-						}else{
-							comm.tost(res.error)
+				if(!self.result.detail.loveFlag){
+					$.ajax({
+						url:'/api/answerController/questionPraise',
+						type:'POST',
+						contentType:'application/json',
+						dataType:'json',
+						async:false,
+						data:'{"code": "' + code + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
+						success:function(res){
+							if(res.status == 1){
+								self.result.detail.loveFlag = true;
+							}else{
+								comm.tost(res.error)
+							}
 						}
-					}
-				});
+					});
+				}
+				
 			}	
 		}
 	});

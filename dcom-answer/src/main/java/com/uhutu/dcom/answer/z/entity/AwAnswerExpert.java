@@ -60,6 +60,13 @@ public class AwAnswerExpert extends BaseEntity {
 	}
 
 	public BigDecimal getIncome() {
+		
+		if(income == null){
+			
+			income = BigDecimal.ZERO;
+			
+		}
+		
 		return income;
 	}
 
@@ -68,6 +75,13 @@ public class AwAnswerExpert extends BaseEntity {
 	}
 
 	public BigDecimal getProfit() {
+		
+		if(profit == null){
+			
+			profit = BigDecimal.ZERO;
+			
+		}
+		
 		return profit;
 	}
 

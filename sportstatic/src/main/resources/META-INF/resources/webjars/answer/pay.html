@@ -95,16 +95,16 @@
 				contentType:'application/json',
 				dataType:'json',
 				async:false,
-				data:'{"orderCode": "WDBH160713210001","payMoney": 12,"romoteIP": "string","serveIP": "string","zoo": {"key": "tesetkey","token": "b40d53e3b5654768b2c59ccb27129e377331422a27f545dfafd13298e644479cce05f5ce"}}'
+				data:'{"orderCode": "WDBH160713210001","payMoney": 12,"romoteIP": "string","serveIP": "string","zoo": {"key": "tesetkey","token": "b40d53e3b5654768b2c59ccb27129e377331422a27f545dfafd13298e644479cce05f5ce"}}',
 				success:function(res){
 					if(res.status == 1){
 						WeixinJSBridge.invoke('getBrandWCPayRequest', {
-					           "appId" :res.wechatH5PayInfo.appId,
+					           "appId":res.wechatH5PayInfo.appId,
 					           "timeStamp":res.wechatH5PayInfo.timeStamp,
-					           "nonceStr" : res.wechatH5PayInfo.nonceStr,
-					           "package" : "prepay_id=" + res.wechatH5PayInfo.prepay_id,     
-					           "signType" : res.wechatH5PayInfo.signType,
-					           "paySign" : res.wechatH5PayInfo.paySign 
+					           "nonceStr":res.wechatH5PayInfo.nonceStr,
+					           "package":"prepay_id=" + res.wechatH5PayInfo.prepay_id,     
+					           "signType":res.wechatH5PayInfo.signType,
+					           "paySign":res.wechatH5PayInfo.paySign 
 					       },function(res){
 					           if(res.err_msg == "get_brand_wcpay_request:ok" ) {
 					           		alert('支付成功');

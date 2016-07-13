@@ -53,6 +53,10 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 					comm.tost('请设置支付金额！')
 					return ;
 				}
+				if( self.result.answerUserInfo.title.length > 18 && self.result.answerUserInfo.ability.length > 100 && self.result.answerUserInfo.charge.length == 0){
+					comm.tost('请填写正确的内容！！')
+					return ;
+				}
 				$.ajax({
 					url:'/api/answerController/updateUserInfo',
 					type:'POST',

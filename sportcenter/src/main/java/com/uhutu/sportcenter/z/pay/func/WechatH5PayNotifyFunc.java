@@ -53,7 +53,7 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 					/*更新订单信息*/
 					ocOrderInfo.setStatus(OrderEnum.STATUS_PAYED.getCode());
 					
-					BigDecimal payedMoney = new BigDecimal(notifyRequest.getTotal_fee()/100).setScale(2);
+					BigDecimal payedMoney = new BigDecimal(notifyRequest.getTotal_fee()).divide(new BigDecimal(100)).setScale(2);
 					
 					ocOrderInfo.setPayedMoney(payedMoney);
 					
@@ -292,7 +292,7 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 			
 			expert.setIncome(income);
 			
-			BigDecimal profit = expert.getIncome().multiply(new BigDecimal(0.9)).setScale(2, BigDecimal.ROUND_DOWN);
+			BigDecimal profit = income.multiply(new BigDecimal(0.9)).setScale(2, BigDecimal.ROUND_DOWN);
 			
 			if(expert.getProfit() == null){
 				
