@@ -25,6 +25,8 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 		
 		String whereStr = "status<>'"+AnswerEnum.STATUS_UNPAY.getCode()+"'";
 		
+		whereStr = whereStr + " and questionUserCode = '"+userCode+"'";
+		
 		return JdbcHelper.count(AwQuestionInfo.class, whereStr, MapHelper.initMap("questionUserCode",userCode));
 		
 	}
@@ -33,6 +35,8 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 	public List<AwQuestionInfo> queryList(String userCode,int iStart, int iNumber) {
 		
 		String whereStr = "status<>'"+AnswerEnum.STATUS_UNPAY.getCode()+"'";
+		
+		whereStr = whereStr + " and questionUserCode = '"+userCode+"'";
 		
 		return JdbcHelper.queryForList(AwQuestionInfo.class, "", "", whereStr, MapHelper.initMap("questionUserCode",userCode), iStart, iNumber);
 	}
@@ -53,6 +57,8 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 		}else{
 			
 			whereStr = "status<>'"+AnswerEnum.STATUS_UNPAY.getCode()+"'";
+			
+			whereStr = whereStr + " and answerUserCode = '"+userCode+"'";
 			
 		}
 		
@@ -76,6 +82,8 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 		}else{
 			
 			whereStr = "status<>'"+AnswerEnum.STATUS_UNPAY.getCode()+"'";
+			
+			whereStr = whereStr + " and answerUserCode = '"+userCode+"'";
 			
 		}
 		
