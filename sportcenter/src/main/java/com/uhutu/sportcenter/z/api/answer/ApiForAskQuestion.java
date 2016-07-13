@@ -15,13 +15,6 @@ import com.uhutu.dcom.order.orderResult.TeslaXResult;
 import com.uhutu.dcom.order.service.ApiConvertTeslaService;
 import com.uhutu.dcom.order.z.entity.OcOrderDetail;
 import com.uhutu.dcom.order.z.entity.OcOrderInfo;
-import com.uhutu.dcom.pay.z.common.PayProcessEnum;
-import com.uhutu.dcom.pay.z.request.WechatMsgAskRequest;
-import com.uhutu.dcom.pay.z.response.WechatMsgResponse;
-import com.uhutu.dcom.pay.z.util.WechatMsgComponent;
-import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
-import com.uhutu.dcom.user.z.entity.UserBasicInfo;
-import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiForAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiWechatH5PayInput;
@@ -39,10 +32,7 @@ import com.uhutu.zooweb.helper.WebHelper;
  */
 @Component
 public class ApiForAskQuestion extends RootApiToken<ApiForAskQuestionInput, ApiForAskQuestionResult> {
-	@Autowired
-	private UserInfoSupport userInfoSupport;
-	@Autowired
-	private WechatMsgComponent wechatMsgCompoent;
+	
 	@Autowired
 	private ApiFactory apiFactory;
 
@@ -75,11 +65,7 @@ public class ApiForAskQuestion extends RootApiToken<ApiForAskQuestionInput, ApiF
 				qtInfo.setCode(WebHelper.upCode("WDBH"));
 				JdbcHelper.insert(qtInfo);
 				result.setCode(qtInfo.getCode());
-				WechatMsgResponse wechatMsgResponse = sendWechatMsg(qtInfo);
-				if (!wechatMsgResponse.upFlag()) {
-					result.setStatus(0);
-					result.setError(wechatMsgResponse.getErrmsg());
-				}
+				
 				// 订单
 				TeslaXOrder teslaXOrder = new TeslaXOrder();
 				OcOrderInfo info = new OcOrderInfo();
@@ -119,33 +105,6 @@ public class ApiForAskQuestion extends RootApiToken<ApiForAskQuestionInput, ApiF
 		return result;
 	}
 
-	/**
-	 * 发送微信消息
-	 * 
-	 * @param questionInfo
-	 *            问题信息
-	 * @return 信息响应
-	 */
-	public WechatMsgResponse sendWechatMsg(AwQuestionInfo questionInfo) {
-
-		WechatMsgAskRequest askRequest = new WechatMsgAskRequest();
-
-		UserBasicInfo userBasicInfo = userInfoSupport.getUserBasicInfo(questionInfo.getQuestionUserCode());
-
-		UcUserinfoSocial answerSocial = userInfoSupport.getUserInfoSocial(questionInfo.getAnswerUserCode());
-
-		askRequest.getFirst().setValue(TopHelper.upInfo(88880015, userBasicInfo.getUcUserinfoExt().getNickName()));
-
-		askRequest.getKeyword1().setValue(questionInfo.getContent());
-
-		askRequest.getKeyword2().setValue(AnswerEnum.praseText(questionInfo.getScope()));
-
-		askRequest.getKeyword3().setValue(questionInfo.getQuestionTime());
-
-		askRequest.getRemark().setValue(TopHelper.upInfo(88880016, questionInfo.getMoney().setScale(2).toString()));
-
-		return wechatMsgCompoent.sendMsg(answerSocial.getAccountId(), "", PayProcessEnum.WECHAT_MSG_ASK, askRequest);
-
-	}
+	
 
 }

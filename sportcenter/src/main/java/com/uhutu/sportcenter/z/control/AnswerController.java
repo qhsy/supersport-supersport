@@ -15,6 +15,7 @@ import com.uhutu.sportcenter.z.input.ApiAnswerListenListInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerQuestionDetailInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiAskQuestionInput;
+import com.uhutu.sportcenter.z.input.ApiAskWechatMsgInput;
 import com.uhutu.sportcenter.z.input.ApiForAnswerQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiForAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiHotQuestionsInput;
@@ -33,6 +34,7 @@ import com.uhutu.sportcenter.z.result.ApiAnswerListenListResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerQuestionDetailResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiAskQuestionResult;
+import com.uhutu.sportcenter.z.result.ApiAskWechatMsgResult;
 import com.uhutu.sportcenter.z.result.ApiForAnswerQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiForAskQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiHotQuestionsResult;
@@ -213,5 +215,16 @@ public class AnswerController {
 		return apiFactory.getApiPlayAudio().api(input);
 		
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/sendAskWxMsg", method = RequestMethod.POST)
+	@ApiOperation(value = "提问时微信消息", notes = "提问时微信消息提醒")
+	public ApiAskWechatMsgResult sendAskWxMsg(@RequestBody ApiAskWechatMsgInput input) {
+
+		return apiFactory.getApiAskWechatMsg().api(input);
+		
+	}
+	
+	
 	
 }
