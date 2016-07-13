@@ -221,21 +221,7 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 				
 				questionInfo.setZu(new Date());
 				
-				AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "userCode",questionInfo.getAnswerUserCode());
-				
-				if(expert != null){
-					
-					BigDecimal income = expert.getIncome().add(payMoney).setScale(2);
-					
-					expert.setIncome(income);
-					
-					BigDecimal profit = expert.getIncome().multiply(new BigDecimal(0.9)).setScale(2, BigDecimal.ROUND_DOWN);
-					
-					expert.setProfit(profit);
-					
-					JdbcHelper.update(expert, "income,profit", "userCode");
-					
-				}
+				updateAnswerExpert(payMoney, questionInfo.getAnswerUserCode());
 				
 				JdbcHelper.update(questionInfo, "status,zu", "code");
 				
