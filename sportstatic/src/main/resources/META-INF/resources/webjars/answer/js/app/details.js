@@ -76,17 +76,17 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 								WeixinJSBridge.invoke('getBrandWCPayRequest', {
 									"appId":res.wechatH5PayResponse.appId,
 									"timeStamp":res.wechatH5PayResponse.timeStamp,
-									"nonceStr":	res.wechatH5PayResponse.nonceStr,
+									"nonceStr":res.wechatH5PayResponse.nonceStr,
 									"package":"prepay_id=" + res.wechatH5PayResponse.prepay_id,
 									"signType":res.wechatH5PayResponse.signType,
 									"paySign":res.wechatH5PayResponse.paySign
 								}, function(res) {
-									if (res.err_msg == "get_brand_wcpay_request：ok") {
+									if (res.err_msg == "get_brand_wcpay_request:ok") {
 										self.result.detail.listenFlag = true;
 								    	self.result.detail.videoShow = '';
 								    	play();
 									}else{
-										
+
 									}
 								})
 							}
@@ -101,17 +101,19 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 						dataType:'json',
 						async:false,
 						data:'{"audioUrl": "' + self.result.detail.videoUrl + '","questionCode": "' + code + '","zoo": {"key": "tesetkey","token": ""}}',
-						success:function(res){
-							if(res.status == 1){
+						success:function(data){
+							var thisData = data;
+							if(thisData.status == 1){
 								wx.downloadVoice({
-									serverId: res.mediaId,
+									serverId: thisData.mediaId,
 									success: function (res) {
-										localId = res.localId; 
+										var localId = res.localId; 
 										wx.playVoice({
 									        localId: localId
 									    });
 									    wx.onVoicePlayEnd({
 										    complete: function(res) {
+										    	
 										    }
 										});
 									}

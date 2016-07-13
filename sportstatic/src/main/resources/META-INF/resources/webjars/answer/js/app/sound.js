@@ -110,6 +110,9 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			        comm.tost('请先录制声音');
 			        return;
 			    }
+			    wx.stopVoice({
+			        localId: voice.localId
+			    });
 			    wx.uploadVoice({
 			        localId: voice.localId,
 			        success: function(res) {

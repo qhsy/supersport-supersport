@@ -58,6 +58,10 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			},
 			submitFn:function(){
 				var self = this;
+				if(self.content.length == 0){
+					comm.tost('请输入提问内容！')
+					return false;
+				}
 				if(self.content.length > 60){
 					comm.tost('输入的内容超过限制！')
 					return false;
@@ -89,12 +93,12 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 								WeixinJSBridge.invoke('getBrandWCPayRequest', {
 									"appId":res.wechatH5PayResponse.appId,
 									"timeStamp":res.wechatH5PayResponse.timeStamp,
-									"nonceStr":	res.wechatH5PayResponse.nonceStr,
+									"nonceStr":res.wechatH5PayResponse.nonceStr,
 									"package":"prepay_id=" + res.wechatH5PayResponse.prepay_id,
 									"signType":res.wechatH5PayResponse.signType,
 									"paySign":res.wechatH5PayResponse.paySign
-								}, function(res) {
-									if (res.err_msg == "get_brand_wcpay_request：ok") {
+								}, function(result) {
+									if (result.err_msg == "get_brand_wcpay_request:ok") {
 										$.ajax({
 											url:'/api/answerController/sendAskWxMsg',
 											type:'POST',
@@ -102,8 +106,8 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 											dataType:'json',
 											async:false,
 											data:'{"questionCode": "' + that.code + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
-											success:function(res){
-												if(res.status == 1){
+											success:function(succ){
+												if(succ.status == 1){
 													window.location.href = 'details.html?id=' + that.code;
 												}
 											}
