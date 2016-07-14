@@ -38,7 +38,7 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 		
 		whereStr = whereStr + " and questionUserCode = '"+userCode+"'";
 		
-		return JdbcHelper.queryForList(AwQuestionInfo.class, "", "", whereStr, MapHelper.initMap("questionUserCode",userCode), iStart, iNumber);
+		return JdbcHelper.queryForList(AwQuestionInfo.class, "", "-question_time", whereStr, MapHelper.initMap("questionUserCode",userCode), iStart, iNumber);
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 			
 		}
 		
-		return JdbcHelper.queryForList(AwQuestionInfo.class, "", "", whereStr, mWhereMap, iStart, iNumber);
+		return JdbcHelper.queryForList(AwQuestionInfo.class, "", "-question_time", whereStr, mWhereMap, iStart, iNumber);
 	}
 
 	@Override
