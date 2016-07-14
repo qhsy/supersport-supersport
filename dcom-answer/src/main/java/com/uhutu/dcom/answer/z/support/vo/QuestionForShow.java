@@ -36,6 +36,9 @@ public class QuestionForShow extends RootClass {
 	@ApiModelProperty(value = "已收听数")
 	private long listen;
 
+	@ApiModelProperty(value = "是否可直接听")
+	private boolean listenFlag = false;
+	
 	@ApiModelProperty(value = "时间展示")
 	private String timeShow;
 
@@ -125,6 +128,14 @@ public class QuestionForShow extends RootClass {
 
 	public void setUserType(String userType) {
 		this.userType = userType;
+	}
+
+	public boolean isListenFlag() {
+		return listenFlag;
+	}
+
+	public void setListenFlag(boolean listenFlag) {
+		this.listenFlag = listenFlag;
 	}
 
 }

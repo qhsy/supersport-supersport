@@ -92,6 +92,7 @@ public class QuestionSupport extends RootClass {
 					show.setNickName(ext.getNickName());
 					show.setTitle(expert.getTitle());
 					show.setUserCode(info.getAnswerUserCode());
+					show.setListenFlag(checkUserLitenTheQuestion("", info.getCode()));
 					result.add(show);
 				}
 			}
@@ -166,6 +167,7 @@ public class QuestionSupport extends RootClass {
 					show.setNickName(ext.getNickName());
 					show.setTitle(expert.getTitle());
 					show.setUserCode(info.getAnswerUserCode());
+					show.setListenFlag(checkUserLitenTheQuestion("", info.getCode()));
 					result.add(show);
 				}
 			}
