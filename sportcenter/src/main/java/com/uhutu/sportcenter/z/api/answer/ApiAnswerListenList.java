@@ -51,6 +51,8 @@ public class ApiAnswerListenList extends RootApiToken<ApiAnswerListenListInput, 
 		
 		result.setQuestionInfos(convert(answerListen));
 		
+		result.setTotal(count);
+		
 		return result;
 		
 	}

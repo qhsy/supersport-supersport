@@ -38,6 +38,13 @@ public class CalendarUtil {
 			
 			formateStr = "刚刚";
 			
+		}else if(diff >= FIVE_MINUTES && diff <ONE_HOUR){
+			
+			long diffMinute = Math.round(diff/60 + 0.5d);
+			
+			formateStr = diffMinute + "分钟前";
+			
+			
 		}else if( diff >= ONE_HOUR && diff < HOUR_24){
 			
 			long diffHour = Math.round(diff/ONE_HOUR + 0.5d);
