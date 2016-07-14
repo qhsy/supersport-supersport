@@ -4,8 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.answer.z.common.AnswerEnum;
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
-import com.uhutu.dcom.answer.z.entity.AwAnswerListen;
+import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
@@ -85,7 +86,7 @@ public class ApiAnswerAttendList extends RootApiBase<ApiAnswerAttendListInput, A
 						
 						apiAttendInfo.setTitle(answerExpert.getTitle());
 						
-						int total = JdbcHelper.count(AwAnswerListen.class, "", MapHelper.initMap("userCode",attendInfo.getBeAttention()));
+						int total = JdbcHelper.count(AwQuestionInfo.class, "", MapHelper.initMap("answer_user_code",attendInfo.getBeAttention(),"status",AnswerEnum.STATUS_ANSWERED.getCode()));
 						
 						apiAttendInfo.setTotal(total);
 						

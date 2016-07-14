@@ -67,7 +67,7 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 	}
 
 	@Override
-	public List<AwQuestionInfo> queryAnswerList(String userCode, String status, int iStart, int iNumber) {
+	public List<AwQuestionInfo> queryAnswerList(String userCode, String scope, String status, int iStart, int iNumber) {
 		
 		MDataMap mWhereMap = new MDataMap();
 		
@@ -79,11 +79,23 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 			
 			mWhereMap.put("status", status);
 			
+			if(StringUtils.isNotBlank(scope)){
+				
+				mWhereMap.put("scope", scope);
+				
+			}
+			
 		}else{
 			
 			whereStr = "status<>'"+AnswerEnum.STATUS_UNPAY.getCode()+"'";
 			
 			whereStr = whereStr + " and answerUserCode = '"+userCode+"'";
+			
+			if(StringUtils.isNotBlank(scope)){
+				
+				whereStr = whereStr + " and scope='"+scope+"'";
+				
+			}
 			
 		}
 		

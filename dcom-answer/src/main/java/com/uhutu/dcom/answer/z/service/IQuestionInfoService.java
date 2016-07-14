@@ -53,7 +53,7 @@ public interface IQuestionInfoService {
 	 * 		查询的数量
 	 * @return 问题列表
 	 */
-	public List<AwQuestionInfo> queryAnswerList(String userCode,String status,int iStart, int iNumber);
+	public List<AwQuestionInfo> queryAnswerList(String userCode,String scope,String status,int iStart, int iNumber);
 	
 	/**
 	 * 根据问题编号获取问题信息

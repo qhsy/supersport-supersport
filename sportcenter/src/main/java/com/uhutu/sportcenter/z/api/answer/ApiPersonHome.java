@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.activity.z.entity.AcActivityAnswerInfo;
 import com.uhutu.dcom.activity.z.support.AnswerActivitySupport;
+import com.uhutu.dcom.answer.z.common.AnswerEnum;
 import com.uhutu.dcom.answer.z.common.Constants;
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
@@ -66,7 +67,7 @@ public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHome
 			
 			int iStart = (input.getPagination() - 1)*20;
 			
-			List<AwQuestionInfo> awQuestionInfos = answerServiceFactory.getQuestionInfoService().queryAnswerList(input.getUserCode(), Constants.STATUS_ANSWERED, iStart, 20);
+			List<AwQuestionInfo> awQuestionInfos = answerServiceFactory.getQuestionInfoService().queryAnswerList(input.getUserCode(),AnswerEnum.SCOPE_PUBLIC.getCode(), Constants.STATUS_ANSWERED, iStart, 20);
 			
 			AnswerUserInfo answerUserInfo = new AnswerUserInfo();
 			
