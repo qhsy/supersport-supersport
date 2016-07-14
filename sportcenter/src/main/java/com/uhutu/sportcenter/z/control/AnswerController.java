@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
+import com.uhutu.sportcenter.z.input.ApiAnswerAttendListInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerListenListInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerQuestionDetailInput;
@@ -29,6 +30,7 @@ import com.uhutu.sportcenter.z.input.ApiQuestionPraiseInput;
 import com.uhutu.sportcenter.z.input.ApiRichAnswersInput;
 import com.uhutu.sportcenter.z.input.ApiSaveWechatVoiceInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateAnswerUserInput;
+import com.uhutu.sportcenter.z.result.ApiAnswerAttendListResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerListenListResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerQuestionDetailResult;
@@ -227,6 +229,15 @@ public class AnswerController {
 		String path = paths[0]+"//"+paths[2];
 		input.setRequestUrl(path);
 		return apiFactory.getApiAskWechatMsg().api(input);
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/attendList", method = RequestMethod.POST)
+	@ApiOperation(value = "关注列表", notes = "关注列表")
+	public ApiAnswerAttendListResult attendList(@RequestBody ApiAnswerAttendListInput input) {
+
+		return apiFactory.getApiAnswerAttendList().api(input);
 		
 	}
 	
