@@ -21,6 +21,7 @@ import com.uhutu.sportcenter.z.entity.AnswerUserInfo;
 import com.uhutu.sportcenter.z.entity.QuestionInfo;
 import com.uhutu.sportcenter.z.input.ApiPersonHomeInput;
 import com.uhutu.sportcenter.z.result.ApiPersonHomeResult;
+import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoocom.root.RootApiToken;
 
 /**
@@ -29,7 +30,7 @@ import com.uhutu.zoocom.root.RootApiToken;
  *
  */
 @Component
-public class ApiPersonHome extends RootApiToken<ApiPersonHomeInput, ApiPersonHomeResult> {
+public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHomeResult> {
 	
 	@Autowired
 	private AnswerServiceFactory answerServiceFactory;
