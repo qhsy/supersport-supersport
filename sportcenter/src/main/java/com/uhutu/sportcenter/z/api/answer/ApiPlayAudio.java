@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.answer.z.common.AnswerEnum;
+import com.uhutu.dcom.answer.z.entity.AwAnswerListen;
+import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.component.z.common.WechatMediaEnum;
 import com.uhutu.dcom.component.z.entity.WechatMediaResponse;
 import com.uhutu.dcom.component.z.util.WebClientComponent;
+import com.uhutu.dcom.order.z.entity.OcOrderInfo;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
 import com.uhutu.dcom.pay.z.response.WechatAccessTokenResponse;
@@ -22,6 +25,7 @@ import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoocom.support.WebClientSupport;
 import com.uhutu.zoocom.z.helper.KvHelper;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 音频播放
@@ -44,6 +48,8 @@ public class ApiPlayAudio extends RootApiBase<ApiPlayAudioInput, ApiPlayAudioRes
 			String mediaId = getMediaId(input.getQuestionCode(), input.getAudioUrl());
 			
 			result.setMediaId(mediaId);
+			
+			updateListen(input.getQuestionCode(), input.getListenUserCode());
 			
 		} catch (Exception e) {
 			
@@ -110,6 +116,42 @@ public class ApiPlayAudio extends RootApiBase<ApiPlayAudioInput, ApiPlayAudioRes
 
 		return mediaId;
 
+	}
+	
+	/**
+	 * 更新偷听信息
+	 * @param questionCode
+	 * 		问题编号
+	 */
+	public void updateListen(String questionCode,String listenUserCode){
+		
+		AwQuestionInfo questionInfo = JdbcHelper.queryOne(AwQuestionInfo.class, "code",questionCode);
+		
+		if(questionInfo != null){
+			
+			AwAnswerListen answerListen = JdbcHelper.queryOne(AwAnswerListen.class, "userCode", listenUserCode,"questionCode",questionCode);
+			
+			if(answerListen == null){
+				
+				long listen = questionInfo.getListen() + 1;
+				
+				questionInfo.setListen(listen);
+				
+				JdbcHelper.update(questionInfo, "listen", "code");
+				
+				answerListen = new AwAnswerListen();
+				
+				answerListen.setQuestionCode(questionCode);
+				
+				answerListen.setUserCode(listenUserCode);
+				
+				JdbcHelper.insert(answerListen);
+				
+			}
+			
+			
+		}
+		
 	}
 
 }
