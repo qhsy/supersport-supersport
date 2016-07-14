@@ -48,6 +48,8 @@ public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHome
 		
 		ApiPersonHomeResult result = new ApiPersonHomeResult();
 		
+		String attendUserCode = "";
+		
 		AwAnswerExpert answerExpert = answerServiceFactory.getAwAnswerExpertService().getByUserCode(input.getUserCode());
 		
 		if(answerExpert == null){
@@ -63,8 +65,6 @@ public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHome
 			int iStart = (input.getPagination() - 1)*20;
 			
 			List<AwQuestionInfo> awQuestionInfos = answerServiceFactory.getQuestionInfoService().queryAnswerList(input.getUserCode(), Constants.STATUS_ANSWERED, iStart, 20);
-			
-			result.setQuestionInfos(convert(awQuestionInfos));
 			
 			AnswerUserInfo answerUserInfo = new AnswerUserInfo();
 			
@@ -84,7 +84,7 @@ public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHome
 			
 			if(StringUtils.isNotEmpty(input.getZoo().getToken())){
 				
-				String attendUserCode = new UserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(), DefineUser.Login_System_Default);
+				attendUserCode = new UserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(), DefineUser.Login_System_Default);
 				
 				attendInfo = userServiceFactory.getAttentionInfoService()
 					.queryByBothCode(attendUserCode, input.getUserCode(),UserEnum.ATTEND.getCode());
@@ -101,6 +101,8 @@ public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHome
 				
 			}
 			
+			result.setQuestionInfos(convert(awQuestionInfos,attendUserCode));
+			
 			result.setAnswerUserInfo(answerUserInfo);
 			
 		}
@@ -114,7 +116,7 @@ public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHome
 	 * 		问答信息集合
 	 * @return
 	 */
-	public List<QuestionInfo> convert(List<AwQuestionInfo> awQuestionInfos){
+	public List<QuestionInfo> convert(List<AwQuestionInfo> awQuestionInfos,String listenUserCode){
 		
 		List<QuestionInfo> questionInfos = new ArrayList<QuestionInfo>();
 		
@@ -134,9 +136,11 @@ public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHome
 			
 			questionInfo.setType(userBasicInfo.getUcUserinfo().getType());
 			
-			questionInfo.setPraiseNum(0);
+			questionInfo.setPraiseNum(awQuestionInfo.getLove());
 			
 			questionInfo.setSoundContent(QuestionSupport.soundContent(awQuestionInfo.getCode()));
+			
+			questionInfo.setListenFlag(new QuestionSupport().checkUserLitenTheQuestion(listenUserCode, awQuestionInfo.getCode()));
 			
 			questionInfos.add(questionInfo);
 			

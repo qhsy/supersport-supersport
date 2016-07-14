@@ -55,13 +55,16 @@ public class QuestionInfo extends UserBasicInfo {
 	private String soundContent;
 	
 	@ApiModelProperty(value="点赞数量")
-	private int praiseNum;
+	private long praiseNum;
 	
 	@ApiModelProperty(value="状态文本")
 	private String statusText;
 	
 	@ApiModelProperty(value="回答人用户信息")
 	private AnswerUserInfo answerUserInfo;
+	
+	@ApiModelProperty(value = "是否可直接听")
+	private boolean listenFlag = false;
 
 	public String getCode() {
 		return code;
@@ -166,11 +169,11 @@ public class QuestionInfo extends UserBasicInfo {
 		this.soundContent = soundContent;
 	}
 
-	public int getPraiseNum() {
+	public long getPraiseNum() {
 		return praiseNum;
 	}
 
-	public void setPraiseNum(int praiseNum) {
+	public void setPraiseNum(long praiseNum) {
 		this.praiseNum = praiseNum;
 	}
 
@@ -202,6 +205,22 @@ public class QuestionInfo extends UserBasicInfo {
 		
 		return temp;
 		
+	}
+
+	public boolean isListenFlag() {
+		return listenFlag;
+	}
+
+	public void setListenFlag(boolean listenFlag) {
+		this.listenFlag = listenFlag;
+	}
+
+	public void setQuestionTimeStr(String questionTimeStr) {
+		this.questionTimeStr = questionTimeStr;
+	}
+
+	public void setStatusText(String statusText) {
+		this.statusText = statusText;
 	}
 
 }
