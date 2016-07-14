@@ -247,8 +247,6 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 					
 					questionInfo.setZu(new Date());
 					
-					JdbcHelper.update(questionInfo, "listen,zu", "code");
-					
 					/*更新问题提问人*/
 					
 					BigDecimal askPayMoney = payMoney.multiply(new BigDecimal(0.5)).setScale(2, BigDecimal.ROUND_DOWN);
@@ -259,6 +257,12 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 					BigDecimal answerPayMoney = payMoney.multiply(new BigDecimal(0.5)).setScale(2, BigDecimal.ROUND_DOWN);
 					
 					updateAnswerExpert(answerPayMoney, questionInfo.getAnswerUserCode());
+					
+					questionInfo.setAnswerAmount(questionInfo.getAnswerAmount().add(answerPayMoney));
+					
+					questionInfo.setAskAmount(questionInfo.getAskAmount().add(askPayMoney));
+					
+					JdbcHelper.update(questionInfo, "listen,zu,askAmount,answerAmount", "code");
 					
 					
 				}

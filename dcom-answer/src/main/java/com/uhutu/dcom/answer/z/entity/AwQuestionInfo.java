@@ -195,6 +195,13 @@ public class AwQuestionInfo extends BaseEntity {
 	}
 
 	public BigDecimal getAskAmount() {
+		
+		if(askAmount == null){
+			
+			askAmount = BigDecimal.ZERO;
+			
+		}
+		
 		return askAmount;
 	}
 
@@ -203,6 +210,13 @@ public class AwQuestionInfo extends BaseEntity {
 	}
 
 	public BigDecimal getAnswerAmount() {
+		
+		if(answerAmount == null){
+			
+			answerAmount = BigDecimal.ZERO;
+			
+		}
+		
 		return answerAmount;
 	}
 
