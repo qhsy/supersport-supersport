@@ -79,7 +79,7 @@ public class ApiAnswerListenList extends RootApiToken<ApiAnswerListenListInput, 
 				
 			}
 			
-			questionInfo.setUserCode(answerListen.getUserCode());
+			questionInfo.setUserCode(awQuestionInfo.getAnswerUserCode());
 			
 			UserBasicInfo userBasicInfo = userInfoSupport.getUserBasicInfo(questionInfo.getUserCode());
 			
