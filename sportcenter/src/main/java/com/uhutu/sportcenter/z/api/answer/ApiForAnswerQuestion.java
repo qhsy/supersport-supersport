@@ -130,7 +130,7 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 
 		answerRequest.getRemark().setValue(TopHelper.upInfo(88880021));
 
-		return wechatMsgCompoent.sendMsg(ucUserinfoSocial.getAccountId(), "", PayProcessEnum.WECHAT_MSG_ASK,
+		return wechatMsgCompoent.sendMsg(ucUserinfoSocial.getAccountId(), requestUrl, PayProcessEnum.WECHAT_MSG_ASK,
 				answerRequest);
 
 	}
