@@ -4,6 +4,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 		localId: '',
 		serverId: ''
 	};
+	var timer = null;
 	var sound = new Vue({
 		el: '#sound',
 		data: {
@@ -25,31 +26,30 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 					}
 				}
 			});
-			$.ajax({
-				url:'/api/wechatController/configInfo',
-				type:'POST',
-				contentType:'application/json',
-				dataType:'json',
-				async:false,
-				data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + comm.token() + '"}}',
-				success:function(res){
-					if(res.status == 1){
-						wx.config({    
-							debug: false,
-							appId: res.appId,
-							timestamp: res.timestamp,
-							nonceStr: res.nonceStr,
-							signature: res.signature,
-							jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice']
-						});
-					}
-				}
-			});
+			// $.ajax({
+			// 	url:'/api/wechatController/configInfo',
+			// 	type:'POST',
+			// 	contentType:'application/json',
+			// 	dataType:'json',
+			// 	async:false,
+			// 	data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + comm.token() + '"}}',
+			// 	success:function(res){
+			// 		if(res.status == 1){
+			// 			wx.config({    
+			// 				debug: false,
+			// 				appId: res.appId,
+			// 				timestamp: res.timestamp,
+			// 				nonceStr: res.nonceStr,
+			// 				signature: res.signature,
+			// 				jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice']
+			// 			});
+			// 		}
+			// 	}
+			// });
 		},
 		methods:{
 			countdown:function(){
 				var time = 0;
-				var timer = null;
 				var self = this;
 					this.length = 0;
 				timer = setInterval(function(){
@@ -76,6 +76,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			},
 			stopRecord:function(){
 				var self = this;
+				clearInterval(timer);
 				wx.stopRecord({
 			        success: function(res) {
 			            voice.localId = res.localId;
