@@ -76,7 +76,7 @@ public class ApiAnswerInfoList extends RootApiToken<ApiAnswerInfoListInput, ApiA
 		int iStart = (input.getPagination() - 1)*input.getPageNum();
 		
 		List<AwQuestionInfo> awQuestionInfos = answerServiceFactory.getQuestionInfoService().
-				queryAnswerList(upUserCode(), input.getStatus(), iStart, input.getPageNum());
+				queryAnswerList(upUserCode(), "",input.getStatus(), iStart, input.getPageNum());
 		
 		result.setQuestionInfos(convert(awQuestionInfos));
 		
