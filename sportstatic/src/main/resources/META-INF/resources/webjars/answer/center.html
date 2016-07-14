@@ -40,7 +40,7 @@ var require = {
             <h1 class="name">{{result.answerUserInfo.nickName}}</h1>
             <h2 class="tag">{{result.answerUserInfo.title}}</h2>
             <a href="center_edit.html" class="edit" v-if="result.answerUserInfo.status == 'dzsd4699100110010001'"></a>
-            <a href="javascript:;" class="open" v-on:click="open" v-if="result.answerUserInfo.status == 'dzsd4699100110010002'">开通问答</a>
+            <a href="center_edit.html" class="open" v-if="result.answerUserInfo.status == 'dzsd4699100110010002'">开通问答</a>
         </header>
         <div class="info" v-if="result.answerUserInfo.status == 'dzsd4699100110010001'">
             <p class="cent-txt">

@@ -22,23 +22,6 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 			})
 		},
 		methods:{
-			open:function(){
-				$.ajax({
-					url:'/api/answerController/openAskQuestion',
-					type:'POST',
-					contentType:'application/json',
-					dataType:'json',
-					data:'{"zoo":{"key":"tesetkey","token": "' + comm.token() + '"}}',
-					success:function(res){
-						if(res.status == 1){
-							window.location.href = 'center_edit.html'
-
-						}else{
-							comm.tost(res.error);
-						}
-					}
-				})
-			},
 			submit:function(){
 				var self = this;
 				if(self.result.answerUserInfo.title.length == 0){
