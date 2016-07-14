@@ -30,6 +30,8 @@ public class ApiAnswerQuestionDetail extends RootApiToken<ApiAnswerQuestionDetai
 		if (StringUtils.isNotBlank(input.getCode())) {
 			AwQuestionInfo questionInfo = JdbcHelper.queryOne(AwQuestionInfo.class, "code", input.getCode());
 			if (questionInfo != null) {
+				result.getShow().setStatus(questionInfo.getStatus());
+				result.getShow().setAnswerCode(questionInfo.getCode());
 				if ("dzsd4888100110010001".equals(questionInfo.getStatus())) {
 					if ("dzsd4888100110020002".equals(questionInfo.getScope())
 							|| (upUserCode().equals(questionInfo.getQuestionUserCode())
@@ -38,7 +40,6 @@ public class ApiAnswerQuestionDetail extends RootApiToken<ApiAnswerQuestionDetai
 								questionInfo.getQuestionUserCode());
 						UcUserinfo info = JdbcHelper.queryOne(UcUserinfo.class, "code",
 								questionInfo.getQuestionUserCode());
-						result.getShow().setAnswerCode(questionInfo.getCode());
 						result.getShow().setAskMoney(questionInfo.getMoney());
 						result.getShow().setContent(questionInfo.getContent());
 						result.getShow().setHeadUrl(ext.getAboutHead());

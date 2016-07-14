@@ -32,6 +32,9 @@ public class AnswerQuestionForShow extends RootClass {
 	@ApiModelProperty(value = "问题类型", notes = "dzsd4888100110020001私密，dzsd4888100110020002公开")
 	private String scope;
 
+	@ApiModelProperty(value = "状态  dzsd4888100110010001:待回答,dzsd4888100110010002:已回答,dzsd4888100110010003:已拒绝回答,dzsd4888100110010004:到期未答,dzsd4888100110010005:已撤回")
+	private String status;
+	
 	@ApiModelProperty(value = "剩余时间展示", notes = "还有23小时30分过期")
 	private String timeShow;
 
@@ -105,6 +108,14 @@ public class AnswerQuestionForShow extends RootClass {
 
 	public void setTimeShow(String timeShow) {
 		this.timeShow = timeShow;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }
