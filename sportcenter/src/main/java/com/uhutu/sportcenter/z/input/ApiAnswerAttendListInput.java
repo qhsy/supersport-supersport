@@ -6,18 +6,26 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * 个人主页输入参数
+ * 用户关注列表输入参数
  * @author 逄小帅
  *
  */
 @ApiModel
-public class ApiPersonHomeInput extends RootApiInput {
+public class ApiAnswerAttendListInput extends RootApiInput {
 	
-	@ApiModelProperty(value="用户编号",notes="必填")
-	private String userCode;
-	
-	@ApiModelProperty(value="当前页码")
+	@ApiModelProperty(value="页码",required=true)
 	private int pagination;
+	
+	@ApiModelProperty(value="用户编号",required=true)
+	private String userCode;
+
+	public int getPagination() {
+		return pagination;
+	}
+
+	public void setPagination(int pagination) {
+		this.pagination = pagination;
+	}
 
 	public String getUserCode() {
 		return userCode;
@@ -27,11 +35,4 @@ public class ApiPersonHomeInput extends RootApiInput {
 		this.userCode = userCode;
 	}
 
-	public int getPagination() {
-		return pagination;
-	}
-
-	public void setPagination(int pagination) {
-		this.pagination = pagination;
-	}
 }

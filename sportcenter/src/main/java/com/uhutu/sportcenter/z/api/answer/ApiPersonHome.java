@@ -8,6 +8,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.activity.z.entity.AcActivityAnswerInfo;
+import com.uhutu.dcom.activity.z.support.AnswerActivitySupport;
 import com.uhutu.dcom.answer.z.common.Constants;
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
@@ -141,6 +143,14 @@ public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHome
 			questionInfo.setSoundContent(QuestionSupport.soundContent(awQuestionInfo.getCode()));
 			
 			questionInfo.setListenFlag(new QuestionSupport().checkUserLitenTheQuestion(listenUserCode, awQuestionInfo.getCode()));
+			
+			AcActivityAnswerInfo activityAnswerInfo = new AnswerActivitySupport().getActivityInfoByAnswerCode(awQuestionInfo.getCode());
+			
+			if(activityAnswerInfo != null){
+				
+				questionInfo.setActivityFlag(true);
+				
+			}
 			
 			questionInfos.add(questionInfo);
 			

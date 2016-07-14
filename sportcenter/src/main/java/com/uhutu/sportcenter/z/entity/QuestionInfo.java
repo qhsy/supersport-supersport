@@ -65,6 +65,9 @@ public class QuestionInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value = "是否可直接听")
 	private boolean listenFlag = false;
+	
+	@ApiModelProperty(value = "是否参加活动")
+	private boolean activityFlag = false;
 
 	public String getCode() {
 		return code;
@@ -221,6 +224,14 @@ public class QuestionInfo extends UserBasicInfo {
 
 	public void setStatusText(String statusText) {
 		this.statusText = statusText;
+	}
+
+	public boolean isActivityFlag() {
+		return activityFlag;
+	}
+
+	public void setActivityFlag(boolean activityFlag) {
+		this.activityFlag = activityFlag;
 	}
 
 }
