@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
+import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.sportcenter.z.input.ApiUpdateAnswerUserInput;
 import com.uhutu.sportcenter.z.result.ApiUpdateAnswerUserResult;
 import com.uhutu.zoocom.root.RootApiToken;
@@ -31,6 +32,8 @@ public class ApiUpdateAnswerUser extends RootApiToken<ApiUpdateAnswerUserInput, 
 		BeanUtils.copyProperties(input, expert);
 		
 		expert.setUserCode(upUserCode());
+		
+		expert.setStatus(SystemEnum.YES.getCode());
 		
 		int status = answerServiceFactory.getAwAnswerExpertService().save(expert);
 		
