@@ -81,7 +81,7 @@ public class ApiQuestionDetail extends RootApiForMember<ApiQuestionDetailInput, 
 		if (activityInfo != null) {
 			result.getDetail().setVideoShow(activityInfo.getName());
 		}
-
+		result.getDetail().setVideoShow(result.getDetail().isListenFlag()?ConfigDcomAnswer.upConfig().getAnswerVideoPayShow():result.getDetail().getVideoShow());
 		result.getDetail().setVideoUrl(questionInfo.getUrl());
 		result.getDetail().setScope(questionInfo.getScope());
 		
