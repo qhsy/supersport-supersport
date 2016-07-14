@@ -3,6 +3,7 @@ package com.uhutu.sportcenter.z.api.answer;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,8 +22,10 @@ import com.uhutu.sportcenter.z.entity.AnswerUserInfo;
 import com.uhutu.sportcenter.z.entity.QuestionInfo;
 import com.uhutu.sportcenter.z.input.ApiPersonHomeInput;
 import com.uhutu.sportcenter.z.result.ApiPersonHomeResult;
+import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoocom.root.RootApiToken;
+import com.uhutu.zooweb.user.UserCallFactory;
 
 /**
  * 个人主页
@@ -78,8 +81,16 @@ public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHome
 			
 			answerUserInfo.setType(userBasicInfo.getUcUserinfo().getType());
 			
-			UcAttentionInfo attendInfo = userServiceFactory.getAttentionInfoService()
-					.queryByBothCode(upUserCode(), input.getUserCode(),UserEnum.ATTEND.getCode());
+			UcAttentionInfo attendInfo = null;
+			
+			if(StringUtils.isNotEmpty(input.getZoo().getToken())){
+				
+				String attendUserCode = new UserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(), DefineUser.Login_System_Default);
+				
+				attendInfo = userServiceFactory.getAttentionInfoService()
+					.queryByBothCode(attendUserCode, input.getUserCode(),UserEnum.ATTEND.getCode());
+				
+			}
 			
 			if(attendInfo != null){
 				
