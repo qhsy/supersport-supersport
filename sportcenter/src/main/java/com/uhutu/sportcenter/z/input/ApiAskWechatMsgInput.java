@@ -15,6 +15,9 @@ public class ApiAskWechatMsgInput extends RootApiInput {
 	
 	@ApiModelProperty(value="问题编号")
 	private String questionCode;
+	
+	@ApiModelProperty(value="请求url")
+	private String requestUrl;
 
 	public String getQuestionCode() {
 		return questionCode;
@@ -23,5 +26,14 @@ public class ApiAskWechatMsgInput extends RootApiInput {
 	public void setQuestionCode(String questionCode) {
 		this.questionCode = questionCode;
 	}
+
+	public String getRequestUrl() {
+		return requestUrl;
+	}
+
+	public void setRequestUrl(String requestUrl) {
+		this.requestUrl = requestUrl;
+	}
+
 
 }

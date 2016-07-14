@@ -42,6 +42,8 @@ public class WechatMsgServiceImpl implements IWechatMsgService {
 		
 		msgRequest.setTemplate_id(paramMap.get(Constants.KEY_TEMPLETID));
 		
+		msgRequest.setUrl(paramMap.get(Constants.KEY_REDIRECTURL));
+		
 		msgRequest.setData(request);
 		
 		WechatAccessTokenResponse tokenResponse = (WechatAccessTokenResponse) wechatAccessTokenService.doProcess(null, new MDataMap());

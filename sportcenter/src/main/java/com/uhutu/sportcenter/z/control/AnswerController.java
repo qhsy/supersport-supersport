@@ -96,8 +96,10 @@ public class AnswerController {
 	@ResponseBody
 	@RequestMapping(value = "/answerQuestion", method = RequestMethod.POST)
 	@ApiOperation(value = "回答问题", notes = "回答提出的问题")
-	public ApiForAnswerQuestionResult answerQuestion(@RequestBody ApiForAnswerQuestionInput input) {
-
+	public ApiForAnswerQuestionResult answerQuestion(@RequestBody ApiForAnswerQuestionInput input,HttpServletRequest request) {
+		String[] paths = request.getRequestURL().toString().split("/");
+		String path = paths[0]+"//"+paths[2];
+		input.setRequestUrl(path);
 		return apiFactory.getApiForAnswerQuestion().api(input);
 	}
 
@@ -219,8 +221,11 @@ public class AnswerController {
 	@ResponseBody
 	@RequestMapping(value = "/sendAskWxMsg", method = RequestMethod.POST)
 	@ApiOperation(value = "提问时微信消息", notes = "提问时微信消息提醒")
-	public ApiAskWechatMsgResult sendAskWxMsg(@RequestBody ApiAskWechatMsgInput input) {
+	public ApiAskWechatMsgResult sendAskWxMsg(@RequestBody ApiAskWechatMsgInput input,HttpServletRequest request) {
 
+		String[] paths = request.getRequestURL().toString().split("/");
+		String path = paths[0]+"//"+paths[2];
+		input.setRequestUrl(path);
 		return apiFactory.getApiAskWechatMsg().api(input);
 		
 	}

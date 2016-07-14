@@ -9,6 +9,7 @@ import com.uhutu.dcom.pay.z.config.PayConfigFactory;
 import com.uhutu.dcom.pay.z.face.IPayRequest;
 import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
 import com.uhutu.dcom.pay.z.response.WechatMsgResponse;
+import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
 
 /**
@@ -43,7 +44,7 @@ public class WechatMsgComponent {
 
 		mDataMap.put(Constants.KEY_TEMPLETID, getTempletId(processEnum));
 		
-		mDataMap.put(Constants.KEY_REDIRECTURL,getRedirectUrl(processEnum, param));
+		mDataMap.put(Constants.KEY_REDIRECTURL,getRedirectUrl(param));
 
 		return (WechatMsgResponse) payGateProcess.process(PayProcessEnum.WECHAT_MSG, payRequest,
 				mDataMap);
@@ -87,9 +88,11 @@ public class WechatMsgComponent {
 	 * 		跳转路径参数值
 	 * @return 路径信息
 	 */
-	public String getRedirectUrl(PayProcessEnum processEnum,String param){
+	public String getRedirectUrl(String param){
 		
-		return "";
+		String url= TopHelper.upInfo(81110010, param);
+		
+		return url;
 		
 	}
 

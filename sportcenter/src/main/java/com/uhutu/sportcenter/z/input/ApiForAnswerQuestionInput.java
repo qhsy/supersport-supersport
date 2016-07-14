@@ -23,6 +23,9 @@ public class ApiForAnswerQuestionInput extends RootApiInput {
 
 	@ApiModelProperty(value = "拒绝回答", notes = "true:拒绝回答,false:回答")
 	private boolean refuse;
+	
+	@ApiModelProperty(value="当前请求的路径")
+	private String requestUrl;
 
 	public String getWechatVoiceId() {
 		return wechatVoiceId;
@@ -62,6 +65,14 @@ public class ApiForAnswerQuestionInput extends RootApiInput {
 
 	public void setRefuse(boolean refuse) {
 		this.refuse = refuse;
+	}
+
+	public String getRequestUrl() {
+		return requestUrl;
+	}
+
+	public void setRequestUrl(String requestUrl) {
+		this.requestUrl = requestUrl;
 	}
 
 }

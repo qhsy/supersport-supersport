@@ -86,7 +86,7 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 				qtInfo.setStatus("dzsd4888100110010002");
 				qtInfo.setLengh(input.getLengh());
 				qtInfo.setUrl(input.getUrl());
-				WechatMsgResponse wechatMsgResponse = sendWechatMsg(qtInfo);
+				WechatMsgResponse wechatMsgResponse = sendWechatMsg(qtInfo,input.getRequestUrl());
 				if (!wechatMsgResponse.upFlag()) {
 					result.setStatus(0);
 					result.setError(wechatMsgResponse.getErrmsg());
@@ -108,9 +108,13 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 	 *            问题信息
 	 * @return 信息响应
 	 */
-	public WechatMsgResponse sendWechatMsg(AwQuestionInfo questionInfo) {
+	public WechatMsgResponse sendWechatMsg(AwQuestionInfo questionInfo,String requestUrl) {
 
 		WechatMsgAnswerRequest answerRequest = new WechatMsgAnswerRequest();
+		
+		requestUrl = requestUrl+"/webjars/answer/details.html?id="+questionInfo.getCode();
+		
+		requestUrl = TopHelper.upInfo(81110010, requestUrl);
 
 		UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(upUserCode());
 

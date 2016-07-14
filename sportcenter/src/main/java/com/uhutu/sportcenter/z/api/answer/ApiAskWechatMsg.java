@@ -43,7 +43,11 @@ public class ApiAskWechatMsg extends RootApiToken<ApiAskWechatMsgInput, ApiAskWe
 
 		if(qtInfo != null){
 			
-			WechatMsgResponse wechatMsgResponse = sendWechatMsg(qtInfo);
+			String requestUrl = input.getRequestUrl()+"/webjars/answer/audio.html?id="+input.getQuestionCode();
+			
+			requestUrl = TopHelper.upInfo(81110010, requestUrl);
+			
+			WechatMsgResponse wechatMsgResponse = sendWechatMsg(qtInfo,requestUrl);
 			
 			if (!wechatMsgResponse.upFlag()) {
 				
@@ -71,7 +75,7 @@ public class ApiAskWechatMsg extends RootApiToken<ApiAskWechatMsgInput, ApiAskWe
 	 *            问题信息
 	 * @return 信息响应
 	 */
-	public WechatMsgResponse sendWechatMsg(AwQuestionInfo questionInfo) {
+	public WechatMsgResponse sendWechatMsg(AwQuestionInfo questionInfo,String requestUrl) {
 
 		WechatMsgAskRequest askRequest = new WechatMsgAskRequest();
 
@@ -89,7 +93,7 @@ public class ApiAskWechatMsg extends RootApiToken<ApiAskWechatMsgInput, ApiAskWe
 
 		askRequest.getRemark().setValue(TopHelper.upInfo(88880016, questionInfo.getMoney().setScale(2).toString()));
 
-		return wechatMsgCompoent.sendMsg(answerSocial.getAccountId(), "", PayProcessEnum.WECHAT_MSG_ASK, askRequest);
+		return wechatMsgCompoent.sendMsg(answerSocial.getAccountId(), requestUrl, PayProcessEnum.WECHAT_MSG_ASK, askRequest);
 
 	}
 
