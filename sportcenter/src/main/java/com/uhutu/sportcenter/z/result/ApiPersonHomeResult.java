@@ -22,6 +22,9 @@ public class ApiPersonHomeResult extends RootApiResult {
 	
 	@ApiModelProperty(value="回答过的问题列表")
 	private List<QuestionInfo> questionInfos;
+	
+	@ApiModelProperty(value="是否本人")
+	private boolean ownFlag = false;
 
 	public AnswerUserInfo getAnswerUserInfo() {
 		return answerUserInfo;
@@ -38,6 +41,16 @@ public class ApiPersonHomeResult extends RootApiResult {
 	public void setQuestionInfos(List<QuestionInfo> questionInfos) {
 		this.questionInfos = questionInfos;
 	}
+
+	public boolean isOwnFlag() {
+		return ownFlag;
+	}
+
+	public void setOwnFlag(boolean ownFlag) {
+		this.ownFlag = ownFlag;
+	}
+
+
 	
 	
 

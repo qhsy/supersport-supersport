@@ -106,6 +106,12 @@ public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHome
 			
 			result.setQuestionInfos(convert(awQuestionInfos,attendUserCode));
 			
+			if(StringUtils.equals(input.getUserCode(), attendUserCode)){
+				
+				result.setOwnFlag(true);
+				
+			}
+			
 			result.setAnswerUserInfo(answerUserInfo);
 			
 		}
