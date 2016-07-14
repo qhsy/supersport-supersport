@@ -22,6 +22,10 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 				data:'{"code": "' + code + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
 				success:function(res){
 					if(res.status == 1){
+						if(res.show.status != 'dzsd4888100110010001'){
+							window.location.href = 'details.html?id=' + res.show.answerCode;
+							return ;
+						}
 						self.result = res;
 					}
 				}

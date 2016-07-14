@@ -41,7 +41,12 @@ var require = {
             	<li v-for="item in result.questionInfos">
                     <a href="details.html?id={{item.code}}">
                     	<h2><span>￥{{item.money}}<i v-bind:class="{i1:item.statusText=='未回答',i2:item.statusText=='已回答'}">{{item.statusText}}</i></span><img :src="item.aboutHead" alt="">{{item.nickName}}</h2>
-                        <p>{{item.content}}</p>
+                        <template v-if="item.scope == 'dzsd4888100110020001'">
+                            <p>{{item.content}}</p>
+                        </template>
+                        <template v-else>
+                            <p><b>[私密]</b>{{item.content}}</p>
+                        </template>
                         <font><span>{{item.questionTimeStr}}</span></font>
                     </a>
                 </li>

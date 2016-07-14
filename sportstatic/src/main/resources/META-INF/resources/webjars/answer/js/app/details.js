@@ -1,7 +1,6 @@
 require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,wx,QRCode){
 	var code = comm.paramFn('id');
 	var localId;
-	var getBrandWCPayRequest = null;
 	var status;
 	var vm = new Vue({
 		el: '#details',

@@ -57,14 +57,26 @@ var require = {
 		<dt>回答了{{result.answerUserInfo.answerCount}}个问题</dt>
 		<dd class="details-item" v-for="item in result.questionInfos">
 			<a href="details.html?id={{item.code}}">
-				<div class="ask"><span class="ask-photo"><img :src="item.aboutHead" alt=""></span><em>{{item.nickName}}</em><i>{{item.money}}</i></div>
-				<h1 class="title">{{item.content}}</h1>
-				<div class="user">
-					<span class="photo"><img :src="result.answerUserInfo.aboutHead" alt="" title=""></span>
-					<span class="hear"><i class="iconfont">&#xe600;</i>1元偷偷听</span>
-					<em class="time">{{item.lengh}}”</em>
-				</div>
-				<div class="status"><em>听过{{item.listen}}</em>赞{{item.praiseNum}}<i>{{item.questionTime}}</i></div>
+				<template v-if=item.listenFlag>
+					<div class="ask"><span class="ask-photo"><img :src="item.aboutHead" alt=""></span><em>{{item.nickName}}</em><i>{{item.money}}</i></div>
+					<h1 class="title">{{item.content}}</h1>
+					<div class="user">
+						<span class="photo"><img :src="result.answerUserInfo.aboutHead" alt="" title=""></span>
+						<span class="listen-flag"><i class="iconfont">&#xe600;</i>{{item.soundContent}}</span>
+						<em class="time">{{item.lengh}}”</em>
+					</div>
+					<div class="status"><em>听过{{item.listen}}</em>赞{{item.praiseNum}}<i>{{item.questionTime}}</i></div>
+				</template>
+				<template v-else>
+					<div class="ask"><span class="ask-photo"><img :src="item.aboutHead" alt=""></span><em>{{item.nickName}}</em><i>{{item.money}}</i></div>
+					<h1 class="title">{{item.content}}</h1>
+					<div class="user">
+						<span class="photo"><img :src="result.answerUserInfo.aboutHead" alt="" title=""></span>
+						<span class="hear"><i class="iconfont">&#xe600;</i>{{item.soundContent}}</span>
+						<em class="time">{{item.lengh}}”</em>
+					</div>
+					<div class="status"><em>听过{{item.listen}}</em>赞{{item.praiseNum}}<i>{{item.questionTime}}</i></div>
+				</template>
 			</a>
 		</dd>
 	</dl>

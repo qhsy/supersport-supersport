@@ -41,7 +41,7 @@ a:hover {text-decoration: none;}
 .answer-item .photo{width: 0.36rem; height: 0.36rem; border-radius: 50%; overflow: hidden;}
 .answer-item .hear{width: 1.97rem; height: 0.36rem; background: #F99653; border-radius: 0.2rem; color: #fff; font-size: 0.14rem; position: absolute; left: 0.72rem;}
 .answer-item .hear:before{content: ""; width: 0.28rem; height: 0.22rem; display: block; background: url(img/audio_arr.png) no-repeat; background-size: cover; transform: translate3d(-0.10rem,0.14rem,0); transform: -webkit-translate3d(-0.10rem,0.14rem,0); position: absolute;}
-.answer-item .listen-flag{width: 1.97rem; height: 0.36rem; background: #98D15E; border-radius: 0.2rem; color: #fff; font-size: 0.14rem;}
+.answer-item .listen-flag{width: 1.97rem; height: 0.36rem; background: #98D15E; border-radius: 0.2rem; color: #fff; font-size: 0.14rem; position: absolute; left: 0.72rem;}
 .answer-item .listen-flag:before{content: ""; width: 0.28rem; height: 0.22rem; display: block; background: url(img/listen_flag.png) no-repeat; background-size: cover; transform: translate3d(-0.10rem,0.14rem,0); transform: -webkit-translate3d(-0.10rem,0.14rem,0); position: absolute;}
 .answer-item .iconfont{padding: 0 0.25rem 0 0.2rem; font-size: 0.16rem;}
 .answer-item .num{color: #aaa;}

@@ -40,13 +40,8 @@ var require = {
         <ul class="bd">
             <li v-for="item in result.questionInfos">
                 <a href="details.html?id={{item.code}}">
-                    <template v-if="item.scope == 'dzsd4888100110020001'">
-                        <p>{{item.content}}</p>
-                    </template>
-                    <template v-else>
-                        <p><b>[私密]</b>{{item.content}}</p>
-                    </template>
-                    <h2><span>{{item.questionTimeStr}}</span><img src="images/demo_5.jpg" alt=""><b>{{item.nickName}}</b><font>{{item.title}}</font></h2>
+                    <p>{{item.content}}</p>
+                    <h2><span>{{item.questionTimeStr}}</span><img :src="item.aboutHead" alt=""><b>{{item.nickName}}</b><font>{{item.title}}</font></h2>
                 </a>
             </li>
         </ul>
