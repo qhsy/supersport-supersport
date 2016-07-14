@@ -106,6 +106,7 @@ a:hover {text-decoration: none;}
 .details-item .ask i{color: #F99653; float: right;}
 .details-item .ask-photo{width: 0.28rem; height: 0.28rem; display: inline-block; border-radius: 50%; overflow: hidden; vertical-align: middle;}
 .details-item .title{line-height: 0.2rem; font-size: 0.15rem; font-weight: 700;}
+.details-item .title b{color: #F38540}
 .details-item .user{padding: 0.31rem 0.28rem 0 0; display: -webkit-flex; display: flex; line-height: 0.36rem; align-items: center; -webkit-align-items: center; font-size: 0.12rem;}
 .details-item .photo{width: 0.36rem; height: 0.36rem; border-radius: 50%; overflow: hidden; margin-right: 0.16rem;}
 .details-item .hear{width: 1.97rem; height: 0.36rem; background: #F99653; border-radius: 0.2rem; color: #fff; font-size: 0.14rem;}
@@ -179,6 +180,7 @@ a:hover {text-decoration: none;}
 .my-answers .price{padding-right: 0.35rem; float: right; font-size: 0.14rem; color: #F99653;}
 .my-answers .col{color: #F99653;}
 .my-answers .title{padding: 0.17rem 0 0.3rem; line-height: 0.24rem; color: #4A4A4A;}
+.my-answers .title b{color: #F38540;}
 .my-answers .info{font-size: 0.12rem; color: #AAAAAA; line-height: 0.16rem;}
 .my-answers .info i{padding: 0 0.08rem; color: #F99653;}
 .my-answers .time{float: right;}
