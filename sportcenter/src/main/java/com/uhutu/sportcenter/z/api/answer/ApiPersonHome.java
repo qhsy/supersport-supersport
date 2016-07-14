@@ -24,7 +24,6 @@ import com.uhutu.sportcenter.z.input.ApiPersonHomeInput;
 import com.uhutu.sportcenter.z.result.ApiPersonHomeResult;
 import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.root.RootApiBase;
-import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zooweb.user.UserCallFactory;
 
 /**
