@@ -1,7 +1,8 @@
-define(['zepto'],function($){
+define(['zepto','jssdk'],function($,wx){
 	var common = {};
 	//sessionStorage.setItem('token','f8ede4925ec74374a032d453afd7f6d5d101126d930e4f52b24bc20f1cc9f0aabb9d5953');
 
+	wx.hideOptionMenu();
 	common.paramFn = function (arg){
 		var url = window.location.search;
 		if(typeof url != 'string' || url == '') return;
@@ -23,6 +24,13 @@ define(['zepto'],function($){
 			return '';
 		}
 	}
+	common.code = function(){
+		if(sessionStorage.getItem('code')){
+			return sessionStorage.getItem('code');
+		}else{
+			return '';
+		}
+	}
 	common.tost = function(mes){
 		var element = $('<div class="tost"><em>' + mes + '</em></div>');
 		var tost = element.appendTo('body');
@@ -30,6 +38,7 @@ define(['zepto'],function($){
 			tost.remove();
 		}, 1500)
 	}
+
 	if(!sessionStorage.getItem('token')){
 		var wxCode = common.paramFn('code');
 		$.ajax({

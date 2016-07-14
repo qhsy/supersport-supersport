@@ -19,7 +19,8 @@ var require = {
 		zepto:'zepto.min',
 		jssdk:'jweixin-1.0.0',
 		common:'common',
-		extend:'vue.extend'
+		extend:'vue.extend',
+		qrcode:'qrcode'
 	},
 	shim:{
 		zepto:{
@@ -27,6 +28,9 @@ var require = {
 		},
 		common:{
 			exports:'common'
+		},
+		qrcode:{
+			exports:'QRCode'
 		}
 	}
 };
@@ -89,6 +93,12 @@ var require = {
 		</dl>
 	</template>
 </section>
+<div class="fixed" v-if="browser" v-cloak>
+	<span>
+		<em id="qrcode"></em>
+		<i>微信扫一扫</i>
+	</span>
+</div>
 <footer-nav></footer-nav>
 <script type="text/javascript" src="js/require.min.js"></script>
 <script type="text/javascript" src="js/app/details.js"></script>

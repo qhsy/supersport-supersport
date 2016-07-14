@@ -52,6 +52,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 				var time = 0;
 				var self = this;
 					this.length = 0;
+
 				timer = setInterval(function(){
 					if(time >= 59){
 						time = 59;
@@ -67,6 +68,9 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			startRecord:function(){
 				var self = this;
 				self.countdown();
+				if(voice.localId){
+					self.stopVoice();
+				}
 				wx.startRecord({
 					cancel: function () {
 						comm.tost('用户拒绝授权录音');
@@ -128,7 +132,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 							type:'POST',
 							contentType:'application/json',
 							dataType:'json',
-							data:'{"code": "' + self.result.show.answerCode + '","lengh": ' + self.length + ',"refuse": false,"url": "string","wechatVoiceId": "' + localId + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
+							data:'{"code": "' + self.result.show.answerCode + '","lengh": ' + self.length + ',"requestUrl": "","refuse": false,"url": "string","wechatVoiceId": "' + localId + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
 							success:function(res){
 								if(res.status == 1){
 									window.location.href = 'details.html?id=' + self.result.show.answerCode;

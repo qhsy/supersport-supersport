@@ -3,7 +3,7 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 	var follow = new Vue({
 		el: '#follow',
 		data: {
-			result: {},
+			result: {}
 	},
 	ready:function(){
 		var self = this;

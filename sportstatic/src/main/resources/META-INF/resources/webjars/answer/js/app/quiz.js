@@ -105,7 +105,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 											contentType:'application/json',
 											dataType:'json',
 											async:false,
-											data:'{"questionCode": "' + that.code + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
+											data:'{"questionCode": "' + that.code + '","requestUrl": "","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
 											success:function(succ){
 												if(succ.status == 1){
 													window.location.href = 'details.html?id=' + that.code;

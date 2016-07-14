@@ -1,4 +1,4 @@
-require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
+require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,wx,QRCode){
 	var code = comm.paramFn('id');
 	var localId;
 	var getBrandWCPayRequest = null;
@@ -6,7 +6,8 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 	var vm = new Vue({
 		el: '#details',
 		data: {
-			result:{}
+			result:{},
+			browser:false
 		},
 		created:function(){
 			var self = this;
@@ -48,6 +49,20 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			audioPlay:function(){
 				var self = this;
 				var id = self.result.detail.code;
+				var weix = navigator.userAgent.indexOf('MicroMessenger') > -1;
+				if(!weix){
+					self.browser = true;
+					setTimeout(function(){
+						new QRCode('qrcode', {
+							text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + window.location.href + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+							typeNumber:4,
+							width:192,
+							height:192
+						});
+					}, 1)
+					return ;
+				}
+
 				if(self.result.detail.listenFlag){
 					play();
 				}else{
@@ -100,7 +115,7 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 						contentType:'application/json',
 						dataType:'json',
 						async:false,
-						data:'{"audioUrl": "' + self.result.detail.videoUrl + '","questionCode": "' + id + '","zoo": {"key": "tesetkey","token": ""}}',
+						data:'{"audioUrl": "' + self.result.detail.videoUrl + '","listenUserCode": "' + comm.code() + '","questionCode": "' + id + '","zoo": {"key": "tesetkey","token": ""}}',
 						success:function(data){
 							var thisData = data;
 							if(thisData.status == 1){

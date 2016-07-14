@@ -35,7 +35,7 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 						data:'{"flag": "1","userCode": "' + self.result.answerUserInfo.userCode + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
 						success:function(res){
 							if(res.status == 1){
-								self.result.answerUserInfo.attendFlag = '0';
+								self.result.answerUserInfo.attendFlag = '1';
 							}else{
 								comm.tost(res.error);
 							}

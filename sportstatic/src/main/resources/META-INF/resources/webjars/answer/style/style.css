@@ -15,6 +15,10 @@ a:hover {text-decoration: none;}
 .no-data{width: 100%; height: 100%; background: url(img/no_data.png) no-repeat center 40%; background-size: 1.6rem; position: fixed;}
 .tost{width: 100%; height: 100%; background: rgba(255,255,255,0.25); display: -webkit-box; display: box; -webkit-box-pack:center; -webkit-box-align:center; position: fixed; left: 0; top: 0;}
 .tost em{padding: 0 0.2rem; display: block; border-radius: 5px; background: rgba(0,0,0,0.8); color: #fff; line-height: 0.4rem; font-size: 0.12rem;}
+.fixed{width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: 99; background: rgba(0,0,0,0.5); display: -webkit-box; display: box; -webkit-box-pack:center; -webkit-box-align:center;}
+.fixed span{background: #fff; padding: 10px; display: block;}
+.fixed em{display: block; height: 192px; height: 192px;}
+.fixed i{padding-top: 5px; text-align: center; line-height: 0.23rem; display: block;}
 [v-cloak] {display: none;}
 
 /* nav head */
