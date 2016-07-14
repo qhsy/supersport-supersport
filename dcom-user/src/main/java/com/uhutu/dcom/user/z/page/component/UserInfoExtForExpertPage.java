@@ -13,7 +13,7 @@ import com.uhutu.zooweb.define.DefineZooWeb;
  *
  */
 @ZooPage(name = "达人选择", operates = DefineZooWeb.PAGE_DIALOG_OPERATE, deploy = {
-		DefineWebDeploy.Grid_Where + "=user_code in (select code from uc_userinfo where type='dzsd4107100310010002')" })
+		DefineWebDeploy.Grid_Where + "=user_code in (select user_code from aw_answer_expert where status='dzsd4699100110010001')" })
 public class UserInfoExtForExpertPage extends RootPageSimple<UcUserinfoExt> {
 
 }
