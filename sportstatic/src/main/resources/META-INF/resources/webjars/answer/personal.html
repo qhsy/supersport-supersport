@@ -39,18 +39,20 @@ var require = {
 			<span class="photo"><img :src="result.answerUserInfo.aboutHead" alt=""></span>
 			<h1 class="name">{{result.answerUserInfo.nickName}}</h1>
 			<h2 class="tag">{{result.answerUserInfo.title}}</h2>
-			<template v-if="result.answerUserInfo.attendFlag == '0'">
-				<a href="javascript:;" class="follow" @click="attendFlag">关注</a>
-			</template>
-			<template v-else>
-			<a href="javascript:;" class="follow un" @click="unAttendFlag">已关注</a>
+			<template v-if="!result.ownFlag">
+				<template v-if="result.answerUserInfo.attendFlag == '0'">
+					<a href="javascript:;" class="follow" @click="attendFlag">关注</a>
+				</template>
+				<template v-else>
+					<a href="javascript:;" class="follow un" @click="unAttendFlag">已关注</a>
+				</template>
 			</template>
 		</header>
 		<div class="info">
 			<p class="about">
 				{{result.answerUserInfo.ability}}
 			</p>
-			<a href="question.html?code={{result.answerUserInfo.userCode}}" class="quiz">提问</a>
+			<a href="question.html?code={{result.answerUserInfo.userCode}}" v-if="!result.ownFlag" class="quiz">提问</a>
 		</div>
 	</article>
 	<dl class="personal-dl" v-cloak>
