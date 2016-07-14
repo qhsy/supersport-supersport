@@ -67,7 +67,7 @@ public class ApiQuestionInfoList extends RootApiToken<ApiQuestionInfoListInput, 
 			
 			BeanUtils.copyProperties(awQuestionInfo, questionInfo);
 			
-			questionInfo.setUserCode(awQuestionInfo.getQuestionUserCode());
+			questionInfo.setUserCode(awQuestionInfo.getAnswerUserCode());
 			
 			UserBasicInfo userBasicInfo = userInfoSupport.getUserBasicInfo(questionInfo.getUserCode());
 			
