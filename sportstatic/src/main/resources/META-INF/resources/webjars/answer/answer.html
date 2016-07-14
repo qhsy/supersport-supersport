@@ -38,7 +38,7 @@ var require = {
 	<ul class="answer-wrap" v-cloak>
 		<template v-if=result.questions.length>
 			<li class="answer-item" v-for="item in result.questions">
-				<template v-if=item.listenFlag>
+				<template v-if=item.activityFlag>
 					<a href="details.html?id={{item.code}}">
 						<h1 class="title">{{item.content}}</h1>
 						<div class="nickname"><em>{{item.nickName}}</em>{{item.title}}</div>

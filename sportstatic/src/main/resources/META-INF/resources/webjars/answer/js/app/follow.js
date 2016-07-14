@@ -8,11 +8,11 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 	ready:function(){
 		var self = this;
 			$.ajax({
-				url:'/api/userController/attendList',
+				url:'/api/answerController/attendList',
 				type:'POST',
 				contentType:'application/json',
 				dataType:'json',
-				data:'{"pagination": ' + page + ',"userCode": "' + sessionStorage.getItem('code') + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
+				data:'{"pagination": ' + page + ',"userCode": "' + comm.code('code') + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
 				success:function(res){
 					if(res.status == 1){
 						self.result = res;

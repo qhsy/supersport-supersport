@@ -141,6 +141,7 @@ a:hover {text-decoration: none;}
 .personal .name{text-align: center; font-size: 0.16rem;}
 .personal .tag{padding: 0 0.3rem; text-align: center; font-size: 0.12rem; opacity: 0.7;}
 .personal .follow{width: 0.86rem; height: 0.36rem; margin: 0.06rem auto 0; display: block; background: #fff; border-radius: 100px; text-align: center; line-height: 0.36rem; color: #F99653;}
+.personal .follow.un{background: #aaa; color: #fff;}
 .personal .info{padding: 0 0.52rem;}
 .personal .about{padding: 0.12rem 0 0.18rem; font-size: 0.12rem; line-height: 0.16rem; color: #9B9B9B;}
 .personal .about:before{content: ""; width: 2px; height: 0.11rem; float: left; display: block; background: #F99653; transform: translate3d(-7px,2px,0); transform: -webkit-translate3d(-7px,2px,0);}
