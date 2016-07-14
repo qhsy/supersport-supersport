@@ -46,6 +46,7 @@ define(['zepto','jssdk'],function($,wx){
 			type:'POST',
 			contentType:'application/json',
 			dataType:'json',
+			async:false,
 			data:'{"code": "' + wxCode + '","zoo": {"key": "tesetkey","token": " "}}',
 			success:function(res){
 				if(res.status == 1){
