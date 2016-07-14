@@ -81,8 +81,8 @@ a:hover {text-decoration: none;}
 .audio .title{margin: 0.1rem 0; font-size: 0.16rem; line-height: 0.24rem; font-weight: 700; color: #4A4A4A;}
 .audio .status{padding-right: 0.24rem; display: -webkit-flex; display: flex; align-items: center; -webkit-align-items: center; justify-content: space-between; -webkit-justify-content: space-between; font-size: 0.12rem; color: #aaa; line-height: 0.24rem;}
 .audio .refused{padding: 0 0.09rem; border: #aaa 1px solid;}
-.sound{color: #aaa; font-size: 0.12rem; text-align: center;}
-.sound .text{margin-bottom: 0.48rem; line-height: 0.37rem;}
+.sound{padding-top: 0.48rem; color: #aaa; font-size: 0.12rem; text-align: center;}
+.sound .text{line-height: 0.37rem;}
 .sound .status{ position: relative; display: -webkit-flex; display: flex; align-items: center; -webkit-align-items: center; justify-content: center; -webkit-justify-content: center;}
 .sound .init, .sound .load, .sound .play, .sound .stop, .sound .load-text{width: 1rem; height: 1rem; margin: 0 0.3rem; border-radius: 50%; overflow: auto;}
 .sound .init{background: #F38540 url(img/sound_start.png) no-repeat center center; background-size: 0.43rem;  }
@@ -169,7 +169,7 @@ a:hover {text-decoration: none;}
 .personal-nav li .last-icon{font-size: 0.15rem;}
 
 
-/* 鎴戠瓟 */
+/* 我答 */
 .my-answers .nav{height: 0.37rem; margin-bottom: 8px; background: #fff; display: -webkit-flex; display: flex; justify-content: space-around; -webkit-justify-content: space-around; box-shadow: 0 1px 3px rgba(214,214,214,0.5); color: #4A4A4A; line-height: 0.37rem;}
 .my-answers .nav a{color: #AAAAAA;}
 .my-answers .nav a.curr{color: #F38540; border-bottom: #F38540 2px solid;}
@@ -185,7 +185,7 @@ a:hover {text-decoration: none;}
 .my-answers .info i{padding: 0 0.08rem; color: #F99653;}
 .my-answers .time{float: right;}
 
-/*=涓汉涓婚〉*/
+/*=个人主页*/
 .leon-head{overflow:hidden;position:relative;text-align:center;box-sizing:border-box;padding:.44rem 0 0 0;height:2.25rem; background: url(img/share_bg.png) no-repeat center top; background-size: cover;}
 .leon-head img{width:.86rem;height:.86rem;border:1px solid #fff;border-radius:.44rem;box-shadow:0 0 10px #000;}
 .leon-head b{display:block;margin-top:.27rem;line-height:.22rem;color:#fdfefe;font-size:.14rem;}
@@ -207,7 +207,7 @@ a:hover {text-decoration: none;}
 .leon-list li.l4 a::before{background-position:0 -.51rem;}
 .leon-list li.l5 a::before{background-position:0 -.68rem;}
 
-/*=淇℃伅缂栬緫*/
+/*=信息编辑*/
 .leon-edit h1{overflow:hidden;height:2.22rem;box-sizing:border-box;padding:.6rem 0 0 0;text-align:center;}
 .leon-edit h1 img{width:.86rem;height:.86rem;border-radius:.43rem;}
 .leon-edit h1 b{display:block;height:.6rem;line-height:.6rem;color:#505050;font-size:.16rem;}
@@ -221,7 +221,7 @@ a:hover {text-decoration: none;}
 
 .pop{width:1.84rem;height:1.2rem;overflow:hidden;line-height:1.2rem;position:fixed;left:50%;top:50%;background:#fff;text-align:center;border-radius:.1rem;box-shadow:0 0 50px #ccc;font-size:.18rem;color:#9b9b9b;margin:-.6rem 0 0 -.92rem;}
 
-/*=鎴戦棶 鎴戠瓟*/
+/*=我问 我答*/
 .leon-answer h1,.leon-hear h1{padding: 0.05rem 0 0.05rem .2rem;line-height:.25rem;height:.25rem;font-size:.14rem;color:#c0c0c0;}
 .leon-answer h1 i,.leon-hear h1 i{padding:0 .05rem;}
 .leon-answer .hd{overflow:hidden;height:.4rem;padding-top:.2rem;background:#fff;margin-bottom:.1rem;line-height:.4rem;box-shadow:0 0 5px #eee;}
@@ -240,7 +240,7 @@ a:hover {text-decoration: none;}
 .leon-answer .bd li font span{float:right;color:#aaa;}
 .leon-answer .bd li font i{padding:0 .16rem 0 .05rem;color:#f99653;}
 
-/*=鎴戝惉*/
+/*=我听*/
 .leon-hear .bd li p{font-size:.16rem;text-align:justify;color:#4e4e4e;line-height:.24rem;margin-bottom:.25rem;}
 .leon-hear .bd li p b{color:#f48e4f;}
 .leon-hear .bd li h2{height:.36rem;position:relative;overflow:hidden;}
@@ -256,8 +256,8 @@ a:hover {text-decoration: none;}
 	font-family: 'iconfont';
     src: url('font/iconfont.eot'); /* IE9*/
     src: url('font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('font/iconfont.woff') format('woff'), /* chrome銆乫irefox */
-    url('font/iconfont.ttf') format('truetype'), /* chrome銆乫irefox銆乷pera銆丼afari, Android, iOS 4.2+*/
+    url('font/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
     url('font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
                                         
