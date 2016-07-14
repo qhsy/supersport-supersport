@@ -1,10 +1,13 @@
 package com.uhutu.sportcenter.z.api.answer;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.activity.z.entity.AcActivityAnswerInfo;
+import com.uhutu.dcom.activity.z.support.AnswerActivitySupport;
 import com.uhutu.dcom.answer.z.entity.AwAnswerListen;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.config.enums.PrexEnum;
@@ -43,10 +46,11 @@ public class ApiQuestionPraise extends RootApiToken<ApiQuestionPraiseInput, ApiS
 					result.setError(TopHelper.upInfo(88880013));
 				}
 				if (result.upFlagTrue()) {// 提问人和回答人或者已支付的偷听人才能赞
+					AcActivityAnswerInfo activity = new AnswerActivitySupport().getActivityInfoByAnswerCode(questionInfo.getCode());
 					AwAnswerListen listen = JdbcHelper.queryOne(AwAnswerListen.class, "question_code",
 							questionInfo.getCode(), "user_code", upUserCode());
 					if (listen != null || upUserCode().equals(questionInfo.getQuestionUserCode())
-							|| upUserCode().equals(questionInfo.getAnswerUserCode())) {
+							|| upUserCode().equals(questionInfo.getAnswerUserCode())||(activity!=null&&BigDecimal.ZERO.compareTo(activity.getPrice())==0)) {
 						CnSupportPraise praise = new CnSupportPraise();
 						praise.setCode(
 								PrexEnum.CNE.toString() + DateFormatUtils.format(new Date(), "yyyyMMddhhmmssSSS"));
