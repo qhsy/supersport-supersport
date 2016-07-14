@@ -38,7 +38,7 @@ public class TeslaCheckAnswerActivity extends TeslaTopOrderMake {
 			}
 			teslaOrder.getOrderInfo().setSellerCode(questionInfo.get("question_user_code"));
 			AcActivityAnswerInfo activityInfo = new AnswerActivitySupport()
-					.getActivityInfoByAnswerCode(teslaOrder.getDetail().get(0).getCode());
+					.getActivityInfoByAnswerCode(teslaOrder.getDetail().get(0).getProductCode());
 			if (activityInfo != null) {
 				teslaOrder.getDetail().get(0).setProductPrice(activityInfo.getPrice());
 				OcOrderActivity activity = new OcOrderActivity();

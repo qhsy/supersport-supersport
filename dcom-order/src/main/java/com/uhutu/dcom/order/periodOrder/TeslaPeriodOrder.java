@@ -11,9 +11,6 @@ import com.uhutu.zoocom.root.RootClass;
 
 public class TeslaPeriodOrder extends RootClass implements ITeslaOrder {
 
-	// 前置校验信息
-	private final ITeslaOrder teslaCheckAnswer = new TeslaCheckAnswerActivity();
-
 	// 校验活动信息
 	private final ITeslaOrder teslaCheckAnswerActivity = new TeslaCheckAnswerActivity();
 
@@ -30,7 +27,7 @@ public class TeslaPeriodOrder extends RootClass implements ITeslaOrder {
 		// 订单创建
 		if (teslaOrder.getStatus().getExecStep() == ETeslaExec.Create) {
 
-			result = orderProcss(teslaOrder, teslaCheckAnswer, teslaCheckAnswerActivity, teslaAccount, teslaSaveOrder);
+			result = orderProcss(teslaOrder, teslaCheckAnswerActivity, teslaAccount, teslaSaveOrder);
 
 		}
 
