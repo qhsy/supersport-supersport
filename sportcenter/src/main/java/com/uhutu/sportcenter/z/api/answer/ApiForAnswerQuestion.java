@@ -93,7 +93,7 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 				}
 			}
 			if (result.upFlagTrue()) {
-				JdbcHelper.update(qtInfo, "status,lengh,url", "code");
+				JdbcHelper.update(qtInfo, "answerTime,status,lengh,url", "code");
 			}
 		} else {
 			result.inError(88880022);
