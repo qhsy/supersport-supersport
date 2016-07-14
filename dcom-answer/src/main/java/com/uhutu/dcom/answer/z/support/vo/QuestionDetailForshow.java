@@ -78,6 +78,9 @@ public class QuestionDetailForshow {
 	@ApiModelProperty(value = "是否已赞")
 	private boolean loveFlag = false;
 
+	@ApiModelProperty(value = "是否参加活动")
+	private boolean activityFlag = false;
+	
 	@ApiModelProperty(value = "是否可直接听")
 	private boolean listenFlag = false;
 
@@ -274,6 +277,14 @@ public class QuestionDetailForshow {
 
 	public void setScope(String scope) {
 		this.scope = scope;
+	}
+
+	public boolean isActivityFlag() {
+		return activityFlag;
+	}
+
+	public void setActivityFlag(boolean activityFlag) {
+		this.activityFlag = activityFlag;
 	}
 
 }

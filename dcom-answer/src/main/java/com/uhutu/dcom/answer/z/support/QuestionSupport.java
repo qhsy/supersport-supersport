@@ -83,6 +83,7 @@ public class QuestionSupport extends RootClass {
 					AcActivityAnswerInfo activityInfo = new AnswerActivitySupport()
 							.getActivityInfoByAnswerCode(info.getCode());
 					if (activityInfo != null) {
+						show.setActivityFlag(true);
 						show.setSoundContent(activityInfo.getName());
 					}
 					UcUserinfoExt ext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", info.getAnswerUserCode());
@@ -158,6 +159,7 @@ public class QuestionSupport extends RootClass {
 					AcActivityAnswerInfo activityInfo = new AnswerActivitySupport()
 							.getActivityInfoByAnswerCode(info.getCode());
 					if (activityInfo != null) {
+						show.setActivityFlag(true);
 						show.setSoundContent(activityInfo.getName());
 					}
 					UcUserinfoExt ext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", info.getAnswerUserCode());

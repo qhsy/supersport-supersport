@@ -79,6 +79,7 @@ public class ApiQuestionDetail extends RootApiForMember<ApiQuestionDetailInput, 
 		AcActivityAnswerInfo activityInfo = new AnswerActivitySupport()
 				.getActivityInfoByAnswerCode(questionInfo.getCode());
 		if (activityInfo != null) {
+			result.getDetail().setActivityFlag(true);
 			result.getDetail().setVideoShow(activityInfo.getName());
 		}
 		result.getDetail().setVideoShow(result.getDetail().isListenFlag()?ConfigDcomAnswer.upConfig().getAnswerVideoPayShow():result.getDetail().getVideoShow());
