@@ -45,7 +45,7 @@ public class ApiUpdateAnswerUser extends RootApiToken<ApiUpdateAnswerUserInput, 
 		
 		if(userinfoExt != null && StringUtils.isNotEmpty(input.getNickName())){
 			
-			String swhere = "nickName = '" + userinfoExt.getNickName() + "'";
+			String swhere = "nickName = '" + input.getNickName() + "'";
 			
 			swhere =swhere + " and userCode <>'"+upUserCode()+"'";
 			
