@@ -45,8 +45,11 @@ public class QuestionInfo extends UserBasicInfo {
 	@ApiModelProperty(value="语音长度")
 	private int lengh;
 	
-	@ApiModelProperty(value="问题提出者分成")
+	@ApiModelProperty(value="问题回答者分成")
 	private BigDecimal answerAmount;
+	
+	@ApiModelProperty(value="问题提问者分成")
+	private BigDecimal askAmount;
 	
 	@ApiModelProperty(value="语音路径")
 	private String url;
@@ -232,6 +235,14 @@ public class QuestionInfo extends UserBasicInfo {
 
 	public void setActivityFlag(boolean activityFlag) {
 		this.activityFlag = activityFlag;
+	}
+
+	public BigDecimal getAskAmount() {
+		return askAmount;
+	}
+
+	public void setAskAmount(BigDecimal askAmount) {
+		this.askAmount = askAmount;
 	}
 
 }
