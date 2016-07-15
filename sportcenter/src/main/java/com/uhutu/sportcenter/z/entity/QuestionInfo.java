@@ -238,6 +238,13 @@ public class QuestionInfo extends UserBasicInfo {
 	}
 
 	public BigDecimal getAskAmount() {
+		
+		if(askAmount == null){
+			
+			askAmount = BigDecimal.ZERO;
+			
+		}
+		
 		return askAmount;
 	}
 
