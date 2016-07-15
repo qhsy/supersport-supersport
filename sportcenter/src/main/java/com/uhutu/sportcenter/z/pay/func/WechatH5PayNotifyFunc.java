@@ -233,18 +233,6 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 				
 				if(count < 1){
 					
-					AwAnswerListen answerListen = new AwAnswerListen();
-					
-					answerListen.setQuestionCode(questionCode);
-					
-					answerListen.setUserCode(userCode);
-					
-					JdbcHelper.insert(answerListen);
-					
-					long listen = questionInfo.getListen() + 1;
-					
-					questionInfo.setListen(listen);
-					
 					questionInfo.setZu(new Date());
 					
 					/*更新问题提问人*/
@@ -262,7 +250,7 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 					
 					questionInfo.setAskAmount(questionInfo.getAskAmount().add(askPayMoney));
 					
-					JdbcHelper.update(questionInfo, "listen,zu,askAmount,answerAmount", "code");
+					JdbcHelper.update(questionInfo, "zu,askAmount,answerAmount", "code");
 					
 					
 				}
