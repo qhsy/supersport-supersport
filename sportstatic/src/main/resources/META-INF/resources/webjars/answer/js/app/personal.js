@@ -20,7 +20,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 				type:'POST',
 				contentType:'application/json',
 				dataType:'json',
-				data:'{"pagination": ' + page + ',"userCode": "' + userCode + '","zoo": {"key": "tesetkey","token": "' + comm.token + '"}}',
+				data:'{"pagination": ' + page + ',"userCode": "' + userCode + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
 				success:function(res){
 					if(res.status == 1){
 						self.result = res;
