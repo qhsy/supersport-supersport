@@ -47,7 +47,7 @@ public class ApiUpdateAnswerUser extends RootApiToken<ApiUpdateAnswerUserInput, 
 			
 			String swhere = "nickName = '" + userinfoExt.getNickName() + "'";
 			
-			swhere = " and userCode <>'"+upUserCode()+"'";
+			swhere =swhere + " and userCode <>'"+upUserCode()+"'";
 			
 			int count = JdbcHelper.count(UcUserinfoExt.class, swhere, new MDataMap());
 			
