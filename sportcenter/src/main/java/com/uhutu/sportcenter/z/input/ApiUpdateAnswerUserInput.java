@@ -23,6 +23,9 @@ public class ApiUpdateAnswerUserInput extends RootApiInput {
 	
 	@ApiModelProperty(value="支付金额")
 	private BigDecimal charge = BigDecimal.ZERO;
+	
+	@ApiModelProperty(value="昵称")
+	private String nickName;
 
 	public String getTitle() {
 		return title;
@@ -46,6 +49,14 @@ public class ApiUpdateAnswerUserInput extends RootApiInput {
 
 	public void setCharge(BigDecimal charge) {
 		this.charge = charge;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	
 	
