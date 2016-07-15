@@ -149,7 +149,11 @@ public class ApiPersonHome extends RootApiBase<ApiPersonHomeInput, ApiPersonHome
 			
 			questionInfo.setSoundContent(QuestionSupport.soundContent(awQuestionInfo.getCode()));
 			
-			questionInfo.setListenFlag(new QuestionSupport().checkUserLitenTheQuestion(listenUserCode, awQuestionInfo.getCode()));
+			if(StringUtils.isNotEmpty(listenUserCode)){
+				
+				questionInfo.setListenFlag(new QuestionSupport().checkUserLitenTheQuestion(listenUserCode, awQuestionInfo.getCode()));
+				
+			}
 			
 			AcActivityAnswerInfo activityAnswerInfo = new AnswerActivitySupport().getActivityInfoByAnswerCode(awQuestionInfo.getCode());
 			
