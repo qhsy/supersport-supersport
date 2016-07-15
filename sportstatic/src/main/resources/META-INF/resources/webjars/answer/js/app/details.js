@@ -2,6 +2,14 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 	var code = comm.paramFn('id');
 	var localId;
 	var status;
+	var share = {
+		title:'',
+		link:window.location.href,
+		desc:'',
+		imgUrl:'',
+		nickName:'',
+		money:''
+	}
 	var vm = new Vue({
 		el: '#details',
 		data: {
@@ -19,6 +27,13 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 				success:function(res){
 					if(res.status == 1){
 						self.result = res;
+						share = {
+							title:res.detail.content,
+							link:window.location.href,
+							nickName:res.detail.answerUserNickName,
+							imgUrl:res.detail.answerUserHeadUrl,
+							money:res.detail.money
+						}
 					}else{
 						comm.tost(res.error);
 					}
@@ -42,7 +57,6 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 					}, 1)
 					return ;
 				}
-
 				if(self.result.detail.listenFlag){
 					play();
 				}else{
@@ -146,56 +160,38 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 		}
 	});
 	wx.ready(function(){
-		var imgUrl = $('.photo').find('img').attr('src');
-		var link = window.location.href;
 		wx.onMenuShareTimeline({
-		    title: '<昵称>回答了“<问题描述>”',
-		    link: link, 
-		    imgUrl: imgUrl,
-		    success: function () { 
-		        
-		    },
-		    cancel: function () { 
-		        
-		    }
+		    title: share.nickName + '回答了“' + share.title + '”',
+		    link: share.link, 
+		    imgUrl: share.imgUrl,
+		    success: function () {},
+		    cancel: function () {}
 		});
 		wx.onMenuShareAppMessage({
-		    title: '<昵称>回答了“<问题描述>”', // 分享标题
-		    desc: '值<问题金额>，花1元就能偷偷听|推动所有对运动感兴趣的人成为运动达人', // 分享描述
-		    link: link, // 分享链接
-		    imgUrl: imgUrl, // 分享图标
-		    type: '', // 分享类型,music、video或link，不填默认为link
-		    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-		    success: function () { 
-		        // 用户确认分享后执行的回调函数
-		    },
-		    cancel: function () { 
-		        // 用户取消分享后执行的回调函数
-		    }
+		    title: share.nickName + '回答了“' + share.title + '”',
+		    desc: '值' + share.money + '，花1元就能偷偷听|推动所有对运动感兴趣的人成为运动达人',
+		    link: share.link,
+		    imgUrl: share.imgUrl,
+		    type: '',
+		    dataUrl: '',
+		    success: function () {},
+		    cancel: function () {}
 		});
 		wx.onMenuShareQQ({
-		    title: '<昵称>回答了“<问题描述>', // 分享标题
-		    desc: '值<问题金额>，花1元就能偷偷听|推动所有对运动感兴趣的人成为运动达人', // 分享描述
-		    link: link, // 分享链接
-		    imgUrl: imgUrl, // 分享图标
-		    success: function () { 
-		       // 用户确认分享后执行的回调函数
-		    },
-		    cancel: function () { 
-		       // 用户取消分享后执行的回调函数
-		    }
+		    title: share.nickName + '回答了“' + share.title + '”',
+		    desc: '值' + share.money + '，花1元就能偷偷听|推动所有对运动感兴趣的人成为运动达人',
+		    link: share.link,
+		    imgUrl: share.imgUrl,
+		    success: function () {},
+		    cancel: function () {}
 		});
 		wx.onMenuShareWeibo({
-		    title: title, // 分享标题
-		    desc: '<昵称>回答了“<问题描述>”。值<问题金额>，花1元就能偷偷听|推动所有对运动感兴趣的人成为运动达人', // 分享描述
-		    link: link, // 分享链接
-		    imgUrl: imgUrl, // 分享图标
-		    success: function () { 
-		       
-		    },
-		    cancel: function () { 
-		        // 用户取消分享后执行的回调函数
-		    }
+		    title: share.nickName + '回答了“' + share.title + '”',
+		    desc: '值' + share.money + '，花1元就能偷偷听|推动所有对运动感兴趣的人成为运动达人',
+		    link: share.link,
+		    imgUrl: share.imgUrl,
+		    success: function () {},
+		    cancel: function () {}
 		});
 	});
 	

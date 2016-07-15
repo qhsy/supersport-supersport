@@ -1,5 +1,11 @@
 require(['zepto','vue','common','extend'],function($,Vue,comm){
 	var page = 1;
+	var share = {
+		title:'[果冻体育]您的健康运动加油站',
+		link:window.location.href,
+		desc:'精彩内容与你分享',
+		imgUrl:'http://img-cdn.bigtiyu.com/wsc/sport/273cb/s-87-87/371dd1482017495d95a4592a6877f6cf.png',
+	}
 	var vm = new Vue({
 		el: '#answer',
 		data: {
@@ -23,6 +29,41 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 			}
 		});
 	}
+	});
+	wx.ready(function(){
+		wx.onMenuShareTimeline({
+		    title: share.title,
+		    link: share.link, 
+		    imgUrl: share.imgUrl,
+		    success: function () {},
+		    cancel: function () {}
+		});
+		wx.onMenuShareAppMessage({
+		    title: share.title,
+		    desc: share.desc,
+		    link: share.link,
+		    imgUrl: share.imgUrl,
+		    type: '',
+		    dataUrl: '',
+		    success: function () {},
+		    cancel: function () {}
+		});
+		wx.onMenuShareQQ({
+		    title: share.title,
+		    desc: share.desc,
+		    link: share.link,
+		    imgUrl: share.imgUrl,
+		    success: function () {},
+		    cancel: function () {}
+		});
+		wx.onMenuShareWeibo({
+		    title: share.title,
+		    desc: share.desc,
+		    link: share.link,
+		    imgUrl: share.imgUrl,
+		    success: function () {},
+		    cancel: function () {}
+		});
 	});
 	// vm.$on('iscroll',function(){
 	// 	var bStop = true;

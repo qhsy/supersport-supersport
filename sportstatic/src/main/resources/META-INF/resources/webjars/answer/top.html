@@ -38,7 +38,7 @@ var require = {
 	<ul class="top-wrap" v-cloak>
 		<template v-if=answers.length>
 		<li class="top-item" v-for="item in answers">
-			<a href="personal.html?code={{item.userCode}}">
+			<a href="personal.html?userCode={{item.userCode}}">
 				<span class="photo"><img :src="item.headUrl" alt=""></span>
 				<div class="nickname">
 					<h1>{{item.nickName}}</h1>

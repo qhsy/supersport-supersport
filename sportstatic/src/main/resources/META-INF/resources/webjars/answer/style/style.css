@@ -22,7 +22,9 @@ a:hover {text-decoration: none;}
 [v-cloak] {display: none;}
 
 /* browser */
+.isBrowser{margin-top: 0.7rem;}
 .isBrowser span{width: 2rem; padding: 0.05rem; background: #fff; display: block; margin: 0.1rem auto 0; }
+.isBrowser h1{padding: 0.1rem 0; font-size: 0.12rem; text-align: center;}
 
 /* nav head */
 .nav-head{padding: 0 0.1rem; background: #fff; color: #aaa; box-shadow: 0 1px 3px rgba(214,214,214,0.5); display: -webkit-flex; align-items: center; -webkit-align-items: center; justify-content: space-around; -webkit-justify-content: space-around;}

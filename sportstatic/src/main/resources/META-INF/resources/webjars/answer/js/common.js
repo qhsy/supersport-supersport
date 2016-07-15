@@ -48,49 +48,57 @@ define(['zepto','jssdk'],function($,wx){
 	 * @date: 2016.07.15
 	 * @author: wangxh
 	 */
-	if(!sessionStorage.getItem('token')){
-		var wxCode = common.paramFn('code');
-		$.ajax({
-			url:'/api/wechatController/authLogin',
-			type:'POST',
-			contentType:'application/json',
-			dataType:'json',
-			async:false,
-			data:'{"code": "' + wxCode + '","zoo": {"key": "tesetkey","token": " "}}',
-			success:function(res){
-				if(res.status == 1){
-					sessionStorage.setItem('code',res.userCode);
-					sessionStorage.setItem('token',res.userToken);
-				}else{
-					common.token(res.error);
+	var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
+	
+	if(isWeix){
+		if(!sessionStorage.getItem('token')){
+			var wxCode = common.paramFn('code');
+			$.ajax({
+				url:'/api/wechatController/authLogin',
+				type:'POST',
+				contentType:'application/json',
+				dataType:'json',
+				async:false,
+				data:'{"code": "' + wxCode + '","zoo": {"key": "tesetkey","token": " "}}',
+				success:function(res){
+					if(res.status == 1){
+						sessionStorage.setItem('code',res.userCode);
+						sessionStorage.setItem('token',res.userToken);
+					}else{
+						common.token(res.error);
+					}
 				}
-			}
-		});
+			});
+		}
 	}
+	
 
 	/**
 	 * @desc: appid
 	 * @date: 2016.07.15
 	 * @author: wangxh
 	 */
-	$.ajax({
-		url:'/api/wechatController/configInfo',
-		type:'POST',
-		contentType:'application/json',
-		dataType:'json',
-		data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + common.token() + '"}}',
-		success:function(res){
-			if(res.status == 1){
-				return wx.config({    
-					debug: false,
-					appId: res.appId,
-					timestamp: res.timestamp,
-					nonceStr: res.nonceStr,
-					signature: res.signature,
-					jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice','onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone']
-				});
+	if(isWeix){
+		$.ajax({
+			url:'/api/wechatController/configInfo',
+			type:'POST',
+			contentType:'application/json',
+			dataType:'json',
+			data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + common.token() + '"}}',
+			success:function(res){
+				if(res.status == 1){
+					return wx.config({    
+						debug: false,
+						appId: res.appId,
+						timestamp: res.timestamp,
+						nonceStr: res.nonceStr,
+						signature: res.signature,
+						jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice','onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone']
+					});
+				}
 			}
-		}
-	});
+		});
+	}
+	
 	return common;
 });
