@@ -48,7 +48,7 @@ var require = {
 		<ul class="top-wrap">
 			<template v-if=result.attendList.length>
 			<li class="top-item" v-for="item in result.attendList">
-				<a href="personal.html?code={{item.userCode}}">
+				<a href="personal.html?userCode={{item.userCode}}">
 					<span class="photo"><img :src="item.aboutHead" alt=""></span>
 					<div class="nickname">
 						<h1>{{item.nickName}}</h1>
