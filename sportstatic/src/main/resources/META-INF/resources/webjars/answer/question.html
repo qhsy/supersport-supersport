@@ -19,7 +19,8 @@ var require = {
 		zepto:'zepto.min',
 		jssdk:'jweixin-1.0.0',
 		common:'common',
-		extend:'vue.extend'
+		extend:'vue.extend',
+		qrcode:'qrcode'
 	},
 	shim:{
 		zepto:{
@@ -27,14 +28,24 @@ var require = {
 		},
 		common:{
 			exports:'common'
+		},
+		qrcode:{
+			exports:'QRCode'
 		}
 	}
 };
 </script>
 </head>
 <body>
-<section class="wrap">
-	<article class="question" v-cloak>
+<section class="wrap" v-cloak>
+	<template v-if="browser">
+		<article class="isBrowser">
+			<span id="qrcode"></span>
+			<h1>微信扫一扫</h1>
+		</article>
+	</template>
+	<template v-else>
+	<article class="question">
 		<header class="head">
 			<span class="photo"><img :src="result.headUrl" alt=""></span>
 			<h1>{{result.nickName}}</h1>
@@ -53,6 +64,7 @@ var require = {
 			<a href="javascript:;" class="submit is">提交中</a>
 		</template>
 	</article>
+	</template>
 </section>
 <footer-nav></footer-nav>
 <script type="text/javascript" src="js/require.min.js"></script>

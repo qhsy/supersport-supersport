@@ -19,7 +19,8 @@ var require = {
         zepto:'zepto.min',
         jssdk:'jweixin-1.0.0',
         common:'common',
-        extend:'vue.extend'
+        extend:'vue.extend',
+        qrcode:'qrcode'
     },
     shim:{
         zepto:{
@@ -27,29 +28,40 @@ var require = {
         },
         common:{
             exports:'common'
+        },
+        qrcode:{
+            exports:'QRCode'
         }
     }
 };
 </script>
 </head>
 <body>
-<section class="wrap">
-    <section class="leon-hear" v-cloak>
-        <template v-if="result.questionInfos.length">
-        <h1>我听<i>{{result.total}}</i>个</h1>
-        <ul class="bd">
-            <li v-for="item in result.questionInfos">
-                <a href="details.html?id={{item.code}}">
-                    <p>{{item.content}}</p>
-                    <h2><span>{{item.questionTimeStr}}</span><img :src="item.aboutHead" alt=""><b>{{item.nickName}}</b><font>{{item.title}}</font></h2>
-                </a>
-            </li>
-        </ul>
-        </template v-else>
-        <div class="no-data"></div>
-        <template>
-        </template>
-    </section>
+<section class="wrap"  v-cloak>
+    <template v-if="browser">
+        <article class="isBrowser">
+            <span id="qrcode"></span>
+            <h1>微信扫一扫</h1>
+        </article>
+    </template>
+    <template v-else>
+        <section class="leon-hear">
+            <template v-if="result.questionInfos.length">
+            <h1>我听<i>{{result.total}}</i>个</h1>
+            <ul class="bd">
+                <li v-for="item in result.questionInfos">
+                    <a href="details.html?id={{item.code}}">
+                        <p>{{item.content}}</p>
+                        <h2><span>{{item.questionTimeStr}}</span><img :src="item.aboutHead" alt=""><b>{{item.nickName}}</b><font>{{item.title}}</font></h2>
+                    </a>
+                </li>
+            </ul>
+            </template v-else>
+            <div class="no-data"></div>
+            <template>
+            </template>
+        </section>
+    </template>
 </section>
 <footer-nav></footer-nav>
 <script type="text/javascript" src="js/require.min.js"></script>

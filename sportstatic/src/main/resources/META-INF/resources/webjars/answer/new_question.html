@@ -19,7 +19,8 @@ var require = {
 		zepto:'zepto.min',
 		jssdk:'jweixin-1.0.0',
 		common:'common',
-		extend:'vue.extend'
+		extend:'vue.extend',
+		qrcode:'qrcode'
 	},
 	shim:{
 		zepto:{
@@ -27,6 +28,9 @@ var require = {
 		},
 		common:{
 			exports:'common'
+		},
+		qrcode:{
+			exports:'QRCode'
 		}
 	}
 };

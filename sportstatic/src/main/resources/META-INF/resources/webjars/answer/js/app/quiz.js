@@ -1,4 +1,4 @@
-require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
+require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,wx,QRCode){
 	var userCode = comm.paramFn('code');
 	var token = sessionStorage.getItem('token');
 	var quiz = new Vue({
@@ -8,10 +8,23 @@ require(['zepto','vue','common','jssdk','extend'],function($,Vue,comm,wx){
 			overt:true,
 			num:0,
 			result:{},
-			isSubmit:true
+			isSubmit:true,
+			browser:false
 		},
 		created:function(){
 			var self = this;
+			var weix = navigator.userAgent.indexOf('MicroMessenger') > -1;
+			if(!weix){
+				self.browser = true;
+				setTimeout(function(){
+					new QRCode('qrcode', {
+						text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + window.location.href + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+						width:192,
+						height:192
+					});
+				}, 1)
+				return ;
+			}
 			$.ajax({
 				url:'/api/answerController/askQuestion',
 				type:'POST',

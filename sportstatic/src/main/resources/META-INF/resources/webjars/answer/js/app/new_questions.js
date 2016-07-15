@@ -1,4 +1,4 @@
-require(['zepto','vue','common','extend'],function($,Vue,comm){
+require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,wx,QRCode){
 	var page = 1;
 	var vm = new Vue({
 		el: '#new-questions',

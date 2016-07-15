@@ -3,7 +3,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 	var page = 1;
 	var share = {
 		title:'[果冻体育]您的健康运动加油站',
-		link:window.location.href,
+		link:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + window.location.href + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
 		desc:'精彩内容与你分享',
 		imgUrl:'',
 	}

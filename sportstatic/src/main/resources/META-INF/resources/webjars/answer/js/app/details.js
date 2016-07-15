@@ -4,7 +4,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 	var status;
 	var share = {
 		title:'',
-		link:window.location.href,
+		link:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + window.location.href + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
 		desc:'',
 		imgUrl:'',
 		nickName:'',
@@ -135,6 +135,19 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 			},
 			assistFn:function(){
 				var self = this;
+				var weix = navigator.userAgent.indexOf('MicroMessenger') > -1;
+				if(!weix){
+					self.browser = true;
+					setTimeout(function(){
+						new QRCode('qrcode', {
+							text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + window.location.href + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+							typeNumber:4,
+							width:192,
+							height:192
+						});
+					}, 1)
+					return ;
+				}
 				if(!self.result.detail.loveFlag){
 					$.ajax({
 						url:'/api/answerController/questionPraise',
