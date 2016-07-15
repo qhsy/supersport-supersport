@@ -129,7 +129,7 @@ public class ApiPlayAudio extends RootApiBase<ApiPlayAudioInput, ApiPlayAudioRes
 		if(questionInfo != null){
 			
 			/*偷听人不是问题提问人，算偷偷听*/
-			if(!StringUtils.equals(listenUserCode, questionInfo.getQuestionUserCode())){
+			if(!StringUtils.equals(listenUserCode, questionInfo.getQuestionUserCode()) && !StringUtils.equals(listenUserCode, questionInfo.getAnswerUserCode())){
 				
 				AwAnswerListen answerListen = JdbcHelper.queryOne(AwAnswerListen.class, "userCode", listenUserCode,"questionCode",questionCode);
 				
