@@ -34,6 +34,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 		methods:{
 			attendFlag:function(){
 				var self = this;
+				var weix = navigator.userAgent.indexOf('MicroMessenger') > -1;
 				if(!weix){
 					self.browser = true;
 					setTimeout(function(){
