@@ -50,26 +50,24 @@ define(['zepto','jssdk'],function($,wx){
 	 */
 	var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
 	
-	if(isWeix){
-		if(!sessionStorage.getItem('token')){
-			var wxCode = common.paramFn('code');
-			$.ajax({
-				url:'/api/wechatController/authLogin',
-				type:'POST',
-				contentType:'application/json',
-				dataType:'json',
-				async:false,
-				data:'{"code": "' + wxCode + '","zoo": {"key": "tesetkey","token": " "}}',
-				success:function(res){
-					if(res.status == 1){
-						sessionStorage.setItem('code',res.userCode);
-						sessionStorage.setItem('token',res.userToken);
-					}else{
-						common.token(res.error);
-					}
+	if(!sessionStorage.getItem('code')){
+		var wxCode = common.paramFn('code');
+		$.ajax({
+			url:'/api/wechatController/authLogin',
+			type:'POST',
+			contentType:'application/json',
+			dataType:'json',
+			async:false,
+			data:'{"code": "' + wxCode + '","zoo": {"key": "tesetkey","token": " "}}',
+			success:function(res){
+				if(res.status == 1){
+					sessionStorage.setItem('code',res.userCode);
+					sessionStorage.setItem('token',res.userToken);
+				}else{
+					common.token(res.error);
 				}
-			});
-		}
+			}
+		});
 	}
 	
 

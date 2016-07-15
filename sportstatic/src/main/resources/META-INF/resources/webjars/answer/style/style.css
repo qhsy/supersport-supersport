@@ -244,6 +244,7 @@ a:hover {text-decoration: none;}
 .leon-answer .bd li font{color:#ababab;display:block;height:.27rem;font-size:.12rem;line-height:.27rem;}
 .leon-answer .bd li font span{float:right;color:#aaa;}
 .leon-answer .bd li font i{padding:0 .16rem 0 .05rem;color:#f99653;}
+.leon-answer a{color: #aaa;}
 
 /*=我听*/
 .leon-hear .bd li p{font-size:.16rem;text-align:justify;color:#4e4e4e;line-height:.24rem;margin-bottom:.25rem;}
