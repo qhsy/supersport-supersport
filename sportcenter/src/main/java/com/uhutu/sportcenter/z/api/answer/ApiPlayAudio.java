@@ -13,7 +13,6 @@ import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.component.z.common.WechatMediaEnum;
 import com.uhutu.dcom.component.z.entity.WechatMediaResponse;
 import com.uhutu.dcom.component.z.util.WebClientComponent;
-import com.uhutu.dcom.order.z.entity.OcOrderInfo;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
 import com.uhutu.dcom.pay.z.response.WechatAccessTokenResponse;
@@ -129,23 +128,28 @@ public class ApiPlayAudio extends RootApiBase<ApiPlayAudioInput, ApiPlayAudioRes
 		
 		if(questionInfo != null){
 			
-			AwAnswerListen answerListen = JdbcHelper.queryOne(AwAnswerListen.class, "userCode", listenUserCode,"questionCode",questionCode);
-			
-			if(answerListen == null){
+			/*偷听人不是问题提问人，算偷偷听*/
+			if(!StringUtils.equals(listenUserCode, questionInfo.getQuestionUserCode())){
 				
-				long listen = questionInfo.getListen() + 1;
+				AwAnswerListen answerListen = JdbcHelper.queryOne(AwAnswerListen.class, "userCode", listenUserCode,"questionCode",questionCode);
 				
-				questionInfo.setListen(listen);
-				
-				JdbcHelper.update(questionInfo, "listen", "code");
-				
-				answerListen = new AwAnswerListen();
-				
-				answerListen.setQuestionCode(questionCode);
-				
-				answerListen.setUserCode(listenUserCode);
-				
-				JdbcHelper.insert(answerListen);
+				if(answerListen == null){
+					
+					long listen = questionInfo.getListen() + 1;
+					
+					questionInfo.setListen(listen);
+					
+					JdbcHelper.update(questionInfo, "listen", "code");
+					
+					answerListen = new AwAnswerListen();
+					
+					answerListen.setQuestionCode(questionCode);
+					
+					answerListen.setUserCode(listenUserCode);
+					
+					JdbcHelper.insert(answerListen);
+					
+				}
 				
 			}
 			
