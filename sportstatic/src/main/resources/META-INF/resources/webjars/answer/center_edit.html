@@ -36,6 +36,8 @@ var require = {
 <section class="leon-edit" v-cloak>
 	<h1><img :src="result.answerUserInfo.aboutHead" alt=""><b>{{result.answerUserInfo.nickName}}</b></h1>
 	<article class="cont">
+        <h2>您的昵称（8字以内）</h2>
+        <textarea v-model="result.answerUserInfo.nickName" v-on:blur="lengthFn(result.answerUserInfo.nickName,8)"></textarea>
     	<h2>您的头衔（18字以内）</h2>
     	<textarea v-model="result.answerUserInfo.title" v-on:blur="lengthFn(result.answerUserInfo.title,18)"></textarea>
     	<h2>简介（100字以内）</h2>

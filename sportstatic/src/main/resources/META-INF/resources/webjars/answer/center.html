@@ -2,7 +2,7 @@
 <html lang="en" id="center">
 <head>
 <meta charset="UTF-8">
-<title>个人主页</title>
+<title>个人中心</title>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta name="format-detection" content="telephone=no">
 <meta name="format-detection" content="email=no" >
@@ -19,7 +19,8 @@ var require = {
         zepto:'zepto.min',
         jssdk:'jweixin-1.0.0',
         common:'common',
-        extend:'vue.extend'
+        extend:'vue.extend',
+        qrcode:'qrcode'
     },
     shim:{
         zepto:{
@@ -27,15 +28,24 @@ var require = {
         },
         common:{
             exports:'common'
+        },
+        qrcode:{
+            exports:'QRCode'
         }
     }
 };
 </script>
 </head>
 <body>
-<section class="wrap">
-    <article class="personal" v-cloak>
-        <header class="head" v-cloak>
+<section class="wrap" v-cloak>
+    <template v-if="browser">
+        <article class="isBrowser">
+            <span id="qrcode"></span>
+        </article>
+    </template>
+    <template v-else>
+    <article class="personal">
+        <header class="head">
             <span class="photo"><img :src="result.answerUserInfo.aboutHead" alt=""></span>
             <h1 class="name">{{result.answerUserInfo.nickName}}</h1>
             <h2 class="tag">{{result.answerUserInfo.title}}</h2>
@@ -62,6 +72,7 @@ var require = {
     <!-- <ul class="personal-nav">
         <li><a href=""><i class="iconfont last-icon">&#xe606;</i>结算说明</a></li>
     </ul> -->
+    </template>
 </section>
 <footer-nav></footer-nav>
 <script type="text/javascript" src="js/require.min.js"></script>

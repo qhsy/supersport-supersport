@@ -1,11 +1,24 @@
-require(['zepto','vue','common','extend'],function($,Vue,comm){
+require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,wx,QRCode){
 	var center = new Vue({
 		el:'#center',
 		data:{
-			result:{}
+			result:{},
+			browser:false
 		},
 		created:function(){
 			var self = this;
+			var weix = navigator.userAgent.indexOf('MicroMessenger') > -1;
+			if(!weix){
+				self.browser = true;
+				setTimeout(function(){
+					new QRCode('qrcode', {
+						text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + window.location.href + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+						width:192,
+						height:192
+					});
+				}, 1)
+				return ;
+			}
 			$.ajax({
 				url:'/api/answerController/answerUserInfo',
 				type:'POST',
@@ -24,6 +37,10 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 		methods:{
 			submit:function(){
 				var self = this;
+				if(self.result.answerUserInfo.nickName.length == 0){
+					comm.tost('请设置您的昵称！')
+					return ;
+				}
 				if(self.result.answerUserInfo.title.length == 0){
 					comm.tost('请设置您的头衔！')
 					return ;
@@ -45,7 +62,7 @@ require(['zepto','vue','common','extend'],function($,Vue,comm){
 					type:'POST',
 					contentType:'application/json',
 					dataType:'json',
-					data:'{"ability": "' + self.result.answerUserInfo.ability + '","charge": ' + self.result.answerUserInfo.charge + ',"title": "' + self.result.answerUserInfo.title + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
+					data:'{"ability": "' + self.result.answerUserInfo.ability + '","charge": ' + self.result.answerUserInfo.charge + ',"nickName": "' + self.result.answerUserInfo.nickName + '","title": "' + self.result.answerUserInfo.title + '","zoo": {"key": "tesetkey","token": "' + comm.token() + '"}}',
 					success:function(res){
 						if(res.status == 1){
 							window.location.href = 'center.html'

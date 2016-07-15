@@ -24,25 +24,6 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 					}
 				}
 			});
-			$.ajax({
-				url:'/api/wechatController/configInfo',
-				type:'POST',
-				contentType:'application/json',
-				dataType:'json',
-				data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + comm.token() + '"}}',
-				success:function(res){
-					if(res.status == 1){
-						return wx.config({    
-							debug: false,
-							appId: res.appId,
-							timestamp: res.timestamp,
-							nonceStr: res.nonceStr,
-							signature: res.signature,
-							jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice']
-						});
-					}
-				}
-			});
 		},
 		methods:{
 			audioPlay:function(){
@@ -157,8 +138,65 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 						}
 					});
 				}
-				
-			}	
+			},
+			closeQrcode:function(){
+				var self = this;
+				self.browser = false;
+			}
 		}
 	});
+	wx.ready(function(){
+		var imgUrl = $('.photo').find('img').attr('src');
+		var link = window.location.href;
+		wx.onMenuShareTimeline({
+		    title: '<昵称>回答了“<问题描述>”',
+		    link: link, 
+		    imgUrl: imgUrl,
+		    success: function () { 
+		        
+		    },
+		    cancel: function () { 
+		        
+		    }
+		});
+		wx.onMenuShareAppMessage({
+		    title: '<昵称>回答了“<问题描述>”', // 分享标题
+		    desc: '值<问题金额>，花1元就能偷偷听|推动所有对运动感兴趣的人成为运动达人', // 分享描述
+		    link: link, // 分享链接
+		    imgUrl: imgUrl, // 分享图标
+		    type: '', // 分享类型,music、video或link，不填默认为link
+		    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		    success: function () { 
+		        // 用户确认分享后执行的回调函数
+		    },
+		    cancel: function () { 
+		        // 用户取消分享后执行的回调函数
+		    }
+		});
+		wx.onMenuShareQQ({
+		    title: '<昵称>回答了“<问题描述>', // 分享标题
+		    desc: '值<问题金额>，花1元就能偷偷听|推动所有对运动感兴趣的人成为运动达人', // 分享描述
+		    link: link, // 分享链接
+		    imgUrl: imgUrl, // 分享图标
+		    success: function () { 
+		       // 用户确认分享后执行的回调函数
+		    },
+		    cancel: function () { 
+		       // 用户取消分享后执行的回调函数
+		    }
+		});
+		wx.onMenuShareWeibo({
+		    title: title, // 分享标题
+		    desc: '<昵称>回答了“<问题描述>”。值<问题金额>，花1元就能偷偷听|推动所有对运动感兴趣的人成为运动达人', // 分享描述
+		    link: link, // 分享链接
+		    imgUrl: imgUrl, // 分享图标
+		    success: function () { 
+		       
+		    },
+		    cancel: function () { 
+		        // 用户取消分享后执行的回调函数
+		    }
+		});
+	});
+	
 })

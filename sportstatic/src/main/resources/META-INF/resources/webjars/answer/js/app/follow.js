@@ -1,12 +1,25 @@
-require(['zepto','vue','common','extend'],function($,Vue,comm){
+require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,wx,QRCode){
 	var page = 1;
 	var follow = new Vue({
 		el: '#follow',
 		data: {
-			result: {}
+			result: {},
+			browser:false
 	},
-	ready:function(){
+	created:function(){
 		var self = this;
+		var weix = navigator.userAgent.indexOf('MicroMessenger') > -1;
+			if(!weix){
+				self.browser = true;
+				setTimeout(function(){
+					new QRCode('qrcode', {
+						text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + window.location.href + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+						width:192,
+						height:192
+					});
+				}, 1)
+				return ;
+			}
 			$.ajax({
 				url:'/api/answerController/attendList',
 				type:'POST',

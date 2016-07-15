@@ -101,7 +101,7 @@ var require = {
 		</dl>
 	</template>
 </section>
-<div class="fixed" v-if="browser" v-cloak>
+<div class="fixed" v-if="browser" v-cloak @click="closeQrcode">
 	<span>
 		<em id="qrcode"></em>
 		<i>微信扫一扫</i>

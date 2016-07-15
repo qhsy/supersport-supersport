@@ -1,8 +1,6 @@
 define(['zepto','jssdk'],function($,wx){
 	var common = {};
 	//sessionStorage.setItem('token','f8ede4925ec74374a032d453afd7f6d5d101126d930e4f52b24bc20f1cc9f0aabb9d5953');
-
-	wx.hideOptionMenu();
 	common.paramFn = function (arg){
 		var url = window.location.search;
 		if(typeof url != 'string' || url == '') return;
@@ -38,7 +36,18 @@ define(['zepto','jssdk'],function($,wx){
 			tost.remove();
 		}, 1500)
 	}
-
+	common.getItem = function(attr){
+		if(sessionStorage.getItem(attr)){
+			return sessionStorage.getItem(attr);
+		}else{
+			return '';
+		}
+	}
+	/**
+	 * @desc: token
+	 * @date: 2016.07.15
+	 * @author: wangxh
+	 */
 	if(!sessionStorage.getItem('token')){
 		var wxCode = common.paramFn('code');
 		$.ajax({
@@ -58,5 +67,30 @@ define(['zepto','jssdk'],function($,wx){
 			}
 		});
 	}
+
+	/**
+	 * @desc: appid
+	 * @date: 2016.07.15
+	 * @author: wangxh
+	 */
+	$.ajax({
+		url:'/api/wechatController/configInfo',
+		type:'POST',
+		contentType:'application/json',
+		dataType:'json',
+		data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + common.token() + '"}}',
+		success:function(res){
+			if(res.status == 1){
+				return wx.config({    
+					debug: false,
+					appId: res.appId,
+					timestamp: res.timestamp,
+					nonceStr: res.nonceStr,
+					signature: res.signature,
+					jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice','onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone']
+				});
+			}
+		}
+	});
 	return common;
 });

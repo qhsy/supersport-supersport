@@ -19,7 +19,8 @@ var require = {
 		zepto:'zepto.min',
 		jssdk:'jweixin-1.0.0',
 		common:'common',
-		extend:'vue.extend'
+		extend:'vue.extend',
+		qrcode:'qrcode'
 	},
 	shim:{
 		zepto:{
@@ -27,32 +28,42 @@ var require = {
 		},
 		common:{
 			exports:'common'
+		},
+		qrcode:{
+			exports:'QRCode'
 		}
 	}
 };
 </script>
 </head>
 <body>
-<section class="wrap">
-	<ul class="top-wrap" v-cloak>
-		<template v-if=result.attendList.length>
-		<li class="top-item" v-for="item in result.attendList">
-			<a href="personal.html?code={{item.userCode}}">
-				<span class="photo"><img :src="item.aboutHead" alt=""></span>
-				<div class="nickname">
-					<h1>{{item.nickName}}</h1>
-					<h2>{{item.title}}</h2>
-					<p>{{item.total}}个回答</p>
-				</div>
-			</a>
-		</li>
-		</template>
-		<template v-else>
-		<li class="no-data"></li>
-		</template>
-	</ul>
-	<footer-nav></footer-nav>
+<section class="wrap" v-cloak>
+	<template v-if="browser">
+		<article class="isBrowser">
+			<span id="qrcode"></span>
+		</article>
+	</template>
+	<template v-else>
+		<ul class="top-wrap">
+			<template v-if=result.attendList.length>
+			<li class="top-item" v-for="item in result.attendList">
+				<a href="personal.html?code={{item.userCode}}">
+					<span class="photo"><img :src="item.aboutHead" alt=""></span>
+					<div class="nickname">
+						<h1>{{item.nickName}}</h1>
+						<h2>{{item.title}}</h2>
+						<p>{{item.total}}个回答</p>
+					</div>
+				</a>
+			</li>
+			</template>
+			<template v-else>
+			<li class="no-data"></li>
+			</template>
+		</ul>
+	</template>
 </section>
+<footer-nav></footer-nav>
 <script type="text/javascript" src="js/require.min.js"></script>
 <script type="text/javascript" src="js/app/follow.js"></script>
 </body>
