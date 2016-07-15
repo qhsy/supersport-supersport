@@ -1,5 +1,6 @@
 package com.uhutu.sportcenter.z.api.answer;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -42,7 +43,7 @@ public class ApiUpdateAnswerUser extends RootApiToken<ApiUpdateAnswerUserInput, 
 		
 		UcUserinfoExt userinfoExt = JdbcHelper.queryOne(UcUserinfoExt.class, "userCode",upUserCode());
 		
-		if(userinfoExt != null){
+		if(userinfoExt != null && StringUtils.isNotEmpty(input.getNickName())){
 			
 			String swhere = "nickName = '" + userinfoExt.getNickName() + "'";
 			
