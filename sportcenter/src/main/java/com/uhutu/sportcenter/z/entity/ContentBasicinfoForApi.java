@@ -65,6 +65,9 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(name = "展示类型", notes = " dzsd4107100110030001:展示图文 ,dzsd4107100110030002:视频,dzsd4107100110030003:图集", example = "dzsd4107100110030002")
 	private String contentType;
 	
+	@ApiModelProperty(value="点赞数量")
+	private int praiseNum;
+	
 	@ApiModelProperty(value="用户基本信息")
 	private UserBasicInfo userBasicInfo = new UserBasicInfo();
 
@@ -216,6 +219,14 @@ public class ContentBasicinfoForApi {
 
 	public void setUserBasicInfo(UserBasicInfo userBasicInfo) {
 		this.userBasicInfo = userBasicInfo;
+	}
+
+	public int getPraiseNum() {
+		return praiseNum;
+	}
+
+	public void setPraiseNum(int praiseNum) {
+		this.praiseNum = praiseNum;
 	}
 
 }

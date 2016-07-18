@@ -15,6 +15,9 @@ public class ApiButtockLapListInput extends RootApiInput {
 	
 	@ApiModelProperty(value="当前页码")
 	private int pagination;
+	
+	@ApiModelProperty(value="图片压缩的宽度")
+	private int width;
 
 	public int getPagination() {
 		return pagination;
@@ -22,6 +25,14 @@ public class ApiButtockLapListInput extends RootApiInput {
 
 	public void setPagination(int pagination) {
 		this.pagination = pagination;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
 	}
 
 }
