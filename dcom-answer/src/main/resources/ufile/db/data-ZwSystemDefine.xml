@@ -18,6 +18,7 @@
 		<item code="dzsd4888100110030003" defineName="才华榜" parentCode="dzsd488810011003" />
 		<item code="dzsd4888100110030004" defineName="推荐达人" parentCode="dzsd488810011003" />
 		<item code="dzsd4888100110030005" defineName="值得一听" parentCode="dzsd488810011003" />
+		<item code="dzsd4888100110030006" defineName="实力派" parentCode="dzsd488810011003" />
 		<item code="dzsd488810011004" defineName="退款类型" parentCode="dzsd48881001" />
 		<item code="dzsd4888100110040001" defineName="到期未答" parentCode="dzsd488810011004" />
 		<item code="dzsd4888100110040002" defineName="拒绝回答" parentCode="dzsd488810011004" />

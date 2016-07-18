@@ -8,6 +8,9 @@
 		<item code="dzcw488810010002" componentClass="com.uhutu.zooweb.component.DialogComponent"
 			clientExtend="page=/pg/com_uhutu_dcom_answer_z_page_component_AwQuestionInfoPage&amp;max=1"
 			serverDefine="table=AwQuestionInfo&amp;text=content&amp;value=code" />
+		<item code="dzcw488810010003" componentClass="com.uhutu.zooweb.component.DialogComponent"
+			clientExtend="page=/pg/com_uhutu_dcom_answer_z_page_component_ContentBasicInfoPage&amp;max=1"
+			serverDefine="table=CnContentBasicinfo&amp;text=title&amp;value=code" />
 	</data>
 
 </db>
