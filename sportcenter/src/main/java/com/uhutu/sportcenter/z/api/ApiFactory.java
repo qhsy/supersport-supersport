@@ -25,6 +25,7 @@ import com.uhutu.sportcenter.z.api.answer.ApiRichAnswers;
 import com.uhutu.sportcenter.z.api.answer.ApiSaveWechatVoice;
 import com.uhutu.sportcenter.z.api.answer.ApiUpdateAnswerUser;
 import com.uhutu.sportcenter.z.api.buttock.ApiButtockLapList;
+import com.uhutu.sportcenter.z.api.buttock.ApiButtockNotes;
 import com.uhutu.sportcenter.z.api.buttock.ApiButtockPowerList;
 import com.uhutu.sportcenter.z.api.category.ApiForSports;
 import com.uhutu.sportcenter.z.api.content.ApiComplainInfo;
@@ -274,37 +275,44 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiAskQuestion apiAskQuestion;
-	
+
 	@Autowired
 	private ApiOpenAskQuestion apiOpenAskQuestion;
-	
+
 	@Autowired
 	private ApiPersonHome apiPersonHome;
-	
+
 	@Autowired
 	private ApiAnswerQuestionDetail answerQuestionDetail;
-	
+
 	@Autowired
 	private ApiQuestionPraise apiQuestionPraise;
-	
+
 	@Autowired
 	private ApiPlayAudio apiPlayAudio;
-	
+
 	@Autowired
 	private ApiWechatH5Pay apiWechatH5Pay;
-	
+
 	@Autowired
 	private ApiAskWechatMsg apiAskWechatMsg;
-	
+
 	@Autowired
 	private ApiAnswerAttendList apiAnswerAttendList;
-	
+
 	@Autowired
 	private ApiButtockPowerList apiButtockPowerList;
-	
+
 	@Autowired
 	private ApiButtockLapList apiButtockLapList;
+
+	@Autowired
+	private ApiButtockNotes apiButtockNotes;
 	
+	public ApiButtockNotes getApiButtockNotes() {
+		return apiButtockNotes;
+	}
+
 	public ApiQuestionPraise getApiQuestionPraise() {
 		return apiQuestionPraise;
 	}
