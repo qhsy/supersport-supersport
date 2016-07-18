@@ -8,6 +8,9 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebElement;
+import com.uhutu.zoocom.define.DefineWebInc;
+import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -23,37 +26,40 @@ public class AwAnswerRefundJob extends BaseEntity {
 	@ZooData(value = "退款编号")
 	@Column(length = 50)
 	private String code;
-	
-	@ZooData(value = "退款类型")
+
+	@ZooData(value = "退款类型", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd488810011004" })
 	@Column(length = 50)
 	private String type;
 
-	@ZooData(value = "订单编号")
+	@ZooData(value = "订单编号", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 50)
 	private String orderCode;
 
-	@ZooData(value = "收款人用户编号")
+	@ZooData(value = "收款人", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw451010010001" })
 	@Column(length = 50)
 	private String userCode;
-	
-	@ZooData(value = "收款人微信授权登录openid")
+
+	@ZooData(value = "收款人微信授权登录openid", sort = { DefineWebPage.Page_Query + "=0" })
 	@Column(length = 50)
 	private String wechatOpenId;
 
-	@ZooData(value = "退款总金额 (RMB)")
+	@ZooData(value = "退款总金额 (RMB)", sort = { DefineWebPage.Page_Query + "=0" })
 	private BigDecimal amount;
 
-	@ZooData(value = "未退款金额 (RMB)")
+	@ZooData(value = "未退款金额 (RMB)", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private BigDecimal unAmount;
 
-	@ZooData(value = "已退金额")
+	@ZooData(value = "已退金额", sort = { DefineWebPage.Page_Query + "=0" })
 	private BigDecimal alAmount;
 
-	@ZooData(value = "状态", demo = "0:已完成,1:未完成")
+	@ZooData(value = "是否退款完成", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=10" }, demo = "0:已完成,1:未完成")
 	@Column(length = 50)
 	private String status;
 
-	@ZooData(value = "备注")
+	@ZooData(value = "备注", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 255)
 	private String remark;
 

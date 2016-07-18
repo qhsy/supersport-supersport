@@ -11,6 +11,8 @@
 		<item code="dmtg4888100110021003" nodeName="才华榜" parentCode="dmtg488810011002" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwQuestionRichPage" pageIcon="glyphicon-circle-arrow-right" />
 		<item code="dmtg4888100110021004" nodeName="推荐达人" parentCode="dmtg488810011002" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwDoyensPage" pageIcon="glyphicon-circle-arrow-up" />
 		<item code="dmtg4888100110021005" nodeName="值得一听" parentCode="dmtg488810011002" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwQuestionGoodPage" pageIcon="glyphicon-cog" />
+		<item code="dmtg488810011003" nodeName="结算管理" parentCode="dmtg48881001" />
+		<item code="dmtg4888100110031001" nodeName="结算信息" parentCode="dmtg488810011003" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwAnswerRefundJobPage" pageIcon="glyphicon-usd" />
 	</data>
 
 </db>
