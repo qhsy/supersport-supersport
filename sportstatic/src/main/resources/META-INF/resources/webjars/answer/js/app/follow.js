@@ -1,11 +1,5 @@
 require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,wx,QRCode){
 	var page = 1;
-	var share = {
-		title:'[果冻体育]您的健康运动加油站',
-		link:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + window.location.href + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
-		desc:'精彩内容与你分享',
-		imgUrl:'http://img-cdn.bigtiyu.com/wsc/sport/273cb/s-87-87/371dd1482017495d95a4592a6877f6cf.png',
-	}
 	var follow = new Vue({
 		el: '#follow',
 		data: {
@@ -19,7 +13,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 				self.browser = true;
 				setTimeout(function(){
 					new QRCode('qrcode', {
-						text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + window.location.href + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+						text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + comm.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
 						width:192,
 						height:192
 					});
@@ -41,40 +35,5 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 				}
 			});
 		}
-	});
-	wx.ready(function(){
-		wx.onMenuShareTimeline({
-		    title: share.title,
-		    link: share.link, 
-		    imgUrl: share.imgUrl,
-		    success: function () {},
-		    cancel: function () {}
-		});
-		wx.onMenuShareAppMessage({
-		    title: share.title,
-		    desc: share.desc,
-		    link: share.link,
-		    imgUrl: share.imgUrl,
-		    type: '',
-		    dataUrl: '',
-		    success: function () {},
-		    cancel: function () {}
-		});
-		wx.onMenuShareQQ({
-		    title: share.title,
-		    desc: share.desc,
-		    link: share.link,
-		    imgUrl: share.imgUrl,
-		    success: function () {},
-		    cancel: function () {}
-		});
-		wx.onMenuShareWeibo({
-		    title: share.title,
-		    desc: share.desc,
-		    link: share.link,
-		    imgUrl: share.imgUrl,
-		    success: function () {},
-		    cancel: function () {}
-		});
 	});
 })

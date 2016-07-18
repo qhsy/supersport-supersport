@@ -43,26 +43,26 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 					}
 				}
 			});
-			$.ajax({
-				url:'/api/wechatController/configInfo',
-				type:'POST',
-				contentType:'application/json',
-				dataType:'json',
-				async:false,
-				data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + comm.token() + '"}}',
-				success:function(res){
-					if(res.status == 1){
-						wx.config({    
-							debug: false,
-							appId: res.appId,
-							timestamp: res.timestamp,
-							nonceStr: res.nonceStr,
-							signature: res.signature,
-							jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice']
-						});
-					}
-				}
-			});
+			// $.ajax({
+			// 	url:'/api/wechatController/configInfo',
+			// 	type:'POST',
+			// 	contentType:'application/json',
+			// 	dataType:'json',
+			// 	async:false,
+			// 	data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + comm.token() + '"}}',
+			// 	success:function(res){
+			// 		if(res.status == 1){
+			// 			wx.config({    
+			// 				debug: false,
+			// 				appId: res.appId,
+			// 				timestamp: res.timestamp,
+			// 				nonceStr: res.nonceStr,
+			// 				signature: res.signature,
+			// 				jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice']
+			// 			});
+			// 		}
+			// 	}
+			// });
 		},
 		methods:{
 			countdown:function(){

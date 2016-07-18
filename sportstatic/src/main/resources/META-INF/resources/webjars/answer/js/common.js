@@ -29,6 +29,13 @@ define(['zepto','jssdk'],function($,wx){
 			return '';
 		}
 	}
+	common.getUrl = function(){
+		var href = window.location.href;
+		var newurl = '';
+		var length = href.indexOf('code');
+		length >= 0?newUrl = href.substr(0,length-1):newUrl = href;
+		return newUrl;
+	}
 	common.tost = function(mes){
 		var element = $('<div class="tost"><em>' + mes + '</em></div>');
 		var tost = element.appendTo('body');
@@ -44,13 +51,23 @@ define(['zepto','jssdk'],function($,wx){
 		}
 	}
 	/**
+	 * @desc: share
+	 * @date: 2016.07.18
+	 * @author: wangxh
+	 */
+	common.share = {
+		title:'[果冻体育]您的健康运动加油站',
+		link:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + common.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+		desc:'精彩内容与你分享',
+		imgUrl:'http://img-cdn.bigtiyu.com/wsc/sport/273cb/s-87-87/371dd1482017495d95a4592a6877f6cf.png',
+	}
+	/**
 	 * @desc: token
 	 * @date: 2016.07.15
 	 * @author: wangxh
 	 */
 	var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
-	
-	if(!sessionStorage.getItem('code')){
+	if(!isWeix && !common.getItem('code')){
 		var wxCode = common.paramFn('code');
 		$.ajax({
 			url:'/api/wechatController/authLogin',
@@ -70,7 +87,6 @@ define(['zepto','jssdk'],function($,wx){
 		});
 	}
 	
-
 	/**
 	 * @desc: appid
 	 * @date: 2016.07.15
@@ -95,6 +111,42 @@ define(['zepto','jssdk'],function($,wx){
 					});
 				}
 			}
+		});
+
+		wx.ready(function(){
+			wx.onMenuShareTimeline({
+			    title: common.share.title,
+			    link: common.share.link, 
+			    imgUrl: common.share.imgUrl,
+			    success: function () {},
+			    cancel: function () {}
+			});
+			wx.onMenuShareAppMessage({
+			    title: common.share.title,
+			    desc: common.share.desc,
+			    link: common.share.link,
+			    imgUrl: common.share.imgUrl,
+			    type: '',
+			    dataUrl: '',
+			    success: function () {},
+			    cancel: function () {}
+			});
+			wx.onMenuShareQQ({
+			    title: common.share.title,
+			    desc: common.share.desc,
+			    link: common.share.link,
+			    imgUrl: common.share.imgUrl,
+			    success: function () {},
+			    cancel: function () {}
+			});
+			wx.onMenuShareWeibo({
+			    title: common.share.title,
+			    desc: common.share.desc,
+			    link: common.share.link,
+			    imgUrl: common.share.imgUrl,
+			    success: function () {},
+			    cancel: function () {}
+			});
 		});
 	}
 	

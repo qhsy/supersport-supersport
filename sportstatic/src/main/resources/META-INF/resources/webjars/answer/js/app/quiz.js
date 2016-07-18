@@ -18,7 +18,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 				self.browser = true;
 				setTimeout(function(){
 					new QRCode('qrcode', {
-						text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + window.location.href + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+						text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + comm.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
 						width:192,
 						height:192
 					});
@@ -39,26 +39,26 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 					}
 				}
 			});
-			$.ajax({
-				url:'/api/wechatController/configInfo',
-				type:'POST',
-				contentType:'application/json',
-				dataType:'json',
-				async:false,
-				data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + comm.token() + '"}}',
-				success:function(res){
-					if(res.status == 1){
-						wx.config({    
-							debug: false,
-							appId: res.appId,
-							timestamp: res.timestamp,
-							nonceStr: res.nonceStr,
-							signature: res.signature,
-							jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice','chooseWXPay']
-						});
-					}
-				}
-			});
+			// $.ajax({
+			// 	url:'/api/wechatController/configInfo',
+			// 	type:'POST',
+			// 	contentType:'application/json',
+			// 	dataType:'json',
+			// 	async:false,
+			// 	data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + comm.token() + '"}}',
+			// 	success:function(res){
+			// 		if(res.status == 1){
+			// 			wx.config({    
+			// 				debug: false,
+			// 				appId: res.appId,
+			// 				timestamp: res.timestamp,
+			// 				nonceStr: res.nonceStr,
+			// 				signature: res.signature,
+			// 				jsApiList: ['checkJsApi','startRecord','stopRecord','onVoiceRecordEnd','playVoice','pauseVoice','stopVoice','onVoicePlayEnd','uploadVoice','downloadVoice','chooseWXPay']
+			// 			});
+			// 		}
+			// 	}
+			// });
 		},
 		methods:{
 			overtFn:function(){
