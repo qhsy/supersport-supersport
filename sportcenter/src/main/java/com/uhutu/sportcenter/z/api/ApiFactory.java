@@ -24,6 +24,8 @@ import com.uhutu.sportcenter.z.api.answer.ApiQuestionPraise;
 import com.uhutu.sportcenter.z.api.answer.ApiRichAnswers;
 import com.uhutu.sportcenter.z.api.answer.ApiSaveWechatVoice;
 import com.uhutu.sportcenter.z.api.answer.ApiUpdateAnswerUser;
+import com.uhutu.sportcenter.z.api.buttock.ApiButtockLapList;
+import com.uhutu.sportcenter.z.api.buttock.ApiButtockPowerList;
 import com.uhutu.sportcenter.z.api.category.ApiForSports;
 import com.uhutu.sportcenter.z.api.content.ApiComplainInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentDetailInfo;
@@ -296,6 +298,12 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiAnswerAttendList apiAnswerAttendList;
+	
+	@Autowired
+	private ApiButtockPowerList apiButtockPowerList;
+	
+	@Autowired
+	private ApiButtockLapList apiButtockLapList;
 	
 	public ApiQuestionPraise getApiQuestionPraise() {
 		return apiQuestionPraise;
@@ -591,6 +599,14 @@ public class ApiFactory {
 
 	public ApiAnswerAttendList getApiAnswerAttendList() {
 		return apiAnswerAttendList;
+	}
+
+	public ApiButtockPowerList getApiButtockPowerList() {
+		return apiButtockPowerList;
+	}
+
+	public ApiButtockLapList getApiButtockLapList() {
+		return apiButtockLapList;
 	}
 
 }
