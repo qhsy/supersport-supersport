@@ -23,32 +23,34 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "code" }))
 public class AwAnswerRefundJob extends BaseEntity {
 
-	@ZooData(value = "退款编号")
+	@ZooData(value = "退款编号", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
+			DefineWebPage.Page_Edit + "=0" })
 	@Column(length = 50)
 	private String code;
 
 	@ZooData(value = "退款类型", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd488810011004" })
+			DefineWebInc.System_Define + "=dzsd488810011004" }, sort = { DefineWebPage.Page_Edit + "=0" })
 	@Column(length = 50)
 	private String type;
 
-	@ZooData(value = "订单编号", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(value = "订单编号", sort = { DefineWebPage.Page_Edit + "=0" })
 	@Column(length = 50)
 	private String orderCode;
 
 	@ZooData(value = "收款人", element = DefineWebElement.Model, inc = {
-			DefineWebInc.Web_Component + "=dzcw451010010001" })
+			DefineWebInc.Web_Component + "=dzcw451010010001" }, sort = { DefineWebPage.Page_Edit + "=0" })
 	@Column(length = 50)
 	private String userCode;
 
-	@ZooData(value = "收款人微信授权登录openid", sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(value = "收款人微信授权登录标识", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0" })
 	@Column(length = 50)
 	private String wechatOpenId;
 
-	@ZooData(value = "退款总金额 (RMB)", sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(value = "退款总金额 (RMB)", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0" })
 	private BigDecimal amount;
 
-	@ZooData(value = "未退款金额 (RMB)", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(value = "未退款金额 (RMB)", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
+			DefineWebPage.Page_Edit + "=0" })
 	private BigDecimal unAmount;
 
 	@ZooData(value = "已退金额", sort = { DefineWebPage.Page_Query + "=0" })
