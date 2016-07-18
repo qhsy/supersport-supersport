@@ -67,7 +67,7 @@ define(['zepto','jssdk'],function($,wx){
 	 * @author: wangxh
 	 */
 	var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
-	if(!isWeix && !common.getItem('code')){
+	if(isWeix && !common.getItem('code')){
 		var wxCode = common.paramFn('code');
 		$.ajax({
 			url:'/api/wechatController/authLogin',
