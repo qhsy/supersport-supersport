@@ -38,7 +38,7 @@ public class ApiButtockInfo extends RootApiBase<ApiButtockInfoInput, ApiButtockI
 		
 		result.setNotes(apiButtockNotes.process(new ApiButtockNotesInput()).getNotes());
 		
-		result.setApplyUrl("http://www.baidu.com");
+		result.setApplyUrl("");
 		
 		try {
 			
