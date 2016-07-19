@@ -17,7 +17,7 @@ public class ApiButtockNotes extends RootApiBase<ApiButtockNotesInput, ApiButtoc
 
 	@Override
 	protected ApiButtockNotesResult process(ApiButtockNotesInput input) {
-		String str = "活动须知:\n1、凡参赛选手，上传的翘臀照片将在「实力派」中展示，找到自己的美臀，转发集赞吧！\n2、只要你是果冻体育用户，晒出你的翘臀照片，就有机会获得每日开出的奖品，照片将会在「翘丽圈」展示";
+		String str = "活动须知:\n1、凡参赛选手，上传的翘臀照片将在「实力派」中展示，找到自己的美臀，转发集赞吧！\n2、只要你是果冻体育用户，晒出你的翘臀照片，就有机会获得每日开出的奖品，照片将会在「翘丽圈」展示！";
 		ApiButtockNotesResult result = new ApiButtockNotesResult();
 		result.setNotes(str);
 		return result;
