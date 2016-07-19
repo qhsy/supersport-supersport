@@ -34,9 +34,11 @@ a:hover {text-decoration: none;}
 .header{overflow: auto; background: url(img/qiaotun_head.jpg) no-repeat center top; background-size: cover;}
 .header .title{width: 2.35rem; height: 0.89rem; margin: 0.45rem auto 0;}
 .header .logo{width: 1.38rem; height: 0.23rem; margin: auto;}
-.header .text{width: 3rem; margin: 0.47rem auto 0; color: #F6F6F6; font-size: 0.12rem; line-height: 0.18rem;}
-.header .button{margin: 0.12rem 0 0; display: flex; display: -webkit-flex; justify-content: space-around;}
-.header .button a{width: 1.45rem; height: 0.38rem; text-align: center; line-height: 0.38rem; color: #fff; background: url(img/qiaotun_button.png) no-repeat center center;}
+.header .text{padding: 0 0.35rem; margin: 0.47rem auto 0; color: #F6F6F6; font-size: 0.12rem; line-height: 0.18rem;}
+.header .help a{padding: 0 0.35rem; height: 0.14rem; color: #F8800A; font-size: 0.12rem;}
+.header .help a img{width: 0.14rem; vertical-align: middle;}
+.header .button{margin: 0.12rem 0.3rem 0.1rem; display: flex; display: -webkit-flex; justify-content: space-around;}
+.header .button a{width: 1.21rem; height: 0.38rem; text-align: center; line-height: 0.38rem; color: #fff; background: url(img/qiaotun_button.png) no-repeat center center;}
 
 /* container */
 .tab-nav{margin: 0.05rem 0 0.12rem; display: flex; display: -webkit-flex; align-items: center; justify-content: space-around; border-bottom: #352553 1px solid;}
@@ -48,11 +50,13 @@ a:hover {text-decoration: none;}
 
 .list-item{margin-bottom: 0.1rem; position: relative;}
 .list-item .info{width: 100%; box-sizing: border-box; padding: 0.54rem 0.19rem 0.16rem; color: #fff; line-height: 0.42rem; position: absolute; bottom: 0;  background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));}
-.list-item .photo{display: inline-block; vertical-align: top; width: 0.38rem; height: 0.38rem; border-radius: 50%; overflow: hidden; border: 2px solid #fff;}
+.list-item .photo{display: inline-block; vertical-align: top; width: 0.38rem; height: 0.38rem; border-radius: 50%; border: 2px solid #fff; position: relative;}
+.list-item .photo img{border-radius: 50%;}
 .list-item .name{padding-left: 0.09rem;}
 .list-item .zan{height: 0.42rem; padding-left: 0.36rem; float: right; background: url(img/qiaotun_zan.png) no-repeat left center; background-size: 0.26rem;}
+.list-item .sign{width: 0.14rem; height: 0.12rem; display: block; position: absolute; right: 0; bottom: 0; background: url(img/sign.png) no-repeat; background-size: cover;}
 @media screen and (min-width:640px){
-	.header, .wrap{width: 640px;}
+	.header, .wrap{width: 640px; margin: auto;}
 }
 @-webkit-keyframes load{
     0%{-webkit-transform: rotate(0deg);}
@@ -72,8 +76,9 @@ a:hover {text-decoration: none;}
 	活动须知：<br>
 	1、凡参赛选手，上传的翘臀照片将在「实力派」中展示，找到自己的美臀，转发集赞吧！<br>
 	2、只要你是果冻体育用户，晒出你的翘臀照片，就有机会获得每日开出的奖品，照片将会在「翘丽圈」展示！</p>
+	<p class="help"><a href="http://mp.weixin.qq.com/s?__biz=MzAwNzk2MjI1OA==&mid=100000235&idx=1&sn=6e4d8a230e9d780191cc7007e0a5a906&scene=20#wechat_redirect"><img src="img/qiaotun_icon.png" alt="">点击这里查看晒图方式</a></p>
 	<div class="button">
-		<a href="">我要报名</a>
+		<a href=""><img src="img/qiaotun_tab_2.png" alt=""></a><a href=""><img src="img/qiaotun_tab_1.png" alt=""></a>
 	</div>
 </header>
 <section class="wrap" v-cloak>
@@ -86,7 +91,8 @@ a:hover {text-decoration: none;}
 			<li class="list-item" v-for="item in viewer.buttockInfos[0].contentInfos">
 				<div class="canvas"><img :src="item.cover" alt=""></div>
 				<div class="info">
-					<span class="photo"><img :src="item.userBasicInfo.aboutHead" alt=""></span>
+					<span class="photo"><img :src="item.userBasicInfo.aboutHead" alt=""><i class="sign" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></i></span>
+					
 					<em class="name">{{item.userBasicInfo.nickName}}</em>
 					<em class="zan">{{item.praiseNum}}</em>
 				</div>
