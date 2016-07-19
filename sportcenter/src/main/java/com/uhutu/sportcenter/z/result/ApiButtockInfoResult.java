@@ -1,5 +1,8 @@
 package com.uhutu.sportcenter.z.result;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.uhutu.sportcenter.z.entity.ButtockInfo;
 import com.uhutu.zoocom.root.RootApiResult;
 
@@ -16,12 +19,9 @@ public class ApiButtockInfoResult extends RootApiResult {
 	
 	@ApiModelProperty(value="活动须知")
 	private String notes;
-	
-	@ApiModelProperty(value="实力派")
-	private ButtockInfo buttockPower = new ButtockInfo();
 
-	@ApiModelProperty(value="翘丽圈")
-	private ButtockInfo buttockLap = new ButtockInfo();
+	@ApiModelProperty(value="翘臀活动信息")
+	private List<ButtockInfo> buttockInfos = new ArrayList<ButtockInfo>();
 
 	public String getNotes() {
 		return notes;
@@ -31,20 +31,12 @@ public class ApiButtockInfoResult extends RootApiResult {
 		this.notes = notes;
 	}
 
-	public ButtockInfo getButtockPower() {
-		return buttockPower;
+	public List<ButtockInfo> getButtockInfos() {
+		return buttockInfos;
 	}
 
-	public void setButtockPower(ButtockInfo buttockPower) {
-		this.buttockPower = buttockPower;
-	}
-
-	public ButtockInfo getButtockLap() {
-		return buttockLap;
-	}
-
-	public void setButtockLap(ButtockInfo buttockLap) {
-		this.buttockLap = buttockLap;
+	public void setButtockInfos(List<ButtockInfo> buttockInfos) {
+		this.buttockInfos = buttockInfos;
 	}
 	
 }

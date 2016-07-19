@@ -46,10 +46,10 @@ public class ApiButtockInfo extends RootApiBase<ApiButtockInfoInput, ApiButtockI
 				
 				switch (buttockType) {
 				case lap:
-					result.setButtockLap(initLapList(input));
+					result.getButtockInfos().add(initLapList(input));
 					break;
 				case power:
-					result.setButtockPower(initPowerList(input));
+					result.getButtockInfos().add(initPowerList(input));
 					break;
 
 				default:
@@ -59,9 +59,9 @@ public class ApiButtockInfo extends RootApiBase<ApiButtockInfoInput, ApiButtockI
 				
 			}else{
 				
-				result.setButtockLap(initLapList(input));
+				result.getButtockInfos().add(initPowerList(input));
 				
-				result.setButtockPower(initPowerList(input));
+				result.getButtockInfos().add(initLapList(input));
 				
 			}
 			
