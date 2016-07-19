@@ -37,7 +37,7 @@ a:hover {text-decoration: none; }
 .details-hgroup time{display: block; color: #aaaaaa;}
 .details-follow{display: block; width: 0.85rem; height: 0.34rem; margin: auto; box-shadow: 0.01rem 0.1rem 0.1rem #ffe5d1; border-radius: 0.15rem; background: #fd8528; text-align: center; line-height: 0.34rem; color: #fff;}
 .details-follow.select{color: #3c3c3c; background: #ececec; box-shadow: none;}
-.details-article{padding: 0 0.15rem 0.15rem;}
+.details-article{padding: 0 0.15rem 0.15rem; line-height: 0.28rem; font-size: 0.16rem;}
 .details-article p{padding: 0 0.1rem 0.22rem;}
 .details-article img{margin-bottom: 0.15rem;}
 .details-tag{padding: 0.03rem 0 0.5rem; text-align: center; font-size: 0.12rem;}
