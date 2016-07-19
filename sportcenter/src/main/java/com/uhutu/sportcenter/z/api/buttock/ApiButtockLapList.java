@@ -99,7 +99,7 @@ public class ApiButtockLapList extends RootApiBase<ApiButtockLapListInput, ApiBu
 					
 					sportingMoment.setPraiseNum(praiseNum);
 
-					result.getButtockPowerList().add(sportingMoment);
+					result.getButtockLapList().add(sportingMoment);
 
 				}
 

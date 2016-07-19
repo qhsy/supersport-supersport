@@ -21,20 +21,20 @@ public class ApiButtockLapListResult extends RootApiResult {
 	@ApiModelProperty(value="是否有下页数据")
 	private boolean nextflag = false;
 
-	public List<ContentBasicinfoForApi> getButtockPowerList() {
-		return buttockLapList;
-	}
-
-	public void setButtockPowerList(List<ContentBasicinfoForApi> buttockPowerList) {
-		this.buttockLapList = buttockPowerList;
-	}
-
 	public boolean isNextflag() {
 		return nextflag;
 	}
 
 	public void setNextflag(boolean nextflag) {
 		this.nextflag = nextflag;
+	}
+
+	public List<ContentBasicinfoForApi> getButtockLapList() {
+		return buttockLapList;
+	}
+
+	public void setButtockLapList(List<ContentBasicinfoForApi> buttockLapList) {
+		this.buttockLapList = buttockLapList;
 	}
 
 }

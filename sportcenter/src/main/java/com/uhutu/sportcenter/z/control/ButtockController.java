@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
+import com.uhutu.sportcenter.z.input.ApiButtockInfoInput;
 import com.uhutu.sportcenter.z.input.ApiButtockLapListInput;
 import com.uhutu.sportcenter.z.input.ApiButtockNotesInput;
 import com.uhutu.sportcenter.z.input.ApiButtockPowerListInput;
+import com.uhutu.sportcenter.z.result.ApiButtockInfoResult;
 import com.uhutu.sportcenter.z.result.ApiButtockLapListResult;
 import com.uhutu.sportcenter.z.result.ApiButtockNotesResult;
 import com.uhutu.sportcenter.z.result.ApiButtockPowerListResult;
@@ -54,6 +56,14 @@ public class ButtockController {
 	public ApiButtockNotesResult buttockNotes(@RequestBody ApiButtockNotesInput input) {
 
 		return apiFactory.getApiButtockNotes().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/buttockInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "翘丽圈活动信息", notes = "翘丽圈活动信息")
+	public ApiButtockInfoResult buttockInfo(@RequestBody ApiButtockInfoInput input) {
+
+		return apiFactory.getApiButtockInfo().api(input);
 	}
 
 }
