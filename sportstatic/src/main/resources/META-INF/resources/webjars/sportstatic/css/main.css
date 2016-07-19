@@ -19,9 +19,9 @@ a:hover {text-decoration: none; }
 .ms-controller{visibility: hidden;}
 
 /*椤堕儴鍒嗕韩*/
-.open-app{width: 100%; padding: 0 0.15rem; height: 0.6rem; box-sizing: border-box; -webkit-box-sizing: border-box; display: -webkit-flex; display: flex; -webkit-justify-content: space-between; justify-content: space-between; background:#fff url(../css/img/app_bg.png) no-repeat right top; background-size: auto 0.6rem; position: fixed; left: 0; top: 0; z-index: 999;}
-.app-btn{width: 0.8rem; height: 0.3rem; margin-top: 0.1rem; background: #fd8529; text-align: center; line-height: 0.3rem; color: #fff; border-radius: 0.15rem;}
-.app-logo{height: 0.4rem; margin-top: 0.1rem;}
+.open-app{width: 100%; padding: 0 0.15rem; height: 0.6rem; box-sizing: border-box; -webkit-box-sizing: border-box; background:#fff url(../css/img/app_bg.png) no-repeat right top; background-size: auto 0.6rem; position: fixed; left: 0; top: 0; z-index: 999;}
+.app-btn{width: 0.8rem; height: 0.3rem; float: right; margin-top: 0.1rem; background: #fd8529; text-align: center; line-height: 0.3rem; color: #fff; border-radius: 0.15rem;}
+.app-logo{height: 0.4rem; margin-top: 0.1rem; float: left;}
 .app-logo img{width: auto; height: 100%;}
 
 /*鍥炬枃璇︽儏 */
