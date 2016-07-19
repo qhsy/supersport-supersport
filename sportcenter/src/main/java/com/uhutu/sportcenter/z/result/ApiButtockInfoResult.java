@@ -22,6 +22,9 @@ public class ApiButtockInfoResult extends RootApiResult {
 
 	@ApiModelProperty(value="翘臀活动信息")
 	private List<ButtockInfo> buttockInfos = new ArrayList<ButtockInfo>();
+	
+	@ApiModelProperty(value="报名连接")
+	private String applyUrl;
 
 	public String getNotes() {
 		return notes;
@@ -37,6 +40,14 @@ public class ApiButtockInfoResult extends RootApiResult {
 
 	public void setButtockInfos(List<ButtockInfo> buttockInfos) {
 		this.buttockInfos = buttockInfos;
+	}
+
+	public String getApplyUrl() {
+		return applyUrl;
+	}
+
+	public void setApplyUrl(String applyUrl) {
+		this.applyUrl = applyUrl;
 	}
 	
 }

@@ -38,6 +38,8 @@ public class ApiButtockInfo extends RootApiBase<ApiButtockInfoInput, ApiButtockI
 		
 		result.setNotes(apiButtockNotes.process(new ApiButtockNotesInput()).getNotes());
 		
+		result.setApplyUrl("");
+		
 		try {
 			
 			if(StringUtils.isNotBlank(input.getType())){

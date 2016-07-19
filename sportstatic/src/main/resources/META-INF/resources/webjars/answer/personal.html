@@ -71,7 +71,7 @@ var require = {
 						<span class="listen-flag"><i class="iconfont">&#xe600;</i>{{item.soundContent}}</span>
 						<em class="time">{{item.lengh}}”</em>
 					</div>
-					<div class="status"><em>听过{{item.listen}}</em>赞{{item.praiseNum}}<i>{{item.questionTime}}</i></div>
+					<div class="status"><em>听过{{item.listen}}</em>赞{{item.praiseNum}}<i>{{item.questionTimeStr}}</i></div>
 				</template>
 				<template v-else>
 					<div class="ask"><span class="ask-photo"><img :src="item.aboutHead" alt=""></span><em>{{item.nickName}}</em><i>{{item.money}}</i></div>
@@ -81,7 +81,7 @@ var require = {
 						<span class="hear"><i class="iconfont">&#xe600;</i>{{item.soundContent}}</span>
 						<em class="time">{{item.lengh}}”</em>
 					</div>
-					<div class="status"><em>听过{{item.listen}}</em>赞{{item.praiseNum}}<i>{{item.questionTime}}</i></div>
+					<div class="status"><em>听过{{item.listen}}</em>赞{{item.praiseNum}}<i>{{item.questionTimeStr}}</i></div>
 				</template>
 			</a>
 		</dd>
