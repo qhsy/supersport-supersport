@@ -54,7 +54,7 @@ public class ApiButtockPowerList extends RootApiBase<ApiButtockPowerListInput, A
 		
 		int istart = (input.getPagination() - 1)*10;
 		
-		List<AwPointRecommen> recommList = JdbcHelper.queryForList(AwPointRecommen.class, "", " sort asc", "type='dzsd4888100110030006'", new MDataMap(), istart, 10);
+		List<AwPointRecommen> recommList = JdbcHelper.queryForList(AwPointRecommen.class, "", "-sort", "type='dzsd4888100110030006'", new MDataMap(), istart, 10);
 		
 		if(recommList.size() > 0){
 			
