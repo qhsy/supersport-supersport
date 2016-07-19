@@ -44,7 +44,7 @@ public class ApiButtockLapList extends RootApiBase<ApiButtockLapListInput, ApiBu
 		
 		ApiButtockLapListResult result = new ApiButtockLapListResult();
 		
-		int total = JdbcHelper.count(CnContentBasicinfo.class, "", MapHelper.initMap("tagCode","GGBH160719110001","status",ContentEnum.normal.getCode()));
+		int total = JdbcHelper.count(CnContentBasicinfo.class, "", MapHelper.initMap("tagCode","GGBH160719110001","status",ContentEnum.normal.getCode(),"shareScope","dzsd4699100110010001"));
 		
 		PageInfo pageInfo = new PageInfo(total, input.getPagination(), 10);
 		
@@ -52,7 +52,7 @@ public class ApiButtockLapList extends RootApiBase<ApiButtockLapListInput, ApiBu
 		
 		int istart = (input.getPagination() - 1)*10;
 		
-		String whereStr = "tagCode='GGBH160719110001' and status='"+ContentEnum.normal.getCode()+"'";
+		String whereStr = "tagCode='GGBH160719110001' and status='"+ContentEnum.normal.getCode()+"' and shareScope='dzsd4699100110010001'";
 		
 		List<CnContentBasicinfo> contentList = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "-publish_time", whereStr, new MDataMap(), istart, 10);
 		
