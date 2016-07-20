@@ -26,6 +26,7 @@ import com.uhutu.zoocom.file.FileUploadResult;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoocom.support.WebClientSupport;
+import com.uhutu.zooweb.helper.ImageHelper;
 import com.uhutu.zooweb.support.WebUploadSupport;
 
 /**
@@ -79,6 +80,7 @@ public class ApiPublishSportingMoment
 	private String getWaterMarker(String url) {
 		String result = "";
 		OutputStream os = null;
+		String waterPic = "http://img-cdn.bigtiyu.com/wsc/sport/273cf/s-558-224/b024fff5c8ba4fdbb89874fbfce4a2a1.png";
 		try {
 			HttpEntity httpEntity = WebClientSupport.create().upEntity(url);
 			InputStream buffin = httpEntity.getContent();
@@ -91,20 +93,22 @@ public class ApiPublishSportingMoment
 			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 			g.drawImage(srcImg.getScaledInstance(srcImg.getWidth(null), srcImg.getHeight(null), Image.SCALE_SMOOTH), 0,
 					0, null);
-			// 得到Image对象。
-			Image img = ImageIO.read(WebClientSupport.create()
-					.upEntity(
-							"http://img-cdn.bigtiyu.com/wsc/sport/273cf/s-558-224/b024fff5c8ba4fdbb89874fbfce4a2a1.png")
-					.getContent());
+			// 根据1080原图等比压缩水印图大小及边距
+			double prop = Double.valueOf(srcImg.getWidth(null)) / Double.valueOf(1080);
+			waterPic = ImageHelper.upImageThumbnail(waterPic, (int) (prop * 558));
+			// 得到水印Image对象。
+			Image img = ImageIO.read(WebClientSupport.create().upEntity(waterPic).getContent());
 			float alpha = 1.0f; // 透明度
 			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, alpha));
 			// 表示水印图片的位置
-			g.drawImage(img, srcImg.getWidth(null) - 608, 30, null);
+			int width = (int) (prop * 608);
+			int high = (int) (prop * 30);
+			g.drawImage(img, srcImg.getWidth(null) - width, high, null);
 			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
 			g.dispose();
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();// 新建流。
-			ImageIO.write(buffImg, StringUtils.substringAfterLast(url, ".").toUpperCase(), bos);// 利用ImageIO类提供的write方法，将bi以png图片的数据模式写入流。
-			byte b[] = bos.toByteArray();// 从流中获取数据数组。
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			ImageIO.write(buffImg, StringUtils.substringAfterLast(url, ".").toUpperCase(), bos);
+			byte b[] = bos.toByteArray();
 			FileUploadResult webUploadResult = new WebUploadSupport().remoteUpload("buttock",
 					TopHelper.upUuid() + "." + StringUtils.substringAfterLast(url, "."), b);
 			if (webUploadResult.upFlagTrue()) {
