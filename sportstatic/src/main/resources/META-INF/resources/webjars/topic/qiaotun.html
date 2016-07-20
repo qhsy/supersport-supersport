@@ -89,7 +89,7 @@ a:hover {text-decoration: none;}
 		</nav>
 		<ul class="data-list">
 			<li class="list-item" v-for="item in viewer.buttockInfos[0].contentInfos">
-				<a href="javascript:;" onclick="onTopicCategories(item.author,item.userBasicInfo.aboutHead,item.code,item.contentType)">
+				<a href="javascript:;" onclick="onTopicCategories({{item.author}},{{item.userBasicInfo.aboutHead}},{{item.code}},{{item.contentType}})">
 					<div class="canvas"><img :src="item.cover" alt=""></div>
 					<div class="info">
 						<span class="photo"><img :src="item.userBasicInfo.aboutHead" alt=""><i class="sign" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></i></span>
