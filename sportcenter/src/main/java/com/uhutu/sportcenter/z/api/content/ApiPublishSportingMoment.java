@@ -56,7 +56,7 @@ public class ApiPublishSportingMoment
 
 		contentBasicinfo.setAuthor(upUserCode());
 
-		if (StringUtils.isNoneBlank(contentBasicinfo.getCover())
+		if (StringUtils.isNotBlank(contentBasicinfo.getCover())
 				&& StringUtils.isNotBlank(contentBasicinfo.getTagCode())
 				&& contentBasicinfo.getTagCode().contains("GGBH160719110001")) {// 翘臀大赛加水印
 			String waterMarker = getWaterMarker(contentBasicinfo.getCover());
