@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
+	<data>
+		<item code="dmtg41121001" nodeName="订单相关" parentCode="" />
+		<item code="dmtg411210011001" nodeName="订单管理" parentCode="dmtg41121001" />
+		<item code="dmtg4112100110011001" nodeName="订单信息" parentCode="dmtg411210011001" pageUrl="/zpage/pg/com_uhutu_dcom_order_z_page_OcOrderInfoPage" pageIcon="glyphicon-heart-empty" />
+	</data>
+
+</db>

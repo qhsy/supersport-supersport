@@ -46,7 +46,7 @@ public class OcOrderInfo extends BaseEntity {
 	@Column(length = 30)
 	private String status;
 
-	@ZooData(name = "订单金额")
+	@ZooData(name = "订单金额", sort = { DefineWebPage.Page_Query + "=0" })
 	private BigDecimal orderMoney;
 
 	@ZooData(name = "支付类型", sort = { DefineWebPage.Page_Query + "=0",
@@ -55,20 +55,22 @@ public class OcOrderInfo extends BaseEntity {
 	@Column(length = 50)
 	private String payType;
 
-	@ZooData(name = "已支付金额")
+	@ZooData(name = "已支付金额", sort = { DefineWebPage.Page_Query + "=0" })
 	private BigDecimal payedMoney;
 
-	@ZooData(name = "卖家编号", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Add + "=0",
-			DefineWebPage.Page_Edit + "=0" })
+	@ZooData(name = "卖家昵称", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw451010010001" }, sort = { DefineWebPage.Page_Add + "=0",
+					DefineWebPage.Page_Edit + "=0" })
 	@Column(length = 50)
 	private String sellerCode;
 
-	@ZooData(name = "买家编号", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Add + "=0",
-			DefineWebPage.Page_Edit + "=0" })
+	@ZooData(name = "买家昵称", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw451010010001" }, sort = { DefineWebPage.Page_Add + "=0",
+					DefineWebPage.Page_Edit + "=0" })
 	@Column(length = 50)
 	private String buyerCode;
 
-	@ZooData(name = "app版本")
+	@ZooData(name = "app版本", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 50)
 	private String appVersion;
 
@@ -151,6 +153,5 @@ public class OcOrderInfo extends BaseEntity {
 	public void setPayedMoney(BigDecimal payedMoney) {
 		this.payedMoney = payedMoney;
 	}
-	
 
 }
