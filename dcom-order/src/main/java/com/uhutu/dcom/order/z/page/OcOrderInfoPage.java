@@ -9,7 +9,7 @@ import com.uhutu.zooweb.define.DefineZooWeb;
 
 @ZooPage(name = "订单信息", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = {
 		DefineWebPage.Page_Query + "=dzoi469910021017",
-		DefineWebPage.Page_Grid + "=dzoi4699100110190003" }, deploy = { DefineWebDeploy.Url_Query + "=code" })
+		DefineWebPage.Page_Grid + "=dzoi41121001" }, deploy = { DefineWebDeploy.Url_Query + "=code" })
 public class OcOrderInfoPage extends RootPageSimple<OcOrderInfo> {
 
 }

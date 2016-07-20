@@ -18,7 +18,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class OcOrderDetail extends BaseEntity {
 
-	@ZooData(name = "订单编号")
+	@ZooData(name = "(订单明细信息)订单编号")
 	@Column(length = 50)
 	private String code;
 
