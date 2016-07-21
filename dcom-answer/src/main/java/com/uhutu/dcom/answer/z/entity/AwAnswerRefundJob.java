@@ -61,7 +61,8 @@ public class AwAnswerRefundJob extends BaseEntity {
 	@Column(length = 50)
 	private String status;
 
-	@ZooData(value = "备注", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(value = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 255)
 	private String remark;
 
