@@ -29,14 +29,16 @@ public class TeslaCheckAnswerActivity extends TeslaTopOrderMake {
 			result.setError(TopHelper.upInfo(81120002));
 		} else {
 			teslaOrder.getDetail().get(0).setProductName(questionInfo.get("content"));
-			if ("dzsd4112100110010003".equals(teslaOrder.getOrderInfo().getOrderType())) {
+			if ("dzsd4112100110010003".equals(teslaOrder.getOrderInfo().getOrderType())) {// 问达类型
 				teslaOrder.getDetail().get(0)
 						.setProductPrice(BigDecimal.valueOf(Double.valueOf(questionInfo.get("money"))));
-			} else if ("dzsd4112100110010004".equals(teslaOrder.getOrderInfo().getOrderType())) {
+				teslaOrder.getOrderInfo().setSellerCode(questionInfo.get("answer_user_code"));
+			} else if ("dzsd4112100110010004".equals(teslaOrder.getOrderInfo().getOrderType())) {// 偷听类型
 				teslaOrder.getDetail().get(0)
 						.setProductPrice(BigDecimal.valueOf(Double.valueOf(questionInfo.get("sell_money"))));
+				teslaOrder.getOrderInfo().setSellerCode(questionInfo.get("question_user_code"));
 			}
-			teslaOrder.getOrderInfo().setSellerCode(questionInfo.get("question_user_code"));
+
 			AcActivityAnswerInfo activityInfo = new AnswerActivitySupport()
 					.getActivityInfoByAnswerCode(teslaOrder.getDetail().get(0).getProductCode());
 			if (activityInfo != null) {
