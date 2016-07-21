@@ -45,7 +45,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 							if(res.status == 1){
 								if(res.questions.length){
 									$.each(res.questions,function(index, item){
-										self.questions.push(item);
+										self.result.questions.push(item);
 									});
 									bStop = true;
 								}

@@ -57,7 +57,7 @@ define(['zepto','jssdk'],function($,wx){
 	 */
 	common.share = {
 		title:'[果冻体育]您的健康运动加油站',
-		link:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + common.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+		link:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd44c999a0475e56&redirect_uri=' + common.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
 		desc:'精彩内容与你分享',
 		imgUrl:'http://img-cdn.bigtiyu.com/wsc/sport/273cb/s-87-87/371dd1482017495d95a4592a6877f6cf.png',
 	}
