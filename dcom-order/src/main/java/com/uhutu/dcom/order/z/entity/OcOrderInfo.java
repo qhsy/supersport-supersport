@@ -28,9 +28,8 @@ public class OcOrderInfo extends BaseEntity {
 	@Column(length = 50)
 	private String code;
 
-	@ZooData(name = "订单类型", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" }, element = DefineWebElement.Select, inc = {
-					DefineWebInc.System_Define + "=dzsd411210011001" })
+	@ZooData(name = "订单类型", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd411210011001" })
 	@Column(length = 50)
 	private String orderType;
 
