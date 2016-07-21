@@ -168,14 +168,13 @@ a:hover {text-decoration: none;}
 .personal-nav li{padding: 0 0 0 0.27rem; line-height: 0.45rem;}
 .personal-nav li a{color: #9B9B9B; display: block; border-bottom: #F0F0F0 1px solid;}
 .personal-nav li a:after{content: ""; width: 0.06rem; height: 0.06rem; margin: 0.2rem 0.14rem 0 0; display: block; float: right; border-top: #AAAAAA 1px solid; border-right: #AAAAAA 1px solid; transform: rotate(45deg);}
-.personal-nav li .iconfont{padding-right: 0.05rem; font-size: 0.13rem;}
 
-.personal-nav li:nth-child(1) .iconfont{padding-right: 0.06rem;}
-.personal-nav li:nth-child(2) .iconfont{margin-left: -1px; font-size: 0.16rem;}
-.personal-nav li:nth-child(3) .iconfont{margin-left: -1px; font-size: 0.16rem;}
-.personal-nav li:nth-child(4) .iconfont{padding-right: 0.08rem; font-size: 0.12rem;}
-.personal-nav li .last-icon{font-size: 0.15rem;}
-
+.personal-nav .index-icon, .personal-nav .question-icon, .personal-nav .answers-icon, .personal-nav .listens-icon, .personal-nav .add-icon{padding-left: 0.25rem; background: url(img/icon_list.png) no-repeat; background-position: 0 0; background-size: 0.2rem;}
+.personal-nav .index-icon{background-position: 0 0.13rem;}
+.personal-nav .question-icon{background-position: 0 -0.34rem;}
+.personal-nav .answers-icon{background-position: 0 -0.81rem;}
+.personal-nav .listens-icon{background-position: 0 -1.27rem;}
+.personal-nav .add-icon{background-position: 0 -1.75rem;}
 
 /* 我答 */
 .my-answers .nav{height: 0.37rem; margin-bottom: 8px; background: #fff; display: -webkit-flex; display: flex; justify-content: space-around; -webkit-justify-content: space-around; box-shadow: 0 1px 3px rgba(214,214,214,0.5); color: #4A4A4A; line-height: 0.37rem;}
