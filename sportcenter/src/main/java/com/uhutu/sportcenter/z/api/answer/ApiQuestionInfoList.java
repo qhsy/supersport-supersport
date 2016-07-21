@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.uhutu.dcom.answer.z.entity.AwAnswerListen;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
 import com.uhutu.dcom.component.z.page.PageInfo;
@@ -13,7 +15,9 @@ import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.QuestionInfo;
 import com.uhutu.sportcenter.z.input.ApiQuestionInfoListInput;
 import com.uhutu.sportcenter.z.result.ApiQuestionInfoListResult;
+import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.root.RootApiToken;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 个人中心我问信息列表
@@ -76,6 +80,10 @@ public class ApiQuestionInfoList extends RootApiToken<ApiQuestionInfoListInput, 
 			questionInfo.setNickName(userBasicInfo.getUcUserinfoExt().getNickName());
 			
 			questionInfo.setType(userBasicInfo.getUcUserinfo().getType());
+			
+			long listen = JdbcHelper.count(AwAnswerListen.class, "", MapHelper.initMap("questionCode",awQuestionInfo.getCode()));
+			
+			questionInfo.setListen(listen);
 			
 			questionInfos.add(questionInfo);
 			
