@@ -68,7 +68,7 @@ a:hover {text-decoration: none;}
 }
 </style>
 </head>
-<body>
+<body v-cloak>
 <header class="header">
 	<h1 class="title"><img src="img/qiaotun_title.png" alt=""></h1>
 	<div class="logo"><img src="img/qiaotun_logo.png" alt=""></div>
@@ -78,10 +78,10 @@ a:hover {text-decoration: none;}
 	2、只要你是果冻体育用户，晒出你的翘臀照片，就有机会获得每日开出的奖品，照片将会在「翘丽圈」展示！</p>
 	<p class="help"><a href="http://mp.weixin.qq.com/s?__biz=MzAwNzk2MjI1OA==&mid=100000235&idx=1&sn=6e4d8a230e9d780191cc7007e0a5a906&scene=20#wechat_redirect"><img src="img/qiaotun_icon.png" alt="">点击这里查看晒图方式</a></p>
 	<div class="button">
-		<a href=""><img src="img/qiaotun_tab_2.png" alt=""></a><a href="javascript:;" onclick="onBlueprint()"><img src="img/qiaotun_tab_1.png" alt=""></a>
+		<a :href="viewer.applyUrl" v-if="viewer.applyUrl != ''"><img src="img/qiaotun_tab_2.png" alt=""></a><a href="javascript:;" onclick="onBlueprint()"><img src="img/qiaotun_tab_1.png" alt=""></a>
 	</div>
 </header>
-<section class="wrap" v-cloak>
+<section class="wrap">
 	<article class="container">
 		<nav class="tab-nav">
 			<a href="javascript:;" class="curr" v-bind:class="{curr:currStatus == 'power'}" @click="tab(0)">实力派</a>
@@ -89,7 +89,7 @@ a:hover {text-decoration: none;}
 		</nav>
 		<ul class="data-list">
 			<li class="list-item" v-for="item in viewer.buttockInfos[0].contentInfos">
-				<a href="javascript:;" onclick="onTopicCategories({{item.author}},{{item.userBasicInfo.aboutHead}},{{item.code}},{{item.contentType}})">
+				<a href="javascript:;" onclick="onTopicCategories('{{item.author}}','{{item.userBasicInfo.aboutHead}}','{{item.code}}','{{item.contentType}}')">
 					<div class="canvas"><img :src="item.cover" alt=""></div>
 					<div class="info">
 						<span class="photo"><img :src="item.userBasicInfo.aboutHead" alt=""><i class="sign" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></i></span>
@@ -177,7 +177,7 @@ vm.$on('iscroll',function(){
 							console.log(result)
 							if(result.buttockInfos[0].contentInfos.length){
 								$.each(result.buttockInfos[0].contentInfos,function(index, item){
-									data.buttockInfos[0].contentInfos.push(item);
+									self.viewer.buttockInfos[0].contentInfos.push(item);
 								});
 								self.bLoad = result.buttockInfos[0].nextflag;
 							}
