@@ -1,5 +1,8 @@
 package com.uhutu.dcom.content.func;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.uhutu.dcom.content.z.support.WaterMarkerSupport;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.model.MDataMap;
@@ -42,6 +45,13 @@ public class CnContentBasicinfoFuncAdd extends RootFunc {
 			map.put("publish_time", DateHelper.upNow());
 		}
 		map.put("zz", "1");
+		if (StringUtils.isNotBlank(input.getDataMap().get("cover"))
+				&& StringUtils.isNotBlank(input.getDataMap().get("tag_code"))
+				&& input.getDataMap().get("tag_code").contains("GGBH160719110001")) {// 翘臀大赛加水印
+			String waterMarker = new WaterMarkerSupport().getWaterMarker(input.getDataMap().get("cover"));
+			input.getDataMap().put("cover",
+					StringUtils.isNotBlank(waterMarker) ? waterMarker : input.getDataMap().get("cover"));
+		}
 		JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), input.getDataMap());
 		if ("dzsd4107100110030001".equals(map.get("content_type"))
 				|| "dzsd4107100110030002".equals(map.get("content_type"))) {

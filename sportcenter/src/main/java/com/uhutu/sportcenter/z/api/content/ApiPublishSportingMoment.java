@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
-import com.uhutu.sportcenter.z.api.util.WaterMarkerSupport;
+import com.uhutu.dcom.content.z.support.WaterMarkerSupport;
 import com.uhutu.sportcenter.z.input.ApiPublishSportingMomentInput;
 import com.uhutu.sportcenter.z.result.ApiPublishSportingMomentResult;
 import com.uhutu.zoocom.root.RootApiToken;

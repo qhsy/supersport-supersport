@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentPhotos;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
-import com.uhutu.sportcenter.z.api.util.WaterMarkerSupport;
+import com.uhutu.dcom.content.z.support.WaterMarkerSupport;
 import com.uhutu.sportcenter.z.entity.ContentPhotosDetail;
 import com.uhutu.sportcenter.z.input.ApiPublishContentPhotosInput;
 import com.uhutu.sportcenter.z.result.ApiPublishContentPhotosResult;
