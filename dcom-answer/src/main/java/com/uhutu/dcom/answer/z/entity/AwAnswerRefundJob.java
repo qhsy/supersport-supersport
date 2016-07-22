@@ -37,6 +37,10 @@ public class AwAnswerRefundJob extends BaseEntity {
 	@Column(length = 50)
 	private String orderCode;
 
+	@ZooData(value = "问达编号", sort = { DefineWebPage.Page_Edit + "=0" })
+	@Column(length = 50)
+	private String questionCode;
+
 	@ZooData(value = "收款人", element = DefineWebElement.Model, inc = {
 			DefineWebInc.Web_Component + "=dzcw451010010001" }, sort = { DefineWebPage.Page_Edit + "=0" })
 	@Column(length = 50)
@@ -52,6 +56,10 @@ public class AwAnswerRefundJob extends BaseEntity {
 	@ZooData(value = "未退款金额 (RMB)", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
 			DefineWebPage.Page_Edit + "=0" })
 	private BigDecimal unAmount;
+
+	@ZooData(value = "退款单生成时间")
+	@Column(length = 50)
+	private String createTime;
 
 	@ZooData(value = "已退金额", sort = { DefineWebPage.Page_Query + "=0" })
 	private BigDecimal alAmount;
@@ -144,6 +152,22 @@ public class AwAnswerRefundJob extends BaseEntity {
 
 	public void setUserCode(String userCode) {
 		this.userCode = userCode;
+	}
+
+	public String getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getQuestionCode() {
+		return questionCode;
+	}
+
+	public void setQuestionCode(String questionCode) {
+		this.questionCode = questionCode;
 	}
 
 }

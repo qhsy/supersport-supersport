@@ -6,7 +6,9 @@ import org.apache.commons.lang3.StringUtils;
 import com.uhutu.dcom.answer.z.entity.AwAnswerRefundJob;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.config.enums.SocialEnum;
+import com.uhutu.dcom.order.z.entity.OcOrderInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
+import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.model.MJobConfig;
 import com.uhutu.zoocom.model.MResult;
@@ -39,15 +41,28 @@ public class JobForCancelOverTimeAskQuestionOrder extends RootJob {
 				AwQuestionInfo info = infos.get(i);// 更新问达状态
 				info.setStatus("dzsd4888100110010004");
 				JdbcHelper.update(info, "status", "za");
-				if (JdbcHelper.queryOne(AwAnswerRefundJob.class, "order_code", info.getCode()) == null) {
+				MDataMap wh = new MDataMap();
+				wh.put("product_code", info.getCode());
+				wh.put("seller_code", info.getAnswerUserCode());
+				wh.put("buyer_code", info.getQuestionUserCode());
+				OcOrderInfo orderInfo = JdbcHelper.queryOne(OcOrderInfo.class, "", "",
+						"code in (select code from oc_order_detail where product_code=:product_code) "
+								+ "and order_type='dzsd4112100110010003' and seller_code=:seller_code and buyer_code=:buyer_code",
+						wh);
+				if (JdbcHelper.queryOne(AwAnswerRefundJob.class, "order_code",
+						orderInfo != null && StringUtils.isNotBlank(orderInfo.getCode()) ? orderInfo.getCode()
+								: info.getCode()) == null) {
 					AwAnswerRefundJob job = new AwAnswerRefundJob();
-					job.setOrderCode(info.getCode());
+					job.setOrderCode(orderInfo != null && StringUtils.isNotBlank(orderInfo.getCode())
+							? orderInfo.getCode() : info.getCode());
+					job.setQuestionCode(info.getCode());
 					job.setType("dzsd4888100110040001");// 到期未答
 					job.setCode(WebHelper.upCode("TK"));
 					job.setAmount(info.getMoney());
 					job.setAlAmount(BigDecimal.ZERO);
 					job.setRemark("问题48小时内未回答，退款处理");
 					job.setStatus("0");
+					job.setCreateTime(DateHelper.upNow());
 					job.setUnAmount(info.getMoney());
 					job.setUserCode(info.getQuestionUserCode());
 					UcUserinfoSocial us = JdbcHelper.queryOne(UcUserinfoSocial.class, "user_code",
