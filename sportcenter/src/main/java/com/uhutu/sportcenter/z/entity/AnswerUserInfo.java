@@ -33,6 +33,18 @@ public class AnswerUserInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value="头衔")
 	private String title;
+	
+	@ApiModelProperty(value="粉丝数量")
+	private int fansNum;
+	
+	@ApiModelProperty(value="关注数量")
+	private int attendNum;
+	
+	@ApiModelProperty(value="运动时刻数量")
+	private int momentNum;
+	
+	@ApiModelProperty(value="喜欢的运动时刻数量")
+	private int favorNum;
 
 	public BigDecimal getCharge() {
 		return charge;
@@ -96,6 +108,38 @@ public class AnswerUserInfo extends UserBasicInfo {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public int getFansNum() {
+		return fansNum;
+	}
+
+	public void setFansNum(int fansNum) {
+		this.fansNum = fansNum;
+	}
+
+	public int getAttendNum() {
+		return attendNum;
+	}
+
+	public void setAttendNum(int attendNum) {
+		this.attendNum = attendNum;
+	}
+
+	public int getMomentNum() {
+		return momentNum;
+	}
+
+	public void setMomentNum(int momentNum) {
+		this.momentNum = momentNum;
+	}
+
+	public int getFavorNum() {
+		return favorNum;
+	}
+
+	public void setFavorNum(int favorNum) {
+		this.favorNum = favorNum;
 	}
 
 }
