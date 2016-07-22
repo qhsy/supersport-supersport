@@ -8,6 +8,7 @@ import com.uhutu.sportcenter.z.api.answer.ApiAnswerInfoList;
 import com.uhutu.sportcenter.z.api.answer.ApiAnswerListenList;
 import com.uhutu.sportcenter.z.api.answer.ApiAnswerQuestionDetail;
 import com.uhutu.sportcenter.z.api.answer.ApiAnswerUserInfo;
+import com.uhutu.sportcenter.z.api.answer.ApiAppPersonHome;
 import com.uhutu.sportcenter.z.api.answer.ApiAskQuestion;
 import com.uhutu.sportcenter.z.api.answer.ApiAskWechatMsg;
 import com.uhutu.sportcenter.z.api.answer.ApiForAnswerOrder;
@@ -312,6 +313,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiButtockInfo apiButtockInfo;
+	
+	@Autowired
+	private ApiAppPersonHome apiAppPersonHome;
 	
 	public ApiButtockNotes getApiButtockNotes() {
 		return apiButtockNotes;
@@ -623,6 +627,14 @@ public class ApiFactory {
 
 	public ApiButtockInfo getApiButtockInfo() {
 		return apiButtockInfo;
+	}
+
+	public ApiAppPersonHome getApiAppPersonHome() {
+		return apiAppPersonHome;
+	}
+
+	public void setApiAppPersonHome(ApiAppPersonHome apiAppPersonHome) {
+		this.apiAppPersonHome = apiAppPersonHome;
 	}
 
 }

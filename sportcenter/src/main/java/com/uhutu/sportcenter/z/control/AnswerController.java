@@ -15,6 +15,7 @@ import com.uhutu.sportcenter.z.input.ApiAnswerInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerListenListInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerQuestionDetailInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerUserInfoInput;
+import com.uhutu.sportcenter.z.input.ApiAppPersonHomeInput;
 import com.uhutu.sportcenter.z.input.ApiAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiAskWechatMsgInput;
 import com.uhutu.sportcenter.z.input.ApiForAnswerQuestionInput;
@@ -35,6 +36,7 @@ import com.uhutu.sportcenter.z.result.ApiAnswerInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerListenListResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerQuestionDetailResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerUserInfoResult;
+import com.uhutu.sportcenter.z.result.ApiAppPersonHomeResult;
 import com.uhutu.sportcenter.z.result.ApiAskQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiAskWechatMsgResult;
 import com.uhutu.sportcenter.z.result.ApiForAnswerQuestionResult;
@@ -201,6 +203,14 @@ public class AnswerController {
 	public ApiPersonHomeResult personHomePage(@RequestBody ApiPersonHomeInput input) {
 
 		return apiFactory.getApiPersonHome().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/appPersonHome", method = RequestMethod.POST)
+	@ApiOperation(value = "app个人主页信息", notes = "app个人主页信息")
+	public ApiAppPersonHomeResult appPersonHome(@RequestBody ApiAppPersonHomeInput input) {
+
+		return apiFactory.getApiAppPersonHome().api(input);
 	}
 
 	@ResponseBody
