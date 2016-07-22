@@ -73,7 +73,7 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 
 			int momentNum = JdbcHelper.count(CnContentBasicinfo.class, "",
 					MapHelper.initMap("busiType", ContentEnum.sportmoment.getCode(), "status",
-							ContentEnum.normal.getCode(), "shareScope", SystemEnum.YES.getCode()));
+							ContentEnum.normal.getCode(), "shareScope", SystemEnum.YES.getCode(),"author",input.getUserCode()));
 			
 
 			int iStart = (input.getPagination() - 1) * 20;

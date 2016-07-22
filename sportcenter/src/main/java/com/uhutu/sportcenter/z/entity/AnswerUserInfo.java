@@ -42,6 +42,9 @@ public class AnswerUserInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value="运动时刻数量")
 	private int momentNum;
+	
+	@ApiModelProperty(value="喜欢的运动时刻数量")
+	private int favorNum;
 
 	public BigDecimal getCharge() {
 		return charge;
@@ -129,6 +132,14 @@ public class AnswerUserInfo extends UserBasicInfo {
 
 	public void setMomentNum(int momentNum) {
 		this.momentNum = momentNum;
+	}
+
+	public int getFavorNum() {
+		return favorNum;
+	}
+
+	public void setFavorNum(int favorNum) {
+		this.favorNum = favorNum;
 	}
 
 }
