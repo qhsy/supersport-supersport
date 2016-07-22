@@ -74,6 +74,7 @@ import com.uhutu.sportcenter.z.api.user.ApiSocialLogin;
 import com.uhutu.sportcenter.z.api.user.ApiUpdateMsgStatus;
 import com.uhutu.sportcenter.z.api.user.ApiUpdateUserInfo;
 import com.uhutu.sportcenter.z.api.user.ApiUserInfo;
+import com.uhutu.sportcenter.z.api.user.ApiUserInfoAll;
 import com.uhutu.sportcenter.z.api.user.ApiUserRegister;
 import com.uhutu.sportcenter.z.api.user.ApiUserResetPwd;
 import com.uhutu.sportcenter.z.api.user.ApiVerifyNickName;
@@ -316,6 +317,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiAppPersonHome apiAppPersonHome;
+	
+	@Autowired
+	private ApiUserInfoAll apiUserInfoAll;
 	
 	public ApiButtockNotes getApiButtockNotes() {
 		return apiButtockNotes;
@@ -635,6 +639,10 @@ public class ApiFactory {
 
 	public void setApiAppPersonHome(ApiAppPersonHome apiAppPersonHome) {
 		this.apiAppPersonHome = apiAppPersonHome;
+	}
+
+	public ApiUserInfoAll getApiUserInfoAll() {
+		return apiUserInfoAll;
 	}
 
 }

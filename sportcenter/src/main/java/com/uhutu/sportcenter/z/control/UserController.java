@@ -22,6 +22,7 @@ import com.uhutu.sportcenter.z.input.ApiSetUserFavoerInput;
 import com.uhutu.sportcenter.z.input.ApiShareContentInput;
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateUserInfoInput;
+import com.uhutu.sportcenter.z.input.ApiUserInfoAllInput;
 import com.uhutu.sportcenter.z.input.ApiUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiUserRegInput;
 import com.uhutu.sportcenter.z.input.ApiUserResetPwdInput;
@@ -41,6 +42,7 @@ import com.uhutu.sportcenter.z.result.ApiSetUserFavorResult;
 import com.uhutu.sportcenter.z.result.ApiShareContentResult;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult;
 import com.uhutu.sportcenter.z.result.ApiUpdateUserInfoResult;
+import com.uhutu.sportcenter.z.result.ApiUserInfoAllResult;
 import com.uhutu.sportcenter.z.result.ApiUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiUserRegResult;
 import com.uhutu.sportcenter.z.result.ApiUserResetPwdResult;
@@ -224,6 +226,15 @@ public class UserController {
 	public ApiRecommendExpertResult recommendExpert(@RequestBody ApiRecommendExpertInput input) {
 
 		return apiFactory.getApiRecommendExpert().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/allUserInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "全部用户信息", notes = "全部的用户信息")
+	public ApiUserInfoAllResult allUserInfo(@RequestBody ApiUserInfoAllInput input) {
+
+		return apiFactory.getApiUserInfoAll().api(input);
 
 	}
 

@@ -3,20 +3,16 @@ package com.uhutu.sportcenter.z.api.answer;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
 import com.uhutu.dcom.config.enums.SystemEnum;
-import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
-import com.uhutu.dcom.content.z.enums.ContentEnum;
-import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.AnswerUserInfo;
 import com.uhutu.sportcenter.z.input.ApiAnswerUserInfoInput;
 import com.uhutu.sportcenter.z.result.ApiAnswerUserInfoResult;
-import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.root.RootApiToken;
-import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 问答用户信息
@@ -32,9 +28,6 @@ public class ApiAnswerUserInfo extends RootApiToken<ApiAnswerUserInfoInput, ApiA
 
 	@Autowired
 	private UserInfoSupport userInfoSupport;
-	
-	@Autowired
-	private ContentServiceFactory contentServiceFactory;
 
 	@Override
 	protected ApiAnswerUserInfoResult process(ApiAnswerUserInfoInput input) {
@@ -68,16 +61,6 @@ public class ApiAnswerUserInfo extends RootApiToken<ApiAnswerUserInfoInput, ApiA
 			result.inError(88880005);
 
 		}
-		
-		int favorNum = contentServiceFactory.getSupportPraiseService().favored(ContentEnum.FAVOR_TYPE_LIKE.getCode(), upUserCode());
-		
-		int momentNum = JdbcHelper.count(CnContentBasicinfo.class, "",
-				MapHelper.initMap("busiType", ContentEnum.sportmoment.getCode(), "status",
-						ContentEnum.normal.getCode(), "shareScope", SystemEnum.YES.getCode(),"author",upUserCode()));
-		
-		answerUserInfo.setMomentNum(momentNum);
-		
-		answerUserInfo.setFavorNum(favorNum);
 
 		result.setAnswerUserInfo(answerUserInfo);
 
