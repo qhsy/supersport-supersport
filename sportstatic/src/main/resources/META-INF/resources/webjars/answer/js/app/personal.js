@@ -3,7 +3,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 	var page = 1;
 	var share = {
 		title:'[果冻体育]您的健康运动加油站',
-		link:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd44c999a0475e56&redirect_uri=' + comm.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+		link:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + comm.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
 		desc:'精彩内容与你分享',
 		imgUrl:'',
 	}
@@ -39,7 +39,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 					self.browser = true;
 					setTimeout(function(){
 						new QRCode('qrcode', {
-							text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd44c999a0475e56&redirect_uri=' + comm.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+							text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + comm.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
 							typeNumber:4,
 							width:192,
 							height:192
@@ -86,7 +86,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 					self.browser = true;
 					setTimeout(function(){
 						new QRCode('qrcode', {
-							text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd44c999a0475e56&redirect_uri=' + comm.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+							text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + comm.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
 							typeNumber:4,
 							width:192,
 							height:192

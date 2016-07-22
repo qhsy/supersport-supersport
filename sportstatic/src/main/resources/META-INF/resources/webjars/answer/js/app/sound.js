@@ -20,7 +20,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 				self.browser = true;
 				setTimeout(function(){
 					new QRCode('qrcode', {
-						text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd44c999a0475e56&redirect_uri=' + window.location.href + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+						text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + window.location.href + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
 						width:192,
 						height:192
 					});
