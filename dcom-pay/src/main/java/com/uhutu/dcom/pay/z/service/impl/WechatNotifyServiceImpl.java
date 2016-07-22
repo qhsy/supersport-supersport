@@ -108,7 +108,7 @@ public class WechatNotifyServiceImpl implements IWechatNotifyService {
 		
 		switch (processEnum) {
 		case WECHAT_NOTIFY:
-			className = "";
+			className = "com.uhutu.sportcenter.z.pay.func.WechatH5PayNotifyFunc";
 			break;
 		case WECHATH5_NOTIFY:
 			className = "com.uhutu.sportcenter.z.pay.func.WechatH5PayNotifyFunc";

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" id="new-questions">
+<head>
+<meta charset="UTF-8">
+<title>最新问题</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<link rel="stylesheet" href="style/style.css">
+<script type="text/javascript">
+var require = {
+	baseUrl:'js/',
+	paths:{
+		vue:'vue.min',
+		zepto:'zepto.min',
+		jssdk:'jweixin-1.0.0',
+		common:'common',
+		extend:'vue.extend',
+		qrcode:'qrcode'
+	},
+	shim:{
+		zepto:{
+			exports:'$'
+		},
+		common:{
+			exports:'common'
+		},
+		qrcode:{
+			exports:'QRCode'
+		}
+	}
+};
+</script>
+</head>
+<body>
+<section class="wrap">
+	<header-nav></header-nav>
+	<ul class="answer-wrap" v-cloak>
+		<template v-if=questions.length>
+			<li class="answer-item" v-for="item in questions">
+				<template v-if=item.activityFlag>
+					<a href="details.html?id={{item.code}}">
+						<h1 class="title">{{item.content}}</h1>
+						<div class="nickname"><em>{{item.nickName}}</em>{{item.title}}</div>
+						<div class="user">
+							<span class="photo"><img :src="item.headUrl" alt="" title=""></span>
+							<span class="listen-flag"><i class="iconfont">&#xe600;</i>{{item.soundContent}}</span>
+							<em class="num">听过 <i>{{item.listen}}</i></em>
+						</div>
+					</a>
+				</template>
+				<template v-else>
+					<a href="details.html?id={{item.code}}">
+						<h1 class="title">{{item.content}}</h1>
+						<div class="nickname"><em>{{item.nickName}}</em>{{item.title}}</div>
+						<div class="user">
+							<span class="photo"><img :src="item.headUrl" alt="" title=""></span>
+							<span class="hear"><i class="iconfont">&#xe600;</i>{{item.soundContent}}</span>
+							<em class="num">听过 <i>{{item.listen}}</i></em>
+						</div>
+					</a>
+				</template>
+			</li>
+		</template>
+		<template v-else>
+		<li class="no-data"></li>
+		</template>
+	</ul>
+	<footer-nav></footer-nav>
+</section>
+<script type="text/javascript" src="js/require.min.js"></script>
+<script type="text/javascript" src="js/app/new_questions.js"></script>
+</body>
+</html>
