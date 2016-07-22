@@ -3,7 +3,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 	var vm = new Vue({
 		el: '#answer',
 		data: {
-			result:{},
+			result:null,
 			isCurr: 1
 	},
 	created:function(){
@@ -26,7 +26,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 	});
 	vm.$on('iscroll',function(){
 		var bStop = true;
-		var self = this.result;
+		var self = this;
 		$(window).on('scroll',function(){
 			var iHeight = $('.wrap').height();
 			var winHeight = $(window).height();
@@ -36,7 +36,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 					bStop = false;
 					page++;
 					$.ajax({
-						url:'/api/answerController/hotQuestions',
+						url:'/api/answerController/hotQuestions1',
 						type:'POST',
 						contentType:'application/json',
 						dataType:'json',

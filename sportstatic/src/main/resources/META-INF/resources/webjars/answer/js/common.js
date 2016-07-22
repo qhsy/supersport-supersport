@@ -1,6 +1,8 @@
-define(['zepto','jssdk'],function($,wx){
+define(['zepto','jssdk','qrcode'],function($,wx,QRCode){
 	var common = {};
 	//sessionStorage.setItem('token','f8ede4925ec74374a032d453afd7f6d5d101126d930e4f52b24bc20f1cc9f0aabb9d5953');
+	common.appId = 'wxec842da73ebe11a4'; //wxfd44c999a0475e56
+
 	common.paramFn = function (arg){
 		var url = window.location.search;
 		if(typeof url != 'string' || url == '') return;
@@ -14,6 +16,15 @@ define(['zepto','jssdk'],function($,wx){
 				}
 			}
 		}
+	}
+	common.qrcode = function(){
+		setTimeout(function(){
+			new QRCode('qrcode', {
+				text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + common.appId + '&redirect_uri=' + common.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+				width:192,
+				height:192
+			});
+		}, 1);
 	}
 	common.token = function(){
 		if(sessionStorage.getItem('token')){
@@ -57,7 +68,7 @@ define(['zepto','jssdk'],function($,wx){
 	 */
 	common.share = {
 		title:'[果冻体育]您的健康运动加油站',
-		link:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd44c999a0475e56&redirect_uri=' + common.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+		link:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + common.appId + '&redirect_uri=' + common.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
 		desc:'精彩内容与你分享',
 		imgUrl:'http://img-cdn.bigtiyu.com/wsc/sport/273cb/s-87-87/371dd1482017495d95a4592a6877f6cf.png',
 	}

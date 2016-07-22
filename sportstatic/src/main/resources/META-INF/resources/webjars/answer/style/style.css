@@ -111,15 +111,18 @@ a:hover {text-decoration: none;}
 .details-item .ask em{padding-left: 0.12rem; color: #AAAAAA;}
 .details-item .ask i{color: #f8800a; float: right;}
 .details-item .ask-photo{width: 0.28rem; height: 0.28rem; display: inline-block; border-radius: 50%; overflow: hidden; vertical-align: middle;}
-.details-item .title{line-height: 0.2rem; font-size: 0.16rem; font-weight: 700;}
+.details-item .title{padding-bottom: 0.15rem; line-height: 0.2rem; font-size: 0.16rem; font-weight: 700;}
 .details-item .title b{color: #F38540}
-.details-item .user{padding: 0.31rem 0.28rem 0 0; display: -webkit-flex; display: flex; line-height: 0.36rem; align-items: center; -webkit-align-items: center; font-size: 0.12rem;}
+.details-item .user{padding: 0.16rem 0.28rem 0 0; display: -webkit-flex; display: flex; line-height: 0.36rem; align-items: center; -webkit-align-items: center; font-size: 0.12rem;}
 .details-item .photo{width: 0.36rem; height: 0.36rem; border-radius: 50%; overflow: hidden; margin-right: 0.16rem;}
 .details-item .hear{width: 1.97rem; height: 0.36rem; background: #f8800a; border-radius: 0.2rem; color: #fff; font-size: 0.14rem;}
 .details-item .hear:before{content: ""; width: 0.28rem; height: 0.22rem; display: block; background: url(img/audio_arr.png) no-repeat; background-size: cover; transform: translate3d(-0.10rem,0.14rem,0); transform: -webkit-translate3d(-0.10rem,0.14rem,0); position: absolute;}
-.details-item .listen-flag{width: 1.97rem; height: 0.36rem; background: #98D15E; border-radius: 0.2rem; color: #fff; font-size: 0.14rem;}
+
+.details-item .listen-flag{width: 1.97rem; height: 0.36rem; background: #7ed321; border-radius: 0.2rem; color: #fff; font-size: 0.14rem;}
 .details-item .listen-flag:before{content: ""; width: 0.28rem; height: 0.22rem; display: block; background: url(img/listen_flag.png) no-repeat; background-size: cover; transform: translate3d(-0.10rem,0.14rem,0); transform: -webkit-translate3d(-0.10rem,0.14rem,0); position: absolute;}
-.details-item .iconfont{padding: 0 0.25rem 0 0.2rem; font-size: 0.16rem;}
+/*.details-item .iconfont{padding: 0 0.25rem 0 0.2rem; font-size: 0.16rem;}*/
+.details-item .play-icon{width: 0.12rem; height: 0.16rem; float: left; margin: 0.11rem 0.28rem 0 0.22rem; vertical-align: middle; background: url(img/play.png) no-repeat left center; background-size: 0.12rem;}
+.details-item .animte{animation: play 0.7s linear infinite;}
 .details-item .time{padding-left: 0.13rem; color: #f8800a; font-size: 0.18rem; font-family: "STHeitiSC-Light";}
 .details-item .status{padding: 0.12rem 0 0.1rem; font-size: 0.12rem; color: #9B9B9B;}
 .details-item .status em{padding-right: 0.1rem;}
@@ -132,6 +135,16 @@ a:hover {text-decoration: none;}
 .details-item .assist{width: 0.8rem; height: 0.4rem; margin: 0.24rem auto 0.08rem; display: block; border-radius: 4px; background: #f8800a; font-size: 0.18rem; color: #fff; text-align: center; line-height: 0.4rem;}
 .details-item .assist.is{background: #DADADA;}
 
+@keyframes play{
+	0%{width: 4px; margin: 0.11rem 0.36rem 0 0.22rem;}
+    50%{width: 8px; margin: 0.11rem 0.32rem 0 0.22rem;}
+    100%{width: 12px; margin: 0.11rem 0.28rem 0 0.22rem;}
+}
+@-webkit-keyframes play{
+	0%{width: 4px; margin: 0.11rem 0.36rem 0 0.22rem;}
+    50%{width: 8px; margin: 0.11rem 0.32rem 0 0.22rem;}
+    100%{width: 12px; margin: 0.11rem 0.28rem 0 0.22rem;}
+}
 /* recommend */
 .recommend{margin-top: 0.4rem;}
 .recommend dt{padding: 0.12rem 0 0.08rem 0.2rem; line-height: 0.14rem; font-size: 0.12rem; color: #aaa;}

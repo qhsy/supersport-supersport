@@ -10,13 +10,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 			var weix = navigator.userAgent.indexOf('MicroMessenger') > -1;
 			if(!weix){
 				self.browser = true;
-				setTimeout(function(){
-					new QRCode('qrcode', {
-						text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd44c999a0475e56&redirect_uri=' + comm.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
-						width:192,
-						height:192
-					});
-				}, 1)
+				comm.qrcode();
 				return ;
 			}
 			$.ajax({
@@ -49,12 +43,17 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 					comm.tost('请设置您的简介！')
 					return ;
 				}
+				
+				if( self.result.answerUserInfo.title.length > 18 && self.result.answerUserInfo.ability.length > 100 && self.result.answerUserInfo.charge.length == 0){
+					comm.tost('请填写正确的内容！！')
+					return ;
+				}
 				if(self.result.answerUserInfo.charge == ''){
 					comm.tost('请设置支付金额！')
 					return ;
 				}
-				if( self.result.answerUserInfo.title.length > 18 && self.result.answerUserInfo.ability.length > 100 && self.result.answerUserInfo.charge.length == 0){
-					comm.tost('请填写正确的内容！！')
+				if(parseFloat(self.result.answerUserInfo.charge) >= 1){
+					comm.tost('请设置正确的金额！')
 					return ;
 				}
 				$.ajax({
@@ -80,7 +79,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 			isCharge:function(){
 				var self = this;
 				//var reg = /^[0-9]*[1-9][0-9]*$/g
-				var reg = /^(([1-9][0-9]*)|(([0]\.[0-9][1-9]{1,2}|[0]\.[1-9]{1,2}|[1-9][0-9]*\.\d{1,2})))$/;
+				var reg = /^(([1-9][0-9]*)|(([1]\.[0-9][1-9]{1,2}|[1]\.[1-9]{1,2}|[1-9][0-9]*\.\d{1,2})))$/;
 				if(!reg.test($.trim(self.result.answerUserInfo.charge))){
 					comm.tost('请输入正确的金额！')
 				}

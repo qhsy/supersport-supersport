@@ -14,7 +14,8 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 		el: '#details',
 		data: {
 			result:{},
-			browser:false
+			browser:false,
+			animation:false
 		},
 		created:function(){
 			var self = this;
@@ -29,7 +30,6 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 						self.result = res;
 						share = {
 							title:res.detail.content,
-							link:window.location.href,
 							nickName:res.detail.answerUserNickName,
 							imgUrl:res.detail.answerUserHeadUrl,
 							money:res.detail.money
@@ -47,14 +47,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 				var weix = navigator.userAgent.indexOf('MicroMessenger') > -1;
 				if(!weix){
 					self.browser = true;
-					setTimeout(function(){
-						new QRCode('qrcode', {
-							text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd44c999a0475e56&redirect_uri=' + comm.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
-							typeNumber:4,
-							width:192,
-							height:192
-						});
-					}, 1)
+					comm.qrcode();
 					return ;
 				}
 				if(self.result.detail.listenFlag){
@@ -95,7 +88,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 								    	self.result.detail.videoShow = '点击播放';
 								    	play();
 									}else{
-
+										comm.tost('支付失败，请重新支付！')
 									}
 								})
 							}
@@ -116,13 +109,14 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 								wx.downloadVoice({
 									serverId: thisData.mediaId,
 									success: function (res) {
-										var localId = res.localId; 
+										var localId = res.localId;
+										self.animation = true;
 										wx.playVoice({
 									        localId: localId
 									    });
 									    wx.onVoicePlayEnd({
 										    complete: function(res) {
-										    	
+										    	self.animation = false;
 										    }
 										});
 									}

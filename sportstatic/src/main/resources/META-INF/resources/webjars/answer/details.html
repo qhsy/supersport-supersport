@@ -53,31 +53,27 @@ var require = {
 				<template v-if="result.detail.activityFlag">
 					<div class="user">
 						<span class="photo"><a href="personal.html?userCode={{result.detail.answerUserCode}}"><img :src="result.detail.answerUserHeadUrl" alt="" title=""></a></span>
-						<span class="listen-flag" @click="audioPlay"><i class="iconfont">&#xe600;</i>{{result.detail.videoShow}}</span>
+						<span class="listen-flag" @click="audioPlay"><i class="play-icon" v-bind:class="{animte:animation}"></i>{{result.detail.videoShow}}</span>
 						<em class="time">{{result.detail.videoLengh}}”</em>
 					</div>
 					<div class="status"><em>听过{{result.detail.listen}}</em>赞{{result.detail.love}}<i>{{result.detail.timeShow}}</i></div>
-					<div class="follows">
-						<a href="personal.html?userCode={{result.detail.answerUserCode}}">
-							<span>{{result.detail.answerUserNickName}}<i>{{result.detail.answerUserFans}}个粉丝</i></span>
-							<p>{{result.detail.answerUserTitle}}</p>
-						</a>
-					</div>
 				</template>
 				<template v-else>
 					<div class="user">
 						<span class="photo"><a href="personal.html?userCode={{result.detail.answerUserCode}}"><img :src="result.detail.answerUserHeadUrl" alt="" title=""></a></span>
-						<span class="hear" @click="audioPlay"><i class="iconfont">&#xe600;</i>{{result.detail.videoShow}}</span>
+						<span class="hear" @click="audioPlay"><i class="play-icon" v-bind:class="{animte:animation}"></i>{{result.detail.videoShow}}</span>
 						<em class="time">{{result.detail.videoLengh}}”</em>
 					</div>
 					<div class="status"><em>听过{{result.detail.listen}}</em>赞{{result.detail.love}}<i>{{result.detail.timeShow}}</i></div>
-					<div class="follows">
-						<a href="personal.html?userCode={{result.detail.answerUserCode}}">
-							<span>{{result.detail.answerUserNickName}}<i>{{result.detail.answerUserFans}}个粉丝</i></span>
-							<p>{{result.detail.answerUserTitle}}</p>
-						</a>
-					</div>
 				</template>
+			</template>
+			<div class="follows">
+				<a href="personal.html?userCode={{result.detail.answerUserCode}}">
+					<span>{{result.detail.answerUserNickName}}<i>{{result.detail.answerUserFans}}个粉丝</i></span>
+					<p>{{result.detail.answerUserTitle}}</p>
+				</a>
+			</div>
+			<template v-if="result.detail.status == 'dzsd4888100110010002'">
 				<template v-if="result.detail.loveFlag">
 					<a href="javascript:;" class="assist is">已赞</a>
 				</template>
