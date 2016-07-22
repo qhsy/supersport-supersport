@@ -1,10 +1,10 @@
 require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,wx,QRCode){
 	var code = comm.paramFn('id');
-	var localId;
+	var localId = '';
 	var status;
 	var share = {
 		title:'',
-		link:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + comm.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
+		link:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + comm.appId + '&redirect_uri=' + comm.getUrl() + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
 		desc:'',
 		imgUrl:'',
 		nickName:'',
@@ -109,14 +109,15 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 								wx.downloadVoice({
 									serverId: thisData.mediaId,
 									success: function (res) {
-										var localId = res.localId;
+										localId = res.localId;
 										self.animation = true;
 										wx.playVoice({
 									        localId: localId
 									    });
 									    wx.onVoicePlayEnd({
-										    complete: function(res) {
+										    success: function (res) {
 										    	self.animation = false;
+										        localId = res.localId;
 										    }
 										});
 									}
@@ -132,14 +133,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 				var weix = navigator.userAgent.indexOf('MicroMessenger') > -1;
 				if(!weix){
 					self.browser = true;
-					setTimeout(function(){
-						new QRCode('qrcode', {
-							text: 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + window.location.href + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect',
-							typeNumber:4,
-							width:192,
-							height:192
-						});
-					}, 1)
+					comm.qrcode();
 					return ;
 				}
 				if(!self.result.detail.loveFlag){
