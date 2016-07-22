@@ -181,6 +181,7 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 			job.setQuestionCode(qtInfo.getCode());
 			job.setType("dzsd4888100110040002");// 拒绝回答
 			job.setCode(WebHelper.upCode("TK"));
+			job.setCreateTime(DateHelper.upNow());
 			job.setAmount(qtInfo.getMoney());
 			job.setAlAmount(BigDecimal.ZERO);
 			job.setRemark("达人拒绝回答，退款处理");
