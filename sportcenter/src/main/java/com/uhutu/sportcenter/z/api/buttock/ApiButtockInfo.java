@@ -93,7 +93,7 @@ public class ApiButtockInfo extends RootApiBase<ApiButtockInfoInput, ApiButtockI
 		
 		input.setPagination(infoInput.getPagination());
 		
-		input.setWidth(infoInput.getWidth());
+		input.setWidth(infoInput.getWidth()*2);
 		
 		ApiButtockPowerListResult result = apiButtockPowerList.api(input);
 		
