@@ -52,6 +52,7 @@ import com.uhutu.sportcenter.z.api.home.ApiHomePage;
 import com.uhutu.sportcenter.z.api.label.ApiForLabels;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatConfigInfo;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatH5Pay;
+import com.uhutu.sportcenter.z.api.pay.ApiWechatMobilePay;
 import com.uhutu.sportcenter.z.api.remark.ApiPublishRemark;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkCount;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkList;
@@ -321,6 +322,9 @@ public class ApiFactory {
 	@Autowired
 	private ApiUserInfoAll apiUserInfoAll;
 	
+	@Autowired
+	private ApiWechatMobilePay apiWechatMobilePay;
+	
 	public ApiButtockNotes getApiButtockNotes() {
 		return apiButtockNotes;
 	}
@@ -435,6 +439,10 @@ public class ApiFactory {
 
 	public ApiForLabels getApiForLabels() {
 		return apiForLabels;
+	}
+
+	public ApiWechatMobilePay getApiWechatMobilePay() {
+		return apiWechatMobilePay;
 	}
 
 	public ApiUserResetPwd getApiUserResetPwd() {

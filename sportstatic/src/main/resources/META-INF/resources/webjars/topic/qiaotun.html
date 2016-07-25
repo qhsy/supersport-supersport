@@ -87,10 +87,11 @@ a:hover {text-decoration: none;}
 <section class="wrap">
 	<article class="container">
 		<nav class="tab-nav">
-			<a href="javascript:;" v-bind:class="{curr:currStatus == 'lap'}" @click="tab(0)">翘丽圈</a>
-			<a href="javascript:;" class="curr" v-bind:class="{curr:currStatus == 'power'}" @click="tab(1)">实力派</a>
+			<a href="javascript:;" class="curr" v-bind:class="{curr:currStatus == 'lap'}" @click="tab(0)">翘丽圈</a>
+			<a href="javascript:;" v-bind:class="{curr:currStatus == 'power'}" @click="tab(1)">实力派</a>
 		</nav>
 		<ul class="data-list">
+			<template v-if="viewer.buttockInfos[0].contentInfos.length">
 			<li class="list-item" v-for="item in viewer.buttockInfos[0].contentInfos">
 				<a href="javascript:;" onclick="onTopicCategories('{{item.author}}','{{item.userBasicInfo.aboutHead}}','{{item.code}}','{{item.contentType}}')">
 					<div class="canvas"><img :src="item.cover" alt=""></div>
@@ -102,6 +103,7 @@ a:hover {text-decoration: none;}
 					</div>
 				</a>
 			</li>
+			</template>
 		</ul>
 		<div class="load" v-if="load">
 			<em></em>数据加载中...

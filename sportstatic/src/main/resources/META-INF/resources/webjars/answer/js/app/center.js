@@ -52,7 +52,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 					comm.tost('请设置支付金额！')
 					return ;
 				}
-				if(parseFloat(self.result.answerUserInfo.charge) >= 1){
+				if(parseFloat(self.result.answerUserInfo.charge) < 1){
 					comm.tost('请设置正确的金额！')
 					return ;
 				}

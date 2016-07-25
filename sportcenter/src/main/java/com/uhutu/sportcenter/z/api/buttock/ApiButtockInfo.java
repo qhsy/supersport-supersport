@@ -38,7 +38,7 @@ public class ApiButtockInfo extends RootApiBase<ApiButtockInfoInput, ApiButtockI
 		
 		result.setNotes(apiButtockNotes.process(new ApiButtockNotesInput()).getNotes());
 		
-		result.setApplyUrl("http://mp.weixin.qq.com/s?__biz=MzAwNzk2MjI1OA==&mid=2247483945&idx=1&sn=5f65d818216c9d2516ed34981022bbbe&scene=1&srcid=0720ql6q5oCSprckwxr4u0h5#rd");
+		result.setApplyUrl("http://mp.weixin.qq.com/s?__biz=MzAwNzk2MjI1OA==&mid=100000322&idx=1&sn=fba9bd92a3ff78862efb67d3b0697036&scene=20#wechat_redirect");
 		
 		try {
 			
@@ -93,7 +93,7 @@ public class ApiButtockInfo extends RootApiBase<ApiButtockInfoInput, ApiButtockI
 		
 		input.setPagination(infoInput.getPagination());
 		
-		input.setWidth(infoInput.getWidth());
+		input.setWidth(infoInput.getWidth()*2);
 		
 		ApiButtockPowerListResult result = apiButtockPowerList.api(input);
 		

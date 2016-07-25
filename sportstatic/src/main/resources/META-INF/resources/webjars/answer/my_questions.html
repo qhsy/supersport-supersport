@@ -36,7 +36,7 @@ var require = {
 };
 </script>
 </head>
-<body>
+<body v-cloak>
 <section class="wrap">
     <template v-if="browser">
         <article class="isBrowser">
@@ -46,7 +46,7 @@ var require = {
     </template>
     <template v-else>
         <template v-if="result.total">
-            <article class="leon-answer" v-cloak>
+            <article class="leon-answer">
             	<h1>我问<i>{{result.total}}</i>个</h1>
                 <ul class="bd">
                 	<li v-for="item in result.questionInfos">
@@ -58,9 +58,8 @@ var require = {
                             <template v-else>
                                 <p><b>[私密]</b>{{item.content}}</p>
                             </template>
-                            <font><span>{{item.questionTimeStr}}</span></font>
                             <div class="info">
-                                偷偷听<i>{{item.listen}}</i>　分成收入<i>￥{{item.askAmount}}</i>
+                                偷偷听<i>{{item.listen}}</i>　分成收入<i>￥{{item.askAmount}}</i><em style="float: right;">{{item.questionTimeStr}}</em>
                             </div>
                         </a>
                     </li>
