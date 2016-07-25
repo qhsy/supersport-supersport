@@ -162,7 +162,7 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 			
 			ocOrderPay.setOrderType(orderType);
 			
-			ocOrderPay.setPayedMoney(new BigDecimal(notifyRequest.getTotal_fee()/100).setScale(2));
+			ocOrderPay.setPayedMoney(new BigDecimal(notifyRequest.getTotal_fee()).divide(new BigDecimal(100)).setScale(2));
 			
 			Date date;
 			try {
