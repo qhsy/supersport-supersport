@@ -1,8 +1,8 @@
 package com.uhutu.sportcenter.z.result;
 
 import com.uhutu.dcom.pay.z.response.WechatH5PayResponse;
+import com.uhutu.dcom.pay.z.response.WechatPayResponse;
 import com.uhutu.zoocom.root.RootApiResult;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -18,6 +18,9 @@ public class ApiForAskQuestionResult extends RootApiResult {
 
 	@ApiModelProperty(value = "微信支付参数")
 	private WechatH5PayResponse wechatH5PayResponse = new WechatH5PayResponse();
+	
+	@ApiModelProperty(value="微信移动支付参数")
+	private WechatPayResponse wechatMobilePayResponse = new WechatPayResponse();
 
 	public String getCode() {
 		return code;
@@ -33,6 +36,14 @@ public class ApiForAskQuestionResult extends RootApiResult {
 
 	public void setWechatH5PayResponse(WechatH5PayResponse wechatH5PayResponse) {
 		this.wechatH5PayResponse = wechatH5PayResponse;
+	}
+
+	public WechatPayResponse getWechatMobilePayResponse() {
+		return wechatMobilePayResponse;
+	}
+
+	public void setWechatMobilePayResponse(WechatPayResponse wechatMobilePayResponse) {
+		this.wechatMobilePayResponse = wechatMobilePayResponse;
 	}
 
 }
