@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiWechatH5PayInput;
+import com.uhutu.sportcenter.z.input.ApiWechatMobilePayInput;
 import com.uhutu.sportcenter.z.result.ApiWechatH5PayResult;
+import com.uhutu.sportcenter.z.result.ApiWechatMobilePayResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,6 +40,22 @@ public class PayController {
 		input.setRomoteIP(request.getRemoteAddr());
 		
 		return apiFactory.getApiWechatH5Pay().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/wechatMobilePay", method = RequestMethod.POST)
+	@ApiOperation(value = "微信移动支付", notes = "微信移动支付")
+	public ApiWechatMobilePayResult wechatMobilePay(@RequestBody ApiWechatMobilePayInput input,HttpServletRequest request) {
+
+		String[] paths = request.getRequestURL().toString().split("/");
+		
+		String path = paths[0]+"//"+paths[2];
+		
+		input.setServeIP(path);
+		
+		input.setRomoteIP(request.getRemoteAddr());
+		
+		return apiFactory.getApiWechatMobilePay().api(input);
 	}
 
 }
