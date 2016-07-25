@@ -7,7 +7,10 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
 import com.uhutu.dcom.config.enums.SystemEnum;
+import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
+import com.uhutu.dcom.user.z.enums.UserEnum;
+import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.AnswerUserInfo;
 import com.uhutu.sportcenter.z.input.ApiAnswerUserInfoInput;
@@ -28,6 +31,9 @@ public class ApiAnswerUserInfo extends RootApiToken<ApiAnswerUserInfoInput, ApiA
 
 	@Autowired
 	private UserInfoSupport userInfoSupport;
+	
+	@Autowired
+	private UserServiceFactory userServiceFactory;
 
 	@Override
 	protected ApiAnswerUserInfoResult process(ApiAnswerUserInfoInput input) {
@@ -49,6 +55,18 @@ public class ApiAnswerUserInfo extends RootApiToken<ApiAnswerUserInfoInput, ApiA
 		}
 
 		UcUserinfoExt userInfoExt = userInfoSupport.getUserInfoExt(upUserCode());
+		
+		UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(upUserCode());
+		
+		if(ucUserinfo != null){
+			
+			answerUserInfo.setType(ucUserinfo.getType());
+			
+			int fansNum = userServiceFactory.getAttentionInfoService().queryFansCount(upUserCode(), UserEnum.ATTEND.getCode());
+			
+			answerUserInfo.setFansNum(fansNum);
+			
+		}
 
 		if (userInfoExt != null) {
 
