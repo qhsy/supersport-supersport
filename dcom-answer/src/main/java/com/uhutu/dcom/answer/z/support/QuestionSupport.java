@@ -17,6 +17,7 @@ import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.properties.ConfigDcomAnswer;
 import com.uhutu.dcom.answer.z.support.vo.AnswerForShow;
 import com.uhutu.dcom.answer.z.support.vo.QuestionForShow;
+import com.uhutu.dcom.order.z.entity.OcOrderInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.zoocom.model.MDataMap;
@@ -286,15 +287,37 @@ public class QuestionSupport extends RootClass {
 	 */
 	public boolean checkUserLitenTheQuestion(String userCode, String questionCode) {
 		boolean flag = false;
-		AwQuestionInfo questionInfo = JdbcHelper.queryOne(AwQuestionInfo.class, "code", questionCode);
-		AwAnswerListen listen = JdbcHelper.queryOne(AwAnswerListen.class, "question_code", questionCode, "user_code",
-				userCode);
-		AcActivityAnswerInfo activity = new AnswerActivitySupport().getActivityInfoByAnswerCode(questionCode);
-		if (userCode.equals(questionInfo.getAnswerUserCode()) || userCode.equals(questionInfo.getQuestionUserCode())
-				|| listen != null || (activity != null && BigDecimal.ZERO.compareTo(activity.getPrice()) == 0)) {// 如果此人为提问人或者回答人可直接听
-																													// 已经支付的人也可直接听
-																													// 免费听的也可直接听
-			flag = true;
+		if (StringUtils.isNotBlank(userCode) && StringUtils.isNotBlank(questionCode)) {
+			AwQuestionInfo questionInfo = JdbcHelper.queryOne(AwQuestionInfo.class, "code", questionCode);
+			if (userCode.equals(questionInfo.getAnswerUserCode())
+					|| userCode.equals(questionInfo.getQuestionUserCode())) {// 如果此人为提问人或者回答人可直接听
+				flag = true;
+			} else {
+				AwAnswerListen listen = JdbcHelper.queryOne(AwAnswerListen.class, "question_code", questionCode,
+						"user_code", userCode);
+				if (listen != null) {// 已经听过的人也可直接听
+					flag = true;
+				} else {
+					MDataMap orMap = new MDataMap();
+					orMap.put("buyercode", userCode);
+					orMap.put("sellercode", questionInfo.getQuestionUserCode());
+					orMap.put("status", "dzsd4112100110030002");
+					orMap.put("productcode", questionInfo.getCode());
+					OcOrderInfo orderInfo = JdbcHelper.queryOne(OcOrderInfo.class, "", "",
+							"buyer_code=:buyercode and seller_code=:sellercode and status=:status and code in (select code from oc_order_detail where product_code=:productcode)",
+							orMap);
+					if (orderInfo != null) {// 已经支付的人也可直接听
+						flag = true;
+					} else {
+						AcActivityAnswerInfo activity = new AnswerActivitySupport()
+								.getActivityInfoByAnswerCode(questionCode);
+						if (activity != null && BigDecimal.ZERO.compareTo(activity.getPrice()) == 0) {
+							// 免费活动听的也可直接听
+							flag = true;
+						}
+					}
+				}
+			}
 		}
 		return flag;
 	}
