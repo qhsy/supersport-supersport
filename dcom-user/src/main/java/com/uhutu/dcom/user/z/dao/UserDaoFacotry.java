@@ -65,6 +65,9 @@ public class UserDaoFacotry {
 	
 	@Autowired
 	private IUserDonateDeviceDao userDonateDeviceDao;
+	
+	@Autowired
+	private IUserSocialLoginDao userSocialLoginDao;
 
 	/**
 	 * 用户信息数据访问
@@ -173,6 +176,10 @@ public class UserDaoFacotry {
 
 	public IUserDonateDeviceDao getUserDonateDeviceDao() {
 		return userDonateDeviceDao;
+	}
+
+	public IUserSocialLoginDao getUserSocialLoginDao() {
+		return userSocialLoginDao;
 	}
 
 }

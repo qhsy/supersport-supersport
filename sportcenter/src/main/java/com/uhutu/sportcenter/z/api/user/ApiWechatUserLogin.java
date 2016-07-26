@@ -80,7 +80,7 @@ public class ApiWechatUserLogin extends RootApiBase<ApiWechatUserLoginInput, Api
 
 		}else{
 			
-			ApiSocialLoginResult socialLoginResult = apiSocialLogin.loginSytem(authResponse.getOpenid());
+			ApiSocialLoginResult socialLoginResult = apiSocialLogin.loginSytem(authResponse.getUnionid());
 			
 			BeanUtils.copyProperties(socialLoginResult, userLoginResult);
 			
@@ -102,11 +102,13 @@ public class ApiWechatUserLogin extends RootApiBase<ApiWechatUserLoginInput, Api
 		
 		input.setAboutHead(wechatResponse.getHeadimgurl());
 		
-		input.setAccountId(wechatResponse.getOpenid());
+		input.setAccountId(wechatResponse.getUnionid());
 		
 		input.setAccountName(wechatResponse.getNickname());
 		
 		input.setAccountType(SocialEnum.wechat.name());
+		
+		input.setOpenid(wechatResponse.getOpenid());
 		
 		return apiSocialLogin.api(input);		
 		

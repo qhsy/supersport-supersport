@@ -66,6 +66,9 @@ public class UserServiceFactory {
 	@Autowired
 	private IUserDonateDeviceService userDonateDeviceService;
 	
+	@Autowired
+	private IUserSocialLoginService userSocialLoginService;
+	
 	/**
 	 * 获取用户业务实现
 	 * 
@@ -164,5 +167,9 @@ public class UserServiceFactory {
 
 	public IUserDonateDeviceService getUserDonateDeviceService() {
 		return userDonateDeviceService;
+	}
+
+	public IUserSocialLoginService getUserSocialLoginService() {
+		return userSocialLoginService;
 	}
 }
