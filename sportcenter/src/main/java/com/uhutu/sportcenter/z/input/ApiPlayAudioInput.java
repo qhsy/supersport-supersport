@@ -6,20 +6,24 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 音频播放接口
+ * 
  * @author 逄小帅
  *
  */
 @ApiModel
 public class ApiPlayAudioInput extends RootApiInput {
-	
-	@ApiModelProperty(value="语音路径")
+
+	@ApiModelProperty(value = "语音路径")
 	private String audioUrl;
-	
-	@ApiModelProperty(value="问题编号")
+
+	@ApiModelProperty(value = "问题编号")
 	private String questionCode;
-	
-	@ApiModelProperty(value="偷听用户编号")
+
+	@ApiModelProperty(value = "偷听用户编号")
 	private String listenUserCode;
+
+	@ApiModelProperty(value = "来源: dzsd4112100110020001:app,dzsd4112100110020002:wap", example = "dzsd4112100110020002")
+	private String orderSource;
 
 	public String getAudioUrl() {
 		return audioUrl;
@@ -44,7 +48,13 @@ public class ApiPlayAudioInput extends RootApiInput {
 	public void setListenUserCode(String listenUserCode) {
 		this.listenUserCode = listenUserCode;
 	}
-	
-	
+
+	public String getOrderSource() {
+		return orderSource;
+	}
+
+	public void setOrderSource(String orderSource) {
+		this.orderSource = orderSource;
+	}
 
 }
