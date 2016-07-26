@@ -4,6 +4,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.answer.z.common.Constants;
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
 import com.uhutu.dcom.config.enums.SystemEnum;
@@ -79,6 +80,10 @@ public class ApiAnswerUserInfo extends RootApiToken<ApiAnswerUserInfoInput, ApiA
 			result.inError(88880005);
 
 		}
+		
+		int count = answerServiceFactory.getQuestionInfoService().queryAnswerCount(upUserCode(), Constants.STATUS_ANSWERED);
+		
+		answerUserInfo.setAnswerCount(count);
 
 		result.setAnswerUserInfo(answerUserInfo);
 
