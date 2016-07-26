@@ -20,7 +20,7 @@ public class AnswerListenServiceImpl implements IAnswerListenService {
 	@Override
 	public List<AwAnswerListen> queryList(String userCode, int iStart, int iNumber) {
 		
-		return JdbcHelper.queryForList(AwAnswerListen.class, "", "", "", MapHelper.initMap("userCode",userCode), iStart, iNumber);
+		return JdbcHelper.queryForList(AwAnswerListen.class, "", "-zc", "", MapHelper.initMap("userCode",userCode), iStart, iNumber);
 		
 	}
 
