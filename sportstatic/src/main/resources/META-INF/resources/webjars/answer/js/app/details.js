@@ -102,7 +102,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 						contentType:'application/json',
 						dataType:'json',
 						async:false,
-						data:'{"audioUrl": "' + self.result.detail.videoUrl + '","listenUserCode": "' + comm.code() + '","questionCode": "' + id + '","zoo": {"key": "tesetkey","token": ""}}',
+						data:'{"audioUrl": "' + self.result.detail.videoUrl + '","listenUserCode": "' + comm.code() + '","orderSource":"dzsd4112100110020002","questionCode": "' + id + '","zoo": {"key": "tesetkey","token": ""}}',
 						success:function(data){
 							var thisData = data;
 							if(thisData.status == 1){

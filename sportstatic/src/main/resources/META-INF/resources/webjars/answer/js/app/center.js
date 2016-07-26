@@ -52,20 +52,8 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 					comm.tost('请设置支付金额！')
 					return ;
 				}
-				if(parseFloat(self.result.answerUserInfo.charge) < 1){
-					if(self.result.answerUserInfo.type == "dzsd4107100310010001"){
-						comm.tost('请设置1-100的金额！')
-					}else{
-						comm.tost('请设置1-5000的金额！')
-					}
-					return ;
-				}
-				if(parseFloat(self.result.answerUserInfo.charge) > 100 && self.result.answerUserInfo.type == "dzsd4107100310010001"){
-					comm.tost('请设置1-100的金额！')
-					return ;
-				}
-				if(parseFloat(self.result.answerUserInfo.charge) > 5000 && self.result.answerUserInfo.type == "dzsd4107100310010002"){
-					comm.tost('请设置1-100的金额！')
+				if(parseFloat(self.result.answerUserInfo.charge) < 1 || parseFloat(self.result.answerUserInfo.charge) > 5000){
+					comm.tost('请设置1-5000的支付金额！')
 					return ;
 				}
 				$.ajax({
@@ -93,11 +81,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 				//var reg = /^[0-9]*[1-9][0-9]*$/g
 				var reg = /^(([1-9][0-9]*)|(([1]\.[0-9][1-9]{1,2}|[1]\.[1-9]{1,2}|[1-9][0-9]*\.\d{1,2})))$/;
 				if(!reg.test($.trim(self.result.answerUserInfo.charge))){
-					if(self.result.answerUserInfo.type == "dzsd4107100310010001"){
-						comm.tost('请设置1-100的金额！')
-					}else{
-						comm.tost('请设置1-5000的金额！')
-					}
+					comm.tost('请设置1-5000的支付金额！')
 				}
 			}
 		}
