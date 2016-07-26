@@ -170,7 +170,8 @@ public class ApiPlayAudio extends RootApiBase<ApiPlayAudioInput, ApiPlayAudioRes
 
 	public void createZeroOrder(String buyerCode, String questionCode, String orderSource) {
 		AwQuestionInfo questionInfo = JdbcHelper.queryOne(AwQuestionInfo.class, "code", questionCode);
-		if (questionInfo != null) {
+		if (questionInfo != null && !questionInfo.getQuestionUserCode().equals(buyerCode)
+				&& !questionInfo.getAnswerUserCode().equals(buyerCode)) {
 			MDataMap orMap = new MDataMap();
 			orMap.put("buyercode", buyerCode);
 			orMap.put("sellercode", questionInfo.getQuestionUserCode());
