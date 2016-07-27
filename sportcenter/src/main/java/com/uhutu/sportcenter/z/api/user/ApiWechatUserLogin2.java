@@ -12,10 +12,10 @@ import com.uhutu.dcom.pay.z.response.WechatUserInfoResponse;
 import com.uhutu.dcom.pay.z.service.PayServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
-import com.uhutu.sportcenter.z.input.ApiSocialLoginInput;
-import com.uhutu.sportcenter.z.input.ApiWechatUserLoginInput;
-import com.uhutu.sportcenter.z.result.ApiSocialLoginResult;
-import com.uhutu.sportcenter.z.result.ApiWechatUserLoginResult;
+import com.uhutu.sportcenter.z.input.ApiSocialLoginInput2;
+import com.uhutu.sportcenter.z.input.ApiWechatUserLoginInput2;
+import com.uhutu.sportcenter.z.result.ApiSocialLoginResult2;
+import com.uhutu.sportcenter.z.result.ApiWechatUserLoginResult2;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
 
@@ -25,7 +25,7 @@ import com.uhutu.zoocom.root.RootApiBase;
  *
  */
 @Component
-public class ApiWechatUserLogin extends RootApiBase<ApiWechatUserLoginInput, ApiWechatUserLoginResult> {
+public class ApiWechatUserLogin2 extends RootApiBase<ApiWechatUserLoginInput2, ApiWechatUserLoginResult2> {
 	
 	@Autowired
 	private PayServiceFactory payServiceFactory;
@@ -34,12 +34,12 @@ public class ApiWechatUserLogin extends RootApiBase<ApiWechatUserLoginInput, Api
 	private UserServiceFactory userServiceFactory;
 	
 	@Autowired
-	private ApiSocialLogin apiSocialLogin;
+	private ApiSocialLogin2 apiSocialLogin;
 
 	@Override
-	protected ApiWechatUserLoginResult process(ApiWechatUserLoginInput input) {
+	protected ApiWechatUserLoginResult2 process(ApiWechatUserLoginInput2 input) {
 		
-		ApiWechatUserLoginResult userLoginResult = new ApiWechatUserLoginResult();
+		ApiWechatUserLoginResult2 userLoginResult = new ApiWechatUserLoginResult2();
 
 		WechatAuthRequest authRequest = new WechatAuthRequest();
 
@@ -59,7 +59,7 @@ public class ApiWechatUserLogin extends RootApiBase<ApiWechatUserLoginInput, Api
 			
 		}
 		
-		UcUserinfoSocial userInfoSocial = userServiceFactory.getUserInfoSocialService().queryByOpenId(authResponse.getOpenid());
+		UcUserinfoSocial userInfoSocial = userServiceFactory.getUserInfoSocialService().queryByOpenId(authResponse.getUnionid());
 
 		/*根据openid判断用户是否已经注册过，若是没有则进行注册*/
 		if (userInfoSocial == null) {
@@ -73,14 +73,24 @@ public class ApiWechatUserLogin extends RootApiBase<ApiWechatUserLoginInput, Api
 			WechatUserInfoResponse wechatResponse = (WechatUserInfoResponse) payServiceFactory
 					.getWechatUserInfoService().doProcess(wechatRequest, new MDataMap());
 			
-			ApiSocialLoginResult socialLoginResult = socialLogin(wechatResponse);
+			ApiSocialLoginResult2 socialLoginResult = socialLogin(wechatResponse);
 			
 			BeanUtils.copyProperties(socialLoginResult, userLoginResult);
 			
 
 		}else{
 			
-			ApiSocialLoginResult socialLoginResult = apiSocialLogin.loginSytem(authResponse.getOpenid());
+			ApiSocialLoginInput2 loginInput = new ApiSocialLoginInput2();
+			
+			loginInput.setOpenid(authResponse.getOpenid());
+			
+			loginInput.setAccountId(authResponse.getUnionid());
+			
+			loginInput.setAccountType("wechat");
+			
+			apiSocialLogin.saveSocialLogin(loginInput);
+			
+			ApiSocialLoginResult2 socialLoginResult = apiSocialLogin.loginSytem(authResponse.getUnionid());
 			
 			BeanUtils.copyProperties(socialLoginResult, userLoginResult);
 			
@@ -96,17 +106,19 @@ public class ApiWechatUserLogin extends RootApiBase<ApiWechatUserLoginInput, Api
 	 * 		微信响应信息
 	 * @return 微信登录后信息
 	 */
-	public ApiSocialLoginResult socialLogin(WechatUserInfoResponse wechatResponse){
+	public ApiSocialLoginResult2 socialLogin(WechatUserInfoResponse wechatResponse){
 		
-		ApiSocialLoginInput input = new ApiSocialLoginInput();
+		ApiSocialLoginInput2 input = new ApiSocialLoginInput2();
 		
 		input.setAboutHead(wechatResponse.getHeadimgurl());
 		
-		input.setAccountId(wechatResponse.getOpenid());
+		input.setAccountId(wechatResponse.getUnionid());
 		
 		input.setAccountName(wechatResponse.getNickname());
 		
 		input.setAccountType(SocialEnum.wechat.name());
+		
+		input.setOpenid(wechatResponse.getOpenid());
 		
 		return apiSocialLogin.api(input);		
 		

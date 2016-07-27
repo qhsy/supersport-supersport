@@ -77,6 +77,7 @@ import com.uhutu.sportcenter.z.api.user.ApiMsgRemarkList;
 import com.uhutu.sportcenter.z.api.user.ApiRecommendExpert;
 import com.uhutu.sportcenter.z.api.user.ApiSetUserFavor;
 import com.uhutu.sportcenter.z.api.user.ApiSocialLogin;
+import com.uhutu.sportcenter.z.api.user.ApiSocialLogin2;
 import com.uhutu.sportcenter.z.api.user.ApiUpdateMsgStatus;
 import com.uhutu.sportcenter.z.api.user.ApiUpdateUserInfo;
 import com.uhutu.sportcenter.z.api.user.ApiUserInfo;
@@ -86,6 +87,7 @@ import com.uhutu.sportcenter.z.api.user.ApiUserResetPwd;
 import com.uhutu.sportcenter.z.api.user.ApiVerifyNickName;
 import com.uhutu.sportcenter.z.api.user.ApiVersionInfo;
 import com.uhutu.sportcenter.z.api.user.ApiWechatUserLogin;
+import com.uhutu.sportcenter.z.api.user.ApiWechatUserLogin2;
 
 /**
  * api工厂
@@ -344,6 +346,12 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiOwnSportMoment apiOwnSportMoment;
+	
+	@Autowired
+	private ApiSocialLogin2 apiSocialLogin2;
+	
+	@Autowired
+	private ApiWechatUserLogin2 apiWechatUserLogin2;
 
 	public ApiThemePage getApiThemePage() {
 		return apiThemePage;
@@ -695,6 +703,18 @@ public class ApiFactory {
 
 	public ApiOwnSportMoment getApiOwnSportMoment() {
 		return apiOwnSportMoment;
+	}
+
+	public ApiSocialLogin2 getApiSocialLogin2() {
+		return apiSocialLogin2;
+	}
+
+	public ApiWechatUserLogin2 getApiWechatUserLogin2() {
+		return apiWechatUserLogin2;
+	}
+
+	public void setApiWechatUserLogin2(ApiWechatUserLogin2 apiWechatUserLogin2) {
+		this.apiWechatUserLogin2 = apiWechatUserLogin2;
 	}
 
 }

@@ -22,6 +22,7 @@ import com.uhutu.sportcenter.z.input.ApiSendSmsInput;
 import com.uhutu.sportcenter.z.input.ApiSetUserFavoerInput;
 import com.uhutu.sportcenter.z.input.ApiShareContentInput;
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput;
+import com.uhutu.sportcenter.z.input.ApiSocialLoginInput2;
 import com.uhutu.sportcenter.z.input.ApiUpdateUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiUserInfoAllInput;
 import com.uhutu.sportcenter.z.input.ApiUserInfoInput;
@@ -43,6 +44,7 @@ import com.uhutu.sportcenter.z.result.ApiSendSmsResult;
 import com.uhutu.sportcenter.z.result.ApiSetUserFavorResult;
 import com.uhutu.sportcenter.z.result.ApiShareContentResult;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult;
+import com.uhutu.sportcenter.z.result.ApiSocialLoginResult2;
 import com.uhutu.sportcenter.z.result.ApiUpdateUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiUserInfoAllResult;
 import com.uhutu.sportcenter.z.result.ApiUserInfoResult;
@@ -99,6 +101,14 @@ public class UserController {
 	public ApiSocialLoginResult socialLogin(@RequestBody ApiSocialLoginInput input) {
 
 		return apiFactory.getApiSocialLogin().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/socialLogin2", method = RequestMethod.POST)
+	@ApiOperation(value = "社交类app登录2", notes = "用户登录2")
+	public ApiSocialLoginResult2 socialLogin2(@RequestBody ApiSocialLoginInput2 input) {
+
+		return apiFactory.getApiSocialLogin2().api(input);
 	}
 
 	@ResponseBody

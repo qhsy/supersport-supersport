@@ -7,13 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.component.z.util.RandomUtil;
+import com.uhutu.dcom.user.z.entity.UcSocialLogin;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
 import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
-import com.uhutu.sportcenter.z.input.ApiSocialLoginInput;
-import com.uhutu.sportcenter.z.result.ApiSocialLoginResult;
+import com.uhutu.sportcenter.z.input.ApiSocialLoginInput2;
+import com.uhutu.sportcenter.z.result.ApiSocialLoginResult2;
 import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zooweb.user.UserCallFactory;
@@ -27,22 +28,24 @@ import com.uhutu.zooweb.user.UserReginsterResult;
  *
  */
 @Service
-public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLoginResult> {
+public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocialLoginResult2> {
 	
 	@Autowired
 	private UserServiceFactory userServiceFactory;
 	
 	private UserCallFactory userCallFactory = new UserCallFactory();
 
-	public ApiSocialLoginResult process(ApiSocialLoginInput inputParam) {
+	public ApiSocialLoginResult2 process(ApiSocialLoginInput2 inputParam) {
 		
-	    ApiSocialLoginResult result = null;
+	    ApiSocialLoginResult2 result = null;
+		
+	    saveSocialLogin(inputParam);
 	    
 	    UserReginsterResult userRegResult = userRegister(inputParam.getAccountId());
 	    
 	    if(userRegResult.upFlagTrue()){
 	    	
-	    	result = new ApiSocialLoginResult();
+	    	result = new ApiSocialLoginResult2();
 	    	
 	    	saveUserInfo(userRegResult, inputParam);
 		    
@@ -93,7 +96,7 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 	 * 		系统输入参数
 	 * return UcUserinfo
 	 */
-	public UcUserinfo saveUserInfo(UserReginsterResult userRegResult,ApiSocialLoginInput input){
+	public UcUserinfo saveUserInfo(UserReginsterResult userRegResult,ApiSocialLoginInput2 input){
 		
 		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(input.getAccountId(),UserEnum.FLAG_ENABLE.getCode());
 		
@@ -138,7 +141,7 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 	 * @param input
 	 * 		系统输入参数
 	 */
-	public void saveUserInfoExt(String userCode,ApiSocialLoginInput input){
+	public void saveUserInfoExt(String userCode,ApiSocialLoginInput2 input){
 		
 		UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(userCode);
 		
@@ -167,7 +170,7 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 	 * @param input
 	 * 		输入参数
 	 */
-	public void saveSocialInfo(String userCode, ApiSocialLoginInput input){
+	public void saveSocialInfo(String userCode, ApiSocialLoginInput2 input){
 		
 		UcUserinfoSocial social = userServiceFactory.getUserInfoSocialService().queryByUserCode(userCode);
 		
@@ -225,9 +228,9 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 	 * 		社交平台openId
 	 * @return 社交账户登录信息
 	 */
-	public ApiSocialLoginResult loginSytem(String openId){
+	public ApiSocialLoginResult2 loginSytem(String openId){
 		
-		ApiSocialLoginResult loginResult = new ApiSocialLoginResult();
+		ApiSocialLoginResult2 loginResult = new ApiSocialLoginResult2();
 		
     	UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().
     			queryByLoginName(openId,UserEnum.FLAG_ENABLE.getCode());
@@ -253,6 +256,35 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 		
 	}
 	
+	/**
+	 * 用户登录信息
+	 * @param input
+	 */
+	public void saveSocialLogin(ApiSocialLoginInput2 input){
+		
+		UcSocialLogin ucSocialLogin = userServiceFactory.getUserSocialLoginService().queryByUnionId(input.getOpenid(), input.getAccountId());
+		
+		if(ucSocialLogin == null){
+			
+			ucSocialLogin = new UcSocialLogin();
+			
+			ucSocialLogin.setOpenid(input.getOpenid());
+			
+			if(StringUtils.isBlank(input.getOpenid())){
+				
+				ucSocialLogin.setOpenid(input.getAccountId());
+				
+			}
+			
+			ucSocialLogin.setUnionid(input.getAccountId());
+			
+			ucSocialLogin.setType(input.getAccountType());
+			
+			userServiceFactory.getUserSocialLoginService().save(ucSocialLogin);
+			
+		}
+		
+	}
 	
 
 }
