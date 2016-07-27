@@ -24,6 +24,9 @@ public class ApiSocialLoginInput extends RootApiInput {
 	
 	@ApiModelProperty(value="头像地址")
 	private String aboutHead = "";
+	
+	@ApiModelProperty(value="平台用户标识")
+	private String openid;
 
 	public String getAccountId() {
 		return accountId;
@@ -55,6 +58,14 @@ public class ApiSocialLoginInput extends RootApiInput {
 
 	public void setAboutHead(String aboutHead) {
 		this.aboutHead = aboutHead;
+	}
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
 	
 

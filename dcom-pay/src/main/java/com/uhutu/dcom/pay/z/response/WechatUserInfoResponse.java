@@ -27,6 +27,9 @@ public class WechatUserInfoResponse extends MResult implements IPayResponse {
 	
 	/*普通用户个人资料填写的城市*/
 	private String city;
+	
+	/*个人用户信息标识*/
+	private String unionid;
 
 	public String getOpenid() {
 		return openid;
@@ -74,6 +77,14 @@ public class WechatUserInfoResponse extends MResult implements IPayResponse {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public String getUnionid() {
+		return unionid;
+	}
+
+	public void setUnionid(String unionid) {
+		this.unionid = unionid;
 	}
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.component.z.util.RandomUtil;
+import com.uhutu.dcom.user.z.entity.UcSocialLogin;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
@@ -49,6 +50,8 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 		    saveUserInfoExt(userRegResult.getUserCode(), inputParam);
 		    
 		    saveSocialInfo(userRegResult.getUserCode(), inputParam);
+		    
+		    
 		    
 		    result.setFirstLogin(true);
 		    
@@ -250,6 +253,36 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
     	}
     
 		return loginResult;
+		
+	}
+	
+	/**
+	 * 用户登录信息
+	 * @param input
+	 */
+	public void saveSocialLogin(ApiSocialLoginInput input){
+		
+		UcSocialLogin ucSocialLogin = userServiceFactory.getUserSocialLoginService().queryByUnionId(input.getOpenid(), input.getAccountId());
+		
+		if(ucSocialLogin == null){
+			
+			ucSocialLogin = new UcSocialLogin();
+			
+			ucSocialLogin.setOpenid(input.getOpenid());
+			
+			if(StringUtils.isBlank(input.getOpenid())){
+				
+				ucSocialLogin.setOpenid(input.getAccountId());
+				
+			}
+			
+			ucSocialLogin.setUnionid(input.getAccountId());
+			
+			ucSocialLogin.setType(input.getAccountType());
+			
+			userServiceFactory.getUserSocialLoginService().save(ucSocialLogin);
+			
+		}
 		
 	}
 	
