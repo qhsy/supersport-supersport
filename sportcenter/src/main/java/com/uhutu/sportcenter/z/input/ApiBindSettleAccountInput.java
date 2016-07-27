@@ -21,6 +21,9 @@ public class ApiBindSettleAccountInput extends RootApiInput {
 	
 	@ApiModelProperty(value="openid")
 	private String openid;
+	
+	@ApiModelProperty(value="是否绑定")
+	private boolean isBinding;
 
 	public String getAppid() {
 		return appid;
@@ -44,6 +47,14 @@ public class ApiBindSettleAccountInput extends RootApiInput {
 
 	public void setOpenid(String openid) {
 		this.openid = openid;
+	}
+
+	public boolean isBinding() {
+		return isBinding;
+	}
+
+	public void setBinding(boolean isBinding) {
+		this.isBinding = isBinding;
 	}
 
 }
