@@ -9,7 +9,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"userCode","type"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"userCode","openid"}))
 public class AwSettleAccount extends BaseEntity {
 	
 	@ZooData(name = "用户编号")
