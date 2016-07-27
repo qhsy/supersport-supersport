@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" id="sports">
+<head>
+<meta charset="UTF-8">
+<title>运动时刻</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="果冻体育">
+<style type="text/css">
+html{font-size: 100px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif; background: #f0f0f0;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,pre,form,fieldset,input,textarea,blockquote,p,button,header,footer,nav,section,article,aside,video,audio,figure,figcaption,hgroup{padding: 0px; margin: 0px; tap-highlight-color: rgba(0, 0, 0, 0); -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -ms-tap-highlight-color: rgba(0, 0, 0, 0); font-size: 0.14rem; line-height: 0.22rem;}
+table,td,tr,th{font-size: 0.12rem;}
+table{margin: 0 auto;}
+img{vertical-align: top; border: 0;}
+ol,ul{list-style: none;}
+li{list-style-type: none;}
+h1,h2,h3,h4,h5,h6{font-weight:normal; font-size: 100%;}
+img{width: 100%; height: auto; vertical-align: top; }
+address,caption,cite,code,dfn,em,i,b{font-weight: normal; font-style: normal;}
+input,textarea,select,button{outline: none; resize: none; border: 0;}
+a{-webkit-appearance: none; outline: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-touch-callout: none; text-decoration: none;}
+a:hover {text-decoration: none;}
+[v-cloak] {display: none;}
+
+/**/
+.sports-header{font-size: 0.18rem; line-height: 0.24rem; color: #FFFFFF; position: relative;}
+.sports-desc{background: #fff; padding: 0.16rem 0.45rem 0.19rem; font-size: 0.13rem; line-height: 0.15rem; color: #000000;}
+.sports-con .sports-title{color: #4A4A4A; padding: 0.14rem 0 0.14rem 0.15rem; font-size: 0.12rem; font-weight: 700; line-height: 0.14rem;}
+.sports-con .sports-title:after{content: ""; width: 2px; height: 0.12rem; float: left; margin-right: 0.02rem; background: #F8800A;}
+.sports-con .sports-list{display: -webkit-flex; display: flex; -webkit-flex-wrap:wrap; flex-wrap:wrap;}
+.sports-con .sport{width: 50%; padding: 0 4px; margin-bottom: 4px; box-sizing: border-box; -webkit-box-sizing: border-box; border-radius: 2px; -webkit-border-radius: 2px; overflow: hidden; box-shadow: 0 1px 3px #D6D6D6;}
+.sports-con .title{padding: 0.08rem 0.09rem; 0.07rem; line-height: 0.14rem; font-size: 0.12rem;}
+.sports-con .user{margin-left: 0.09rem; padding: 0.05rem 0.08rem 0.05rem 0; border-top: #F0F0F0 1px solid; font-size: 0.12rem; line-height: 0.18rem;}
+.sports-con .user img{width: 0.18rem; height: 0.18rem; border-radius: 50%; margin-right: 0.07rem;}
+.sports-con .photo{font-weight: 700; color: #4A4A4A;}
+.sports-con .zan{float: right; color: #9B9B9B;}
+.sports-con .sport a{display: block; color: #4A4A4A; background: #fff;}
+.sports-con .canvas img {transition: opacity 0.2s !important;}
+.sports-con .sport-event{display: block; width: 1rem; height: 0.3rem; margin: 0.2rem auto 0.08rem; border-radius: 4px; border: #C6C6C6 1px solid; font-size: 0.12rem; color: #9F9F9F; text-align: center; line-height: 0.3rem; position: relative;}
+.sports-con .sport-event:before{content: ""; width: 0.08rem; height: 0.03rem; display: block; background: url(img/sport_event.png) no-repeat; background-size: 0.08rem; position: absolute; right: 0.16rem; top: 0.13rem;}
+.sports-con .sport-event.down:before{background-position: 0 -0.03rem;}
+.sports-con .sport-event.up:before{background-position: 0 0;}
+</style>
+</head>
+<body>
+	<section class="container">
+		<header class="sports-header"><img :src="result.cover" alt=""></header>
+		<p class="sports-desc">{{result.aboutDesc}}</p>
+		<article class="sports-con" v-for="model in result.models">
+			<h1 class="sports-title">model.title</h1>
+			<ul class="sports-list">
+				<li class="sport" v-for="info in model.infos">
+					<a href="photo.html?code={{info.code}}" v-if="info.contentType == 'dzsd4107100110030003'">
+					<a href="default.html?code={{info.code}}" v-else>
+						<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="info.cover" :alt="info.title"></div>
+						<h1 class="title">{{info.title}}</h1>
+						<div class="user"><span class="photo"><img :src="info.userBasicInfo.aboutHead" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span><em class="zan">喜欢 {{info.praiseNum}}</em></div>
+					</a>
+				</li>
+			</ul>
+			<template v-if="model.infos.length > 4">
+				<a href="javascript:;" class="sport-event up" v-if="isDown">展开更多</a>
+				<a href="javascript:;" class="sport-event down" v-else>收起</a>
+			</template>
+		</article>
+	</section>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script type="text/javascript" src="js/vue.lazyimg.js"></script>
+	<script type="text/javascript">
+		/**
+		 * {
+			  "status": 1,
+			  "error": null,
+			  "code": "",
+			  "cover": "",
+			  "aboutDesc": "",
+			  "models": [
+			    {
+			      "title": "",
+			      "infos": [
+			        {
+			          "code": null,
+			          "cover": null,
+			          "title": null,
+			          "publishTime": null,
+			          "publishTimeStr": null,
+			          "aboutDesc": null,
+			          "souce": null,
+			          "status": null,
+			          "categoryCode": null,
+			          "tagCode": null,
+			          "tagName": null,
+			          "author": null,
+			          "shareScope": null,
+			          "location": null,
+			          "localtionName": null,
+			          "busiType": null,
+			          "contentType": null,
+			          "praiseNum": 0,
+			          "userBasicInfo": {
+			            "userCode": "",
+			            "nickName": "",
+			            "type": "",
+			            "aboutHead": ""
+			          }
+			        }
+			      ]
+			    }
+			  ]
+			}
+		 */
+
+
+
+
+		Vue.use(Vue.lazyimg,{
+		    fade: true,
+		    nohori: true,
+		    speed: 20,
+		});
+		var vm = new Vue({
+			el:'#sports',
+			data:{
+				result: null,
+				isDown:true
+			}
+		});
+	</script>
+</body>
+</html>
