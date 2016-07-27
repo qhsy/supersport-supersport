@@ -40,6 +40,7 @@ import com.uhutu.sportcenter.z.api.content.ApiPublishSportingMoment;
 import com.uhutu.sportcenter.z.api.content.ApiShareContent;
 import com.uhutu.sportcenter.z.api.content.ApiSportingMoments;
 import com.uhutu.sportcenter.z.api.content.ApiSupportPraise;
+import com.uhutu.sportcenter.z.api.content.ApiThemePage;
 import com.uhutu.sportcenter.z.api.donate.ApiUpdateUserPower;
 import com.uhutu.sportcenter.z.api.donate.ApiUserExpertDetail;
 import com.uhutu.sportcenter.z.api.donate.ApiUserExpertList;
@@ -312,19 +313,26 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiButtockNotes apiButtockNotes;
-	
+
 	@Autowired
 	private ApiButtockInfo apiButtockInfo;
-	
+
 	@Autowired
 	private ApiAppPersonHome apiAppPersonHome;
-	
+
 	@Autowired
 	private ApiUserInfoAll apiUserInfoAll;
-	
+
 	@Autowired
 	private ApiWechatMobilePay apiWechatMobilePay;
-	
+
+	@Autowired
+	ApiThemePage apiThemePage;
+
+	public ApiThemePage getApiThemePage() {
+		return apiThemePage;
+	}
+
 	public ApiButtockNotes getApiButtockNotes() {
 		return apiButtockNotes;
 	}

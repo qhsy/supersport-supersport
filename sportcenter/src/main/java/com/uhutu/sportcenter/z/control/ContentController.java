@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiComplainInfoInput;
 import com.uhutu.sportcenter.z.input.ApiContentDetailInput;
@@ -19,6 +20,7 @@ import com.uhutu.sportcenter.z.input.ApiPublishContentPhotosInput;
 import com.uhutu.sportcenter.z.input.ApiPublishSportingMomentInput;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.z.input.ApiSupportPraiseInput;
+import com.uhutu.sportcenter.z.input.ApiThemePageInput;
 import com.uhutu.sportcenter.z.result.ApiComplainInfoResult;
 import com.uhutu.sportcenter.z.result.ApiContentDetailResult;
 import com.uhutu.sportcenter.z.result.ApiContentPhotosResult;
@@ -31,6 +33,7 @@ import com.uhutu.sportcenter.z.result.ApiPublishContentPhotosResult;
 import com.uhutu.sportcenter.z.result.ApiPublishSportingMomentResult;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
 import com.uhutu.sportcenter.z.result.ApiSupportPraiseResult;
+import com.uhutu.sportcenter.z.result.ApiThemePageResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -115,7 +118,7 @@ public class ContentController {
 		return apiFactory.getApiForSports().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/publicContentPhotos", method = RequestMethod.POST)
 	@ApiOperation(value = "发布图集", notes = "运动类型")
@@ -124,7 +127,7 @@ public class ContentController {
 		return apiFactory.getApiPublishContentPhotos().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/contentComplain", method = RequestMethod.POST)
 	@ApiOperation(value = "内容投诉", notes = "内容详情页投诉接口")
@@ -133,7 +136,7 @@ public class ContentController {
 		return apiFactory.getApiComplainInfo().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/contentRecomm", method = RequestMethod.POST)
 	@ApiOperation(value = "编辑推荐信息", notes = "内容详情中编辑推荐信息")
@@ -142,13 +145,22 @@ public class ContentController {
 		return apiFactory.getApiContentRecommInfo().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/delContent", method = RequestMethod.POST)
 	@ApiOperation(value = "内容逻辑删除", notes = "内容信息")
 	public ApiOperContentResult delContent(@RequestBody ApiOperContentInput input) {
 
 		return apiFactory.getApiOperContent().api(input);
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/themePage", method = RequestMethod.POST)
+	@ApiOperation(value = "专题信息", notes = "专题信息")
+	public ApiThemePageResult themePage(@RequestBody ApiThemePageInput input) {
+
+		return apiFactory.getApiThemePage().api(input);
 
 	}
 }

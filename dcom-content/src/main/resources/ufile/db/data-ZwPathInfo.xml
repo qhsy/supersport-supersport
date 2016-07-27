@@ -19,6 +19,10 @@
 		<item code="dmtg41071002" nodeName="评论管理" parentCode="" />
 		<item code="dmtg410710021001" nodeName="评论管理" parentCode="dmtg41071002" />
 		<item code="dmtg4107100210011001" nodeName="评论信息" parentCode="dmtg410710021001" pageUrl="/zpage/pg/com_uhutu_dcom_remark_z_page_ContentRemarkPage" pageIcon="glyphicon-phone-alt" />
+		<item code="dmtg41071003" nodeName="专题管理" parentCode="" />
+		<item code="dmtg410710031001" nodeName="专题管理" parentCode="dmtg41071003" />
+		<item code="dmtg4107100310011001" nodeName="专题信息" parentCode="dmtg410710031001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnThemeInfoPage" pageIcon="glyphicon-thumbs-down" />
+		<item code="dmtg4107100310011002" nodeName="专题栏目信息" parentCode="dmtg410710031001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnThemeDetailPage" pageIcon="glyphicon-thumbs-up" />
 	</data>
 
 </db>
