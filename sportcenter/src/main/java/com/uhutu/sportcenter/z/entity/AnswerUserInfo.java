@@ -45,6 +45,9 @@ public class AnswerUserInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value="喜欢的运动时刻数量")
 	private int favorNum;
+	
+	@ApiModelProperty(value="是否绑定结算账户")
+	private boolean settleFlag = false;
 
 	public BigDecimal getCharge() {
 		return charge;
@@ -140,6 +143,14 @@ public class AnswerUserInfo extends UserBasicInfo {
 
 	public void setFavorNum(int favorNum) {
 		this.favorNum = favorNum;
+	}
+
+	public boolean isSettleFlag() {
+		return settleFlag;
+	}
+
+	public void setSettleFlag(boolean settleFlag) {
+		this.settleFlag = settleFlag;
 	}
 
 }
