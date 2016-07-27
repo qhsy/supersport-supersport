@@ -75,6 +75,9 @@ public class CnContentBasicinfo extends BaseEntity {
 			DefineWebInc.System_Define + "=dzsd410710011003" }, sort = { DefineWebPage.Page_Query + "=0" })
 	private String contentType;
 
+	@ZooData(name = "赞的起始数")
+	private int praiseBase;
+
 	public String getCover() {
 		return cover;
 	}
@@ -193,6 +196,14 @@ public class CnContentBasicinfo extends BaseEntity {
 
 	public void setPublishTime(Date publishTime) {
 		this.publishTime = publishTime;
+	}
+
+	public int getPraiseBase() {
+		return praiseBase;
+	}
+
+	public void setPraiseBase(int praiseBase) {
+		this.praiseBase = praiseBase;
 	}
 
 }
