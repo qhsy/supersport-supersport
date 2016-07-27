@@ -19,6 +19,7 @@ import com.uhutu.sportcenter.z.input.ApiAppPersonHomeInput;
 import com.uhutu.sportcenter.z.input.ApiAppUpdateAnswerUserInput;
 import com.uhutu.sportcenter.z.input.ApiAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiAskWechatMsgInput;
+import com.uhutu.sportcenter.z.input.ApiBindSettleAccountInput;
 import com.uhutu.sportcenter.z.input.ApiForAnswerQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiForAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiHotQuestionsInput;
@@ -32,6 +33,7 @@ import com.uhutu.sportcenter.z.input.ApiQuestionPraiseInput;
 import com.uhutu.sportcenter.z.input.ApiRichAnswersInput;
 import com.uhutu.sportcenter.z.input.ApiSaveWechatVoiceInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateAnswerUserInput;
+import com.uhutu.sportcenter.z.input.ApiUpdateUserTitleInput;
 import com.uhutu.sportcenter.z.result.ApiAnswerAttendListResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerListenListResult;
@@ -41,6 +43,7 @@ import com.uhutu.sportcenter.z.result.ApiAppPersonHomeResult;
 import com.uhutu.sportcenter.z.result.ApiAppUpdateAnswerUserResult;
 import com.uhutu.sportcenter.z.result.ApiAskQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiAskWechatMsgResult;
+import com.uhutu.sportcenter.z.result.ApiBindSettleAccountResult;
 import com.uhutu.sportcenter.z.result.ApiForAnswerQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiForAskQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiHotQuestionsResult;
@@ -54,6 +57,7 @@ import com.uhutu.sportcenter.z.result.ApiRichAnswersResult;
 import com.uhutu.sportcenter.z.result.ApiSaveWechatVoiceResult;
 import com.uhutu.sportcenter.z.result.ApiSupportPraiseResult;
 import com.uhutu.sportcenter.z.result.ApiUpdateAnswerUserResult;
+import com.uhutu.sportcenter.z.result.ApiUpdateUserTitleResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -261,6 +265,23 @@ public class AnswerController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/updateUserTile", method = RequestMethod.POST)
+	@ApiOperation(value = "更新用户头衔", notes = "更新用户头衔")
+	public ApiUpdateUserTitleResult updateUserTile(@RequestBody ApiUpdateUserTitleInput input) {
+
+		return apiFactory.getApiUpdateUserTitle().api(input);
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/bindSettleAccount", method = RequestMethod.POST)
+	@ApiOperation(value = "绑定结算账户", notes = "绑定结算账户")
+	public ApiBindSettleAccountResult bindSettleAccount(@RequestBody ApiBindSettleAccountInput input) {
+
+		return apiFactory.getApiBindSettleAccount().api(input);
+		
+	}
 	
 	
 }

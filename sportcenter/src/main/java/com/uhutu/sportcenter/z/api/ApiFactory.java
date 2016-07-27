@@ -12,6 +12,7 @@ import com.uhutu.sportcenter.z.api.answer.ApiAppPersonHome;
 import com.uhutu.sportcenter.z.api.answer.ApiAppUpdateAnswerUser;
 import com.uhutu.sportcenter.z.api.answer.ApiAskQuestion;
 import com.uhutu.sportcenter.z.api.answer.ApiAskWechatMsg;
+import com.uhutu.sportcenter.z.api.answer.ApiBindSettleAccount;
 import com.uhutu.sportcenter.z.api.answer.ApiForAnswerOrder;
 import com.uhutu.sportcenter.z.api.answer.ApiForAnswerQuestion;
 import com.uhutu.sportcenter.z.api.answer.ApiForAskQuestion;
@@ -26,6 +27,7 @@ import com.uhutu.sportcenter.z.api.answer.ApiQuestionPraise;
 import com.uhutu.sportcenter.z.api.answer.ApiRichAnswers;
 import com.uhutu.sportcenter.z.api.answer.ApiSaveWechatVoice;
 import com.uhutu.sportcenter.z.api.answer.ApiUpdateAnswerUser;
+import com.uhutu.sportcenter.z.api.answer.ApiUpdateUserTitle;
 import com.uhutu.sportcenter.z.api.buttock.ApiButtockInfo;
 import com.uhutu.sportcenter.z.api.buttock.ApiButtockLapList;
 import com.uhutu.sportcenter.z.api.buttock.ApiButtockNotes;
@@ -332,6 +334,12 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiAppUpdateAnswerUser apiAppUpdateAnswerUser;
+	
+	@Autowired
+	private ApiUpdateUserTitle apiUpdateUserTitle;
+	
+	@Autowired
+	private ApiBindSettleAccount apiBindSettleAccount;
 
 	public ApiThemePage getApiThemePage() {
 		return apiThemePage;
@@ -671,6 +679,14 @@ public class ApiFactory {
 
 	public void setApiAppUpdateAnswerUser(ApiAppUpdateAnswerUser apiAppUpdateAnswerUser) {
 		this.apiAppUpdateAnswerUser = apiAppUpdateAnswerUser;
+	}
+
+	public ApiUpdateUserTitle getApiUpdateUserTitle() {
+		return apiUpdateUserTitle;
+	}
+
+	public ApiBindSettleAccount getApiBindSettleAccount() {
+		return apiBindSettleAccount;
 	}
 
 }
