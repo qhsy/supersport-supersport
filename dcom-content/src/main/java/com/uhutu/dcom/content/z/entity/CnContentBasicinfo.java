@@ -18,59 +18,63 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames={"code"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "code" }))
 public class CnContentBasicinfo extends BaseEntity {
 
 	@ZooData(name = "内容编号")
 	private String code;
 
-	@ApiModelProperty(name="内容封面图片链接",notes="内容封面图片链接",example="http://www.ichsy.com")
+	@ApiModelProperty(name = "内容封面图片链接", notes = "内容封面图片链接", example = "http://www.ichsy.com")
 	@ZooData(name = "内容封面")
 	private String cover;
-	
-	@ApiModelProperty(name="标题" ,notes="标题",example="新体优家，您运动的首选~")
+
+	@ApiModelProperty(name = "标题", notes = "标题", example = "新体优家，您运动的首选~")
 	@ZooData(name = "内容标题")
 	private String title;
-	
-	@ApiModelProperty(name="日期展示" ,notes="日期展示",example="2016-4-19")
+
+	@ApiModelProperty(name = "日期展示", notes = "日期展示", example = "2016-4-19")
 	@ZooData(name = "发布时间")
 	private Date publishTime;
-	
+
 	@ZooData(name = "内容简介")
 	private String aboutDesc;
-	
+
 	@ZooData(name = "内容来源")
 	private String souce;
-	
+
 	@ZooData(name = "内容状态 1:正常，02：失效")
 	private String status;
-	
+
 	@ZooData(name = "内容分类编号")
 	private String categoryCode;
-	
+
 	@ZooData(name = "标签编码")
 	private String tagCode;
-	
+
 	@ZooData(name = "内容作者")
 	private String author;
-	
+
 	@ZooData(name = "内容分享范围 0:不公开  1：公开")
 	private String shareScope;
-	
-	@ApiModelProperty(name="地理位置" ,notes="位置经纬度",example="116.404, 39.915")
+
+	@ApiModelProperty(name = "地理位置", notes = "位置经纬度", example = "116.404, 39.915")
 	@ZooData(name = "定位经纬度")
 	private String location;
-	
-	@ApiModelProperty(name="地理位置名称" ,notes="位置名称",example="金域国际大厦")
+
+	@ApiModelProperty(name = "地理位置名称", notes = "位置名称", example = "金域国际大厦")
 	@ZooData(name = "定位位置名称")
 	private String localtionName;
-	
+
 	@ZooData(name = "业务类型编号：运动时刻 文章")
 	private String busiType;
-	
+
 	@ApiModelProperty(name = "展示类型", notes = " 01:展示图文", example = "01")
 	@ZooData(name = "内容类型：感想、视频、图片")
 	private String contentType;
+
+	@ApiModelProperty(name = "赞的起始数", notes = "赞的起始数", example = "01")
+	@ZooData(name = "赞的起始数")
+	private int praiseBase;
 
 	public String getCode() {
 		return code;
@@ -190,6 +194,14 @@ public class CnContentBasicinfo extends BaseEntity {
 
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
+	}
+
+	public int getPraiseBase() {
+		return praiseBase;
+	}
+
+	public void setPraiseBase(int praiseBase) {
+		this.praiseBase = praiseBase;
 	}
 
 }

@@ -15,9 +15,11 @@ import org.springframework.stereotype.Service;
 import com.uhutu.dcom.component.z.page.QueryConditionUtil;
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.content.z.dao.ContentDaoFactory;
+import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ISupportPraiseService;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 点赞业务逻辑实现
@@ -86,9 +88,17 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 
 	@Override
 	public int queryCountByCode(String contentCode,String status) {
-		
-		return daoFacotry.getSupportPraiseDao().queryCountByCode(contentCode, status);
-		
+		int num = 0;
+		if("1".equals(ContentEnum.FAVOR_STATUS_YES.getCode())){
+			num = daoFacotry.getSupportPraiseDao().queryCountByCode(contentCode, status);
+			CnContentBasicinfo info = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",contentCode);
+			if(info!=null){
+				num = num +info.getPraiseBase();
+			}
+		}else {
+			num = daoFacotry.getSupportPraiseDao().queryCountByCode(contentCode, status);
+		}
+		return num;
 	}
 
 
