@@ -80,7 +80,7 @@ a:hover {text-decoration: none;}
 	活动须知：<br>
 	1、凡参赛选手，上传的翘臀照片将在「实力派」中展示，找到自己的美臀，转发集赞吧！<br>
 	2、只要你是果冻体育用户，晒出你的翘臀照片，就有机会获得每日开出的奖品，照片将会在「翘丽圈」展示！</p>
-	<p class="help"><a href="http://mp.weixin.qq.com/s?__biz=MzAwNzk2MjI1OA==&mid=100000235&idx=1&sn=6e4d8a230e9d780191cc7007e0a5a906&scene=20#wechat_redirect"><img src="img/qiaotun_icon.png" alt="">点击这里查看晒图方式</a></p>
+	<p class="help"><a href="javascript:;" onclick="onInstructions('http://mp.weixin.qq.com/s?__biz=MzAwNzk2MjI1OA==&mid=100000235&idx=1&sn=6e4d8a230e9d780191cc7007e0a5a906&scene=20#wechat_redirect')"><img src="img/qiaotun_icon.png" alt="">点击这里查看晒图方式</a></p>
 	<div class="button">
 		<a :href="viewer.applyUrl" v-if="viewer.applyUrl != ''"><img src="img/qiaotun_tab_2.png" alt=""></a><a href="javascript:;" onclick="onBlueprint()"><img src="img/qiaotun_tab_1.png" alt=""></a>
 	</div>
@@ -216,6 +216,9 @@ function onTopicCategories(author,aboutHead,contentCode,contenttype){
 }
 function onBlueprint(){
 	javascript:android.onBlueprint()
+}
+function onInstructions(url){
+	javascript:android.onInstructions(url)
 }
 </script>
 </body>
