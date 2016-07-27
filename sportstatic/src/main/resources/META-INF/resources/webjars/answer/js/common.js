@@ -81,7 +81,7 @@ define(['zepto','jssdk','qrcode'],function($,wx,QRCode){
 	if(isWeix && !common.getItem('code')){
 		var wxCode = common.paramFn('code');
 		$.ajax({
-			url:'/api/wechatController/authLogin',
+			url:'/api/wechatController/authLogin2',
 			type:'POST',
 			contentType:'application/json',
 			dataType:'json',

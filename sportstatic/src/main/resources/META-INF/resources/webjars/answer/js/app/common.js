@@ -34,7 +34,7 @@ define(['zepto','jssdk'],function($,wx){
 	if(!sessionStorage.getItem('token')){
 		var wxCode = common.paramFn('code');
 		$.ajax({
-			url:'/api/wechatController/authLogin',
+			url:'/api/wechatController/authLogin2',
 			type:'POST',
 			contentType:'application/json',
 			dataType:'json',
