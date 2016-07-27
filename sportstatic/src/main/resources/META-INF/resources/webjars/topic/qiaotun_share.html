@@ -82,7 +82,7 @@ a:hover {text-decoration: none;}
 	2、只要你是果冻体育用户，晒出你的翘臀照片，就有机会获得每日开出的奖品，照片将会在「翘丽圈」展示！</p>
 	<p class="help"><a href="http://mp.weixin.qq.com/s?__biz=MzAwNzk2MjI1OA==&mid=100000235&idx=1&sn=6e4d8a230e9d780191cc7007e0a5a906&scene=20#wechat_redirect"><img src="img/qiaotun_icon.png" alt="">点击这里查看晒图方式</a></p>
 	<div class="button">
-		<a :href="viewer.applyUrl" v-if="viewer.applyUrl != ''"><img src="img/qiaotun_tab_2.png" alt=""></a><a href="javascript:;" onclick="onBlueprint()"><img src="img/qiaotun_tab_1.png" alt=""></a>
+		<a :href="viewer.applyUrl" v-if="viewer.applyUrl != ''"><img src="img/qiaotun_tab_2.png" alt=""></a><a href="javascript:;" ><img src="img/qiaotun_tab_1.png" alt=""></a>
 	</div>
 </header>
 <section class="wrap" v-cloak>
@@ -94,15 +94,28 @@ a:hover {text-decoration: none;}
 		<ul class="data-list">
 			<template v-if="viewer.buttockInfos[0].contentInfos.length">
 			<li class="list-item" v-for="item in viewer.buttockInfos[0].contentInfos">
-				<a href="javascript:;" onclick="onTopicCategories('{{item.author}}','{{item.userBasicInfo.aboutHead}}','{{item.code}}','{{item.contentType}}')">
-					<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="item.cover" alt=""></div>
-					<div class="info">
-						<span class="photo"><img :src="item.userBasicInfo.aboutHead" alt=""><i class="sign" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></i></span>
-						
-						<em class="name">{{item.userBasicInfo.nickName}}</em>
-						<em class="zan">喜欢 {{item.praiseNum}}</em>
-					</div>
-				</a>
+				<template v-if="item.contentType == 'dzsd4107100110030003'">
+					<a href="../sportstatic/photo.html?code={{item.code}}&share=1" >
+						<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="item.cover" alt=""></div>
+						<div class="info">
+							<span class="photo"><img :src="item.userBasicInfo.aboutHead" alt=""><i class="sign" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></i></span>
+							
+							<em class="name">{{item.userBasicInfo.nickName}}</em>
+							<em class="zan">喜欢 {{item.praiseNum}}</em>
+						</div>
+					</a>
+				</template>
+				<template v-else>
+					<a href="../sportstatic/default.html?code={{item.code}}&share=1">
+						<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="item.cover" alt=""></div>
+						<div class="info">
+							<span class="photo"><img :src="item.userBasicInfo.aboutHead" alt=""><i class="sign" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></i></span>
+							
+							<em class="name">{{item.userBasicInfo.nickName}}</em>
+							<em class="zan">喜欢 {{item.praiseNum}}</em>
+						</div>
+					</a>
+				</template>
 			</li>
 			</template>
 		</ul>
