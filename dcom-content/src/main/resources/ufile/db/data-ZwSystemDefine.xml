@@ -18,6 +18,7 @@
 		<item code="dzsd4107100110050003" defineName="超链接" parentCode="dzsd410710011005" />
 		<item code="dzsd4107100110050004" defineName="十全十美" parentCode="dzsd410710011005" />
 		<item code="dzsd4107100110050005" defineName="翘臀大赛" parentCode="dzsd410710011005" />
+		<item code="dzsd4107100110050006" defineName="专题" parentCode="dzsd410710011005" />
 		<item code="dzsd410710011006" defineName="栏目类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110060001" defineName="轮播广告栏目" parentCode="dzsd410710011006" />
 		<item code="dzsd4107100110060002" defineName="单图广告栏目" parentCode="dzsd410710011006" />

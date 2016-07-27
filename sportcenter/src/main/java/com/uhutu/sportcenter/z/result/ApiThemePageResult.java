@@ -13,6 +13,9 @@ public class ApiThemePageResult extends RootApiResult {
 	@ApiModelProperty(name = "专题编号")
 	private String code = "";
 
+	@ApiModelProperty(name = "专题名称")
+	private String name = "";
+
 	@ApiModelProperty(name = "专题封面")
 	private String cover = "";
 
@@ -24,6 +27,14 @@ public class ApiThemePageResult extends RootApiResult {
 
 	public String getCode() {
 		return code;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setCode(String code) {

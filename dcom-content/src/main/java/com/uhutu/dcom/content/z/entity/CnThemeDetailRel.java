@@ -2,7 +2,12 @@ package com.uhutu.dcom.content.z.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebElement;
+import com.uhutu.zoocom.define.DefineWebInc;
+import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebSort;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -12,13 +17,16 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  *
  */
 @Entity
-public class CnThemeRel extends BaseEntity {
+public class CnThemeDetailRel extends BaseEntity {
 
-	@ZooData(name = "专题栏目", require = "1")
+	@ZooData(name = "专题信息", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
+			DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process,
+			DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=code")
 	@Column(length = 50)
 	private String code;
 
-	@ZooData(name = "文章信息", require = "1")
+	@ZooData(name = "文章信息", require = "1", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw410710010010" })
 	@Column(length = 50)
 	private String contentCode;
 
