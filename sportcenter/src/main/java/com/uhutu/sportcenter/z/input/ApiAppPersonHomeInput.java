@@ -18,6 +18,9 @@ public class ApiAppPersonHomeInput extends RootApiInput {
 	
 	@ApiModelProperty(value="当前页码")
 	private int pagination;
+	
+	@ApiModelProperty(value="类型",example="运动时刻tab:contentTab,问题信息tab:questionTab")
+	private String type;
 
 	public String getUserCode() {
 		return userCode;
@@ -33,5 +36,13 @@ public class ApiAppPersonHomeInput extends RootApiInput {
 
 	public void setPagination(int pagination) {
 		this.pagination = pagination;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }
