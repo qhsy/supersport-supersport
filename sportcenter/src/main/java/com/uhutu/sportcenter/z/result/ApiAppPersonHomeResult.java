@@ -1,11 +1,8 @@
 package com.uhutu.sportcenter.z.result;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.uhutu.sportcenter.z.entity.AnswerUserInfo;
-import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
-import com.uhutu.sportcenter.z.entity.QuestionInfo;
+import com.uhutu.sportcenter.z.entity.UserContentTabInfo;
+import com.uhutu.sportcenter.z.entity.UserQuestionTabInfo;
 import com.uhutu.zoocom.root.RootApiResult;
 
 import io.swagger.annotations.ApiModel;
@@ -22,14 +19,14 @@ public class ApiAppPersonHomeResult extends RootApiResult {
 	@ApiModelProperty(value="问答用户信息")
 	private AnswerUserInfo answerUserInfo;
 	
-	@ApiModelProperty(value="回答过的问题列表")
-	private List<QuestionInfo> questionInfos = new ArrayList<QuestionInfo>();
-	
-	@ApiModelProperty(value="运动时刻")
-	private List<ContentBasicinfoForApi> contentInfos = new ArrayList<ContentBasicinfoForApi>();
-	
 	@ApiModelProperty(value="是否本人")
 	private boolean ownFlag = false;
+	
+	@ApiModelProperty(value="问题信息tab")
+	private UserQuestionTabInfo userQuestionTabInfo = new UserQuestionTabInfo();
+	
+	@ApiModelProperty(value="运动时刻信息tab")
+	private UserContentTabInfo userContentTabInfo = new UserContentTabInfo();
 
 	public AnswerUserInfo getAnswerUserInfo() {
 		return answerUserInfo;
@@ -37,14 +34,6 @@ public class ApiAppPersonHomeResult extends RootApiResult {
 
 	public void setAnswerUserInfo(AnswerUserInfo answerUserInfo) {
 		this.answerUserInfo = answerUserInfo;
-	}
-
-	public List<QuestionInfo> getQuestionInfos() {
-		return questionInfos;
-	}
-
-	public void setQuestionInfos(List<QuestionInfo> questionInfos) {
-		this.questionInfos = questionInfos;
 	}
 
 	public boolean isOwnFlag() {
@@ -55,16 +44,21 @@ public class ApiAppPersonHomeResult extends RootApiResult {
 		this.ownFlag = ownFlag;
 	}
 
-	public List<ContentBasicinfoForApi> getContentInfos() {
-		return contentInfos;
+	public UserQuestionTabInfo getUserQuestionTabInfo() {
+		return userQuestionTabInfo;
 	}
 
-	public void setContentInfos(List<ContentBasicinfoForApi> contentInfos) {
-		this.contentInfos = contentInfos;
+	public void setUserQuestionTabInfo(UserQuestionTabInfo userQuestionTabInfo) {
+		this.userQuestionTabInfo = userQuestionTabInfo;
 	}
 
+	public UserContentTabInfo getUserContentTabInfo() {
+		return userContentTabInfo;
+	}
 
-	
+	public void setUserContentTabInfo(UserContentTabInfo userContentTabInfo) {
+		this.userContentTabInfo = userContentTabInfo;
+	}
 	
 
 }
