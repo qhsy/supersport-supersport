@@ -34,15 +34,15 @@ public class ApiAppUpdateAnswerUser extends RootApiToken<ApiAppUpdateAnswerUserI
 			
 		}
 		
-		expert.setAbility(input.getAbility());
-		
-		expert.setCharge(input.getCharge());
-		
 		expert.setUserCode(upUserCode());
 		
 		if(input.isOpenFlag()){
 			
 			expert.setStatus(SystemEnum.YES.getCode());
+			
+			expert.setAbility(input.getAbility());
+			
+			expert.setCharge(input.getCharge());
 			
 		}else{
 			

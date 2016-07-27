@@ -80,6 +80,16 @@ public class ApiWechatUserLogin extends RootApiBase<ApiWechatUserLoginInput, Api
 
 		}else{
 			
+			ApiSocialLoginInput loginInput = new ApiSocialLoginInput();
+			
+			loginInput.setOpenid(authResponse.getOpenid());
+			
+			loginInput.setAccountId(authResponse.getUnionid());
+			
+			loginInput.setAccountType("wechat");
+			
+			apiSocialLogin.saveSocialLogin(loginInput);
+			
 			ApiSocialLoginResult socialLoginResult = apiSocialLogin.loginSytem(authResponse.getUnionid());
 			
 			BeanUtils.copyProperties(socialLoginResult, userLoginResult);

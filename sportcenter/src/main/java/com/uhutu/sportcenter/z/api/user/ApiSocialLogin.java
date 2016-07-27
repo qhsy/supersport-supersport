@@ -39,6 +39,8 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 		
 	    ApiSocialLoginResult result = null;
 		
+	    saveSocialLogin(inputParam);
+	    
 	    UserReginsterResult userRegResult = userRegister(inputParam.getAccountId());
 	    
 	    if(userRegResult.upFlagTrue()){
@@ -50,8 +52,6 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 		    saveUserInfoExt(userRegResult.getUserCode(), inputParam);
 		    
 		    saveSocialInfo(userRegResult.getUserCode(), inputParam);
-		    
-		    
 		    
 		    result.setFirstLogin(true);
 		    

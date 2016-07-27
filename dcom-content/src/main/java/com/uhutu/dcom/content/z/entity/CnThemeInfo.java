@@ -18,17 +18,22 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class CnThemeInfo extends BaseEntity {
 
-	@ZooData(name = "专题编号", inc = DefineWebInc.Insert_Code + "=ZTBH", sort = { DefineWebPage.Page_Add + "=1",
-			DefineWebPage.Page_Edit + "=0" })
+	@ZooData(name = "专题编号", inc = { DefineWebInc.Insert_Code + "=ZTBH", DefineWebInc.Url_Param + "=code" }, sort = {
+			DefineWebPage.Page_Add + "=1", DefineWebPage.Page_Edit + "=0" })
 	@Column(length = 50)
 	private String code;
 
-	@ZooData(name = "专题封面", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0"})
+	@ZooData(name = "专题名称")
+	@Column(length = 50)
+	private String name;
+
+	@ZooData(name = "专题封面", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 255)
 	private String cover;
 
 	@ZooData(name = "专题简介", require = "1", element = DefineWebElement.Textarea, sort = {
-			DefineWebPage.Page_Query + "=0"})
+			DefineWebPage.Page_Query + "=0" })
 	@Column(length = 255)
 	private String aboutDesc;
 
@@ -43,6 +48,14 @@ public class CnThemeInfo extends BaseEntity {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getCover() {
