@@ -38,6 +38,7 @@ import com.uhutu.sportcenter.z.api.content.ApiContentDetailInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentPhotosDetailInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentRecommInfo;
 import com.uhutu.sportcenter.z.api.content.ApiOperContent;
+import com.uhutu.sportcenter.z.api.content.ApiOwnSportMoment;
 import com.uhutu.sportcenter.z.api.content.ApiPublishContentPhotos;
 import com.uhutu.sportcenter.z.api.content.ApiPublishSportingMoment;
 import com.uhutu.sportcenter.z.api.content.ApiShareContent;
@@ -340,6 +341,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiBindSettleAccount apiBindSettleAccount;
+	
+	@Autowired
+	private ApiOwnSportMoment apiOwnSportMoment;
 
 	public ApiThemePage getApiThemePage() {
 		return apiThemePage;
@@ -687,6 +691,10 @@ public class ApiFactory {
 
 	public ApiBindSettleAccount getApiBindSettleAccount() {
 		return apiBindSettleAccount;
+	}
+
+	public ApiOwnSportMoment getApiOwnSportMoment() {
+		return apiOwnSportMoment;
 	}
 
 }

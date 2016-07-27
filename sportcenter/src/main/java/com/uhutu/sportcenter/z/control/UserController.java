@@ -16,6 +16,7 @@ import com.uhutu.sportcenter.z.input.ApiForAttentionInput;
 import com.uhutu.sportcenter.z.input.ApiForLoginInput;
 import com.uhutu.sportcenter.z.input.ApiForTecentSigInput;
 import com.uhutu.sportcenter.z.input.ApiLoginOutInput;
+import com.uhutu.sportcenter.z.input.ApiOwnSportMomentInput;
 import com.uhutu.sportcenter.z.input.ApiRecommendExpertInput;
 import com.uhutu.sportcenter.z.input.ApiSendSmsInput;
 import com.uhutu.sportcenter.z.input.ApiSetUserFavoerInput;
@@ -36,6 +37,7 @@ import com.uhutu.sportcenter.z.result.ApiForAttentionResult;
 import com.uhutu.sportcenter.z.result.ApiForLoginResult;
 import com.uhutu.sportcenter.z.result.ApiForTecentSigResult;
 import com.uhutu.sportcenter.z.result.ApiLoginOutResult;
+import com.uhutu.sportcenter.z.result.ApiOwnSportMomentResult;
 import com.uhutu.sportcenter.z.result.ApiRecommendExpertResult;
 import com.uhutu.sportcenter.z.result.ApiSendSmsResult;
 import com.uhutu.sportcenter.z.result.ApiSetUserFavorResult;
@@ -235,6 +237,15 @@ public class UserController {
 	public ApiUserInfoAllResult allUserInfo(@RequestBody ApiUserInfoAllInput input) {
 
 		return apiFactory.getApiUserInfoAll().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/ownSportMoment", method = RequestMethod.POST)
+	@ApiOperation(value = "我发布的运动时刻", notes = "我发布的运动时刻")
+	public ApiOwnSportMomentResult ownSportMoment(@RequestBody ApiOwnSportMomentInput input) {
+
+		return apiFactory.getApiOwnSportMoment().api(input);
 
 	}
 
