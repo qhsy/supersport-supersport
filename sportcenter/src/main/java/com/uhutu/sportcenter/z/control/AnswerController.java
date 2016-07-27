@@ -16,6 +16,7 @@ import com.uhutu.sportcenter.z.input.ApiAnswerListenListInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerQuestionDetailInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiAppPersonHomeInput;
+import com.uhutu.sportcenter.z.input.ApiAppUpdateAnswerUserInput;
 import com.uhutu.sportcenter.z.input.ApiAskQuestionInput;
 import com.uhutu.sportcenter.z.input.ApiAskWechatMsgInput;
 import com.uhutu.sportcenter.z.input.ApiForAnswerQuestionInput;
@@ -37,6 +38,7 @@ import com.uhutu.sportcenter.z.result.ApiAnswerListenListResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerQuestionDetailResult;
 import com.uhutu.sportcenter.z.result.ApiAnswerUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiAppPersonHomeResult;
+import com.uhutu.sportcenter.z.result.ApiAppUpdateAnswerUserResult;
 import com.uhutu.sportcenter.z.result.ApiAskQuestionResult;
 import com.uhutu.sportcenter.z.result.ApiAskWechatMsgResult;
 import com.uhutu.sportcenter.z.result.ApiForAnswerQuestionResult;
@@ -84,6 +86,14 @@ public class AnswerController {
 	public ApiUpdateAnswerUserResult updateUserInfo(@RequestBody ApiUpdateAnswerUserInput input) {
 
 		return apiFactory.getApiUpdateAnswerUser().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/updateUserInfoApp", method = RequestMethod.POST)
+	@ApiOperation(value = "更新问答用户信息app", notes = "更新问答用户信息app")
+	public ApiAppUpdateAnswerUserResult updateUserInfoApp(@RequestBody ApiAppUpdateAnswerUserInput input) {
+
+		return apiFactory.getApiAppUpdateAnswerUser().api(input);
 	}
 
 	@ResponseBody
