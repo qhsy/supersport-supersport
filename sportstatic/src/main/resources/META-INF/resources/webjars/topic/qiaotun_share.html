@@ -10,28 +10,9 @@
 <meta name="description" content="为翘而生.2016微赛美臀小姐选美大赛">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="author" content="果冻体育">
+<link rel="stylesheet" href="css/base.css">
 <style type="text/css">
-html{font-size: 100px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif; background: #2D2143;}
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,pre,form,fieldset,input,textarea,blockquote,p,button,header,footer,nav,section,article,aside,video,audio,figure,figcaption,hgroup{padding: 0px; margin: 0px; tap-highlight-color: rgba(0, 0, 0, 0); -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -ms-tap-highlight-color: rgba(0, 0, 0, 0); font-size: 0.14rem; line-height: 0.22rem;}
-table,td,tr,th{font-size: 0.12rem;}
-table{margin: 0 auto;}
-img{vertical-align: top; border: 0;}
-ol,ul{list-style: none;}
-li{list-style-type: none;}
-h1,h2,h3,h4,h5,h6{font-weight:normal; font-size: 100%;}
-img{width: 100%; height: auto; vertical-align: top; }
-address,caption,cite,code,dfn,em,i,b{font-weight: normal; font-style: normal;}
-input,textarea,select,button{outline: none; resize: none; border: 0;}
-a{-webkit-appearance: none; outline: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-touch-callout: none; text-decoration: none;}
-a:hover {text-decoration: none;}
-.no-data{width: 100%; height: 100%; background: url(img/no_data.png) no-repeat center 40%; background-size: 1.6rem; position: fixed;}
-.load{padding: 0.2rem 0; color: #fff; text-align: center; line-height: 0.45rem;}
-.load em{display: inline-block; width: 0.25rem; height: 0.25rem; margin: 0.1rem; vertical-align: top; animation: load .7s linear infinite; background: url(img/qiaotun_load.png) no-repeat left top; background-size: 0.25rem;}
-.tost{width: 1.6rem; border-radius: 5px; background: rgba(0,0,0,0.7); color: #fff; text-align: center; line-height: 0.4rem; position: fixed; left: 50%; margin-left: -0.8rem; bottom: 0.3rem;}
-
-[v-cloak] {display: none;}
-
-.header{overflow: auto; background: url(img/qiaotun_head.jpg) no-repeat center top; background-size: cover;}
+.header{overflow: auto; margin-top: 0.6rem; background: url(img/qiaotun_head.jpg) no-repeat center top; background-size: cover;}
 .header .title{width: 2.35rem; height: 0.89rem; margin: 0.45rem auto 0;}
 .header .logo{width: 1.38rem; height: 0.23rem; margin: auto;}
 .header .text{padding: 0 0.35rem; margin: 0.47rem auto 0; color: #F6F6F6; font-size: 0.12rem; line-height: 0.18rem;}
@@ -73,6 +54,10 @@ a:hover {text-decoration: none;}
 </style>
 </head>
 <body>
+<header class="open-app">
+	<span class="app-logo"><img src="img/about.png"></span>
+	<a href="javascript:;" class="app-btn">打开App</a>
+</header>
 <header class="header" v-cloak>
 	<h1 class="title"><img src="img/qiaotun_title.png" alt=""></h1>
 	<div class="logo"><img src="img/qiaotun_logo.png" alt=""></div>
@@ -82,7 +67,7 @@ a:hover {text-decoration: none;}
 	2、只要你是果冻体育用户，晒出你的翘臀照片，就有机会获得每日开出的奖品，照片将会在「翘丽圈」展示！</p>
 	<p class="help"><a href="http://mp.weixin.qq.com/s?__biz=MzAwNzk2MjI1OA==&mid=100000235&idx=1&sn=6e4d8a230e9d780191cc7007e0a5a906&scene=20#wechat_redirect"><img src="img/qiaotun_icon.png" alt="">点击这里查看晒图方式</a></p>
 	<div class="button">
-		<a :href="viewer.applyUrl" v-if="viewer.applyUrl != ''"><img src="img/qiaotun_tab_2.png" alt=""></a></a>
+		<a :href="viewer.applyUrl"><img src="img/qiaotun_tab_2.png" alt=""></a></a>
 	</div>
 </header>
 <section class="wrap" v-cloak>
