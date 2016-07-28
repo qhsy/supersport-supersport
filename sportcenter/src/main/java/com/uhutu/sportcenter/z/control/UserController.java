@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
-import com.uhutu.sportcenter.z.api.user.ApiRecentMsgList;
 import com.uhutu.sportcenter.z.input.APiStartPageInput;
 import com.uhutu.sportcenter.z.input.ApiAnswerMsgListInput;
 import com.uhutu.sportcenter.z.input.ApiAttendListInput;
