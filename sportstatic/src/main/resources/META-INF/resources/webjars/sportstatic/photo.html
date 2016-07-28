@@ -57,7 +57,7 @@ $(function(){
 				data: data
 			});
 			if(data.contentBasicInfo.userBasicInfo.type!='dzsd4107100310010002'){
-				$('.icon-markbig').css('display', 'none');
+				$('.icon-markbig').remove();
 			}
 			$('body').removeClass('ms-controller');
 			$('.photo-list').on('tap',function(){
