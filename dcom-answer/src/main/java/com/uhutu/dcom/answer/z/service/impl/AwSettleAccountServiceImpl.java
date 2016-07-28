@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.uhutu.dcom.answer.z.dao.IAwSettleAccountDao;
 import com.uhutu.dcom.answer.z.entity.AwSettleAccount;
 import com.uhutu.dcom.answer.z.service.IAwSettleAccountService;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 结算账户业务实现
@@ -23,6 +24,13 @@ public class AwSettleAccountServiceImpl implements IAwSettleAccountService {
 		
 		settleAccountDao.save(settleAccount);
 
+	}
+
+	@Override
+	public AwSettleAccount queryByUserCode(String userCode) {
+		
+		return JdbcHelper.queryOne(AwSettleAccount.class, "userCode",userCode);
+		
 	}
 
 }

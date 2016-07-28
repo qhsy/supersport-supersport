@@ -14,5 +14,13 @@ public interface IAwSettleAccountService {
 	 * @param settleAccount
 	 */
 	public void save(AwSettleAccount settleAccount);
+	
+	/**
+	 * 根据用户编号查询结算账户信息
+	 * @param userCode
+	 * 		用户编号
+	 * @return 结算信息
+	 */
+	public AwSettleAccount queryByUserCode(String userCode);
 
 }
