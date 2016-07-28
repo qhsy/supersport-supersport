@@ -56,7 +56,7 @@
 <body>
 <header class="open-app">
 	<span class="app-logo"><img src="img/about.png"></span>
-	<a href="javascript:;" class="app-btn">打开App</a>
+	<a href="javascript:;" class="app-btn" @click="open">打开App</a>
 </header>
 <header class="header" v-cloak>
 	<h1 class="title"><img src="img/qiaotun_title.png" alt=""></h1>
@@ -112,6 +112,7 @@
 <script type="text/javascript" src="js/zepto.min.js"></script>
 <script type="text/javascript" src="js/vue.min.js"></script>
 <script type="text/javascript" src="js/vue.lazyimg.js"></script>
+<script type="text/javascript" src="js/share.js"></script>
 <script>
 Vue.use(Vue.lazyimg,{
     fade: true,
@@ -158,6 +159,9 @@ var vm = new Vue({
 			self.viewer = null;
 			self.load = true;
 			self.currStatus = self.branches[index];
+		},
+		open:function(){
+			open();
 		}
 	}
 });
