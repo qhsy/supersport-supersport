@@ -61,6 +61,8 @@ public class ApiMsgNumList extends RootApiToken<ApiMsgNumListInput, ApiMsgNumLis
 			
 		case "03":
 			
+			msgNumInfo.setTotal(userServiceFactory.getMsgNoticeUserService().queryCount(userCode, MsgEnum.FLAG_UNREAD.getCode()));
+			
 			break;
 		
 		case "04":
