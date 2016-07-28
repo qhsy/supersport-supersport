@@ -148,6 +148,15 @@
 			operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071035" operateName="分享设置" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_CnShareInfoPage?u_code=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071036" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.CnContentRecommFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
