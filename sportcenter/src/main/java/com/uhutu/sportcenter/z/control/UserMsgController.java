@@ -8,19 +8,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
+import com.uhutu.sportcenter.z.input.ApiAnswerMsgListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgAdviceInput;
 import com.uhutu.sportcenter.z.input.ApiMsgAttendListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgNoticeListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgNumListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgPraiseListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgRemarkListInput;
+import com.uhutu.sportcenter.z.input.ApiRecentMsgListInput;
 import com.uhutu.sportcenter.z.input.ApiUpdateMsgStatusInput;
+import com.uhutu.sportcenter.z.result.ApiAnswerMsgListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgAdviceResult;
 import com.uhutu.sportcenter.z.result.ApiMsgAttendListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgNoticeListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgNumListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgPraiseListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgRemarkResult;
+import com.uhutu.sportcenter.z.result.ApiRecentMsgListResult;
 import com.uhutu.sportcenter.z.result.ApiUpdateMsgStatusResult;
 
 import io.swagger.annotations.Api;
@@ -100,6 +104,24 @@ public class UserMsgController {
 	public ApiMsgAdviceResult msgAdvice(@RequestBody ApiMsgAdviceInput input) {
 
 		return apiFactory.getApiMsgAdvice().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/answerMsgList", method = RequestMethod.POST)
+	@ApiOperation(value = "问答消息列表", notes = "问答消息列表")
+	public ApiAnswerMsgListResult answerMsgList(@RequestBody ApiAnswerMsgListInput input) {
+
+		return apiFactory.getApiAnswerMsgList().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/recentMsgList", method = RequestMethod.POST)
+	@ApiOperation(value = "最新消息列表", notes = "最新消息列表")
+	public ApiRecentMsgListResult recentMsgList(@RequestBody ApiRecentMsgListInput input) {
+
+		return apiFactory.getApiRecentMsgList().api(input);
 
 	}
 	

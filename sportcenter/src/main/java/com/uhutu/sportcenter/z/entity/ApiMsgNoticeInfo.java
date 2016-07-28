@@ -15,6 +15,9 @@ public class ApiMsgNoticeInfo {
 	@ApiModelProperty(value="标题信息")
 	private String title;
 	
+	@ApiModelProperty(value="未读的数量")
+	private int unReadNum;
+	
 	@ApiModelProperty(value="消息内容")
 	private MsgNoticeInfo msgNoticeInfo;
 
@@ -40,6 +43,14 @@ public class ApiMsgNoticeInfo {
 
 	public void setMsgNoticeInfo(MsgNoticeInfo msgNoticeInfo) {
 		this.msgNoticeInfo = msgNoticeInfo;
+	}
+
+	public int getUnReadNum() {
+		return unReadNum;
+	}
+
+	public void setUnReadNum(int unReadNum) {
+		this.unReadNum = unReadNum;
 	}
 
 }
