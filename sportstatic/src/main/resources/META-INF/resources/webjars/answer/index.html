@@ -11,14 +11,14 @@ var browser = {
 	iPod:u.indexOf('iPod') > -1 && u.indexOf('Mac') > -1,		//iPod
 	iPhone:u.indexOf('iPhone') > -1 && u.indexOf('Mac') > 1,		//iPhone
 	trident:u.indexOf('Trident') > -1,		//IE
-	presto: u.indexOf('Presto') > -1,		//opera鍐呮牳 
-	webKit: u.indexOf('AppleWebKit') > -1,		//鑻规灉銆佽胺姝屽唴鏍� 
+	presto: u.indexOf('Presto') > -1,		//opera閸愬懏鐗� 
+	webKit: u.indexOf('AppleWebKit') > -1,		//閼昏鐏夐妴浣借兒濮濆苯鍞撮弽锟� 
 	gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,		//gecko
 	microMessenger:u.indexOf('MicroMessenger') > -1		//QQ weixin
 }
 if(browser.microMessenger){
-	window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=http://beta-sportcloud.ntw.srnpr.com/webjars/answer/answer.html&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect'
+	window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd44c999a0475e56&redirect_uri=http://api-001.sport.bigtiyu.com/webjars/answer/answer.html&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect'
 }else{
-	window.location.href = 'http://beta-sportcloud.ntw.srnpr.com/webjars/answer/answer.html'
+	window.location.href = 'http://api-001.sport.bigtiyu.com/webjars/answer/answer.html'
 }
 </script>
