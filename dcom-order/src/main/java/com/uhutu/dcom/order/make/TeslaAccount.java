@@ -16,7 +16,7 @@ public class TeslaAccount extends TeslaTopOrderMake {
 	@Override
 	public TeslaXResult doRefresh(TeslaXOrder teslaOrder) {
 		TeslaXResult result = new TeslaXResult();
-		teslaOrder.getOrderInfo().setCode(WebHelper.upCode("OCBH"));
+		teslaOrder.getOrderInfo().setCode(WebHelper.upCode("OTBH"));
 		for (int i = 0; i < teslaOrder.getActivitys().size(); i++) {
 			teslaOrder.getActivitys().get(i).setCode(teslaOrder.getOrderInfo().getCode());
 		}
