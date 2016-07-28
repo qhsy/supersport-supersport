@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
+import com.uhutu.sportcenter.z.api.user.ApiRecentMsgList;
 import com.uhutu.sportcenter.z.input.APiStartPageInput;
+import com.uhutu.sportcenter.z.input.ApiAnswerMsgListInput;
 import com.uhutu.sportcenter.z.input.ApiAttendListInput;
 import com.uhutu.sportcenter.z.input.ApiFansListInput;
 import com.uhutu.sportcenter.z.input.ApiFavorContentListInput;
@@ -17,6 +19,7 @@ import com.uhutu.sportcenter.z.input.ApiForLoginInput;
 import com.uhutu.sportcenter.z.input.ApiForTecentSigInput;
 import com.uhutu.sportcenter.z.input.ApiLoginOutInput;
 import com.uhutu.sportcenter.z.input.ApiOwnSportMomentInput;
+import com.uhutu.sportcenter.z.input.ApiRecentMsgListInput;
 import com.uhutu.sportcenter.z.input.ApiRecommendExpertInput;
 import com.uhutu.sportcenter.z.input.ApiSendSmsInput;
 import com.uhutu.sportcenter.z.input.ApiSetUserFavoerInput;
@@ -31,6 +34,7 @@ import com.uhutu.sportcenter.z.input.ApiUserResetPwdInput;
 import com.uhutu.sportcenter.z.input.ApiVerifyNickNameInput;
 import com.uhutu.sportcenter.z.input.ApiVersionInfoInput;
 import com.uhutu.sportcenter.z.result.APiStartPageResult;
+import com.uhutu.sportcenter.z.result.ApiAnswerMsgListResult;
 import com.uhutu.sportcenter.z.result.ApiAttendListResult;
 import com.uhutu.sportcenter.z.result.ApiFansListResult;
 import com.uhutu.sportcenter.z.result.ApiFavorContentListResult;
@@ -39,6 +43,7 @@ import com.uhutu.sportcenter.z.result.ApiForLoginResult;
 import com.uhutu.sportcenter.z.result.ApiForTecentSigResult;
 import com.uhutu.sportcenter.z.result.ApiLoginOutResult;
 import com.uhutu.sportcenter.z.result.ApiOwnSportMomentResult;
+import com.uhutu.sportcenter.z.result.ApiRecentMsgListResult;
 import com.uhutu.sportcenter.z.result.ApiRecommendExpertResult;
 import com.uhutu.sportcenter.z.result.ApiSendSmsResult;
 import com.uhutu.sportcenter.z.result.ApiSetUserFavorResult;
@@ -256,6 +261,24 @@ public class UserController {
 	public ApiOwnSportMomentResult ownSportMoment(@RequestBody ApiOwnSportMomentInput input) {
 
 		return apiFactory.getApiOwnSportMoment().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/answerMsgList", method = RequestMethod.POST)
+	@ApiOperation(value = "问答消息列表", notes = "问答消息列表")
+	public ApiAnswerMsgListResult answerMsgList(@RequestBody ApiAnswerMsgListInput input) {
+
+		return apiFactory.getApiAnswerMsgList().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/recentMsgList", method = RequestMethod.POST)
+	@ApiOperation(value = "最新消息列表", notes = "最新消息列表")
+	public ApiRecentMsgListResult recentMsgList(@RequestBody ApiRecentMsgListInput input) {
+
+		return apiFactory.getApiRecentMsgList().api(input);
 
 	}
 

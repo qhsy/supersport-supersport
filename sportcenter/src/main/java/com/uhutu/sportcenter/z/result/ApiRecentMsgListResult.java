@@ -1,0 +1,39 @@
+package com.uhutu.sportcenter.z.result;
+
+import com.uhutu.sportcenter.z.entity.ApiMsgNoticeInfo;
+import com.uhutu.zoocom.root.RootApiResult;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+/**
+ * 最近消息列表
+ * @author 逄小帅
+ *
+ */
+@ApiModel
+public class ApiRecentMsgListResult extends RootApiResult {
+	
+	@ApiModelProperty(value="系统消息")
+	private ApiMsgNoticeInfo sytemMsgInfo = null;
+
+	@ApiModelProperty(value="问答消息")
+	private ApiMsgNoticeInfo answerMsgInfo = null;
+
+	public ApiMsgNoticeInfo getSytemMsgInfo() {
+		return sytemMsgInfo;
+	}
+
+	public void setSytemMsgInfo(ApiMsgNoticeInfo sytemMsgInfo) {
+		this.sytemMsgInfo = sytemMsgInfo;
+	}
+
+	public ApiMsgNoticeInfo getAnswerMsgInfo() {
+		return answerMsgInfo;
+	}
+
+	public void setAnswerMsgInfo(ApiMsgNoticeInfo answerMsgInfo) {
+		this.answerMsgInfo = answerMsgInfo;
+	}
+
+}
