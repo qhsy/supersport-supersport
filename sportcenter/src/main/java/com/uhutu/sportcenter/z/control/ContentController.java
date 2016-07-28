@@ -18,6 +18,7 @@ import com.uhutu.sportcenter.z.input.ApiHomePageInput;
 import com.uhutu.sportcenter.z.input.ApiOperContentInput;
 import com.uhutu.sportcenter.z.input.ApiPublishContentPhotosInput;
 import com.uhutu.sportcenter.z.input.ApiPublishSportingMomentInput;
+import com.uhutu.sportcenter.z.input.ApiShareInfoInput;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.z.input.ApiSupportPraiseInput;
 import com.uhutu.sportcenter.z.input.ApiThemePageInput;
@@ -31,6 +32,7 @@ import com.uhutu.sportcenter.z.result.ApiHomePageResult;
 import com.uhutu.sportcenter.z.result.ApiOperContentResult;
 import com.uhutu.sportcenter.z.result.ApiPublishContentPhotosResult;
 import com.uhutu.sportcenter.z.result.ApiPublishSportingMomentResult;
+import com.uhutu.sportcenter.z.result.ApiShareInfoResult;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
 import com.uhutu.sportcenter.z.result.ApiSupportPraiseResult;
 import com.uhutu.sportcenter.z.result.ApiThemePageResult;
@@ -161,6 +163,15 @@ public class ContentController {
 	public ApiThemePageResult themePage(@RequestBody ApiThemePageInput input) {
 
 		return apiFactory.getApiThemePage().api(input);
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/shareInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "分享信息", notes = "分享信息")
+	public ApiShareInfoResult shareInfo(@RequestBody ApiShareInfoInput input) {
+
+		return apiFactory.getApiShareInfo().api(input);
 
 	}
 }

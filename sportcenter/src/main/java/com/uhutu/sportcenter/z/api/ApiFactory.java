@@ -42,6 +42,7 @@ import com.uhutu.sportcenter.z.api.content.ApiOwnSportMoment;
 import com.uhutu.sportcenter.z.api.content.ApiPublishContentPhotos;
 import com.uhutu.sportcenter.z.api.content.ApiPublishSportingMoment;
 import com.uhutu.sportcenter.z.api.content.ApiShareContent;
+import com.uhutu.sportcenter.z.api.content.ApiShareInfo;
 import com.uhutu.sportcenter.z.api.content.ApiSportingMoments;
 import com.uhutu.sportcenter.z.api.content.ApiSupportPraise;
 import com.uhutu.sportcenter.z.api.content.ApiThemePage;
@@ -360,6 +361,14 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiRecentMsgList apiRecentMsgList;
+
+	@Autowired
+	private ApiShareInfo apiShareInfo;
+	
+	
+	public ApiShareInfo getApiShareInfo() {
+		return apiShareInfo;
+	}
 
 	public ApiThemePage getApiThemePage() {
 		return apiThemePage;

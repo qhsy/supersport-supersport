@@ -22,6 +22,9 @@ public class ApiThemePageResult extends RootApiResult {
 	@ApiModelProperty(name = "专题简介")
 	private String aboutDesc = "";
 
+	@ApiModelProperty(name = "是否分享")
+	private boolean shareFlag = false;
+
 	@ApiModelProperty(name = "详情信息")
 	List<ThemePageModel> models = new ArrayList<ThemePageModel>();
 
@@ -63,6 +66,14 @@ public class ApiThemePageResult extends RootApiResult {
 
 	public void setModels(List<ThemePageModel> models) {
 		this.models = models;
+	}
+
+	public boolean isShareFlag() {
+		return shareFlag;
+	}
+
+	public void setShareFlag(boolean shareFlag) {
+		this.shareFlag = shareFlag;
 	}
 
 }

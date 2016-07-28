@@ -19,7 +19,7 @@ public class SpAppVersion extends BaseEntity {
 	@ZooData(value = "版本号")
 	private String versionNo;
 
-	@ZooData(value = "升级内容")
+	@ZooData(value = "升级内容", element = DefineWebElement.Textarea)
 	private String upgradeContent;
 
 	@ZooData(value = "升级类型", element = DefineWebElement.Select, inc = {

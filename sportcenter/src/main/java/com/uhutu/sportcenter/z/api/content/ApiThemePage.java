@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.entity.CnShareInfo;
 import com.uhutu.dcom.content.z.entity.CnThemeDetail;
 import com.uhutu.dcom.content.z.entity.CnThemeDetailRel;
 import com.uhutu.dcom.content.z.entity.CnThemeInfo;
@@ -48,6 +49,12 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 			result.setCover(info.getCover());
 			result.setAboutDesc(info.getAboutDesc());
 			result.setModels(getModels(input.getCode()));
+		}
+		if (result.upFlagTrue()) {
+			CnShareInfo shareInfo = JdbcHelper.queryOne(CnShareInfo.class, "code", info.getCode(), "status", "1");
+			if (shareInfo != null) {
+				result.setShareFlag(true);
+			}
 		}
 		return result;
 	}
