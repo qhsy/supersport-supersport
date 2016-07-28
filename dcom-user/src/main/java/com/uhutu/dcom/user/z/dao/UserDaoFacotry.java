@@ -68,6 +68,9 @@ public class UserDaoFacotry {
 	
 	@Autowired
 	private IUserSocialLoginDao userSocialLoginDao;
+	
+	@Autowired
+	private IMsgAnswerDao msgAnswerDao;
 
 	/**
 	 * 用户信息数据访问
@@ -180,6 +183,10 @@ public class UserDaoFacotry {
 
 	public IUserSocialLoginDao getUserSocialLoginDao() {
 		return userSocialLoginDao;
+	}
+
+	public IMsgAnswerDao getMsgAnswerDao() {
+		return msgAnswerDao;
 	}
 
 }
