@@ -1,7 +1,5 @@
 package com.uhutu.dcom.user.z.service.impl;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.uhutu.dcom.component.z.page.QueryConditionUtil;
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.dao.UserDaoFacotry;
-import com.uhutu.dcom.user.z.entity.UcMsgNoticeUser;
+import com.uhutu.dcom.user.z.entity.UcMsgAnswer;
 import com.uhutu.dcom.user.z.service.IMsgAnswerService;
 
 /**
@@ -30,21 +28,21 @@ public class MsgAnswerServiceImpl implements IMsgAnswerService {
 	private UserDaoFacotry userDaoFacotry;
 
 	@Override
-	public void save(List<UcMsgNoticeUser> msgNoticeUsers) {
+	public void save(UcMsgAnswer msgAnswer) {
 		
-		userDaoFacotry.getMsgNoticeUserDao().save(msgNoticeUsers);
+		userDaoFacotry.getMsgAnswerDao().save(msgAnswer);
 
 	}
 
 	@Override
 	public int queryCount(String userCode, String status) {
 		
-		return userDaoFacotry.getMsgNoticeUserDao().queryCount(userCode, status);
+		return userDaoFacotry.getMsgAnswerDao().queryCount(userCode, status);
 		
 	}
 
 	@Override
-	public Page<UcMsgNoticeUser> queryPageByUserCode(int pageNum, int limit, QueryConditions conditions) {
+	public Page<UcMsgAnswer> queryPageByUserCode(int pageNum, int limit, QueryConditions conditions) {
 		
 		if(pageNum >= 1){
 			
@@ -56,9 +54,9 @@ public class MsgAnswerServiceImpl implements IMsgAnswerService {
 		
 		PageRequest page = new PageRequest(pageNum, limit,sort);
 		
-		Specification<UcMsgNoticeUser> spec = QueryConditionUtil.buildSpecification(conditions);
+		Specification<UcMsgAnswer> spec = QueryConditionUtil.buildSpecification(conditions);
 		
-		Page<UcMsgNoticeUser> msgNoticePage = userDaoFacotry.getMsgNoticeUserDao().findAll(spec, page);
+		Page<UcMsgAnswer> msgNoticePage = userDaoFacotry.getMsgAnswerDao().findAll(spec, page);
 		
 		return msgNoticePage;
 		

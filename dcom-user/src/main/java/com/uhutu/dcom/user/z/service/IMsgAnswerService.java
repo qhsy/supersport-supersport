@@ -1,11 +1,9 @@
 package com.uhutu.dcom.user.z.service;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
-import com.uhutu.dcom.user.z.entity.UcMsgNoticeUser;
+import com.uhutu.dcom.user.z.entity.UcMsgAnswer;
 
 /**
  * 消息通知用户service
@@ -15,10 +13,10 @@ import com.uhutu.dcom.user.z.entity.UcMsgNoticeUser;
 public interface IMsgAnswerService {
 	
 	/**
-	 * 保存通知用户关联列表
-	 * @param msgNoticeUsers
+	 * 保存问答信息
+	 * @param msgAnswer
 	 */
-	public void save(List<UcMsgNoticeUser> msgNoticeUsers);
+	public void save(UcMsgAnswer msgAnswer);
 	
 	/**
 	 * 根据用户编号查询记录数量
@@ -40,7 +38,7 @@ public interface IMsgAnswerService {
 	 * 		查询条件
 	 * @return 查询分页信息
 	 */
-	public Page<UcMsgNoticeUser> queryPageByUserCode(int pageNum, int limit,QueryConditions conditions);
+	public Page<UcMsgAnswer> queryPageByUserCode(int pageNum, int limit,QueryConditions conditions);
 	
 	/**
 	 * 更新为已读状态

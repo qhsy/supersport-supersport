@@ -52,7 +52,7 @@ public class ApiMsgNoticeList extends RootApiToken<ApiMsgNoticeListInput, ApiMsg
 			
 			msgNoticeInfo.setContent(ucMsgNotice.getContent());
 			
-			String msgTimeStr = DateFormatUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss");
+			String msgTimeStr = DateFormatUtils.format(ucMsgNotice.getZc(), "yyyy-MM-dd HH:mm:ss");
 			
 			msgNoticeInfo.setNotifyTime(msgTimeStr);			
 			

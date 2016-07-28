@@ -69,6 +69,9 @@ public class UserServiceFactory {
 	@Autowired
 	private IUserSocialLoginService userSocialLoginService;
 	
+	@Autowired
+	private IMsgAnswerService msgAnswerService;
+	
 	/**
 	 * 获取用户业务实现
 	 * 
@@ -171,5 +174,9 @@ public class UserServiceFactory {
 
 	public IUserSocialLoginService getUserSocialLoginService() {
 		return userSocialLoginService;
+	}
+
+	public IMsgAnswerService getMsgAnswerService() {
+		return msgAnswerService;
 	}
 }
