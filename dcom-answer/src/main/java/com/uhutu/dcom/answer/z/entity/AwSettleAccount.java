@@ -9,7 +9,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"userCode","openid"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"userCode"}))
 public class AwSettleAccount extends BaseEntity {
 	
 	@ZooData(name = "用户编号")
@@ -31,6 +31,10 @@ public class AwSettleAccount extends BaseEntity {
 	@ZooData(name = "结算账户类型")
 	@Column(length = 50)
 	private String type;
+	
+	@ZooData(name="状态")
+	@Column(length=50)
+	private String status;
 
 	public String getUserCode() {
 		return userCode;
@@ -70,6 +74,14 @@ public class AwSettleAccount extends BaseEntity {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}	
 	
 

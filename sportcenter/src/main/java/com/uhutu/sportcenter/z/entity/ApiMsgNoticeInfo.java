@@ -18,4 +18,28 @@ public class ApiMsgNoticeInfo {
 	@ApiModelProperty(value="消息内容")
 	private MsgNoticeInfo msgNoticeInfo;
 
+	public String getIconUrl() {
+		return iconUrl;
+	}
+
+	public void setIconUrl(String iconUrl) {
+		this.iconUrl = iconUrl;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public MsgNoticeInfo getMsgNoticeInfo() {
+		return msgNoticeInfo;
+	}
+
+	public void setMsgNoticeInfo(MsgNoticeInfo msgNoticeInfo) {
+		this.msgNoticeInfo = msgNoticeInfo;
+	}
+
 }

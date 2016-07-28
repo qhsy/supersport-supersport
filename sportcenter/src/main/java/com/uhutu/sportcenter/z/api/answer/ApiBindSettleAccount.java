@@ -19,6 +19,12 @@ public class ApiBindSettleAccount extends RootApiToken<ApiBindSettleAccountInput
 		
 		ApiBindSettleAccountResult result = new ApiBindSettleAccountResult();
 		
+		if(input.isBinding()){
+			
+			
+			
+		}
+		
 		return result;
 	}
 

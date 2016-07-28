@@ -19,6 +19,9 @@ public class AnswerServiceFactory {
 	
 	@Autowired
 	private IAnswerListenService answerListenService;
+	
+	@Autowired
+	private IAwSettleAccountService settleAccountService;
 
 	public IAwAnswerExpertService getAwAnswerExpertService() {
 		return awAnswerExpertService;
@@ -30,6 +33,10 @@ public class AnswerServiceFactory {
 
 	public IAnswerListenService getAnswerListenService() {
 		return answerListenService;
+	}
+
+	public IAwSettleAccountService getSettleAccountService() {
+		return settleAccountService;
 	}
 
 }

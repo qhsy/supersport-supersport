@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class ApiUpdateMsgStatusInput extends RootApiInput {
 	
-	@ApiModelProperty(value="消息类型",example="01:关注 02:评论 03:通知 04:点赞")
+	@ApiModelProperty(value="消息类型",example="01:关注 02:评论 03:通知 04:点赞 05:问答消息")
 	private String msgType;
 
 	public String getMsgType() {

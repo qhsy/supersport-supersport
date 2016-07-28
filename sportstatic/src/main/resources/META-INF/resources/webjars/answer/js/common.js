@@ -1,7 +1,7 @@
 define(['zepto','jssdk','qrcode'],function($,wx,QRCode){
 	var common = {};
 	//sessionStorage.setItem('token','f8ede4925ec74374a032d453afd7f6d5d101126d930e4f52b24bc20f1cc9f0aabb9d5953');
-	common.appId = 'wxec842da73ebe11a4'; //wxec842da73ebe11a4
+	common.appId = 'wxfd44c999a0475e56'; //wxfd44c999a0475e56
 
 	common.paramFn = function (arg){
 		var url = window.location.search;
