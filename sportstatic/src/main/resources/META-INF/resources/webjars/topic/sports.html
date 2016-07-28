@@ -41,7 +41,7 @@ html{background: #f0f0f0;}
 	<article class="sports-con" v-for="model in result.models">
 		<h1 class="sports-title">{{model.title}}</h1>
 		<ul class="sports-list">
-			<li class="sport" v-for="info in model.infos" v-show="$index > 3?isDown:!isDown">
+			<li class="sport" v-for="info in model.infos | limitBy num">
 				<template v-if="info.contentType == 'dzsd4107100110030003'">
 					<a href="../sportstatic/photo.html?code={{info.code}}">
 						<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="info.cover" :alt="info.title"></div>
@@ -59,8 +59,8 @@ html{background: #f0f0f0;}
 			</li>
 		</ul>
 		<!-- <template v-if="model.infos.length > 4"> -->
-			<a href="javascript:;" class="sport-event up" @click="toggle($index)" v-if="isDown">展开更多</a>
-			<a href="javascript:;" class="sport-event down" @click="toggle($index)" v-else>收起</a>
+			<a href="javascript:;" class="sport-event up" @click="toggle" v-if="isDown">展开更多</a>
+			<a href="javascript:;" class="sport-event down" @click="toggle" v-else>收起</a>
 		<!-- </template> -->
 	</article>
 </section>
@@ -90,13 +90,14 @@ html{background: #f0f0f0;}
 	Vue.use(Vue.lazyimg,{
 	    fade: true,
 	    nohori: true,
-	    speed: 20,
+	    speed: 20
 	});
 	var vm = new Vue({
 		el:'#sports',
 		data:{
 			result: null,
-			isDown:true
+			isDown:true,
+			num:4
 		},
 		init:function(){
 			var self = this;
@@ -114,8 +115,9 @@ html{background: #f0f0f0;}
 			});
 		},
 		methods:{
-			toggle:function(index){
+			toggle:function(){
 				this.isDown = !this.isDown;
+				this.num = this.isDown?4:-1;
 			}
 		}
 	});
