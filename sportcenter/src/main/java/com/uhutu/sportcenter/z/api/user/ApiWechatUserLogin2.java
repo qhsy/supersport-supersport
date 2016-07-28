@@ -86,7 +86,7 @@ public class ApiWechatUserLogin2 extends RootApiBase<ApiWechatUserLoginInput2, A
 			
 			loginInput.setAccountId(authResponse.getUnionid());
 			
-			loginInput.setAccountType("wechat");
+			loginInput.setAccountType(SocialEnum.wechat_h5.name());
 			
 			apiSocialLogin.saveSocialLogin(loginInput);
 			
@@ -116,7 +116,7 @@ public class ApiWechatUserLogin2 extends RootApiBase<ApiWechatUserLoginInput2, A
 		
 		input.setAccountName(wechatResponse.getNickname());
 		
-		input.setAccountType(SocialEnum.wechat.name());
+		input.setAccountType(SocialEnum.wechat_h5.name());
 		
 		input.setOpenid(wechatResponse.getOpenid());
 		
