@@ -20,6 +20,7 @@ import com.uhutu.dcom.pay.z.request.WechatMsgAnswerRequest;
 import com.uhutu.dcom.pay.z.response.WechatAccessTokenResponse;
 import com.uhutu.dcom.pay.z.response.WechatMsgResponse;
 import com.uhutu.dcom.pay.z.util.WechatMsgComponent;
+import com.uhutu.dcom.user.z.entity.UcSocialLogin;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
@@ -130,8 +131,10 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 		answerRequest.getKeyword3().setValue(TopHelper.upInfo(88880020, questionInfo.getLengh()));
 
 		answerRequest.getRemark().setValue(TopHelper.upInfo(88880021));
+		
+		UcSocialLogin socialLogin = JdbcHelper.queryOne(UcSocialLogin.class, "unionid",ucUserinfoSocial.getAccountId(),"type",SocialEnum.wechat_h5.name());
 
-		return wechatMsgCompoent.sendMsg(ucUserinfoSocial.getAccountId(), requestUrl, PayProcessEnum.WECHAT_MSG_ANSWER,
+		return wechatMsgCompoent.sendMsg(socialLogin.getOpenid(), requestUrl, PayProcessEnum.WECHAT_MSG_ANSWER,
 				answerRequest);
 
 	}

@@ -5,10 +5,12 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.answer.z.common.AnswerEnum;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
+import com.uhutu.dcom.config.enums.SocialEnum;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.request.WechatMsgAskRequest;
 import com.uhutu.dcom.pay.z.response.WechatMsgResponse;
 import com.uhutu.dcom.pay.z.util.WechatMsgComponent;
+import com.uhutu.dcom.user.z.entity.UcSocialLogin;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
 import com.uhutu.dcom.user.z.entity.UserBasicInfo;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
@@ -16,6 +18,7 @@ import com.uhutu.sportcenter.z.input.ApiAskWechatMsgInput;
 import com.uhutu.sportcenter.z.result.ApiAskWechatMsgResult;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.root.RootApiToken;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 问题提问微信消息发送
@@ -92,8 +95,10 @@ public class ApiAskWechatMsg extends RootApiToken<ApiAskWechatMsgInput, ApiAskWe
 		askRequest.getKeyword3().setValue(questionInfo.getQuestionTime());
 
 		askRequest.getRemark().setValue(TopHelper.upInfo(88880016, questionInfo.getMoney().setScale(2).toString()));
+		
+		UcSocialLogin socialLogin = JdbcHelper.queryOne(UcSocialLogin.class, "unionid",answerSocial.getAccountId(),"type",SocialEnum.wechat_h5.name());
 
-		return wechatMsgCompoent.sendMsg(answerSocial.getAccountId(), requestUrl, PayProcessEnum.WECHAT_MSG_ASK, askRequest);
+		return wechatMsgCompoent.sendMsg(socialLogin.getOpenid(), requestUrl, PayProcessEnum.WECHAT_MSG_ASK, askRequest);
 
 	}
 
