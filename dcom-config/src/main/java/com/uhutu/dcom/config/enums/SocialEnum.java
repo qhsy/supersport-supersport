@@ -9,6 +9,8 @@ public enum SocialEnum {
 	
 	/**微信*/
 	wechat,
+	/**微信*/
+	wechat_h5,
 	/**新浪微博*/
 	sinaWeibo,
 	/**腾讯qq*/
