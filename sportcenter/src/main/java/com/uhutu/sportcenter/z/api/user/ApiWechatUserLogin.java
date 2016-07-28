@@ -106,7 +106,7 @@ public class ApiWechatUserLogin extends RootApiBase<ApiWechatUserLoginInput, Api
 		
 		input.setAccountName(wechatResponse.getNickname());
 		
-		input.setAccountType(SocialEnum.wechat.name());
+		input.setAccountType(SocialEnum.wechat_h5.name());
 		
 		return apiSocialLogin.api(input);		
 		

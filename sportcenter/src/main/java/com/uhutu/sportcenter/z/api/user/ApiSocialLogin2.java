@@ -262,7 +262,7 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 	 */
 	public void saveSocialLogin(ApiSocialLoginInput2 input){
 		
-		UcSocialLogin ucSocialLogin = userServiceFactory.getUserSocialLoginService().queryByUnionId(input.getOpenid(), input.getAccountId());
+		UcSocialLogin ucSocialLogin = userServiceFactory.getUserSocialLoginService().queryByUnionId(input.getAccountType(),input.getAccountId());
 		
 		if(ucSocialLogin == null){
 			
@@ -279,6 +279,12 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 			ucSocialLogin.setUnionid(input.getAccountId());
 			
 			ucSocialLogin.setType(input.getAccountType());
+			
+			userServiceFactory.getUserSocialLoginService().save(ucSocialLogin);
+			
+		}else{
+			
+			ucSocialLogin.setOpenid(input.getOpenid());
 			
 			userServiceFactory.getUserSocialLoginService().save(ucSocialLogin);
 			

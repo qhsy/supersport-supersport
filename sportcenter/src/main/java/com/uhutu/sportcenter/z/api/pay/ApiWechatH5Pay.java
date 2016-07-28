@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.config.enums.SocialEnum;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
 import com.uhutu.dcom.pay.z.request.WechatBizContentRequest;
@@ -12,12 +13,14 @@ import com.uhutu.dcom.pay.z.request.WechatOrderRequest;
 import com.uhutu.dcom.pay.z.response.WechatH5PayResponse;
 import com.uhutu.dcom.pay.z.response.WechatOrderResponse;
 import com.uhutu.dcom.pay.z.service.PayServiceFactory;
+import com.uhutu.dcom.user.z.entity.UcSocialLogin;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.input.ApiWechatH5PayInput;
 import com.uhutu.sportcenter.z.result.ApiWechatH5PayResult;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiToken;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 微信h5支付
@@ -61,7 +64,9 @@ public class ApiWechatH5Pay extends RootApiToken<ApiWechatH5PayInput, ApiWechatH
 		
 		bizContentRequest.setPayMoney(input.getPayMoney());
 		
-		bizContentRequest.setOpenid(ucUserinfoSocial.getAccountId());
+		UcSocialLogin socialLogin = JdbcHelper.queryOne(UcSocialLogin.class, "unionid",ucUserinfoSocial.getAccountId(),"type",SocialEnum.wechat_h5.name());
+		
+		bizContentRequest.setOpenid(socialLogin.getOpenid());
 		
 		WechatOrderRequest orderRequest = payServiceFactory.getWechatOrderService().initOrderRequest(bizContentRequest, PayProcessEnum.WECHAT_SERVICE_CONFIG);
 		

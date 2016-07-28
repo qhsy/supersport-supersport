@@ -14,7 +14,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  *
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"openid","unionid"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"type","unionid"}))
 public class UcSocialLogin extends BaseEntity {
 	
 	@ZooData(value = "用户标识")

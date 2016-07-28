@@ -13,7 +13,7 @@ import com.uhutu.dcom.user.z.entity.UcSocialLogin;
  */
 public interface IUserSocialLoginDao extends CrudRepository<UcSocialLogin, String> {
 
-	@Query("select t from UcSocialLogin t where openid=:openid and unionid=:unionid")
-	public UcSocialLogin queryByUnionId(@Param("openid") String openid,@Param("unionid") String unionid);
+	@Query("select t from UcSocialLogin t where unionid=:unionid and type=:type")
+	public UcSocialLogin queryByUnionId(@Param("type") String type,@Param("unionid") String unionid);
 	
 }

@@ -41,9 +41,9 @@ public class UserSocialLoginServiceImpl implements IUserSocialLoginService {
 	}
 
 	@Override
-	public UcSocialLogin queryByUnionId(String openid, String unionid) {
+	public UcSocialLogin queryByUnionId(String type,String unionid) {
 		
-		return userDaoFactory.getUserSocialLoginDao().queryByUnionId(openid, unionid);
+		return userDaoFactory.getUserSocialLoginDao().queryByUnionId(type,unionid);
 		
 	}
 	

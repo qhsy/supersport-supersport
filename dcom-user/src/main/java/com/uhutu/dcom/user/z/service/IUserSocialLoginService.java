@@ -23,6 +23,6 @@ public interface IUserSocialLoginService {
 	 * 		联合标识
 	 * @return 用户社交登录
 	 */
-	public UcSocialLogin queryByUnionId(String openid,String unionid);
+	public UcSocialLogin queryByUnionId(String type,String unionid);
 
 }
