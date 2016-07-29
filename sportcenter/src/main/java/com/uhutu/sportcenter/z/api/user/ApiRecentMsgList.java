@@ -1,6 +1,5 @@
 package com.uhutu.sportcenter.z.api.user;
 
-import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.uhutu.dcom.user.z.entity.UcMsgAnswer;
@@ -41,9 +40,7 @@ public class ApiRecentMsgList extends RootApiToken<ApiRecentMsgListInput, ApiRec
 			
 			msgNoticeInfo.setContent(ucMsgNotice.getContent());
 			
-			String msgTimeStr = DateFormatUtils.format(ucMsgNotice.getZc(), "yyyy-MM-dd HH:mm:ss");
-			
-			msgNoticeInfo.setNotifyTime(msgTimeStr);
+			msgNoticeInfo.setNotifyTime(ucMsgNotice.getNotifyTime());
 			
 			apiMsgNoticeInfo.setTitle("果冻体育");
 			
@@ -57,7 +54,7 @@ public class ApiRecentMsgList extends RootApiToken<ApiRecentMsgListInput, ApiRec
 			
 		}
 		
-		UcMsgAnswer ucMsgAnswer = JdbcHelper.queryOne(UcMsgAnswer.class, "", "-zc", "", MapHelper.initMap("status",MsgEnum.FLAG_UNREAD.getCode()));
+		UcMsgAnswer ucMsgAnswer = JdbcHelper.queryOne(UcMsgAnswer.class, "", "-zc", "", MapHelper.initMap("userCode",upUserCode(),"status",MsgEnum.FLAG_UNREAD.getCode()));
 		
 		if(ucMsgAnswer != null){
 			
@@ -67,15 +64,15 @@ public class ApiRecentMsgList extends RootApiToken<ApiRecentMsgListInput, ApiRec
 			
 			msgNoticeInfo.setContent(ucMsgAnswer.getContent());
 			
-			String msgTimeStr = DateFormatUtils.format(ucMsgAnswer.getZc(), "yyyy-MM-dd HH:mm:ss");
-			
-			msgNoticeInfo.setNotifyTime(msgTimeStr);
+			msgNoticeInfo.setNotifyTime(ucMsgAnswer.getNotifyTime());
 			
 			apiMsgNoticeInfo.setTitle("问答助手");
 			
 			apiMsgNoticeInfo.setUnReadNum(userServiceFactory.getMsgNoticeUserService().queryCount(upUserCode(), MsgEnum.FLAG_UNREAD.getCode()));
 			
 			apiMsgNoticeInfo.setIconUrl("");
+			
+			apiMsgNoticeInfo.setMsgNoticeInfo(msgNoticeInfo);
 			
 			recentMsgListResult.setAnswerMsgInfo(apiMsgNoticeInfo);
 			

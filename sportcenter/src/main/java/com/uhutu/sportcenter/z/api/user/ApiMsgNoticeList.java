@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
+
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.user.z.entity.UcMsgNotice;
 import com.uhutu.dcom.user.z.entity.UcMsgNoticeUser;
@@ -52,9 +52,7 @@ public class ApiMsgNoticeList extends RootApiToken<ApiMsgNoticeListInput, ApiMsg
 			
 			msgNoticeInfo.setContent(ucMsgNotice.getContent());
 			
-			String msgTimeStr = DateFormatUtils.format(ucMsgNotice.getZc(), "yyyy-MM-dd HH:mm:ss");
-			
-			msgNoticeInfo.setNotifyTime(msgTimeStr);			
+			msgNoticeInfo.setNotifyTime(ucMsgNotice.getNotifyTime());			
 			
 			result.getMsgNoticeInfos().add(msgNoticeInfo);
 			
