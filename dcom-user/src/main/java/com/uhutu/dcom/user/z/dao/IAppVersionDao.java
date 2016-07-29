@@ -13,7 +13,7 @@ import com.uhutu.dcom.user.z.entity.SpAppVersion;
  */
 public interface IAppVersionDao extends JpaRepository<SpAppVersion, String> {
 	
-	@Query(value = "select * from sp_app_version where system_type=:systemType order by zc desc limit 0,1",nativeQuery = true)
+	@Query(value = "select * from sp_app_version where system_type=:systemType order by version_no desc limit 0,1",nativeQuery = true)
 	public SpAppVersion queryOrderByZcDesc(@Param("systemType") String systemType);
 
 }
