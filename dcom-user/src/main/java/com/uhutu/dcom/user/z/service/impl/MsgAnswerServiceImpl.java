@@ -67,7 +67,7 @@ public class MsgAnswerServiceImpl implements IMsgAnswerService {
 	@Transactional
 	public int updateReadStatus(String userCode, String updateStatus, String whereStatus) {
 		
-		return userDaoFacotry.getMsgNoticeUserDao().updateReadStatus(userCode, updateStatus, whereStatus);
+		return userDaoFacotry.getMsgAnswerDao().updateReadStatus(userCode, updateStatus, whereStatus);
 		
 	}
 

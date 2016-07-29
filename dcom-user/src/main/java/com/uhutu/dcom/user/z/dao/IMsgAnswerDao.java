@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -25,5 +26,9 @@ public interface IMsgAnswerDao extends JpaRepository<UcMsgAnswer, String>,JpaSpe
 	
 	@Query("select count(1) from UcMsgAnswer t where userCode=:userCode and status=:status")
 	public int queryCount(@Param("userCode") String userCode,@Param("status") String status);
+	
+	@Modifying
+	@Query("update UcMsgAnswer t set t.status =:status where t.userCode=:userCode and status=:whereStatus")
+	public int updateReadStatus(@Param("userCode") String userCode,@Param("status") String status,@Param("whereStatus") String whereStatus);
 
 }

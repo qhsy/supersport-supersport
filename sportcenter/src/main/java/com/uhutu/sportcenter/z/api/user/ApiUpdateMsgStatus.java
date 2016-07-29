@@ -42,6 +42,10 @@ public class ApiUpdateMsgStatus extends RootApiToken<ApiUpdateMsgStatusInput, Ap
 		case "03":
 			noticeStatus(upUserCode());
 			break;
+			
+		case "05":
+			answerStatus(upUserCode());
+			break;
 
 		default:
 			break;
@@ -89,6 +93,16 @@ public class ApiUpdateMsgStatus extends RootApiToken<ApiUpdateMsgStatusInput, Ap
 	public void noticeStatus(String userCode){
 		
 		userServiceFactory.getMsgNoticeUserService().updateReadStatus(userCode, MsgEnum.FLAG_READ.getCode(), MsgEnum.FLAG_UNREAD.getCode());
+		
+	}
+	
+	/**
+	 * 问答消息状态
+	 * @param userCode
+	 */
+	public void answerStatus(String userCode){
+		
+		userServiceFactory.getMsgAnswerService().updateReadStatus(userCode, MsgEnum.FLAG_READ.getCode(), MsgEnum.FLAG_UNREAD.getCode());
 		
 	}
 
