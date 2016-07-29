@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
 import com.uhutu.dcom.answer.z.entity.AwPointRecommen;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
-import com.uhutu.sportcenter.z.entity.UserBasicInfo;
+import com.uhutu.sportcenter.z.entity.RecommExpertInfo;
 import com.uhutu.sportcenter.z.input.ApiRecommendExpertInput;
 import com.uhutu.sportcenter.z.result.ApiRecommendExpertResult;
 import com.uhutu.zoocom.model.MDataMap;
@@ -41,14 +43,20 @@ public class ApiRecommendExpert extends RootApiBase<ApiRecommendExpertInput, Api
 					new MDataMap());
 			if (us != null && !us.isEmpty()) {
 				for (int i = 0; i < us.size(); i++) {
-					UserBasicInfo ubi = new UserBasicInfo();
+					RecommExpertInfo recommExpertInfo = new RecommExpertInfo();
 					UcUserinfoExt uie = us.get(i);
-					BeanUtils.copyProperties(uie, ubi);
-					UcUserinfo uui = JdbcHelper.queryOne(UcUserinfo.class, "code", ubi.getUserCode());
+					BeanUtils.copyProperties(uie, recommExpertInfo);
+					UcUserinfo uui = JdbcHelper.queryOne(UcUserinfo.class, "code", recommExpertInfo.getUserCode());
+					AwAnswerExpert answerExpert = JdbcHelper.queryOne(AwAnswerExpert.class, "userCode",recommExpertInfo.getUserCode());
 					if (uui != null) {
-						ubi.setType(uui.getType());
+						recommExpertInfo.setType(uui.getType());
 					}
-					result.getList().add(ubi);
+					if(answerExpert != null){
+						
+						recommExpertInfo.setTitle(answerExpert.getTitle());
+						
+					}
+					result.getList().add(recommExpertInfo);
 				}
 			}
 		}
