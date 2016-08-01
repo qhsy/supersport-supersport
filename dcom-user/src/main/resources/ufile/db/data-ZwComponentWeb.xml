@@ -11,6 +11,9 @@
 		<item code="dzcw451010010003" componentClass="com.uhutu.zooweb.component.DialogComponent"
 			clientExtend="page=/pg/com_uhutu_dcom_user_z_page_component_UserInfoExtForExpertPage&amp;max=1"
 			serverDefine="table=UcUserinfoExt&amp;text=nick_name&amp;value=user_code" />
+		<item code="dzcw451010010004" componentClass="com.uhutu.zooweb.component.DialogComponent"
+			clientExtend="page=/pg/com_uhutu_dcom_user_z_page_component_MjUserInfoExtPage&amp;max=1"
+			serverDefine="table=UcUserinfoExt&amp;text=nick_name&amp;value=user_code" />
 	</data>
 
 </db>

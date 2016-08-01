@@ -33,8 +33,8 @@ public class UcUserinfoExt extends BaseEntity {
 	@ZooData(name = "位置", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String location;
 
-	@ZooData(name = "简介封面(1080*1080)", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "简介封面(1080*1080)", element = DefineWebElement.Upload, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String aboutCover;
 
 	@ZooData(name = "简介标签", sort = { DefineWebPage.Page_Query + "=0",
@@ -45,7 +45,8 @@ public class UcUserinfoExt extends BaseEntity {
 	@ZooData(name = "简介视频", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String aboutVideo;
 
-	@ZooData(name = "简介描述", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "简介描述", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
 	private String aboutDesc;
 
 	@ZooData(name = "关注领域", sort = { DefineWebPage.Page_Query + "=0",

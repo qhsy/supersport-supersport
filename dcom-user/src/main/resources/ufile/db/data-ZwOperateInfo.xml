@@ -23,6 +23,14 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_user_z_page_UcUserAlbumPage?u_userCode=[[data:code]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41101006" operateName="已关注" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_user_z_page_UcAttentionInfoPage?u_beAttention=[[data:userCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41101007" operateName="关注" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_user_z_page_UcAttentionInfoPage?u_beAttention=[[data:userCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>

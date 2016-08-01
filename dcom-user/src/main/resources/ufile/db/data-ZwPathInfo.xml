@@ -13,6 +13,9 @@
 		<item code="dzpi4510100100010003" nodeName="昵称信息" parentCode="dzpi451010010001"
 			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UserInfoExtPage"
 			pageIcon="glyphicon-th" />
+		<item code="dzpi4510100100010004" nodeName="关注信息" parentCode="dzpi451010010001"
+			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UserAttenTionPage"
+			pageIcon="glyphicon-th" />
 		<item code="dzpi451010010002" nodeName="用户反馈" parentCode="dzpi45101001" />
 		<item code="dzpi4510100100020001" nodeName="反馈信息" parentCode="dzpi451010010002"
 			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_MsgAdvicePage"
