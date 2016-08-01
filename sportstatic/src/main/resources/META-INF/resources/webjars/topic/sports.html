@@ -49,14 +49,14 @@ html{background: #f0f0f0;}
 		<ul class="sports-list">
 			<li class="sport" v-for="info in model.infos" :class="{show:$index >=4}">
 				<template v-if="info.contentType == 'dzsd4107100110030003'">
-					<a href="../sportstatic/photo.html?code={{info.code}}">
+					<a href="../sportstatic/photo.html?code={{info.code}}&share=1">
 						<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="info.cover" :alt="info.title"></div>
 						<h1 class="title">{{info.title}}</h1>
 						<div class="user"><span class="photo"><img :src="info.userBasicInfo.aboutHead" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span><em class="zan">喜欢 {{info.praiseNum}}</em></div>
 					</a>
 				</template>
 				<template v-else>
-					<a href="../sportstatic/default.html?code={{info.code}}">
+					<a href="../sportstatic/default.html?code={{info.code}}&share=1">
 						<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="info.cover" :alt="info.title"></div>
 						<h1 class="title">{{info.title}}</h1>
 						<div class="user"><span class="photo"><img :src="info.userBasicInfo.aboutHead" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span><em class="zan">喜欢 {{info.praiseNum}}</em></div>
