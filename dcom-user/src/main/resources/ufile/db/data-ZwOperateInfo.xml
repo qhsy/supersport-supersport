@@ -25,11 +25,21 @@
 			parentCode="" noteRemark="" />
 		<item code="dzoi41101006" operateName="已关注" operateFunc=""
 			operateType="button"
-			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_user_z_page_UcAttentionInfoPage?u_beAttention=[[data:userCode]]')"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_user_z_page_UcAttentionInfoPage?u_beAttention=[[data:user_code]]')"
 			parentCode="" noteRemark="" />
 		<item code="dzoi41101007" operateName="关注" operateFunc=""
 			operateType="button"
-			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_user_z_page_UcAttentionInfoPage?u_beAttention=[[data:userCode]]')"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_user_z_page_UcAttentionInfoPage?u_beAttention=[[data:user_code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41101008" operateName="添加"
+			operateFunc="com.uhutu.dcom.user.z.page.func.UcAttentionInfoPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41101009" operateName="删除"
+			operateFunc="com.uhutu.dcom.user.z.page.func.UcAttentionInfoPageFuncDel"
+			operateType="js"
+			operateLink="zstatic_operate.ope_pd('[[struct:pageUnique]]','[[data:za]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
 	</data>
 

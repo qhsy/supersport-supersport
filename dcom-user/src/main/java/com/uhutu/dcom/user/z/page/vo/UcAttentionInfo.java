@@ -15,7 +15,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  */
 public class UcAttentionInfo extends BaseEntity {
 
-	@ZooData(name = "粉丝", require = "1", element = DefineWebElement.Model, inc = {
+	@ZooData(name = "粉丝昵称", require = "1", element = DefineWebElement.Model, inc = {
 			DefineWebInc.Web_Component + "=dzcw451010010004" })
 	private String attention;
 
@@ -25,7 +25,8 @@ public class UcAttentionInfo extends BaseEntity {
 	private String beAttention;
 
 	@ZooData(name = "是否状态", comment = "0:未关注 1:已关注", element = DefineWebElement.Select, sort = {
-			DefineWebPage.Page_Add + "=0" }, inc = { DefineWebInc.System_Define + "=10" })
+			DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" }, inc = { DefineWebInc.System_Define + "=10" })
 	private String status;
 
 	public String getAttention() {

@@ -8,9 +8,9 @@ import com.uhutu.zoocom.root.RootPageSimple;
 import com.uhutu.zooweb.define.DefineZooWeb;
 
 @ZooPage(name = "关注信息", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = { DefineZooWeb.PAGE_DEFAULT_OPERATE,
-		DefineWebPage.Page_Query + "=dzoi4699100110171001", DefineWebPage.Page_Add + "=dzoi41071033",
-		DefineWebPage.Page_Grid + "=dzoi4699100110091002", DefineWebPage.Page_Edit + "=dzoi41071034" }, deploy = {
-				DefineWebDeploy.Grid_Where + "=status='1'", DefineWebDeploy.Url_Query + "=userCode" })
+		DefineWebPage.Page_Query + "=dzoi4699100110171001", DefineWebPage.Page_Add + "=dzoi41101008",
+		DefineWebPage.Page_Grid + "=dzoi41101009" }, deploy = { DefineWebDeploy.Grid_Where + "=status='1'",
+				DefineWebDeploy.Url_Query + "=beAttention" })
 public class UcAttentionInfoPage extends RootPageSimple<UcAttentionInfo> {
 
 }
