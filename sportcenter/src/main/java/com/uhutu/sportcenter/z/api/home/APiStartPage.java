@@ -46,6 +46,8 @@ public class APiStartPage extends RootApiBase<APiStartPageInput, APiStartPageRes
 		clientInfo.setUniqid(inputParam.getUniqid());
 		clientInfo.setUser_code(userCode);
 		clientInfo.setChannelId(inputParam.getChannelId());
+		clientInfo.setPushMobileToken(inputParam.getPushMobileToken());
+		clientInfo.setPushUserToken(inputParam.getPushUserToken());
 		userServiceFactory.getClientInfoService().save(clientInfo);
 		return result;
 	}

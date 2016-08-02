@@ -56,6 +56,12 @@ public class UcClientInfo extends BaseEntity {
 	@ZooData(value = "百度云推送id")
 	private String channelId = "";
 
+	@ZooData(value = "百度云推送用户token")
+	private String pushUserToken = "";
+
+	@ZooData(value = "百度云推送设备token")
+	private String pushMobileToken = "";
+
 	public String getApp_vision() {
 		return app_vision;
 	}
@@ -166,6 +172,22 @@ public class UcClientInfo extends BaseEntity {
 
 	public void setChannelId(String channelId) {
 		this.channelId = channelId;
+	}
+
+	public String getPushUserToken() {
+		return pushUserToken;
+	}
+
+	public void setPushUserToken(String pushUserToken) {
+		this.pushUserToken = pushUserToken;
+	}
+
+	public String getPushMobileToken() {
+		return pushMobileToken;
+	}
+
+	public void setPushMobileToken(String pushMobileToken) {
+		this.pushMobileToken = pushMobileToken;
 	}
 
 }

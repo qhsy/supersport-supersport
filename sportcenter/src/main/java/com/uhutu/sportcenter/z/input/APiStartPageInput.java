@@ -47,6 +47,12 @@ public class APiStartPageInput extends RootApiInput {
 	@ApiModelProperty(value = "百度云推送id", notes = "百度云推送id", example = "wifi")
 	private String channelId = "";
 
+	@ApiModelProperty(value = "百度云推送用户token", notes = "百度云推送用户token", example = "wifi")
+	private String pushUserToken = "";
+
+	@ApiModelProperty(value = "百度云推送设备token", notes = "百度云推送设备token", example = "wifi")
+	private String pushMobileToken = "";
+
 	public String getApp_vision() {
 		return app_vision;
 	}
@@ -149,6 +155,22 @@ public class APiStartPageInput extends RootApiInput {
 
 	public void setChannelId(String channelId) {
 		this.channelId = channelId;
+	}
+
+	public String getPushUserToken() {
+		return pushUserToken;
+	}
+
+	public void setPushUserToken(String pushUserToken) {
+		this.pushUserToken = pushUserToken;
+	}
+
+	public String getPushMobileToken() {
+		return pushMobileToken;
+	}
+
+	public void setPushMobileToken(String pushMobileToken) {
+		this.pushMobileToken = pushMobileToken;
 	}
 
 }
