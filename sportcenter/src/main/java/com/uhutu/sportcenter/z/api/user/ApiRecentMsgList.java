@@ -8,6 +8,7 @@ import com.uhutu.dcom.user.z.enums.MsgEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.ApiMsgNoticeInfo;
 import com.uhutu.sportcenter.z.entity.MsgNoticeInfo;
+import com.uhutu.sportcenter.z.entity.MsgNumInfo;
 import com.uhutu.sportcenter.z.input.ApiRecentMsgListInput;
 import com.uhutu.sportcenter.z.result.ApiRecentMsgListResult;
 import com.uhutu.zoocom.helper.MapHelper;
@@ -78,7 +79,55 @@ public class ApiRecentMsgList extends RootApiToken<ApiRecentMsgListInput, ApiRec
 			
 		}
 		
+		String[] msgTypes = {MsgEnum.ATTEND.getCode(), MsgEnum.PRAISE.getCode(),
+				MsgEnum.REMARK.getCode() };
+		
+		for (String msgType : msgTypes) {
+			
+			recentMsgListResult.getMsgNumInfos().add(initMsgNumInfo(upUserCode(), msgType));
+			
+		}
+		
 		return recentMsgListResult;
+	}
+	
+	public MsgNumInfo initMsgNumInfo(String userCode,String msgType){
+		
+		MsgNumInfo msgNumInfo = new MsgNumInfo();
+		
+		msgNumInfo.setMsgType(msgType);
+		
+		switch (msgType) {
+		case "01":
+			
+			msgNumInfo.setTotal(userServiceFactory.getMsgAttentionService().queryCount(userCode, MsgEnum.FLAG_UNREAD.getCode()));
+			
+			break;
+		
+		case "02":
+			
+			msgNumInfo.setTotal(userServiceFactory.getMsgRemarkService().queryCount(userCode, MsgEnum.FLAG_UNREAD.getCode()));
+			
+			break;
+			
+		case "03":
+			
+			msgNumInfo.setTotal(userServiceFactory.getMsgNoticeUserService().queryCount(userCode, MsgEnum.FLAG_UNREAD.getCode()));
+			
+			break;
+		
+		case "04":
+			
+			msgNumInfo.setTotal(userServiceFactory.getMsgPraiseService().queryCount(userCode, MsgEnum.FLAG_UNREAD.getCode()));
+			
+			break;
+
+		default:
+			break;
+		}
+		
+		return msgNumInfo;
+		
 	}
 
 }
