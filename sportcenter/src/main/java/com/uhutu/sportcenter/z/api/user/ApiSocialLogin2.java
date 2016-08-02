@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.component.z.util.RandomUtil;
+import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.user.z.entity.UcSocialLogin;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
@@ -117,6 +118,8 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 			ucUserinfo.setLoginPwd("");
 			
 			ucUserinfo.setType(UserEnum.TYPE_CUSTOM.getCode());
+			
+			ucUserinfo.setMjFlag(SystemEnum.NO.getCode());
 			
 		}else{
 			
