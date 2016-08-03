@@ -26,6 +26,7 @@ import com.uhutu.sportcenter.z.result.ApiThemePageResult;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
+import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 专题数据展示
@@ -47,8 +48,11 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 			result.setCode(info.getCode());
 			result.setName(info.getName());
 			result.setCover(info.getCover());
+			if (StringUtils.isNotBlank(result.getCover()) && StringUtils.isNotBlank(input.getWidth())) {
+				result.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(input.getWidth())));
+			}
 			result.setAboutDesc(info.getAboutDesc());
-			result.setModels(getModels(input.getCode()));
+			result.setModels(getModels(input.getCode(), input.getWidth()));
 		}
 		if (result.upFlagTrue()) {
 			CnShareInfo shareInfo = JdbcHelper.queryOne(CnShareInfo.class, "code", info.getCode(), "status", "1");
@@ -59,7 +63,7 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 		return result;
 	}
 
-	private List<ThemePageModel> getModels(String themeCode) {
+	private List<ThemePageModel> getModels(String themeCode, String width) {
 		List<ThemePageModel> result = new ArrayList<ThemePageModel>();
 		List<CnThemeInfoRel> infoRels = JdbcHelper.queryForList(CnThemeInfoRel.class, "", "sort desc",
 				"code='" + themeCode + "'", new MDataMap());
@@ -81,7 +85,7 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 						CnThemeDetail detail = details.get(i);
 						ThemePageModel model = new ThemePageModel();
 						model.setTitle(detail.getTitle());
-						model.setInfos(getContents(detail.getCode()));
+						model.setInfos(getContents(detail.getCode(), width));
 						result.add(model);
 					}
 				}
@@ -90,7 +94,7 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 		return result;
 	}
 
-	private List<ContentBasicinfoForApi> getContents(String columnCode) {
+	private List<ContentBasicinfoForApi> getContents(String columnCode, String width) {
 		List<ContentBasicinfoForApi> result = new ArrayList<ContentBasicinfoForApi>();
 		List<CnThemeDetailRel> detailRels = JdbcHelper.queryForList(CnThemeDetailRel.class, "", "sort desc",
 				"code='" + columnCode + "'", new MDataMap());
@@ -127,6 +131,9 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 						}
 						re.setPraiseNum(contentServiceFactory.getSupportPraiseService().queryCountByCode(re.getCode(),
 								ContentEnum.FAVOR_STATUS_YES.getCode()));
+						if (StringUtils.isNotBlank(re.getCover()) && StringUtils.isNotBlank(width)) {
+							re.setCover(ImageHelper.upImageThumbnail(re.getCover(), Integer.valueOf(width)));
+						}
 						result.add(re);
 					}
 				}
