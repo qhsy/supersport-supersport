@@ -1,21 +1,29 @@
 package com.uhutu.sportcenter.z.api.answer;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import com.uhutu.dcom.answer.z.common.AnswerEnum;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
 import com.uhutu.dcom.config.enums.SocialEnum;
+import com.uhutu.dcom.extend.baiduPush.exception.PushClientException;
+import com.uhutu.dcom.extend.baiduPush.exception.PushServerException;
+import com.uhutu.dcom.extend.baiduPush.sample.BaiduPush;
+import com.uhutu.dcom.extend.baiduPush.sample.PushEnum;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.request.WechatMsgAskRequest;
 import com.uhutu.dcom.pay.z.response.WechatMsgResponse;
 import com.uhutu.dcom.pay.z.util.WechatMsgComponent;
+import com.uhutu.dcom.user.z.entity.UcClientInfo;
 import com.uhutu.dcom.user.z.entity.UcSocialLogin;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
 import com.uhutu.dcom.user.z.entity.UserBasicInfo;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.input.ApiAskWechatMsgInput;
 import com.uhutu.sportcenter.z.result.ApiAskWechatMsgResult;
+import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
@@ -85,8 +93,16 @@ public class ApiAskWechatMsg extends RootApiToken<ApiAskWechatMsgInput, ApiAskWe
 		UserBasicInfo userBasicInfo = userInfoSupport.getUserBasicInfo(questionInfo.getQuestionUserCode());
 
 		UcUserinfoSocial answerSocial = userInfoSupport.getUserInfoSocial(questionInfo.getAnswerUserCode());
+		
+		String title = TopHelper.upInfo(88880015, userBasicInfo.getUcUserinfoExt().getNickName());
+		
+		/*百度push*/
+		baiduPush(questionInfo.getAnswerUserCode(), title+"："+questionInfo.getContent());
+		
+		/*系统push*/
+		answerServiceFactory.getQuestionInfoService().saveAnswerMsg("提问",title+"："+questionInfo.getContent(), questionInfo.getAnswerUserCode());
 
-		askRequest.getFirst().setValue(TopHelper.upInfo(88880015, userBasicInfo.getUcUserinfoExt().getNickName()));
+		askRequest.getFirst().setValue(title);
 
 		askRequest.getKeyword1().setValue(questionInfo.getContent());
 
@@ -100,6 +116,26 @@ public class ApiAskWechatMsg extends RootApiToken<ApiAskWechatMsgInput, ApiAskWe
 
 		return wechatMsgCompoent.sendMsg(socialLogin.getOpenid(), requestUrl, PayProcessEnum.WECHAT_MSG_ASK, askRequest);
 
+	}
+	
+	public void baiduPush(String answerUserCode,String content){
+		
+		UcClientInfo ucClientInfo = JdbcHelper.queryOne(UcClientInfo.class, "", "-zc", "", MapHelper.initMap("user_code",answerUserCode));
+		
+		if(ucClientInfo != null && StringUtils.isNotBlank(ucClientInfo.getChannelId())){
+			
+			try {
+				new BaiduPush().push(PushEnum.all, "提问", content, ucClientInfo.getChannelId());
+			} catch (PushServerException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (PushClientException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
 	}
 
 }

@@ -28,5 +28,7 @@ public enum PrexEnum {
     /**内容投诉*/
     CCP,
     /**意见反馈*/
-    UMA;
+    UMA,
+    /**用户问答消息*/
+    UAM;
 }

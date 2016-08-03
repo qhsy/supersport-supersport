@@ -8,9 +8,14 @@ import org.springframework.stereotype.Service;
 import com.uhutu.dcom.answer.z.common.AnswerEnum;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.service.IQuestionInfoService;
+import com.uhutu.dcom.config.enums.PrexEnum;
+import com.uhutu.dcom.user.z.entity.UcMsgAnswer;
+import com.uhutu.dcom.user.z.enums.MsgEnum;
+import com.uhutu.zoocom.helper.FormatHelper;
 import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
+import com.uhutu.zooweb.helper.WebHelper;
 
 /**
  * 问题业务实现
@@ -114,7 +119,28 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 		return JdbcHelper.update(awQuestionInfo, "status", "code");
 	}
 	
-	
+	@Override
+	public void saveAnswerMsg(String title,String content,String userCode){
+		
+		UcMsgAnswer msgAnswer = new UcMsgAnswer();
+		
+		msgAnswer.setCode(WebHelper.upCode(PrexEnum.UAM.name()));
+		
+		msgAnswer.setContent(content);
+		
+		msgAnswer.setNotifyTime(FormatHelper.upDateTime());
+		
+		msgAnswer.setStatus(MsgEnum.FLAG_UNREAD.getCode());
+		
+		msgAnswer.setTitle("提问");
+		
+		msgAnswer.setType("ANSWER");
+		
+		msgAnswer.setUserCode(userCode);
+		
+		JdbcHelper.insert(msgAnswer);
+		
+	}
 	
 
 }

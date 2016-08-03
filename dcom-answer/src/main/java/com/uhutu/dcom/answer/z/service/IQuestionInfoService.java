@@ -70,5 +70,14 @@ public interface IQuestionInfoService {
 	 * @return 更新记录数
 	 */
 	public int updateStatus(AwQuestionInfo awQuestionInfo);
+	
+	/**
+	 * 保存问答信息
+	 * @param content
+	 * 		内容信息
+	 * @param userCode
+	 * 		用户编号
+	 */
+	public void saveAnswerMsg(String title,String content,String userCode);
 
 }
