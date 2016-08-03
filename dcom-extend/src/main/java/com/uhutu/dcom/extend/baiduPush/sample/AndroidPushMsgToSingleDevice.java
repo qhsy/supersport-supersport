@@ -13,7 +13,10 @@ import com.uhutu.dcom.extend.baiduPush.model.PushMsgToSingleDeviceResponse;
 import net.sf.json.JSONObject;
 
 public class AndroidPushMsgToSingleDevice {
-	public static void main(String[] args) throws PushClientException, PushServerException {
+	
+	public void push(String title,String content,String channelId) throws PushClientException, PushServerException{
+		
+
 		// 1. get apiKey and secretKey from developer console
 		String apiKey = "ORG6KhOtVUSFI5pVOfDEr4AZETeOKkZI";
 		String secretKey = "bh3N6zUCQNaA8CAYwCpGxuFVqfcpV1hq";
@@ -35,18 +38,18 @@ public class AndroidPushMsgToSingleDevice {
 			// 4. specify request arguments
 			// 创建 Android的通知
 			JSONObject notification = new JSONObject();
-			notification.put("title", "TEST");
-			notification.put("description", "Hello Baidu Push");
+			notification.put("title", title);
+			notification.put("description", content);
 			notification.put("notification_builder_id", 0);
 			notification.put("notification_basic_style", 4);
 			notification.put("open_type", 1);
-			notification.put("url", "http://push.baidu.com");
+			notification.put("url", "");
 			JSONObject jsonCustormCont = new JSONObject();
 			jsonCustormCont.put("type", "1"); // 自定义内容，key-value
 			notification.put("custom_content", jsonCustormCont);
 
 			PushMsgToSingleDeviceRequest request = new PushMsgToSingleDeviceRequest()
-					.addChannelId("5075804671311735657").addMsgExpires(new Integer(3600)). // message有效时间
+					.addChannelId(channelId).addMsgExpires(new Integer(3600)). // message有效时间
 					addMessageType(1).// 1：通知,0:透传消息. 默认为0 注：IOS只有通知.
 					addMessage(notification.toString()).addDeviceType(3);// deviceType
 																			// =>
@@ -73,5 +76,7 @@ public class AndroidPushMsgToSingleDevice {
 						e.getErrorCode(), e.getErrorMsg()));
 			}
 		}
+	
+		
 	}
 }
