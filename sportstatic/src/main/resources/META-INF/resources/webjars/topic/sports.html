@@ -53,26 +53,54 @@ html{background: #f0f0f0;}
 		<ul class="sports-list">
 			<li class="sport" v-for="info in model.infos" :class="{show:$index >=4}">
 				<template v-if="info.contentType == 'dzsd4107100110030003'">
-					<a href="../sportstatic/photo.html?code={{info.code}}&share=1">
-						<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="info.cover" :alt="info.title"></div>
-						<h1 class="title">{{info.title}}</h1>
-						<div class="user">
-							<span class="photo"><img :src="info.userBasicInfo.aboutHead" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span>
-							<em class="zan">喜欢 {{info.praiseNum}}</em>
-							<em class="sign" v-if="info.userBasicInfo.type == 'dzsd4107100310010002'"><img src="img/sign.png" alt=""></em>
-						</div>
-					</a>
+						<template v-if="isApp">
+							<a href="../sportstatic/photo.html?code={{info.code}}">
+								<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="info.cover" :alt="info.title"></div>
+								<h1 class="title">{{info.title}}</h1>
+								<div class="user">
+									<span class="photo"><img :src="info.userBasicInfo.aboutHead" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span>
+									<em class="zan">喜欢 {{info.praiseNum}}</em>
+									<em class="sign" v-if="info.userBasicInfo.type == 'dzsd4107100310010002'"><img src="img/sign.png" alt=""></em>
+								</div>
+							</a>
+						</template>
+						<template v-else>
+							<a href="../sportstatic/photo.html?code={{info.code}}&share=1">
+								<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="info.cover" :alt="info.title"></div>
+								<h1 class="title">{{info.title}}</h1>
+								<div class="user">
+									<span class="photo"><img :src="info.userBasicInfo.aboutHead" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span>
+									<em class="zan">喜欢 {{info.praiseNum}}</em>
+									<em class="sign" v-if="info.userBasicInfo.type == 'dzsd4107100310010002'"><img src="img/sign.png" alt=""></em>
+								</div>
+							</a>
+						</template>
+						
 				</template>
 				<template v-else>
-					<a href="../sportstatic/default.html?code={{info.code}}&share=1">
-						<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="info.cover" :alt="info.title"></div>
-						<h1 class="title">{{info.title}}</h1>
-						<div class="user">
-							<span class="photo"><img :src="info.userBasicInfo.aboutHead" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span>
-							<em class="zan">喜欢 {{info.praiseNum}}</em>
-							<em class="sign" v-if="info.userBasicInfo.type == 'dzsd4107100310010002'"><img src="img/sign.png" alt=""></em>
-						</div>
-					</a>
+						<template v-if="isApp">
+							<a href="../sportstatic/default.html?code={{info.code}}">
+								<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="info.cover" :alt="info.title"></div>
+								<h1 class="title">{{info.title}}</h1>
+								<div class="user">
+									<span class="photo"><img :src="info.userBasicInfo.aboutHead" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span>
+									<em class="zan">喜欢 {{info.praiseNum}}</em>
+									<em class="sign" v-if="info.userBasicInfo.type == 'dzsd4107100310010002'"><img src="img/sign.png" alt=""></em>
+								</div>
+							</a>
+						</template>
+						<template v-else>
+							<a href="../sportstatic/default.html?code={{info.code}}&share=1">
+								<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="info.cover" :alt="info.title"></div>
+								<h1 class="title">{{info.title}}</h1>
+								<div class="user">
+									<span class="photo"><img :src="info.userBasicInfo.aboutHead" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span>
+									<em class="zan">喜欢 {{info.praiseNum}}</em>
+									<em class="sign" v-if="info.userBasicInfo.type == 'dzsd4107100310010002'"><img src="img/sign.png" alt=""></em>
+								</div>
+							</a>
+						</template>
+						
 				</template>
 			</li>
 		</ul>
@@ -104,6 +132,7 @@ html{background: #f0f0f0;}
 		}
 	}
 	var id = common.formatUrl('id');
+	var app = common.formatUrl('app');
 	var width = $(window).width();
 	var isShare = common.formatUrl('share');
 	Vue.use(Vue.lazyimg,{
@@ -117,7 +146,8 @@ html{background: #f0f0f0;}
 			result: null,
 			isDown:true,
 			num:4,
-			isShare: false
+			isShare: false,
+			isApp: app?true:false
 		},
 		init:function(){
 			var self = this;
