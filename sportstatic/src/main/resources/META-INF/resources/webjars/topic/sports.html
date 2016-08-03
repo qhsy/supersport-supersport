@@ -18,15 +18,16 @@ html{background: #f0f0f0;}
 .sports-space{margin-top: 0.6rem;}
 .sports-desc{background: #fff; padding: 0.16rem 0.45rem 0.19rem; font-size: 0.13rem; line-height: 0.15rem; color: #000000;}
 .sports-con:last-child{padding-bottom: 0.5rem;}
-.sports-con .sports-title{color: #4A4A4A; padding: 0.14rem 0 0.14rem 0.15rem; font-size: 0.12rem; font-weight: 700; line-height: 0.14rem;}
-.sports-con .sports-title:after{content: ""; width: 2px; height: 0.12rem; float: left; margin: 1px 0.02rem 0 0; background: #F8800A;}
+.sports-con .sports-title{height: 0.14rem; overflow: hidden; color: #4A4A4A; margin: 0.14rem 0 0.14rem 0.15rem; padding-left: 0.04rem; font-size: 0.12rem; word-break: break-all; word-wrap: break-word; font-weight: 700; line-height: 0.14rem; position: relative;}
+.sports-con .sports-title:after{content: ""; width: 2px; height: 0.12rem; background: #F8800A; position: absolute; left: 0; top: 0;}
 .sports-con .sports-list{display: -webkit-flex; display: flex; -webkit-flex-wrap:wrap; flex-wrap:wrap;}
 .sports-con .sport{width: 50%; padding: 0 4px; margin-bottom: 4px; box-sizing: border-box; -webkit-box-sizing: border-box; border-radius: 2px; -webkit-border-radius: 2px; overflow: hidden; box-shadow: 0 1px 3px #D6D6D6;}
 .sports-con .title{padding: 0.08rem 0.09rem; 0.07rem; line-height: 0.14rem; font-size: 0.12rem;}
-.sports-con .user{margin-left: 0.09rem; padding: 0.05rem 0.08rem 0.05rem 0; border-top: #F0F0F0 1px solid; font-size: 0.12rem; line-height: 0.18rem;}
+.sports-con .user{margin-left: 0.09rem; padding: 0.05rem 0.08rem 0.05rem 0; border-top: #F0F0F0 1px solid; font-size: 0.12rem; line-height: 0.18rem; position: relative;}
 .sports-con .show{display: none;}
-.sports-con .user img{width: 0.18rem; height: 0.18rem; border-radius: 50%; margin-right: 0.07rem;}
 .sports-con .photo{font-weight: 700; color: #4A4A4A;}
+.sports-con .photo img{width: 0.18rem; height: 0.18rem; border-radius: 50%; margin-right: 0.07rem;}
+.sports-con .sign{width: 0.08rem; height: 0.1rem; position: absolute; left: 0.12rem; bottom: 0.03rem;}
 .sports-con .zan{float: right; color: #9B9B9B;}
 .sports-con .sport a{display: block; color: #4A4A4A; background: #fff;}
 .sports-con .canvas img {transition: opacity 0.2s !important;}
@@ -34,6 +35,9 @@ html{background: #f0f0f0;}
 .sports-con .sport-event:before{content: ""; width: 0.08rem; height: 0.03rem; display: block; background: url(img/sport_event.png) no-repeat; background-size: 0.08rem; position: absolute; right: 0.16rem; top: 0.13rem;}
 .sports-con .sport-event.down:before{background-position: 0 -0.03rem;}
 .sports-con .sport-event.up:before{background-position: 0 0;}
+@media screen and (min-width:640px) {
+	.container{width: 640px; margin: auto;}
+}
 </style>
 </head>
 <body>
@@ -52,14 +56,22 @@ html{background: #f0f0f0;}
 					<a href="../sportstatic/photo.html?code={{info.code}}&share=1">
 						<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="info.cover" :alt="info.title"></div>
 						<h1 class="title">{{info.title}}</h1>
-						<div class="user"><span class="photo"><img :src="info.userBasicInfo.aboutHead" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span><em class="zan">喜欢 {{info.praiseNum}}</em></div>
+						<div class="user">
+							<span class="photo"><img :src="info.userBasicInfo.aboutHead" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span>
+							<em class="zan">喜欢 {{info.praiseNum}}</em>
+							<em class="sign" v-if="info.userBasicInfo.type == 'dzsd4107100310010002'"><img src="img/sign.png" alt=""></em>
+						</div>
 					</a>
 				</template>
 				<template v-else>
 					<a href="../sportstatic/default.html?code={{info.code}}&share=1">
 						<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="info.cover" :alt="info.title"></div>
 						<h1 class="title">{{info.title}}</h1>
-						<div class="user"><span class="photo"><img :src="info.userBasicInfo.aboutHead" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span><em class="zan">喜欢 {{info.praiseNum}}</em></div>
+						<div class="user">
+							<span class="photo"><img :src="info.userBasicInfo.aboutHead" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span>
+							<em class="zan">喜欢 {{info.praiseNum}}</em>
+							<em class="sign" v-if="info.userBasicInfo.type == 'dzsd4107100310010002'"><img src="img/sign.png" alt=""></em>
+						</div>
 					</a>
 				</template>
 			</li>
@@ -92,6 +104,7 @@ html{background: #f0f0f0;}
 		}
 	}
 	var id = common.formatUrl('id');
+	var width = $(window).width();
 	var isShare = common.formatUrl('share');
 	Vue.use(Vue.lazyimg,{
 	    fade: true,
@@ -111,7 +124,7 @@ html{background: #f0f0f0;}
 			$.ajax({
 				url:'/api/contentController/themePage',
 				type:'POST',
-				data:'{"code": "' + id + '","zoo": {"key": "tesetkey","token": " "}}',
+				data:'{"code": "' + id + '","width": "' + width + '","zoo": {"key": "tesetkey","token": " "}}',
 				contentType:'application/json',
 				dataType:'json',
 				success:function(data){
