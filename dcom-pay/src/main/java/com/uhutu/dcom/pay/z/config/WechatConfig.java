@@ -277,6 +277,9 @@ public class WechatConfig {
 		case WECHAT:
 			appid = getAppId();
 			break;
+		case WECHAT_H5:
+			appid = getServiceAppId();
+			break;
 
 		default:
 			break;
@@ -303,6 +306,10 @@ public class WechatConfig {
 		
 		case WECHAT:
 			mchid = getMchId();
+			break;
+			
+		case WECHAT_H5:
+			mchid = getServiceMchId();
 			break;
 
 		default:
