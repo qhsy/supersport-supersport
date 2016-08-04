@@ -2,44 +2,6 @@
 <db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  templet.xsd">
 	<data>
-		<item code="dzpi45101001" nodeName="用户相关" parentCode="" />
-		<item code="dzpi451010010001" nodeName="用户管理" parentCode="dzpi45101001" />
-		<item code="dzpi4510100100010001" nodeName="注册用户信息" parentCode="dzpi451010010001"
-			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UserInfoOperPage"
-			pageIcon="glyphicon-th" />
-		<item code="dzpi4510100100010002" nodeName="马甲信息" parentCode="dzpi451010010001"
-			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UserInfoMaJiaPage"
-			pageIcon="glyphicon-th" />
-		<item code="dzpi4510100100010003" nodeName="昵称信息" parentCode="dzpi451010010001"
-			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UserInfoExtPage"
-			pageIcon="glyphicon-th" />
-		<item code="dzpi4510100100010004" nodeName="关注信息" parentCode="dzpi451010010001"
-			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UserAttenTionPage"
-			pageIcon="glyphicon-th" />
-		<item code="dzpi451010010002" nodeName="用户反馈" parentCode="dzpi45101001" />
-		<item code="dzpi4510100100020001" nodeName="反馈信息" parentCode="dzpi451010010002"
-			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_MsgAdvicePage"
-			pageIcon="glyphicon-exclamation-sign" />
-		<item code="dzpi45101002" nodeName="app相关" parentCode="" />
-		<item code="dzpi451010020001" nodeName="app管理" parentCode="dzpi45101002" />
-		<item code="dzpi4510100200010001" nodeName="app版本信息" parentCode="dzpi451010020001"
-			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_AppVersionInfoPage"
-			pageIcon="glyphicon-phone" />
-		<item code="dzpi45101003" nodeName="十全十美" parentCode="" />
-		<item code="dzpi451010030001" nodeName="运动达人" parentCode="dzpi45101003" />
-		<item code="dzpi4510100300010001" nodeName="达人信息" parentCode="dzpi451010030001"
-			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UcUserinfoExpertPage"
-			pageIcon="glyphicon-phone" />
-		<item code="dzpi4510100300010002" nodeName="粉丝能量信息" parentCode="dzpi451010030001"
-			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UcUserinfoDonatePage"
-			pageIcon="glyphicon-phone" />
-		<item code="dzpi4510100300010003" nodeName="粉丝捐赠能量汇总" parentCode="dzpi451010030001"
-			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UcDonateInfoPage"
-			pageIcon="glyphicon-phone" />
-		<item code="dzpi4510100300010004" nodeName="捐赠流水" parentCode="dzpi451010030001"
-			pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UcDonateFlowPage"
-			pageIcon="glyphicon-phone" />
-
 	</data>
 
 </db>

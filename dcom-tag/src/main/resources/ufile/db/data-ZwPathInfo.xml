@@ -2,9 +2,6 @@
 <db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
 	<data>
-		<item code="dmtg41241001" nodeName="标签管理" parentCode="" />
-		<item code="dmtg412410011001" nodeName="标签管理" parentCode="dmtg41241001" />
-		<item code="dmtg4124100110011001" nodeName="标签信息" parentCode="dmtg412410011001" pageUrl="/zpage/pg/com_uhutu_dcom_tag_z_page_ContentLabelPage" pageIcon="glyphicon-lamp" />
 	</data>
 
 </db>

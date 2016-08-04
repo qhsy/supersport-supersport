@@ -2,20 +2,6 @@
 <db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
 	<data>
-		<item code="dmtg48881001" nodeName="问达相关" parentCode="" />
-		<item code="dmtg488810011001" nodeName="问达管理" parentCode="dmtg48881001" />
-		<item code="dmtg4888100110011001" nodeName="问达信息" parentCode="dmtg488810011001" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwQuestionInfoPage" pageIcon="glyphicon-heart-empty" />
-		<item code="dmtg488810011002" nodeName="推荐管理" parentCode="dmtg48881001" />
-		<item code="dmtg4888100110021001" nodeName="热门问题" parentCode="dmtg488810011002" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwQuestionHotPage" pageIcon="glyphicon-circle-arrow-down" />
-		<item code="dmtg4888100110021002" nodeName="最新问题" parentCode="dmtg488810011002" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwQuestionNewPage" pageIcon="glyphicon-circle-arrow-left" />
-		<item code="dmtg4888100110021003" nodeName="才华榜" parentCode="dmtg488810011002" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwQuestionRichPage" pageIcon="glyphicon-circle-arrow-right" />
-		<item code="dmtg4888100110021004" nodeName="推荐达人" parentCode="dmtg488810011002" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwDoyensPage" pageIcon="glyphicon-circle-arrow-up" />
-		<item code="dmtg4888100110021005" nodeName="值得一听" parentCode="dmtg488810011002" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwQuestionGoodPage" pageIcon="glyphicon-cog" />
-		<item code="dmtg488810011003" nodeName="退款管理" parentCode="dmtg48881001" />
-		<item code="dmtg4888100110031001" nodeName="退款信息" parentCode="dmtg488810011003" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwAnswerRefundJobPage" pageIcon="glyphicon-usd" />
-		<item code="dmtg48881002" nodeName="活动相关" parentCode="" />
-		<item code="dmtg488810021001" nodeName="活动信息" parentCode="dmtg48881002" />
-		<item code="dmtg4888100210011001" nodeName="实力派" parentCode="dmtg488810021001" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwPowerPage" pageIcon="glyphicon-heart-empty" />
 	</data>
 
 </db>

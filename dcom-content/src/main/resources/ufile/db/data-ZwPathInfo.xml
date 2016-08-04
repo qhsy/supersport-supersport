@@ -2,27 +2,6 @@
 <db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
 	<data>
-		<item code="dmtg41071001" nodeName="内容管理" parentCode="" />
-		<item code="dmtg410710011003" nodeName="栏目管理" parentCode="dmtg41071001" />
-		<item code="dmtg4107100110031001" nodeName="内容栏目信息" parentCode="dmtg410710011003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemPage" pageIcon="glyphicon-heart-empty" />
-		<item code="dmtg4107100110031003" nodeName="广告栏目信息" parentCode="dmtg410710011003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForAdvPage" pageIcon="glyphicon-heart" />
-		<item code="dmtg410710011002" nodeName="广告管理" parentCode="dmtg41071001" />
-		<item code="dmtg4107100110021001" nodeName="广告图库" parentCode="dmtg410710011002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_AdvertiseDetailPage" pageIcon="glyphicon-film" />
-		<item code="dmtg410710011005" nodeName="内容管理" parentCode="dmtg41071001" />
-		<item code="dmtg4107100110051002" nodeName="文章信息" parentCode="dmtg410710011005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoPage" pageIcon="glyphicon-adjust" />
-		<item code="dmtg4107100110051004" nodeName="文章(含视频)信息" parentCode="dmtg410710011005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForVideoPage" pageIcon="glyphicon-adjust" />
-		<item code="dmtg4107100110051005" nodeName="图集信息" parentCode="dmtg410710011005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForPhotoPage" pageIcon="glyphicon-adjust" />
-		<item code="dmtg410710011006" nodeName="编辑推荐" parentCode="dmtg41071001" />
-		<item code="dmtg4107100110061002" nodeName="编辑推荐列表" parentCode="dmtg410710011006" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentRecommPage" pageIcon="glyphicon-list-alt" />
-		<item code="dmtg410710011007" nodeName="运动管理" parentCode="dmtg41071001" />
-		<item code="dmtg4107100110071001" nodeName="运动信息" parentCode="dmtg410710011007" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_SportCategoryPage" pageIcon="glyphicon-asterisk" />
-		<item code="dmtg41071002" nodeName="评论管理" parentCode="" />
-		<item code="dmtg410710021001" nodeName="评论管理" parentCode="dmtg41071002" />
-		<item code="dmtg4107100210011001" nodeName="评论信息" parentCode="dmtg410710021001" pageUrl="/zpage/pg/com_uhutu_dcom_remark_z_page_ContentRemarkPage" pageIcon="glyphicon-phone-alt" />
-		<item code="dmtg41071003" nodeName="专题管理" parentCode="" />
-		<item code="dmtg410710031001" nodeName="专题管理" parentCode="dmtg41071003" />
-		<item code="dmtg4107100310011001" nodeName="专题信息" parentCode="dmtg410710031001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnThemeInfoPage" pageIcon="glyphicon-thumbs-down" />
-		<item code="dmtg4107100310011002" nodeName="专题栏目信息" parentCode="dmtg410710031001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnThemeDetailPage" pageIcon="glyphicon-thumbs-up" />
 	</data>
 
 </db>
