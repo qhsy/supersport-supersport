@@ -89,6 +89,8 @@ public class ApiAskWechatMsg extends RootApiToken<ApiAskWechatMsgInput, ApiAskWe
 	public WechatMsgResponse sendWechatMsg(AwQuestionInfo questionInfo,String requestUrl) {
 
 		WechatMsgAskRequest askRequest = new WechatMsgAskRequest();
+		
+		WechatMsgResponse msgResponse = new WechatMsgResponse();
 
 		UserBasicInfo userBasicInfo = userInfoSupport.getUserBasicInfo(questionInfo.getQuestionUserCode());
 
@@ -101,20 +103,26 @@ public class ApiAskWechatMsg extends RootApiToken<ApiAskWechatMsgInput, ApiAskWe
 		
 		/*系统push*/
 		answerServiceFactory.getQuestionInfoService().saveAnswerMsg("提问",title+"："+questionInfo.getContent(), questionInfo.getAnswerUserCode());
-
-		askRequest.getFirst().setValue(title);
-
-		askRequest.getKeyword1().setValue(questionInfo.getContent());
-
-		askRequest.getKeyword2().setValue(AnswerEnum.praseText(questionInfo.getScope()));
-
-		askRequest.getKeyword3().setValue(questionInfo.getQuestionTime());
-
-		askRequest.getRemark().setValue(TopHelper.upInfo(88880016, questionInfo.getMoney().setScale(2).toString()));
 		
 		UcSocialLogin socialLogin = JdbcHelper.queryOne(UcSocialLogin.class, "unionid",answerSocial.getAccountId(),"type",SocialEnum.wechat_h5.name());
 
-		return wechatMsgCompoent.sendMsg(socialLogin.getOpenid(), requestUrl, PayProcessEnum.WECHAT_MSG_ASK, askRequest);
+		if(socialLogin != null){
+			
+			askRequest.getFirst().setValue(title);
+
+			askRequest.getKeyword1().setValue(questionInfo.getContent());
+
+			askRequest.getKeyword2().setValue(AnswerEnum.praseText(questionInfo.getScope()));
+
+			askRequest.getKeyword3().setValue(questionInfo.getQuestionTime());
+
+			askRequest.getRemark().setValue(TopHelper.upInfo(88880016, questionInfo.getMoney().setScale(2).toString()));
+			
+			msgResponse = wechatMsgCompoent.sendMsg(socialLogin.getOpenid(), requestUrl, PayProcessEnum.WECHAT_MSG_ASK, askRequest);			
+			
+		}
+		
+		return msgResponse;
 
 	}
 	
