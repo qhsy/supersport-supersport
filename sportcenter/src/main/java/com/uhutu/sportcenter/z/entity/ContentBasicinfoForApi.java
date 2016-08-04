@@ -2,7 +2,7 @@ package com.uhutu.sportcenter.z.entity;
 
 import java.util.Date;
 
-import org.apache.commons.lang3.time.DateFormatUtils;
+import com.uhutu.dcom.component.z.util.CalendarUtil;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -199,7 +199,7 @@ public class ContentBasicinfoForApi {
 
 		if (getPublishTime() != null) {
 
-			this.publishTimeStr = DateFormatUtils.format(getPublishTime(), pattern);
+			this.publishTimeStr = CalendarUtil.formateTip(getPublishTime());
 
 		}
 
