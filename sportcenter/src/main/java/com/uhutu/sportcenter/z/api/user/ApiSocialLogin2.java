@@ -6,8 +6,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uhutu.dcom.answer.z.entity.AwSettleAccount;
+import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
 import com.uhutu.dcom.component.z.util.RandomUtil;
 import com.uhutu.dcom.config.enums.SystemEnum;
+import com.uhutu.dcom.pay.z.common.PayProcessEnum;
+import com.uhutu.dcom.pay.z.config.WechatConfig;
 import com.uhutu.dcom.user.z.entity.UcSocialLogin;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
@@ -34,6 +38,12 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 	@Autowired
 	private UserServiceFactory userServiceFactory;
 	
+	@Autowired
+	private AnswerServiceFactory answerServiceFactory;
+	
+	@Autowired
+	private WechatConfig config;
+	
 	private UserCallFactory userCallFactory = new UserCallFactory();
 
 	public ApiSocialLoginResult2 process(ApiSocialLoginInput2 inputParam) {
@@ -53,6 +63,8 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 		    saveUserInfoExt(userRegResult.getUserCode(), inputParam);
 		    
 		    saveSocialInfo(userRegResult.getUserCode(), inputParam);
+		
+		    bindSettleAccount(userRegResult.getUserCode(), inputParam.getAccountType(), inputParam.getOpenid(), inputParam.getAccountId());
 		    
 		    result.setFirstLogin(true);
 		    
@@ -293,6 +305,40 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 			
 		}
 		
+	}
+	
+	public void bindSettleAccount(String userCode,String accountType,String openid,String unionid) {
+
+		AwSettleAccount settleAccount = answerServiceFactory.getSettleAccountService().queryByUserCode(userCode);
+
+		if (settleAccount == null) {
+
+			settleAccount = new AwSettleAccount();
+			
+			PayProcessEnum processEnum = PayProcessEnum.WECHAT;
+			
+			if(StringUtils.equals(accountType, "wechat_h5")){
+				
+				processEnum = PayProcessEnum.WECHAT_H5;
+				
+			}
+
+			settleAccount.setAppid(config.getAppId(processEnum));
+
+			settleAccount.setOpenid(openid);
+
+			settleAccount.setStatus(SystemEnum.YES.getCode());
+
+			settleAccount.setType("wechat");
+
+			settleAccount.setUnionid(unionid);
+
+			settleAccount.setUserCode(userCode);
+
+			answerServiceFactory.getSettleAccountService().save(settleAccount);
+
+		}
+
 	}
 	
 
