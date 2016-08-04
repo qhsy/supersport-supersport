@@ -64,7 +64,11 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 		    
 		    saveSocialInfo(userRegResult.getUserCode(), inputParam);
 		
-		    bindSettleAccount(userRegResult.getUserCode(), inputParam.getAccountType(), inputParam.getOpenid(), inputParam.getAccountId());
+		    if(StringUtils.equals(inputParam.getAccountType(), "wechat") || StringUtils.equals(inputParam.getAccountType(), "wechat_h5")){
+		    	
+		    	 bindSettleAccount(userRegResult.getUserCode(), inputParam.getAccountType(), inputParam.getOpenid(), inputParam.getAccountId());
+		    	
+		    }
 		    
 		    result.setFirstLogin(true);
 		    
