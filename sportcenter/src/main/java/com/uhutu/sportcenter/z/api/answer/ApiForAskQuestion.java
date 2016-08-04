@@ -86,7 +86,7 @@ public class ApiForAskQuestion extends RootApiToken<ApiForAskQuestionInput, ApiF
 					result.setStatus(reTeslaXResult.getStatus());
 					result.setError(reTeslaXResult.getError());
 				} else {
-					initPayResponse(teslaXOrder, result, input);
+					initPayResponse(teslaXOrder,result, input);
 				}
 			} else {
 				result.inError(88880007);
@@ -103,7 +103,7 @@ public class ApiForAskQuestion extends RootApiToken<ApiForAskQuestionInput, ApiF
 	 */
 	public void initPayResponse(TeslaXOrder teslaXOrder,ApiForAskQuestionResult result,ApiForAskQuestionInput input){
 		
-		switch (teslaXOrder.getOrderInfo().getOrderSource()) {
+		switch (input.getOrderSource()) {
 		case "dzsd4112100110020001"://app订单
 			initMobilePayInfo(teslaXOrder, result, input);
 			break;

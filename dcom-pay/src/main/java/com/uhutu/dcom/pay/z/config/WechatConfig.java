@@ -272,15 +272,19 @@ public class WechatConfig {
 		switch (processEnum) {
 		case WECHAT_SERVICE_CONFIG:
 			appid = getServiceAppId();
-			break;
-		
+			break;		
 		case WECHAT:
 			appid = getAppId();
 			break;
 		case WECHAT_H5:
 			appid = getServiceAppId();
 			break;
-
+		case WECHAT_NOTIFY:
+			appid = getAppId();
+			break;
+		case WECHATH5_NOTIFY:
+			appid = getServiceAppId();
+			break;
 		default:
 			break;
 		}
@@ -311,7 +315,12 @@ public class WechatConfig {
 		case WECHAT_H5:
 			mchid = getServiceMchId();
 			break;
-
+		case WECHAT_NOTIFY:
+			mchid = getMchId();
+			break;
+		case WECHATH5_NOTIFY:
+			mchid = getServiceMchId();
+			break;
 		default:
 			break;
 		}
