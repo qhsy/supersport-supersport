@@ -119,6 +119,8 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 	public WechatMsgResponse sendWechatMsg(AwQuestionInfo questionInfo, String requestUrl) {
 
 		WechatMsgAnswerRequest answerRequest = new WechatMsgAnswerRequest();
+		
+		WechatMsgResponse wechatMsgResponse = new WechatMsgResponse();
 
 		requestUrl = requestUrl + "/webjars/answer/details.html?id=" + questionInfo.getCode();
 
@@ -132,22 +134,28 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 		
 		baiduPush(questionInfo.getQuestionUserCode(), title);
 		
-		answerServiceFactory.getQuestionInfoService().saveAnswerMsg("回答", title, questionInfo.getQuestionUserCode());
-
-		answerRequest.getFirst().setValue(title);
-
-		answerRequest.getKeyword1().setValue(ucUserinfoExt.getNickName());
-
-		answerRequest.getKeyword2().setValue(questionInfo.getAnswerTime());
-
-		answerRequest.getKeyword3().setValue(TopHelper.upInfo(88880020, questionInfo.getLengh()));
-
-		answerRequest.getRemark().setValue(TopHelper.upInfo(88880021));
+		answerServiceFactory.getQuestionInfoService().saveAnswerMsg("回答", title, questionInfo.getQuestionUserCode());	
 		
 		UcSocialLogin socialLogin = JdbcHelper.queryOne(UcSocialLogin.class, "unionid",ucUserinfoSocial.getAccountId(),"type",SocialEnum.wechat_h5.name());
 
-		return wechatMsgCompoent.sendMsg(socialLogin.getOpenid(), requestUrl, PayProcessEnum.WECHAT_MSG_ANSWER,
-				answerRequest);
+		if(socialLogin != null){
+			
+			answerRequest.getFirst().setValue(title);
+
+			answerRequest.getKeyword1().setValue(ucUserinfoExt.getNickName());
+
+			answerRequest.getKeyword2().setValue(questionInfo.getAnswerTime());
+
+			answerRequest.getKeyword3().setValue(TopHelper.upInfo(88880020, questionInfo.getLengh()));
+
+			answerRequest.getRemark().setValue(TopHelper.upInfo(88880021));
+			
+			wechatMsgResponse = wechatMsgCompoent.sendMsg(socialLogin.getOpenid(), requestUrl, PayProcessEnum.WECHAT_MSG_ANSWER,
+					answerRequest);
+			
+		}
+		
+		return wechatMsgResponse;
 
 	}
 	

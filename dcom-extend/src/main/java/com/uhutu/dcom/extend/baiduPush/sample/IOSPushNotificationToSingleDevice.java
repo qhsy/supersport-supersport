@@ -44,7 +44,7 @@ public class IOSPushNotificationToSingleDevice {
 			// make IOS Notification
 			JSONObject notification = new JSONObject();
 			JSONObject jsonAPS = new JSONObject();
-			jsonAPS.put("alert", "Hello Baidu Push");
+			jsonAPS.put("alert", msg);
 			notification.put("type", "1");
 			notification.put("aps", jsonAPS);
 
