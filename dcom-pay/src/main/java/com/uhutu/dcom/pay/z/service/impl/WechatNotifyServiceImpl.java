@@ -39,9 +39,9 @@ public class WechatNotifyServiceImpl implements IWechatNotifyService {
 		
 		try {
 			
-			notifyRequest.setAppid(configFactory.getWechatConfig().getServiceAppId());
+			notifyRequest.setAppid(configFactory.getWechatConfig().getAppId(notifyRequest.getProcessType()));
 			
-			notifyRequest.setMch_id(configFactory.getWechatConfig().getServiceMchId());
+			notifyRequest.setMch_id(configFactory.getWechatConfig().getMchId(notifyRequest.getProcessType()));
 			
 			MDataMap requestMap = BeanComponent.getInstance().objectToMap(notifyRequest, WechatUnifyResponse.class, true);
 			
