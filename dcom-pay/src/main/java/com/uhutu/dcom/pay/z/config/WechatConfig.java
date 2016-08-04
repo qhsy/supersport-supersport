@@ -103,6 +103,9 @@ public class WechatConfig {
 		case WECHAT_SERVICE_CONFIG:
 			tradeType = "JSAPI";
 			break;
+		case WECHAT:
+			tradeType = "APP";
+			break;
 
 		default:
 			break;
