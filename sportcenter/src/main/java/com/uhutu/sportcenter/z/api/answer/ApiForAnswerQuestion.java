@@ -121,6 +121,8 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 		WechatMsgAnswerRequest answerRequest = new WechatMsgAnswerRequest();
 		
 		WechatMsgResponse wechatMsgResponse = new WechatMsgResponse();
+		
+		wechatMsgResponse.setErrmsg("ok");
 
 		requestUrl = requestUrl + "/webjars/answer/details.html?id=" + questionInfo.getCode();
 

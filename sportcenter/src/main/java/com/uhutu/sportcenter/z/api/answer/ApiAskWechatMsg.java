@@ -91,6 +91,8 @@ public class ApiAskWechatMsg extends RootApiToken<ApiAskWechatMsgInput, ApiAskWe
 		WechatMsgAskRequest askRequest = new WechatMsgAskRequest();
 		
 		WechatMsgResponse msgResponse = new WechatMsgResponse();
+		
+		msgResponse.setErrmsg("ok");
 
 		UserBasicInfo userBasicInfo = userInfoSupport.getUserBasicInfo(questionInfo.getQuestionUserCode());
 
