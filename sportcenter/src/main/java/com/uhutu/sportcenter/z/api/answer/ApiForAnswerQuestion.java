@@ -95,7 +95,7 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 				qtInfo.setLengh(input.getLengh());
 				qtInfo.setUrl(input.getUrl());
 				WechatMsgResponse wechatMsgResponse = sendWechatMsg(qtInfo, input.getRequestUrl());
-				if (!wechatMsgResponse.upFlag()) {
+				if (wechatMsgResponse != null && !wechatMsgResponse.upFlag()) {
 					result.setStatus(0);
 					result.setError(wechatMsgResponse.getErrmsg());
 				}
@@ -120,9 +120,7 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 
 		WechatMsgAnswerRequest answerRequest = new WechatMsgAnswerRequest();
 		
-		WechatMsgResponse wechatMsgResponse = new WechatMsgResponse();
-		
-		wechatMsgResponse.setErrmsg("ok");
+		WechatMsgResponse wechatMsgResponse = null;
 
 		requestUrl = requestUrl + "/webjars/answer/details.html?id=" + questionInfo.getCode();
 

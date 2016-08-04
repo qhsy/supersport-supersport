@@ -60,7 +60,7 @@ public class ApiAskWechatMsg extends RootApiToken<ApiAskWechatMsgInput, ApiAskWe
 			
 			WechatMsgResponse wechatMsgResponse = sendWechatMsg(qtInfo,requestUrl);
 			
-			if (!wechatMsgResponse.upFlag()) {
+			if (wechatMsgResponse != null && !wechatMsgResponse.upFlag()) {
 				
 				wechatMsgResult.setStatus(0);
 				
@@ -90,9 +90,7 @@ public class ApiAskWechatMsg extends RootApiToken<ApiAskWechatMsgInput, ApiAskWe
 
 		WechatMsgAskRequest askRequest = new WechatMsgAskRequest();
 		
-		WechatMsgResponse msgResponse = new WechatMsgResponse();
-		
-		msgResponse.setErrmsg("ok");
+		WechatMsgResponse msgResponse = null;
 
 		UserBasicInfo userBasicInfo = userInfoSupport.getUserBasicInfo(questionInfo.getQuestionUserCode());
 
