@@ -73,7 +73,7 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 		
 		orderRequest.setAppid(configFactory.getWechatConfig().getAppId(processEnum));
 		
-		orderRequest.setBody("Godo运动-"+"问答支付");
+		orderRequest.setBody("果冻体育-"+"问答支付");
 		
 		orderRequest.setMch_id(configFactory.getWechatConfig().getMchId(processEnum));
 		
