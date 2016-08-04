@@ -51,7 +51,7 @@ var require = {
             <textarea v-model="result.answerUserInfo.nickName" v-on:blur="lengthFn(result.answerUserInfo.nickName,18)"></textarea>
         	<h2>您的头衔（18字以内）</h2>
         	<textarea v-model="result.answerUserInfo.title" v-on:blur="lengthFn(result.answerUserInfo.title,18)"></textarea>
-        	<h2>简介（100字以内）</h2>
+        	<h2>擅长回答的问题（100字以内）</h2>
         	<textarea class="big" v-on:change="lengthFn(result.answerUserInfo.ability,100)" v-model="result.answerUserInfo.ability" placeholder="关于这些，尽情问我···"></textarea>
             <p>向我提问需要支付<input type="text" v-model="result.answerUserInfo.charge" v-on:blur="isCharge">元。</p>
             <a href="javascript:;" v-on:click="submit">保存</a>
