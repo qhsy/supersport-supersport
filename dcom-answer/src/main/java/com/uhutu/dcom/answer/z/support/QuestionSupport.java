@@ -240,18 +240,22 @@ public class QuestionSupport extends RootClass {
 			if (cns != null && !cns.isEmpty() && cns.size() > 0) {
 				Iterator<String> iterator = cns.keySet().iterator();
 				while (iterator.hasNext()) {
-					String code = (String) iterator.next();
-					AnswerForShow show = new AnswerForShow();
-					UcUserinfo info = JdbcHelper.queryOne(UcUserinfo.class, "code", code);
-					UcUserinfoExt ext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", code);
-					AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "user_code", code);
-					show.setAnswer(Integer.valueOf(cns.get(code)));
-					show.setHeadUrl(ext.getAboutHead());
-					show.setNickName(ext.getNickName());
-					show.setTitle(expert.getTitle());
-					show.setType(info.getType());
-					show.setUserCode(info.getCode());
-					result.add(show);
+					String code = (String) iterator.next();					
+					AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "user_code", code,"status","dzsd4699100110010001");
+					if (expert != null) {
+						AnswerForShow show = new AnswerForShow();
+						UcUserinfo info = JdbcHelper.queryOne(UcUserinfo.class, "code", code);
+						UcUserinfoExt ext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", code);
+						show.setAnswer(Integer.valueOf(cns.get(code)));
+						show.setHeadUrl(ext.getAboutHead());
+						show.setNickName(ext.getNickName());
+						show.setTitle(expert.getTitle());
+						show.setType(info.getType());
+						show.setUserCode(info.getCode());
+						result.add(show);
+
+					}
+					
 				}
 			}
 		}
