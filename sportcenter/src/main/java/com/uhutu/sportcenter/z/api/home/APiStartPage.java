@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.api.home;
 
+import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +35,7 @@ public class APiStartPage extends RootApiBase<APiStartPageInput, APiStartPageRes
 		}
 		UcClientInfo clientInfo = new UcClientInfo();
 		clientInfo.setApp_vision(inputParam.getApp_vision());
+		clientInfo.setZc(new Date());
 		clientInfo.setFromCode(inputParam.getFrom());
 		clientInfo.setIdfa(inputParam.getIdfa());
 		clientInfo.setMac(inputParam.getMac());
