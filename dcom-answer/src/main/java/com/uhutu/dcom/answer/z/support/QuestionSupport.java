@@ -237,12 +237,26 @@ public class QuestionSupport extends RootClass {
 					}
 				}
 			}
+			
 			if (cns != null && !cns.isEmpty() && cns.size() > 0) {
 				Iterator<String> iterator = cns.keySet().iterator();
 				while (iterator.hasNext()) {
-					String code = (String) iterator.next();					
-					AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "user_code", code,"status","dzsd4699100110010001");
+					
+					String code = (String) iterator.next();		
+					
+					AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "user_code", code);
+					
+					
+					
 					if (expert != null) {
+						AwQuestionInfo questionInfo = JdbcHelper.queryOne(AwQuestionInfo.class, "answerUserCode",code,"status","dzsd4888100110010002");
+						
+						if(questionInfo == null && !StringUtils.equals(expert.getStatus(), "dzsd4699100110010001")){
+							
+							continue;
+							
+						}
+						
 						AnswerForShow show = new AnswerForShow();
 						UcUserinfo info = JdbcHelper.queryOne(UcUserinfo.class, "code", code);
 						UcUserinfoExt ext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", code);
