@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.answer.z.common.Constants;
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
+import com.uhutu.dcom.answer.z.entity.AwAnswerListen;
 import com.uhutu.dcom.answer.z.entity.AwSettleAccount;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
 import com.uhutu.dcom.config.enums.SystemEnum;
@@ -25,6 +26,7 @@ import com.uhutu.sportcenter.z.entity.UserInfo;
 import com.uhutu.sportcenter.z.input.ApiUserInfoAllInput;
 import com.uhutu.sportcenter.z.result.ApiUserInfoAllResult;
 import com.uhutu.zoocom.helper.MapHelper;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 
@@ -123,9 +125,11 @@ public class ApiUserInfoAll extends RootApiToken<ApiUserInfoAllInput, ApiUserInf
 		
 		answerUserInfo.setAnswerCount(count);
 		
+		int listenCount = JdbcHelper.count(AwAnswerListen.class, "questionCode in (select code from aw_question_info where answer_user_code='"+upUserCode()+"')", new MDataMap());
+		
 		initFansNum(apiUserInfo);
 		
-		answerUserInfo.setFansNum(apiUserInfo.getFansNum());
+		answerUserInfo.setFansNum(listenCount);
 		
 		result.setUserInfo(apiUserInfo);
 

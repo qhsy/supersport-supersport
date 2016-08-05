@@ -102,16 +102,6 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 			answerUserInfo.setAnswerCount(count);
 
 			answerUserInfo.setType(userBasicInfo.getUcUserinfo().getType());
-
-			int fansNum = userServiceFactory.getAttentionInfoService().queryFansCount(input.getUserCode(),
-					UserEnum.ATTEND.getCode());
-
-			int attendNum = userServiceFactory.getAttentionInfoService().queryAttendCount(input.getUserCode(),
-					UserEnum.ATTEND.getCode());
-
-			answerUserInfo.setFansNum(fansNum);
-
-			answerUserInfo.setAttendNum(attendNum);
 			
 			answerUserInfo.setMomentNum(momentNum);
 
@@ -324,6 +314,8 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 
 		apiUserInfo.setType(ucUserinfo.getType());
 		
+		initFansNum(apiUserInfo);
+		
 		return apiUserInfo;
 
 	}	
@@ -337,6 +329,26 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 	public String convertCatoryNames(List<String> sportCategories){
 		
 		return StringUtils.join(sportCategories,",");
+		
+	}
+	
+	/**
+	 * 初始化粉丝和关注数量
+	 * @param userInfo
+	 */
+	public void initFansNum(UserInfo userInfo){
+		
+		int fansNum = userServiceFactory.getAttentionInfoService().queryFansCount(userInfo.getUserCode(), UserEnum.ATTEND.getCode());
+		
+		int attendNum = userServiceFactory.getAttentionInfoService().queryAttendCount(userInfo.getUserCode(), UserEnum.ATTEND.getCode());
+		
+		int favorNum = contentServiceFactory.getSupportPraiseService().favored(ContentEnum.FAVOR_TYPE_LIKE.getCode(), userInfo.getUserCode());
+		
+		userInfo.setFansNum(fansNum);
+		
+		userInfo.setAttendNum(attendNum);
+		
+		userInfo.setFavorNum(favorNum);
 		
 	}
 
