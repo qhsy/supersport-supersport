@@ -41,7 +41,7 @@ public class WechatAccessTokenServiceImpl implements IWechatAccessTokenService {
 			
 			accessTokenRequest.setAppid(payConfigFactory.getWechatConfig().getAppId());
 			
-			accessTokenRequest.setSecret("bd43269a677e40819c2851f7275331ed");
+			accessTokenRequest.setSecret(payConfigFactory.getWechatConfig().getAppSecret());
 			
 		}
 		
