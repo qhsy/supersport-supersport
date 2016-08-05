@@ -39,9 +39,9 @@ public class WechatAccessTokenServiceImpl implements IWechatAccessTokenService {
 			
 			accessTokenRequest = new WechatAccessTokenRequest();
 			
-			accessTokenRequest.setAppid(payConfigFactory.getWechatConfig().getServiceAppId());
+			accessTokenRequest.setAppid(payConfigFactory.getWechatConfig().getAppId());
 			
-			accessTokenRequest.setSecret(payConfigFactory.getWechatConfig().getAppSecret());
+			accessTokenRequest.setSecret("bd43269a677e40819c2851f7275331ed");
 			
 		}
 		
@@ -65,7 +65,7 @@ public class WechatAccessTokenServiceImpl implements IWechatAccessTokenService {
 				
 			}
 			
-			if(StringUtils.isEmpty(accessTokenStr)){
+			if(StringUtils.isEmpty("")){
 				
 				MDataMap mdataMap = BeanComponent.getInstance().objectToMap(accessTokenRequest, null, false);
 				

@@ -17,7 +17,7 @@ public class AwSettleAccountDaoImpl implements IAwSettleAccountDao {
 		
 		if(count > 0){
 			
-			JdbcHelper.update(awSettleAccount, "appid,openid,type,unionid", "userCode");
+			JdbcHelper.update(awSettleAccount, "appid,openid,accountName,type,unionid", "userCode");
 			
 		}else{
 			
