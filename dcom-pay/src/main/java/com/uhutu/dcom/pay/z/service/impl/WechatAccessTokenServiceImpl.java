@@ -65,7 +65,7 @@ public class WechatAccessTokenServiceImpl implements IWechatAccessTokenService {
 				
 			}
 			
-			if(StringUtils.isEmpty("")){
+			if(StringUtils.isEmpty(accessTokenStr)){
 				
 				MDataMap mdataMap = BeanComponent.getInstance().objectToMap(accessTokenRequest, null, false);
 				
