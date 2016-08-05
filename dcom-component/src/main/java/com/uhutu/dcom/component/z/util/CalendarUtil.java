@@ -40,14 +40,14 @@ public class CalendarUtil {
 			
 		}else if(diff >= FIVE_MINUTES && diff <ONE_HOUR){
 			
-			long diffMinute = Math.round(diff/60 + 0.5d);
+			long diffMinute = Math.round(diff/60);
 			
 			formateStr = diffMinute + "分钟前";
 			
 			
 		}else if( diff >= ONE_HOUR && diff < HOUR_24){
 			
-			long diffHour = Math.round(diff/ONE_HOUR + 0.5d);
+			long diffHour = Math.round(diff/ONE_HOUR);
 			
 			formateStr = diffHour + "小时前";
 			
@@ -61,7 +61,7 @@ public class CalendarUtil {
 			
 			if(diff >= HOUR_24 && diff < days * HOUR_24){
 				
-				long diffDay = Math.round(diff/HOUR_24 + 0.5d);
+				long diffDay = Math.round(diff/HOUR_24);
 				
 				formateStr = diffDay + "天前";
 				
@@ -79,7 +79,7 @@ public class CalendarUtil {
 					
 				}else{
 					
-					long diffMonth = Math.round(diff/28 + 0.5d);
+					long diffMonth = Math.round(diff/28);
 					
 					formateStr = diffMonth + "月前";
 					
