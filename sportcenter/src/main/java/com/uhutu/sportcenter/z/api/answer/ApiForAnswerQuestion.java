@@ -136,8 +136,14 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 		
 		answerServiceFactory.getQuestionInfoService().saveAnswerMsg("回答", title, questionInfo.getQuestionUserCode());	
 		
-		UcSocialLogin socialLogin = JdbcHelper.queryOne(UcSocialLogin.class, "unionid",ucUserinfoSocial.getAccountId(),"type",SocialEnum.wechat_h5.name());
+		UcSocialLogin socialLogin = null;
 
+		if(ucUserinfoSocial != null){
+			
+			socialLogin = JdbcHelper.queryOne(UcSocialLogin.class, "unionid",ucUserinfoSocial.getAccountId(),"type",SocialEnum.wechat_h5.name());
+			
+		}
+		
 		if(socialLogin != null){
 			
 			answerRequest.getFirst().setValue(title);
