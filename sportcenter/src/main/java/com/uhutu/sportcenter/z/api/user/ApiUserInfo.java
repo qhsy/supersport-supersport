@@ -238,7 +238,7 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 		
 		if(ucUserinfoSocial != null){
 			
-			social = UserEnum.OPER_SOCIAL.getCode();
+			social = ucUserinfoSocial.getAccountType();
 			
 		}else{
 			

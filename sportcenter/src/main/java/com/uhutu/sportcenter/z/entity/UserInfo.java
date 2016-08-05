@@ -60,7 +60,7 @@ public class UserInfo extends UserBasicInfo {
 	@ApiModelProperty(value="喜欢数量",notes="喜欢数量")
 	private int favorNum;
 	
-	@ApiModelProperty(value="用户操作标识",notes="社交类用户:social,普通用户:custom")
+	@ApiModelProperty(value="用户操作标识",notes="社交类用户:social,普通用户:customl,微信用户:wechat")
 	private String socialFlag;
 	
 	public String getSex() {

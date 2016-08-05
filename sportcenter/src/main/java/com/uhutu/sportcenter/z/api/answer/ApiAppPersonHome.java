@@ -1,14 +1,13 @@
 package com.uhutu.sportcenter.z.api.answer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
-
 import com.uhutu.dcom.activity.z.entity.AcActivityAnswerInfo;
 import com.uhutu.dcom.activity.z.support.AnswerActivitySupport;
 import com.uhutu.dcom.answer.z.common.AnswerEnum;
@@ -33,6 +32,7 @@ import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.AnswerUserInfo;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.entity.QuestionInfo;
+import com.uhutu.sportcenter.z.entity.UserInfo;
 import com.uhutu.sportcenter.z.input.ApiAppPersonHomeInput;
 import com.uhutu.sportcenter.z.result.ApiAppPersonHomeResult;
 import com.uhutu.zoocom.define.DefineUser;
@@ -174,6 +174,8 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 			}
 
 			result.setAnswerUserInfo(answerUserInfo);
+			
+			result.setUserInfo(initUserInfo(input.getUserCode()));
 
 		}
 		
@@ -288,6 +290,53 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 		}
 		
 		return sports;
+		
+	}
+	
+	public UserInfo initUserInfo(String userCode) {
+
+		UcUserinfoExt userInfoExt = userInfoSupport.getUserInfoExt(userCode);
+
+		UserInfo apiUserInfo = new UserInfo();
+
+		UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(userCode);
+
+		if (userInfoExt != null) {
+
+			BeanUtils.copyProperties(userInfoExt, apiUserInfo);
+
+			if (apiUserInfo != null && StringUtils.isNotEmpty(apiUserInfo.getAboutTag())) {
+
+				List<String> codes = Arrays.asList(StringUtils.split(apiUserInfo.getAboutTag(), ","));
+
+				if (!codes.isEmpty()) {
+
+					List<String> sportCategories = contentServiceFactory.getSportCategoryService()
+							.queryListByCodeIn(codes);
+
+					apiUserInfo.setAboutTagName(convertCatoryNames(sportCategories));
+
+				}
+
+			}
+
+		} 
+
+		apiUserInfo.setType(ucUserinfo.getType());
+		
+		return apiUserInfo;
+
+	}	
+	
+	/**
+	 * 转换分类名称
+	 * @param sportCategories
+	 * 		根据分类集合获取分类名称
+	 * @return 分类名称
+	 */
+	public String convertCatoryNames(List<String> sportCategories){
+		
+		return StringUtils.join(sportCategories,",");
 		
 	}
 

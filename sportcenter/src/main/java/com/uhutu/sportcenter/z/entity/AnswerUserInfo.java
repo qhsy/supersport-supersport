@@ -51,7 +51,7 @@ public class AnswerUserInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value="结算账户名称")
 	private String settleAccountName;
-
+	
 	public BigDecimal getCharge() {
 		return charge;
 	}

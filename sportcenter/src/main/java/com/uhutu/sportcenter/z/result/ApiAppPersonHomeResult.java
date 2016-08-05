@@ -2,6 +2,7 @@ package com.uhutu.sportcenter.z.result;
 
 import com.uhutu.sportcenter.z.entity.AnswerUserInfo;
 import com.uhutu.sportcenter.z.entity.UserContentTabInfo;
+import com.uhutu.sportcenter.z.entity.UserInfo;
 import com.uhutu.sportcenter.z.entity.UserQuestionTabInfo;
 import com.uhutu.zoocom.root.RootApiResult;
 
@@ -18,6 +19,9 @@ public class ApiAppPersonHomeResult extends RootApiResult {
 	
 	@ApiModelProperty(value="问答用户信息")
 	private AnswerUserInfo answerUserInfo;
+	
+	@ApiModelProperty(value="用户信息")
+	private UserInfo userInfo;
 	
 	@ApiModelProperty(value="是否本人")
 	private boolean ownFlag = false;
@@ -58,6 +62,14 @@ public class ApiAppPersonHomeResult extends RootApiResult {
 
 	public void setUserContentTabInfo(UserContentTabInfo userContentTabInfo) {
 		this.userContentTabInfo = userContentTabInfo;
+	}
+
+	public UserInfo getUserInfo() {
+		return userInfo;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
 	}
 	
 

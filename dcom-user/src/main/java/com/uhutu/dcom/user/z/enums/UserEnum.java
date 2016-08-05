@@ -40,6 +40,9 @@ public enum UserEnum {
 	/**操作社交用户*/
 	OPER_SOCIAL("社交类用户","social"),
 	
+	/**操作社交用户*/
+	OPER_WECHAT("微信用户","wechat"),
+	
 	/**掩码*/
 	SALT("掩码","38D7A2F32F7B8B2571F9C3E37C933BB9");	
 	
