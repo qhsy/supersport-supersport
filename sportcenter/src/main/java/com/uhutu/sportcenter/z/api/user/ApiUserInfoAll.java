@@ -114,7 +114,7 @@ public class ApiUserInfoAll extends RootApiToken<ApiUserInfoAllInput, ApiUserInf
 			
 			answerUserInfo.setSettleFlag(true);
 			
-			answerUserInfo.setAccountName(settleAccount.getAccountName());
+			answerUserInfo.setSettleAccountName(settleAccount.getAccountName());
 			
 		}
 		

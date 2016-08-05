@@ -49,8 +49,8 @@ public class AnswerUserInfo extends UserBasicInfo {
 	@ApiModelProperty(value="是否绑定结算账户")
 	private boolean settleFlag = false;
 	
-	@ApiModelProperty(value="账户名称")
-	private String accountName;
+	@ApiModelProperty(value="结算账户名称")
+	private String settleAccountName;
 
 	public BigDecimal getCharge() {
 		return charge;
@@ -156,12 +156,13 @@ public class AnswerUserInfo extends UserBasicInfo {
 		this.settleFlag = settleFlag;
 	}
 
-	public String getAccountName() {
-		return accountName;
+	public String getSettleAccountName() {
+		return settleAccountName;
 	}
 
-	public void setAccountName(String accountName) {
-		this.accountName = accountName;
+	public void setSettleAccountName(String settleAccountName) {
+		this.settleAccountName = settleAccountName;
 	}
+
 
 }

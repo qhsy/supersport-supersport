@@ -25,7 +25,7 @@ public class ApiBindSettleAccountInput extends RootApiInput {
 	@ApiModelProperty(value="是否绑定")
 	private boolean isBinding;
 	
-	@ApiModelProperty(value="账户昵称")
+	@ApiModelProperty(value="账户名称")
 	private String accountName;
 
 	public String getAppid() {
