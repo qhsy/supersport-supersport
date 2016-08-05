@@ -164,5 +164,4 @@ public class AnswerUserInfo extends UserBasicInfo {
 		this.settleAccountName = settleAccountName;
 	}
 
-
 }
