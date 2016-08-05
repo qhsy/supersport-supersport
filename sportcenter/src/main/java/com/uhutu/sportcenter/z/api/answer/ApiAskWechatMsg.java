@@ -108,7 +108,7 @@ public class ApiAskWechatMsg extends RootApiToken<ApiAskWechatMsgInput, ApiAskWe
 
 		if(socialLogin != null){
 			
-			askRequest.getFirst().setValue(title);
+			askRequest.getFirst().setValue(title+"。");
 
 			askRequest.getKeyword1().setValue(questionInfo.getContent());
 
