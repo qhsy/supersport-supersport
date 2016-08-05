@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
+import com.uhutu.dcom.answer.z.entity.AwSettleAccount;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
 import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
@@ -106,6 +107,16 @@ public class ApiUserInfoAll extends RootApiToken<ApiUserInfoAllInput, ApiUserInf
 						ContentEnum.normal.getCode(), "shareScope", SystemEnum.YES.getCode(),"author",upUserCode()));
 
 		apiUserInfo.setSportsNum(momentNum);
+		
+		AwSettleAccount settleAccount = answerServiceFactory.getSettleAccountService().queryByUserCode(upUserCode());
+		
+		if(settleAccount != null && StringUtils.equals(settleAccount.getStatus(), SystemEnum.YES.getCode())){
+			
+			answerUserInfo.setSettleFlag(true);
+			
+			answerUserInfo.setAccountName(settleAccount.getAccountName());
+			
+		}
 		
 		initFansNum(apiUserInfo);
 		

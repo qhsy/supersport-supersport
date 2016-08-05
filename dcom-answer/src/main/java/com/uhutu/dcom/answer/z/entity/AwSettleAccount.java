@@ -35,6 +35,10 @@ public class AwSettleAccount extends BaseEntity {
 	@ZooData(name="状态")
 	@Column(length=50)
 	private String status;
+	
+	@ZooData(name="账户名称")
+	@Column(length=255)
+	private String accountName;
 
 	public String getUserCode() {
 		return userCode;
@@ -82,6 +86,14 @@ public class AwSettleAccount extends BaseEntity {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getAccountName() {
+		return accountName;
+	}
+
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}	
 	
 

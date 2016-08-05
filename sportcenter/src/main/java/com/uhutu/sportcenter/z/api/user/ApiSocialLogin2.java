@@ -1,11 +1,9 @@
 package com.uhutu.sportcenter.z.api.user;
 
 import java.util.Date;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.uhutu.dcom.answer.z.entity.AwSettleAccount;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
 import com.uhutu.dcom.component.z.util.RandomUtil;
@@ -66,7 +64,7 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 		
 		    if(StringUtils.equals(inputParam.getAccountType(), "wechat") || StringUtils.equals(inputParam.getAccountType(), "wechat_h5")){
 		    	
-		    	 bindSettleAccount(userRegResult.getUserCode(), inputParam.getAccountType(), inputParam.getOpenid(), inputParam.getAccountId());
+		    	 bindSettleAccount(userRegResult.getUserCode(), inputParam.getAccountName(),inputParam.getAccountType(), inputParam.getOpenid(), inputParam.getAccountId());
 		    	
 		    }
 		    
@@ -311,7 +309,7 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 		
 	}
 	
-	public void bindSettleAccount(String userCode,String accountType,String openid,String unionid) {
+	public void bindSettleAccount(String userCode,String accountName,String accountType,String openid,String unionid) {
 
 		AwSettleAccount settleAccount = answerServiceFactory.getSettleAccountService().queryByUserCode(userCode);
 
@@ -334,6 +332,8 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 			settleAccount.setStatus(SystemEnum.YES.getCode());
 
 			settleAccount.setType("wechat");
+			
+			settleAccount.setAccountName(accountName);
 
 			settleAccount.setUnionid(unionid);
 

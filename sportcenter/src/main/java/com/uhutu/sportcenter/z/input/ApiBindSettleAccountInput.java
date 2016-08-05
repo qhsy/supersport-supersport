@@ -24,11 +24,13 @@ public class ApiBindSettleAccountInput extends RootApiInput {
 	
 	@ApiModelProperty(value="是否绑定")
 	private boolean isBinding;
+	
+	@ApiModelProperty(value="账户昵称")
+	private String accountName;
 
 	public String getAppid() {
 		return appid;
 	}
-
 	public void setAppid(String appid) {
 		this.appid = appid;
 	}
@@ -55,6 +57,14 @@ public class ApiBindSettleAccountInput extends RootApiInput {
 
 	public void setBinding(boolean isBinding) {
 		this.isBinding = isBinding;
+	}
+
+	public String getAccountName() {
+		return accountName;
+	}
+
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}
 
 }

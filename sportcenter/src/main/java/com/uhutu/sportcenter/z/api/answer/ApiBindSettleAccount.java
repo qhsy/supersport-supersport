@@ -48,6 +48,8 @@ public class ApiBindSettleAccount extends RootApiToken<ApiBindSettleAccountInput
 			
 			settleAccount.setUserCode(upUserCode());
 			
+			settleAccount.setAccountName(input.getAccountName());
+			
 			answerServiceFactory.getSettleAccountService().save(settleAccount);
 			
 			
