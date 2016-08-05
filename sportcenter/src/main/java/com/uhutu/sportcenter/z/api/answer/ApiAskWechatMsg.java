@@ -126,24 +126,33 @@ public class ApiAskWechatMsg extends RootApiToken<ApiAskWechatMsgInput, ApiAskWe
 
 	}
 	
-	public void baiduPush(String answerUserCode,String content){
-		
-		UcClientInfo ucClientInfo = JdbcHelper.queryOne(UcClientInfo.class, "", "-zc", "", MapHelper.initMap("user_code",answerUserCode));
-		
-		if(ucClientInfo != null && StringUtils.isNotBlank(ucClientInfo.getChannelId())){
-			
-			try {
-				new BaiduPush().push(PushEnum.all, "提问", content, ucClientInfo.getChannelId());
-			} catch (PushServerException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (PushClientException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+	public void baiduPush(String answerUserCode, String content) {
+
+		try {
+
+			UcClientInfo ucClientInfo = JdbcHelper.queryOne(UcClientInfo.class, "", "-zc", "",
+					MapHelper.initMap("user_code", answerUserCode, "os", "ios"));
+
+			if (ucClientInfo != null && StringUtils.isNotBlank(ucClientInfo.getChannelId())) {
+				new BaiduPush().push(PushEnum.ios, "提问", content, ucClientInfo.getChannelId());
 			}
 			
+			UcClientInfo android = JdbcHelper.queryOne(UcClientInfo.class, "", "-zc", "",
+					MapHelper.initMap("user_code", answerUserCode, "os", "android"));
+			
+			if (android != null && StringUtils.isNotBlank(android.getChannelId())) {
+				new BaiduPush().push(PushEnum.android, "提问", content, android.getChannelId());
+			}
+			
+
+		} catch (PushServerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PushClientException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
+
 	}
 
 }
