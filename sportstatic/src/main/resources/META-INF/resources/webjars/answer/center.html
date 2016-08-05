@@ -47,7 +47,9 @@ var require = {
     <template v-else>
     <article class="personal">
         <header class="head">
-            <span class="photo"><img :src="result.answerUserInfo.aboutHead" alt=""></span>
+            <div class="user">
+                <span class="photo"><img :src="result.answerUserInfo.aboutHead" alt=""></span>
+            </div>
             <h1 class="name">{{result.answerUserInfo.nickName}}</h1>
             <h2 class="tag">{{result.answerUserInfo.title}}</h2>
             <a href="center_edit.html" class="edit" v-if="result.answerUserInfo.status == 'dzsd4699100110010001'"></a>
