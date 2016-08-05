@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
@@ -20,8 +21,13 @@ import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
+import com.uhutu.zoocom.define.DefineUser;
+import com.uhutu.zoocom.helper.MapHelper;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiForMember;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.helper.ImageHelper;
+import com.uhutu.zooweb.user.UserCallFactory;
 
 /**
  * 运动时刻
@@ -41,27 +47,89 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 	@Autowired
 	private ContentLabelServiceFactory labelServiceFactory;
 
-	protected ApiSportingMomentsResult process(ApiSportingMomentsInput input) {
-
-		QueryConditions queryConditions = new QueryConditions();
+	protected ApiSportingMomentsResult process(ApiSportingMomentsInput input) {		
 
 		ApiSportingMomentsResult sportingMomentsResult = new ApiSportingMomentsResult();
-
-		queryConditions.setConditionEqual("busiType", ContentEnum.sportmoment.getCode());
-		queryConditions.setConditionEqual("status", "dzsd4699100110010001");
-		queryConditions.setConditionEqual("shareScope", "dzsd4699100110010001");
+		
+		List<CnContentBasicinfo> contentBasicInfos = new ArrayList<CnContentBasicinfo>();
+		
 		if ("2".equals(input.getType()) && StringUtils.isNotBlank(upUserCode())) {// 我关注的人
-			queryConditions.setCondition("author", QueryConditions.IN,
-					"select be_attention from uc_attention_info where attention='" + upUserCode()
-							+ "' and status='1'");
+			
+			if(StringUtils.isNotEmpty(input.getZoo().getToken())){
+				
+				String userCode = new UserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(), DefineUser.Login_System_Default);
+				
+				if(StringUtils.isNotEmpty(userCode)){
+					
+					MDataMap dataMap = MapHelper.initMap("busiType",ContentEnum.sportmoment.getCode(),"status","dzsd4699100110010001","shareScope","dzsd4699100110010001");
+					
+					String sqlWhere = initSql(dataMap);
+					
+					sqlWhere = sqlWhere + "EXISTS (select 1 from uc_attention_info where attention = '"+userCode+"' and be_attention = author and status='1')";
+								
+					int istart = (input.getPagination()-1)*10;
+					
+					contentBasicInfos = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "", sqlWhere, new MDataMap(), istart, 10);
+					
+					int count = JdbcHelper.count(CnContentBasicinfo.class, sqlWhere, new MDataMap());
+					
+					PageInfo pageInfo = new PageInfo(count, input.getPagination(), 10);
+					
+					sportingMomentsResult.setNextPageFlag(pageInfo.hasNext());
+					
+				}
+				
+			}
+			
+			
+			
+			
 		} else if ("3".equals(input.getType())) {// 达人
-			queryConditions.setCondition("author", QueryConditions.IN,
-					"select code from uc_userinfo where type='dzsd4107100310010002'");
-		}
-		Page<CnContentBasicinfo> page = serviceFactory.getContentBasicinfoService().queryPage(input.getPagination(), 10,
-				queryConditions);
+			
+			
+			MDataMap dataMap = MapHelper.initMap("busiType",ContentEnum.sportmoment.getCode(),"status","dzsd4699100110010001","shareScope","dzsd4699100110010001");
+			
+			String sqlWhere = initSql(dataMap);
+			
+			sqlWhere = sqlWhere + " EXISTS (select 1 from uc_userinfo ui where code = author and type='dzsd4107100310010002')";
+						
+			int istart = (input.getPagination()-1)*10;
+			
+			contentBasicInfos = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "", sqlWhere, new MDataMap(), istart, 10);
+			
+			int count = JdbcHelper.count(CnContentBasicinfo.class, sqlWhere, new MDataMap());
+			
+			PageInfo pageInfo = new PageInfo(count, input.getPagination(), 10);
+			
+			sportingMomentsResult.setNextPageFlag(pageInfo.hasNext());
+			
+			
+			
+		}else{
+			
+			QueryConditions queryConditions = new QueryConditions();
+			
+			queryConditions.setConditionEqual("busiType", ContentEnum.sportmoment.getCode());
+			queryConditions.setConditionEqual("status", "dzsd4699100110010001");
+			queryConditions.setConditionEqual("shareScope", "dzsd4699100110010001");
+			
+			Page<CnContentBasicinfo> page = serviceFactory.getContentBasicinfoService().queryPage(input.getPagination(), 10,
+					queryConditions);
 
-		List<CnContentBasicinfo> contentBasicInfos = page.getContent();
+			contentBasicInfos = page.getContent();
+			
+			if (page.hasNext()) {
+
+				sportingMomentsResult.setNextPageFlag(true);
+
+			} else {
+
+				sportingMomentsResult.setNextPageFlag(false);
+
+			}
+			
+		}
+		
 
 		List<ContentBasicinfoForApi> sports = new ArrayList<ContentBasicinfoForApi>();
 
@@ -108,17 +176,21 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 
 		sportingMomentsResult.setMoments(sports);
 
-		if (page.hasNext()) {
-
-			sportingMomentsResult.setNextPageFlag(true);
-
-		} else {
-
-			sportingMomentsResult.setNextPageFlag(false);
-
-		}
-
 		return sportingMomentsResult;
+	}
+	
+	public String initSql(MDataMap mDataMap){
+		
+		StringBuffer buffer = new StringBuffer();
+		
+		mDataMap.keySet().forEach( key -> {
+			
+			buffer.append(key).append("='").append(mDataMap.get(key)).append("' and ");
+			
+		});
+		
+		return buffer.toString();
+		
 	}
 
 }
