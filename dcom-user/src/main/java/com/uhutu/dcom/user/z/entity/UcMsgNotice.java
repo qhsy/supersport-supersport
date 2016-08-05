@@ -26,6 +26,9 @@ public class UcMsgNotice extends BaseEntity {
 	
 	@ZooData(value="通知时间")
 	private String notifyTime;
+	
+	@ZooData(value="状态")
+	private String status;
 
 	public String getCode() {
 		return code;
@@ -65,6 +68,14 @@ public class UcMsgNotice extends BaseEntity {
 
 	public void setNotifyTime(String notifyTime) {
 		this.notifyTime = notifyTime;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }
