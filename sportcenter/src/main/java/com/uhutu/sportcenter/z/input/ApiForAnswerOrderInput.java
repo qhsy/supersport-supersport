@@ -17,7 +17,7 @@ public class ApiForAnswerOrderInput extends RootApiInput {
 	@ApiModelProperty(value = "来源 dzsd4112100110020001:app订单,dzsd4112100110020002:wap订单", example = "dzsd4112100110020002", required = true)
 	private String orderSource;
 
-	@ApiModelProperty(value = "支付类型  dzsd4112100110040001:支付宝,dzsd4112100110040002:微信", example = "dzsd4112100110040002", required = true)
+	@ApiModelProperty(value = "支付类型  dzsd4112100110040001:支付宝,dzsd4112100110040002:微信,dzsd4112100110040003:金币支付", example = "dzsd4112100110040002", required = true)
 	private String payType;
 
 	@ApiModelProperty(value = "app版本信息")

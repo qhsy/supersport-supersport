@@ -56,6 +56,7 @@ import com.uhutu.sportcenter.z.api.extend.ApiSendSms;
 import com.uhutu.sportcenter.z.api.home.APiStartPage;
 import com.uhutu.sportcenter.z.api.home.ApiHomePage;
 import com.uhutu.sportcenter.z.api.label.ApiForLabels;
+import com.uhutu.sportcenter.z.api.pay.ApiCoinCharge;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatConfigInfo;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatH5Pay;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatMobilePay;
@@ -365,6 +366,9 @@ public class ApiFactory {
 	@Autowired
 	private ApiShareInfo apiShareInfo;
 	
+	@Autowired
+	private ApiCoinCharge apiCoinCharge;
+	
 	
 	public ApiShareInfo getApiShareInfo() {
 		return apiShareInfo;
@@ -542,16 +546,8 @@ public class ApiFactory {
 		return apiUpdateMsgStatus;
 	}
 
-	public void setApiUpdateMsgStatus(ApiUpdateMsgStatus apiUpdateMsgStatus) {
-		this.apiUpdateMsgStatus = apiUpdateMsgStatus;
-	}
-
 	public ApiMsgRemarkList getApiMsgRemarkList() {
 		return apiMsgRemarkList;
-	}
-
-	public void setApiMsgRemarkList(ApiMsgRemarkList apiMsgRemarkList) {
-		this.apiMsgRemarkList = apiMsgRemarkList;
 	}
 
 	public ApiMsgPraiseList getApiMsgPraiseList() {
@@ -613,11 +609,7 @@ public class ApiFactory {
 	public ApiUserExpertDetail getApiUserExpertDetail() {
 		return apiUserExpertDetail;
 	}
-
-	public void setApiUserExpertDetail(ApiUserExpertDetail apiUserExpertDetail) {
-		this.apiUserExpertDetail = apiUserExpertDetail;
-	}
-
+	
 	public ApiUpdateUserPower getApiUpdateUserPower() {
 		return apiUpdateUserPower;
 	}
@@ -694,20 +686,12 @@ public class ApiFactory {
 		return apiAppPersonHome;
 	}
 
-	public void setApiAppPersonHome(ApiAppPersonHome apiAppPersonHome) {
-		this.apiAppPersonHome = apiAppPersonHome;
-	}
-
 	public ApiUserInfoAll getApiUserInfoAll() {
 		return apiUserInfoAll;
 	}
 
 	public ApiAppUpdateAnswerUser getApiAppUpdateAnswerUser() {
 		return apiAppUpdateAnswerUser;
-	}
-
-	public void setApiAppUpdateAnswerUser(ApiAppUpdateAnswerUser apiAppUpdateAnswerUser) {
-		this.apiAppUpdateAnswerUser = apiAppUpdateAnswerUser;
 	}
 
 	public ApiUpdateUserTitle getApiUpdateUserTitle() {
@@ -730,16 +714,16 @@ public class ApiFactory {
 		return apiWechatUserLogin2;
 	}
 
-	public void setApiWechatUserLogin2(ApiWechatUserLogin2 apiWechatUserLogin2) {
-		this.apiWechatUserLogin2 = apiWechatUserLogin2;
-	}
-
 	public ApiAnswerMsgList getApiAnswerMsgList() {
 		return apiAnswerMsgList;
 	}
 
 	public ApiRecentMsgList getApiRecentMsgList() {
 		return apiRecentMsgList;
+	}
+
+	public ApiCoinCharge getApiCoinCharge() {
+		return apiCoinCharge;
 	}
 
 }
