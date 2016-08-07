@@ -61,7 +61,7 @@ public class PayController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/金币充值", method = RequestMethod.POST)
+	@RequestMapping(value = "/coinCharge", method = RequestMethod.POST)
 	@ApiOperation(value = "金币充值", notes = "金币充值")
 	public ApiCoinChargeResult coinCharge(@RequestBody ApiCoinChargeInput input) {
 
