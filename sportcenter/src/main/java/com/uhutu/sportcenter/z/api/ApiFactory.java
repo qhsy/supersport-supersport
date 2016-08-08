@@ -58,6 +58,7 @@ import com.uhutu.sportcenter.z.api.home.ApiHomePage;
 import com.uhutu.sportcenter.z.api.label.ApiForLabels;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinAccInfo;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinCharge;
+import com.uhutu.sportcenter.z.api.pay.ApiCoinPay;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatConfigInfo;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatH5Pay;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatMobilePay;
@@ -373,6 +374,8 @@ public class ApiFactory {
 	@Autowired
 	private ApiCoinAccInfo apiCoinAccInfo;
 	
+	@Autowired
+	private ApiCoinPay apiCoinPay;
 	
 	public ApiShareInfo getApiShareInfo() {
 		return apiShareInfo;
@@ -732,6 +735,10 @@ public class ApiFactory {
 
 	public ApiCoinAccInfo getApiCoinAccInfo() {
 		return apiCoinAccInfo;
+	}
+
+	public ApiCoinPay getApiCoinPay() {
+		return apiCoinPay;
 	}
 
 }

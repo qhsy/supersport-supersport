@@ -2,6 +2,8 @@ package com.uhutu.dcom.pay.z.service.impl;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Service;
+
 import com.uhutu.dcom.pay.z.entity.PaCoinInfo;
 import com.uhutu.dcom.pay.z.service.IPaCoinInfoService;
 import com.uhutu.zoocom.helper.MapHelper;
@@ -12,6 +14,7 @@ import com.uhutu.zoodata.z.helper.JdbcHelper;
  * @author 逄小帅
  *
  */
+@Service
 public class PaCoinInfoServiceImpl implements IPaCoinInfoService {
 
 	@Override

@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiCoinAccInfoInput;
 import com.uhutu.sportcenter.z.input.ApiCoinChargeInput;
+import com.uhutu.sportcenter.z.input.ApiCoinPayInput;
 import com.uhutu.sportcenter.z.input.ApiWechatH5PayInput;
 import com.uhutu.sportcenter.z.input.ApiWechatMobilePayInput;
 import com.uhutu.sportcenter.z.result.ApiCoinAccInfoResult;
 import com.uhutu.sportcenter.z.result.ApiCoinChargeResult;
+import com.uhutu.sportcenter.z.result.ApiCoinPayResult;
 import com.uhutu.sportcenter.z.result.ApiWechatH5PayResult;
 import com.uhutu.sportcenter.z.result.ApiWechatMobilePayResult;
 
@@ -77,6 +79,15 @@ public class PayController {
 	public ApiCoinAccInfoResult coinAccInfo(@RequestBody ApiCoinAccInfoInput input) {
 
 		return apiFactory.getApiCoinAccInfo().api(input);
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/coinPay", method = RequestMethod.POST)
+	@ApiOperation(value = "金币支付", notes = "金币支付")
+	public ApiCoinPayResult coinAccInfo(@RequestBody ApiCoinPayInput input) {
+
+		return apiFactory.getApiCoinPay().api(input);
 		
 	}
 

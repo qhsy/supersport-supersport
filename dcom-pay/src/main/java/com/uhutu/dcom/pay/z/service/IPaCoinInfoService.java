@@ -7,7 +7,7 @@ import com.uhutu.dcom.pay.z.entity.PaCoinInfo;
  * @author 逄小帅
  *
  */
-public interface IPaCoinInfoService {
+public interface IPaCoinInfoService{
 	
 	/**
 	 * 金币信息更新

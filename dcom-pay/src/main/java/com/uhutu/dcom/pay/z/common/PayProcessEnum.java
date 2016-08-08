@@ -38,6 +38,8 @@ public enum PayProcessEnum {
 	/**微信消息回答*/
 	WECHAT_MSG_ANSWER,
 	/**微信消息退款*/
-	WECHAT_MSG_REFUND;
+	WECHAT_MSG_REFUND,
+	/**金币支付*/
+	GOLD_COIN;
 
 }

@@ -30,5 +30,7 @@ public enum PrexEnum {
     /**意见反馈*/
     UMA,
     /**用户问答消息*/
-    UAM;
+    UAM,
+    /**金币操作流水*/
+    GCOF;
 }
