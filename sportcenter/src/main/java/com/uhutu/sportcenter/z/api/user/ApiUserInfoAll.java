@@ -107,7 +107,7 @@ public class ApiUserInfoAll extends RootApiToken<ApiUserInfoAllInput, ApiUserInf
 		
 		int momentNum = JdbcHelper.count(CnContentBasicinfo.class, "",
 				MapHelper.initMap("busiType", ContentEnum.sportmoment.getCode(), "status",
-						ContentEnum.normal.getCode(), "shareScope", SystemEnum.YES.getCode(),"author",upUserCode()));
+						ContentEnum.normal.getCode(),"author",upUserCode()));
 
 		apiUserInfo.setSportsNum(momentNum);
 		
