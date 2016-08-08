@@ -18,6 +18,9 @@ public class GoldCoinPayResponse extends MResult implements IPayResponse {
 	
 	/*交易流水编号*/
 	private String flowNO;
+	
+	/*支付金币数量*/
+	private long payCoinNum;
 
 	public long getBalance() {
 		return balance;
@@ -41,6 +44,14 @@ public class GoldCoinPayResponse extends MResult implements IPayResponse {
 
 	public void setFlowNO(String flowNO) {
 		this.flowNO = flowNO;
+	}
+
+	public long getPayCoinNum() {
+		return payCoinNum;
+	}
+
+	public void setPayCoinNum(long payCoinNum) {
+		this.payCoinNum = payCoinNum;
 	}
 
 }

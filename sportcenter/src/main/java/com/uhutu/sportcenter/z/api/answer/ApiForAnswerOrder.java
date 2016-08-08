@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.api.answer;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -164,6 +166,10 @@ public class ApiForAnswerOrder extends RootApiToken<ApiForAnswerOrderInput, ApiF
 
 		GoldCoinPayResponse coinPayResponse = (GoldCoinPayResponse) payGateProcess.process(PayProcessEnum.GOLD_COIN,
 				coinPayRequest, new MDataMap());
+		
+		long payCoinNum = teslaXOrder.getOrderInfo().getOrderMoney().multiply(new BigDecimal(100)).longValue();
+		
+		coinPayResponse.setPayCoinNum(payCoinNum);
 		
 		result.setGoldCoinPayResponse(coinPayResponse);
 
