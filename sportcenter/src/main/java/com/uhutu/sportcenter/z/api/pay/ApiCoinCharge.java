@@ -6,13 +6,16 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.pay.z.common.OperType;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.common.TradeType;
+import com.uhutu.dcom.pay.z.entity.PaCoinFlow;
 import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
 import com.uhutu.dcom.pay.z.request.GoldCoinPayRequest;
 import com.uhutu.dcom.pay.z.response.GoldCoinPayResponse;
 import com.uhutu.sportcenter.z.input.ApiCoinChargeInput;
 import com.uhutu.sportcenter.z.result.ApiCoinChargeResult;
+import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiToken;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 金币充值
@@ -30,31 +33,44 @@ public class ApiCoinCharge extends RootApiToken<ApiCoinChargeInput, ApiCoinCharg
 
 		ApiCoinChargeResult coinChargeResult = new ApiCoinChargeResult();
 
-		GoldCoinPayRequest coinPayRequest = new GoldCoinPayRequest();
+		int count = JdbcHelper.count(PaCoinFlow.class, "", MapHelper.initMap("outCode", input.getFlowNO(), "tradeType",
+				TradeType.GOLDEN_COIN.name(), "operType", OperType.COIN_CHARGE.name()));
 
-		coinPayRequest.setCoinNum(input.getCoinNum());
+		if (count > 0) {
 
-		coinPayRequest.setOperType(OperType.COIN_CHARGE);
+			GoldCoinPayRequest coinPayRequest = new GoldCoinPayRequest();
 
-		coinPayRequest.setTradeType(TradeType.GOLDEN_COIN);
+			coinPayRequest.setCoinNum(input.getCoinNum());
 
-		coinPayRequest.setOutCode(input.getFlowNO());
+			coinPayRequest.setOperType(OperType.COIN_CHARGE);
 
-		coinPayRequest.setUserCode(upUserCode());
+			coinPayRequest.setTradeType(TradeType.GOLDEN_COIN);
 
-		GoldCoinPayResponse coinPayResponse = (GoldCoinPayResponse) payGateProcess.process(PayProcessEnum.GOLD_COIN,
-				coinPayRequest, new MDataMap());
-		
-		if(coinPayResponse.upFlagTrue()){
+			coinPayRequest.setOutCode(input.getFlowNO());
+
+			coinPayRequest.setUserCode(upUserCode());
+
+			GoldCoinPayResponse coinPayResponse = (GoldCoinPayResponse) payGateProcess.process(PayProcessEnum.GOLD_COIN,
+					coinPayRequest, new MDataMap());
+
+			if (coinPayResponse.upFlagTrue()) {
+
+				coinChargeResult.setCoinNum(coinPayResponse.getBalance());
+
+			} else {
+
+				coinChargeResult.setStatus(coinPayResponse.getStatus());
+
+				coinChargeResult.setError(coinPayResponse.getError());
+
+			}
+
+		} else {
 			
-			coinChargeResult.setCoinNum(coinPayResponse.getBalance());
+			coinChargeResult.setStatus(0);
 			
-		}else{
-			
-			coinChargeResult.setStatus(coinPayResponse.getStatus());
-			
-			coinChargeResult.setError(coinPayResponse.getError());
-			
+			coinChargeResult.setError("已充值成功，无需重复充值");
+
 		}
 
 		return coinChargeResult;
