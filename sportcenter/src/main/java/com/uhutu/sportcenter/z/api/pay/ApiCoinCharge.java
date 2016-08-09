@@ -36,7 +36,7 @@ public class ApiCoinCharge extends RootApiToken<ApiCoinChargeInput, ApiCoinCharg
 		int count = JdbcHelper.count(PaCoinFlow.class, "", MapHelper.initMap("outCode", input.getFlowNO(), "tradeType",
 				TradeType.GOLDEN_COIN.name(), "operType", OperType.COIN_CHARGE.name()));
 
-		if (count > 0) {
+		if (count <= 0) {
 
 			GoldCoinPayRequest coinPayRequest = new GoldCoinPayRequest();
 
