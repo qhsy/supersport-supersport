@@ -260,15 +260,5 @@ public class UserController {
 		return apiFactory.getApiOwnSportMoment().api(input);
 
 	}	
-	
-	@ResponseBody
-	@RequestMapping(value = "/msgFocus", method = RequestMethod.POST)
-	@ApiOperation(value = "不再关注", notes = "不再关注")
-	public ApiMsgFocusResult msgFocus(@RequestBody ApiMsgFocusInput input) {
-
-		return apiFactory.getApiMsgFocus().api(input);
-
-	}
-
 
 }

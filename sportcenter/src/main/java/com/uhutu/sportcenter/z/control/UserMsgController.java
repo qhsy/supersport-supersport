@@ -11,6 +11,7 @@ import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiAnswerMsgListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgAdviceInput;
 import com.uhutu.sportcenter.z.input.ApiMsgAttendListInput;
+import com.uhutu.sportcenter.z.input.ApiMsgFocusInput;
 import com.uhutu.sportcenter.z.input.ApiMsgNoticeListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgNumListInput;
 import com.uhutu.sportcenter.z.input.ApiMsgPraiseListInput;
@@ -20,6 +21,7 @@ import com.uhutu.sportcenter.z.input.ApiUpdateMsgStatusInput;
 import com.uhutu.sportcenter.z.result.ApiAnswerMsgListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgAdviceResult;
 import com.uhutu.sportcenter.z.result.ApiMsgAttendListResult;
+import com.uhutu.sportcenter.z.result.ApiMsgFocusResult;
 import com.uhutu.sportcenter.z.result.ApiMsgNoticeListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgNumListResult;
 import com.uhutu.sportcenter.z.result.ApiMsgPraiseListResult;
@@ -86,6 +88,15 @@ public class UserMsgController {
 	public ApiMsgAttendListResult msgAttendList(@RequestBody ApiMsgAttendListInput input) {
 
 		return apiFactory.getApiMsgAttendList().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/msgFocus", method = RequestMethod.POST)
+	@ApiOperation(value = "不再关注", notes = "不再关注")
+	public ApiMsgFocusResult msgFocus(@RequestBody ApiMsgFocusInput input) {
+
+		return apiFactory.getApiMsgFocus().api(input);
 
 	}
 	
