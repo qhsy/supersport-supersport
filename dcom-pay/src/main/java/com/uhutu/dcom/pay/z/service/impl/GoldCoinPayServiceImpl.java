@@ -42,7 +42,7 @@ public class GoldCoinPayServiceImpl implements IGoldCoinPayService {
 			
 			switch (coinPayRequest.getOperType()) {
 			case COIN_CHARGE:
-				doChage(coinPayRequest.getUserCode(), coinPayRequest.getCoinNum());
+				doChage(coinPayResponse, coinPayRequest);
 				break;
 
 			default:
@@ -142,13 +142,13 @@ public class GoldCoinPayServiceImpl implements IGoldCoinPayService {
 	 * @param chargeNum
 	 * 		充值金额
 	 */
-	public void doChage(String userCode,long chargeNum){
+	public void doChage(GoldCoinPayResponse coinPayResponse, GoldCoinPayRequest coinPayRequest){
 		
-		PaCoinInfo coinInfo = paCoinInfoService.queryByUserCode(userCode);
+		PaCoinInfo coinInfo = paCoinInfoService.queryByUserCode(coinPayRequest.getUserCode());
 		
 		if(coinInfo != null){
 			
-			coinNum = coinInfo.getBalance() + chargeNum;
+			coinNum = coinInfo.getBalance() + coinPayRequest.getCoinNum();
 			
 			coinInfo.setBalance(coinNum);
 			
@@ -158,13 +158,21 @@ public class GoldCoinPayServiceImpl implements IGoldCoinPayService {
 			
 			coinInfo = new PaCoinInfo();
 			
-			coinInfo.setUserCode(userCode);
+			coinInfo.setUserCode(coinPayRequest.getUserCode());
 			
-			coinInfo.setBalance(chargeNum);
+			coinInfo.setBalance(coinPayRequest.getCoinNum());
 			
 			paCoinInfoService.save(coinInfo);
 			
 		}
+		
+		String flowNO = saveTradeFlow(coinPayRequest);
+		
+		coinPayResponse.setFlowNO(flowNO);
+		
+		coinPayResponse.setBalance(coinNum);
+		
+		coinPayResponse.setOperFlag(true);
 		
 	}
 
