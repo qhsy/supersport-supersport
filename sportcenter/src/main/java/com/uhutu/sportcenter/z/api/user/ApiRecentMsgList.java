@@ -86,7 +86,7 @@ public class ApiRecentMsgList extends RootApiToken<ApiRecentMsgListInput, ApiRec
 				
 				msgNoticeInfo.setNotifyTime(ucMsgAnswer.getNotifyTime());
 				
-				apiMsgNoticeInfo.setTitle("问答助手");
+				apiMsgNoticeInfo.setTitle("问达助手");
 				
 				apiMsgNoticeInfo.setUnReadNum(userServiceFactory.getMsgNoticeUserService().queryCount(upUserCode(), MsgEnum.FLAG_UNREAD.getCode()));
 				
