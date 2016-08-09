@@ -1,6 +1,9 @@
 package com.uhutu.sportcenter.z.entity;
 
 import java.math.BigDecimal;
+
+import org.apache.commons.lang3.StringUtils;
+
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -109,6 +112,13 @@ public class AnswerUserInfo extends UserBasicInfo {
 	}
 
 	public String getTitle() {
+		
+		if(StringUtils.isBlank(title)){
+			
+			title = "";
+			
+		}
+		
 		return title;
 	}
 
