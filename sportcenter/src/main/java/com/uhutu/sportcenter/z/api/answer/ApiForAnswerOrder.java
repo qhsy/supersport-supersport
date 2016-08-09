@@ -171,6 +171,8 @@ public class ApiForAnswerOrder extends RootApiToken<ApiForAnswerOrderInput, ApiF
 		
 		coinPayResponse.setPayCoinNum(payCoinNum);
 		
+		coinPayResponse.setOrderCode(teslaXOrder.getOrderInfo().getCode());
+		
 		result.setGoldCoinPayResponse(coinPayResponse);
 
 	}

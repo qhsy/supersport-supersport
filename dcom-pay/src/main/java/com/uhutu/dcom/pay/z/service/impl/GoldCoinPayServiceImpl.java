@@ -52,6 +52,8 @@ public class GoldCoinPayServiceImpl implements IGoldCoinPayService {
 			
 		}
 		
+		coinPayResponse.setOrderCode(coinPayRequest.getOutCode());
+		
 		return coinPayResponse;
 	}
 	

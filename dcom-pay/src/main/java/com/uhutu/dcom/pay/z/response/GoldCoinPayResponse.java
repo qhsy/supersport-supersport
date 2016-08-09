@@ -21,6 +21,9 @@ public class GoldCoinPayResponse extends MResult implements IPayResponse {
 	
 	/*支付金币数量*/
 	private long payCoinNum;
+	
+	/*订单编号*/
+	private String orderCode;
 
 	public long getBalance() {
 		return balance;
@@ -52,6 +55,14 @@ public class GoldCoinPayResponse extends MResult implements IPayResponse {
 
 	public void setPayCoinNum(long payCoinNum) {
 		this.payCoinNum = payCoinNum;
+	}
+
+	public String getOrderCode() {
+		return orderCode;
+	}
+
+	public void setOrderCode(String orderCode) {
+		this.orderCode = orderCode;
 	}
 
 }
