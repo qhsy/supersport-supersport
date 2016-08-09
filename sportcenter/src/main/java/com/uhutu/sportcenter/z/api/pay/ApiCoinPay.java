@@ -56,7 +56,7 @@ public class ApiCoinPay extends RootApiToken<ApiCoinPayInput, ApiCoinPayResult> 
 			
 			notifyRequest.setOut_trade_no(input.getOrderCode());
 			
-			Long totalFee = input.getCoinNum()/100;
+			Long totalFee = input.getCoinNum();
 			
 			notifyRequest.setTotal_fee(totalFee.intValue());
 			

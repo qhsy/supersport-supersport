@@ -18,8 +18,8 @@ public class AndroidPushMsgToSingleDevice {
 		
 
 		// 1. get apiKey and secretKey from developer console
-		String apiKey = "ORG6KhOtVUSFI5pVOfDEr4AZETeOKkZI";
-		String secretKey = "bh3N6zUCQNaA8CAYwCpGxuFVqfcpV1hq";
+		String apiKey = "qGnG6ZH54TeOUhkNEVIYmzuZ9D5BH8z9";
+		String secretKey = "L8okLpI0wRxoWvNlpRCiA5ZNQVMGau4V";
 		PushKeyPair pair = new PushKeyPair(apiKey, secretKey);
 
 		// 2. build a BaidupushClient object to access released interfaces
@@ -43,7 +43,6 @@ public class AndroidPushMsgToSingleDevice {
 			notification.put("notification_builder_id", 0);
 			notification.put("notification_basic_style", 4);
 			notification.put("open_type", 1);
-			notification.put("url", "");
 			JSONObject jsonCustormCont = new JSONObject();
 			jsonCustormCont.put("type", "1"); // 自定义内容，key-value
 			notification.put("custom_content", jsonCustormCont);

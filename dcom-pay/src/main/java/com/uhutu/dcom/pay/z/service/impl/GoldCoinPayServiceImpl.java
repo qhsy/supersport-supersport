@@ -103,7 +103,7 @@ public class GoldCoinPayServiceImpl implements IGoldCoinPayService {
 				
 				coinNum = coinInfo.getBalance() + coinPayRequest.getCoinNum();
 				
-				if(coinNum > 0 ){
+				if(coinNum >= 0 ){
 					
 					coinInfo.setBalance(coinNum);
 					
