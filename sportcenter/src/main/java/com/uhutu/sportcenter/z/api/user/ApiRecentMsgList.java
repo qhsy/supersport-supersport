@@ -74,7 +74,7 @@ public class ApiRecentMsgList extends RootApiToken<ApiRecentMsgListInput, ApiRec
 		
 		if(!StringUtils.equals(answerFlag, MsgEnum.FLAG_READ.getCode())){
 			
-			UcMsgAnswer ucMsgAnswer = JdbcHelper.queryOne(UcMsgAnswer.class, "", "-zc", "", MapHelper.initMap("userCode",upUserCode(),"status",MsgEnum.FLAG_UNREAD.getCode()));
+			UcMsgAnswer ucMsgAnswer = JdbcHelper.queryOne(UcMsgAnswer.class, "", "-zc", "", MapHelper.initMap("userCode",upUserCode()));
 			
 			if(ucMsgAnswer != null){
 				
