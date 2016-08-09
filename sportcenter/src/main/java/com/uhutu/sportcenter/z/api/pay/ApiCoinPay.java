@@ -35,7 +35,7 @@ public class ApiCoinPay extends RootApiToken<ApiCoinPayInput, ApiCoinPayResult> 
 
 		GoldCoinPayRequest coinPayRequest = new GoldCoinPayRequest();
 		
-		coinPayRequest.setCoinNum(input.getCoinNum() - 0);
+		coinPayRequest.setCoinNum(0 - input.getCoinNum());
 		
 		coinPayRequest.setOperType(OperType.PAY_LISTEN);
 		
