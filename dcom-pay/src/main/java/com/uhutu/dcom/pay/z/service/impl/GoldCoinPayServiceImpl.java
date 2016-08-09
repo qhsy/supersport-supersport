@@ -129,6 +129,8 @@ public class GoldCoinPayServiceImpl implements IGoldCoinPayService {
 			
 		}else{
 			
+			coinPayResponse.setOperFlag(false);
+			
 			coinPayResponse.inError(81110011);
 			
 		}
@@ -171,8 +173,6 @@ public class GoldCoinPayServiceImpl implements IGoldCoinPayService {
 		coinPayResponse.setFlowNO(flowNO);
 		
 		coinPayResponse.setBalance(coinNum);
-		
-		coinPayResponse.setOperFlag(true);
 		
 	}
 
