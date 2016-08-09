@@ -72,6 +72,9 @@ public class UserServiceFactory {
 	@Autowired
 	private IMsgAnswerService msgAnswerService;
 	
+	@Autowired
+	private IMsgFoucService msgFoucService;
+	
 	/**
 	 * 获取用户业务实现
 	 * 
@@ -178,5 +181,9 @@ public class UserServiceFactory {
 
 	public IMsgAnswerService getMsgAnswerService() {
 		return msgAnswerService;
+	}
+
+	public IMsgFoucService getMsgFoucService() {
+		return msgFoucService;
 	}
 }

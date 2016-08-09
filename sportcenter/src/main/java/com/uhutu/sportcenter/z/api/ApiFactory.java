@@ -75,6 +75,7 @@ import com.uhutu.sportcenter.z.api.user.ApiForTecentSig;
 import com.uhutu.sportcenter.z.api.user.ApiLoginOut;
 import com.uhutu.sportcenter.z.api.user.ApiMsgAdvice;
 import com.uhutu.sportcenter.z.api.user.ApiMsgAttendList;
+import com.uhutu.sportcenter.z.api.user.ApiMsgFocus;
 import com.uhutu.sportcenter.z.api.user.ApiMsgNoticeList;
 import com.uhutu.sportcenter.z.api.user.ApiMsgNumList;
 import com.uhutu.sportcenter.z.api.user.ApiMsgPraiseList;
@@ -376,6 +377,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiCoinPay apiCoinPay;
+	
+	@Autowired
+	private ApiMsgFocus apiMsgFocus;
 	
 	public ApiShareInfo getApiShareInfo() {
 		return apiShareInfo;
@@ -739,6 +743,10 @@ public class ApiFactory {
 
 	public ApiCoinPay getApiCoinPay() {
 		return apiCoinPay;
+	}
+
+	public ApiMsgFocus getApiMsgFocus() {
+		return apiMsgFocus;
 	}
 
 }

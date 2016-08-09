@@ -16,6 +16,7 @@ import com.uhutu.sportcenter.z.input.ApiForAttentionInput;
 import com.uhutu.sportcenter.z.input.ApiForLoginInput;
 import com.uhutu.sportcenter.z.input.ApiForTecentSigInput;
 import com.uhutu.sportcenter.z.input.ApiLoginOutInput;
+import com.uhutu.sportcenter.z.input.ApiMsgFocusInput;
 import com.uhutu.sportcenter.z.input.ApiOwnSportMomentInput;
 import com.uhutu.sportcenter.z.input.ApiRecommendExpertInput;
 import com.uhutu.sportcenter.z.input.ApiSendSmsInput;
@@ -38,6 +39,7 @@ import com.uhutu.sportcenter.z.result.ApiForAttentionResult;
 import com.uhutu.sportcenter.z.result.ApiForLoginResult;
 import com.uhutu.sportcenter.z.result.ApiForTecentSigResult;
 import com.uhutu.sportcenter.z.result.ApiLoginOutResult;
+import com.uhutu.sportcenter.z.result.ApiMsgFocusResult;
 import com.uhutu.sportcenter.z.result.ApiOwnSportMomentResult;
 import com.uhutu.sportcenter.z.result.ApiRecommendExpertResult;
 import com.uhutu.sportcenter.z.result.ApiSendSmsResult;
@@ -258,6 +260,15 @@ public class UserController {
 		return apiFactory.getApiOwnSportMoment().api(input);
 
 	}	
+	
+	@ResponseBody
+	@RequestMapping(value = "/msgFocus", method = RequestMethod.POST)
+	@ApiOperation(value = "不再关注", notes = "不再关注")
+	public ApiMsgFocusResult msgFocus(@RequestBody ApiMsgFocusInput input) {
+
+		return apiFactory.getApiMsgFocus().api(input);
+
+	}
 
 
 }

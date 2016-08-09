@@ -23,7 +23,11 @@ public enum MsgEnum {
 	NOTICE("03","通知"),
 	
 	/**点赞*/
-	PRAISE("04","点赞");
+	PRAISE("04","点赞"),
+	
+	TYPE_SYSTEM("system","系统消息"),
+	
+	TYPE_ANSWER("answer","问答助手");
 	
 	/**枚举编号*/
 	private String code;
