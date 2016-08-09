@@ -163,11 +163,13 @@ public class ApiForAnswerOrder extends RootApiToken<ApiForAnswerOrderInput, ApiF
 		coinPayRequest.setOutCode(teslaXOrder.getOrderInfo().getCode());
 		
 		coinPayRequest.setTradeType(TradeType.GOLDEN_COIN);
-
-		GoldCoinPayResponse coinPayResponse = (GoldCoinPayResponse) payGateProcess.process(PayProcessEnum.GOLD_COIN,
-				coinPayRequest, new MDataMap());
 		
 		long payCoinNum = teslaXOrder.getOrderInfo().getOrderMoney().multiply(new BigDecimal(100)).longValue();
+		
+		coinPayRequest.setCoinNum( 0 - payCoinNum );
+
+		GoldCoinPayResponse coinPayResponse = (GoldCoinPayResponse) payGateProcess.process(PayProcessEnum.GOLD_COIN,
+				coinPayRequest, new MDataMap());		
 		
 		coinPayResponse.setPayCoinNum(payCoinNum);
 		

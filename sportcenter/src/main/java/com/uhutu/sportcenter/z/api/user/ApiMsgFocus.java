@@ -36,7 +36,31 @@ public class ApiMsgFocus extends RootApiToken<ApiMsgFocusInput, ApiMsgFocusResul
 		
 		userServiceFactory.getMsgFoucService().save(ucMsgFocus);
 		
+		switch (input.getMsgType()) {
+		case "system":
+			updateNoticeStatus(upUserCode());
+			break;
+		case "answer":
+			updateAnswerStatus(upUserCode());
+			break;
+
+		default:
+			break;
+		}
+		
 		return focusResult;
+	}
+	
+	public void updateAnswerStatus(String userCode){
+		
+		userServiceFactory.getMsgAnswerService().updateReadStatus(upUserCode(), MsgEnum.FLAG_READ.getCode(), MsgEnum.FLAG_UNREAD.getCode());
+		
+	}
+	
+	public void updateNoticeStatus(String userCode){
+		
+		userServiceFactory.getMsgNoticeUserService().updateReadStatus(upUserCode(), MsgEnum.FLAG_READ.getCode(), MsgEnum.FLAG_UNREAD.getCode());
+		
 	}
 
 }

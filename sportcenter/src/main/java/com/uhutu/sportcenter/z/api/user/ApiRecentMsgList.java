@@ -1,5 +1,9 @@
 package com.uhutu.sportcenter.z.api.user;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -7,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.user.z.entity.UcMsgAnswer;
 import com.uhutu.dcom.user.z.entity.UcMsgFocus;
 import com.uhutu.dcom.user.z.entity.UcMsgNotice;
+import com.uhutu.dcom.user.z.entity.UcMsgNoticeUser;
 import com.uhutu.dcom.user.z.enums.MsgEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.ApiMsgNoticeInfo;
@@ -34,37 +39,59 @@ public class ApiRecentMsgList extends RootApiToken<ApiRecentMsgListInput, ApiRec
 		
 		ApiRecentMsgListResult recentMsgListResult = new ApiRecentMsgListResult();
 		
+		saveMsgNotice(upUserCode());
+
+		int noticeCount = JdbcHelper.count(UcMsgNoticeUser.class, "", MapHelper.initMap("userCode",upUserCode(),"status",MsgEnum.FLAG_UNREAD.getCode()));
+		
+		if(noticeCount > 0){
+			
+			updateMsgFocus(upUserCode(), MsgEnum.TYPE_SYSTEM.getCode());
+			
+		}
+		
 		UcMsgFocus msgFocus = userServiceFactory.getMsgFoucService().query(upUserCode(), MsgEnum.TYPE_SYSTEM.getCode());
 		
 		String flag = (msgFocus == null) ?"":msgFocus.getStatus();
 		
 		if(!StringUtils.equals(flag, MsgEnum.FLAG_READ.getCode()) ){
 			
-			UcMsgNotice ucMsgNotice = JdbcHelper.queryOne(UcMsgNotice.class, "", "-zc", "", MapHelper.initMap("status",MsgEnum.FLAG_UNREAD.getCode()));
+			UcMsgNoticeUser ucMsgNoticeUser = JdbcHelper.queryOne(UcMsgNoticeUser.class, "", "-zc", "", MapHelper.initMap("userCode",upUserCode(),"status",MsgEnum.FLAG_UNREAD.getCode()));
 			
-			if(ucMsgNotice != null){
+			UcMsgNotice ucMsgNotice = JdbcHelper.queryOne(UcMsgNotice.class, "code",ucMsgNoticeUser.getNoticeCode());
+			
+			if(ucMsgNoticeUser != null){
 				
-				ApiMsgNoticeInfo apiMsgNoticeInfo = new ApiMsgNoticeInfo();
-				
-				MsgNoticeInfo msgNoticeInfo = new MsgNoticeInfo();
-				
-				msgNoticeInfo.setContent(ucMsgNotice.getContent());
-				
-				msgNoticeInfo.setNotifyTime(ucMsgNotice.getNotifyTime());
-				
-				apiMsgNoticeInfo.setTitle("果冻体育");
-				
-				apiMsgNoticeInfo.setUnReadNum(userServiceFactory.getMsgNoticeUserService().queryCount(upUserCode(), MsgEnum.FLAG_UNREAD.getCode()));
-				
-				apiMsgNoticeInfo.setIconUrl("");
-				
-				apiMsgNoticeInfo.setMsgNoticeInfo(msgNoticeInfo);
-				
-				recentMsgListResult.setSytemMsgInfo(apiMsgNoticeInfo);
-				
-				updateMsgFocus(upUserCode(), MsgEnum.TYPE_SYSTEM.getCode());
+				if(ucMsgNotice != null){
+					
+					ApiMsgNoticeInfo apiMsgNoticeInfo = new ApiMsgNoticeInfo();
+					
+					MsgNoticeInfo msgNoticeInfo = new MsgNoticeInfo();
+					
+					msgNoticeInfo.setContent(ucMsgNotice.getContent());
+					
+					msgNoticeInfo.setNotifyTime(ucMsgNotice.getNotifyTime());
+					
+					apiMsgNoticeInfo.setTitle("果冻体育");
+					
+					apiMsgNoticeInfo.setUnReadNum(userServiceFactory.getMsgNoticeUserService().queryCount(upUserCode(), MsgEnum.FLAG_UNREAD.getCode()));
+					
+					apiMsgNoticeInfo.setIconUrl("");
+					
+					apiMsgNoticeInfo.setMsgNoticeInfo(msgNoticeInfo);
+					
+					recentMsgListResult.setSytemMsgInfo(apiMsgNoticeInfo);
+					
+				}
 				
 			}
+			
+		}
+		
+		int answerCount = JdbcHelper.count(UcMsgAnswer.class, "", MapHelper.initMap("userCode",upUserCode(),"status",MsgEnum.FLAG_UNREAD.getCode()));
+		
+		if(answerCount > 0){
+			
+			updateMsgFocus(upUserCode(), MsgEnum.TYPE_ANSWER.getCode());
 			
 		}
 		
@@ -88,15 +115,13 @@ public class ApiRecentMsgList extends RootApiToken<ApiRecentMsgListInput, ApiRec
 				
 				apiMsgNoticeInfo.setTitle("问达助手");
 				
-				apiMsgNoticeInfo.setUnReadNum(userServiceFactory.getMsgNoticeUserService().queryCount(upUserCode(), MsgEnum.FLAG_UNREAD.getCode()));
+				apiMsgNoticeInfo.setUnReadNum(userServiceFactory.getMsgAnswerService().queryCount(upUserCode(), MsgEnum.FLAG_UNREAD.getCode()));
 				
 				apiMsgNoticeInfo.setIconUrl("");
 				
 				apiMsgNoticeInfo.setMsgNoticeInfo(msgNoticeInfo);
 				
 				recentMsgListResult.setAnswerMsgInfo(apiMsgNoticeInfo);
-				
-				updateMsgFocus(upUserCode(), MsgEnum.TYPE_ANSWER.getCode());
 				
 			}
 			
@@ -165,6 +190,36 @@ public class ApiRecentMsgList extends RootApiToken<ApiRecentMsgListInput, ApiRec
 		
 		userServiceFactory.getMsgFoucService().save(msgFocus);
 		
+		
+	}
+	
+	public void saveMsgNotice(String userCode){
+		
+		List<UcMsgNotice> msgNotices = userServiceFactory.getMsgNoticeService().queryUnReadMsgList(userCode);
+		
+		List<UcMsgNoticeUser> msgNoticeUsers = new ArrayList<UcMsgNoticeUser>();
+		
+		if(msgNotices != null){
+			
+			msgNotices.forEach(msgNotice ->{
+				
+				UcMsgNoticeUser ucMsgNoticeUser = new UcMsgNoticeUser();
+				
+				ucMsgNoticeUser.setNoticeCode(msgNotice.getCode());
+				
+				ucMsgNoticeUser.setUserCode(userCode);
+				
+				ucMsgNoticeUser.setStatus(MsgEnum.FLAG_UNREAD.getCode());
+				
+				ucMsgNoticeUser.setZc(new Date());
+				
+				msgNoticeUsers.add(ucMsgNoticeUser);
+				
+			});
+			
+			userServiceFactory.getMsgNoticeUserService().save(msgNoticeUsers);
+			
+		}
 		
 	}
 
