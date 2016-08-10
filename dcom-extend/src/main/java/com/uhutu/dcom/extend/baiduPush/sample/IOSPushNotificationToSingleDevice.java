@@ -51,7 +51,7 @@ public class IOSPushNotificationToSingleDevice {
 			PushMsgToSingleDeviceRequest request = new PushMsgToSingleDeviceRequest()
 					.addChannelId(channelId).addMsgExpires(new Integer(3600)). // 设置message的有效时间
 					addMessageType(1).// 1：通知,0:透传消息.默认为0 注：IOS只有通知.
-					addMessage(notification.toString()).addDeployStatus(1). // IOS,
+					addMessage(notification.toString()).addDeployStatus(2). // IOS,
 																			// DeployStatus
 																			// =>
 																			// 1:
