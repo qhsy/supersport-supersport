@@ -35,6 +35,9 @@ var require = {
 	}
 };
 </script>
+<style>
+.isData{text-align:center; padding: 0.2rem 0;}
+</style>
 </head>
 <body>
 <header class="open-app">
@@ -72,30 +75,41 @@ var require = {
 		<li @click="tabEvent(1)" :class="[currView == 'questionTab'?'curr':'']"><span>问答</span></li>
 	</ul>
 	<template v-if="currView == 'contentTab'">
-		<ul class="personal-sports" v-cloak>
-			<li v-for="item in result.userContentTabInfo.contentInfos">
-				<template v-if="item.contentType == 'dzsd4107100110030003'">
-					<a href="../sportstatic/photo.html?code={{item.code}}&share=1">
-						<sports :item="item"></sports>
-					</a>
-				</template>
-				<template v-else>
-					<a href="../sportstatic/default.html?code={{item.code}}&share=1">
-						<sports :item="item"></sports>
-					</a>
-				</template>
-			</li>
-		</ul>
+		<template v-if="!result.userContentTabInfo.contentInfos.length">
+			<div class="isData">目前Ta还没有发布时刻</div>
+		</template>
+		<template v-else>
+			<ul class="personal-sports" v-cloak>
+				<li v-for="item in result.userContentTabInfo.contentInfos">
+					<template v-if="item.contentType == 'dzsd4107100110030003'">
+						<a href="../sportstatic/photo.html?code={{item.code}}&share=1">
+							<sports :item="item"></sports>
+						</a>
+					</template>
+					<template v-else>
+						<a href="../sportstatic/default.html?code={{item.code}}&share=1">
+							<sports :item="item"></sports>
+						</a>
+					</template>
+				</li>
+			</ul>
+		</template>
 	</template>
 	<template v-else>
-		<dl class="personal-dl" v-cloak>
-			<dt>回答了{{result.answerUserInfo.answerCount}}个问题</dt>
-			<dd class="details-item" v-for="item in result.userQuestionTabInfo.questionInfos">
-				<a href="details.html?id={{item.code}}">
-					<answer :item="item" :head="result"></answer>
-				</a>
-			</dd>
-		</dl>
+		<template v-if="!result.userQuestionTabInfo.questionInfos.length">
+			<div class="isData">目前Ta还没有回答问题</div>
+		</template>
+		<template v-else>
+			<dl class="personal-dl" v-cloak>
+				<dt>回答了{{result.answerUserInfo.answerCount}}个问题</dt>
+				<dd class="details-item" v-for="item in result.userQuestionTabInfo.questionInfos">
+					<a href="details.html?id={{item.code}}">
+						<answer :item="item" :head="result"></answer>
+					</a>
+				</dd>
+			</dl>
+		</template>
+		
 	</template>
 </section>
 <div class="fixed" v-if="browser" v-cloak @click="closeQrcode">
