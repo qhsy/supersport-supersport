@@ -4,6 +4,9 @@ project(':dcom-config').projectDir = new File(settingsDir, '../dcom-config')
 include ':dcom-component'
 project(':dcom-component').projectDir = new File(settingsDir, '../dcom-component')
 
+include ':dcom-extend'
+project(':dcom-extend').projectDir = new File(settingsDir, '../dcom-extend')
+
 include ':dcom-activity'
 project(':dcom-activity').projectDir = new File(settingsDir, '../dcom-activity')
 
