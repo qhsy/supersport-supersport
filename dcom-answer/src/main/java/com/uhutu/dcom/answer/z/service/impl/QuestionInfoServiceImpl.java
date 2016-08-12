@@ -132,7 +132,7 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 		
 		msgAnswer.setStatus(MsgEnum.FLAG_UNREAD.getCode());
 		
-		msgAnswer.setTitle("提问");
+		msgAnswer.setTitle(title);
 		
 		msgAnswer.setType("ANSWER");
 		
