@@ -122,7 +122,7 @@ public class AnswerMsgSupport {
 		
 		String content = TopHelper.upInfo(88880019, ucUserinfoExt.getNickName());
 		
-		String title = "回答";
+		String title = "拒绝回答";
 		
 		baiduPush(questionInfo.getQuestionUserCode(), title,content);
 		
@@ -181,7 +181,7 @@ public class AnswerMsgSupport {
 
 		UcUserinfoSocial ucUserinfoSocial = userInfoSupport.getUserInfoSocial(questionInfo.getQuestionUserCode());
 		
-		String title = "回答";
+		String title = "拒绝回答";
 		
 		String content = TopHelper.upInfo(88880025, ucUserinfoExt.getNickName());
 		
@@ -244,7 +244,7 @@ public class AnswerMsgSupport {
 
 		UcUserinfoSocial ucUserinfoSocial = userInfoSupport.getUserInfoSocial(questionInfo.getQuestionUserCode());
 		
-		String title = "回答";
+		String title = "超时未回答";
 		
 		String content = TopHelper.upInfo(88880026, ucUserinfoExt.getNickName());
 		
