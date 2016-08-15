@@ -11,6 +11,7 @@ import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiComplainInfoInput;
 import com.uhutu.sportcenter.z.input.ApiContentDetailInput;
 import com.uhutu.sportcenter.z.input.ApiContentPhotosInput;
+import com.uhutu.sportcenter.z.input.ApiContentReadCountInput;
 import com.uhutu.sportcenter.z.input.ApiContentRecommInput;
 import com.uhutu.sportcenter.z.input.ApiForLabelsInput;
 import com.uhutu.sportcenter.z.input.ApiForSportsInput;
@@ -25,6 +26,7 @@ import com.uhutu.sportcenter.z.input.ApiThemePageInput;
 import com.uhutu.sportcenter.z.result.ApiComplainInfoResult;
 import com.uhutu.sportcenter.z.result.ApiContentDetailResult;
 import com.uhutu.sportcenter.z.result.ApiContentPhotosResult;
+import com.uhutu.sportcenter.z.result.ApiContentReadCountResult;
 import com.uhutu.sportcenter.z.result.ApiContentRecommResult;
 import com.uhutu.sportcenter.z.result.ApiForLabelsResult;
 import com.uhutu.sportcenter.z.result.ApiForSportsResult;
@@ -172,6 +174,15 @@ public class ContentController {
 	public ApiShareInfoResult shareInfo(@RequestBody ApiShareInfoInput input) {
 
 		return apiFactory.getApiShareInfo().api(input);
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/contentReadCount", method = RequestMethod.POST)
+	@ApiOperation(value = "增加阅读量", notes = "增加阅读量")
+	public ApiContentReadCountResult shareInfo(@RequestBody ApiContentReadCountInput input) {
+
+		return apiFactory.getApiContentReadCount().api(input);
 
 	}
 }
