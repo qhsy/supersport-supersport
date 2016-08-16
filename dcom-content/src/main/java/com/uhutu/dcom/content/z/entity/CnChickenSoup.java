@@ -24,8 +24,9 @@ public class CnChickenSoup extends BaseEntity {
 	@Column(length = 50)
 	private String code;
 
-	@ZooData(name = "小知识", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" }, verify = {
-			DefineWebVerify.Max_Length + "=280", DefineWebVerify.Min_Length + "=2" })
+	@ZooData(name = "小知识", element = DefineWebElement.Textarea, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0" }, verify = { DefineWebVerify.Max_Length + "=280",
+					DefineWebVerify.Min_Length + "=2" })
 	@Column(length = 300)
 	private String content;
 
@@ -33,7 +34,16 @@ public class CnChickenSoup extends BaseEntity {
 	@Column(length = 5)
 	private String status;
 
-	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "开始时间", element = DefineWebElement.Datehms, require = "1")
+	@Column(length = 30)
+	private String startTime;
+
+	@ZooData(name = "结束时间", element = DefineWebElement.Datehms, require = "1")
+	@Column(length = 30)
+	private String endTime;
+
+	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 200)
 	private String remark;
 
@@ -61,6 +71,22 @@ public class CnChickenSoup extends BaseEntity {
 		this.content = content;
 	}
 
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+
 	public String getRemark() {
 		return remark;
 	}
@@ -68,5 +94,4 @@ public class CnChickenSoup extends BaseEntity {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-
 }

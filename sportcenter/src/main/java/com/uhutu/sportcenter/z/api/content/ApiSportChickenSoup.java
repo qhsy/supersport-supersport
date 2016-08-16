@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.uhutu.dcom.content.z.entity.CnChickenSoup;
 import com.uhutu.sportcenter.z.input.ApiSportChickenSoupInput;
 import com.uhutu.sportcenter.z.result.ApiSportChickenSoupResult;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 
@@ -19,7 +20,8 @@ public class ApiSportChickenSoup extends RootApiBase<ApiSportChickenSoupInput, A
 
 	protected ApiSportChickenSoupResult process(ApiSportChickenSoupInput input) {
 		ApiSportChickenSoupResult result = new ApiSportChickenSoupResult();
-		CnChickenSoup soup = JdbcHelper.queryOne(CnChickenSoup.class, "status", "1");
+		CnChickenSoup soup = JdbcHelper.queryOne(CnChickenSoup.class, "", "",
+				"status='1' and startTime<=NOW() and endTime>=NOW()", new MDataMap());
 		if (soup != null && StringUtils.isNotBlank(soup.getContent())) {
 			result.setChickenSoup(soup.getContent());
 		}
