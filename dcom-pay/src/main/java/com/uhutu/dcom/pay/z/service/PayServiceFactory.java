@@ -52,6 +52,9 @@ public class PayServiceFactory {
 	
 	@Autowired
 	private IGoldCoinPayService goldCoinPayService;
+	
+	@Autowired
+	private IPaCoinInfoService paCoinInfoService;
 
 	public IAlipayService getAlipayService() {
 		return alipayService;
@@ -107,6 +110,10 @@ public class PayServiceFactory {
 
 	public IGoldCoinPayService getGoldCoinPayService() {
 		return goldCoinPayService;
+	}
+
+	public IPaCoinInfoService getPaCoinInfoService() {
+		return paCoinInfoService;
 	}
 
 }

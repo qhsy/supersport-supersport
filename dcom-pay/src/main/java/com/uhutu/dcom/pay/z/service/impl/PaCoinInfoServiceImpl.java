@@ -1,9 +1,11 @@
 package com.uhutu.dcom.pay.z.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.uhutu.dcom.pay.z.entity.PaCoinFlow;
 import com.uhutu.dcom.pay.z.entity.PaCoinInfo;
 import com.uhutu.dcom.pay.z.service.IPaCoinInfoService;
 import com.uhutu.zoocom.helper.MapHelper;
@@ -43,6 +45,20 @@ public class PaCoinInfoServiceImpl implements IPaCoinInfoService {
 			
 		}
 		
+	}
+
+	@Override
+	public List<PaCoinFlow> queryCoinFlows(String userCode, int start, int number) {
+		
+		List<PaCoinFlow> coinFlows = JdbcHelper.queryForList(PaCoinFlow.class, "", "", "", MapHelper.initMap("userCode",userCode), start, number);
+		
+		return coinFlows;
+	}
+
+	@Override
+	public int queryCoinFlowCount(String userCode) {
+		
+		return JdbcHelper.count(PaCoinFlow.class, "", MapHelper.initMap("userCode",userCode));
 	}
 
 }

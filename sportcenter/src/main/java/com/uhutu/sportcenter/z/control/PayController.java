@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiCoinAccInfoInput;
 import com.uhutu.sportcenter.z.input.ApiCoinChargeInput;
+import com.uhutu.sportcenter.z.input.ApiCoinFlowInfoInput;
 import com.uhutu.sportcenter.z.input.ApiCoinPayInput;
 import com.uhutu.sportcenter.z.input.ApiWechatH5PayInput;
 import com.uhutu.sportcenter.z.input.ApiWechatMobilePayInput;
 import com.uhutu.sportcenter.z.result.ApiCoinAccInfoResult;
 import com.uhutu.sportcenter.z.result.ApiCoinChargeResult;
+import com.uhutu.sportcenter.z.result.ApiCoinFlowInfoResult;
 import com.uhutu.sportcenter.z.result.ApiCoinPayResult;
 import com.uhutu.sportcenter.z.result.ApiWechatH5PayResult;
 import com.uhutu.sportcenter.z.result.ApiWechatMobilePayResult;
@@ -88,6 +90,15 @@ public class PayController {
 	public ApiCoinPayResult coinAccInfo(@RequestBody ApiCoinPayInput input) {
 
 		return apiFactory.getApiCoinPay().api(input);
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/coinFlowInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "金币流水信息", notes = "金币流水信息")
+	public ApiCoinFlowInfoResult coinFlowInfo(@RequestBody ApiCoinFlowInfoInput input) {
+
+		return apiFactory.getApiCoinFlowInfo().api(input);
 		
 	}
 
