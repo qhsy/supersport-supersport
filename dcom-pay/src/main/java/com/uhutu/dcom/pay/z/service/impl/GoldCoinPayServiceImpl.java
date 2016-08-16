@@ -73,6 +73,8 @@ public class GoldCoinPayServiceImpl implements IGoldCoinPayService {
 		
 		coinFlow.setTradeNum(request.getCoinNum());
 		
+		coinFlow.setUserCode(request.getUserCode());
+		
 		coinFlow.setZc(new Date());
 		
 		JdbcHelper.insert(coinFlow);
