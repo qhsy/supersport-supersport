@@ -38,7 +38,7 @@ public class ApiButtockInfo extends RootApiBase<ApiButtockInfoInput, ApiButtockI
 		
 		result.setNotes(apiButtockNotes.process(new ApiButtockNotesInput()).getNotes());
 		
-		result.setApplyUrl("http://mp.weixin.qq.com/s?__biz=MzAwNzk2MjI1OA==&mid=100000322&idx=1&sn=fba9bd92a3ff78862efb67d3b0697036&scene=20#wechat_redirect");
+		result.setApplyUrl("");
 		
 		try {
 			
