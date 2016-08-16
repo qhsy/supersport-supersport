@@ -63,6 +63,9 @@ public class UcUserinfoExt extends BaseEntity {
 
 	@ZooData(name = "地址名称")
 	private String locationName;
+	
+	@ZooData(name="头衔")
+	private String title;
 
 	/**
 	 * 获取用户编号
@@ -266,6 +269,14 @@ public class UcUserinfoExt extends BaseEntity {
 
 	public void setLocationName(String locationName) {
 		this.locationName = locationName;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }
