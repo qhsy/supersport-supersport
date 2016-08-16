@@ -20,6 +20,7 @@ import com.uhutu.sportcenter.z.input.ApiOperContentInput;
 import com.uhutu.sportcenter.z.input.ApiPublishContentPhotosInput;
 import com.uhutu.sportcenter.z.input.ApiPublishSportingMomentInput;
 import com.uhutu.sportcenter.z.input.ApiShareInfoInput;
+import com.uhutu.sportcenter.z.input.ApiSportChickenSoupInput;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.z.input.ApiSupportPraiseInput;
 import com.uhutu.sportcenter.z.input.ApiThemePageInput;
@@ -35,6 +36,7 @@ import com.uhutu.sportcenter.z.result.ApiOperContentResult;
 import com.uhutu.sportcenter.z.result.ApiPublishContentPhotosResult;
 import com.uhutu.sportcenter.z.result.ApiPublishSportingMomentResult;
 import com.uhutu.sportcenter.z.result.ApiShareInfoResult;
+import com.uhutu.sportcenter.z.result.ApiSportChickenSoupResult;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
 import com.uhutu.sportcenter.z.result.ApiSupportPraiseResult;
 import com.uhutu.sportcenter.z.result.ApiThemePageResult;
@@ -183,6 +185,15 @@ public class ContentController {
 	public ApiContentReadCountResult shareInfo(@RequestBody ApiContentReadCountInput input) {
 
 		return apiFactory.getApiContentReadCount().api(input);
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/sportChickenSoup", method = RequestMethod.POST)
+	@ApiOperation(value = "运动小知识", notes = "运动小知识")
+	public ApiSportChickenSoupResult shareInfo(@RequestBody ApiSportChickenSoupInput input) {
+
+		return apiFactory.getApiSportChickenSoup().api(input);
 
 	}
 }

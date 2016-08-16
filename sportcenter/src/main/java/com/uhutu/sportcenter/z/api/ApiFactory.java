@@ -44,6 +44,7 @@ import com.uhutu.sportcenter.z.api.content.ApiPublishContentPhotos;
 import com.uhutu.sportcenter.z.api.content.ApiPublishSportingMoment;
 import com.uhutu.sportcenter.z.api.content.ApiShareContent;
 import com.uhutu.sportcenter.z.api.content.ApiShareInfo;
+import com.uhutu.sportcenter.z.api.content.ApiSportChickenSoup;
 import com.uhutu.sportcenter.z.api.content.ApiSportingMoments;
 import com.uhutu.sportcenter.z.api.content.ApiSupportPraise;
 import com.uhutu.sportcenter.z.api.content.ApiThemePage;
@@ -343,53 +344,60 @@ public class ApiFactory {
 
 	@Autowired
 	ApiThemePage apiThemePage;
-	
+
 	@Autowired
 	private ApiAppUpdateAnswerUser apiAppUpdateAnswerUser;
-	
+
 	@Autowired
 	private ApiUpdateUserTitle apiUpdateUserTitle;
-	
+
 	@Autowired
 	private ApiBindSettleAccount apiBindSettleAccount;
-	
+
 	@Autowired
 	private ApiOwnSportMoment apiOwnSportMoment;
-	
+
 	@Autowired
 	private ApiSocialLogin2 apiSocialLogin2;
-	
+
 	@Autowired
 	private ApiWechatUserLogin2 apiWechatUserLogin2;
-	
+
 	@Autowired
 	private ApiAnswerMsgList apiAnswerMsgList;
-	
+
 	@Autowired
 	private ApiRecentMsgList apiRecentMsgList;
 
 	@Autowired
 	private ApiShareInfo apiShareInfo;
-	
+
 	@Autowired
 	private ApiCoinCharge apiCoinCharge;
-	
+
 	@Autowired
 	private ApiCoinAccInfo apiCoinAccInfo;
-	
+
 	@Autowired
 	private ApiCoinPay apiCoinPay;
-	
+
 	@Autowired
 	private ApiMsgFocus apiMsgFocus;
-	
+
 	@Autowired
 	private ApiContentReadCount apiContentReadCount;
-	
+
 	@Autowired
 	private ApiCoinFlowInfo apiCoinFlowInfo;
+
+	@Autowired
+	private ApiSportChickenSoup apiSportChickenSoup;
+
 	
-	
+	public ApiSportChickenSoup getApiSportChickenSoup() {
+		return apiSportChickenSoup;
+	}
+
 	public ApiCoinFlowInfo getApiCoinFlowInfo() {
 		return apiCoinFlowInfo;
 	}
@@ -637,7 +645,7 @@ public class ApiFactory {
 	public ApiUserExpertDetail getApiUserExpertDetail() {
 		return apiUserExpertDetail;
 	}
-	
+
 	public ApiUpdateUserPower getApiUpdateUserPower() {
 		return apiUpdateUserPower;
 	}
