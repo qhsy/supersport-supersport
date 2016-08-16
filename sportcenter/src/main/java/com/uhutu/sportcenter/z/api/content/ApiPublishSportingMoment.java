@@ -1,5 +1,13 @@
 package com.uhutu.sportcenter.z.api.content;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +53,12 @@ public class ApiPublishSportingMoment
 			String waterMarker = new WaterMarkerSupport().getWaterMarker(contentBasicinfo.getCover());
 			contentBasicinfo.setCover(StringUtils.isNotBlank(waterMarker) ? waterMarker : contentBasicinfo.getCover());
 		}
+		if (StringUtils.isNotBlank(contentBasicinfo.getCover())) {
+			String wh = getBufferedImage(contentBasicinfo.getCover());
+			if (StringUtils.isNotBlank(wh)) {
+				contentBasicinfo.setCoverWH(wh);
+			}
+		}
 		contentServiceFactory.getContentBasicinfoService().save(contentBasicinfo);
 
 		contentDetail.setCode(contentBasicinfo.getCode());
@@ -52,5 +66,37 @@ public class ApiPublishSportingMoment
 		contentServiceFactory.getContentDetailService().save(contentDetail);
 
 		return momentResult;
+	}
+
+	/**
+	 * 
+	 * @param imgUrl
+	 *            图片地址
+	 * @return
+	 */
+	public static String getBufferedImage(String imgUrl) {
+		URL url = null;
+		InputStream is = null;
+		String result = null;
+		try {
+			url = new URL(imgUrl);
+			is = url.openStream();
+			BufferedImage img = ImageIO.read(is);
+			if (img != null) {
+				result = img.getWidth() + "&" + img.getHeight();
+			}
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+
+			try {
+				is.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
 	}
 }

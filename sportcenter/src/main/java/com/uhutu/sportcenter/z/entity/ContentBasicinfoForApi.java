@@ -20,6 +20,9 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(name = "内容封面图片链接", notes = "内容封面图片链接", example = "http://www.ichsy.com")
 	private String cover;
 
+	@ApiModelProperty(name = "内容封面图片宽高(此参数不用输入，只作为展示使用)", notes = "内容封面图片宽高", example = "800*600")
+	private String coverWH;
+
 	@ApiModelProperty(name = "标题", notes = "标题", example = "新体优家，您运动的首选~")
 	private String title;
 
@@ -227,6 +230,14 @@ public class ContentBasicinfoForApi {
 
 	public void setPraiseNum(int praiseNum) {
 		this.praiseNum = praiseNum;
+	}
+
+	public String getCoverWH() {
+		return coverWH;
+	}
+
+	public void setCoverWH(String coverWH) {
+		this.coverWH = coverWH;
 	}
 
 }
