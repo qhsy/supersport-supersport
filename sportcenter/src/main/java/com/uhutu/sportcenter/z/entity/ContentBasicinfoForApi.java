@@ -70,6 +70,9 @@ public class ContentBasicinfoForApi {
 
 	@ApiModelProperty(value = "点赞数量")
 	private int praiseNum;
+	
+	@ApiModelProperty(value="阅读数量")
+	private long readNum;
 
 	@ApiModelProperty(value = "用户基本信息")
 	private UserBasicInfo userBasicInfo = new UserBasicInfo();
@@ -238,6 +241,14 @@ public class ContentBasicinfoForApi {
 
 	public void setCoverWH(String coverWH) {
 		this.coverWH = coverWH;
+	}
+
+	public long getReadNum() {
+		return readNum;
+	}
+
+	public void setReadNum(long readNum) {
+		this.readNum = readNum;
 	}
 
 }

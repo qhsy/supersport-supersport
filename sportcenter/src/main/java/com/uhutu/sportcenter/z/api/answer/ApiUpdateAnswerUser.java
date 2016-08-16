@@ -59,7 +59,13 @@ public class ApiUpdateAnswerUser extends RootApiToken<ApiUpdateAnswerUserInput, 
 				
 				userinfoExt.setNickName(input.getNickName());
 				
-				JdbcHelper.update(userinfoExt, "nickName", "userCode");
+				if(StringUtils.isNotBlank(input.getTitle())){
+					
+					userinfoExt.setTitle(input.getTitle());
+					
+				}
+				
+				JdbcHelper.update(userinfoExt, "nickName,title", "userCode");
 				
 			}
 			
