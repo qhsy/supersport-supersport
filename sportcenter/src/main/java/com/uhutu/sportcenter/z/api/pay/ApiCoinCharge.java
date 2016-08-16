@@ -13,6 +13,7 @@ import com.uhutu.dcom.pay.z.response.GoldCoinPayResponse;
 import com.uhutu.sportcenter.z.input.ApiCoinChargeInput;
 import com.uhutu.sportcenter.z.result.ApiCoinChargeResult;
 import com.uhutu.zoocom.helper.MapHelper;
+import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
@@ -49,6 +50,10 @@ public class ApiCoinCharge extends RootApiToken<ApiCoinChargeInput, ApiCoinCharg
 			coinPayRequest.setOutCode(input.getFlowNO());
 
 			coinPayRequest.setUserCode(upUserCode());
+			
+			long money = input.getCoinNum()/100;
+			
+			coinPayRequest.setRemark(TopHelper.upInfo(81110012, money));
 
 			GoldCoinPayResponse coinPayResponse = (GoldCoinPayResponse) payGateProcess.process(PayProcessEnum.GOLD_COIN,
 					coinPayRequest, new MDataMap());

@@ -2,6 +2,8 @@ package com.uhutu.sportcenter.z.api.pay;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.uhutu.dcom.order.z.entity.OcOrderInfo;
 import com.uhutu.dcom.pay.z.common.OperType;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.common.TradeType;
@@ -9,13 +11,16 @@ import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
 import com.uhutu.dcom.pay.z.request.GoldCoinPayRequest;
 import com.uhutu.dcom.pay.z.request.WechatNotifyRequest;
 import com.uhutu.dcom.pay.z.response.GoldCoinPayResponse;
+import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.sportcenter.z.input.ApiCoinPayInput;
 import com.uhutu.sportcenter.z.pay.func.WechatH5PayNotifyFunc;
 import com.uhutu.sportcenter.z.result.ApiCoinPayResult;
 import com.uhutu.zoocom.helper.FormatHelper;
+import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.model.MResult;
 import com.uhutu.zoocom.root.RootApiToken;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 金币支付
@@ -44,6 +49,22 @@ public class ApiCoinPay extends RootApiToken<ApiCoinPayInput, ApiCoinPayResult> 
 		coinPayRequest.setTradeType(TradeType.GOLDEN_COIN);
 		
 		coinPayRequest.setUserCode(upUserCode());
+		
+		OcOrderInfo ocOrderInfo = JdbcHelper.queryOne(OcOrderInfo.class, "code",input.getOrderCode());
+		
+		if(ocOrderInfo != null){
+			
+			UcUserinfoExt ucUserinfoExt = JdbcHelper.queryOne(UcUserinfoExt.class, "userCode",ocOrderInfo.getSellerCode());
+			
+			if(ucUserinfoExt != null){
+				
+				String remark = TopHelper.upInfo(81110013, ucUserinfoExt.getNickName());
+				
+				coinPayRequest.setRemark(remark);
+				
+			}
+			
+		}
 
 		GoldCoinPayResponse coinPayResponse = (GoldCoinPayResponse) payGateProcess.process(PayProcessEnum.GOLD_COIN,
 				coinPayRequest, new MDataMap());

@@ -67,7 +67,7 @@ public class GoldCoinPayServiceImpl implements IGoldCoinPayService {
 		
 		coinFlow.setOutCode(request.getOutCode());
 		
-		coinFlow.setRemark(request.getOperType().getRemark());
+		coinFlow.setRemark(request.getRemark());
 		
 		coinFlow.setTradeType(request.getTradeType().name());
 		

@@ -25,6 +25,9 @@ public class GoldCoinPayRequest implements IPayRequest {
 	
 	/*外部交易编号*/
 	private String outCode;
+	
+	/*金币备注信息*/
+	private String remark;
 
 	public long getCoinNum() {
 		return coinNum;
@@ -64,6 +67,14 @@ public class GoldCoinPayRequest implements IPayRequest {
 
 	public void setUserCode(String userCode) {
 		this.userCode = userCode;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	
 }
