@@ -9,6 +9,8 @@
 		<item code="dzsd4107100110030001" defineName="文章" parentCode="dzsd410710011003" />
 		<item code="dzsd4107100110030002" defineName="文章(含视频)" parentCode="dzsd410710011003" />
 		<item code="dzsd4107100110030003" defineName="图集" parentCode="dzsd410710011003" />
+		<item code="dzsd4107100110030004" defineName="单图" parentCode="dzsd410710011003" />
+		<item code="dzsd4107100110030005" defineName="单视频" parentCode="dzsd410710011003" />
 		<item code="dzsd410710011004" defineName="广告类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110040001" defineName="单图广告" parentCode="dzsd410710011004" />
 		<item code="dzsd4107100110040002" defineName="轮播广告" parentCode="dzsd410710011004" />

@@ -62,13 +62,13 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(name = "业务类型编号：运动时刻 文章", notes = "运动时刻:dzsd4107100110020001,文章:dzsd4107100110020002")
 	private String busiType;
 
-	@ApiModelProperty(name = "展示类型", notes = " dzsd4107100110030001:展示图文 ,dzsd4107100110030002:视频,dzsd4107100110030003:图集", example = "dzsd4107100110030002")
+	@ApiModelProperty(name = "展示类型", notes = " dzsd4107100110030001:文章 ,dzsd4107100110030002:文章(含视频),dzsd4107100110030003:图集,dzsd4107100110030004:单图,dzsd4107100110030005:单视频", example = "dzsd4107100110030002")
 	private String contentType;
-	
-	@ApiModelProperty(value="点赞数量")
+
+	@ApiModelProperty(value = "点赞数量")
 	private int praiseNum;
-	
-	@ApiModelProperty(value="用户基本信息")
+
+	@ApiModelProperty(value = "用户基本信息")
 	private UserBasicInfo userBasicInfo = new UserBasicInfo();
 
 	public String getCode() {
