@@ -2,6 +2,7 @@ package com.uhutu.sportcenter.z.api.pay;
 
 import java.util.List;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -48,6 +49,12 @@ public class ApiCoinFlowInfo extends RootApiToken<ApiCoinFlowInfoInput, ApiCoinF
 				PaCoinFlowInfo coinFlowInfo = new PaCoinFlowInfo();
 				
 				BeanUtils.copyProperties(coinFlow, coinFlowInfo);
+				
+				if(coinFlow.getZc() != null){
+					
+					coinFlowInfo.setTimeStr(DateFormatUtils.format(coinFlow.getZc(), "yyyy-MM-dd HH:mm:ss"));
+					
+				}
 				
 				result.getCoinFlowInfos().add(coinFlowInfo);
 				

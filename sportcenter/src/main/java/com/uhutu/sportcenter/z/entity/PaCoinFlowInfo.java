@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.entity;
 
+import java.util.Date;
+
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -29,6 +31,9 @@ public class PaCoinFlowInfo {
 	
 	@ApiModelProperty(value = "用户编号")
 	private String userCode;
+	
+	@ApiModelProperty(value="创建时间")
+	private String timeStr;
 
 	public String getCode() {
 		return code;
@@ -84,6 +89,14 @@ public class PaCoinFlowInfo {
 
 	public void setUserCode(String userCode) {
 		this.userCode = userCode;
+	}
+
+	public String getTimeStr() {
+		return timeStr;
+	}
+
+	public void setTimeStr(String timeStr) {
+		this.timeStr = timeStr;
 	}
 
 }
