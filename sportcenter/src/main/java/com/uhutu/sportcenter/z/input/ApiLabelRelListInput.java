@@ -19,8 +19,11 @@ public class ApiLabelRelListInput extends RootApiInput {
 	@ApiModelProperty(value="当前页码")
 	private int pagination;
 	
-	@ApiModelProperty(value="宽度")
-	private int width;
+	@ApiModelProperty(value="封面宽度")
+	private int wCover;
+	
+	@ApiModelProperty(value="内容宽度")
+	private int wContent;
 	
 	@ApiModelProperty(value="类型",example="最新tab:newTab,最热tab:hotTab")
 	private String type;
@@ -32,13 +35,37 @@ public class ApiLabelRelListInput extends RootApiInput {
 	public void setTagCode(String tagCode) {
 		this.tagCode = tagCode;
 	}
-
-	public int getWidth() {
-		return width;
+	
+	public int getPagination() {
+		return pagination;
 	}
 
-	public void setWidth(int width) {
-		this.width = width;
+	public void setPagination(int pagination) {
+		this.pagination = pagination;
+	}
+
+	public int getwCover() {
+		return wCover;
+	}
+
+	public void setwCover(int wCover) {
+		this.wCover = wCover;
+	}
+
+	public int getwContent() {
+		return wContent;
+	}
+
+	public void setwContent(int wContent) {
+		this.wContent = wContent;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

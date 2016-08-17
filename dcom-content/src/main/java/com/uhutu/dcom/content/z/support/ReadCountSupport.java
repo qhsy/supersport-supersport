@@ -20,7 +20,7 @@ public class ReadCountSupport {
 	 */
 	public int ReadcountByCode(String code) {
 		int count = 0;
-		CnContentReadCount readCount = JdbcHelper.queryOne(CnContentReadCount.class, "code", code);
+		CnContentReadCount readCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode", code);
 		if (readCount != null) {
 			count = readCount.getCount();
 		}

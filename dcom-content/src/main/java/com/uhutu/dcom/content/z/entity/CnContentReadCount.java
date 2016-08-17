@@ -22,7 +22,7 @@ public class CnContentReadCount extends BaseEntity {
 	@ZooData(name = "内容编号", require = "1", element = DefineWebElement.Model, inc = {
 			DefineWebInc.Web_Component + "=dzcw410710010002" })
 	@Column(length = 50)
-	private String code;
+	private String contentCode;
 
 	@ZooData(name = "阅读量", require = "1", verify = { DefineWebVerify.Base_Number }, sort = {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0" })
@@ -31,14 +31,6 @@ public class CnContentReadCount extends BaseEntity {
 	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
 	@Column(length = 255)
 	private String remark;
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
 
 	public int getCount() {
 		return count;
@@ -54,6 +46,14 @@ public class CnContentReadCount extends BaseEntity {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getContentCode() {
+		return contentCode;
+	}
+
+	public void setContentCode(String contentCode) {
+		this.contentCode = contentCode;
 	}
 
 }

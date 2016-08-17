@@ -2,6 +2,7 @@ package com.uhutu.sportcenter.z.result;
 
 import com.uhutu.sportcenter.z.entity.LabelContentInfo;
 import com.uhutu.zoocom.root.RootApiResult;
+import com.uhutu.zooweb.io.ImageThumb;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -15,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class ApiLabelRelListResult extends RootApiResult {
 	
 	@ApiModelProperty(value="封面")
-	private String cover;
+	private ImageThumb cover;
 	
 	@ApiModelProperty(value="内容")
 	private String content;
@@ -25,14 +26,6 @@ public class ApiLabelRelListResult extends RootApiResult {
 	
 	@ApiModelProperty(value="最热内容")
 	private LabelContentInfo hotContent = new LabelContentInfo();
-
-	public String getCover() {
-		return cover;
-	}
-
-	public void setCover(String cover) {
-		this.cover = cover;
-	}
 
 	public String getContent() {
 		return content;
@@ -56,6 +49,14 @@ public class ApiLabelRelListResult extends RootApiResult {
 
 	public void setHotContent(LabelContentInfo hotContent) {
 		this.hotContent = hotContent;
+	}
+
+	public ImageThumb getCover() {
+		return cover;
+	}
+
+	public void setCover(ImageThumb cover) {
+		this.cover = cover;
 	}
 
 }

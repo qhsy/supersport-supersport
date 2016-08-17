@@ -14,7 +14,7 @@ public class CnContentReadCountFuncEdit extends RootFunc {
 	public WebOperateResult process(WebPageModel webPageModel, ExtendPageDefine extendPageDefine,
 			WebOperateInput input) {
 		WebOperateResult result = new WebOperateResult();
-		CnContentReadCount read = JdbcHelper.queryOne(CnContentReadCount.class, "code", input.getDataMap().get("code"));
+		CnContentReadCount read = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode", input.getDataMap().get("contentCode"));
 		if (read != null) {
 			read.setCount(Integer.valueOf(input.getDataMap().get("count")));
 			read.setRemark(input.getDataMap().get("remark"));

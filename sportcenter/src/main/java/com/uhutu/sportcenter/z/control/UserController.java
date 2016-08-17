@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.control;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.APiStartPageInput;
 import com.uhutu.sportcenter.z.input.ApiAttendListInput;
@@ -52,6 +55,8 @@ import com.uhutu.sportcenter.z.result.ApiUserRegResult;
 import com.uhutu.sportcenter.z.result.ApiUserResetPwdResult;
 import com.uhutu.sportcenter.z.result.ApiVerifyNickNameResult;
 import com.uhutu.sportcenter.z.result.ApiVersionInfoResult;
+import com.uhutu.zoocom.model.MDataMap;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -74,6 +79,14 @@ public class UserController {
 	@RequestMapping(value = "/versionInfo", method = RequestMethod.POST)
 	@ApiOperation(value = "app版本升级提示接口", notes = "版本升级")
 	public ApiVersionInfoResult versionInfo(@RequestBody ApiVersionInfoInput input) {
+		
+		String orderStr = "IFNULL((SELECT count from cn_content_read_count  where content_code = code),zc) DESC";
+
+		List<CnContentBasicinfo> contentBasicinfos = JdbcHelper.queryForList(CnContentBasicinfo.class, "", orderStr,
+				"", new MDataMap(), 0, 10);
+		
+		
+		System.out.println(contentBasicinfos.size());
 		
 		return apiFactory.getApiVersionInfo().api(input);
 	

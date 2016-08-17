@@ -19,13 +19,13 @@ public class ApiContentReadCount extends RootApiBase<ApiContentReadCountInput, A
 
 	protected ApiContentReadCountResult process(ApiContentReadCountInput input) {
 		if (StringUtils.isNotBlank(input.getCode())) {
-			CnContentReadCount count = JdbcHelper.queryOne(CnContentReadCount.class, "code", input.getCode());
+			CnContentReadCount count = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode", input.getCode());
 			if (count != null) {
 				count.setCount(count.getCount() + 1);
 				JdbcHelper.update(count, "count", "za");
 			} else {
 				count = new CnContentReadCount();
-				count.setCode(input.getCode());
+				count.setContentCode(input.getCode());
 				count.setCount(1);
 				JdbcHelper.insert(count);
 			}
