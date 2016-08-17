@@ -15,15 +15,14 @@ import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
-import com.uhutu.dcom.content.z.service.ContentBasicinfoServiceFactory;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.remark.z.enums.RemarkEnum;
+import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
-import com.uhutu.sportcenter.z.input.ApiRemarkCountInput;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
 import com.uhutu.zoocom.define.DefineUser;
@@ -49,6 +48,9 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 
 	@Autowired
 	private UserInfoSupport userInfoSupport;
+	
+	@Autowired
+	private ContentRemarkServiceFactory remarkServiceFactory;
 
 	@Autowired
 	private ContentLabelServiceFactory labelServiceFactory;
@@ -174,7 +176,7 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 
 				sportingMoment.setPublishTimeStr("MM-dd HH:mm");
 				
-				CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "code",
+				CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
 						sportingMoment.getCode());
 				
 				if(contentReadCount != null){
@@ -184,7 +186,11 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 				}
 				
 				sportingMoment.setFavorFlag(lightFavor(sportingMoment.getCode(), input.getZoo().getToken()));
+				
+				int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(sportingMoment.getCode(), RemarkEnum.FLAG_ENABLE.getCode());
 
+				sportingMoment.setRemarkNum(remarkNum);;
+				
 				sports.add(sportingMoment);
 
 			}

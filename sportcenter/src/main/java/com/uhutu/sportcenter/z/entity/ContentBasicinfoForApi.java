@@ -74,6 +74,9 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(value="阅读数量")
 	private long readNum;
 	
+	@ApiModelProperty(value="评论数量")
+	private long remarkNum;
+	
 	@ApiModelProperty(value="喜欢标识")
 	private boolean favorFlag;
 
@@ -260,6 +263,14 @@ public class ContentBasicinfoForApi {
 
 	public void setFavorFlag(boolean favorFlag) {
 		this.favorFlag = favorFlag;
+	}
+
+	public long getRemarkNum() {
+		return remarkNum;
+	}
+
+	public void setRemarkNum(long remarkNum) {
+		this.remarkNum = remarkNum;
 	}
 
 }
