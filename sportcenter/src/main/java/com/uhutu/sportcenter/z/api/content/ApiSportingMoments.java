@@ -12,19 +12,25 @@ import org.springframework.stereotype.Service;
 import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.entity.CnContentReadCount;
+import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentBasicinfoServiceFactory;
+import com.uhutu.dcom.content.z.service.ContentServiceFactory;
+import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
+import com.uhutu.sportcenter.z.input.ApiRemarkCountInput;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
 import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiForMember;
+import com.uhutu.zoocom.z.bean.TopUserFactory;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.helper.ImageHelper;
 import com.uhutu.zooweb.user.UserCallFactory;
@@ -39,7 +45,7 @@ import com.uhutu.zooweb.user.UserCallFactory;
 public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput, ApiSportingMomentsResult> {
 
 	@Autowired
-	private ContentBasicinfoServiceFactory serviceFactory;
+	private ContentServiceFactory serviceFactory;
 
 	@Autowired
 	private UserInfoSupport userInfoSupport;
@@ -167,6 +173,17 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 				sportingMoment.setCover(ImageHelper.upImageThumbnail(sportingMoment.getCover(), input.getWidth()));
 
 				sportingMoment.setPublishTimeStr("MM-dd HH:mm");
+				
+				CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "code",
+						sportingMoment.getCode());
+				
+				if(contentReadCount != null){
+					
+					sportingMoment.setReadNum(contentReadCount.getCount());
+					
+				}
+				
+				sportingMoment.setFavorFlag(lightFavor(sportingMoment.getCode(), input.getZoo().getToken()));
 
 				sports.add(sportingMoment);
 
@@ -190,6 +207,29 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 		});
 		
 		return buffer.toString();
+		
+	}
+	
+	public boolean lightFavor(String contentCode,String token){
+		
+		boolean flag = false;
+		
+		String userCode = TopUserFactory.upUserCallFactory().upUserCodeByAuthToken(token, DefineUser.Login_System_Default);
+		
+		if(StringUtils.isNotBlank(userCode)){
+			
+			/*01点赞*/
+			CnSupportPraise praise = serviceFactory.getSupportPraiseService().query(contentCode,userCode, "01");
+			
+			if(praise != null && StringUtils.equals(praise.getStatus(), ContentEnum.FAVOR_STATUS_YES.getCode())){
+				
+				flag = true;
+				
+			}
+			
+		}
+		
+		return flag;
 		
 	}
 

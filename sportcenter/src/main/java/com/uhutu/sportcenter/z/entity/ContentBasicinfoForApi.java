@@ -73,6 +73,9 @@ public class ContentBasicinfoForApi {
 	
 	@ApiModelProperty(value="阅读数量")
 	private long readNum;
+	
+	@ApiModelProperty(value="喜欢标识")
+	private boolean favorFlag;
 
 	@ApiModelProperty(value = "用户基本信息")
 	private UserBasicInfo userBasicInfo = new UserBasicInfo();
@@ -249,6 +252,14 @@ public class ContentBasicinfoForApi {
 
 	public void setReadNum(long readNum) {
 		this.readNum = readNum;
+	}
+
+	public boolean isFavorFlag() {
+		return favorFlag;
+	}
+
+	public void setFavorFlag(boolean favorFlag) {
+		this.favorFlag = favorFlag;
 	}
 
 }
