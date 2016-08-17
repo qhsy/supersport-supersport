@@ -1,5 +1,6 @@
 package com.uhutu.dcom.tag.z.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
@@ -37,11 +38,15 @@ public class CnContentLabel extends BaseEntity {
 	@ZooData(name = "状态(是否可用)", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String status;
-	
-	@ZooData(name="封面图")
+
+	@ZooData(name = "封面图(宽1080)", element = DefineWebElement.Upload, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String cover;
-	
-	@ZooData(name="推广内容")
+
+	@ZooData(name = "推广内容", element = DefineWebElement.Textarea, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" }, verify = {
+					DefineWebVerify.Max_Length + "=280", DefineWebVerify.Min_Length + "=2" })
+	@Column(length = 300)
 	private String content;
 
 	public String getCode() {
