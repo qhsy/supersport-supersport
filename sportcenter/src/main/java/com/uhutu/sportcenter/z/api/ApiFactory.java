@@ -58,6 +58,7 @@ import com.uhutu.sportcenter.z.api.extend.ApiSendSms;
 import com.uhutu.sportcenter.z.api.home.APiStartPage;
 import com.uhutu.sportcenter.z.api.home.ApiHomePage;
 import com.uhutu.sportcenter.z.api.label.ApiForLabels;
+import com.uhutu.sportcenter.z.api.label.ApiLabelRelList;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinAccInfo;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinCharge;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinFlowInfo;
@@ -392,6 +393,9 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiSportChickenSoup apiSportChickenSoup;
+	
+	@Autowired
+	private ApiLabelRelList apiLabelRelList;
 
 	
 	public ApiSportChickenSoup getApiSportChickenSoup() {
@@ -772,6 +776,10 @@ public class ApiFactory {
 
 	public ApiMsgFocus getApiMsgFocus() {
 		return apiMsgFocus;
+	}
+
+	public ApiLabelRelList getApiLabelRelList() {
+		return apiLabelRelList;
 	}
 
 }
