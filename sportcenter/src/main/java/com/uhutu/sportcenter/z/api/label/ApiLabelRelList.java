@@ -230,7 +230,7 @@ public class ApiLabelRelList extends RootApiBase<ApiLabelRelListInput, ApiLabelR
 
 				sportingMoment.setCoverWH(coverThum.getThumbWidth() + "*" + coverThum.getSourceHeight());
 
-				CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "code",
+				CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
 						sportingMoment.getCode());
 
 				if (contentReadCount != null) {
