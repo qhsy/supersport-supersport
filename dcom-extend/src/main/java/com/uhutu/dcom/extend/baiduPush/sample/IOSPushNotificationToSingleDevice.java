@@ -14,13 +14,14 @@ import com.uhutu.dcom.extend.baiduPush.model.PushMsgToSingleDeviceResponse;
 
 /**
  * 百度push
+ * 
  * @author xiegj
  *
  */
 public class IOSPushNotificationToSingleDevice {
-	
-	public void push(String channelId,String msg) throws PushServerException, PushClientException{
-		
+
+	public void push(String channelId, String msg, String jumpType, String jumpContent)
+			throws PushServerException, PushClientException {
 
 		// 1. get apiKey and secretKey from developer console
 		String apiKey = "ORG6KhOtVUSFI5pVOfDEr4AZETeOKkZI";
@@ -44,12 +45,16 @@ public class IOSPushNotificationToSingleDevice {
 			// make IOS Notification
 			JSONObject notification = new JSONObject();
 			JSONObject jsonAPS = new JSONObject();
+			JSONObject jumpJson = new JSONObject();
+			jumpJson.put("jumpType", jumpType);// 0个人中心 1运动时刻详情页 2首页 3问达详情页
+			jumpJson.put("jumpContent", jumpContent);
+			notification.put("jumpJson", jumpJson);
 			jsonAPS.put("alert", msg);
 			notification.put("type", "1");
 			notification.put("aps", jsonAPS);
 
-			PushMsgToSingleDeviceRequest request = new PushMsgToSingleDeviceRequest()
-					.addChannelId(channelId).addMsgExpires(new Integer(3600)). // 设置message的有效时间
+			PushMsgToSingleDeviceRequest request = new PushMsgToSingleDeviceRequest().addChannelId(channelId)
+					.addMsgExpires(new Integer(3600)). // 设置message的有效时间
 					addMessageType(1).// 1：通知,0:透传消息.默认为0 注：IOS只有通知.
 					addMessage(notification.toString()).addDeployStatus(2). // IOS,
 																			// DeployStatus
@@ -80,8 +85,7 @@ public class IOSPushNotificationToSingleDevice {
 						e.getErrorCode(), e.getErrorMsg()));
 			}
 		}
-	
-		
+
 	}
-	
+
 }

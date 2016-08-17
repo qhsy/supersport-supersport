@@ -13,9 +13,9 @@ import com.uhutu.dcom.extend.baiduPush.model.PushMsgToSingleDeviceResponse;
 import net.sf.json.JSONObject;
 
 public class AndroidPushMsgToSingleDevice {
-	
-	public void push(String title,String content,String channelId) throws PushClientException, PushServerException{
-		
+
+	public void push(String title, String content, String channelId, String jumpType, String jumpContent)
+			throws PushClientException, PushServerException {
 
 		// 1. get apiKey and secretKey from developer console
 		String apiKey = "qGnG6ZH54TeOUhkNEVIYmzuZ9D5BH8z9";
@@ -43,12 +43,16 @@ public class AndroidPushMsgToSingleDevice {
 			notification.put("notification_builder_id", 0);
 			notification.put("notification_basic_style", 4);
 			notification.put("open_type", 2);
+			JSONObject jumpJson = new JSONObject();
+			jumpJson.put("jumpType", jumpType);// 0个人中心 1运动时刻详情页 2首页 3问达详情页
+			jumpJson.put("jumpContent", jumpContent);
+			notification.put("jumpJson", jumpJson);
 			JSONObject jsonCustormCont = new JSONObject();
 			jsonCustormCont.put("type", "1"); // 自定义内容，key-value
 			notification.put("custom_content", jsonCustormCont);
 
-			PushMsgToSingleDeviceRequest request = new PushMsgToSingleDeviceRequest()
-					.addChannelId(channelId).addMsgExpires(new Integer(3600)). // message有效时间
+			PushMsgToSingleDeviceRequest request = new PushMsgToSingleDeviceRequest().addChannelId(channelId)
+					.addMsgExpires(new Integer(3600)). // message有效时间
 					addMessageType(1).// 1：通知,0:透传消息. 默认为0 注：IOS只有通知.
 					addMessage(notification.toString()).addDeviceType(3);// deviceType
 																			// =>
@@ -75,7 +79,6 @@ public class AndroidPushMsgToSingleDevice {
 						e.getErrorCode(), e.getErrorMsg()));
 			}
 		}
-	
-		
+
 	}
 }
