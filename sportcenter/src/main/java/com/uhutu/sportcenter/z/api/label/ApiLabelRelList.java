@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
+import com.uhutu.dcom.tag.z.entity.CnContentLabel;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
@@ -42,7 +43,24 @@ public class ApiLabelRelList extends RootApiBase<ApiLabelRelListInput, ApiLabelR
 	@Override
 	protected ApiLabelRelListResult process(ApiLabelRelListInput input) {
 
-		ApiLabelRelListResult result = new ApiLabelRelListResult();		
+		ApiLabelRelListResult result = new ApiLabelRelListResult();	
+		
+		CnContentLabel contentLabel = labelServiceFactory.getContentLabelService().queryByCode(input.getTagCode());
+		
+		if(contentLabel != null){
+			
+			result.setContent(contentLabel.getContent());
+			
+			if(StringUtils.isNotEmpty(contentLabel.getCover())){
+				
+				ImageThumb imageThumb = ImageHelper.upThumbWithHeight(contentLabel.getCover(), input.getwCover());
+				
+				result.setCover(imageThumb);
+				
+			}
+			
+		}
+		
 		String sWhere = initWhere(input.getTagCode());
 
 		switch (input.getType()) {

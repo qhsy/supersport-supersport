@@ -50,4 +50,12 @@ public interface IContentLabelService {
 	 */
 	public String initTagName(String tagCode);
 	
+	/**
+	 * 根据编号查询内容标签
+	 * @param code
+	 * 		内容编号
+	 * @return 内容标签
+	 */
+	public CnContentLabel queryByCode(String code);
+	
 }

@@ -67,4 +67,11 @@ public class ContentLabelServiceImpl implements IContentLabelService {
 
 	}
 
+	@Override
+	public CnContentLabel queryByCode(String code) {
+		
+		return contentLabelDaoFacotry.getContentLabelDao().queryByCode(code);
+		
+	}
+
 }
