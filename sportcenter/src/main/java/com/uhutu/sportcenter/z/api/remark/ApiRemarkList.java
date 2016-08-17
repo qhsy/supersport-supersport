@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.content.z.enums.ContentEnum;
+import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
 import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
@@ -31,6 +33,9 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 	
 	@Autowired
 	private ContentRemarkServiceFactory serviceFactory;
+	
+	@Autowired
+	private ContentServiceFactory contentServiceFactory;
 	
 	@Autowired
 	private UserServiceFactory userSerivceFactory;
@@ -105,6 +110,10 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 			String publishDate = DateFormatUtils.format(remark.getZc(), "yyyy-MM-dd HH:mm:ss");
 			
 			remarkInfo.setPublishTime(publishDate);
+			
+			int total = contentServiceFactory.getSupportPraiseService().queryCountByCode(remarkInfo.getCode(),ContentEnum.FAVOR_STATUS_YES.getCode());
+			
+			remarkInfo.setPraiseNum(total);
 			
 		}		
 		

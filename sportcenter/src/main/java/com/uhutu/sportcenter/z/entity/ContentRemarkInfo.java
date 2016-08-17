@@ -32,6 +32,9 @@ public class ContentRemarkInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value="发布时间")
 	private String publishTime;
+	
+	@ApiModelProperty(value="点赞数量")
+	private long praiseNum;
 
 	public String getCode() {
 		return code;
@@ -95,6 +98,14 @@ public class ContentRemarkInfo extends UserBasicInfo {
 
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
+	}
+
+	public long getPraiseNum() {
+		return praiseNum;
+	}
+
+	public void setPraiseNum(long praiseNum) {
+		this.praiseNum = praiseNum;
 	}
 
 }
