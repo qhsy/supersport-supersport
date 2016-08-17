@@ -24,6 +24,17 @@ public class AdvertiseDetailForApi {
 	@ApiModelProperty(name = "图片超链接跳转内容", notes = "轮播图链接跳转内容", example = "http://www.ichsy.com")
 	private String piclinkContent;
 
+	@ApiModelProperty(name = "跳转后标题", notes = "跳转后标题", example = "http://www.ichsy.com")
+	private String contentTitle;
+
+	public String getContentTitle() {
+		return contentTitle;
+	}
+
+	public void setContentTitle(String contentTitle) {
+		this.contentTitle = contentTitle;
+	}
+
 	public String getCode() {
 		return code;
 	}
