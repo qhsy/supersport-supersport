@@ -46,9 +46,9 @@ public class IOSPushNotificationToSingleDevice {
 			JSONObject notification = new JSONObject();
 			JSONObject jsonAPS = new JSONObject();
 			JSONObject jumpJson = new JSONObject();
-			jumpJson.put("jumpType", jumpType);// 0个人中心 1运动时刻详情页 2首页 3问达详情页
-			jumpJson.put("jumpContent", jumpContent);
-			notification.put("jumpJson", jumpJson);
+			jumpJson.put("jt", jumpType);// 0个人中心 1运动时刻详情页 2首页 3问达详情页
+			jumpJson.put("jc", jumpContent);
+			notification.put("jm", jumpJson);
 			jsonAPS.put("alert", msg);
 			notification.put("type", "1");
 			notification.put("aps", jsonAPS);
@@ -86,6 +86,10 @@ public class IOSPushNotificationToSingleDevice {
 			}
 		}
 
+	}
+	
+	public static void main(String[] args) throws PushServerException, PushClientException {
+		new IOSPushNotificationToSingleDevice().push("4821573614764451774", "凡姐", "3", "WDBH160817110001");
 	}
 
 }
