@@ -11,6 +11,7 @@ import org.springframework.beans.BeanUtils;
 
 import com.uhutu.dcom.content.z.entity.CnAdvertiseDetail;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentItem;
 import com.uhutu.dcom.content.z.entity.CnContentItemRel;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
@@ -75,6 +76,21 @@ public class HomePageSupport {
 			flag = true;
 		}
 		return flag;
+	}
+
+	/**
+	 * 单图模式标题处理
+	 * 
+	 * @return
+	 */
+	private ContentBasicinfoForApi getSingleTitle(ContentBasicinfoForApi cff) {
+		if ("dzsd4107100110030004".equals(cff.getContentType())) {
+			CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code", cff.getCode());
+			if (detail != null && StringUtils.isNotBlank(detail.getContent())) {
+				cff.setTitle(detail.getContent());
+			}
+		}
+		return cff;
 	}
 
 	public List<HomePageModel> getPageModels(String itemCode, String itemType, String t1, String t2, String width) {
@@ -146,7 +162,7 @@ public class HomePageSupport {
 						infoApi.getUserBasicInfo().setNickName(userInfoApi.getNickName());
 						infoApi.getUserBasicInfo().setAboutHead(userInfoApi.getAboutHead());
 						infoApi.getUserBasicInfo().setType(userInfoApi.getType());
-						hmp.setInfo(infoApi);
+						hmp.setInfo(getSingleTitle(infoApi));
 						hmp.setShowType("dzsd4107100110060003");
 						li.add(hmp);
 					}
