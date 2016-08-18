@@ -63,6 +63,9 @@ public class UserInfo extends UserBasicInfo {
 	@ApiModelProperty(value="用户操作标识",notes="社交类用户:social,普通用户:customl,微信用户:wechat")
 	private String socialFlag;
 	
+	@ApiModelProperty(value="原头像地址")
+	private String sourceHeadUrl;
+	
 	public String getSex() {
 		return sex;
 	}
@@ -205,6 +208,14 @@ public class UserInfo extends UserBasicInfo {
 
 	public void setAboutVideoCover(String aboutVideoCover) {
 		this.aboutVideoCover = aboutVideoCover;
+	}
+
+	public String getSourceHeadUrl() {
+		return sourceHeadUrl;
+	}
+
+	public void setSourceHeadUrl(String sourceHeadUrl) {
+		this.sourceHeadUrl = sourceHeadUrl;
 	}
 	
 
