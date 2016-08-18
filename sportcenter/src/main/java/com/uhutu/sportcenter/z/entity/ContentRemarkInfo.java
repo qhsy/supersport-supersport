@@ -35,6 +35,9 @@ public class ContentRemarkInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value="点赞数量")
 	private long praiseNum;
+	
+	@ApiModelProperty(value="点赞标识")
+	private boolean praiseFlag;
 
 	public String getCode() {
 		return code;
@@ -106,6 +109,14 @@ public class ContentRemarkInfo extends UserBasicInfo {
 
 	public void setPraiseNum(long praiseNum) {
 		this.praiseNum = praiseNum;
+	}
+
+	public boolean isPraiseFlag() {
+		return praiseFlag;
+	}
+
+	public void setPraiseFlag(boolean praiseFlag) {
+		this.praiseFlag = praiseFlag;
 	}
 
 }
