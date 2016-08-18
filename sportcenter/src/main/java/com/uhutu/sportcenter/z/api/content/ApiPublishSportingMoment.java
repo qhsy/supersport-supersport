@@ -83,7 +83,7 @@ public class ApiPublishSportingMoment
 			is = url.openStream();
 			BufferedImage img = ImageIO.read(is);
 			if (img != null) {
-				result = img.getWidth() + "&" + img.getHeight();
+				result = img.getWidth() + "*" + img.getHeight();
 			}
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
