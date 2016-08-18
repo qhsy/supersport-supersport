@@ -73,9 +73,9 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 			
 			CnContentRemark sourceRef = serviceFactory.getContentRemarkService().queryByCode(remark.getParentCode());
 			
-			replyInfo.setRefReplyInfo(initRemarkInfo(sourceRef));
+			replyInfo.setRefReplyInfo(initRemarkInfo(sourceRef,input.getZoo().getToken()));
 			
-			replyInfo.setReplyInfo(initRemarkInfo(remark));
+			replyInfo.setReplyInfo(initRemarkInfo(remark,input.getZoo().getToken()));
 			
 			remarkInfos.add(replyInfo);
 			
@@ -87,7 +87,7 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 		
 	}
 	
-	public ContentRemarkInfo initRemarkInfo(CnContentRemark remark){
+	public ContentRemarkInfo initRemarkInfo(CnContentRemark remark,String token){
 		
 		ContentRemarkInfo remarkInfo = null;
 		
@@ -117,7 +117,7 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 			
 			int total = contentServiceFactory.getSupportPraiseService().queryCountByCode(remarkInfo.getCode(),ContentEnum.FAVOR_STATUS_YES.getCode());
 			
-			remarkInfo.setPraiseFlag(lightFavor(remarkInfo.getCode(), remarkInfo.getAuthor()));
+			remarkInfo.setPraiseFlag(lightFavor(remarkInfo.getCode(), token));
 			
 			remarkInfo.setPraiseNum(total);
 			
