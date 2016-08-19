@@ -2,6 +2,7 @@ package com.uhutu.sportcenter.z.api.buttock;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -97,8 +98,16 @@ public class ApiButtockPowerList extends RootApiBase<ApiButtockPowerListInput, A
 
 					sportingMoment.setTags(
 							labelServiceFactory.getContentLabelService().getLabels(sportingMoment.getTagCode()));
-					sportingMoment.setFavorFlag(
-							ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken()));
+					
+					boolean favorFlag = false;
+					
+					if(StringUtils.isNotEmpty(input.getZoo().getToken())){
+						
+						favorFlag = ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken());
+						
+					}
+					
+					sportingMoment.setFavorFlag(favorFlag);
 
 					sportingMoment.setCover(ImageHelper.upImageThumbnail(sportingMoment.getCover(), input.getWidth()));
 
