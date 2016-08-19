@@ -11,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
-import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
@@ -20,13 +19,12 @@ import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
+import com.uhutu.sportcenter.z.api.util.ContentComponent;
 import com.uhutu.sportcenter.z.entity.ContentRemarkInfo;
 import com.uhutu.sportcenter.z.entity.ContentReplyInfo;
 import com.uhutu.sportcenter.z.input.ApiRemarkListInput;
 import com.uhutu.sportcenter.z.result.ApiRemarkListResult;
-import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.root.RootApiBase;
-import com.uhutu.zoocom.z.bean.TopUserFactory;
 /**
  * 评论信息列表
  * @author 逄小帅
@@ -117,36 +115,21 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 			
 			int total = contentServiceFactory.getSupportPraiseService().queryCountByCode(remarkInfo.getCode(),ContentEnum.FAVOR_STATUS_YES.getCode());
 			
-			remarkInfo.setPraiseFlag(lightFavor(remarkInfo.getCode(), token));
+			boolean praiseFlag = false;
+			
+			if(StringUtils.isNotBlank(token)){
+				
+				praiseFlag = ContentComponent.lightFavor(remarkInfo.getCode(), token);
+				
+			}
+			
+			remarkInfo.setPraiseFlag(praiseFlag);
 			
 			remarkInfo.setPraiseNum(total);
 			
 		}		
 		
 		return remarkInfo;
-		
-	}
-	
-	public boolean lightFavor(String contentCode,String token){
-		
-		boolean flag = false;
-		
-		String userCode = TopUserFactory.upUserCallFactory().upUserCodeByAuthToken(token, DefineUser.Login_System_Default);
-		
-		if(StringUtils.isNotBlank(userCode)){
-			
-			/*01点赞*/
-			CnSupportPraise praise = contentServiceFactory.getSupportPraiseService().query(contentCode,userCode, "01");
-			
-			if(praise != null && StringUtils.equals(praise.getStatus(), ContentEnum.FAVOR_STATUS_YES.getCode())){
-				
-				flag = true;
-				
-			}
-			
-		}
-		
-		return flag;
 		
 	}
 
