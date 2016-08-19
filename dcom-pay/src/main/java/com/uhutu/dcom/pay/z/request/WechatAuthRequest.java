@@ -1,5 +1,6 @@
 package com.uhutu.dcom.pay.z.request;
 
+import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.face.IPayRequest;
 
 /**
@@ -20,6 +21,9 @@ public class WechatAuthRequest implements IPayRequest {
 	
 	/*授权类型*/
 	private String grant_type = "authorization_code";
+	
+	/*微信公众号*/
+	private PayProcessEnum processType;
 
 	public String getAppid() {
 		return appid;
@@ -51,6 +55,14 @@ public class WechatAuthRequest implements IPayRequest {
 
 	public void setGrant_type(String grant_type) {
 		this.grant_type = grant_type;
+	}
+
+	public PayProcessEnum getProcessType() {
+		return processType;
+	}
+
+	public void setProcessType(PayProcessEnum processType) {
+		this.processType = processType;
 	}
 
 }

@@ -99,6 +99,7 @@ import com.uhutu.sportcenter.z.api.user.ApiVerifyNickName;
 import com.uhutu.sportcenter.z.api.user.ApiVersionInfo;
 import com.uhutu.sportcenter.z.api.user.ApiWechatUserLogin;
 import com.uhutu.sportcenter.z.api.user.ApiWechatUserLogin2;
+import com.uhutu.sportcenter.z.api.user.ApiWechatUserLogin3;
 
 /**
  * api工厂
@@ -397,6 +398,8 @@ public class ApiFactory {
 	@Autowired
 	private ApiLabelRelList apiLabelRelList;
 
+	@Autowired
+	private ApiWechatUserLogin3 apiWechatUserLogin3;
 	
 	public ApiSportChickenSoup getApiSportChickenSoup() {
 		return apiSportChickenSoup;
@@ -780,6 +783,10 @@ public class ApiFactory {
 
 	public ApiLabelRelList getApiLabelRelList() {
 		return apiLabelRelList;
+	}
+
+	public ApiWechatUserLogin3 getApiWechatUserLogin3() {
+		return apiWechatUserLogin3;
 	}
 
 }

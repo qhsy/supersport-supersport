@@ -23,6 +23,8 @@ public enum PayProcessEnum {
 	WECHAT_H5,
 	/**微信授权*/
 	WECHAT_AUTH,
+	/**微信授权(报名)*/
+	WECHAT_SIGN_AUTH,
 	/**微信用户信息*/
 	WECHAT_USER,
 	/**微信消息推送*/

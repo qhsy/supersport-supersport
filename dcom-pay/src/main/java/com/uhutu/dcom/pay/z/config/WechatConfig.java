@@ -46,6 +46,14 @@ public class WechatConfig {
 	@Value("${wechat_service_appid}")
 	private String serviceAppId;
 	
+	/*服务号appid*/
+	@Value("${wechat_sign_appid}")
+	private String serviceSignAppId;
+	
+	/*服务号appid*/
+	@Value("${wechat_sign_secret}")
+	private String serviceSignSecret;
+	
 	/*微信服务号密钥*/
 	@Value("${wechat_service_key}")
 	private String serviceKey;
@@ -285,6 +293,12 @@ public class WechatConfig {
 		case WECHAT_H5:
 			appid = getServiceAppId();
 			break;
+		case WECHAT_AUTH:
+			appid = getServiceAppId();
+			break;
+		case WECHAT_SIGN_AUTH:
+			appid = getServiceSignAppId();
+			break;
 		case WECHAT_NOTIFY:
 			appid = getAppId();
 			break;
@@ -357,6 +371,33 @@ public class WechatConfig {
 
 	public String getServiceNotifyUrl() {
 		return serviceNotifyUrl;
+	}
+
+	public String getServiceSignAppId() {
+		return serviceSignAppId;
+	}
+
+	public String getServiceSignSecret() {
+		return serviceSignSecret;
+	}
+	
+	public String getAppSecret(PayProcessEnum processEnum){
+		
+		String appSecret = "";
+		
+		switch (processEnum) {
+		case WECHAT_AUTH:
+			appSecret = getAppSecret();
+			break;
+		case WECHAT_SIGN_AUTH:
+			appSecret = getServiceSignSecret();
+
+		default:
+			break;
+		}
+		
+		return appSecret;
+		
 	}
 	
 	

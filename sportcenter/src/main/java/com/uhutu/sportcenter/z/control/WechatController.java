@@ -11,9 +11,11 @@ import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiWechatConfigInfoInput;
 import com.uhutu.sportcenter.z.input.ApiWechatUserLoginInput;
 import com.uhutu.sportcenter.z.input.ApiWechatUserLoginInput2;
+import com.uhutu.sportcenter.z.input.ApiWechatUserLoginInput3;
 import com.uhutu.sportcenter.z.result.ApiWechatConfigInfoResult;
 import com.uhutu.sportcenter.z.result.ApiWechatUserLoginResult;
 import com.uhutu.sportcenter.z.result.ApiWechatUserLoginResult2;
+import com.uhutu.sportcenter.z.result.ApiWechatUserLoginResult3;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -50,6 +52,15 @@ public class WechatController {
 	public ApiWechatUserLoginResult2 authLogin2(@RequestBody ApiWechatUserLoginInput2 input) {
 
 		return apiFactory.getApiWechatUserLogin2().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/authLogin3", method = RequestMethod.POST)
+	@ApiOperation(value = "微信授权登录(报名)", notes = "微信授权登录(报名)")
+	public ApiWechatUserLoginResult3 authLogin3(@RequestBody ApiWechatUserLoginInput3 input) {
+
+		return apiFactory.getApiWechatUserLogin3().api(input);
 
 	}
 

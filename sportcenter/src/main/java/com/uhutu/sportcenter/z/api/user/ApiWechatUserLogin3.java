@@ -14,9 +14,9 @@ import com.uhutu.dcom.pay.z.service.PayServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput2;
-import com.uhutu.sportcenter.z.input.ApiWechatUserLoginInput2;
+import com.uhutu.sportcenter.z.input.ApiWechatUserLoginInput3;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult2;
-import com.uhutu.sportcenter.z.result.ApiWechatUserLoginResult2;
+import com.uhutu.sportcenter.z.result.ApiWechatUserLoginResult3;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
 
@@ -26,7 +26,7 @@ import com.uhutu.zoocom.root.RootApiBase;
  *
  */
 @Component
-public class ApiWechatUserLogin2 extends RootApiBase<ApiWechatUserLoginInput2, ApiWechatUserLoginResult2> {
+public class ApiWechatUserLogin3 extends RootApiBase<ApiWechatUserLoginInput3, ApiWechatUserLoginResult3> {
 	
 	@Autowired
 	private PayServiceFactory payServiceFactory;
@@ -38,15 +38,15 @@ public class ApiWechatUserLogin2 extends RootApiBase<ApiWechatUserLoginInput2, A
 	private ApiSocialLogin2 apiSocialLogin;
 
 	@Override
-	protected ApiWechatUserLoginResult2 process(ApiWechatUserLoginInput2 input) {
+	protected ApiWechatUserLoginResult3 process(ApiWechatUserLoginInput3 input) {
 		
-		ApiWechatUserLoginResult2 userLoginResult = new ApiWechatUserLoginResult2();
+		ApiWechatUserLoginResult3 userLoginResult = new ApiWechatUserLoginResult3();
 
 		WechatAuthRequest authRequest = new WechatAuthRequest();
 
 		authRequest.setCode(input.getCode());
 		
-		authRequest.setProcessType(PayProcessEnum.WECHAT_AUTH);
+		authRequest.setProcessType(PayProcessEnum.WECHAT_SIGN_AUTH);
 
 		/*根据用户授权登录返回code，获取接口调用的accesstoken*/
 		WechatAuthResponse authResponse = (WechatAuthResponse) payServiceFactory.getWechatAuthService()
