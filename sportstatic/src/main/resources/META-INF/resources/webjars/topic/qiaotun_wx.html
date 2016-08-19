@@ -132,7 +132,7 @@ if(isWeix && !sessionStorage.getItem('code')){
 				sessionStorage.setItem('code',res.userCode);
 				sessionStorage.setItem('token',res.userToken);
 			}else{
-				common.token(res.error);
+				alert(res.error);
 			}
 		}
 	});
@@ -265,7 +265,7 @@ $('.wrap').on('click','.zanEvent',function(){
 		$.ajax({
 				url:'/api/contentController/supportPraise',
 				type:'POST',
-				data:'{"contentCode": "' + code + '","isLike": "1","type": "01","zoo": {"key": "tesetkey","token": ""}}',
+				data:'{"contentCode": "' + code + '","isLike": "1","type": "01","zoo": {"key": "tesetkey","token": "' + sessionStorage.getItem('token') + '"}}',
 				contentType:'application/json',
 				dataType:'json',
 				success:function(result){
