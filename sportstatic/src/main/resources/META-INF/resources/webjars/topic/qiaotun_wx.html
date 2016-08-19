@@ -36,7 +36,8 @@
 .list-item .photo img{border-radius: 50%;}
 .list-item .name{padding-left: 0.09rem;}
 .list-item .zan{height: 0.42rem; float: right;}
-.list-item .zanEvent{height: 0.42rem; float: right; font-family: "Helvetica";}
+.list-item .zanEvent{height: 0.42rem; float: right; font-family: "Helvetica"; position: relative;}
+.list-item .zanEvent i{color: red; position: absolute; left: 2px; top: 0; opacity: 0; transition: all .2s; display: none; -webkit-animation:calculation 1s; font-size: 0.16rem;}
 .list-item .zanEvent:after{content:""; width: 0.21rem; height: 0.17rem; margin: 0.12rem 0.1rem 0 0; background: url(img/like.png) no-repeat left top; float: left; background-size: 0.21rem;}
 .list-item .zanEvent.curr:after{content:""; width: 0.21rem; height: 0.17rem; margin: 0.12rem 0.1rem 0 0; background: url(img/like.png) no-repeat left bottom; float: left; background-size: 0.21rem;}
 .list-item .sign{width: 0.14rem; height: 0.12rem; display: block; position: absolute; right: 0; bottom: 0; background: url(img/sign.png) no-repeat; background-size: cover;}
@@ -53,6 +54,14 @@
 @keyframes load{
     0%{transform: rotate(0deg);}
     100%{transform: rotate(360deg);}
+}
+@-webkit-keyframes calculation{
+    0%{opacity: 0; top: 0;}
+    100%{opacity: 1; top: -20px;}
+}
+@keyframes calculation{
+    0%{opacity: 0; top: 0;}
+    100%{opacity: 1; top: -20px;}
 }
 </style>
 </head>
@@ -88,7 +97,7 @@
 					<div class="info">
 						<span class="photo"><img :src="item.userBasicInfo.aboutHead" alt=""><i class="sign" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></i></span>
 						<em class="name">{{item.userBasicInfo.nickName}}</em>
-						<em class="zanEvent" :data-code="item.code" :data-num="item.praiseNum" v-if="currStatus == 'power'" :class="{curr:item.favorFlag}">{{item.praiseNum}}</em>
+						<span class="zanEvent" :data-code="item.code" :data-num="item.praiseNum" v-if="currStatus == 'power'" :class="{curr:item.favorFlag}"><em>{{item.praiseNum}}</em><i>+1</i></span>
 						<em class="zan" v-else>喜欢 {{item.praiseNum}}</em>
 					</div>
 				</template>
@@ -99,7 +108,7 @@
 					<div class="info">
 						<span class="photo"><img :src="item.userBasicInfo.aboutHead" alt=""><i class="sign" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></i></span>
 						<em class="name">{{item.userBasicInfo.nickName}}</em>
-						<em class="zanEvent" :data-code="item.code" :data-num="item.praiseNum" v-if="currStatus == 'power'" :class="{curr:item.favorFlag}">{{item.praiseNum}}</em>
+						<span class="zanEvent" :data-code="item.code" :data-num="item.praiseNum" v-if="currStatus == 'power'" :class="{curr:item.favorFlag}"><en>{{item.praiseNum}}</en><i>+1</i></span>
 						<em class="zan" v-else>喜欢 {{item.praiseNum}}</em>
 					</div>
 				</template>
@@ -261,6 +270,9 @@ $('.wrap').on('click','.zanEvent',function(){
 	var num = parseInt($(this).attr('data-num'));
 	var code = $(this).attr('data-code');
 	if(!isFavor){
+		$(this).find('em').text(num+1);
+		$(this).addClass('curr');
+		$(this).find('i').css('display','block');
 		$.ajax({
 				url:'/api/contentController/supportPraise',
 				type:'POST',
@@ -269,8 +281,7 @@ $('.wrap').on('click','.zanEvent',function(){
 				dataType:'json',
 				success:function(result){
 					if(result.status == 1) {
-						$(this).text(num+1);
-						$(this).addClass('curr');
+
 					}else{
 						alert(result.error)
 					}
