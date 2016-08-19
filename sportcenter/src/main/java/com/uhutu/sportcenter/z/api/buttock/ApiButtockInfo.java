@@ -95,6 +95,8 @@ public class ApiButtockInfo extends RootApiBase<ApiButtockInfoInput, ApiButtockI
 		
 		input.setWidth(infoInput.getWidth());
 		
+		input.setZoo(infoInput.getZoo());
+		
 		ApiButtockPowerListResult result = apiButtockPowerList.api(input);
 		
 		buttockInfo.setTitle("实力派");
@@ -122,6 +124,8 @@ public class ApiButtockInfo extends RootApiBase<ApiButtockInfoInput, ApiButtockI
 		input.setPagination(infoInput.getPagination());
 		
 		input.setWidth(infoInput.getWidth());
+		
+		input.setZoo(infoInput.getZoo());
 		
 		ApiButtockLapListResult result = apiButtockLapList.api(input);
 		
