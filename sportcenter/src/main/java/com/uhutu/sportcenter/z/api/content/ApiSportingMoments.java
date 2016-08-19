@@ -171,6 +171,11 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 				sportingMoment.setTagName(
 						labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
 
+				sportingMoment.setTags(
+						labelServiceFactory.getContentLabelService().getLabels(sportingMoment.getTagCode()));
+				sportingMoment.setFavorFlag(
+						ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken()));
+				
 				sportingMoment.setCover(ImageHelper.upImageThumbnail(sportingMoment.getCover(), input.getWidth()));
 
 				sportingMoment.setPublishTimeStr("MM-dd HH:mm");

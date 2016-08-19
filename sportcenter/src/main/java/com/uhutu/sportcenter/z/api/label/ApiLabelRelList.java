@@ -16,6 +16,7 @@ import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
+import com.uhutu.sportcenter.z.api.util.ContentComponent;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.entity.LabelContentInfo;
 import com.uhutu.sportcenter.z.input.ApiLabelRelListInput;
@@ -224,6 +225,9 @@ public class ApiLabelRelList extends RootApiBase<ApiLabelRelListInput, ApiLabelR
 				sportingMoment.setTagName(
 						labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
 
+				sportingMoment.setTags(
+						labelServiceFactory.getContentLabelService().getLabels(sportingMoment.getTagCode()));
+				
 				ImageThumb coverThum = ImageHelper.upThumbWithHeight(sportingMoment.getCover(), width);
 
 				sportingMoment.setCover(coverThum.getThumbUrl());

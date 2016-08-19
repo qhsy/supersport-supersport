@@ -14,6 +14,7 @@ import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
+import com.uhutu.sportcenter.z.api.util.ContentComponent;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.input.ApiFavorContentListInput;
 import com.uhutu.sportcenter.z.result.ApiFavorContentListResult;
@@ -97,6 +98,11 @@ public class ApiFavorContentList extends RootApiBase<ApiFavorContentListInput, A
 					String tagName = labelServiceFactory.getContentLabelService().initTagName(basicinfoForApi.getTagCode());
 					
 					basicinfoForApi.setTagName(tagName);
+					
+					basicinfoForApi.setTags(
+							labelServiceFactory.getContentLabelService().getLabels(basicinfoForApi.getTagCode()));
+					basicinfoForApi.setFavorFlag(
+							ContentComponent.lightFavor(basicinfoForApi.getCode(), input.getZoo().getToken()));
 					
 					basicinfoForApi.setPublishTimeStr("MM-dd HH:mm");
 					

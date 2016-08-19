@@ -1,8 +1,11 @@
 package com.uhutu.sportcenter.z.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.uhutu.dcom.component.z.util.CalendarUtil;
+import com.uhutu.dcom.tag.z.entity.CnContentLabel;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -50,6 +53,9 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(name = "标签名称", notes = "多个以英文逗号分割")
 	private String tagName;
 
+	@ApiModelProperty(name = "标签", notes = "标签实体")
+	private List<CnContentLabel> tags = new ArrayList<CnContentLabel>();
+
 	@ApiModelProperty(name = "内容作者")
 	private String author;
 
@@ -70,18 +76,26 @@ public class ContentBasicinfoForApi {
 
 	@ApiModelProperty(value = "点赞数量")
 	private int praiseNum;
-	
-	@ApiModelProperty(value="阅读数量")
+
+	@ApiModelProperty(value = "阅读数量")
 	private long readNum;
-	
-	@ApiModelProperty(value="评论数量")
+
+	@ApiModelProperty(value = "评论数量")
 	private long remarkNum;
-	
-	@ApiModelProperty(value="喜欢标识")
+
+	@ApiModelProperty(value = "喜欢标识")
 	private boolean favorFlag;
 
 	@ApiModelProperty(value = "用户基本信息")
 	private UserBasicInfo userBasicInfo = new UserBasicInfo();
+
+	public List<CnContentLabel> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<CnContentLabel> tags) {
+		this.tags = tags;
+	}
 
 	public String getCode() {
 		return code;
