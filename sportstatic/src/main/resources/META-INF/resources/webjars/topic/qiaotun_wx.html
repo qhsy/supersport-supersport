@@ -173,7 +173,7 @@ var vm = new Vue({
 			$.ajax({
 				url:'/api/buttock/buttockInfo',
 				type:'POST',
-				data:'{"pagination":' + self.powerPage + ',"type": "' + self.currStatus+ '","width":375,"zoo":{"key":"tesetkey","token": "' + sessionStorage.getItem('token') + '"}}',
+				data:'{"pagination":' + self.powerPage + ',"type": "' + self.currStatus+ '","width":375,"zoo":{"key":"tesetkey","token": "' + token() + '"}}',
 				contentType:'application/json',
 				dataType:'json',
 				success:function(result){
@@ -211,7 +211,7 @@ vm.$on('iscroll',function(){
 				$.ajax({
 					url:'/api/buttock/buttockInfo',
 					type:'POST',
-					data:'{"pagination":' + page + ',"type": "' + self.currStatus+ '","width":0,"zoo":{"key":"tesetkey","token": "' + sessionStorage.getItem('token') + '"}}',
+					data:'{"pagination":' + page + ',"type": "' + self.currStatus+ '","width":0,"zoo":{"key":"tesetkey","token": "' + token() + '"}}',
 					contentType:'application/json',
 					dataType:'json',
 					before:function(){
@@ -250,6 +250,13 @@ function onTopicCategories(author,aboutHead,contentCode,contenttype){
 }
 function onBlueprint(){
 	javascript:android.onBlueprint()
+}
+function token(){
+	if(sessionStorage.getItem('token')){
+		return sessionStorage.getItem('token');
+	}else{
+		return '';
+	}
 }
 function paramFn (arg){
 		var url = window.location.search;
