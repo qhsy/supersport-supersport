@@ -17,7 +17,7 @@ public class ApiButtockNotes extends RootApiBase<ApiButtockNotesInput, ApiButtoc
 
 	@Override
 	protected ApiButtockNotesResult process(ApiButtockNotesInput input) {
-		String str = "活动须知:\n1、凡参赛选手，上传的翘臀照片将在「实力派」中展示，找到自己的美臀，转发集赞吧！\n2、只要你是果冻体育用户，晒出你的翘臀照片，就有机会获得每日开出的奖品，照片将会在「翘丽圈」展示！";
+		String str = "为翘而生美臀大赛海选Top30人气学员集结「人气榜」，快为你最喜欢的选手点赞！最佳人气奖由你们来决定！\n【8月27号北京朝阳公园海沙节线下决赛，敬请关注！】";
 		ApiButtockNotesResult result = new ApiButtockNotesResult();
 		result.setNotes(str);
 		return result;
