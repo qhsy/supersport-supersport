@@ -39,7 +39,7 @@
 			url:'/api/contentController/contentDetail',
 			type:'POST',
 			contentType:'application/json',
-			data:'{"content_code":"' + urlFormat('code') + '","zoo": {"key": "tesetkey","token": "12221"}}',
+			data:'{"content_code":"' + urlFormat('code') + '","zoo": {"key": "tesetkey","token": ""}}',
 			dataType:'json',
 			success:function(data){
 				if(data.contentRecommInfo != null){
