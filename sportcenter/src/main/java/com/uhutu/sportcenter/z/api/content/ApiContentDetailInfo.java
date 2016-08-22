@@ -10,6 +10,7 @@ import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
+import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
@@ -19,7 +20,10 @@ import com.uhutu.sportcenter.z.entity.ContentDetailInfo;
 import com.uhutu.sportcenter.z.entity.ContentRecommInfo;
 import com.uhutu.sportcenter.z.input.ApiContentDetailInput;
 import com.uhutu.sportcenter.z.result.ApiContentDetailResult;
+import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zoocom.z.bean.TopUserFactory;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 内容详情信息
@@ -79,7 +83,14 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 					contentBasicinfoForApi.getUserBasicInfo().setType(userInfo.getType());
 
 					contentBasicinfoForApi.getUserBasicInfo().setUserCode(userInfo.getCode());
-
+					if(StringUtils.isNotBlank(input.getZoo().getToken())){
+						UcAttentionInfo attentionInfo = JdbcHelper.queryOne(UcAttentionInfo.class, "attention",
+								TopUserFactory.upUserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(),
+										DefineUser.Login_System_Default), "be_attention", userInfo.getCode(), "status", "1");
+						if (attentionInfo != null) {
+							contentBasicinfoForApi.setAuthorBeAttentionFlag(true);
+						}
+					}
 				}
 
 				contentBasicinfoForApi.setTagName(

@@ -86,6 +86,9 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(value = "喜欢标识")
 	private boolean favorFlag;
 
+	@ApiModelProperty(value = "是否已关注作者")
+	private boolean authorBeAttentionFlag = false;
+
 	@ApiModelProperty(value = "用户基本信息")
 	private UserBasicInfo userBasicInfo = new UserBasicInfo();
 
@@ -285,6 +288,14 @@ public class ContentBasicinfoForApi {
 
 	public void setRemarkNum(long remarkNum) {
 		this.remarkNum = remarkNum;
+	}
+
+	public boolean isAuthorBeAttentionFlag() {
+		return authorBeAttentionFlag;
+	}
+
+	public void setAuthorBeAttentionFlag(boolean authorBeAttentionFlag) {
+		this.authorBeAttentionFlag = authorBeAttentionFlag;
 	}
 
 }
