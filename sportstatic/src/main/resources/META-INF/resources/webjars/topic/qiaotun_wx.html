@@ -126,6 +126,13 @@
 <script type="text/javascript" src="../common/share.js"></script>
 <script>
 var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
+var share = {
+	title:'为翘而生•2016微赛&果冻体育美臀小姐选美大赛',
+	link:'http://api-001.sport.bigtiyu.com/webjars/topic/qiaotun_share.html',
+	imgUrl:'http://api-001.sport.bigtiyu.com/webjars/topic/img/qiaotun_share.jpg',
+	desc:'快来为你喜爱的选手投票吧！果冻美臀宝贝由你来决定！'
+
+}
 if(isWeix && !sessionStorage.getItem('code')){
 	var wxCode = paramFn('code');
 	$.ajax({
@@ -143,6 +150,76 @@ if(isWeix && !sessionStorage.getItem('code')){
 				alert(res.error);
 			}
 		}
+	});
+}
+if(isWeix){
+	$.ajax({
+		url:'/api/wechatController/configInfo',
+		type:'POST',
+		contentType:'application/json',
+		dataType:'json',
+		data:'{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": "' + sessionStorage.getItem('token') + '"}}',
+		success:function(res){
+			if(res.status == 1){
+				return wx.config({    
+					debug: false,
+					appId: res.appId,
+					timestamp: res.timestamp,
+					nonceStr: res.nonceStr,
+					signature: res.signature,
+					jsApiList: ['checkJsApi','onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone']
+				});
+			}
+		}
+	});
+
+	wx.ready(function(){
+		//分享到朋友圈
+		wx.onMenuShareTimeline({
+		    title: share.title,
+		    link: share.link, 
+		    imgUrl: share.imgUrl,
+		    success: function () {},
+		    cancel: function () {}
+		});
+		//分享给朋友
+		wx.onMenuShareAppMessage({
+		    title: share.title,
+		    desc: share.desc,
+		    link: share.link,
+		    imgUrl: share.imgUrl,
+		    type: '',
+		    dataUrl: '',
+		    success: function () {},
+		    cancel: function () {}
+		});
+		//分享到QQ
+		wx.onMenuShareQQ({
+		    title: share.title,
+		    desc: share.desc,
+		    link: share.link,
+		    imgUrl: share.imgUrl,
+		    success: function () {},
+		    cancel: function () {}
+		});
+		//分享到腾讯微博
+		wx.onMenuShareWeibo({
+		    title: share.title,
+		    desc: share.desc,
+		    link: share.link,
+		    imgUrl: share.imgUrl,
+		    success: function () {},
+		    cancel: function () {}
+		});
+		//分享到QQ空间
+		wx.onMenuShareQZone({
+		    title:  share.title,
+		    desc: share.desc,
+		    link: share.link,
+		    imgUrl: share.imgUrl,
+		    success: function () { },
+		    cancel: function () {}
+		});
 	});
 }
 Vue.use(Vue.lazyimg,{
