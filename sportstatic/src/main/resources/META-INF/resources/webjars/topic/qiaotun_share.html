@@ -11,14 +11,14 @@ var browser = {
 	iPod:u.indexOf('iPod') > -1 && u.indexOf('Mac') > -1,		//iPod
 	iPhone:u.indexOf('iPhone') > -1 && u.indexOf('Mac') > 1,		//iPhone
 	trident:u.indexOf('Trident') > -1,		//IE
-	presto: u.indexOf('Presto') > -1,		//opera闂佸憡鍔曢幊蹇涙偋閿燂拷 
-	webKit: u.indexOf('AppleWebKit') > -1,		//闂佸吋妲掗～澶愭倶婢舵劕违濞达絽锟界喎鍘┑顔界箓閼活垶宕幘顔煎唨闁跨噦鎷� 
+	presto: u.indexOf('Presto') > -1,		//opera闂備礁鎲￠崝鏇㈠箠韫囨稒鍋嬮柨鐕傛嫹 
+	webKit: u.indexOf('AppleWebKit') > -1,		//闂備礁鍚嬪Σ鎺楋綖婢舵劖鍊跺鑸靛姇杩濇繛杈剧到閿熺晫鍠庨崢顓炩攽椤旂晫绠撻柤娲诲灦瀹曨剟骞橀鐓庡敤闂佽法鍣﹂幏锟� 
 	gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,		//gecko
 	microMessenger:u.indexOf('MicroMessenger') > -1		//QQ weixin
 }
 if(browser.microMessenger){
-	window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd44c999a0475e56&redirect_uri=http://api-001.sport.bigtiyu.com//webjars/topic/qiaotun_wx.html&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect'
+	window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd44c999a0475e56&redirect_uri=http://api-001.sport.bigtiyu.com/webjars/topic/qiaotun_wx.html&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect'
 }else{
-	window.location.href = 'http://api-001.sport.bigtiyu.com//webjars/topic/qiaotun_wx.html'
+	window.location.href = 'http://api-001.sport.bigtiyu.com/webjars/topic/qiaotun_wx.html'
 }
 </script>
