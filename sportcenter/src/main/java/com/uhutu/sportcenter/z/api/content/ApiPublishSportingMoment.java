@@ -48,11 +48,9 @@ public class ApiPublishSportingMoment
 
 		contentBasicinfo.setAuthor(upUserCode());
 
-		if (StringUtils.isNotBlank(contentBasicinfo.getCover()) && StringUtils.isNotBlank(contentBasicinfo.getTagCode())
-				&& contentBasicinfo.getTagCode().contains("GGBH160719110001")) {// 翘臀大赛加水印
-			String waterMarker = new WaterMarkerSupport().getWaterMarker(contentBasicinfo.getCover());
-			contentBasicinfo.setCover(StringUtils.isNotBlank(waterMarker) ? waterMarker : contentBasicinfo.getCover());
-		}
+		String waterMarker = new WaterMarkerSupport().getWaterMarker(contentBasicinfo.getCover(),
+				contentBasicinfo.getTagCode());// 背景图加水印
+		contentBasicinfo.setCover(StringUtils.isNotBlank(waterMarker) ? waterMarker : contentBasicinfo.getCover());
 		if (StringUtils.isNotBlank(contentBasicinfo.getCover())) {
 			String wh = getBufferedImage(contentBasicinfo.getCover());
 			if (StringUtils.isNotBlank(wh)) {
