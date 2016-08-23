@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
@@ -25,6 +26,7 @@ import com.uhutu.sportcenter.z.entity.ContentReplyInfo;
 import com.uhutu.sportcenter.z.input.ApiRemarkListInput;
 import com.uhutu.sportcenter.z.result.ApiRemarkListResult;
 import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 /**
  * 评论信息列表
  * @author 逄小帅
@@ -94,6 +96,14 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 			remarkInfo = new ContentRemarkInfo();
 			
 			BeanUtils.copyProperties(remark, remarkInfo);
+			
+			CnContentBasicinfo contentBasicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",remark.getContentCode());
+			
+			if(contentBasicinfo != null){
+				
+				remarkInfo.setContentType(contentBasicinfo.getContentType());
+				
+			}
 			
 			UcUserinfoExt ucUserinfoExt = userSerivceFactory.getUserInfoExtService().queryByUserCode(remark.getAuthor());
 			
