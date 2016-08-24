@@ -83,10 +83,11 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 					contentBasicinfoForApi.getUserBasicInfo().setType(userInfo.getType());
 
 					contentBasicinfoForApi.getUserBasicInfo().setUserCode(userInfo.getCode());
-					if(StringUtils.isNotBlank(input.getZoo().getToken())){
+					if (StringUtils.isNotBlank(input.getZoo().getToken())) {
 						UcAttentionInfo attentionInfo = JdbcHelper.queryOne(UcAttentionInfo.class, "attention",
 								TopUserFactory.upUserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(),
-										DefineUser.Login_System_Default), "be_attention", userInfo.getCode(), "status", "1");
+										DefineUser.Login_System_Default),
+								"be_attention", userInfo.getCode(), "status", "1");
 						if (attentionInfo != null) {
 							contentBasicinfoForApi.setAuthorBeAttentionFlag(true);
 						}
@@ -117,7 +118,9 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 				}
 
 				contentDetailResult.setContentDetailInfo(contentDetailInfo);
-
+				if ("dzsd4107100110030004".equals(contentBasicinfoForApi.getContentType())) {// 单图模式的时候内容做标题
+					contentBasicinfoForApi.setTitle(contentDetailInfo.getContent());
+				}
 				contentDetailResult.setSportingMoment(contentBasicinfoForApi);
 
 			} else {
