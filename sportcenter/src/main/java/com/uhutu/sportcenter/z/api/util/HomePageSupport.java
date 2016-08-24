@@ -93,7 +93,8 @@ public class HomePageSupport {
 		return cff;
 	}
 
-	public List<HomePageModel> getPageModels(String itemCode, String itemType, String t1, String t2, String width) {
+	public List<HomePageModel> getPageModels(String itemCode, String itemType, String t1, String t2, String width,
+			String token) {
 		List<HomePageModel> li = new ArrayList<HomePageModel>();
 		MDataMap map = new MDataMap();
 		map.put("itemType", itemType);
@@ -159,6 +160,7 @@ public class HomePageSupport {
 							info.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(width)));
 						}
 						BeanUtils.copyProperties(info, infoApi);
+						infoApi.setFavorFlag(ContentComponent.lightFavor(infoApi.getCode(), token));
 						infoApi.getUserBasicInfo().setNickName(userInfoApi.getNickName());
 						infoApi.getUserBasicInfo().setAboutHead(userInfoApi.getAboutHead());
 						infoApi.getUserBasicInfo().setType(userInfoApi.getType());

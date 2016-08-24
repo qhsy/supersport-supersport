@@ -191,15 +191,6 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 
 				}
 
-				boolean praiseFlag = false;
-
-				if (StringUtils.isNotBlank(input.getZoo().getToken())) {
-
-					praiseFlag = ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken());
-
-				}
-
-				sportingMoment.setFavorFlag(praiseFlag);
 				sportingMoment = new HomePageSupport(userInfoSupport).getSingleTitle(sportingMoment);
 				int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(sportingMoment.getCode(),
 						RemarkEnum.FLAG_ENABLE.getCode());

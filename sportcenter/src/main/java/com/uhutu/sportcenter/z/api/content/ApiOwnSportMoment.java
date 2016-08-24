@@ -13,6 +13,8 @@ import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
+import com.uhutu.dcom.user.z.support.UserInfoSupport;
+import com.uhutu.sportcenter.z.api.util.HomePageSupport;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.input.ApiOwnSportMomentInput;
 import com.uhutu.sportcenter.z.result.ApiOwnSportMomentResult;
@@ -20,12 +22,16 @@ import com.uhutu.zoocom.root.RootApiToken;
 
 /**
  * 我发布的运动时刻
+ * 
  * @author 逄小帅
  *
  */
 @Component
 public class ApiOwnSportMoment extends RootApiToken<ApiOwnSportMomentInput, ApiOwnSportMomentResult> {
-	
+
+	@Autowired
+	private UserInfoSupport userInfoSupport;
+
 	@Autowired
 	private UserServiceFactory userServiceFactory;
 
@@ -34,23 +40,23 @@ public class ApiOwnSportMoment extends RootApiToken<ApiOwnSportMomentInput, ApiO
 
 	@Override
 	protected ApiOwnSportMomentResult process(ApiOwnSportMomentInput input) {
-		
-		ApiOwnSportMomentResult result = new ApiOwnSportMomentResult();		
+
+		ApiOwnSportMomentResult result = new ApiOwnSportMomentResult();
 
 		UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(upUserCode());
-		
+
 		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByCode(upUserCode());
-		
+
 		QueryConditions queryConditions = new QueryConditions();
 
 		queryConditions.setConditionEqual("busiType", ContentEnum.sportmoment.getCode());
-		
+
 		queryConditions.setConditionEqual("status", "dzsd4699100110010001");
 
 		queryConditions.setConditionEqual("author", upUserCode());
 
-		Page<CnContentBasicinfo> page = serviceFactory.getContentBasicinfoService()
-				.queryPage(input.getPagination(), 10, queryConditions);
+		Page<CnContentBasicinfo> page = serviceFactory.getContentBasicinfoService().queryPage(input.getPagination(), 10,
+				queryConditions);
 
 		List<CnContentBasicinfo> contentBasicInfos = page.getContent();
 
@@ -62,23 +68,23 @@ public class ApiOwnSportMoment extends RootApiToken<ApiOwnSportMomentInput, ApiO
 
 			BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
 
-			if(ucUserinfoExt != null){
-				
+			if (ucUserinfoExt != null) {
+
 				sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
-				
+
 				sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
-				
-			}
-			
-			if(ucUserinfo != null){
-				
-				sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
-				
-				sportingMoment.getUserBasicInfo().setUserCode(upUserCode());
-				
+
 			}
 
-			sports.add(sportingMoment);
+			if (ucUserinfo != null) {
+
+				sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
+
+				sportingMoment.getUserBasicInfo().setUserCode(upUserCode());
+
+			}
+
+			sports.add(new HomePageSupport(userInfoSupport).getSingleTitle(sportingMoment));
 
 		}
 
@@ -93,7 +99,7 @@ public class ApiOwnSportMoment extends RootApiToken<ApiOwnSportMomentInput, ApiO
 			result.setNextPageFlag(false);
 
 		}
-		
+
 		return result;
 	}
 
