@@ -83,7 +83,7 @@ public class HomePageSupport {
 	 * 
 	 * @return
 	 */
-	private ContentBasicinfoForApi getSingleTitle(ContentBasicinfoForApi cff) {
+	public ContentBasicinfoForApi getSingleTitle(ContentBasicinfoForApi cff) {
 		if ("dzsd4107100110030004".equals(cff.getContentType())) {
 			CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code", cff.getCode());
 			if (detail != null && StringUtils.isNotBlank(detail.getContent())) {

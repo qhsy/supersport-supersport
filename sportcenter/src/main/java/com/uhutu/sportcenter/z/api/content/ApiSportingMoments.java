@@ -23,6 +23,7 @@ import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.api.util.ContentComponent;
+import com.uhutu.sportcenter.z.api.util.HomePageSupport;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
@@ -199,7 +200,7 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 				}
 
 				sportingMoment.setFavorFlag(praiseFlag);
-
+				sportingMoment = new HomePageSupport(userInfoSupport).getSingleTitle(sportingMoment);
 				int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(sportingMoment.getCode(),
 						RemarkEnum.FLAG_ENABLE.getCode());
 				sportingMoment.setRemarkNum(remarkNum);
