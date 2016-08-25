@@ -81,7 +81,13 @@ public class ApiUserInfoAll extends RootApiToken<ApiUserInfoAllInput, ApiUserInf
 
 			answerUserInfo.setNickName(userInfoExt.getNickName());
 			
-			String sourceUrl = ImageHelper.upSourceUrl(userInfoExt.getAboutHead());
+			String sourceUrl = "";
+			
+			if(StringUtils.isNotEmpty(userInfoExt.getAboutHead())){
+				
+				sourceUrl = ImageHelper.upSourceUrl(userInfoExt.getAboutHead());
+				
+			}
 
 			answerUserInfo.setAboutHead(userInfoExt.getAboutHead());
 			
