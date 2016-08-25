@@ -159,6 +159,8 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 					sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
 
 					sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+					
+					sportingMoment.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
 
 				}
 
