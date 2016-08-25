@@ -101,7 +101,8 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 						labelServiceFacotry.getContentLabelService().getLabels(cnContentBasicinfo.getTagCode()));
 				contentBasicinfoForApi.setFavorFlag(
 						ContentComponent.lightFavor(contentBasicinfoForApi.getCode(), input.getZoo().getToken()));
-
+				contentBasicinfoForApi.setAuthorFlag(
+						ContentComponent.oneLogin(contentBasicinfoForApi.getAuthor(), input.getZoo().getToken()));
 				contentBasicinfoForApi.setPublishTimeStr("MM-dd HH:mm");
 
 				ContentRecommInfo recommInfo = new ContentRecommInfo();

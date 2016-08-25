@@ -11,6 +11,7 @@ import com.uhutu.zoocom.z.bean.TopUserFactory;
 
 /**
  * 内容相关方法
+ * 
  * @author 逄小帅
  *
  */
@@ -26,8 +27,9 @@ public class ContentComponent {
 
 		if (StringUtils.isNotBlank(userCode)) {
 
-			ContentServiceFactory contentServiceFactory = (ContentServiceFactory) ApplicationSupport.getBean("contentServiceFactory");
-			
+			ContentServiceFactory contentServiceFactory = (ContentServiceFactory) ApplicationSupport
+					.getBean("contentServiceFactory");
+
 			/* 01点赞 */
 			CnSupportPraise praise = contentServiceFactory.getSupportPraiseService().query(contentCode, userCode, "01");
 
@@ -43,6 +45,17 @@ public class ContentComponent {
 
 	}
 
-	
+	public static boolean oneLogin(String userCode, String token) {
+
+		boolean flag = false;
+
+		String uc = TopUserFactory.upUserCallFactory().upUserCodeByAuthToken(token, DefineUser.Login_System_Default);
+
+		if (StringUtils.isNotBlank(uc) && StringUtils.isNotBlank(userCode) && uc.equals(userCode)) {
+			flag = true;
+		}
+		return flag;
+
+	}
 
 }
