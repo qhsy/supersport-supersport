@@ -1,15 +1,11 @@
 package com.uhutu.sportcenter.z.control;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.APiStartPageInput;
 import com.uhutu.sportcenter.z.input.ApiAttendListInput;
@@ -24,12 +20,14 @@ import com.uhutu.sportcenter.z.input.ApiRecommendExpertInput;
 import com.uhutu.sportcenter.z.input.ApiSendSmsInput;
 import com.uhutu.sportcenter.z.input.ApiSetUserFavoerInput;
 import com.uhutu.sportcenter.z.input.ApiShareContentInput;
+import com.uhutu.sportcenter.z.input.ApiSignLoginInput;
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput;
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput2;
 import com.uhutu.sportcenter.z.input.ApiUpdateUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiUserInfoAllInput;
 import com.uhutu.sportcenter.z.input.ApiUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiUserRegInput;
+import com.uhutu.sportcenter.z.input.ApiUserRegSignInput;
 import com.uhutu.sportcenter.z.input.ApiUserResetPwdInput;
 import com.uhutu.sportcenter.z.input.ApiVerifyNickNameInput;
 import com.uhutu.sportcenter.z.input.ApiVersionInfoInput;
@@ -46,17 +44,17 @@ import com.uhutu.sportcenter.z.result.ApiRecommendExpertResult;
 import com.uhutu.sportcenter.z.result.ApiSendSmsResult;
 import com.uhutu.sportcenter.z.result.ApiSetUserFavorResult;
 import com.uhutu.sportcenter.z.result.ApiShareContentResult;
+import com.uhutu.sportcenter.z.result.ApiSignLoginResult;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult2;
 import com.uhutu.sportcenter.z.result.ApiUpdateUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiUserInfoAllResult;
 import com.uhutu.sportcenter.z.result.ApiUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiUserRegResult;
+import com.uhutu.sportcenter.z.result.ApiUserRegSignResult;
 import com.uhutu.sportcenter.z.result.ApiUserResetPwdResult;
 import com.uhutu.sportcenter.z.result.ApiVerifyNickNameResult;
 import com.uhutu.sportcenter.z.result.ApiVersionInfoResult;
-import com.uhutu.zoocom.model.MDataMap;
-import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -80,14 +78,6 @@ public class UserController {
 	@ApiOperation(value = "app版本升级提示接口", notes = "版本升级")
 	public ApiVersionInfoResult versionInfo(@RequestBody ApiVersionInfoInput input) {
 		
-		String orderStr = "IFNULL((SELECT count from cn_content_read_count  where content_code = code),zc) DESC";
-
-		List<CnContentBasicinfo> contentBasicinfos = JdbcHelper.queryForList(CnContentBasicinfo.class, "", orderStr,
-				"", new MDataMap(), 0, 10);
-		
-		
-		System.out.println(contentBasicinfos.size());
-		
 		return apiFactory.getApiVersionInfo().api(input);
 	
 	}
@@ -98,6 +88,14 @@ public class UserController {
 	public ApiUserRegResult userRegister(@RequestBody ApiUserRegInput input) {
 
 		return apiFactory.getApiUserRegister().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/userRegSign", method = RequestMethod.POST)
+	@ApiOperation(value = "用户注册接口(签名)", notes = "用户注册接口(签名)")
+	public ApiUserRegSignResult userRegSign(@RequestBody ApiUserRegSignInput input) {
+
+		return apiFactory.getApiUserRegSign().api(input);
 	}
 
 	@ResponseBody
@@ -146,6 +144,15 @@ public class UserController {
 	public ApiForLoginResult login(@RequestBody ApiForLoginInput input) {
 
 		return apiFactory.getApiForLogin().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/signLogin", method = RequestMethod.POST)
+	@ApiOperation(value = "用户登录接口(签名)", notes = "用户登录接口(签名)")
+	public ApiSignLoginResult login(@RequestBody ApiSignLoginInput input) {
+
+		return apiFactory.getApiSignLogin().api(input);
 
 	}
 

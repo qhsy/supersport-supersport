@@ -87,12 +87,14 @@ import com.uhutu.sportcenter.z.api.user.ApiMsgRemarkList;
 import com.uhutu.sportcenter.z.api.user.ApiRecentMsgList;
 import com.uhutu.sportcenter.z.api.user.ApiRecommendExpert;
 import com.uhutu.sportcenter.z.api.user.ApiSetUserFavor;
+import com.uhutu.sportcenter.z.api.user.ApiSignLogin;
 import com.uhutu.sportcenter.z.api.user.ApiSocialLogin;
 import com.uhutu.sportcenter.z.api.user.ApiSocialLogin2;
 import com.uhutu.sportcenter.z.api.user.ApiUpdateMsgStatus;
 import com.uhutu.sportcenter.z.api.user.ApiUpdateUserInfo;
 import com.uhutu.sportcenter.z.api.user.ApiUserInfo;
 import com.uhutu.sportcenter.z.api.user.ApiUserInfoAll;
+import com.uhutu.sportcenter.z.api.user.ApiUserRegSign;
 import com.uhutu.sportcenter.z.api.user.ApiUserRegister;
 import com.uhutu.sportcenter.z.api.user.ApiUserResetPwd;
 import com.uhutu.sportcenter.z.api.user.ApiVerifyNickName;
@@ -400,6 +402,12 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiWechatUserLogin3 apiWechatUserLogin3;
+	
+	@Autowired
+	private ApiUserRegSign apiUserRegSign;
+	
+	@Autowired
+	private ApiSignLogin apiSignLogin;
 	
 	public ApiSportChickenSoup getApiSportChickenSoup() {
 		return apiSportChickenSoup;
@@ -787,6 +795,14 @@ public class ApiFactory {
 
 	public ApiWechatUserLogin3 getApiWechatUserLogin3() {
 		return apiWechatUserLogin3;
+	}
+
+	public ApiUserRegSign getApiUserRegSign() {
+		return apiUserRegSign;
+	}
+
+	public ApiSignLogin getApiSignLogin() {
+		return apiSignLogin;
 	}
 
 }
