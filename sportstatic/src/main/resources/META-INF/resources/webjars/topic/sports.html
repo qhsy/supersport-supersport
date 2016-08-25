@@ -98,6 +98,9 @@ html{background: #f0f0f0;}
 				success:function(data){
 					if(data.status == 1) {
 						self.result = data;
+						if(data.shareFlag){
+							callbackShare(data.code);
+						}
 					}else {
 						alert(data.error)
 					}

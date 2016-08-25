@@ -43,9 +43,9 @@
 <section class="container" v-cloak>
 	<article class="content">
 		<div class="cover"><img :src="res.contentBasicInfo.cover" alt=""></div>
-		<div class="title">{{res.contentBasicInfo.title}}</div>
+		<div class="title">{{res.contentBasicInfo.userBasicInfo.title}}</div>
 		<div class="name">by {{res.contentBasicInfo.userBasicInfo.nickName}}<em>{{res.contentBasicInfo.userBasicInfo.publishTimeStr}}</em></div>
-		<div class="address">北京市{{res.contentBasicInfo.localtionName}}</div>
+		<div class="address" v-if="res.contentBasicInfo.localtionName">{{res.contentBasicInfo.localtionName}}</div>
 		<ul class="list">
 			<li v-for="photo in res.contentPhotosDetails" track-by="$index">
 				<div class="photo"><img src="../static/img/lazyload.jpg" v-lazyload="photo.thumb.thumbUrl" alt=""></div>

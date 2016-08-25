@@ -30,17 +30,16 @@
 .content .video-title{padding: 0.22rem 0.22rem 0.04rem; line-height: 0.24rem; font-size: 0.2rem; color: #212121; font-weight: 700;}
 .content .address{font-size: 0.12rem;}
 .content .address:after{content: ""; float: left; width: 0.08rem; height: 0.1rem; margin: 0.02rem 0.05rem 0 1px; background: url(css/img/icon.png) no-repeat -0.05rem -0.12rem; background-size: 0.17rem;}
-.content .referral{margin: 0 0.22rem 0.15rem; border-bottom: #979797 dotted 1px;}
+.content .referral{margin: 0 0.22rem 0; border-bottom: #979797 dotted 1px;}
 .content .referral h3{padding: 0.22rem 0 0.09rem;}
 .content .referral h3:before{content: ""; width: 1px; height: 0.12rem; display: inline-block; margin-right: 5px; background: #F8800A;}
 .content .referral p{padding-bottom: 0.14rem; font-size: 0.12rem; font-style: italic; line-height: 0.16rem; text-indent: 0.24rem;}
-.content .detail{line-height: 0.22rem;}
+.content .detail{ margin-top: 0.15rem; line-height: 0.22rem;}
 .content .detail p{margin-bottom: 0.1rem; text-align: justify;}
 .content .detail img{margin-bottom: 0.1rem;}
 .content .tag{padding: 0.36rem 0.22rem 0.46rem;}
 .content .tag li{border: #757575 1px solid; display: inline-block; border-radius: 4px; margin-right: 0.08rem; padding: 0 0.09rem; font-size: 0.12rem; line-height: 0.18rem;}
 .content .caption{padding: 0.36rem 0.22rem 0.1rem; line-height: 0.2rem; text-align: justify;}
-
 /*follow*/
 .follow{text-align: center;}
 .follow .head{width: 0.52rem; height: 0.52rem; margin: auto; position: relative;}
@@ -81,12 +80,13 @@
 		</template>
 	</footer>
 </section>
+
 <!-- 文章详情 -->
 <template id="template-detail">
 	<div class="cover"><img :src="res.sportingMoment.cover" alt=""></div>
 	<h1 class="title">{{res.sportingMoment.title}}</h1>
-	<h2 class="address">{{res.sportingMoment.localtionName}}</h2>
-	<div class="referral">
+	<h2 class="address" v-if="res.sportingMoment.localtionName">{{res.sportingMoment.localtionName}}</h2>
+	<div class="referral" v-if="res.contentRecommInfo.content">
 		<h3>推荐语</h3>
 		<p>
 		{{res.contentRecommInfo.content}}
@@ -104,7 +104,7 @@
 	<p class="caption">
 		{{res.contentDetailInfo.content}}
 	</p>
-	<h2 class="address">{{res.sportingMoment.localtionName}}</h2>
+	<h2 class="address" v-if="res.sportingMoment.localtionName">{{res.sportingMoment.localtionName}}</h2>
 	<child-tag :res="res"></child-tag>
 </template>
 <!-- end -->
@@ -113,8 +113,8 @@
 	<div class="video">
 		<div id="prismPlayer"></div>
 	</div>
-	<h1 class="video-title">{{res.sportingMoment.title}}</h1>
-	<h2 class="address">{{res.sportingMoment.localtionName}}</h2>
+	<h1 class="video-title">{{res.sportingMoment.userBasicInfo.title}}</h1>
+	<h2 class="address" v-if="res.sportingMoment.localtionName">{{res.sportingMoment.localtionName}}</h2>
 	<child-tag :res="res"></child-tag>
 </template>
 <!-- end -->
@@ -167,7 +167,8 @@ new Vue({
 	el:'.container',
 	data:{
 		res: null,
-		share:queryUrl('share')
+		share:queryUrl('share'),
+		load:false
 	},
 	created:function(){
 		this.reqwest();
@@ -190,7 +191,7 @@ new Vue({
 						if(resp.sportingMoment.contentType == 'dzsd4107100110030002' || resp.sportingMoment.contentType == 'dzsd4107100110030005'){
 							_this.playVideo(resp.contentDetailInfo.videoUrl,resp.contentDetailInfo.videoCover);
 						}
-						callbackShare(1)
+						_this.load = true;
 					}else{
 						alert(resp.error)
 					}

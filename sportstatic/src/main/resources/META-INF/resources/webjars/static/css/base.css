@@ -30,10 +30,13 @@ a:hover {text-decoration: none; }
 .ms-controller{visibility: hidden;}
 
 .container{padding-bottom: 1rem;}
-.share{width: 100%; padding: 0.13rem 0; background: rgba(217,217,217,0.5); position: fixed; left: 0; bottom: 0; z-index: 999;}
+.share{width: 100%; padding: 0.13rem 0; background: rgba(217,217,217,0.5); position: fixed; left: 0; bottom: 0; z-index: 99;}
 .share .logo{width: 1.07rem; margin-left: 0.16rem; float: left;}
 .share .btn{width: 0.74rem; height: 0.26rem; margin-right: 0.22rem; background: #F8800A; float: right; border-radius: 4px; text-align: center; color: #fff; font-size: 0.12rem; line-height: 0.26rem;}
 .share .close{width: 0.22rem; height: 0.22rem; border-radius: 50%; background: #D8D8D8; color: #fff; position: absolute; right: 0.1rem; top: -0.1rem; text-align: center; line-height: 0.22rem; font-size: 0.12rem;}
+.loading{width: 100%; height: 100%; position: fixed; left:0; top: 0; display: -webkit-box; display: box; background: #fff; z-index: 999; -webkit-box-pack: center; -webkit-box-align: center;}
+.loading em{width: 0.32rem; height: 0.32rem;}
+
 @media screen and (max-width: 320px){
 	html{font-size: 85.7px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
 }
