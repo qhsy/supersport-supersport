@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
+import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
@@ -104,7 +105,9 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 				contentBasicinfoForApi.setAuthorFlag(
 						ContentComponent.oneLogin(contentBasicinfoForApi.getAuthor(), input.getZoo().getToken()));
 				contentBasicinfoForApi.setPublishTimeStr("MM-dd HH:mm");
-
+				CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
+						contentBasicinfoForApi.getCode());
+				contentBasicinfoForApi.setReadNum(contentReadCount != null ? contentReadCount.getCount() : 0);
 				ContentRecommInfo recommInfo = new ContentRecommInfo();
 
 				CnContentRecomm sourceRecommInfo = contentServiceFactory.getContentRecommService()
