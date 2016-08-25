@@ -48,7 +48,7 @@
 		<div class="address">北京市{{res.contentBasicInfo.localtionName}}</div>
 		<ul class="list">
 			<li v-for="photo in res.contentPhotosDetails" track-by="$index">
-				<div class="photo"><img :src="photo.thumb.thumbUrl" alt=""></div>
+				<div class="photo"><img src="../static/img/lazyload.jpg" v-lazyload="photo.thumb.thumbUrl" alt=""></div>
 				<div class="info">
 					<em class="num">{{$index+1}}/{{res.contentPhotosDetails.length}}</em>
 					<p class="text">{{photo.content}}</p>
@@ -66,10 +66,14 @@
 		<a href="javascript:;" class="submit" @click="openApp">关注</a>
 	</footer>
 </section>
-<script type="text/javascript" src="../common/lib/vue.min.js"></script>
-<script type="text/javascript" src="../common/tools.js"></script>
-<script type="text/javascript" src="../common/share.js"></script>
+<script type="text/javascript" src="../static/js/lib/vue.min.js"></script>
+<script type="text/javascript" src="../static/js/tools.js"></script>
+<script type="text/javascript" src="../static/js/share.js"></script>
+<script type="text/javascript" src="../static/js/vue.lazyimg.js"></script>
 <script type="text/javascript">
+Vue.use(Vue.lazyimg,{
+    speed: 20
+});
 new Vue({
 	el:'.container',
 	data:{
