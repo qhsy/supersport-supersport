@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>详情</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<link rel="stylesheet" type="text/css" href="../static/css/base.css">
+<style type="text/css">
+/*user*/
+.user{padding: 0.13rem 0.22rem; overflow: auto;}
+.user .head{width: 0.32rem; height: 0.32rem; margin-right: 0.1rem; float: left;}
+.user .head img{border-radius: 50%;}
+.user .name{font-size: 0.13rem; font-weight: 700; color: #212121;}
+.user .title{color: #757575; font-size: 0.12rem;}
+.user .info{float: left;}
+.user .time{float: right; line-height: 0.32rem; font-size: 0.12rem; color: #BDBDBD; font-family: 'Helvetica-Light';}
+.user .num{padding-right: 0.12rem;}
+.user .num:before{content: ""; float: left; width: 0.17rem; height: 0.12rem; margin: 0.1rem 0.06rem 0 0; background: url(css/img/icon.png) no-repeat; background-size: 0.17rem;}
+/* content */
+.content .title, .content .address, .content .detail, .content .tag{padding: 0 0.22rem;}
+.content{color: #757575!important;}
+.content .title{padding: 0.35rem 0.22rem 0.04rem; line-height: 0.24rem; font-size: 0.2rem; color: #212121; font-weight: 700;}
+.content .video-title{padding: 0.22rem 0.22rem 0.04rem; line-height: 0.24rem; font-size: 0.2rem; color: #212121; font-weight: 700;}
+.content .address{font-size: 0.12rem;}
+.content .address:after{content: ""; float: left; width: 0.08rem; height: 0.1rem; margin: 0.02rem 0.05rem 0 1px; background: url(css/img/icon.png) no-repeat -0.05rem -0.12rem; background-size: 0.17rem;}
+.content .referral{margin: 0 0.22rem 0.15rem; border-bottom: #979797 dotted 1px;}
+.content .referral h3{padding: 0.22rem 0 0.09rem;}
+.content .referral h3:before{content: ""; width: 1px; height: 0.12rem; display: inline-block; margin-right: 5px; background: #F8800A;}
+.content .referral p{padding-bottom: 0.14rem; font-size: 0.12rem; font-style: italic; line-height: 0.16rem; text-indent: 0.24rem;}
+.content .detail{line-height: 0.22rem;}
+.content .detail p{margin-bottom: 0.1rem; text-align: justify;}
+.content .detail img{margin-bottom: 0.1rem;}
+.content .tag{padding: 0.36rem 0.22rem 0.46rem;}
+.content .tag li{border: #757575 1px solid; display: inline-block; border-radius: 4px; margin-right: 0.08rem; padding: 0 0.09rem; font-size: 0.12rem; line-height: 0.18rem;}
+.content .caption{padding: 0.36rem 0.22rem 0.1rem; line-height: 0.2rem; text-align: justify;}
+
+/*follow*/
+.follow{text-align: center;}
+.follow .head{width: 0.52rem; height: 0.52rem; margin: auto; position: relative;}
+.follow .head img{border-radius: 50%; width: 100%; height: 100%;}
+.follow .name{padding: 0.1rem 0 0; font-size: 0.13rem; color: #212121; line-height: 0.2rem;}
+.follow .title{padding-bottom: 0.13rem; color: #BDBDBD; font-size: 0.12rem; line-height: 0.2rem;}
+.follow .submit{width: 0.74rem; border: #F8800A 1px solid; display: block; margin: auto; border-radius: 1.2rem; line-height: 0.27rem; color: #F8800A;}
+.follow .submit.curr{background: #f8800a; color: #fff;}
+.follow .vip{width: 0.15rem; height: 0.15rem; background: url(css/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
+</style>
+</head>
+<body>
+<section class="container" v-cloak>
+	<header class="user">
+		<div class="head" @click="headCallback(res.sportingMoment.userBasicInfo.userCode)"><img :src="res.sportingMoment.userBasicInfo.aboutHead" alt=""><em class="vip" v-if="res.sportingMoment.userBasicInfo.type == 'dzsd4107100310010002'"></em></div>
+		<div class="info">
+			<h1 class="name">{{res.sportingMoment.userBasicInfo.nickName}}</h1>
+			<h2 class="title">{{res.sportingMoment.userBasicInfo.title}}</h2>
+		</div>
+		<div class="time">
+			<em class="num">{{res.sportingMoment.readNum}}</em>{{res.sportingMoment.publishTimeStr}}
+		</div>
+	</header>
+	<article class="content">
+		<child-detail :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030001'"></child-detail>
+		<child-picture :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030004'"></child-picture>
+		<child-video :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030005'"></child-video>
+	</article>
+	<footer class="follow">
+		<div class="head" @click="headCallback(res.sportingMoment.userBasicInfo.userCode)"><img :src="res.sportingMoment.userBasicInfo.aboutHead" alt=""><em class="vip" v-if="res.sportingMoment.userBasicInfo.type == 'dzsd4107100310010002'"></em></div>
+		<h1 class="name">{{res.sportingMoment.userBasicInfo.nickName}}</h1>
+		<h2 class="title">{{res.sportingMoment.userBasicInfo.title}}</h2>
+		<template v-if="res.sportingMoment.authorBeAttentionFlag">
+			<a href="javascript:;" class="submit curr" @click="unFollow" v-else>已关注</a>
+		</template>
+		<template v-else>
+			<a href="javascript:;" class="submit" @click="follow" v-else>关注</a>
+		</template>
+	</footer>
+</section>
+<!-- 文章详情 -->
+<template id="template-detail">
+	<div class="cover"><img :src="res.sportingMoment.cover" alt=""></div>
+	<h1 class="title">{{res.sportingMoment.title}}</h1>
+	<h2 class="address">{{res.sportingMoment.localtionName}}</h2>
+	<div class="referral">
+		<h3>推荐语</h3>
+		<p>
+		{{res.contentRecommInfo.content}}
+		</p>
+	</div>
+	<div class="detail">
+		{{{res.contentDetailInfo.content}}}
+	</div>
+	<child-tag :res="res"></child-tag>
+</template>
+<!-- end -->
+<!-- 单图详情 -->
+<template id="template-picture">
+	<div class="cover"><img :src="res.sportingMoment.cover" alt=""></div>
+	<p class="caption">
+		{{res.contentDetailInfo.content}}
+	</p>
+	<h2 class="address">{{res.sportingMoment.localtionName}}</h2>
+	<child-tag :res="res"></child-tag>
+</template>
+<!-- end -->
+<!-- 视频详情 -->
+<template id="template-video">
+	<div class="video">
+		<div id="prismPlayer"></div>
+	</div>
+	<h1 class="video-title">{{res.sportingMoment.title}}</h1>
+	<h2 class="address">{{res.sportingMoment.localtionName}}</h2>
+	<child-tag :res="res"></child-tag>
+</template>
+<!-- end -->
+<!-- 标签类型 -->
+<template id="template-tag">
+<ul class="tag">
+	<li v-for="tag in res.sportingMoment.tags" @click="tagCallback(tag.code,tag.name)">{{tag.name}}</li>
+</ul>
+</template>
+<!-- end -->
+<script type="text/javascript" src="../common/lib/vue.min.js"></script>
+<script type="text/javascript" src="../common/tools.js"></script>
+<script type="text/javascript" src="../common/share.js"></script>
+<script type="text/javascript">
+Vue.component('child-detail',{
+	template:'#template-detail',
+	props:{
+		res:null
+	}
+});
+Vue.component('child-picture',{
+	template:'#template-picture',
+	props:{
+		res:null
+	}
+});
+Vue.component('child-video',{
+	template:'#template-video',
+	props:{
+		res:null
+	}
+});
+Vue.component('child-tag',{
+	data:{
+		share:queryUrl('share')
+	}
+	props:{
+		res:null
+	},
+	template:'#template-tag',
+	methods:{
+		tagCallback:function(code,name){
+			if(!this.share){
+				callbackLabel(code,name)
+			}
+		}
+	}
+});
+new Vue({
+	el:'.container',
+	data:{
+		res: null,
+		share:queryUrl('share')
+	},
+	created:function(){
+		this.reqwest();
+		if(this.share){
+			share();
+		}
+	},
+	methods:{
+		reqwest:function(){
+			var _this = this;
+			reqwest({
+				url: '/api/contentController/contentDetail',
+				method: 'post',
+				data: '{"content_code": "' + queryUrl('code') + '", "zoo": {"key": "tesetkey","token": "' + queryUrl('token') + '"}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {
+					if(resp.status == 1){
+						_this.res = resp;
+						if(resp.sportingMoment.contentType == 'dzsd4107100110030002' || resp.sportingMoment.contentType == 'dzsd4107100110030005'){
+							_this.playVideo(resp.contentDetailInfo.videoUrl,resp.contentDetailInfo.videoCover);
+						}
+						callbackShare(1)
+					}else{
+						alert(resp.error)
+					}
+				}
+			})
+		},
+		follow:function(){
+			var _this = this;
+			if(_this.share){
+				open();
+			}else{
+				reqwest({
+					url: '/api/userController/userAttention',
+					method: 'post',
+					data: '{"flag": "1","userCode": "' + _this.res.sportingMoment.userBasicInfo.userCode + '","zoo": {"key": "tesetkey","token": "' + queryUrl('token') + '"}}',
+					type: 'json',
+					contentType: 'application/json',
+					success: function(resp) {
+						if(resp.status == 1){
+							_this.res.sportingMoment.authorBeAttentionFlag = true;
+						}
+					}
+				})
+			}
+			
+		},
+		unFollow:function(){
+			var _this = this;
+			if(_this.share){
+				open();
+			}else{
+				reqwest({
+					url: '/api/userController/userAttention',
+					method: 'post',
+					data: '{"flag": "0","userCode": "' + _this.res.sportingMoment.userBasicInfo.userCode + '","zoo": {"key": "tesetkey","token": "' + queryUrl('token') + '"}}',
+					type: 'json',
+					contentType: 'application/json',
+					success: function(resp) {
+						if(resp.status == 1){
+							_this.res.sportingMoment.authorBeAttentionFlag = false;
+						}
+					}
+				})
+			}
+		},
+		headCallback:function(code){
+			var _this = this;
+			if(!_this.share){
+				callbackFunc(code);
+			}
+		},
+		playVideo:function(videoUrl,coverUrl){
+			new prismplayer({
+			    id: "prismPlayer",	// 容器id
+			    source: videoUrl,	// 视频url 支持互联网可直接访问的视频地址
+			    autoplay: false,	// 自动播放
+			    width: "100%",		// 播放器宽度
+			    height: "400px",	// 播放器高度
+			    trackLog: false,
+			    cover: coverUrl,	// 视频封面
+			    skinLayout: [
+			        {
+			            "align":"blabs",
+			            "x":0,
+			            "y":0,
+			            "name":"controlBar",
+			            "children":[
+			                {
+			                    "align":"tlabs",
+			                    "x":0,
+			                    "y":0,
+			                    "name":"progress"
+			                },{
+			                    "align":"tl",
+			                    "x":15,
+			                    "y":26,
+			                    "name":"playButton"
+			                },{
+			                    "align":"tl",
+			                    "x":10,
+			                    "y":24,
+			                    "name":"timeDisplay"
+			                },{
+			                    "align":"tr",
+			                    "x":20,
+			                    "y":25,
+			                    "name":"fullScreenButton"
+			                },{
+			                    "align":"tr",
+			                    "x":20,
+			                    "y":25,
+			                    "name":"volume"
+			                }
+			            ]
+			        }
+			    ]
+			});
+		}
+	}
+});
+</script>
+</body>
+</html>

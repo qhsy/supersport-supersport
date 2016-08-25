@@ -350,31 +350,7 @@ function paramFn (arg){
 			}
 		}
 	}
-$('.wrap').on('click','.zanEvent',function(){
-	var isFavor = $(this).hasClass('curr');
-	var num = parseInt($(this).attr('data-num'));
-	var code = $(this).attr('data-code');
-	var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
-	if(!isFavor && isWeix){
-		$(this).find('em').text(num+1);
-		$(this).addClass('curr');
-		$(this).find('i').css('display','block');
-		$.ajax({
-			url:'/api/contentController/supportPraise',
-			type:'POST',
-			data:'{"contentCode": "' + code + '","isLike": "1","type": "01","zoo": {"key": "tesetkey","token": "' + sessionStorage.getItem('token') + '"}}',
-			contentType:'application/json',
-			dataType:'json',
-			success:function(result){
-				if(result.status == 1) {
 
-				}else{
-					alert(result.error)
-				}
-			}
-		});
-	}
-});
 </script>
 </body>
 </html>
