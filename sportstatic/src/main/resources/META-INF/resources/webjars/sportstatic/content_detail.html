@@ -72,17 +72,19 @@
 		<div class="head" @click="headCallback(res.sportingMoment.userBasicInfo.userCode)"><img :src="res.sportingMoment.userBasicInfo.aboutHead" alt=""><em class="vip" v-if="res.sportingMoment.userBasicInfo.type == 'dzsd4107100310010002'"></em></div>
 		<h1 class="name">{{res.sportingMoment.userBasicInfo.nickName}}</h1>
 		<h2 class="title">{{res.sportingMoment.userBasicInfo.title}}</h2>
-		<template v-if="res.sportingMoment.authorBeAttentionFlag">
-			<a href="javascript:;" class="submit curr" @click="unFollow" v-else>已关注</a>
-		</template>
-		<template v-else>
-			<a href="javascript:;" class="submit" @click="follow" v-else>关注</a>
+		<template v-if="authorFlag || !res.sportingMoment.authorFlag">
+			<template v-if="res.sportingMoment.authorBeAttentionFlag">
+				<a href="javascript:;" class="submit curr" @click="unFollow" v-else>已关注</a>
+			</template>
+			<template v-else>
+				<a href="javascript:;" class="submit" @click="follow" v-else>关注</a>
+			</template>
 		</template>
 	</footer>
 </section>
 
 <!-- 文章详情 -->
-<template id="template-detail">
+<script type="text/x-template" id="template-detail">
 	<div class="cover"><img :src="res.sportingMoment.cover" alt=""></div>
 	<h1 class="title">{{res.sportingMoment.title}}</h1>
 	<h2 class="address" v-if="res.sportingMoment.localtionName">{{res.sportingMoment.localtionName}}</h2>
@@ -96,34 +98,34 @@
 		{{{res.contentDetailInfo.content}}}
 	</div>
 	<child-tag :res="res"></child-tag>
-</template>
+</script>
 <!-- end -->
 <!-- 单图详情 -->
-<template id="template-picture">
+<script type="text/x-template" id="template-picture">
 	<div class="cover"><img :src="res.sportingMoment.cover" alt=""></div>
 	<p class="caption">
 		{{res.contentDetailInfo.content}}
 	</p>
 	<h2 class="address" v-if="res.sportingMoment.localtionName">{{res.sportingMoment.localtionName}}</h2>
 	<child-tag :res="res"></child-tag>
-</template>
+</script>
 <!-- end -->
 <!-- 视频详情 -->
-<template id="template-video">
+<script type="text/x-template" id="template-video">
 	<div class="video">
 		<div id="JprismPlayer" class="prism-player"></div>
 	</div>
 	<h1 class="video-title">{{res.sportingMoment.userBasicInfo.title}}</h1>
 	<h2 class="address" v-if="res.sportingMoment.localtionName">{{res.sportingMoment.localtionName}}</h2>
 	<child-tag :res="res"></child-tag>
-</template>
+</script>
 <!-- end -->
 <!-- 标签类型 -->
-<template id="template-tag">
+<script type="text/x-template" id="template-tag">
 <ul class="tag">
 	<li v-for="tag in res.sportingMoment.tags" @click="tagCallback(tag.code,tag.name)">{{tag.name}}</li>
 </ul>
-</template>
+</script>
 <!-- end -->
 <script type="text/javascript" src="../static/js/lib/vue.min.js"></script>
 <script type="text/javascript" src="../static/js/tools.js"></script>
@@ -224,7 +226,8 @@ new Vue({
 	el:'.container',
 	data:{
 		res: null,
-		share:queryUrl('share')
+		share:queryUrl('share'),
+		authorFlag:queryUrl('token')
 	},
 	created:function(){
 		this.reqwest();
