@@ -50,7 +50,7 @@ public class PaCoinInfoServiceImpl implements IPaCoinInfoService {
 	@Override
 	public List<PaCoinFlow> queryCoinFlows(String userCode, int start, int number) {
 		
-		List<PaCoinFlow> coinFlows = JdbcHelper.queryForList(PaCoinFlow.class, "", "", "", MapHelper.initMap("userCode",userCode), start, number);
+		List<PaCoinFlow> coinFlows = JdbcHelper.queryForList(PaCoinFlow.class, "", "-zc", "", MapHelper.initMap("userCode",userCode), start, number);
 		
 		return coinFlows;
 	}
