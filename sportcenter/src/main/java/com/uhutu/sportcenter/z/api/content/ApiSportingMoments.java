@@ -197,8 +197,7 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 				int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(sportingMoment.getCode(),
 						RemarkEnum.FLAG_ENABLE.getCode());
 				sportingMoment.setRemarkNum(remarkNum);
-				int praiseNum = JdbcHelper.count(CnSupportPraise.class, "",
-						MapHelper.initMap("content_code", sportingMoment.getCode(), "type", "01", "status", "1"));
+				int praiseNum = serviceFactory.getSupportPraiseService().queryCountByCode(sportingMoment.getCode(), ContentEnum.FAVOR_STATUS_YES.getCode());
 				sportingMoment.setPraiseNum(praiseNum);
 				sports.add(sportingMoment);
 
