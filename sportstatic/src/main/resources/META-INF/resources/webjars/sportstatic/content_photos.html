@@ -18,7 +18,7 @@
 .content .title{padding: 0.24rem 0.16rem 0.08rem; line-height: 0.24rem; font-size: 0.2rem; font-weight: 700;}
 .content .name{padding: 0 0.16rem; line-height: 0.20rem;}
 .content .address{font-size: 0.12rem; color: #9F9F9F;}
-.content .address:after{content: ""; float: left; width: 0.08rem; height: 0.1rem; margin: 0.02rem 0.05rem 0 1px; background: url(css/img/icon.png) no-repeat -0.05rem -0.12rem; background-size: 0.17rem;}
+.content .address:after{content: ""; float: left; width: 0.08rem; height: 0.1rem; margin: 0.03rem 0.05rem 0 1px; background: url(css/img/icon.png) no-repeat -0.05rem -0.12rem; background-size: 0.17rem;}
 .content .list{padding: 0 0.16rem;}
 .content .list img{border-radius: 5px;}
 .content .list li{margin-top: 0.22rem;}
@@ -36,15 +36,15 @@
 .follow .name{padding: 0.1rem 0 0; font-size: 0.13rem; color: #212121; line-height: 0.2rem;}
 .follow .title{padding-bottom: 0.13rem; color: #BDBDBD; font-size: 0.12rem; line-height: 0.2rem;}
 .follow .submit{width: 0.74rem; border: #F8800A 1px solid; display: block; margin: auto; border-radius: 1.2rem; line-height: 0.27rem; color: #F8800A;}
-.follow .vip{width: 0.15rem; height: 0.15rem; background: url(css/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
+.follow .vip{width: 0.15rem; height: 0.15rem; background: url(../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
 </style>
 </head>
 <body>
 <section class="container" v-cloak>
 	<article class="content">
 		<div class="cover"><img :src="res.contentBasicInfo.cover" alt=""></div>
-		<div class="title">{{res.contentBasicInfo.userBasicInfo.title}}</div>
-		<div class="name">by {{res.contentBasicInfo.userBasicInfo.nickName}}<em>{{res.contentBasicInfo.userBasicInfo.publishTimeStr}}</em></div>
+		<div class="title">{{res.contentBasicInfo.title}}</div>
+		<div class="name">by {{res.contentBasicInfo.userBasicInfo.nickName}}<em>{{res.contentBasicInfo.publishTimeStr}}</em></div>
 		<div class="address" v-if="res.contentBasicInfo.localtionName">{{res.contentBasicInfo.localtionName}}</div>
 		<ul class="list">
 			<li v-for="photo in res.contentPhotosDetails" track-by="$index">
@@ -100,7 +100,15 @@ new Vue({
 						_this.res = resp;
 					}
 				}
-			})
+			});
+			reqwest({
+				url: '/api/contentController/contentReadCount',
+				method: 'post',
+				data: '{"code": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": " "}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {}
+			});
 		},
 		openApp:function(){
 			open();

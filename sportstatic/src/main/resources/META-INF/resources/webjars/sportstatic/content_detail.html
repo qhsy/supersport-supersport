@@ -22,14 +22,14 @@
 .user .time{float: right; line-height: 0.32rem; font-size: 0.12rem; color: #BDBDBD; font-family: 'Helvetica-Light';}
 .user .num{padding-right: 0.12rem;}
 .user .num:before{content: ""; float: left; width: 0.17rem; height: 0.12rem; margin: 0.1rem 0.06rem 0 0; background: url(css/img/icon.png) no-repeat; background-size: 0.17rem;}
-.user .vip{width: 0.1rem; height: 0.1rem; background: url(css/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
+.user .vip{width: 0.1rem; height: 0.1rem; background: url(../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
 /* content */
 .content .title, .content .address, .content .detail, .content .tag{padding: 0 0.22rem;}
 .content{color: #757575!important;}
 .content .title{padding: 0.35rem 0.22rem 0.04rem; line-height: 0.24rem; font-size: 0.2rem; color: #212121; font-weight: 700;}
 .content .video-title{padding: 0.22rem 0.22rem 0.04rem; line-height: 0.24rem; font-size: 0.2rem; color: #212121; font-weight: 700;}
 .content .address{font-size: 0.12rem;}
-.content .address:after{content: ""; float: left; width: 0.08rem; height: 0.1rem; margin: 0.02rem 0.05rem 0 1px; background: url(css/img/icon.png) no-repeat -0.05rem -0.12rem; background-size: 0.17rem;}
+.content .address:after{content: ""; float: left; width: 0.08rem; height: 0.1rem; margin: 0.03rem 0.05rem 0 1px; background: url(css/img/icon.png) no-repeat -0.05rem -0.12rem; background-size: 0.17rem;}
 .content .referral{margin: 0 0.22rem 0; border-bottom: #979797 dotted 1px;}
 .content .referral h3{padding: 0.22rem 0 0.09rem;}
 .content .referral h3:before{content: ""; width: 1px; height: 0.12rem; display: inline-block; margin-right: 5px; background: #F8800A;}
@@ -48,7 +48,7 @@
 .follow .title{padding-bottom: 0.13rem; color: #BDBDBD; font-size: 0.12rem; line-height: 0.2rem;}
 .follow .submit{width: 0.74rem; border: #F8800A 1px solid; display: block; margin: auto; border-radius: 1.2rem; line-height: 0.27rem; color: #F8800A;}
 .follow .submit.curr{background: #f8800a; color: #fff;}
-.follow .vip{width: 0.15rem; height: 0.15rem; background: url(css/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
+.follow .vip{width: 0.15rem; height: 0.15rem; background: url(../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
 </style>
 </head>
 <body>
@@ -111,7 +111,7 @@
 <!-- 视频详情 -->
 <template id="template-video">
 	<div class="video">
-		<div id="prismPlayer"></div>
+		<div id="JprismPlayer" class="prism-player"></div>
 	</div>
 	<h1 class="video-title">{{res.sportingMoment.userBasicInfo.title}}</h1>
 	<h2 class="address" v-if="res.sportingMoment.localtionName">{{res.sportingMoment.localtionName}}</h2>
@@ -128,7 +128,12 @@
 <script type="text/javascript" src="../static/js/lib/vue.min.js"></script>
 <script type="text/javascript" src="../static/js/tools.js"></script>
 <script type="text/javascript" src="../static/js/share.js"></script>
+<script type="text/javascript" src="../static/js/vue.lazyimg.js"></script>
+<script type="text/javascript" src="../static/js/prism-min.js"></script>
 <script type="text/javascript">
+Vue.use(Vue.lazyimg,{
+    speed: 20
+});
 Vue.component('child-detail',{
 	template:'#template-detail',
 	props:{
@@ -145,6 +150,58 @@ Vue.component('child-video',{
 	template:'#template-video',
 	props:{
 		res:null
+	},
+	ready:function(){
+		this.playVideo(this.$parent.res.contentDetailInfo.videoUrl,this.$parent.res.contentDetailInfo.videoCover);
+	},
+	methods:{
+		playVideo:function(videoUrl,coverUrl){
+			new prismplayer({
+			    id: "JprismPlayer",	// 容器id
+			    source: videoUrl,	// 视频url 支持互联网可直接访问的视频地址
+			    autoplay: false,	// 自动播放
+			    width: "100%",		// 播放器宽度
+			    height: "100%",	// 播放器高度
+			    trackLog: false,
+			    cover: coverUrl,	// 视频封面
+			    skinLayout: [
+			        {
+			            "align":"blabs",
+			            "x":0,
+			            "y":0,
+			            "name":"controlBar",
+			            "children":[
+			                {
+			                    "align":"tlabs",
+			                    "x":5,
+			                    "y":0,
+			                    "name":"progress"
+			                },{
+			                    "align":"tl",
+			                    "x":15,
+			                    "y":26,
+			                    "name":"playButton"
+			                },{
+			                    "align":"tl",
+			                    "x":10,
+			                    "y":24,
+			                    "name":"timeDisplay"
+			                },{
+			                    "align":"tr",
+			                    "x":20,
+			                    "y":25,
+			                    "name":"fullScreenButton"
+			                },{
+			                    "align":"tr",
+			                    "x":20,
+			                    "y":25,
+			                    "name":"volume"
+			                }
+			            ]
+			        }
+			    ]
+			});
+		}
 	}
 });
 Vue.component('child-tag',{
@@ -167,8 +224,7 @@ new Vue({
 	el:'.container',
 	data:{
 		res: null,
-		share:queryUrl('share'),
-		load:false
+		share:queryUrl('share')
 	},
 	created:function(){
 		this.reqwest();
@@ -188,15 +244,19 @@ new Vue({
 				success: function(resp) {
 					if(resp.status == 1){
 						_this.res = resp;
-						if(resp.sportingMoment.contentType == 'dzsd4107100110030002' || resp.sportingMoment.contentType == 'dzsd4107100110030005'){
-							_this.playVideo(resp.contentDetailInfo.videoUrl,resp.contentDetailInfo.videoCover);
-						}
-						_this.load = true;
 					}else{
 						alert(resp.error)
 					}
 				}
-			})
+			});
+			reqwest({
+				url: '/api/contentController/contentReadCount',
+				method: 'post',
+				data: '{"code": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": " "}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {}
+			});
 		},
 		follow:function(){
 			var _this = this;
@@ -242,53 +302,6 @@ new Vue({
 			if(!_this.share){
 				callbackFunc(code);
 			}
-		},
-		playVideo:function(videoUrl,coverUrl){
-			new prismplayer({
-			    id: "prismPlayer",	// 容器id
-			    source: videoUrl,	// 视频url 支持互联网可直接访问的视频地址
-			    autoplay: false,	// 自动播放
-			    width: "100%",		// 播放器宽度
-			    height: "400px",	// 播放器高度
-			    trackLog: false,
-			    cover: coverUrl,	// 视频封面
-			    skinLayout: [
-			        {
-			            "align":"blabs",
-			            "x":0,
-			            "y":0,
-			            "name":"controlBar",
-			            "children":[
-			                {
-			                    "align":"tlabs",
-			                    "x":0,
-			                    "y":0,
-			                    "name":"progress"
-			                },{
-			                    "align":"tl",
-			                    "x":15,
-			                    "y":26,
-			                    "name":"playButton"
-			                },{
-			                    "align":"tl",
-			                    "x":10,
-			                    "y":24,
-			                    "name":"timeDisplay"
-			                },{
-			                    "align":"tr",
-			                    "x":20,
-			                    "y":25,
-			                    "name":"fullScreenButton"
-			                },{
-			                    "align":"tr",
-			                    "x":20,
-			                    "y":25,
-			                    "name":"volume"
-			                }
-			            ]
-			        }
-			    ]
-			});
 		}
 	}
 });
