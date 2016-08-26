@@ -224,7 +224,17 @@ public class ContentBasicinfoForApi {
 	}
 
 	public String getPublishTimeStr() {
-		return publishTimeStr;
+		
+		String tempStr = "";
+		
+		if(getPublishTime() != null){
+			
+			tempStr = CalendarUtil.formateTip(getPublishTime());
+			
+		}
+		
+		return tempStr;
+		
 	}
 
 	public void setPublishTimeStr(String pattern) {
