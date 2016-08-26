@@ -13,7 +13,6 @@ import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
-import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.remark.z.enums.RemarkEnum;
@@ -159,7 +158,7 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 					sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
 
 					sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
-					
+
 					sportingMoment.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
 
 				}
@@ -197,7 +196,8 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 				int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(sportingMoment.getCode(),
 						RemarkEnum.FLAG_ENABLE.getCode());
 				sportingMoment.setRemarkNum(remarkNum);
-				int praiseNum = serviceFactory.getSupportPraiseService().queryCountByCode(sportingMoment.getCode(), ContentEnum.FAVOR_STATUS_YES.getCode());
+				int praiseNum = serviceFactory.getSupportPraiseService().queryCountByCode(sportingMoment.getCode(),
+						ContentEnum.FAVOR_STATUS_YES.getCode());
 				sportingMoment.setPraiseNum(praiseNum);
 				sports.add(sportingMoment);
 

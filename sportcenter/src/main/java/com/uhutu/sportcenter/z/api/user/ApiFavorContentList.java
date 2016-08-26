@@ -7,9 +7,12 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
+import com.uhutu.dcom.remark.z.enums.RemarkEnum;
+import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
@@ -20,6 +23,7 @@ import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.input.ApiFavorContentListInput;
 import com.uhutu.sportcenter.z.result.ApiFavorContentListResult;
 import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 喜欢内容列表
@@ -38,6 +42,9 @@ public class ApiFavorContentList extends RootApiBase<ApiFavorContentListInput, A
 
 	@Autowired
 	private ContentLabelServiceFactory labelServiceFactory;
+
+	@Autowired
+	private ContentRemarkServiceFactory remarkServiceFactory;
 
 	@Override
 	protected ApiFavorContentListResult process(ApiFavorContentListInput input) {
@@ -109,7 +116,16 @@ public class ApiFavorContentList extends RootApiBase<ApiFavorContentListInput, A
 							ContentComponent.lightFavor(basicinfoForApi.getCode(), input.getZoo().getToken()));
 
 					basicinfoForApi.setPublishTimeStr("MM-dd HH:mm");
-
+					basicinfoForApi.setPublishTimeStr("MM-dd HH:mm");
+					CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
+							basicinfoForApi.getCode());
+					basicinfoForApi.setReadNum(contentReadCount != null ? contentReadCount.getCount() : 0);
+					int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(basicinfoForApi.getCode(),
+							RemarkEnum.FLAG_ENABLE.getCode());
+					basicinfoForApi.setRemarkNum(remarkNum);
+					int praiseNum = contentServiceFactory.getSupportPraiseService()
+							.queryCountByCode(basicinfoForApi.getCode(), ContentEnum.FAVOR_STATUS_YES.getCode());
+					basicinfoForApi.setPraiseNum(praiseNum);
 					result.getContentInfoList()
 							.add(new HomePageSupport(userInfoSupport).getSingleTitle(basicinfoForApi));
 

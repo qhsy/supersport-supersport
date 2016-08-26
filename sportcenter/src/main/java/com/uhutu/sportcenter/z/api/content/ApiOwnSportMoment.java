@@ -8,8 +8,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
+import com.uhutu.dcom.remark.z.enums.RemarkEnum;
+import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
@@ -19,6 +22,7 @@ import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.input.ApiOwnSportMomentInput;
 import com.uhutu.sportcenter.z.result.ApiOwnSportMomentResult;
 import com.uhutu.zoocom.root.RootApiToken;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 我发布的运动时刻
@@ -37,6 +41,9 @@ public class ApiOwnSportMoment extends RootApiToken<ApiOwnSportMomentInput, ApiO
 
 	@Autowired
 	private ContentServiceFactory serviceFactory;
+
+	@Autowired
+	private ContentRemarkServiceFactory remarkServiceFactory;
 
 	@Override
 	protected ApiOwnSportMomentResult process(ApiOwnSportMomentInput input) {
@@ -83,7 +90,16 @@ public class ApiOwnSportMoment extends RootApiToken<ApiOwnSportMomentInput, ApiO
 				sportingMoment.getUserBasicInfo().setUserCode(upUserCode());
 
 			}
-
+			sportingMoment.setPublishTimeStr("MM-dd HH:mm");
+			CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
+					sportingMoment.getCode());
+			sportingMoment.setReadNum(contentReadCount != null ? contentReadCount.getCount() : 0);
+			int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(sportingMoment.getCode(),
+					RemarkEnum.FLAG_ENABLE.getCode());
+			sportingMoment.setRemarkNum(remarkNum);
+			int praiseNum = serviceFactory.getSupportPraiseService().queryCountByCode(sportingMoment.getCode(),
+					ContentEnum.FAVOR_STATUS_YES.getCode());
+			sportingMoment.setPraiseNum(praiseNum);
 			sports.add(new HomePageSupport(userInfoSupport).getSingleTitle(sportingMoment));
 
 		}
