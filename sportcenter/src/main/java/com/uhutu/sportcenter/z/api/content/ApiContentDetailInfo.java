@@ -74,7 +74,7 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 				if (ucUserinfoExt != null) {
 
 					contentBasicinfoForApi.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
-
+					contentBasicinfoForApi.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
 					contentBasicinfoForApi.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
 
 				}
