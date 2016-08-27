@@ -2,7 +2,7 @@ package com.uhutu.dcom.answer.z.support;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -190,7 +190,7 @@ public class QuestionSupport extends RootClass {
 		LinkedHashMap<String, String> cns = new LinkedHashMap<String, String>();// key用户编号value已回答数量
 		if (page > 0 && num > 0) {
 			List<AwPointRecommen> res = JdbcHelper.queryForList(AwPointRecommen.class, "", " sort desc ",
-					" type='dzsd4888100110030003'", new MDataMap(), (page - 1) * num, num);
+					" type='dzsd4888100110030003'", new MDataMap(), 0, 0);
 			StringBuffer str = new StringBuffer();
 			for (int i = 0; i < res.size(); i++) {
 				if (i == res.size() - 1) {
@@ -221,7 +221,7 @@ public class QuestionSupport extends RootClass {
 			List<MDataMap> reals = JdbcHelper.dataQuery("aw_question_info",
 					" answer_user_code as code,count(*) as num,count(*)*(8/10)+SUM(listen)*(2/10) as tj ", "",
 					"status='dzsd4888100110010002' and answer_user_code not in (select answer_code from aw_point_recommen where type='dzsd4888100110030003')  GROUP BY answer_user_code order by tj desc ",
-					new MDataMap(), page == 1 ? 0 : ((page - 1) * num - cns.size()), num - cns.size());
+					new MDataMap(), 0, 0);
 			if (reals != null && !reals.isEmpty() && reals.size() > 0) {// 真实排行
 				for (int i = 0; i < reals.size(); i++) {
 					cns.put(reals.get(i).get("code"), reals.get(i).get("num"));
@@ -230,7 +230,7 @@ public class QuestionSupport extends RootClass {
 			if (cns.size() < num) {
 				List<AwAnswerExpert> others = JdbcHelper.queryForList(AwAnswerExpert.class, "", "zc desc",
 						"user_code not in (select answer_user_code from aw_question_info where status='dzsd4888100110010002') and user_code not in (select answer_code from aw_point_recommen where type='dzsd4888100110030003')",
-						new MDataMap(), page == 1 ? 0 : ((page - 1) * num - cns.size()), num - cns.size());
+						new MDataMap(), 0, 0);
 				if (others != null && !others.isEmpty() && others.size() > 0) {// 开通问达但没回答问题的人
 					for (int i = 0; i < others.size(); i++) {
 						cns.put(others.get(i).getUserCode(), "0");
@@ -239,10 +239,19 @@ public class QuestionSupport extends RootClass {
 			}
 			
 			if (cns != null && !cns.isEmpty() && cns.size() > 0) {
-				Iterator<String> iterator = cns.keySet().iterator();
-				while (iterator.hasNext()) {
-					
-					String code = (String) iterator.next();		
+				List<String> codes = new ArrayList<String>();
+				if (cns.size() > (page - 1) * num) {
+					String[] args = {};
+					args = cns.keySet().toArray(args);
+					Collections.addAll(codes, args);
+					if (cns.size() < page * num) {
+						codes = codes.subList((page - 1) * num, cns.size()-1);
+					} else if (cns.size() >= page * num) {
+						codes = codes.subList((page - 1) * num, (page * num)-1);
+					}
+				}
+				
+				for (String code : codes) {
 					
 					AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "user_code", code);
 					
