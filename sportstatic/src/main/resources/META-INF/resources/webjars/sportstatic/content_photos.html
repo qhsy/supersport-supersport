@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>详情</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<link rel="stylesheet" type="text/css" href="../static/css/base.css">
+<style type="text/css">
+/* content */
+.content .address, .content .tag{padding: 0 0.16rem;}
+.content{color: #4A4A4A!important;}
+.content .title{padding: 0.24rem 0.16rem 0.08rem; line-height: 0.24rem; font-size: 0.2rem; font-weight: 700;}
+.content .name{padding: 0 0.16rem; line-height: 0.20rem;}
+.content .address{font-size: 0.12rem; color: #9F9F9F;}
+.content .address:after{content: ""; float: left; width: 0.08rem; height: 0.1rem; margin: 0.03rem 0.05rem 0 1px; background: url(css/img/icon.png) no-repeat -0.05rem -0.12rem; background-size: 0.17rem;}
+.content .list{padding: 0 0.16rem;}
+.content .list img{border-radius: 5px;}
+.content .list li{margin-top: 0.22rem;}
+.content .info{padding-top: 0.1rem;}
+.content .num{float: left; font-family: "PingFangSC-Light"; color: #000; font-size: 0.12rem; line-height: 0.20rem;}
+.content .text{padding-left: 1.04rem; font-size: 0.12rem; line-height: 0.20rem; color: #7F7F7F; text-align: justify;}
+.content .tag{padding: 0.36rem 0.22rem 0.46rem;}
+.content .tag li{border: #757575 1px solid; display: inline-block; border-radius: 4px; margin-right: 0.08rem; padding: 0 0.09rem; font-size: 0.12rem; line-height: 0.18rem;}
+.content .caption{padding: 0.36rem 0.22rem 0.1rem; line-height: 0.2rem; text-align: justify;}
+
+/*follow*/
+.follow{text-align: center;}
+.follow .head{width: 0.52rem; height: 0.52rem; margin: auto; position: relative;}
+.follow .head img{border-radius: 50%; width: 100%; height: 100%;}
+.follow .name{padding: 0.1rem 0 0; font-size: 0.13rem; color: #212121; line-height: 0.2rem;}
+.follow .title{padding-bottom: 0.13rem; color: #BDBDBD; font-size: 0.12rem; line-height: 0.2rem;}
+.follow .submit{width: 0.74rem; border: #F8800A 1px solid; display: block; margin: auto; border-radius: 1.2rem; line-height: 0.27rem; color: #F8800A;}
+.follow .vip{width: 0.15rem; height: 0.15rem; background: url(../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
+</style>
+</head>
+<body>
+<section class="container" v-cloak>
+	<article class="content">
+		<div class="cover"><img :src="res.contentBasicInfo.cover" alt=""></div>
+		<div class="title">{{res.contentBasicInfo.title}}</div>
+		<div class="name">by {{res.contentBasicInfo.userBasicInfo.nickName}}<em>{{res.contentBasicInfo.publishTimeStr}}</em></div>
+		<div class="address" v-if="res.contentBasicInfo.localtionName">{{res.contentBasicInfo.localtionName}}</div>
+		<ul class="list">
+			<li v-for="photo in res.contentPhotosDetails" track-by="$index">
+				<div class="photo"><img src="../static/img/lazyload.jpg" v-lazyload="photo.thumb.thumbUrl" alt=""></div>
+				<div class="info">
+					<em class="num">{{$index+1}}/{{res.contentPhotosDetails.length}}</em>
+					<p class="text">{{photo.content}}</p>
+				</div>
+			</li>
+		</ul>
+		<ul class="tag">
+			<li v-for="tag in res.contentBasicInfo.tags">{{tag.name}}</li>
+		</ul>
+	</article>
+	<footer class="follow">
+		<div class="head" @click="openApp"><img :src="res.contentBasicInfo.userBasicInfo.aboutHead" alt=""><em class="vip" v-if="res.contentBasicInfo.userBasicInfo.type == 'dzsd4107100310010002'"></em></div>
+		<h1 class="name">{{res.contentBasicInfo.userBasicInfo.nickName}}</h1>
+		<h2 class="title">{{res.contentBasicInfo.userBasicInfo.title}}</h2>
+		<a href="javascript:;" class="submit" @click="openApp">关注</a>
+	</footer>
+</section>
+<script type="text/javascript" src="../static/js/lib/vue.min.js"></script>
+<script type="text/javascript" src="../static/js/tools.js"></script>
+<script type="text/javascript" src="../static/js/share.js"></script>
+<script type="text/javascript" src="../static/js/vue.lazyimg.js"></script>
+<script type="text/javascript">
+Vue.use(Vue.lazyimg,{
+    speed: 20
+});
+new Vue({
+	el:'.container',
+	data:{
+		res: null,
+		share:queryUrl('share')
+	},
+	created:function(){
+		this.reqwest();
+		if(this.share){
+			share();
+		}
+	},
+	methods:{
+		reqwest:function(){
+			var _this = this;
+			reqwest({
+				url: '/api/contentController/contentPhotosDetail',
+				method: 'post',
+				data: '{"content_code": "' + queryUrl('code') + '", "zoo": {"key": "tesetkey","token": ""}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {
+					if(resp.status == 1){
+						_this.res = resp;
+					}
+				}
+			});
+			reqwest({
+				url: '/api/contentController/contentReadCount',
+				method: 'post',
+				data: '{"code": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": " "}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {}
+			});
+		},
+		openApp:function(){
+			open();
+		}
+	}
+});
+</script>
+</body>
+</html>

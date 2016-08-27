@@ -1,8 +1,11 @@
 package com.uhutu.sportcenter.z.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.uhutu.dcom.component.z.util.CalendarUtil;
+import com.uhutu.dcom.tag.z.entity.CnContentLabel;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -19,6 +22,9 @@ public class ContentBasicinfoForApi {
 
 	@ApiModelProperty(name = "内容封面图片链接", notes = "内容封面图片链接", example = "http://www.ichsy.com")
 	private String cover;
+
+	@ApiModelProperty(name = "内容封面图片宽高(此参数不用输入，只作为展示使用)", notes = "内容封面图片宽高", example = "800*600")
+	private String coverWH;
 
 	@ApiModelProperty(name = "标题", notes = "标题", example = "新体优家，您运动的首选~")
 	private String title;
@@ -47,6 +53,9 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(name = "标签名称", notes = "多个以英文逗号分割")
 	private String tagName;
 
+	@ApiModelProperty(name = "标签", notes = "标签实体")
+	private List<CnContentLabel> tags = new ArrayList<CnContentLabel>();
+
 	@ApiModelProperty(name = "内容作者")
 	private String author;
 
@@ -62,14 +71,37 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(name = "业务类型编号：运动时刻 文章", notes = "运动时刻:dzsd4107100110020001,文章:dzsd4107100110020002")
 	private String busiType;
 
-	@ApiModelProperty(name = "展示类型", notes = " dzsd4107100110030001:展示图文 ,dzsd4107100110030002:视频,dzsd4107100110030003:图集", example = "dzsd4107100110030002")
+	@ApiModelProperty(name = "展示类型", notes = " dzsd4107100110030001:文章 ,dzsd4107100110030002:文章(含视频),dzsd4107100110030003:图集,dzsd4107100110030004:单图,dzsd4107100110030005:单视频", example = "dzsd4107100110030002")
 	private String contentType;
-	
-	@ApiModelProperty(value="点赞数量")
+
+	@ApiModelProperty(value = "点赞数量")
 	private int praiseNum;
-	
-	@ApiModelProperty(value="用户基本信息")
+
+	@ApiModelProperty(value = "阅读数量")
+	private long readNum;
+
+	@ApiModelProperty(value = "评论数量")
+	private long remarkNum;
+
+	@ApiModelProperty(value = "喜欢标识")
+	private boolean favorFlag;
+
+	@ApiModelProperty(value = "是否已关注作者")
+	private boolean authorBeAttentionFlag = false;
+
+	@ApiModelProperty(value = "是否本文作者", notes = "是否本文作者")
+	private boolean authorFlag = false;
+
+	@ApiModelProperty(value = "用户基本信息")
 	private UserBasicInfo userBasicInfo = new UserBasicInfo();
+
+	public List<CnContentLabel> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<CnContentLabel> tags) {
+		this.tags = tags;
+	}
 
 	public String getCode() {
 		return code;
@@ -192,7 +224,17 @@ public class ContentBasicinfoForApi {
 	}
 
 	public String getPublishTimeStr() {
-		return publishTimeStr;
+		
+		String tempStr = "";
+		
+		if(getPublishTime() != null){
+			
+			tempStr = CalendarUtil.formateTip(getPublishTime());
+			
+		}
+		
+		return tempStr;
+		
 	}
 
 	public void setPublishTimeStr(String pattern) {
@@ -227,6 +269,54 @@ public class ContentBasicinfoForApi {
 
 	public void setPraiseNum(int praiseNum) {
 		this.praiseNum = praiseNum;
+	}
+
+	public String getCoverWH() {
+		return coverWH;
+	}
+
+	public void setCoverWH(String coverWH) {
+		this.coverWH = coverWH;
+	}
+
+	public long getReadNum() {
+		return readNum;
+	}
+
+	public void setReadNum(long readNum) {
+		this.readNum = readNum;
+	}
+
+	public boolean isFavorFlag() {
+		return favorFlag;
+	}
+
+	public void setFavorFlag(boolean favorFlag) {
+		this.favorFlag = favorFlag;
+	}
+
+	public long getRemarkNum() {
+		return remarkNum;
+	}
+
+	public void setRemarkNum(long remarkNum) {
+		this.remarkNum = remarkNum;
+	}
+
+	public boolean isAuthorBeAttentionFlag() {
+		return authorBeAttentionFlag;
+	}
+
+	public void setAuthorBeAttentionFlag(boolean authorBeAttentionFlag) {
+		this.authorBeAttentionFlag = authorBeAttentionFlag;
+	}
+
+	public boolean isAuthorFlag() {
+		return authorFlag;
+	}
+
+	public void setAuthorFlag(boolean authorFlag) {
+		this.authorFlag = authorFlag;
 	}
 
 }

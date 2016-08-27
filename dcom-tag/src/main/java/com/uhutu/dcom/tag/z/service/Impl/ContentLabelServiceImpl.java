@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.uhutu.dcom.tag.z.dao.ContentLabelDaoFacotry;
 import com.uhutu.dcom.tag.z.entity.CnContentLabel;
 import com.uhutu.dcom.tag.z.service.IContentLabelService;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 标签业务逻辑实现
@@ -42,29 +43,45 @@ public class ContentLabelServiceImpl implements IContentLabelService {
 
 	@Override
 	public List<String> queryListByCodeIn(List<String> codes) {
-		
+
 		return contentLabelDaoFacotry.getContentLabelDao().queryListByCodeIn(codes);
 	}
 
 	@Override
 	public String initTagName(String tagCode) {
-		
+
 		tagCode = StringUtils.defaultString(tagCode);
 
 		List<String> codes = Arrays.asList(StringUtils.split(tagCode, ","));
-		
+
 		String name = "";
-		
-		if(!codes.isEmpty()){
-			
+
+		if (!codes.isEmpty()) {
+
 			List<String> tagNames = queryListByCodeIn(codes);
-			
+
 			name = StringUtils.join(tagNames, ",");
-			
+
 		}
 
 		return name;
 
+	}
+
+	@Override
+	public CnContentLabel queryByCode(String code) {
+
+		return contentLabelDaoFacotry.getContentLabelDao().queryByCode(code);
+
+	}
+
+	@Override
+	public List<CnContentLabel> getLabels(String codes) {
+		List<CnContentLabel> labels = new ArrayList<CnContentLabel>();
+		if (StringUtils.isNotBlank(codes)) {
+			labels = JdbcHelper.queryForIn(CnContentLabel.class, "code", codes.split(","));
+		}
+		return labels;
 	}
 
 }

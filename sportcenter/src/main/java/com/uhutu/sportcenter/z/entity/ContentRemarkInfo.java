@@ -15,6 +15,9 @@ public class ContentRemarkInfo extends UserBasicInfo {
 	@ApiModelProperty(value="内容编号",notes="内容编号")
 	private String contentCode;
 	
+	@ApiModelProperty(value="内容类型",notes="dzsd4107100110030001:文章,dzsd4107100110030002:文章（含视频）,dzsd4107100110030003:图集,dzsd4107100110030004:单图,dzsd4107100110030005:图集")
+	private String contentType;
+	
 	@ApiModelProperty(value="评论内容",notes="评论内容")
 	private String remark;
 	
@@ -29,6 +32,12 @@ public class ContentRemarkInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value="发布时间")
 	private String publishTime;
+	
+	@ApiModelProperty(value="点赞数量")
+	private long praiseNum;
+	
+	@ApiModelProperty(value="点赞标识")
+	private boolean praiseFlag;
 
 	public String getCode() {
 		return code;
@@ -84,6 +93,30 @@ public class ContentRemarkInfo extends UserBasicInfo {
 
 	public void setPublishTime(String publishTime) {
 		this.publishTime = publishTime;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+
+	public long getPraiseNum() {
+		return praiseNum;
+	}
+
+	public void setPraiseNum(long praiseNum) {
+		this.praiseNum = praiseNum;
+	}
+
+	public boolean isPraiseFlag() {
+		return praiseFlag;
+	}
+
+	public void setPraiseFlag(boolean praiseFlag) {
+		this.praiseFlag = praiseFlag;
 	}
 
 }

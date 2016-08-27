@@ -34,7 +34,7 @@ a:hover {text-decoration: none;}
 .header{overflow: auto; background: url(img/qiaotun_head.jpg) no-repeat center top; background-size: cover;}
 .header .title{width: 2.35rem; height: 0.89rem; margin: 0.45rem auto 0;}
 .header .logo{width: 1.38rem; height: 0.23rem; margin: auto;}
-.header .text{padding: 0 0.35rem; margin: 0.47rem auto 0; color: #F6F6F6; font-size: 0.12rem; line-height: 0.18rem;}
+.header .text{padding: 0 0.35rem; margin: 0.47rem auto 0; color: #F6F6F6; font-size: 0.12rem; line-height: 0.18rem; text-align: justify;}
 .header .help a{padding: 0 0.35rem; height: 0.14rem; color: #F8800A; font-size: 0.12rem;}
 .header .help a img{width: 0.14rem; vertical-align: middle;}
 .header .button{height: 0.38rem; margin: 0.12rem 0 0.1rem; text-align: center;}
@@ -77,13 +77,12 @@ a:hover {text-decoration: none;}
 	<h1 class="title"><img src="img/qiaotun_title.png" alt=""></h1>
 	<div class="logo"><img src="img/qiaotun_logo.png" alt=""></div>
 	<p class="text">
-	活动须知：<br>
-	1、凡参赛选手，上传的翘臀照片将在「实力派」中展示，找到自己的美臀，转发集赞吧！<br>
-	2、只要你是果冻体育用户，晒出你的翘臀照片，就有机会获得每日开出的奖品，照片将会在「翘丽圈」展示！</p>
-	<p class="help"><a href="javascript:;" onclick="onInstructions('http://mp.weixin.qq.com/s?__biz=MzAwNzk2MjI1OA==&mid=100000235&idx=1&sn=6e4d8a230e9d780191cc7007e0a5a906&scene=20#wechat_redirect')"><img src="img/qiaotun_icon.png" alt="">点击这里查看晒图方式</a></p>
+	{{viewer.notes}}
+	</p>
+	<!-- <p class="help"><a href="javascript:;" onclick="onInstructions('http://mp.weixin.qq.com/s?__biz=MzAwNzk2MjI1OA==&mid=100000235&idx=1&sn=6e4d8a230e9d780191cc7007e0a5a906&scene=20#wechat_redirect')"><img src="img/qiaotun_icon.png" alt="">点击这里查看晒图方式</a></p>
 	<div class="button">
 		<a :href="viewer.applyUrl" v-if="viewer.applyUrl != ''"><img src="img/qiaotun_tab_2.png" alt=""></a><a href="javascript:;" onclick="onBlueprint()"><img src="img/qiaotun_tab_1.png" alt=""></a>
-	</div>
+	</div> -->
 </header>
 <section class="wrap" v-cloak>
 	<article class="container">

@@ -1,5 +1,5 @@
 html{font-size: 100px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,pre,form,fieldset,input,textarea,blockquote,p,button,header,footer,nav,section,article,aside,video,audio,figure,figcaption,hgroup{padding: 0px; margin: 0px; tap-highlight-color: rgba(0, 0, 0, 0); -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -ms-tap-highlight-color: rgba(0, 0, 0, 0); font-size: 0.14rem; line-height: 0.22rem;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,pre,form,fieldset,input,textarea,blockquote,p,button,header,footer,nav,section,article,aside,video,audio,figure,figcaption,hgroup{padding: 0px; margin: 0px; tap-highlight-color: rgba(0, 0, 0, 0); -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -ms-tap-highlight-color: rgba(0, 0, 0, 0); font-size: 0.14rem;}
 table,td,tr,th{font-size: 0.12rem;}
 table{margin: 0 auto;}
 img{vertical-align: top; border: 0;}
@@ -11,7 +11,7 @@ address,caption,cite,code,dfn,em,i,b{font-weight: normal; font-style: normal;}
 input,textarea,select,button{outline: none; resize: none; border: 0;}
 a{-webkit-appearance: none; outline: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-touch-callout: none; text-decoration: none;}
 a:hover {text-decoration: none; }
-
+[v-cloak] { display: none }
 .f12{font-size: 0.12rem;}
 .f14{font-size: 0.14rem;}
 .f16{font-size: 0.16rem;}
@@ -29,6 +29,11 @@ a:hover {text-decoration: none; }
 
 .ms-controller{visibility: hidden;}
 
+.container{padding-bottom: 1rem;}
+.share{width: 100%; padding: 0.13rem 0; background: rgba(217,217,217,0.5); position: fixed; left: 0; bottom: 0; z-index: 999;}
+.share .logo{width: 1.07rem; margin-left: 0.16rem; float: left;}
+.share .btn{width: 0.74rem; height: 0.26rem; margin-right: 0.22rem; background: #F8800A; float: right; border-radius: 4px; text-align: center; color: #fff; font-size: 0.12rem; line-height: 0.26rem;}
+.share .close{width: 0.22rem; height: 0.22rem; border-radius: 50%; background: #D8D8D8; color: #fff; position: absolute; right: 0.1rem; top: -0.1rem; text-align: center; line-height: 0.22rem; font-size: 0.12rem;}
 @media screen and (max-width: 320px){
 	html{font-size: 85.7px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
 }

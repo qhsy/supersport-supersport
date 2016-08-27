@@ -3,6 +3,7 @@ package com.uhutu.sportcenter.z.api.remark;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,17 +11,22 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.enums.ContentEnum;
+import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
 import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
+import com.uhutu.sportcenter.z.api.util.ContentComponent;
 import com.uhutu.sportcenter.z.entity.ContentRemarkInfo;
 import com.uhutu.sportcenter.z.entity.ContentReplyInfo;
 import com.uhutu.sportcenter.z.input.ApiRemarkListInput;
 import com.uhutu.sportcenter.z.result.ApiRemarkListResult;
 import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 /**
  * 评论信息列表
  * @author 逄小帅
@@ -31,6 +37,9 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 	
 	@Autowired
 	private ContentRemarkServiceFactory serviceFactory;
+	
+	@Autowired
+	private ContentServiceFactory contentServiceFactory;
 	
 	@Autowired
 	private UserServiceFactory userSerivceFactory;
@@ -64,9 +73,9 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 			
 			CnContentRemark sourceRef = serviceFactory.getContentRemarkService().queryByCode(remark.getParentCode());
 			
-			replyInfo.setRefReplyInfo(initRemarkInfo(sourceRef));
+			replyInfo.setRefReplyInfo(initRemarkInfo(sourceRef,input.getZoo().getToken()));
 			
-			replyInfo.setReplyInfo(initRemarkInfo(remark));
+			replyInfo.setReplyInfo(initRemarkInfo(remark,input.getZoo().getToken()));
 			
 			remarkInfos.add(replyInfo);
 			
@@ -78,7 +87,7 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 		
 	}
 	
-	public ContentRemarkInfo initRemarkInfo(CnContentRemark remark){
+	public ContentRemarkInfo initRemarkInfo(CnContentRemark remark,String token){
 		
 		ContentRemarkInfo remarkInfo = null;
 		
@@ -87,6 +96,14 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 			remarkInfo = new ContentRemarkInfo();
 			
 			BeanUtils.copyProperties(remark, remarkInfo);
+			
+			CnContentBasicinfo contentBasicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",remark.getContentCode());
+			
+			if(contentBasicinfo != null){
+				
+				remarkInfo.setContentType(contentBasicinfo.getContentType());
+				
+			}
 			
 			UcUserinfoExt ucUserinfoExt = userSerivceFactory.getUserInfoExtService().queryByUserCode(remark.getAuthor());
 			
@@ -106,10 +123,25 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 			
 			remarkInfo.setPublishTime(publishDate);
 			
+			int total = contentServiceFactory.getSupportPraiseService().queryCountByCode(remarkInfo.getCode(),ContentEnum.FAVOR_STATUS_YES.getCode());
+			
+			boolean praiseFlag = false;
+			
+			if(StringUtils.isNotBlank(token)){
+				
+				praiseFlag = ContentComponent.lightFavor(remarkInfo.getCode(), token);
+				
+			}
+			
+			remarkInfo.setPraiseFlag(praiseFlag);
+			
+			remarkInfo.setPraiseNum(total);
+			
 		}		
 		
 		return remarkInfo;
 		
 	}
+
 
 }

@@ -2,9 +2,12 @@ package com.uhutu.dcom.answer.job;
 
 import java.math.BigDecimal;
 import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import com.uhutu.dcom.answer.z.entity.AwAnswerRefundJob;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
+import com.uhutu.dcom.answer.z.support.AnswerMsgSupport;
+import com.uhutu.dcom.component.z.util.ApplicationSupport;
 import com.uhutu.dcom.config.enums.SocialEnum;
 import com.uhutu.dcom.order.z.entity.OcOrderInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
@@ -22,6 +25,7 @@ import com.uhutu.zooweb.root.RootJob;
  * @author Administrator
  *
  */
+
 public class JobForCancelOverTimeAskQuestionOrder extends RootJob {
 
 	@Override
@@ -65,6 +69,8 @@ public class JobForCancelOverTimeAskQuestionOrder extends RootJob {
 					job.setCreateTime(DateHelper.upNow());
 					job.setUnAmount(info.getMoney());
 					job.setUserCode(info.getQuestionUserCode());
+					AnswerMsgSupport answerMsgSupport = (AnswerMsgSupport) ApplicationSupport.getBean("answerMsgSupport");
+					answerMsgSupport.sendJobRefuseMsg(info, info.getAnswerUserCode(), "http://api-001.sport.bigtiyu.com");
 					UcUserinfoSocial us = JdbcHelper.queryOne(UcUserinfoSocial.class, "user_code",
 							info.getQuestionUserCode(), "account_type", SocialEnum.wechat.name());
 					if (us != null && StringUtils.isNotBlank(us.getAccountId())) {

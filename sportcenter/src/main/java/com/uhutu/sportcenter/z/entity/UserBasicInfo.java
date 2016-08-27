@@ -20,6 +20,9 @@ public class UserBasicInfo {
 	
 	@ApiModelProperty(value = "简介头像", notes = "简介头像")
 	private String aboutHead = "";
+	
+	@ApiModelProperty(value="头衔")
+	private String title;
 
 	public String getUserCode() {
 		return userCode;
@@ -51,6 +54,14 @@ public class UserBasicInfo {
 
 	public void setAboutHead(String aboutHead) {
 		this.aboutHead = aboutHead;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }

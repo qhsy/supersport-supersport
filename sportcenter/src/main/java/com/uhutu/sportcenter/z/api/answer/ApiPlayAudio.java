@@ -2,10 +2,12 @@ package com.uhutu.sportcenter.z.api.answer;
 
 import java.io.ByteArrayOutputStream;
 import java.math.BigDecimal;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import com.uhutu.dcom.activity.z.entity.AcActivityAnswerInfo;
 import com.uhutu.dcom.activity.z.support.AnswerActivitySupport;
 import com.uhutu.dcom.answer.z.common.AnswerEnum;
@@ -16,7 +18,6 @@ import com.uhutu.dcom.component.z.entity.WechatMediaResponse;
 import com.uhutu.dcom.component.z.util.WebClientComponent;
 import com.uhutu.dcom.order.enumer.ETeslaExec;
 import com.uhutu.dcom.order.orderResult.TeslaXOrder;
-import com.uhutu.dcom.order.orderResult.TeslaXResult;
 import com.uhutu.dcom.order.service.ApiConvertTeslaService;
 import com.uhutu.dcom.order.z.entity.OcOrderDetail;
 import com.uhutu.dcom.order.z.entity.OcOrderInfo;

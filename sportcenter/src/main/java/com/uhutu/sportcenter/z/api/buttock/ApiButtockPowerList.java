@@ -2,6 +2,7 @@ package com.uhutu.sportcenter.z.api.buttock;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
+import com.uhutu.sportcenter.z.api.util.ContentComponent;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.input.ApiButtockPowerListInput;
 import com.uhutu.sportcenter.z.result.ApiButtockPowerListResult;
@@ -26,41 +28,46 @@ import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 美臀大赛-实力派
+ * 
  * @author 逄小帅
  *
  */
 @Component
 public class ApiButtockPowerList extends RootApiBase<ApiButtockPowerListInput, ApiButtockPowerListResult> {
-	
+
 	@Autowired
 	private ContentServiceFactory contentServiceFactory;
-	
+
 	@Autowired
 	private UserInfoSupport userInfoSupport;
-	
+
 	@Autowired
 	private ContentLabelServiceFactory labelServiceFactory;
 
 	@Override
 	protected ApiButtockPowerListResult process(ApiButtockPowerListInput input) {
-		
+
 		ApiButtockPowerListResult result = new ApiButtockPowerListResult();
-		
-		int total = JdbcHelper.count(AwPointRecommen.class, "", MapHelper.initMap("type","dzsd4888100110030006"));
-		
+
+		int total = JdbcHelper.count(AwPointRecommen.class, "", MapHelper.initMap("type", "dzsd4888100110030006"));
+
 		PageInfo pageInfo = new PageInfo(total, input.getPagination(), 10);
-		
+
 		result.setNextflag(pageInfo.hasNext());
+
+		int istart = (input.getPagination() - 1) * 10;
 		
-		int istart = (input.getPagination() - 1)*10;
+		String orderStr = "IFNULL((SELECT count(1) + (select praise_base from cn_content_basicinfo where code = answer_code) from cn_support_praise where content_code = answer_code and status = '1'),0) DESC";
 		
-		List<AwPointRecommen> recommList = JdbcHelper.queryForList(AwPointRecommen.class, "", "-sort", "type='dzsd4888100110030006'", new MDataMap(), istart, 10);
-		
-		if(recommList.size() > 0){
-			
+		List<AwPointRecommen> recommList = JdbcHelper.queryForList(AwPointRecommen.class, "", orderStr,
+				"type='dzsd4888100110030006'", new MDataMap(), istart, 10);
+
+		if (recommList.size() > 0) {
+
 			recommList.forEach(pointRecomm -> {
-				
-				CnContentBasicinfo contentBasicInfo = contentServiceFactory.getContentBasicinfoService().queryByCode(pointRecomm.getAnswerCode());
+
+				CnContentBasicinfo contentBasicInfo = contentServiceFactory.getContentBasicinfoService()
+						.queryByCode(pointRecomm.getAnswerCode());
 
 				if (contentBasicInfo != null) {
 
@@ -91,31 +98,42 @@ public class ApiButtockPowerList extends RootApiBase<ApiButtockPowerListInput, A
 					sportingMoment.setTagName(
 							labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
 
+					sportingMoment.setTags(
+							labelServiceFactory.getContentLabelService().getLabels(sportingMoment.getTagCode()));
+					
+					boolean favorFlag = false;
+					
+					if(StringUtils.isNotEmpty(input.getZoo().getToken())){
+						
+						favorFlag = ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken());
+						
+					}
+					
+					sportingMoment.setFavorFlag(favorFlag);
+
 					sportingMoment.setCover(ImageHelper.upImageThumbnail(sportingMoment.getCover(), input.getWidth()));
 
 					sportingMoment.setPublishTimeStr("MM-dd HH:mm");
-					
-					int praiseNum = contentServiceFactory.getSupportPraiseService().queryCountByCode(pointRecomm.getAnswerCode(),ContentEnum.FAVOR_STATUS_YES.getCode());
-					
+
+					int praiseNum = contentServiceFactory.getSupportPraiseService()
+							.queryCountByCode(pointRecomm.getAnswerCode(), ContentEnum.FAVOR_STATUS_YES.getCode());
+
 					sportingMoment.setPraiseNum(praiseNum);
 
 					result.getButtockPowerList().add(sportingMoment);
 
 				}
 
-			
-				
-				
 			});
-			
-		}else{
-			
+
+		} else {
+
 			result.setStatus(0);
-			
+
 			result.setError("运营同学正在努力整理实力派的信息哟");
-			
+
 		}
-		
+
 		return result;
 	}
 

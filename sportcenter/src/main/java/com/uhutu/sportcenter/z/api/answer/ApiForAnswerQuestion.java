@@ -12,29 +12,19 @@ import com.uhutu.dcom.answer.z.common.AnswerEnum;
 import com.uhutu.dcom.answer.z.entity.AwAnswerRefundJob;
 import com.uhutu.dcom.answer.z.entity.AwQuestionInfo;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
+import com.uhutu.dcom.answer.z.support.AnswerMsgSupport;
 import com.uhutu.dcom.config.enums.SocialEnum;
-import com.uhutu.dcom.extend.baiduPush.exception.PushClientException;
-import com.uhutu.dcom.extend.baiduPush.exception.PushServerException;
-import com.uhutu.dcom.extend.baiduPush.sample.BaiduPush;
-import com.uhutu.dcom.extend.baiduPush.sample.PushEnum;
 import com.uhutu.dcom.order.z.entity.OcOrderInfo;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
-import com.uhutu.dcom.pay.z.request.WechatMsgAnswerRequest;
 import com.uhutu.dcom.pay.z.response.WechatAccessTokenResponse;
 import com.uhutu.dcom.pay.z.response.WechatMsgResponse;
-import com.uhutu.dcom.pay.z.util.WechatMsgComponent;
-import com.uhutu.dcom.user.z.entity.UcClientInfo;
-import com.uhutu.dcom.user.z.entity.UcSocialLogin;
-import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
-import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.input.ApiForAnswerQuestionInput;
 import com.uhutu.sportcenter.z.result.ApiForAnswerQuestionResult;
 import com.uhutu.zoocom.face.IKvCall;
 import com.uhutu.zoocom.file.FileUploadResult;
 import com.uhutu.zoocom.helper.DateHelper;
-import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiToken;
@@ -52,13 +42,10 @@ import com.uhutu.zooweb.support.WebUploadSupport;
 public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput, ApiForAnswerQuestionResult> {
 
 	@Autowired
-	private UserInfoSupport userInfoSupport;
-
-	@Autowired
-	private WechatMsgComponent wechatMsgCompoent;
-
-	@Autowired
 	private AnswerServiceFactory answerServiceFactory;
+	
+	@Autowired
+	private AnswerMsgSupport answerMsgSupport;
 
 	@Autowired
 	private PayGateProcess payGateProcess;
@@ -90,11 +77,12 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 			if (input.isRefuse()) {
 				qtInfo.setStatus("dzsd4888100110010003");
 				sentToRefund(qtInfo);
+				answerMsgSupport.sendRefuseMsg(qtInfo, upUserCode(), input.getRequestUrl());
 			} else {
 				qtInfo.setStatus("dzsd4888100110010002");
 				qtInfo.setLengh(input.getLengh());
 				qtInfo.setUrl(input.getUrl());
-				WechatMsgResponse wechatMsgResponse = sendWechatMsg(qtInfo, input.getRequestUrl());
+				WechatMsgResponse wechatMsgResponse = answerMsgSupport.sendAnswerMsg(qtInfo, upUserCode(), input.getRequestUrl());
 				if (wechatMsgResponse != null && !wechatMsgResponse.upFlag()) {
 					result.setStatus(0);
 					result.setError(wechatMsgResponse.getErrmsg());
@@ -109,87 +97,6 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 		return result;
 	}
 
-	/**
-	 * 发送微信消息
-	 * 
-	 * @param questionInfo
-	 *            问题信息
-	 * @return 信息响应
-	 */
-	public WechatMsgResponse sendWechatMsg(AwQuestionInfo questionInfo, String requestUrl) {
-
-		WechatMsgAnswerRequest answerRequest = new WechatMsgAnswerRequest();
-		
-		WechatMsgResponse wechatMsgResponse = null;
-
-		requestUrl = requestUrl + "/webjars/answer/details.html?id=" + questionInfo.getCode();
-
-		requestUrl = TopHelper.upInfo(81110010, requestUrl);
-
-		UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(upUserCode());
-
-		UcUserinfoSocial ucUserinfoSocial = userInfoSupport.getUserInfoSocial(questionInfo.getQuestionUserCode());
-		
-		String title = TopHelper.upInfo(88880019, ucUserinfoExt.getNickName());
-		
-		baiduPush(questionInfo.getQuestionUserCode(), title);
-		
-		answerServiceFactory.getQuestionInfoService().saveAnswerMsg("回答", title, questionInfo.getQuestionUserCode());	
-		
-		UcSocialLogin socialLogin = null;
-
-		if(ucUserinfoSocial != null){
-			
-			socialLogin = JdbcHelper.queryOne(UcSocialLogin.class, "unionid",ucUserinfoSocial.getAccountId(),"type",SocialEnum.wechat_h5.name());
-			
-		}
-		
-		if(socialLogin != null){
-			
-			answerRequest.getFirst().setValue(title);
-
-			answerRequest.getKeyword1().setValue(ucUserinfoExt.getNickName());
-
-			answerRequest.getKeyword2().setValue(questionInfo.getAnswerTime());
-
-			answerRequest.getKeyword3().setValue(TopHelper.upInfo(88880020, questionInfo.getLengh()));
-
-			answerRequest.getRemark().setValue(TopHelper.upInfo(88880021));
-			
-			wechatMsgResponse = wechatMsgCompoent.sendMsg(socialLogin.getOpenid(), requestUrl, PayProcessEnum.WECHAT_MSG_ANSWER,
-					answerRequest);
-			
-		}
-		
-		return wechatMsgResponse;
-
-	}
-	
-	public void baiduPush(String answerUserCode, String content) {
-
-		try {
-			UcClientInfo ucClientInfo = JdbcHelper.queryOne(UcClientInfo.class, "", "-zc", "",
-					MapHelper.initMap("user_code", answerUserCode, "os", "ios"));
-
-			if (ucClientInfo != null && StringUtils.isNotBlank(ucClientInfo.getChannelId())) {
-				new BaiduPush().push(PushEnum.ios, "回答", content, ucClientInfo.getChannelId());
-			}
-
-			UcClientInfo android = JdbcHelper.queryOne(UcClientInfo.class, "", "-zc", "",
-					MapHelper.initMap("user_code", answerUserCode, "os", "android"));
-
-			if (android != null && StringUtils.isNotBlank(android.getChannelId())) {
-				new BaiduPush().push(PushEnum.android, "回答", content, android.getChannelId());
-			}
-		} catch (PushServerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (PushClientException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
 
 	private String getWechatVoiceUrl(String wechatVoiceId) {
 		String voiceUrl = "";
@@ -253,5 +160,7 @@ public class ApiForAnswerQuestion extends RootApiToken<ApiForAnswerQuestionInput
 			}
 		}
 	}
+	
+	
 
 }

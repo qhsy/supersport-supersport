@@ -11,9 +11,13 @@ import org.springframework.beans.BeanUtils;
 
 import com.uhutu.dcom.content.z.entity.CnAdvertiseDetail;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentItem;
 import com.uhutu.dcom.content.z.entity.CnContentItemRel;
+import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
+import com.uhutu.dcom.content.z.entity.CnSupportPraise;
+import com.uhutu.dcom.remark.z.entity.CnContentRemark;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.entity.UserBasicInfo;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
@@ -22,6 +26,7 @@ import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.entity.HomePageModel;
 import com.uhutu.sportcenter.z.entity.UserinfoExtForApi;
 import com.uhutu.zoocom.helper.DateHelper;
+import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.helper.ImageHelper;
@@ -77,7 +82,23 @@ public class HomePageSupport {
 		return flag;
 	}
 
-	public List<HomePageModel> getPageModels(String itemCode, String itemType, String t1, String t2, String width) {
+	/**
+	 * 单图模式标题处理
+	 * 
+	 * @return
+	 */
+	public ContentBasicinfoForApi getSingleTitle(ContentBasicinfoForApi cff) {
+		if ("dzsd4107100110030004".equals(cff.getContentType())) {
+			CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code", cff.getCode());
+			if (detail != null && StringUtils.isNotBlank(detail.getContent())) {
+				cff.setTitle(detail.getContent());
+			}
+		}
+		return cff;
+	}
+
+	public List<HomePageModel> getPageModels(String itemCode, String itemType, String t1, String t2, String width,
+			String token) {
 		List<HomePageModel> li = new ArrayList<HomePageModel>();
 		MDataMap map = new MDataMap();
 		map.put("itemType", itemType);
@@ -143,10 +164,20 @@ public class HomePageSupport {
 							info.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(width)));
 						}
 						BeanUtils.copyProperties(info, infoApi);
+						int praiseNum = JdbcHelper.count(CnSupportPraise.class, "",
+								MapHelper.initMap("content_code", infoApi.getCode(), "type", "01", "status", "1"));
+						infoApi.setPraiseNum(praiseNum);
+						CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class,
+								"contentCode", infoApi.getCode());
+						infoApi.setReadNum(contentReadCount != null ? contentReadCount.getCount() : 0);
+						int remarkNum = JdbcHelper.count(CnContentRemark.class, "",
+								MapHelper.initMap("content_code", infoApi.getCode(), "status", "dzsd4699100110010001"));
+						infoApi.setRemarkNum(remarkNum);
+						infoApi.setFavorFlag(ContentComponent.lightFavor(infoApi.getCode(), token));
 						infoApi.getUserBasicInfo().setNickName(userInfoApi.getNickName());
 						infoApi.getUserBasicInfo().setAboutHead(userInfoApi.getAboutHead());
 						infoApi.getUserBasicInfo().setType(userInfoApi.getType());
-						hmp.setInfo(infoApi);
+						hmp.setInfo(getSingleTitle(infoApi));
 						hmp.setShowType("dzsd4107100110060003");
 						li.add(hmp);
 					}

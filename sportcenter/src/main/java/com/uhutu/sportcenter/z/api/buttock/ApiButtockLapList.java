@@ -2,6 +2,7 @@ package com.uhutu.sportcenter.z.api.buttock;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
+import com.uhutu.sportcenter.z.api.util.ContentComponent;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.input.ApiButtockLapListInput;
 import com.uhutu.sportcenter.z.result.ApiButtockLapListResult;
@@ -91,6 +93,19 @@ public class ApiButtockLapList extends RootApiBase<ApiButtockLapListInput, ApiBu
 					sportingMoment.setTagName(
 							labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
 
+					sportingMoment.setTags(
+							labelServiceFactory.getContentLabelService().getLabels(sportingMoment.getTagCode()));
+					
+					boolean favorFlag = false;
+					
+					if(StringUtils.isNotEmpty(input.getZoo().getToken())){
+						
+						favorFlag = ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken());
+						
+					}
+					
+					sportingMoment.setFavorFlag(favorFlag);
+					
 					sportingMoment.setCover(ImageHelper.upImageThumbnail(sportingMoment.getCover(), input.getWidth()));
 
 					sportingMoment.setPublishTimeStr("MM-dd HH:mm");

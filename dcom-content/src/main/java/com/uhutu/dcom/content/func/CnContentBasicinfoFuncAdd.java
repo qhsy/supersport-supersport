@@ -46,9 +46,9 @@ public class CnContentBasicinfoFuncAdd extends RootFunc {
 		}
 		map.put("zz", "1");
 		if (StringUtils.isNotBlank(input.getDataMap().get("cover"))
-				&& StringUtils.isNotBlank(input.getDataMap().get("tag_code"))
-				&& input.getDataMap().get("tag_code").contains("GGBH160719110001")) {// 翘臀大赛加水印
-			String waterMarker = new WaterMarkerSupport().getWaterMarker(input.getDataMap().get("cover"));
+				&& StringUtils.isNotBlank(input.getDataMap().get("tag_code"))) {// 背景图加水印
+			String waterMarker = new WaterMarkerSupport().getWaterMarker(input.getDataMap().get("cover"),
+					input.getDataMap().get("tag_code"));
 			input.getDataMap().put("cover",
 					StringUtils.isNotBlank(waterMarker) ? waterMarker : input.getDataMap().get("cover"));
 		}

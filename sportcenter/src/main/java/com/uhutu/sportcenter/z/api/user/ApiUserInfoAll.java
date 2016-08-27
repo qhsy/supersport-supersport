@@ -2,6 +2,7 @@ package com.uhutu.sportcenter.z.api.user;
 
 import java.util.Arrays;
 import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
+import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 所有用户信息
@@ -78,10 +80,20 @@ public class ApiUserInfoAll extends RootApiToken<ApiUserInfoAllInput, ApiUserInf
 		if (userInfoExt != null) {
 
 			answerUserInfo.setNickName(userInfoExt.getNickName());
+			
+			String sourceUrl = "";
+			
+			if(StringUtils.isNotEmpty(userInfoExt.getAboutHead())){
+				
+				sourceUrl = ImageHelper.upSourceUrl(userInfoExt.getAboutHead());
+				
+			}
 
 			answerUserInfo.setAboutHead(userInfoExt.getAboutHead());
 			
 			BeanUtils.copyProperties(userInfoExt, apiUserInfo);
+			
+			apiUserInfo.setSourceHeadUrl(sourceUrl);
 			
 			if(apiUserInfo != null && StringUtils.isNotEmpty(apiUserInfo.getAboutTag())){
 				
@@ -107,7 +119,7 @@ public class ApiUserInfoAll extends RootApiToken<ApiUserInfoAllInput, ApiUserInf
 		
 		int momentNum = JdbcHelper.count(CnContentBasicinfo.class, "",
 				MapHelper.initMap("busiType", ContentEnum.sportmoment.getCode(), "status",
-						ContentEnum.normal.getCode(), "shareScope", SystemEnum.YES.getCode(),"author",upUserCode()));
+						ContentEnum.normal.getCode(),"author",upUserCode()));
 
 		apiUserInfo.setSportsNum(momentNum);
 		

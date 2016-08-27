@@ -11,28 +11,34 @@ import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiComplainInfoInput;
 import com.uhutu.sportcenter.z.input.ApiContentDetailInput;
 import com.uhutu.sportcenter.z.input.ApiContentPhotosInput;
+import com.uhutu.sportcenter.z.input.ApiContentReadCountInput;
 import com.uhutu.sportcenter.z.input.ApiContentRecommInput;
 import com.uhutu.sportcenter.z.input.ApiForLabelsInput;
 import com.uhutu.sportcenter.z.input.ApiForSportsInput;
 import com.uhutu.sportcenter.z.input.ApiHomePageInput;
+import com.uhutu.sportcenter.z.input.ApiLabelRelListInput;
 import com.uhutu.sportcenter.z.input.ApiOperContentInput;
 import com.uhutu.sportcenter.z.input.ApiPublishContentPhotosInput;
 import com.uhutu.sportcenter.z.input.ApiPublishSportingMomentInput;
 import com.uhutu.sportcenter.z.input.ApiShareInfoInput;
+import com.uhutu.sportcenter.z.input.ApiSportChickenSoupInput;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.z.input.ApiSupportPraiseInput;
 import com.uhutu.sportcenter.z.input.ApiThemePageInput;
 import com.uhutu.sportcenter.z.result.ApiComplainInfoResult;
 import com.uhutu.sportcenter.z.result.ApiContentDetailResult;
 import com.uhutu.sportcenter.z.result.ApiContentPhotosResult;
+import com.uhutu.sportcenter.z.result.ApiContentReadCountResult;
 import com.uhutu.sportcenter.z.result.ApiContentRecommResult;
 import com.uhutu.sportcenter.z.result.ApiForLabelsResult;
 import com.uhutu.sportcenter.z.result.ApiForSportsResult;
 import com.uhutu.sportcenter.z.result.ApiHomePageResult;
+import com.uhutu.sportcenter.z.result.ApiLabelRelListResult;
 import com.uhutu.sportcenter.z.result.ApiOperContentResult;
 import com.uhutu.sportcenter.z.result.ApiPublishContentPhotosResult;
 import com.uhutu.sportcenter.z.result.ApiPublishSportingMomentResult;
 import com.uhutu.sportcenter.z.result.ApiShareInfoResult;
+import com.uhutu.sportcenter.z.result.ApiSportChickenSoupResult;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
 import com.uhutu.sportcenter.z.result.ApiSupportPraiseResult;
 import com.uhutu.sportcenter.z.result.ApiThemePageResult;
@@ -174,4 +180,32 @@ public class ContentController {
 		return apiFactory.getApiShareInfo().api(input);
 
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "/contentReadCount", method = RequestMethod.POST)
+	@ApiOperation(value = "增加阅读量", notes = "增加阅读量")
+	public ApiContentReadCountResult shareInfo(@RequestBody ApiContentReadCountInput input) {
+
+		return apiFactory.getApiContentReadCount().api(input);
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/sportChickenSoup", method = RequestMethod.POST)
+	@ApiOperation(value = "运动小知识", notes = "运动小知识")
+	public ApiSportChickenSoupResult shareInfo(@RequestBody ApiSportChickenSoupInput input) {
+
+		return apiFactory.getApiSportChickenSoup().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/lableRelList", method = RequestMethod.POST)
+	@ApiOperation(value = "标签关联内容列表", notes = "标签关联内容列表")
+	public ApiLabelRelListResult lableRelList(@RequestBody ApiLabelRelListInput input) {
+
+		return apiFactory.getApiLabelRelList().api(input);
+
+	}
+	
 }

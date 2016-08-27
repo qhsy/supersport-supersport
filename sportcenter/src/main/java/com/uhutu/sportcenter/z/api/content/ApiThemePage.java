@@ -49,7 +49,7 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 			result.setName(info.getName());
 			result.setCover(info.getCover());
 			if (StringUtils.isNotBlank(result.getCover()) && StringUtils.isNotBlank(input.getWidth())) {
-				result.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(input.getWidth())));
+				result.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(input.getWidth())*2));
 			}
 			result.setAboutDesc(info.getAboutDesc());
 			result.setModels(getModels(input.getCode(), input.getWidth()));

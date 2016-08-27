@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.config.enums.SocialEnum;
+import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.request.WechatAuthRequest;
 import com.uhutu.dcom.pay.z.request.WechatUserInfoRequest;
 import com.uhutu.dcom.pay.z.response.WechatAuthResponse;
@@ -44,6 +45,8 @@ public class ApiWechatUserLogin2 extends RootApiBase<ApiWechatUserLoginInput2, A
 		WechatAuthRequest authRequest = new WechatAuthRequest();
 
 		authRequest.setCode(input.getCode());
+		
+		authRequest.setProcessType(PayProcessEnum.WECHAT_AUTH);
 
 		/*根据用户授权登录返回code，获取接口调用的accesstoken*/
 		WechatAuthResponse authResponse = (WechatAuthResponse) payServiceFactory.getWechatAuthService()

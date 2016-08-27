@@ -146,6 +146,8 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 					break;
 
 				default:
+					result.getUserContentTabInfo().setContentInfos(convertMoment(input.getUserCode(), input.getPagination()));
+					result.getUserQuestionTabInfo().setQuestionInfos(convertQuestionInfo(input.getPagination(), input.getUserCode(), attendUserCode));
 					break;
 				}
 				

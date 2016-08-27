@@ -108,14 +108,18 @@ a:hover {text-decoration: none; }
 	document.querySelector('.iphone').onclick = function(){
 		if(browser.ios || browser.iPad || browser.iPhone || browser.iPod){
 			if(browser.microMessenger || browser.qq){
-				window.location.replace('')
+				window.location.replace('http://a.app.qq.com/o/simple.jsp?pkgname=com.bigtiyu.sportstalent.app')
 			}else{
 				window.location.replace('https://itunes.apple.com/us/app/guo-dong-yun-dong-shi-ke/id1107505487?l=zh&ls=1&mt=8');
 			}
 		}
 	}
 	document.querySelector('.android').onclick = function(){
-		window.location.href='http://ali-cfile.ichsy.com/cfiles/staticfiles/temp/app-release.apk';
+		if(browser.microMessenger || browser.qq){
+			window.location.replace('http://a.app.qq.com/o/simple.jsp?pkgname=com.bigtiyu.sportstalent.app')
+		}else{
+			window.location.href='http://ali-cfile.ichsy.com/cfiles/staticfiles/temp/app-release.apk';
+		}
 	}
 </script>
 </body>

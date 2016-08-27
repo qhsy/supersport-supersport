@@ -26,7 +26,7 @@
 <article class="details-article"></article>
 <aside class="details-tag"><b></b><span></span><b></b></aside>
 <script type="text/javascript" src="script/zepto.min.js"></script>
-<script type="text/javascript" src="script/share.js"></script>
+<script type="text/javascript" src="../common/share.js"></script>
 
 <script type="text/javascript">
 	$(function(){
@@ -39,12 +39,12 @@
 			url:'/api/contentController/contentDetail',
 			type:'POST',
 			contentType:'application/json',
-			data:'{"content_code":"' + urlFormat('code') + '","zoo": {"key": "tesetkey","token": "12221"}}',
+			data:'{"content_code":"' + urlFormat('code') + '","zoo": {"key": "tesetkey","token": ""}}',
 			dataType:'json',
 			success:function(data){
 				if(data.contentRecommInfo != null){
 					if(data.contentRecommInfo.content != ''){
-						var ele = $('<fieldset class="details-basten"><legend>果果推荐语</legend><p></p></fieldset>');
+						var ele = $('<fieldset class="details-basten"><legend>推荐语</legend><p></p></fieldset>');
 							if($('.blank').length){
 								ele.insertAfter('.blank');
 							}else{

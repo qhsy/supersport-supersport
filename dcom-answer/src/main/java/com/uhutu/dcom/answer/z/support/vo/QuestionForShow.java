@@ -1,5 +1,7 @@
 package com.uhutu.dcom.answer.z.support.vo;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.uhutu.zoocom.root.RootClass;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -102,6 +104,13 @@ public class QuestionForShow extends RootClass {
 	}
 
 	public String getTitle() {
+		
+		if(StringUtils.isBlank(title)){
+			
+			title = "";
+			
+		}
+		
 		return title;
 	}
 

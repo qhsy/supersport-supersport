@@ -6,17 +6,18 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.answer.z.common.Constants;
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
+import com.uhutu.dcom.answer.z.entity.AwAnswerListen;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
 import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
-import com.uhutu.dcom.user.z.enums.UserEnum;
-import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.AnswerUserInfo;
 import com.uhutu.sportcenter.z.input.ApiAnswerUserInfoInput;
 import com.uhutu.sportcenter.z.result.ApiAnswerUserInfoResult;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiToken;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 问答用户信息
@@ -32,9 +33,6 @@ public class ApiAnswerUserInfo extends RootApiToken<ApiAnswerUserInfoInput, ApiA
 
 	@Autowired
 	private UserInfoSupport userInfoSupport;
-	
-	@Autowired
-	private UserServiceFactory userServiceFactory;
 
 	@Override
 	protected ApiAnswerUserInfoResult process(ApiAnswerUserInfoInput input) {
@@ -63,9 +61,9 @@ public class ApiAnswerUserInfo extends RootApiToken<ApiAnswerUserInfoInput, ApiA
 			
 			answerUserInfo.setType(ucUserinfo.getType());
 			
-			int fansNum = userServiceFactory.getAttentionInfoService().queryFansCount(upUserCode(), UserEnum.ATTEND.getCode());
+			int listenCount = JdbcHelper.count(AwAnswerListen.class, "questionCode in (select code from aw_question_info where answer_user_code='"+upUserCode()+"')", new MDataMap());
 			
-			answerUserInfo.setFansNum(fansNum);
+			answerUserInfo.setFansNum(listenCount);
 			
 		}
 

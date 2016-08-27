@@ -54,7 +54,8 @@ var require = {
         	<h2>擅长回答的问题（100字以内）</h2>
         	<textarea class="big" v-on:change="lengthFn(result.answerUserInfo.ability,100)" v-model="result.answerUserInfo.ability" placeholder="关于这些，尽情问我···"></textarea>
             <p>向我提问需要支付<input type="text" v-model="result.answerUserInfo.charge" v-on:blur="isCharge">元。</p>
-            <a href="javascript:;" v-on:click="submit">保存</a>
+            <em class="agre">开通问达表明您同意<a href="agreement.html">《问达服务协议》</a></em>
+            <a href="javascript:;" class="submit" v-on:click="submit">保存</a>
     	</article>
     </template>
 </section>

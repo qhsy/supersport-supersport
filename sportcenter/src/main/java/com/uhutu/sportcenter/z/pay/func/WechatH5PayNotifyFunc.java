@@ -37,47 +37,56 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 	@Override
 	public MResult doAfter(WechatNotifyRequest notifyRequest) {
 		
-		MResult mResult = new MResult();
-		
-		OcOrderDetail orderDetail = getOrderDetail(notifyRequest.getOut_trade_no());
-		
-		if(orderDetail != null){
+		synchronized (WechatH5PayNotifyFunc.class) {
 			
-			OcOrderInfo ocOrderInfo = getOrderInfo(notifyRequest.getOut_trade_no());
+			MResult mResult = new MResult();
 			
-			if(ocOrderInfo != null){
+			OcOrderDetail orderDetail = getOrderDetail(notifyRequest.getOut_trade_no());
+			
+			if(orderDetail != null){
 				
-				/*若订单是未付款，则更新相关业务*/
-				if(StringUtils.equals(ocOrderInfo.getStatus(), OrderEnum.STATUS_UNPAYED.getCode())){
+				OcOrderInfo ocOrderInfo = getOrderInfo(notifyRequest.getOut_trade_no());
+				
+				if(ocOrderInfo != null){
 					
-					/*更新订单信息*/
-					ocOrderInfo.setStatus(OrderEnum.STATUS_PAYED.getCode());
-					
-					BigDecimal payedMoney = new BigDecimal(notifyRequest.getTotal_fee()).divide(new BigDecimal(100)).setScale(2);
-					
-					ocOrderInfo.setPayedMoney(payedMoney);
-					
-					updateOrderInfo(ocOrderInfo,mResult);
-					
-					/*更新订单支付信息*/
-					if(mResult.upFlagTrue()){
+					/*若订单是未付款，则更新相关业务*/
+					if(StringUtils.equals(ocOrderInfo.getStatus(), OrderEnum.STATUS_UNPAYED.getCode())){
 						
-						updateOrderPayInfo(ocOrderInfo.getOrderType(), notifyRequest, notifyRequest.getProcessType(), mResult);
+						/*更新订单信息*/
+						ocOrderInfo.setStatus(OrderEnum.STATUS_PAYED.getCode());
+						
+						BigDecimal payedMoney = new BigDecimal(notifyRequest.getTotal_fee()).divide(new BigDecimal(100)).setScale(2);
+						
+						ocOrderInfo.setPayedMoney(payedMoney);
+						
+						updateOrderInfo(ocOrderInfo,mResult);
+						
+						/*更新订单支付信息*/
+						if(mResult.upFlagTrue()){
+							
+							updateOrderPayInfo(ocOrderInfo.getOrderType(), notifyRequest, notifyRequest.getProcessType(), mResult);
+							
+						}
+						
+						if(mResult.upFlagTrue()){
+							
+							updateQuestionInfo(orderDetail.getProductCode(), payedMoney,ocOrderInfo.getBuyerCode(), mResult);
+							
+						}
+						
+						
+						
+						
+						
 						
 					}
 					
-					if(mResult.upFlagTrue()){
-						
-						updateQuestionInfo(orderDetail.getProductCode(), payedMoney,ocOrderInfo.getBuyerCode(), mResult);
-						
-					}
+				}else{
 					
-					
-					
-					
-					
+					mResult.inError(81110006);
 					
 				}
+				
 				
 			}else{
 				
@@ -85,14 +94,11 @@ public class WechatH5PayNotifyFunc implements IWechatNotifyFunc {
 				
 			}
 			
+			return mResult;
 			
-		}else{
-			
-			mResult.inError(81110006);
+		
 			
 		}
-		
-		return mResult;
 		
 	}
 	

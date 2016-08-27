@@ -27,10 +27,14 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 			viewTab:['contentTab','questionTab'],
 			currView:'contentTab',
 			contentPage:1,
-			questionPage:1
+			questionPage:1,
+			currPage:1
 		},
 		created:function(){
+			var self = this;
 			this.getData();
+			$(window).on('scroll',self.isScroll);
+
 		},
 		watch:{
 			'currView':'getData'
@@ -43,7 +47,7 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 					type:'POST',
 					contentType:'application/json',
 					dataType:'json',
-					data:'{"pagination": ' + self.contentPage + ',"type": "' + self.currView + '","userCode": "' + userCode + '","zoo": {"key": "tesetkey","token": " "}}',
+					data:'{"pagination": ' + self.currPage + ',"type": "' + self.currView + '","userCode": "' + userCode + '","zoo": {"key": "tesetkey","token": " "}}',
 					success:function(res){
 						if(res.status == 1){
 							self.result = res;
@@ -54,8 +58,40 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 					}
 				});
 			},
+			isScroll:function(){
+				var self = this;
+				var winHeight = $(window).height();
+				var docHeight = $(document).height();
+				var scrollHeight = $(window).scrollTop();
+				var isLoad = (winHeight + scrollHeight) >= docHeight?true:false;
+				if(isLoad){
+					var currPage = self.currView == 'contentTab'?++self.contentPage:++self.questionPage;
+					$.ajax({
+						url:'/api/answerController/appPersonHome',
+						type:'POST',
+						contentType:'application/json',
+						dataType:'json',
+						data:'{"pagination": ' + currPage + ',"type": "' + self.currView + '","userCode": "' + userCode + '","zoo": {"key": "tesetkey","token": " "}}',
+						success:function(res){
+							if(res.status == 1){
+								if(self.currView == 'contentTab'){
+									self.result.userContentTabInfo.contentInfos = self.result.userContentTabInfo.contentInfos.concat(res.userContentTabInfo.contentInfos);
+								}else{
+									self.result.userQuestionTabInfo.questionInfos = self.result.userQuestionTabInfo.questionInfos.concat(res.userQuestionTabInfo.questionInfos);
+								}
+								
+							}else{
+								comm.tost(res.error);
+							}
+						}
+					});
+				}
+			},
 			tabEvent:function(index){
 				this.currView = this.viewTab[index];
+				this.contentPage = 1;
+				this.questionPage = 1;
+				this.currPage = 1;
 			},
 			attendFlag:function(){
 				var self = this;

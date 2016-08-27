@@ -1,6 +1,9 @@
 package com.uhutu.sportcenter.z.entity;
 
 import java.math.BigDecimal;
+
+import org.apache.commons.lang3.StringUtils;
+
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -11,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class AnswerUserInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(value="提问收费")
-	private BigDecimal charge = BigDecimal.ZERO;
+	private BigDecimal charge = BigDecimal.ONE;
 	
 	@ApiModelProperty(value="收入")
 	private BigDecimal income = BigDecimal.ZERO;
@@ -109,6 +112,13 @@ public class AnswerUserInfo extends UserBasicInfo {
 	}
 
 	public String getTitle() {
+		
+		if(StringUtils.isBlank(title)){
+			
+			title = "";
+			
+		}
+		
 		return title;
 	}
 

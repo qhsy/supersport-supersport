@@ -263,8 +263,9 @@ a:hover {text-decoration: none;}
 .leon-edit .cont textarea.big{height:.95rem;}
 .leon-edit .cont p{padding:0 .1rem;margin-top:-.1rem;line-height:.2rem;font-size:.14rem;color:#9b9b9b;}
 .leon-edit .cont p input{width: 0.35rem; padding:0 .1rem;border-bottom:1px solid #f38540;color:#f38540; text-align: center;}
-.leon-edit .cont a{display:block;width:1.15rem;height:.4rem;line-height:.4rem;margin:.42rem auto;background:#f8800a;color:#fff;border-radius:.05rem;text-align:center;}
-
+.leon-edit .cont .submit{display:block;width:1.15rem;height:.4rem;line-height:.4rem;margin:.42rem auto;background:#f8800a;color:#fff;border-radius:.05rem;text-align:center;}
+.leon-edit .cont .agre{padding: 0.1rem 0.1rem 0; color: #9b9b9b; display: block;}
+.leon-edit .cont .agre a{color: #f8800a;}
 .pop{width:1.84rem;height:1.2rem;overflow:hidden;line-height:1.2rem;position:fixed;left:50%;top:50%;background:#fff;text-align:center;border-radius:.1rem;box-shadow:0 0 50px #ccc;font-size:.18rem;color:#9b9b9b;margin:-.6rem 0 0 -.92rem;}
 
 /*=我问 我答*/

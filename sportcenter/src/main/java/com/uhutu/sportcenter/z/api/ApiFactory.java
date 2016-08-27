@@ -36,6 +36,7 @@ import com.uhutu.sportcenter.z.api.category.ApiForSports;
 import com.uhutu.sportcenter.z.api.content.ApiComplainInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentDetailInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentPhotosDetailInfo;
+import com.uhutu.sportcenter.z.api.content.ApiContentReadCount;
 import com.uhutu.sportcenter.z.api.content.ApiContentRecommInfo;
 import com.uhutu.sportcenter.z.api.content.ApiOperContent;
 import com.uhutu.sportcenter.z.api.content.ApiOwnSportMoment;
@@ -43,6 +44,7 @@ import com.uhutu.sportcenter.z.api.content.ApiPublishContentPhotos;
 import com.uhutu.sportcenter.z.api.content.ApiPublishSportingMoment;
 import com.uhutu.sportcenter.z.api.content.ApiShareContent;
 import com.uhutu.sportcenter.z.api.content.ApiShareInfo;
+import com.uhutu.sportcenter.z.api.content.ApiSportChickenSoup;
 import com.uhutu.sportcenter.z.api.content.ApiSportingMoments;
 import com.uhutu.sportcenter.z.api.content.ApiSupportPraise;
 import com.uhutu.sportcenter.z.api.content.ApiThemePage;
@@ -56,7 +58,11 @@ import com.uhutu.sportcenter.z.api.extend.ApiSendSms;
 import com.uhutu.sportcenter.z.api.home.APiStartPage;
 import com.uhutu.sportcenter.z.api.home.ApiHomePage;
 import com.uhutu.sportcenter.z.api.label.ApiForLabels;
+import com.uhutu.sportcenter.z.api.label.ApiLabelRelList;
+import com.uhutu.sportcenter.z.api.pay.ApiCoinAccInfo;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinCharge;
+import com.uhutu.sportcenter.z.api.pay.ApiCoinFlowInfo;
+import com.uhutu.sportcenter.z.api.pay.ApiCoinPay;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatConfigInfo;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatH5Pay;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatMobilePay;
@@ -73,6 +79,7 @@ import com.uhutu.sportcenter.z.api.user.ApiForTecentSig;
 import com.uhutu.sportcenter.z.api.user.ApiLoginOut;
 import com.uhutu.sportcenter.z.api.user.ApiMsgAdvice;
 import com.uhutu.sportcenter.z.api.user.ApiMsgAttendList;
+import com.uhutu.sportcenter.z.api.user.ApiMsgFocus;
 import com.uhutu.sportcenter.z.api.user.ApiMsgNoticeList;
 import com.uhutu.sportcenter.z.api.user.ApiMsgNumList;
 import com.uhutu.sportcenter.z.api.user.ApiMsgPraiseList;
@@ -80,18 +87,21 @@ import com.uhutu.sportcenter.z.api.user.ApiMsgRemarkList;
 import com.uhutu.sportcenter.z.api.user.ApiRecentMsgList;
 import com.uhutu.sportcenter.z.api.user.ApiRecommendExpert;
 import com.uhutu.sportcenter.z.api.user.ApiSetUserFavor;
+import com.uhutu.sportcenter.z.api.user.ApiSignLogin;
 import com.uhutu.sportcenter.z.api.user.ApiSocialLogin;
 import com.uhutu.sportcenter.z.api.user.ApiSocialLogin2;
 import com.uhutu.sportcenter.z.api.user.ApiUpdateMsgStatus;
 import com.uhutu.sportcenter.z.api.user.ApiUpdateUserInfo;
 import com.uhutu.sportcenter.z.api.user.ApiUserInfo;
 import com.uhutu.sportcenter.z.api.user.ApiUserInfoAll;
+import com.uhutu.sportcenter.z.api.user.ApiUserRegSign;
 import com.uhutu.sportcenter.z.api.user.ApiUserRegister;
 import com.uhutu.sportcenter.z.api.user.ApiUserResetPwd;
 import com.uhutu.sportcenter.z.api.user.ApiVerifyNickName;
 import com.uhutu.sportcenter.z.api.user.ApiVersionInfo;
 import com.uhutu.sportcenter.z.api.user.ApiWechatUserLogin;
 import com.uhutu.sportcenter.z.api.user.ApiWechatUserLogin2;
+import com.uhutu.sportcenter.z.api.user.ApiWechatUserLogin3;
 
 /**
  * api工厂
@@ -338,38 +348,79 @@ public class ApiFactory {
 
 	@Autowired
 	ApiThemePage apiThemePage;
-	
+
 	@Autowired
 	private ApiAppUpdateAnswerUser apiAppUpdateAnswerUser;
-	
+
 	@Autowired
 	private ApiUpdateUserTitle apiUpdateUserTitle;
-	
+
 	@Autowired
 	private ApiBindSettleAccount apiBindSettleAccount;
-	
+
 	@Autowired
 	private ApiOwnSportMoment apiOwnSportMoment;
-	
+
 	@Autowired
 	private ApiSocialLogin2 apiSocialLogin2;
-	
+
 	@Autowired
 	private ApiWechatUserLogin2 apiWechatUserLogin2;
-	
+
 	@Autowired
 	private ApiAnswerMsgList apiAnswerMsgList;
-	
+
 	@Autowired
 	private ApiRecentMsgList apiRecentMsgList;
 
 	@Autowired
 	private ApiShareInfo apiShareInfo;
-	
+
 	@Autowired
 	private ApiCoinCharge apiCoinCharge;
+
+	@Autowired
+	private ApiCoinAccInfo apiCoinAccInfo;
+
+	@Autowired
+	private ApiCoinPay apiCoinPay;
+
+	@Autowired
+	private ApiMsgFocus apiMsgFocus;
+
+	@Autowired
+	private ApiContentReadCount apiContentReadCount;
+
+	@Autowired
+	private ApiCoinFlowInfo apiCoinFlowInfo;
+
+	@Autowired
+	private ApiSportChickenSoup apiSportChickenSoup;
 	
+	@Autowired
+	private ApiLabelRelList apiLabelRelList;
+
+	@Autowired
+	private ApiWechatUserLogin3 apiWechatUserLogin3;
 	
+	@Autowired
+	private ApiUserRegSign apiUserRegSign;
+	
+	@Autowired
+	private ApiSignLogin apiSignLogin;
+	
+	public ApiSportChickenSoup getApiSportChickenSoup() {
+		return apiSportChickenSoup;
+	}
+
+	public ApiCoinFlowInfo getApiCoinFlowInfo() {
+		return apiCoinFlowInfo;
+	}
+
+	public ApiContentReadCount getApiContentReadCount() {
+		return apiContentReadCount;
+	}
+
 	public ApiShareInfo getApiShareInfo() {
 		return apiShareInfo;
 	}
@@ -609,7 +660,7 @@ public class ApiFactory {
 	public ApiUserExpertDetail getApiUserExpertDetail() {
 		return apiUserExpertDetail;
 	}
-	
+
 	public ApiUpdateUserPower getApiUpdateUserPower() {
 		return apiUpdateUserPower;
 	}
@@ -724,6 +775,34 @@ public class ApiFactory {
 
 	public ApiCoinCharge getApiCoinCharge() {
 		return apiCoinCharge;
+	}
+
+	public ApiCoinAccInfo getApiCoinAccInfo() {
+		return apiCoinAccInfo;
+	}
+
+	public ApiCoinPay getApiCoinPay() {
+		return apiCoinPay;
+	}
+
+	public ApiMsgFocus getApiMsgFocus() {
+		return apiMsgFocus;
+	}
+
+	public ApiLabelRelList getApiLabelRelList() {
+		return apiLabelRelList;
+	}
+
+	public ApiWechatUserLogin3 getApiWechatUserLogin3() {
+		return apiWechatUserLogin3;
+	}
+
+	public ApiUserRegSign getApiUserRegSign() {
+		return apiUserRegSign;
+	}
+
+	public ApiSignLogin getApiSignLogin() {
+		return apiSignLogin;
 	}
 
 }

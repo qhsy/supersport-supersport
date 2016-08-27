@@ -44,6 +44,10 @@ public class CnAdvertiseDetail extends BaseEntity {
 	@ApiModelProperty(name = "图片超链接跳转内容", notes = "轮播图链接跳转内容", example = "http://www.ichsy.com")
 	private String piclinkContent;
 
+	@ZooData(name = "跳转后标题", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ApiModelProperty(name = "跳转后标题", notes = "跳转后标题", example = "http://www.ichsy.com")
+	private String contentTitle;
+
 	public String getCode() {
 		return code;
 	}
@@ -82,6 +86,14 @@ public class CnAdvertiseDetail extends BaseEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getContentTitle() {
+		return contentTitle;
+	}
+
+	public void setContentTitle(String contentTitle) {
+		this.contentTitle = contentTitle;
 	}
 
 }

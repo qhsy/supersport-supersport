@@ -31,6 +31,12 @@ public class PaCoinFlow extends BaseEntity {
 	
 	@ZooData(name = "备注信息")
 	private String remark;
+	
+	@ZooData(name="操作类型")
+	private String operType;
+	
+	@ZooData(name="用户编号")
+	private String userCode;
 
 	public String getCode() {
 		return code;
@@ -70,6 +76,22 @@ public class PaCoinFlow extends BaseEntity {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getOperType() {
+		return operType;
+	}
+
+	public void setOperType(String operType) {
+		this.operType = operType;
+	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
 	}
 
 }
