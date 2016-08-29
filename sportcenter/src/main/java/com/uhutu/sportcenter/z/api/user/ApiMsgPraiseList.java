@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcMsgPraise;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
@@ -24,6 +26,9 @@ public class ApiMsgPraiseList extends RootApiToken<ApiMsgPraiseListInput, ApiMsg
 	
 	@Autowired
 	private UserServiceFactory userServiceFactory;
+	
+	@Autowired
+	private ContentServiceFactory contentServiceFactory;
 
 	@Override
 	protected ApiMsgPraiseListResult process(ApiMsgPraiseListInput input) {
@@ -40,11 +45,19 @@ public class ApiMsgPraiseList extends RootApiToken<ApiMsgPraiseListInput, ApiMsg
 		
 		msgPraisePage.getContent().forEach( msgPraise -> {
 			
+			CnContentBasicinfo basicinfo = contentServiceFactory.getContentBasicinfoService().queryByCode(msgPraise.getContentCode());
+			
 			MsgPraiseInfo msgPraiseInfo = new MsgPraiseInfo();
 			
 			msgPraiseInfo.setContentTitle(msgPraise.getContentTitle());
 			
 			msgPraiseInfo.setPraiseUserCode(msgPraise.getPraiseUserCode());
+			
+			if(basicinfo != null){
+				
+				msgPraiseInfo.setContentType(basicinfo.getContentType());
+				
+			}
 			
 			String msgTime = DateFormatUtils.format(msgPraise.getMsgTime(), "yyyy-MM-dd HH:mm:ss");
 			
