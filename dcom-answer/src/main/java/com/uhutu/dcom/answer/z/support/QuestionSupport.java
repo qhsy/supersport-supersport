@@ -252,9 +252,9 @@ public class QuestionSupport extends RootClass {
 					args = cns.keySet().toArray(args);
 					Collections.addAll(codes, args);
 					if (cns.size() < page * num) {
-						codes = codes.subList((page - 1) * num, cns.size()-1);
+						codes = codes.subList((page - 1) * num, cns.size());
 					} else if (cns.size() >= page * num) {
-						codes = codes.subList((page - 1) * num, (page * num)-1);
+						codes = codes.subList((page - 1) * num, (page * num));
 					}
 				}
 				
