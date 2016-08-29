@@ -88,6 +88,7 @@ public class QuestionSupport extends RootClass {
 						show.setSoundContent(activityInfo.getName());
 					}
 					UcUserinfoExt ext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", info.getAnswerUserCode());
+					UcUserinfo userInfo = JdbcHelper.queryOne(UcUserinfo.class, "code", info.getAnswerUserCode());
 					AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "user_code",
 							info.getAnswerUserCode());
 					show.setHeadUrl(ext.getAboutHead());
@@ -95,6 +96,7 @@ public class QuestionSupport extends RootClass {
 					show.setTitle(expert.getTitle());
 					show.setUserCode(info.getAnswerUserCode());
 					show.setListenFlag(checkUserLitenTheQuestion("", info.getCode()));
+					show.setUserType(userInfo.getType());
 					result.add(show);
 				}
 			}
@@ -164,6 +166,7 @@ public class QuestionSupport extends RootClass {
 						show.setSoundContent(activityInfo.getName());
 					}
 					UcUserinfoExt ext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", info.getAnswerUserCode());
+					UcUserinfo userInfo = JdbcHelper.queryOne(UcUserinfo.class, "code", info.getAnswerUserCode());
 					AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "user_code",
 							info.getAnswerUserCode());
 					show.setHeadUrl(ext.getAboutHead());
@@ -171,6 +174,7 @@ public class QuestionSupport extends RootClass {
 					show.setTitle(expert.getTitle());
 					show.setUserCode(info.getAnswerUserCode());
 					show.setListenFlag(checkUserLitenTheQuestion("", info.getCode()));
+					show.setUserType(userInfo.getType());
 					result.add(show);
 				}
 			}
