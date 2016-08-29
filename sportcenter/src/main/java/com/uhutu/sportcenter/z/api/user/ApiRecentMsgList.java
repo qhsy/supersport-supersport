@@ -71,6 +71,8 @@ public class ApiRecentMsgList extends RootApiToken<ApiRecentMsgListInput, ApiRec
 					
 					msgNoticeInfo.setNotifyTime(ucMsgNotice.getNotifyTime());
 					
+					msgNoticeInfo.setBusiCode(ucMsgNotice.getCode());
+					
 					apiMsgNoticeInfo.setTitle("果冻体育");
 					
 					apiMsgNoticeInfo.setUnReadNum(userServiceFactory.getMsgNoticeUserService().queryCount(upUserCode(), MsgEnum.FLAG_UNREAD.getCode()));
@@ -112,6 +114,8 @@ public class ApiRecentMsgList extends RootApiToken<ApiRecentMsgListInput, ApiRec
 				msgNoticeInfo.setContent(ucMsgAnswer.getContent());
 				
 				msgNoticeInfo.setNotifyTime(ucMsgAnswer.getNotifyTime());
+				
+				msgNoticeInfo.setBusiCode(ucMsgAnswer.getBusiCode());
 				
 				apiMsgNoticeInfo.setTitle("问达助手");
 				

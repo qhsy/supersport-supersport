@@ -32,6 +32,9 @@ public class UcMsgAnswer extends BaseEntity {
 	
 	@ZooData(value="消息状态")
 	private String status;
+	
+	@ZooData(value="业务编号")
+	private String busiCode;
 
 	public String getCode() {
 		return code;
@@ -87,6 +90,14 @@ public class UcMsgAnswer extends BaseEntity {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getBusiCode() {
+		return busiCode;
+	}
+
+	public void setBusiCode(String busiCode) {
+		this.busiCode = busiCode;
 	}
 
 }

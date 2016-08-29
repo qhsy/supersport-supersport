@@ -14,6 +14,9 @@ public class MsgNoticeInfo {
 	
 	@ApiModelProperty(name="消息内容")
 	private String content;
+	
+	@ApiModelProperty(value="业务编号")
+	private String busiCode;
 
 	public String getNotifyTime() {
 		return notifyTime;
@@ -29,6 +32,14 @@ public class MsgNoticeInfo {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getBusiCode() {
+		return busiCode;
+	}
+
+	public void setBusiCode(String busiCode) {
+		this.busiCode = busiCode;
 	}
 	
 

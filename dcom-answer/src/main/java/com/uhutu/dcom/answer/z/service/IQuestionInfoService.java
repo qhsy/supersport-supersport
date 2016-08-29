@@ -78,6 +78,6 @@ public interface IQuestionInfoService {
 	 * @param userCode
 	 * 		用户编号
 	 */
-	public void saveAnswerMsg(String title,String content,String userCode);
+	public void saveAnswerMsg(String title,String content,String userCode,String busiCode);
 
 }

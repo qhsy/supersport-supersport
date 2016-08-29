@@ -120,7 +120,7 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 	}
 	
 	@Override
-	public void saveAnswerMsg(String title,String content,String userCode){
+	public void saveAnswerMsg(String title,String content,String userCode,String busiCode){
 		
 		UcMsgAnswer msgAnswer = new UcMsgAnswer();
 		
@@ -137,6 +137,8 @@ public class QuestionInfoServiceImpl implements IQuestionInfoService {
 		msgAnswer.setType("ANSWER");
 		
 		msgAnswer.setUserCode(userCode);
+		
+		msgAnswer.setBusiCode(busiCode);
 		
 		JdbcHelper.insert(msgAnswer);
 		

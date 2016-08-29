@@ -73,7 +73,7 @@ public class AnswerMsgSupport {
 
 		/* 系统push */
 		answerServiceFactory.getQuestionInfoService().saveAnswerMsg(title, content + "：" + questionInfo.getContent(),
-				questionInfo.getAnswerUserCode());
+				questionInfo.getAnswerUserCode(),questionInfo.getCode());
 
 		if (answerSocial != null) {
 
@@ -134,7 +134,7 @@ public class AnswerMsgSupport {
 		baiduPush(questionInfo.getQuestionUserCode(), title, content, Constants.PUSH_JUMP_ANSWERDETAIL,
 				questionInfo.getCode());
 
-		answerServiceFactory.getQuestionInfoService().saveAnswerMsg(title, content, questionInfo.getQuestionUserCode());
+		answerServiceFactory.getQuestionInfoService().saveAnswerMsg(title, content, questionInfo.getQuestionUserCode(),questionInfo.getCode());
 
 		UcSocialLogin socialLogin = null;
 
@@ -198,7 +198,7 @@ public class AnswerMsgSupport {
 		baiduPush(questionInfo.getQuestionUserCode(), title, content, Constants.PUSH_JUMP_ANSWERDETAIL,
 				questionInfo.getCode());
 
-		answerServiceFactory.getQuestionInfoService().saveAnswerMsg(title, content, questionInfo.getQuestionUserCode());
+		answerServiceFactory.getQuestionInfoService().saveAnswerMsg(title, content, questionInfo.getQuestionUserCode(),questionInfo.getCode());
 
 		UcSocialLogin socialLogin = null;
 
@@ -262,7 +262,7 @@ public class AnswerMsgSupport {
 		baiduPush(questionInfo.getQuestionUserCode(), title, content, Constants.PUSH_JUMP_ANSWERDETAIL,
 				questionInfo.getCode());
 
-		answerServiceFactory.getQuestionInfoService().saveAnswerMsg(title, content, questionInfo.getQuestionUserCode());
+		answerServiceFactory.getQuestionInfoService().saveAnswerMsg(title, content, questionInfo.getQuestionUserCode(),questionInfo.getCode());
 
 		UcSocialLogin socialLogin = null;
 
