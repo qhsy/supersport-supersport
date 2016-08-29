@@ -12,6 +12,9 @@ public class MsgPraiseInfo extends UserBasicInfo {
 	@ApiModelProperty(name="点赞者")
 	private String praiseUserCode;
 	
+	@ApiModelProperty(value="内容编号")
+	private String contentCode;
+	
 	@ApiModelProperty(name="内容标题")
 	private String contentTitle;
 	
@@ -51,6 +54,14 @@ public class MsgPraiseInfo extends UserBasicInfo {
 
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
+	}
+
+	public String getContentCode() {
+		return contentCode;
+	}
+
+	public void setContentCode(String contentCode) {
+		this.contentCode = contentCode;
 	}
 	
 	

@@ -59,6 +59,8 @@ public class ApiMsgPraiseList extends RootApiToken<ApiMsgPraiseListInput, ApiMsg
 				
 			}
 			
+			msgPraiseInfo.setContentCode(msgPraise.getContentCode());
+			
 			String msgTime = DateFormatUtils.format(msgPraise.getMsgTime(), "yyyy-MM-dd HH:mm:ss");
 			
 			msgPraiseInfo.setMsgTime(msgTime);
