@@ -210,11 +210,7 @@ public class QuestionSupport extends RootClass {
 					"status='dzsd4888100110010002' and answer_user_code in (" + str.toString()
 							+ ") GROUP BY answer_user_code order by num desc ",
 					new MDataMap(), 0, 0);
-			if (alres != null && !alres.isEmpty()) {
-				for (int i = 0; i < alres.size(); i++) {
-					cns.put(alres.get(i).get("answer_user_code"), alres.get(i).get("num"));
-				}
-			}
+			
 			if (res != null && !res.isEmpty() && res.size() > 0) {// 运营推荐
 				for (int i = 0; i < res.size(); i++) {
 					if (!cns.containsKey(res.get(i).getAnswerCode())) {
@@ -222,6 +218,13 @@ public class QuestionSupport extends RootClass {
 					}
 				}
 			}
+			
+			if (alres != null && !alres.isEmpty()) {
+				for (int i = 0; i < alres.size(); i++) {
+					cns.put(alres.get(i).get("answer_user_code"), alres.get(i).get("num"));
+				}
+			}
+			
 			List<MDataMap> reals = JdbcHelper.dataQuery("aw_question_info",
 					" answer_user_code as code,count(*) as num,count(*)*(8/10)+SUM(listen)*(2/10) as tj ", "",
 					"status='dzsd4888100110010002' and answer_user_code not in (select answer_code from aw_point_recommen where type='dzsd4888100110030003')  GROUP BY answer_user_code order by tj desc ",
