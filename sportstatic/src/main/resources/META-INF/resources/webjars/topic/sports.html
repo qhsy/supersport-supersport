@@ -106,14 +106,16 @@ html{background: #f0f0f0;}
 					}
 				}
 			});
-			if(share){
+			if(self.share){
 				share()
 			}
 		},
 		methods:{
 			backSportTime:function(code,type) {
-				if(!share){
+				if(!this.share){
 					callbackSportTime(code,type);
+				}else{
+					open()
 				}
 			}
 		}
