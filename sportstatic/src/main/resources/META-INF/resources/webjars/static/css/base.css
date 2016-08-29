@@ -2,11 +2,10 @@ html{font-size: 100px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,pre,form,fieldset,input,textarea,blockquote,p,button,header,footer,nav,section,article,aside,video,audio,figure,figcaption,hgroup{padding: 0px; margin: 0px; tap-highlight-color: rgba(0, 0, 0, 0); -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -ms-tap-highlight-color: rgba(0, 0, 0, 0); font-size: 0.14rem;}
 table,td,tr,th{font-size: 0.12rem;}
 table{margin: 0 auto;}
-img{vertical-align: top; border: 0;}
 ol,ul{list-style: none;}
 li{list-style-type: none;}
 h1,h2,h3,h4,h5,h6{font-weight:normal; font-size: 100%;}
-img{width: 100%; height: auto; vertical-align: top; }
+img{max-width: 100%; max-height: 100%; vertical-align: top; border: 0;}
 address,caption,cite,code,dfn,em,i,b{font-weight: normal; font-style: normal;}
 input,textarea,select,button{outline: none; resize: none; border: 0;}
 a{-webkit-appearance: none; outline: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-touch-callout: none; text-decoration: none;}
