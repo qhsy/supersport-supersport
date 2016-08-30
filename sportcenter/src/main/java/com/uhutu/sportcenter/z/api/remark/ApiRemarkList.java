@@ -74,6 +74,14 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 			
 			CnContentRemark sourceRef = serviceFactory.getContentRemarkService().queryByCode(remark.getParentCode());
 			
+			CnContentBasicinfo contentBasicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",remark.getContentCode());
+			
+			if(contentBasicinfo != null){
+				
+				replyInfo.setContentType(contentBasicinfo.getContentType());
+				
+			}
+			
 			replyInfo.setRefReplyInfo(initRemarkInfo(sourceRef,input.getZoo().getToken()));
 			
 			replyInfo.setReplyInfo(initRemarkInfo(remark,input.getZoo().getToken()));
@@ -97,14 +105,6 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 			remarkInfo = new ContentRemarkInfo();
 			
 			BeanUtils.copyProperties(remark, remarkInfo);
-			
-			CnContentBasicinfo contentBasicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",remark.getContentCode());
-			
-			if(contentBasicinfo != null){
-				
-				remarkInfo.setContentType(contentBasicinfo.getContentType());
-				
-			}
 			
 			UcUserinfoExt ucUserinfoExt = userSerivceFactory.getUserInfoExtService().queryByUserCode(remark.getAuthor());
 			
