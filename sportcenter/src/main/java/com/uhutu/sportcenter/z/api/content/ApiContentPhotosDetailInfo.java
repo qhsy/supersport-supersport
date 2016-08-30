@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentPhotos;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
+import com.uhutu.dcom.remark.z.enums.RemarkEnum;
+import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
@@ -40,6 +42,9 @@ public class ApiContentPhotosDetailInfo extends RootApiBase<ApiContentPhotosInpu
 
 	@Autowired
 	private ContentLabelServiceFactory labelServiceFacotry;
+
+	@Autowired
+	private ContentRemarkServiceFactory remarkServiceFactory;
 
 	@Override
 	protected ApiContentPhotosResult process(ApiContentPhotosInput input) {
@@ -78,10 +83,13 @@ public class ApiContentPhotosDetailInfo extends RootApiBase<ApiContentPhotosInpu
 
 			result.getContentBasicInfo()
 					.setTags(labelServiceFacotry.getContentLabelService().getLabels(cnContentBasicinfo.getTagCode()));
-			
+
 			result.getContentBasicInfo().setFavorFlag(
 					ContentComponent.lightFavor(result.getContentBasicInfo().getCode(), input.getZoo().getToken()));
-			
+			int remarkNum = remarkServiceFactory.getContentRemarkService()
+					.queryCount(result.getContentBasicInfo().getCode(), RemarkEnum.FLAG_ENABLE.getCode());
+			result.getContentBasicInfo().setRemarkNum(remarkNum);
+
 			result.getContentBasicInfo().setPraiseNum(ContentComponent.praiseNum(cnContentBasicinfo.getCode()));
 
 			List<ContentPhotosDetail> cnContentPhotosDetails = new ArrayList<ContentPhotosDetail>();
