@@ -29,6 +29,7 @@ import com.uhutu.dcom.user.z.entity.UserBasicInfo;
 import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
+import com.uhutu.sportcenter.z.api.util.ContentComponent;
 import com.uhutu.sportcenter.z.entity.AnswerUserInfo;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.entity.QuestionInfo;
@@ -60,9 +61,13 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 	
 	@Autowired
 	private ContentServiceFactory contentServiceFactory;
+	
+	private String token;
 
 	@Override
 	protected ApiAppPersonHomeResult process(ApiAppPersonHomeInput input) {
+		
+		token = input.getZoo().getToken();
 		
 		ApiAppPersonHomeResult result = new ApiAppPersonHomeResult();
 		
@@ -276,6 +281,8 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 				sportingMoment.getUserBasicInfo().setUserCode(userCode);
 				
 			}
+			
+			sportingMoment.setFavorFlag(ContentComponent.lightFavor(sportingMoment.getCode(), token));
 
 			sports.add(sportingMoment);
 
