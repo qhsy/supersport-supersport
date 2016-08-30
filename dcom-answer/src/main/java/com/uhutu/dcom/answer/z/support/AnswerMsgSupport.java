@@ -316,14 +316,14 @@ public class AnswerMsgSupport {
 					MapHelper.initMap("user_code", userCode, "os", "ios"));
 
 			if (ucClientInfo != null && StringUtils.isNotBlank(ucClientInfo.getChannelId())) {
-				new BaiduPush().push(PushEnum.ios, title, content, ucClientInfo.getChannelId(), jumpType, jumpContent);
+				new BaiduPush().push(PushEnum.ios, "果冻体育", content, ucClientInfo.getChannelId(), jumpType, jumpContent);
 			}
 
 			UcClientInfo android = JdbcHelper.queryOne(UcClientInfo.class, "", "-zc", "",
 					MapHelper.initMap("user_code", userCode, "os", "android"));
 
 			if (android != null && StringUtils.isNotBlank(android.getChannelId())) {
-				new BaiduPush().push(PushEnum.android, title, content, android.getChannelId(), jumpType, jumpContent);
+				new BaiduPush().push(PushEnum.android, "果冻体育", content, android.getChannelId(), jumpType, jumpContent);
 			}
 
 		} catch (PushServerException e) {
