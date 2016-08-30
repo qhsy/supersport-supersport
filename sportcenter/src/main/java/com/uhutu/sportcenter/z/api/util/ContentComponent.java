@@ -44,6 +44,30 @@ public class ContentComponent {
 		return flag;
 
 	}
+	
+	/**
+	 * 根据内容编号获取点赞数量
+	 * @param contentCode
+	 * 		内容编号
+	 * @return 点赞数量
+	 */
+	public static int praiseNum(String contentCode){
+		
+		int praiseNum = 0;
+		
+		if(StringUtils.isNotEmpty(contentCode)){
+			
+			ContentServiceFactory contentServiceFactory = (ContentServiceFactory) ApplicationSupport
+					.getBean("contentServiceFactory");
+			
+			praiseNum = contentServiceFactory.getSupportPraiseService()
+			.queryCountByCode(contentCode, ContentEnum.FAVOR_STATUS_YES.getCode());
+			
+		}
+		
+		return praiseNum;
+		
+	}
 
 	public static boolean oneLogin(String userCode, String token) {
 

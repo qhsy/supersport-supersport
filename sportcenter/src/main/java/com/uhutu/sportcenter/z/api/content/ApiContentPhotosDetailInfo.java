@@ -78,8 +78,11 @@ public class ApiContentPhotosDetailInfo extends RootApiBase<ApiContentPhotosInpu
 
 			result.getContentBasicInfo()
 					.setTags(labelServiceFacotry.getContentLabelService().getLabels(cnContentBasicinfo.getTagCode()));
+			
 			result.getContentBasicInfo().setFavorFlag(
 					ContentComponent.lightFavor(result.getContentBasicInfo().getCode(), input.getZoo().getToken()));
+			
+			result.getContentBasicInfo().setPraiseNum(ContentComponent.praiseNum(cnContentBasicinfo.getCode()));
 
 			List<ContentPhotosDetail> cnContentPhotosDetails = new ArrayList<ContentPhotosDetail>();
 
