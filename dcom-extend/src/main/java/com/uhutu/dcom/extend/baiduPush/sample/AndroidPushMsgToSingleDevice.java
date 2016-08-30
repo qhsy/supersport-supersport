@@ -42,7 +42,7 @@ public class AndroidPushMsgToSingleDevice {
 			notification.put("description", content);
 			notification.put("notification_builder_id", 0);
 			notification.put("notification_basic_style", 4);
-			notification.put("open_type", 2);
+			notification.put("open_type", 3);
 			JSONObject jsonCustormCont = new JSONObject();
 			jsonCustormCont.put("type", "1"); // 自定义内容，key-value
 			jsonCustormCont.put("jt", jumpType);// 0个人中心 1运动时刻详情页 2首页 3问达详情页
