@@ -48,7 +48,8 @@ public class AppPushSupport {
 			androidNotification.put("description", "Hello Baidu Push");
 			androidNotification.put("notification_builder_id", 0);
 			androidNotification.put("notification_basic_style", 4);
-			androidNotification.put("open_type", 3);
+			androidNotification.put("open_type", 2);
+			androidNotification.put("pkg_content", "aa");
 			androidNotification.put("url", "http://push.baidu.com");
 			JSONObject jsonCustormCont = new JSONObject();
 			jsonCustormCont.put("type", "1"); // 自定义内容，key-value
