@@ -22,7 +22,6 @@ import com.uhutu.sportcenter.z.input.ApiMsgRemarkListInput;
 import com.uhutu.sportcenter.z.result.ApiMsgRemarkResult;
 import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
-import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 用户消息中心评论列表
@@ -59,6 +58,26 @@ public class ApiMsgRemarkList extends RootApiToken<ApiMsgRemarkListInput, ApiMsg
 			
 			contentReplyInfo.setContentTitle(msgRemark.getContentTitle());
 			
+			CnContentBasicinfo contentBasicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",msgRemark.getContentCode());
+			
+			if(contentBasicinfo != null){
+				
+				contentReplyInfo.setContentType(contentBasicinfo.getContentType());
+				
+			}
+			
+			if(StringUtils.isNotBlank(msgRemark.getContentAuthor())){
+				
+				UcUserinfoExt ucUserinfoExt = userSerivceFactory.getUserInfoExtService().queryByUserCode(msgRemark.getContentAuthor());
+				
+				if(ucUserinfoExt != null){
+					
+					contentReplyInfo.setAuthorName(ucUserinfoExt.getNickName());
+					
+				}
+				
+			}
+			
 			CnContentRemark contentRemarkInfo = serviceFactory.getContentRemarkService().queryByCode(msgRemark.getRemarkCode());
 		
 			contentReplyInfo.setReplyInfo(initRemarkInfo(contentRemarkInfo));
@@ -88,24 +107,6 @@ public class ApiMsgRemarkList extends RootApiToken<ApiMsgRemarkListInput, ApiMsg
 			remarkInfo = new ContentRemarkInfo();
 			
 			BeanUtils.copyProperties(remark, remarkInfo);
-			
-			CnContentBasicinfo contentBasicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",remark.getContentCode());
-			
-			if(contentBasicinfo != null){
-				
-				remarkInfo.setContentType(contentBasicinfo.getContentType());
-				
-				String imageUrl = "";
-				
-				if(StringUtils.isNotBlank(contentBasicinfo.getCover())){
-					
-					imageUrl = ImageHelper.upImageThumbnail(contentBasicinfo.getCover(), 180);
-					
-				}
-				
-				remarkInfo.setCover(imageUrl);
-				
-			}
 			
 			String remarkContent = "";
 			

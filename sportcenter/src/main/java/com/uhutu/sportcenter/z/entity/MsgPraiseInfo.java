@@ -23,9 +23,6 @@ public class MsgPraiseInfo extends UserBasicInfo {
 	
 	@ApiModelProperty(name="消息时间")
 	private String msgTime;
-	
-	@ApiModelProperty(value="内容封面")
-	private String cover;
 
 	public String getPraiseUserCode() {
 		return praiseUserCode;
@@ -67,14 +64,5 @@ public class MsgPraiseInfo extends UserBasicInfo {
 		this.contentCode = contentCode;
 	}
 
-	public String getCover() {
-		return cover;
-	}
-
-	public void setCover(String cover) {
-		this.cover = cover;
-	}
 	
-	
-
 }
