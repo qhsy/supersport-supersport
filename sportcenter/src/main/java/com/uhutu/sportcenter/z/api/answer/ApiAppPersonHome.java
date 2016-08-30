@@ -286,7 +286,7 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 			
 			sportingMoment.setReadNum(ContentComponent.readNum(sportingMoment.getCode()));
 			
-			sportingMoment.setRemarkNum(ContentComponent.readNum(sportingMoment.getCode()));
+			sportingMoment.setRemarkNum(ContentComponent.remarkNum(sportingMoment.getCode()));
 			
 			sportingMoment.setPraiseNum(ContentComponent.praiseNum(sportingMoment.getCode()));
 
