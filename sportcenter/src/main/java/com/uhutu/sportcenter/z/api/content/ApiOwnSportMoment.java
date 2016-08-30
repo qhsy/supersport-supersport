@@ -17,6 +17,7 @@ import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
+import com.uhutu.sportcenter.z.api.util.ContentComponent;
 import com.uhutu.sportcenter.z.api.util.HomePageSupport;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.input.ApiOwnSportMomentInput;
@@ -100,6 +101,9 @@ public class ApiOwnSportMoment extends RootApiToken<ApiOwnSportMomentInput, ApiO
 			int praiseNum = serviceFactory.getSupportPraiseService().queryCountByCode(sportingMoment.getCode(),
 					ContentEnum.FAVOR_STATUS_YES.getCode());
 			sportingMoment.setPraiseNum(praiseNum);
+			
+			sportingMoment.setFavorFlag(ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken()));
+			
 			sports.add(new HomePageSupport(userInfoSupport).getSingleTitle(sportingMoment));
 
 		}

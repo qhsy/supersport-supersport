@@ -283,6 +283,12 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 			}
 			
 			sportingMoment.setFavorFlag(ContentComponent.lightFavor(sportingMoment.getCode(), token));
+			
+			sportingMoment.setReadNum(ContentComponent.readNum(sportingMoment.getCode()));
+			
+			sportingMoment.setRemarkNum(ContentComponent.readNum(sportingMoment.getCode()));
+			
+			sportingMoment.setPraiseNum(ContentComponent.praiseNum(sportingMoment.getCode()));
 
 			sports.add(sportingMoment);
 
