@@ -42,7 +42,9 @@ public class ApiAnswerMsgList extends RootApiToken<ApiAnswerMsgListInput, ApiAns
 			
 			String msgTimeStr = DateFormatUtils.format(msgNotice.getZc(), "yyyy-MM-dd HH:mm:ss");
 			
-			msgNoticeInfo.setNotifyTime(msgTimeStr);			
+			msgNoticeInfo.setNotifyTime(msgTimeStr);
+			
+			msgNoticeInfo.setBusiCode(msgNotice.getBusiCode());
 			
 			result.getMsgNoticeInfos().add(msgNoticeInfo);
 			
