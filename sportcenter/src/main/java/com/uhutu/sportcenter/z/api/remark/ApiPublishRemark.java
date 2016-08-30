@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.extend.sensitive.SensitivewordFilter;
@@ -51,6 +52,16 @@ public class ApiPublishRemark extends RootApiToken<ApiPublishRemarkInput, ApiPub
 		cnContentRemark.setAuthor(upUserCode());
 		
 		SensitivewordFilter sensitivewordFilter = new SensitivewordFilter();
+		
+		String remark = "";
+		
+		if(StringUtils.isNotBlank(cnContentRemark.getRemark())){
+			
+			remark = EmojiUtil.emojiFilter(cnContentRemark.getRemark());
+			
+		}
+		
+		cnContentRemark.setRemark(remark);
 		
 		boolean flag = sensitivewordFilter.isContaintSensitiveWord(cnContentRemark.getRemark(), 2);
 		

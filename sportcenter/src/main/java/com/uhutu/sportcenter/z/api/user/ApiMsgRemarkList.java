@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
@@ -21,6 +22,7 @@ import com.uhutu.sportcenter.z.input.ApiMsgRemarkListInput;
 import com.uhutu.sportcenter.z.result.ApiMsgRemarkResult;
 import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
+import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 用户消息中心评论列表
@@ -93,7 +95,27 @@ public class ApiMsgRemarkList extends RootApiToken<ApiMsgRemarkListInput, ApiMsg
 				
 				remarkInfo.setContentType(contentBasicinfo.getContentType());
 				
+				String imageUrl = "";
+				
+				if(StringUtils.isNotBlank(contentBasicinfo.getCover())){
+					
+					imageUrl = ImageHelper.upImageThumbnail(contentBasicinfo.getCover(), 180);
+					
+				}
+				
+				remarkInfo.setCover(imageUrl);
+				
 			}
+			
+			String remarkContent = "";
+			
+			if(StringUtils.isNotBlank(remarkInfo.getRemark())){
+				
+				remarkContent = EmojiUtil.emojiRecovery(remarkInfo.getRemark());
+				
+			}
+			
+			remarkInfo.setRemark(remarkContent);
 			
 			UcUserinfoExt ucUserinfoExt = userSerivceFactory.getUserInfoExtService().queryByUserCode(remark.getAuthor());
 			

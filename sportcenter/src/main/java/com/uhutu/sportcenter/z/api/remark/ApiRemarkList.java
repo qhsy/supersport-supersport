@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
@@ -136,6 +137,16 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 			remarkInfo.setPraiseFlag(praiseFlag);
 			
 			remarkInfo.setPraiseNum(total);
+			
+			String remarkContent = "";
+			
+			if(StringUtils.isNotBlank(remarkInfo.getRemark())){
+				
+				remarkContent = EmojiUtil.emojiRecovery(remarkInfo.getRemark());
+				
+			}
+			
+			remarkInfo.setRemark(remarkContent);
 			
 		}		
 		

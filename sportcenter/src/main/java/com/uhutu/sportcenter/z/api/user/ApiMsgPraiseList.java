@@ -1,5 +1,6 @@
 package com.uhutu.sportcenter.z.api.user;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import com.uhutu.sportcenter.z.entity.MsgPraiseInfo;
 import com.uhutu.sportcenter.z.input.ApiMsgPraiseListInput;
 import com.uhutu.sportcenter.z.result.ApiMsgPraiseListResult;
 import com.uhutu.zoocom.root.RootApiToken;
+import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 点赞通知消息列表
@@ -58,6 +60,16 @@ public class ApiMsgPraiseList extends RootApiToken<ApiMsgPraiseListInput, ApiMsg
 				msgPraiseInfo.setContentType(basicinfo.getContentType());
 				
 			}
+			
+			String imageUrl = "";
+			
+			if(StringUtils.isNotBlank(basicinfo.getCover())){
+				
+				imageUrl = ImageHelper.upImageThumbnail(basicinfo.getCover(), 180);
+				
+			}
+			
+			msgPraiseInfo.setCover(imageUrl);
 			
 			msgPraiseInfo.setContentCode(msgPraise.getContentCode());
 			
