@@ -61,7 +61,7 @@ public class ApiLabelRelList extends RootApiBase<ApiLabelRelListInput, ApiLabelR
 			
 		}
 		
-		String sWhere = initWhere(input.getTagCode());
+		String sWhere = initWhere(input.getTagCode()) + " and status='dzsd4699100110010001'";
 
 		switch (input.getType()) {
 		case "newTab":
@@ -231,7 +231,7 @@ public class ApiLabelRelList extends RootApiBase<ApiLabelRelListInput, ApiLabelR
 
 				sportingMoment.setCover(coverThum.getThumbUrl());
 
-				sportingMoment.setCoverWH(coverThum.getThumbWidth() + "*" + coverThum.getSourceHeight());
+				sportingMoment.setCoverWH(coverThum.getThumbWidth() + "*" + coverThum.getThumbHeight());
 
 				CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
 						sportingMoment.getCode());
