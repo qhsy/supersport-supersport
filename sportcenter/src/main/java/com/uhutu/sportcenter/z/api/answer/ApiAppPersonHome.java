@@ -40,6 +40,7 @@ import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
+import com.uhutu.zooweb.helper.ImageHelper;
 import com.uhutu.zooweb.user.UserCallFactory;
 
 /**
@@ -309,6 +310,16 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 		if (userInfoExt != null) {
 
 			BeanUtils.copyProperties(userInfoExt, apiUserInfo);
+			
+			String sourceUrl = "";
+			
+			if(StringUtils.isNotEmpty(userInfoExt.getAboutHead())){
+				
+				sourceUrl = ImageHelper.upSourceUrl(userInfoExt.getAboutHead());
+				
+			}
+			
+			apiUserInfo.setSourceHeadUrl(sourceUrl);
 
 			if (apiUserInfo != null && StringUtils.isNotEmpty(apiUserInfo.getAboutTag())) {
 
