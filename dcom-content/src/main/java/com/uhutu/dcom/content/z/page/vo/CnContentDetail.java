@@ -15,7 +15,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  */
 public class CnContentDetail extends BaseEntity {
 
-	@ZooData(name = "内容标题", sort = { DefineWebPage.Page_Query + "=0",
+	@ZooData(name = "内容编号", sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process,
 			DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=code")
 	private String code;
