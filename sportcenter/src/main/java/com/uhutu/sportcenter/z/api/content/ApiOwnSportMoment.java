@@ -81,6 +81,8 @@ public class ApiOwnSportMoment extends RootApiToken<ApiOwnSportMomentInput, ApiO
 				sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
 
 				sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+				
+				sportingMoment.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
 
 			}
 

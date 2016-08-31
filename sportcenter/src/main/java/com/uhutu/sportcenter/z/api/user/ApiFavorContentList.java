@@ -94,6 +94,8 @@ public class ApiFavorContentList extends RootApiBase<ApiFavorContentListInput, A
 						basicinfoForApi.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
 
 						basicinfoForApi.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+						
+						basicinfoForApi.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
 
 					}
 
