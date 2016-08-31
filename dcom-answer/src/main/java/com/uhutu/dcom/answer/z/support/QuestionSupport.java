@@ -210,7 +210,7 @@ public class QuestionSupport extends RootClass {
 					"status='dzsd4888100110010002' and answer_user_code in (" + str.toString()
 							+ ") GROUP BY answer_user_code order by num desc ",
 					new MDataMap(), 0, 0);
-			
+
 			if (res != null && !res.isEmpty() && res.size() > 0) {// 运营推荐
 				for (int i = 0; i < res.size(); i++) {
 					if (!cns.containsKey(res.get(i).getAnswerCode())) {
@@ -218,13 +218,13 @@ public class QuestionSupport extends RootClass {
 					}
 				}
 			}
-			
+
 			if (alres != null && !alres.isEmpty()) {
 				for (int i = 0; i < alres.size(); i++) {
 					cns.put(alres.get(i).get("answer_user_code"), alres.get(i).get("num"));
 				}
 			}
-			
+
 			List<MDataMap> reals = JdbcHelper.dataQuery("aw_question_info",
 					" answer_user_code as code,count(*) as num,count(*)*(8/10)+SUM(listen)*(2/10) as tj ", "",
 					"status='dzsd4888100110010002' and answer_user_code not in (select answer_code from aw_point_recommen where type='dzsd4888100110030003')  GROUP BY answer_user_code order by tj desc ",
@@ -234,17 +234,15 @@ public class QuestionSupport extends RootClass {
 					cns.put(reals.get(i).get("code"), reals.get(i).get("num"));
 				}
 			}
-			if (cns.size() < num) {
-				List<AwAnswerExpert> others = JdbcHelper.queryForList(AwAnswerExpert.class, "", "zc desc",
-						"user_code not in (select answer_user_code from aw_question_info where status='dzsd4888100110010002') and user_code not in (select answer_code from aw_point_recommen where type='dzsd4888100110030003')",
-						new MDataMap(), 0, 0);
-				if (others != null && !others.isEmpty() && others.size() > 0) {// 开通问达但没回答问题的人
-					for (int i = 0; i < others.size(); i++) {
-						cns.put(others.get(i).getUserCode(), "0");
-					}
+			List<AwAnswerExpert> others = JdbcHelper.queryForList(AwAnswerExpert.class, "", "zc desc",
+					"user_code not in (select answer_user_code from aw_question_info where status='dzsd4888100110010002') and user_code not in (select answer_code from aw_point_recommen where type='dzsd4888100110030003')",
+					new MDataMap(), 0, 0);
+			if (others != null && !others.isEmpty() && others.size() > 0) {// 开通问达但没回答问题的人
+				for (int i = 0; i < others.size(); i++) {
+					cns.put(others.get(i).getUserCode(), "0");
 				}
 			}
-			
+
 			if (cns != null && !cns.isEmpty() && cns.size() > 0) {
 				List<String> codes = new ArrayList<String>();
 				if (cns.size() > (page - 1) * num) {
@@ -257,22 +255,21 @@ public class QuestionSupport extends RootClass {
 						codes = codes.subList((page - 1) * num, (page * num));
 					}
 				}
-				
+
 				for (String code : codes) {
-					
+
 					AwAnswerExpert expert = JdbcHelper.queryOne(AwAnswerExpert.class, "user_code", code);
-					
-					
-					
+
 					if (expert != null) {
-						AwQuestionInfo questionInfo = JdbcHelper.queryOne(AwQuestionInfo.class, "answerUserCode",code,"status","dzsd4888100110010002");
-						
-						if(questionInfo == null && !StringUtils.equals(expert.getStatus(), "dzsd4699100110010001")){
-							
+						AwQuestionInfo questionInfo = JdbcHelper.queryOne(AwQuestionInfo.class, "answerUserCode", code,
+								"status", "dzsd4888100110010002");
+
+						if (questionInfo == null && !StringUtils.equals(expert.getStatus(), "dzsd4699100110010001")) {
+
 							continue;
-							
+
 						}
-						
+
 						AnswerForShow show = new AnswerForShow();
 						UcUserinfo info = JdbcHelper.queryOne(UcUserinfo.class, "code", code);
 						UcUserinfoExt ext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", code);
@@ -285,7 +282,7 @@ public class QuestionSupport extends RootClass {
 						result.add(show);
 
 					}
-					
+
 				}
 			}
 		}
