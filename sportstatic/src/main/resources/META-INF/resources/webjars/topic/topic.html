@@ -41,10 +41,6 @@ html{background: #f0f0f0;}
 </head>
 <body>
 <section class="container">
-	<header class="open-app" v-if="isShare">
-		<span class="app-logo"><img src="img/about.png"></span>
-		<a href="javascript:;" class="app-btn" @click="open">打开App</a>
-	</header>
 	<header class="sports-header" :class="{'sports-space':isShare}"><img :src="result.cover" alt=""></header>
 	<p class="sports-desc">{{result.aboutDesc}}</p>
 	<article class="sports-con" v-for="model in result.models">
