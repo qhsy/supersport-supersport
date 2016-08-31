@@ -61,7 +61,7 @@ public class ApiLabelRelList extends RootApiBase<ApiLabelRelListInput, ApiLabelR
 			
 		}
 		
-		String sWhere = initWhere(input.getTagCode()) + " and status='dzsd4699100110010001'";
+		String sWhere = initWhere(input.getTagCode()) + " and status='dzsd4699100110010001' and share_scope='dzsd4699100110010001'";
 
 		switch (input.getType()) {
 		case "newTab":
