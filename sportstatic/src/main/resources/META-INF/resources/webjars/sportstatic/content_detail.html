@@ -79,7 +79,6 @@
 		<a href="javascript:;" class="submit" @click="headCallback(res.sportingMoment.userBasicInfo.userCode)">进入个人中心</a>
 	</footer>
 </section>
-
 <!-- 文章详情 -->
 <script type="text/x-template" id="template-detail">
 	<div class="cover"><img :src="res.sportingMoment.cover" alt=""></div>
@@ -113,7 +112,7 @@
 		<div id="JprismPlayer" class="prism-player"></div>
 		<!-- <video :src="res.contentDetailInfo.videoUrl" width="100%" height="330" controls preload :poster="res.contentDetailInfo.videoCover"></video>  -->
 	</div>
-	<h1 class="video-title">{{res.sportingMoment.userBasicInfo.title}}</h1>
+	<h1 class="video-title">{{res.sportingMoment.title}}</h1>
 	<h2 class="address" v-if="res.sportingMoment.localtionName">{{res.sportingMoment.localtionName}}</h2>
 	<child-tag :res="res"></child-tag>
 </script>
@@ -323,6 +322,9 @@ var vm = new Vue({
 			}
 		}
 	}
+});
+$(function(){
+
 });
 </script>
 </body>
