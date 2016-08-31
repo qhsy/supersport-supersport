@@ -80,7 +80,7 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 
 					int istart = (input.getPagination() - 1) * 10;
 
-					contentBasicInfos = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "", sqlWhere,
+					contentBasicInfos = JdbcHelper.queryForList(CnContentBasicinfo.class, "", " zc desc ", sqlWhere,
 							new MDataMap(), istart, 10);
 
 					int count = JdbcHelper.count(CnContentBasicinfo.class, sqlWhere, new MDataMap());
@@ -105,7 +105,7 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 
 			int istart = (input.getPagination() - 1) * 10;
 
-			contentBasicInfos = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "", sqlWhere, new MDataMap(),
+			contentBasicInfos = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "zc desc", sqlWhere, new MDataMap(),
 					istart, 10);
 
 			int count = JdbcHelper.count(CnContentBasicinfo.class, sqlWhere, new MDataMap());
