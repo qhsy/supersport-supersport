@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnShareInfo;
 import com.uhutu.dcom.content.z.entity.CnThemeDetail;
@@ -20,6 +21,7 @@ import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
+import com.uhutu.sportcenter.z.entity.RecommExpertInfo;
 import com.uhutu.sportcenter.z.entity.ThemePageModel;
 import com.uhutu.sportcenter.z.input.ApiThemePageInput;
 import com.uhutu.sportcenter.z.result.ApiThemePageResult;
@@ -60,9 +62,6 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 				result.setShareFlag(true);
 			}
 		}
-		if (result.upFlagTrue()) {
-//			result.setRecomms(getRecomms(input.getCode()));
-		}
 		return result;
 	}
 
@@ -88,8 +87,15 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 						CnThemeDetail detail = details.get(i);
 						ThemePageModel model = new ThemePageModel();
 						model.setTitle(detail.getTitle());
-						model.setInfos(getContents(detail.getCode(), width));
-						result.add(model);
+						if (StringUtils.isNotBlank(detail.getType())
+								&& "dzsd4107100110070001".equals(detail.getType())) {
+							model.setInfos(getContents(detail.getCode(), width));
+							result.add(model);
+						} else if (StringUtils.isNotBlank(detail.getType())
+								&& "dzsd4107100110070002".equals(detail.getType())) {
+							model.setRecomms(getRecomms(detail.getCode(), 128));
+							result.add(model);
+						}
 					}
 				}
 			}
@@ -145,44 +151,48 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 		return result;
 	}
 
-//	private List<RecommExpertInfo> getRecomms(String themeCode) {
-//		List<RecommExpertInfo> result = new ArrayList<RecommExpertInfo>();
-//		if (StringUtils.isNotBlank(themeCode)) {
-//			List<CnThemeRecommen> list = JdbcHelper.queryForList(CnThemeRecommen.class, "", "sort desc", "",
-//					MapHelper.initMap("code", themeCode));
-//			if (list != null && !list.isEmpty() && list.size() > 0) {
-//				StringBuffer str = new StringBuffer();
-//				for (int i = 0; i < list.size(); i++) {
-//					if (i == list.size() - 1) {
-//						str.append("'" + list.get(i).getUserCode() + "'");
-//					} else {
-//						str.append("'" + list.get(i).getUserCode() + "',");
-//					}
-//				}
-//				List<UcUserinfoExt> us = JdbcHelper.queryForList(UcUserinfoExt.class, "",
-//						" field(user_code," + str.toString() + ")", " user_code in(" + str.toString() + ")",
-//						new MDataMap());
-//				if (us != null && !us.isEmpty()) {
-//					for (int i = 0; i < us.size(); i++) {
-//						RecommExpertInfo recommExpertInfo = new RecommExpertInfo();
-//						UcUserinfoExt uie = us.get(i);
-//						BeanUtils.copyProperties(uie, recommExpertInfo);
-//						UcUserinfo uui = JdbcHelper.queryOne(UcUserinfo.class, "code", recommExpertInfo.getUserCode());
-//						AwAnswerExpert answerExpert = JdbcHelper.queryOne(AwAnswerExpert.class, "userCode",
-//								recommExpertInfo.getUserCode());
-//						if (uui != null) {
-//							recommExpertInfo.setType(uui.getType());
-//						}
-//						if (answerExpert != null) {
-//
-//							recommExpertInfo.setTitle(answerExpert.getTitle());
-//
-//						}
-//						result.add(recommExpertInfo);
-//					}
-//				}
-//			}
-//		}
-//		return result;
-//	}
+	private List<RecommExpertInfo> getRecomms(String columnCode, int width) {
+		List<RecommExpertInfo> result = new ArrayList<RecommExpertInfo>();
+		if (StringUtils.isNotBlank(columnCode)) {
+			List<CnThemeDetailRel> list = JdbcHelper.queryForList(CnThemeDetailRel.class, "", "sort desc",
+					"code='" + columnCode + "'", new MDataMap());
+			if (list != null && !list.isEmpty() && list.size() > 0) {
+				StringBuffer str = new StringBuffer();
+				for (int i = 0; i < list.size(); i++) {
+					if (i == list.size() - 1) {
+						str.append("'" + list.get(i).getContentCode() + "'");
+					} else {
+						str.append("'" + list.get(i).getContentCode() + "',");
+					}
+				}
+				List<UcUserinfoExt> us = JdbcHelper.queryForList(UcUserinfoExt.class, "",
+						" field(user_code," + str.toString() + ")", " user_code in(" + str.toString() + ")",
+						new MDataMap());
+				if (us != null && !us.isEmpty()) {
+					for (int i = 0; i < us.size(); i++) {
+						RecommExpertInfo recommExpertInfo = new RecommExpertInfo();
+						UcUserinfoExt uie = us.get(i);
+						BeanUtils.copyProperties(uie, recommExpertInfo);
+						if (StringUtils.isNoneBlank(recommExpertInfo.getAboutHead())) {
+							recommExpertInfo
+									.setAboutHead(ImageHelper.upImageThumbnail(recommExpertInfo.getAboutHead(), width));
+						}
+						UcUserinfo uui = JdbcHelper.queryOne(UcUserinfo.class, "code", recommExpertInfo.getUserCode());
+						AwAnswerExpert answerExpert = JdbcHelper.queryOne(AwAnswerExpert.class, "userCode",
+								recommExpertInfo.getUserCode());
+						if (uui != null) {
+							recommExpertInfo.setType(uui.getType());
+						}
+						if (answerExpert != null) {
+
+							recommExpertInfo.setTitle(answerExpert.getTitle());
+
+						}
+						result.add(recommExpertInfo);
+					}
+				}
+			}
+		}
+		return result;
+	}
 }

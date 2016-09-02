@@ -50,7 +50,8 @@
 		<item code="dzpi45141004" nodeName="专题管理" parentCode="" />
 		<item code="dzpi451410041001" nodeName="专题管理" parentCode="dzpi45141004" />
 		<item code="dzpi4514100410011001" nodeName="专题信息" parentCode="dzpi451410041001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnThemeInfoPage" pageIcon="glyphicon-thumbs-down" />
-		<item code="dzpi4514100410011002" nodeName="专题栏目信息" parentCode="dzpi451410041001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnThemeDetailPage" pageIcon="glyphicon-thumbs-up" />
+		<item code="dzpi4514100410011002" nodeName="专题内容栏目" parentCode="dzpi451410041001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnThemeDetailPage" pageIcon="glyphicon-thumbs-up" />
+		<item code="dzpi4514100410011003" nodeName="专题达人栏目" parentCode="dzpi451410041001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnThemeDetailRecommPage" pageIcon="glyphicon-thumbs-up" />
 		<item code="dzpi45141005" nodeName="用户相关" parentCode="" />
 		<item code="dzpi451410050001" nodeName="用户管理" parentCode="dzpi45141005" />
 		<item code="dzpi4514100500010001" nodeName="注册用户信息" parentCode="dzpi451410050001" pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UserInfoOperPage" pageIcon="glyphicon-th" />

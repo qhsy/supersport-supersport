@@ -19,6 +19,9 @@ public class ThemePageModel {
 	@ApiModelProperty(name = "内容信息", notes = "内容信息", example = "张嘉译拍摄《营盘镇警事》杀青新闻")
 	List<ContentBasicinfoForApi> infos = new ArrayList<ContentBasicinfoForApi>();
 
+	@ApiModelProperty(name = "推荐达人")
+	List<RecommExpertInfo> recomms = new ArrayList<RecommExpertInfo>();
+
 	public String getTitle() {
 		return title;
 	}
@@ -33,6 +36,14 @@ public class ThemePageModel {
 
 	public void setInfos(List<ContentBasicinfoForApi> infos) {
 		this.infos = infos;
+	}
+
+	public List<RecommExpertInfo> getRecomms() {
+		return recomms;
+	}
+
+	public void setRecomms(List<RecommExpertInfo> recomms) {
+		this.recomms = recomms;
 	}
 
 }

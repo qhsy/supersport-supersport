@@ -28,9 +28,6 @@ public class ApiThemePageResult extends RootApiResult {
 	@ApiModelProperty(name = "详情信息")
 	List<ThemePageModel> models = new ArrayList<ThemePageModel>();
 
-	@ApiModelProperty(name = "达人信息")
-	List<ThemePageModel> recomms = new ArrayList<ThemePageModel>();
-
 	public String getCode() {
 		return code;
 	}
@@ -77,14 +74,6 @@ public class ApiThemePageResult extends RootApiResult {
 
 	public void setShareFlag(boolean shareFlag) {
 		this.shareFlag = shareFlag;
-	}
-
-	public List<ThemePageModel> getRecomms() {
-		return recomms;
-	}
-
-	public void setRecomms(List<ThemePageModel> recomms) {
-		this.recomms = recomms;
 	}
 
 }

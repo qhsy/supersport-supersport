@@ -130,11 +130,11 @@
 			operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
-		<item code="dzoi41071031" operateName="已关联专题栏目" operateFunc=""
+		<item code="dzoi41071031" operateName="已关联内容栏目" operateFunc=""
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_CnThemeDetailRelPage?u_code=[[data:code]]')"
 			parentCode="" noteRemark="" />
-		<item code="dzoi41071032" operateName="关联专题栏目" operateFunc=""
+		<item code="dzoi41071032" operateName="关联内容栏目" operateFunc=""
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_CnThemeDetailRelPage?u_code=[[data:code]]')"
 			parentCode="" noteRemark="" />
@@ -176,6 +176,32 @@
 			operateFunc="com.uhutu.dcom.content.func.CnChickenSoupFuncEdit"
 			operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071041" operateName="已关联" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_CnThemeRecommRelPage?u_code=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071042" operateName="关联" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_CnThemeRecommRelPage?u_code=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071043" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.CnThemeDetailRecommPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071044" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.CnThemeDetailPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071045" operateName="已关联达人栏目" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_CnThemeRecommendDetailRelPage?u_code=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071046" operateName="关联达人栏目" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_CnThemeRecommendDetailRelPage?u_code=[[data:code]]')"
 			parentCode="" noteRemark="" />
 	</data>
 

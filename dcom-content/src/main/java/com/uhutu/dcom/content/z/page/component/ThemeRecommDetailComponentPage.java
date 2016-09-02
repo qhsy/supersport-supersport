@@ -6,8 +6,8 @@ import com.uhutu.zoocom.define.DefineWebDeploy;
 import com.uhutu.zoocom.root.RootPageSimple;
 import com.uhutu.zooweb.define.DefineZooWeb;
 
-@ZooPage(name = "专题栏目信息", operates = DefineZooWeb.PAGE_DIALOG_OPERATE, deploy = {
-		DefineWebDeploy.Grid_Where + "=type='dzsd4107100110070001'" })
-public class ThemeDetailComponentPage extends RootPageSimple<CnThemeDetail> {
+@ZooPage(name = "达人栏目信息", operates = DefineZooWeb.PAGE_DIALOG_OPERATE, deploy = {
+		DefineWebDeploy.Grid_Where + "=type='dzsd4107100110070002'" })
+public class ThemeRecommDetailComponentPage extends RootPageSimple<CnThemeDetail> {
 
 }

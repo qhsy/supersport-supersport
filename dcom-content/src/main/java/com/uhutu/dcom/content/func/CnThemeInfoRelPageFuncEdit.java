@@ -31,7 +31,7 @@ public class CnThemeInfoRelPageFuncEdit extends RootFunc {
 			detail.setZa(input.getDataMap().get("za"));
 			detail.setColumnCode(input.getDataMap().get("column_code"));
 			detail.setSort(Integer.valueOf(input.getDataMap().get("sort")));
-			JdbcHelper.update(detail, "column_code", "za");
+			JdbcHelper.update(detail, "column_code,sort", "za");
 		}
 		return result;
 	}

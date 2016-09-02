@@ -28,6 +28,11 @@ public class CnThemeDetail extends BaseEntity {
 	@Column(length = 255)
 	private String title;
 
+	@ZooData(name = "栏目类型", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd410710011007" }, sort = { DefineWebPage.Page_Query + "=0",
+					DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Grid + "=0" })
+	private String type;
+
 	@ZooData(name = "状态 ", element = DefineWebElement.Select, inc = { DefineWebInc.System_Define + "=10" })
 	@Column(length = 30)
 	private String status;
@@ -54,6 +59,14 @@ public class CnThemeDetail extends BaseEntity {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

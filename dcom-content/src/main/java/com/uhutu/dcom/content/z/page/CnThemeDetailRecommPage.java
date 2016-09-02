@@ -8,9 +8,9 @@ import com.uhutu.zoocom.root.RootPageSimple;
 import com.uhutu.zooweb.define.DefineZooWeb;
 
 @ZooPage(name = "专题栏目信息", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = { DefineZooWeb.PAGE_DEFAULT_OPERATE,
-		DefineWebPage.Page_Add + "=dzoi41071044",
-		DefineWebPage.Page_Grid + "=dzoi469910011009,dzoi41071027,dzoi41071028" }, deploy = {
-				DefineWebDeploy.Url_Query + "=code", DefineWebDeploy.Grid_Where + "=type='dzsd4107100110070001'" })
-public class CnThemeDetailPage extends RootPageSimple<CnThemeDetail> {
+		DefineWebPage.Page_Add + "=dzoi41071043",
+		DefineWebPage.Page_Grid + "=dzoi469910011009,dzoi41071041,dzoi41071042" }, deploy = {
+				DefineWebDeploy.Url_Query + "=code", DefineWebDeploy.Grid_Where + "=type='dzsd4107100110070002'" })
+public class CnThemeDetailRecommPage extends RootPageSimple<CnThemeDetail> {
 
 }

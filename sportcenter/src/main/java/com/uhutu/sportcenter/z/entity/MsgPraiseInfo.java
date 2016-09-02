@@ -18,6 +18,9 @@ public class MsgPraiseInfo extends UserBasicInfo {
 	@ApiModelProperty(name="内容标题")
 	private String contentTitle;
 	
+	@ApiModelProperty(value="内容背景缩略图")
+	private String contentCover;
+	
 	@ApiModelProperty(value="内容类型",notes="dzsd4107100110030001:文章,dzsd4107100110030002:文章（含视频）,dzsd4107100110030003:图集,dzsd4107100110030004:单图,dzsd4107100110030005:图集")
 	private String contentType;
 	
@@ -26,6 +29,14 @@ public class MsgPraiseInfo extends UserBasicInfo {
 
 	public String getPraiseUserCode() {
 		return praiseUserCode;
+	}
+
+	public String getContentCover() {
+		return contentCover;
+	}
+
+	public void setContentCover(String contentCover) {
+		this.contentCover = contentCover;
 	}
 
 	public void setPraiseUserCode(String praiseUserCode) {

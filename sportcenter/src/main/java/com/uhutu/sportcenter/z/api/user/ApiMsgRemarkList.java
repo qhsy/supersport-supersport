@@ -22,124 +22,132 @@ import com.uhutu.sportcenter.z.input.ApiMsgRemarkListInput;
 import com.uhutu.sportcenter.z.result.ApiMsgRemarkResult;
 import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
+import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 用户消息中心评论列表
+ * 
  * @author 逄小帅
  *
  */
 @Component
 public class ApiMsgRemarkList extends RootApiToken<ApiMsgRemarkListInput, ApiMsgRemarkResult> {
-	
+
 	@Autowired
 	private ContentRemarkServiceFactory serviceFactory;
-	
+
 	@Autowired
 	private UserServiceFactory userSerivceFactory;
 
-
 	@Override
 	protected ApiMsgRemarkResult process(ApiMsgRemarkListInput input) {
-		
+
 		ApiMsgRemarkResult msgRemarkResult = new ApiMsgRemarkResult();
-		
+
 		String userCode = upUserCode();
-		
+
 		QueryConditions conditions = new QueryConditions();
-		
+
 		conditions.setConditionEqual("userCode", userCode);
-		
+
 		Page<UcMsgRemark> msgRemarkPage = userSerivceFactory.getMsgRemarkService()
 				.queryPageByUserCode(input.getPagination(), 10, conditions);
-		
+
 		msgRemarkPage.getContent().forEach(msgRemark -> {
-			
+
 			ContentReplyInfo contentReplyInfo = new ContentReplyInfo();
-			
+
 			contentReplyInfo.setContentTitle(msgRemark.getContentTitle());
-			
-			CnContentBasicinfo contentBasicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",msgRemark.getContentCode());
-			
-			if(contentBasicinfo != null){
-				
+
+			CnContentBasicinfo contentBasicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
+					msgRemark.getContentCode());
+			if (StringUtils.isNoneBlank(contentBasicinfo.getCover())) {
+				contentReplyInfo.setContentCover(ImageHelper.upImageThumbnail(contentBasicinfo.getCover(), 100));
+			}
+			if (contentBasicinfo != null) {
+
 				contentReplyInfo.setContentType(contentBasicinfo.getContentType());
-				
+
 			}
-			
-			if(StringUtils.isNotBlank(msgRemark.getContentAuthor())){
-				
-				UcUserinfoExt ucUserinfoExt = userSerivceFactory.getUserInfoExtService().queryByUserCode(msgRemark.getContentAuthor());
-				
-				if(ucUserinfoExt != null){
-					
+
+			if (StringUtils.isNotBlank(msgRemark.getContentAuthor())) {
+
+				UcUserinfoExt ucUserinfoExt = userSerivceFactory.getUserInfoExtService()
+						.queryByUserCode(msgRemark.getContentAuthor());
+
+				if (ucUserinfoExt != null) {
+
 					contentReplyInfo.setAuthorName(ucUserinfoExt.getNickName());
-					
+
 				}
-				
+
 			}
-			
-			CnContentRemark contentRemarkInfo = serviceFactory.getContentRemarkService().queryByCode(msgRemark.getRemarkCode());
-		
+
+			CnContentRemark contentRemarkInfo = serviceFactory.getContentRemarkService()
+					.queryByCode(msgRemark.getRemarkCode());
+
 			contentReplyInfo.setReplyInfo(initRemarkInfo(contentRemarkInfo));
-			
-			if(StringUtils.isNotBlank(msgRemark.getRemarkParentCode())){
-				
-				CnContentRemark parentRemarkInfo = serviceFactory.getContentRemarkService().queryByCode(msgRemark.getRemarkParentCode());
-				
+
+			if (StringUtils.isNotBlank(msgRemark.getRemarkParentCode())) {
+
+				CnContentRemark parentRemarkInfo = serviceFactory.getContentRemarkService()
+						.queryByCode(msgRemark.getRemarkParentCode());
+
 				contentReplyInfo.setRefReplyInfo(initRemarkInfo(parentRemarkInfo));
-				
+
 			}
-			
+
 			msgRemarkResult.getContentRemarkInfo().add(contentReplyInfo);
-			
+
 		});
-		
+
 		return msgRemarkResult;
-		
+
 	}
-	
-	public ContentRemarkInfo initRemarkInfo(CnContentRemark remark){
-		
+
+	public ContentRemarkInfo initRemarkInfo(CnContentRemark remark) {
+
 		ContentRemarkInfo remarkInfo = null;
-		
-		if(remark != null){
-			
+
+		if (remark != null) {
+
 			remarkInfo = new ContentRemarkInfo();
-			
+
 			BeanUtils.copyProperties(remark, remarkInfo);
-			
+
 			String remarkContent = "";
-			
-			if(StringUtils.isNotBlank(remarkInfo.getRemark())){
-				
+
+			if (StringUtils.isNotBlank(remarkInfo.getRemark())) {
+
 				remarkContent = EmojiUtil.emojiRecovery(remarkInfo.getRemark());
-				
+
 			}
-			
+
 			remarkInfo.setRemark(remarkContent);
-			
-			UcUserinfoExt ucUserinfoExt = userSerivceFactory.getUserInfoExtService().queryByUserCode(remark.getAuthor());
-			
+
+			UcUserinfoExt ucUserinfoExt = userSerivceFactory.getUserInfoExtService()
+					.queryByUserCode(remark.getAuthor());
+
 			UcUserinfo ucUserinfo = userSerivceFactory.getUserInfoService().queryByCode(remark.getAuthor());
-			
-			if(ucUserinfoExt != null && ucUserinfo != null){
-				
+
+			if (ucUserinfoExt != null && ucUserinfo != null) {
+
 				remarkInfo.setNickName(ucUserinfoExt.getNickName());
-				
+
 				remarkInfo.setAboutHead(ucUserinfoExt.getAboutHead());
-				
+
 				remarkInfo.setType(ucUserinfo.getType());
-				
+
 			}
-			
+
 			String publishDate = DateFormatUtils.format(remark.getZc(), "yyyy-MM-dd HH:mm:ss");
-			
+
 			remarkInfo.setPublishTime(publishDate);
-			
-		}		
-		
+
+		}
+
 		return remarkInfo;
-		
+
 	}
 
 }
