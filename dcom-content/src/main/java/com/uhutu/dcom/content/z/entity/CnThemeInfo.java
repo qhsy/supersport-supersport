@@ -27,13 +27,12 @@ public class CnThemeInfo extends BaseEntity {
 	@Column(length = 50)
 	private String name;
 
-	@ZooData(name = "专题封面", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
+	@ZooData(name = "专题封面", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 255)
 	private String cover;
 
-	@ZooData(name = "专题简介", require = "1", element = DefineWebElement.Textarea, sort = {
-			DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "专题简介", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
 	@Column(length = 255)
 	private String aboutDesc;
 
