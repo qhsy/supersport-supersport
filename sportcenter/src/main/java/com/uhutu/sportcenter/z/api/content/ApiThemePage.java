@@ -8,21 +8,25 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnShareInfo;
 import com.uhutu.dcom.content.z.entity.CnThemeDetail;
 import com.uhutu.dcom.content.z.entity.CnThemeDetailRel;
 import com.uhutu.dcom.content.z.entity.CnThemeInfo;
 import com.uhutu.dcom.content.z.entity.CnThemeInfoRel;
+import com.uhutu.dcom.content.z.entity.CnThemeRecommen;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
+import com.uhutu.sportcenter.z.entity.RecommExpertInfo;
 import com.uhutu.sportcenter.z.entity.ThemePageModel;
 import com.uhutu.sportcenter.z.input.ApiThemePageInput;
 import com.uhutu.sportcenter.z.result.ApiThemePageResult;
+import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
@@ -49,7 +53,7 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 			result.setName(info.getName());
 			result.setCover(info.getCover());
 			if (StringUtils.isNotBlank(result.getCover()) && StringUtils.isNotBlank(input.getWidth())) {
-				result.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(input.getWidth())*2));
+				result.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(input.getWidth()) * 2));
 			}
 			result.setAboutDesc(info.getAboutDesc());
 			result.setModels(getModels(input.getCode(), input.getWidth()));
@@ -59,6 +63,9 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 			if (shareInfo != null) {
 				result.setShareFlag(true);
 			}
+		}
+		if (result.upFlagTrue()) {
+			result.setRecomms(getRecomms(input.getCode()));
 		}
 		return result;
 	}
@@ -135,6 +142,47 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 							re.setCover(ImageHelper.upImageThumbnail(re.getCover(), Integer.valueOf(width)));
 						}
 						result.add(re);
+					}
+				}
+			}
+		}
+		return result;
+	}
+
+	private List<RecommExpertInfo> getRecomms(String themeCode) {
+		List<RecommExpertInfo> result = new ArrayList<RecommExpertInfo>();
+		if (StringUtils.isNotBlank(themeCode)) {
+			List<CnThemeRecommen> list = JdbcHelper.queryForList(CnThemeRecommen.class, "", "sort desc", "",
+					MapHelper.initMap("code", themeCode));
+			if (list != null && !list.isEmpty() && list.size() > 0) {
+				StringBuffer str = new StringBuffer();
+				for (int i = 0; i < list.size(); i++) {
+					if (i == list.size() - 1) {
+						str.append("'" + list.get(i).getUserCode() + "'");
+					} else {
+						str.append("'" + list.get(i).getUserCode() + "',");
+					}
+				}
+				List<UcUserinfoExt> us = JdbcHelper.queryForList(UcUserinfoExt.class, "",
+						" field(user_code," + str.toString() + ")", " user_code in(" + str.toString() + ")",
+						new MDataMap());
+				if (us != null && !us.isEmpty()) {
+					for (int i = 0; i < us.size(); i++) {
+						RecommExpertInfo recommExpertInfo = new RecommExpertInfo();
+						UcUserinfoExt uie = us.get(i);
+						BeanUtils.copyProperties(uie, recommExpertInfo);
+						UcUserinfo uui = JdbcHelper.queryOne(UcUserinfo.class, "code", recommExpertInfo.getUserCode());
+						AwAnswerExpert answerExpert = JdbcHelper.queryOne(AwAnswerExpert.class, "userCode",
+								recommExpertInfo.getUserCode());
+						if (uui != null) {
+							recommExpertInfo.setType(uui.getType());
+						}
+						if (answerExpert != null) {
+
+							recommExpertInfo.setTitle(answerExpert.getTitle());
+
+						}
+						result.add(recommExpertInfo);
 					}
 				}
 			}

@@ -3,6 +3,7 @@ package com.uhutu.sportcenter.z.result;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.uhutu.sportcenter.z.entity.RecommExpertInfo;
 import com.uhutu.sportcenter.z.entity.ThemePageModel;
 import com.uhutu.zoocom.root.RootApiResult;
 
@@ -27,6 +28,17 @@ public class ApiThemePageResult extends RootApiResult {
 
 	@ApiModelProperty(name = "详情信息")
 	List<ThemePageModel> models = new ArrayList<ThemePageModel>();
+
+	@ApiModelProperty(name = "推荐达人")
+	List<RecommExpertInfo> recomms = new ArrayList<RecommExpertInfo>();
+
+	public List<RecommExpertInfo> getRecomms() {
+		return recomms;
+	}
+
+	public void setRecomms(List<RecommExpertInfo> recomms) {
+		this.recomms = recomms;
+	}
 
 	public String getCode() {
 		return code;
