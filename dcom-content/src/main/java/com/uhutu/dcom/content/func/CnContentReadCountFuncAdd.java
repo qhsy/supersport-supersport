@@ -14,13 +14,13 @@ public class CnContentReadCountFuncAdd extends RootFunc {
 	public WebOperateResult process(WebPageModel webPageModel, ExtendPageDefine extendPageDefine,
 			WebOperateInput input) {
 		WebOperateResult result = new WebOperateResult();
-		CnContentReadCount read = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode", input.getDataMap().get("contentCode"));
+		CnContentReadCount read = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode", input.getDataMap().get("content_code"));
 		if (read != null) {
 			result.inError(810710012);
 		} else {
 			read = new CnContentReadCount();
-			read.setContentCode(input.getDataMap().get("contentCode"));
-			read.setCount(Integer.valueOf(input.getDataMap().get("contentCode")));
+			read.setContentCode(input.getDataMap().get("content_code"));
+			read.setCount(Integer.valueOf(input.getDataMap().get("count")));
 			read.setRemark(input.getDataMap().get("remark"));
 			JdbcHelper.insert(read);
 		}

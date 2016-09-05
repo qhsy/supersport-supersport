@@ -25,7 +25,7 @@ public class CnContentReadCount extends BaseEntity {
 	private String contentCode;
 
 	@ZooData(name = "阅读量", require = "1", verify = { DefineWebVerify.Base_Number }, sort = {
-			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0" })
+			DefineWebPage.Page_Query + "=0" })
 	private int count;
 
 	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
