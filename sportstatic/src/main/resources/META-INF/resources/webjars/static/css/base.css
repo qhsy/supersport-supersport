@@ -1,3 +1,4 @@
+@charset 'utf-8';
 html{font-size: 100px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,pre,form,fieldset,input,textarea,blockquote,p,button,header,footer,nav,section,article,aside,video,audio,figure,figcaption,hgroup{padding: 0px; margin: 0px; tap-highlight-color: rgba(0, 0, 0, 0); -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -ms-tap-highlight-color: rgba(0, 0, 0, 0); font-size: 0.14rem;}
 table,td,tr,th{font-size: 0.12rem;}
@@ -29,42 +30,81 @@ a:hover {text-decoration: none; }
 .ms-controller{visibility: hidden;}
 
 .container{padding-bottom: 1rem;}
-.share{width: 100%; padding: 0.13rem 0; background: rgba(217,217,217,0.5); position: fixed; left: 0; bottom: 0; z-index: 99;}
+
+/*分享*/
+.share{width: 100%; padding: 0.13rem 0; background: rgba(217,217,217,0.7); position: fixed; left: 0; bottom: 0; z-index: 99;}
 .share .logo{width: 1.07rem; margin-left: 0.16rem; float: left;}
-.share .btn{width: 0.74rem; height: 0.26rem; margin-right: 0.22rem; background: #F8800A; float: right; border-radius: 4px; text-align: center; color: #fff; font-size: 0.12rem; line-height: 0.26rem;}
-.share .close{width: 0.22rem; height: 0.22rem; border-radius: 50%; background: #D8D8D8; color: #fff; position: absolute; right: 0.1rem; top: -0.1rem; text-align: center; line-height: 0.22rem; font-size: 0.12rem;}
+.share .btn{width: 0.74rem; height: 0.26rem; margin-right: 0.5rem; background: #F8800A; float: right; border-radius: 4px; text-align: center; color: #fff; font-size: 0.12rem; line-height: 0.26rem;}
+.share .close{width: 0.22rem; height: 0.22rem; border-radius: 50%; background: #D8D8D8; color: #fff; position: absolute; right: 0.1rem; top: 0.15rem; text-align: center; line-height: 0.22rem; font-size: 0.12rem;}
+
+/* 数据加载 */
 .loading{width: 100%; height: 100%; position: fixed; left:0; top: 0; display: -webkit-box; display: box; background: #fff; z-index: 999; -webkit-box-pack: center; -webkit-box-align: center;}
 .loading em{width: 0.32rem; height: 0.32rem;}
-
-/*video*/
-.prism-player .prism-big-play-btn { width: 90px; height: 90px; background: url(http://gw.alicdn.com/tps/TB1YuE3KFXXXXaAXFXXXXXXXXXX-256-512.png) -2px -2px no-repeat }
-.prism-player .prism-play-btn { width: 27px; height: 30px; background: url(http://gw.alicdn.com/tps/TB1YuE3KFXXXXaAXFXXXXXXXXXX-256-512.png) -2px -250px no-repeat }
-.prism-player .prism-live-display { width: 56px; height: 19px; background: url(http://gw.alicdn.com/tps/TB1YuE3KFXXXXaAXFXXXXXXXXXX-256-512.png) -186px -2px no-repeat }
-.prism-player .prism-play-btn.playing { width: 27px; height: 30px; background: url(http://gw.alicdn.com/tps/TB1YuE3KFXXXXaAXFXXXXXXXXXX-256-512.png) -208px -269px no-repeat }
-.prism-player .prism-fullscreen-btn { width: 30px; height: 30px; background: url(http://gw.alicdn.com/tps/TB1YuE3KFXXXXaAXFXXXXXXXXXX-256-512.png) -124px -190px no-repeat }
-.prism-player .prism-fullscreen-btn.fullscreen { width: 30px; height: 30px; background: url(http://gw.alicdn.com/tps/TB1YuE3KFXXXXaAXFXXXXXXXXXX-256-512.png) -161px -183px no-repeat }
-.prism-player .prism-volume { width: 33px; height: 30px; background: url(http://gw.alicdn.com/tps/TB1YuE3KFXXXXaAXFXXXXXXXXXX-256-512.png) -199px -119px no-repeat }
-.prism-player .prism-volume.mute { width: 33px; height: 30px; background: url(http://gw.alicdn.com/tps/TB1YuE3KFXXXXaAXFXXXXXXXXXX-256-512.png) -164px -151px no-repeat }
-.prism-player { background-color: #000; position: relative }
-.prism-player .prism-cover { width: 100%; height: 100%; background-color: #000; background-repeat: no-repeat; background-position: center; background-size: contain; position: absolute; top: 0; left: 0 }
-.prism-player .prism-controlbar { width: 100%; height: 61px; position: relative; z-index: 1 }
-.prism-player .prism-controlbar .prism-controlbar-bg { background-color: #262626; width: 100%; height: 50px; position: absolute; bottom: 0; left: 0; z-index: -1 }
-.prism-player .prism-time-display { height: 33px; line-height: 33px; color: #666 }
-.prism-player .prism-time-display .current-time { color: #fff }
-.prism-player .prism-progress { width: 100%; height: 6px; margin-top: 5px; background-color: #363636; position: relative }
-.prism-player .prism-progress .prism-progress-loaded { position: absolute; top: 0; left: 0; width: 0; height: 100%; background-color: #7e2c1f }
-.prism-player .prism-progress .prism-progress-played { position: absolute; top: 0; left: 0; width: 0; height: 100%; background-color: #ee2a10 }
-.prism-player .prism-progress .prism-progress-cursor { position: absolute; width: 8px; height: 8px; top: -5px; left: 0; margin-left: -8px; background-color: #5b5b5b; border: 4px solid #fff; border-radius: 8px; -webkit-box-shadow: 0 0 5px #000; box-shadow: 0 0 5px #000; overflow: hidden; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box }
-:-webkit-full-screen { width: 100% !important; height: 100% !important }
-:-moz-full-screen { width: 100% !important; height: 100% !important }
-:-ms-full-screen { width: 100% !important; height: 100% !important }
-:-ms-fullscreen { width: 100% !important; height: 100% !important }
-:fullscreen { width: 100% !important; height: 100% !important }
-body.prism-full-window { padding: 0; margin: 0; height: 100%; overflow-y: auto }
-.prism-fullscreen { position: fixed; overflow: hidden; z-index: 99999; left: 0; top: 0; bottom: 0; right: 0; width: 100% !important; height: 100% !important }
+.loading em img{vertical-align: middle; margin-right: 0.2rem;}
+.fade-transition {transition: all .2s ease;}
+.fade-enter, .fade-leave {opacity: 0;}
 @media screen and (max-width: 320px){
 	html{font-size: 85.7px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
 }
 @media screen and (min-width: 414px){
 	html{font-size: 110.15px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
 }
+
+/*视频*/
+.zy_media{background:#000;position:relative}
+.zy_media video,.zy_media audio{width:100%;position:absolute;top:0;left:0;display:block}
+.zy_fullscreen{overflow:hidden}
+.zy_fullscreen .zy_media{position:fixed;left:0;top:0;right:0;bottom:0;z-index:1000}
+.zy_fullscreen .zy_wrap,.zy_fullscreen video{width:100%;height:100%}
+.zy_wrap{width:100%}
+
+/* 视频标题 */
+.zy_title{height:34px;padding-left:10px;color:#fff;font-size:12px;line-height:34px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;background:rgba(0,0,0,.25);position:absolute;left:0;right:0;top:0;-webkit-transition:top .5s;transition:top .5s}
+
+/* 视频主区中播放、加载中、错误提示 */
+.zy_media .dec_play,.zy_media .dec_loading,.zy_media .dec_error{margin:-32px 0 0 -31px;position:absolute;top:50%;left:50%}
+.zy_media .dec_play::before{width:60px;height:60px;content:'';border-radius:60px;border:#e5e5e4 1px solid;display:block}
+.zy_media .dec_play::after{width:0;height:0;content:'';border-color:transparent transparent transparent #e5e5e4;border-width:14px 20px;border-style:solid;position:absolute;top:16px;left:23px;z-index:2;display:block}
+.zy_media .dec_loading{width:62px;height:62px;-webkit-animation:ani_loading .6s infinite linear;-webkit-animation-fill-mode:forwards;animation:ani_loading .6s infinite linear;animation-fill-mode:forwards}
+@-webkit-keyframes ani_loading{
+	100%{-webkit-transform:rotate(360deg)}
+}
+@keyframes ani_loading{
+	100%{transform:rotate(360deg)}
+}
+.zy_media .dec_loading::before{width:7px;height:7px;content:'';border-radius:7px;background:#fff;opacity:.8;position:absolute;top:25px}
+.zy_media .dec_loading::after{width:48px;height:48px;content:'';border-radius:50px;border:7px solid #fff;opacity:.2;display:block}
+.zy_media .dec_error{width:62px;height:62px;margin-top:-53px;margin-left:-25px;white-space:nowrap;color:#fff;font-size:12px;text-align:center;position:absolute;top:50%;left:50%;}
+
+/* 控制栏 */
+.zy_controls{height:44px;background:rgba(0,0,0,.55);position:absolute;left:0;right:0;bottom:0;-webkit-transition:bottom .5s;transition:bottom .5s;display:-webkit-box;display:box;display:-webkit-flex;display:flex}
+
+/* 播放、暂停按钮 */
+.zy_playpause_btn{width:26px;height:30px;margin-right:4px;padding:13px 0 0 14px;position:relative}
+.zy_play::before{width:0;height:0;content:'';border-color:transparent transparent transparent #cbcbcb;border-width:8px 12px;border-style:solid;display:block}
+.zy_pause::before,.zy_pause::after{width:3px;height:14px;content:'';background:#cbcbcb;position:absolute;top:13px;left:14px}
+.zy_pause::after{left:22px}
+
+/* 时间线操作区 */
+.zy_timeline{margin-right:10px;-webkit-box-flex:1;-webkit-flex:1 1 auto;flex:1 1 auto}
+.zy_timeline_slider{width:100%;height:1px;background:#999;position:relative;top:21px;left:0}
+.zy_timeline_buffering{width:100%;height:15px;top:-7px;background-image:-webkit-gradient(linear,0 100%,100% 0,color-stop(.25,rgba(255,255,255,.15)),color-stop(.25,transparent),color-stop(.5,transparent),color-stop(.5,rgba(255,255,255,.15)),color-stop(.75,rgba(255,255,255,.15)),color-stop(.75,transparent),to(transparent));background-image:-webkit-linear-gradient(-45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);background-image:linear-gradient(-45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);-webkit-background-size:15px 15px;background-size:15px 15px;-webkit-animation:ani_buffering 2s linear infinite;animation:ani_buffering 2s linear infinite;position:absolute;}
+@-webkit-keyframes ani_buffering{
+	from{background-position:0 0}
+	to{background-position:30px 0}
+}
+@keyframes ani_buffering{
+	from{background-position:0 0}
+	to{background-position:30px 0}
+}
+.zy_timeline_loaded{width:0;height:1px;background:#e5e5e5;position:absolute;top:0;left:0;z-index:1}
+.zy_timeline_current{width:0;height:1px;background:#ff6159;position:relative;z-index:2}
+.zy_timeline_handle{width:16px;height:16px;border-radius:16px;background:#e5e5e5;position:absolute;top:-8px;left:-8px;z-index:3}
+
+/* 时间展示 */
+.zy_time{width:auto;height:44px;margin-right:5px;line-height:44px;font-size:11px;color:#999;text-align:center}
+.zy_time .zy_currenttime{color:#e5e5e5}
+
+/* 全屏控制按钮 */
+.zy_fullscreen_btn{width:38px;height:44px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaBAMAAAEsY2FrAAAAElBMVEX///////////////////////+65XQCAAAABXRSTlMAHm1u3TG+li4AAAB5SURBVBgZBcGxbQNBEAQwPnCXC49TviU4UQnKx8ZP/62YVB58qQCIBwArGgAAwK4HkAUEgEXAEmBFG/AH+B0gN5BrQLwAAG4bXLOBewPXB/AGu6VtG4CeAUCdAaCcAVCcAQAAAAMAzrAD4IwdAM7PDgDOJwBt2wAA/9uDEjcL3fqtAAAAAElFTkSuQmCC);background-repeat:no-repeat;background-position:center;-webkit-background-size:16px;background-size:16px}
+.zy_unfullscreen{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaBAMAAAEsY2FrAAAAElBMVEX///////////////////////+65XQCAAAABXRSTlMAHm1u3TG+li4AAAB5SURBVBgZBcGxDcMwEAQwGtH1QuD0WiGAB8gI39z+q4SEhR8AwALAwmAwgCAIS4AV0BYg7UAWEIttwNeA1x7gO8BrQDsAAGlBDpA3kOuAeIO4eDYZAM+WAeDZGQA8nwFo2w4AAAAAANq2A9D7AKDuA0C5D4DiPgDAH9lBEChOLXSRAAAAAElFTkSuQmCC)}

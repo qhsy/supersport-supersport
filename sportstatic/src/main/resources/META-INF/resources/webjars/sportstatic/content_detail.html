@@ -37,7 +37,7 @@
 .content .referral p{padding-bottom: 0.14rem; font-size: 0.12rem; font-style: italic; line-height: 0.16rem; text-indent: 0.24rem;}
 .content .detail{ margin-top: 0.15rem; line-height: 0.22rem;}
 .content .detail p{margin-bottom: 0.1rem; text-align: justify;}
-.content .detail img{margin-bottom: 0.1rem; display: block; margin: auto;}
+.content .detail img{display: block; margin: 0 auto 0.1rem;}
 .content .tag{padding: 0.36rem 0.22rem 0.46rem;}
 .content .tag li{border: #757575 1px solid; display: inline-block; border-radius: 4px; margin: 0 0.08rem 0.1rem 0; padding: 0 0.09rem; font-size: 0.12rem; line-height: 0.18rem;}
 .content .caption{padding: 0.36rem 0.22rem 0.1rem; line-height: 0.2rem; text-align: justify;}
@@ -78,6 +78,7 @@
 		<h2 class="title">{{res.sportingMoment.userBasicInfo.title}}</h2>
 		<a href="javascript:;" class="submit" @click="headCallback(res.sportingMoment.userBasicInfo.userCode)">进入个人中心</a>
 	</footer>
+	<aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
 </section>
 <!-- 文章详情 -->
 <script type="text/x-template" id="template-detail">
@@ -91,7 +92,7 @@
 		</p>
 	</div>
 	<div class="detail">
-		{{{res.contentDetailInfo.content}}}
+		{{{res.contentDetailInfo.content | filterVideo}}}
 	</div>
 	<child-tag :res="res"></child-tag>
 </script>
@@ -108,9 +109,12 @@
 <!-- end -->
 <!-- 视频详情 -->
 <script type="text/x-template" id="template-video">
-	<div class="video">
-		<div id="JprismPlayer" class="prism-player"></div>
-		<!-- <video :src="res.contentDetailInfo.videoUrl" width="100%" height="330" controls preload :poster="res.contentDetailInfo.videoCover"></video>  -->
+	<div class="zy_media">
+		<!-- <div id="JprismPlayer" class="prism-player"></div> -->
+		<video :poster="res.contentDetailInfo.videoCover">
+	        <source :src="res.contentDetailInfo.videoUrl" type="video/mp4">
+	        您的浏览器不支持HTML5视频
+	    </video>
 	</div>
 	<h1 class="video-title">{{res.sportingMoment.title}}</h1>
 	<h2 class="address" v-if="res.sportingMoment.localtionName">{{res.sportingMoment.localtionName}}</h2>
@@ -124,68 +128,35 @@
 </ul>
 </script>
 <!-- end -->
-<script type="text/javascript" src="../static/js/lib/zepto.min.js"></script>
 <script type="text/javascript" src="../static/js/lib/vue.min.js"></script>
 <script type="text/javascript" src="../static/js/tools.js"></script>
 <script type="text/javascript" src="../static/js/share.js"></script>
-<script type="text/javascript" src="../static/js/prism-min.js"></script>
+<script type="text/javascript" src="../static/js/zy.media.js"></script>
 <script type="text/javascript">
 Vue.component('child-detail',{
 	template:'#template-detail',
 	props:{
 		res:null
 	},
+	data:function(){
+		return {
+			videoWd:window.innerWidth - 44 
+		}
+	},
 	ready:function(){
 		if(this.res.sportingMoment.contentType == "dzsd4107100110030002"){
-			this.playVideo(this.$parent.res.contentDetailInfo.videoUrl,this.$parent.res.contentDetailInfo.videoCover);
+			this.video()
 		}
 	},
 	methods:{
-		playVideo:function(videoUrl,coverUrl){
-			new prismplayer({
-			    id: "prismPlayer",	// 容器id
-			    source: videoUrl,	// 视频url 支持互联网可直接访问的视频地址
-			    autoplay: false,	// 自动播放
-			    width: "100%",		// 播放器宽度
-			    height: "435px",	// 播放器高度
-			    trackLog: false,
-			    cover: coverUrl,	// 视频封面
-			    skinLayout: [
-			        {
-			            "align":"blabs",
-			            "x":0,
-			            "y":0,
-			            "name":"controlBar",
-			            "children":[
-			                {
-			                    "align":"tlabs",
-			                    "x":0,
-			                    "y":0,
-			                    "name":"progress"
-			                },{
-			                    "align":"tl",
-			                    "x":15,
-			                    "y":26,
-			                    "name":"playButton"
-			                },{
-			                    "align":"tl",
-			                    "x":10,
-			                    "y":24,
-			                    "name":"timeDisplay"
-			                },{
-			                    "align":"tr",
-			                    "x":20,
-			                    "y":25,
-			                    "name":"fullScreenButton"
-			                },{
-			                    "align":"tr",
-			                    "x":20,
-			                    "y":25,
-			                    "name":"volume"
-			                }
-			            ]
-			        }
-			    ]
+		video:function(){
+			var _this = this;
+			zymedia('video',{
+				alwaysShowControls: true,
+				hideVideoControlsOnLoad:true,
+				videoWidth: _this.videoWd,
+				videoHeight: _this.videoWd,
+				preload:'auto'
 			});
 		}
 	}
@@ -201,55 +172,23 @@ Vue.component('child-video',{
 	props:{
 		res:null
 	},
+	data:function(){
+		return {
+			videoWd:window.innerWidth
+		}
+	},
 	ready:function(){
-		this.playVideo(this.$parent.res.contentDetailInfo.videoUrl,this.$parent.res.contentDetailInfo.videoCover);
+		this.video();
 	},
 	methods:{
-		playVideo:function(videoUrl,coverUrl){
-			new prismplayer({
-			    id: "JprismPlayer",	// 容器id
-			    source: videoUrl,	// 视频url 支持互联网可直接访问的视频地址
-			    autoplay: false,	// 自动播放
-			    width: "100%",		// 播放器宽度
-			    height: "435px",	// 播放器高度
-			    trackLog: false,
-			    cover: coverUrl,	// 视频封面
-			    skinLayout: [
-			        {
-			            "align":"blabs",
-			            "x":0,
-			            "y":0,
-			            "name":"controlBar",
-			            "children":[
-			                {
-			                    "align":"tlabs",
-			                    "x":0,
-			                    "y":0,
-			                    "name":"progress"
-			                },{
-			                    "align":"tl",
-			                    "x":15,
-			                    "y":26,
-			                    "name":"playButton"
-			                },{
-			                    "align":"tl",
-			                    "x":10,
-			                    "y":24,
-			                    "name":"timeDisplay"
-			                },{
-			                    "align":"tr",
-			                    "x":20,
-			                    "y":25,
-			                    "name":"fullScreenButton"
-			                },{
-			                    "align":"tr",
-			                    "x":20,
-			                    "y":25,
-			                    "name":"volume"
-			                }
-			            ]
-			        }
-			    ]
+		video:function(){
+			var _this = this;
+			zymedia('video',{
+				alwaysShowControls: true,
+				hideVideoControlsOnLoad:true,
+				videoWidth: _this.videoWd,
+				videoHeight: _this.videoWd,
+				preload:'auto'
 			});
 		}
 	}
@@ -275,11 +214,23 @@ Vue.component('child-tag',{
 		}
 	}
 });
+Vue.filter('filterVideo', function (value, url, conver) {
+	var ele = '<div class="zy_media">\
+				<div class="zy_wrap">\
+					<video poster="http://img-cdn.bigtiyu.com/wsc/sport/2743f/s-320-240/28fed0e0c47742a7b858eb83185aed4a.png" preload="auto" style="height: 375px;">\
+					<source type="video/mp4" src="http://godo.s.qupai.me/v/697a2f80-053c-4425-85de-c707ae9b9651.mp4?token=YzljMWZlZThiZDQ0NDA2ZmE4ODAxNGE5ZDZhMmNhOTMtYW5kcm9pZC1iNjQ3ZDQwY2RiZDk0MWUxOGU3Yg">您的浏览器不支持HTML5视频</video>\
+					</div>\
+				</div>';
+	//var re = /<span style="display: block;"([^<>]*)>([^<>]*)<\/span>/gi;
+	var re = /<span style="display: block;"([^<>]*)>([^<>]*)<\/span>|\[godovideobingo\]/gi;
+	return value.replace(re,ele);
+})
 var vm = new Vue({
 	el:'.container',
 	data:{
 		res: null,
-		share:queryUrl('share')
+		share: queryUrl('share'),
+		loading: true
 	},
 	created:function(){
 		this.reqwest();
@@ -299,6 +250,9 @@ var vm = new Vue({
 				success: function(resp) {
 					if(resp.status == 1){
 						_this.res = resp;
+						setTimeout(function(){
+							_this.loading = false;
+						}, 1700)
 					}else{
 						alert(resp.error)
 					}
@@ -322,9 +276,6 @@ var vm = new Vue({
 			}
 		}
 	}
-});
-$(function(){
-
 });
 </script>
 </body>
