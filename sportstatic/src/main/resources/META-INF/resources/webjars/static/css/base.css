@@ -51,7 +51,7 @@ a:hover {text-decoration: none; }
 }
 
 /*视频*/
-.zy_media{background:#000;position:relative}
+.zy_media{background:#000; position:relative; margin-bottom: 0.1rem;}
 .zy_media video,.zy_media audio{width:100%;position:absolute;top:0;left:0;display:block}
 .zy_fullscreen{overflow:hidden}
 .zy_fullscreen .zy_media{position:fixed;left:0;top:0;right:0;bottom:0;z-index:1000}
