@@ -57,6 +57,7 @@ import com.uhutu.sportcenter.z.api.donate.ApiUserShareInfo;
 import com.uhutu.sportcenter.z.api.extend.ApiSendSms;
 import com.uhutu.sportcenter.z.api.home.APiStartPage;
 import com.uhutu.sportcenter.z.api.home.ApiHomePage;
+import com.uhutu.sportcenter.z.api.label.ApiForCreateLabel;
 import com.uhutu.sportcenter.z.api.label.ApiForLabels;
 import com.uhutu.sportcenter.z.api.label.ApiLabelRelList;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinAccInfo;
@@ -409,6 +410,14 @@ public class ApiFactory {
 	@Autowired
 	private ApiSignLogin apiSignLogin;
 	
+	@Autowired
+	private ApiForCreateLabel apiForCreateLabel;
+	
+	
+	public ApiForCreateLabel getApiForCreateLabel() {
+		return apiForCreateLabel;
+	}
+
 	public ApiSportChickenSoup getApiSportChickenSoup() {
 		return apiSportChickenSoup;
 	}

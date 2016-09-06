@@ -13,6 +13,7 @@ import com.uhutu.sportcenter.z.input.ApiContentDetailInput;
 import com.uhutu.sportcenter.z.input.ApiContentPhotosInput;
 import com.uhutu.sportcenter.z.input.ApiContentReadCountInput;
 import com.uhutu.sportcenter.z.input.ApiContentRecommInput;
+import com.uhutu.sportcenter.z.input.ApiForCreateLabelInput;
 import com.uhutu.sportcenter.z.input.ApiForLabelsInput;
 import com.uhutu.sportcenter.z.input.ApiForSportsInput;
 import com.uhutu.sportcenter.z.input.ApiHomePageInput;
@@ -30,6 +31,7 @@ import com.uhutu.sportcenter.z.result.ApiContentDetailResult;
 import com.uhutu.sportcenter.z.result.ApiContentPhotosResult;
 import com.uhutu.sportcenter.z.result.ApiContentReadCountResult;
 import com.uhutu.sportcenter.z.result.ApiContentRecommResult;
+import com.uhutu.sportcenter.z.result.ApiForCreateLabelResult;
 import com.uhutu.sportcenter.z.result.ApiForLabelsResult;
 import com.uhutu.sportcenter.z.result.ApiForSportsResult;
 import com.uhutu.sportcenter.z.result.ApiHomePageResult;
@@ -90,6 +92,13 @@ public class ContentController {
 	public ApiForLabelsResult versionInfo(@RequestBody ApiForLabelsInput input) {
 
 		return apiFactory.getApiForLabels().api(input);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/userCreateLabel", method = RequestMethod.POST)
+	@ApiOperation(value = "运动标签创建接口", notes = "运动标签")
+	public ApiForCreateLabelResult userCreateLabel(@RequestBody ApiForCreateLabelInput input) {
+		return apiFactory.getApiForCreateLabel().api(input);
 	}
 
 	@ResponseBody
@@ -198,7 +207,7 @@ public class ContentController {
 		return apiFactory.getApiSportChickenSoup().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/lableRelList", method = RequestMethod.POST)
 	@ApiOperation(value = "标签关联内容列表", notes = "标签关联内容列表")
@@ -207,5 +216,5 @@ public class ContentController {
 		return apiFactory.getApiLabelRelList().api(input);
 
 	}
-	
+
 }
