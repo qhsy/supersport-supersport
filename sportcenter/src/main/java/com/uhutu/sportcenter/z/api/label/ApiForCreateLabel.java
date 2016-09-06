@@ -21,15 +21,19 @@ public class ApiForCreateLabel extends RootApiToken<ApiForCreateLabelInput, ApiF
 	protected ApiForCreateLabelResult process(ApiForCreateLabelInput input) {
 		ApiForCreateLabelResult result = new ApiForCreateLabelResult();
 		CnContentLabel contentLabel = new CnContentLabel();
-		contentLabel.setCode(WebHelper.upCode("GGBH"));
-		contentLabel.setStatus("dzsd4699100110010001");
-		contentLabel.setLabelType("dzsd4124100110010002");
-		contentLabel.setContent("");
-		contentLabel.setCover("");
-		contentLabel.setName(input.getName());
-		contentLabel.setSort(0);
-		contentLabel.setType(upUserCode());
-		JdbcHelper.insert(contentLabel);
+		contentLabel = JdbcHelper.queryOne(CnContentLabel.class, "name", input.getName());
+		if (contentLabel == null) {
+			contentLabel = new CnContentLabel();
+			contentLabel.setCode(WebHelper.upCode("GGBH"));
+			contentLabel.setStatus("dzsd4699100110010001");
+			contentLabel.setLabelType("dzsd4124100110010002");
+			contentLabel.setContent("");
+			contentLabel.setCover("");
+			contentLabel.setName(input.getName());
+			contentLabel.setSort(0);
+			contentLabel.setType(upUserCode());
+			JdbcHelper.insert(contentLabel);
+		}
 		BeanUtils.copyProperties(contentLabel, result.getLabel());
 		return result;
 	}

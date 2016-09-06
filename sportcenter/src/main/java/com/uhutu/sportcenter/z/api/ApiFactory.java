@@ -59,6 +59,7 @@ import com.uhutu.sportcenter.z.api.home.APiStartPage;
 import com.uhutu.sportcenter.z.api.home.ApiHomePage;
 import com.uhutu.sportcenter.z.api.label.ApiForCreateLabel;
 import com.uhutu.sportcenter.z.api.label.ApiForLabels;
+import com.uhutu.sportcenter.z.api.label.ApiForSearchLabels;
 import com.uhutu.sportcenter.z.api.label.ApiLabelRelList;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinAccInfo;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinCharge;
@@ -397,23 +398,29 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiSportChickenSoup apiSportChickenSoup;
-	
+
 	@Autowired
 	private ApiLabelRelList apiLabelRelList;
 
 	@Autowired
 	private ApiWechatUserLogin3 apiWechatUserLogin3;
-	
+
 	@Autowired
 	private ApiUserRegSign apiUserRegSign;
-	
+
 	@Autowired
 	private ApiSignLogin apiSignLogin;
-	
+
 	@Autowired
 	private ApiForCreateLabel apiForCreateLabel;
-	
-	
+
+	@Autowired
+	private ApiForSearchLabels apiForSearchLabels;
+
+	public ApiForSearchLabels getApiForSearchLabels() {
+		return apiForSearchLabels;
+	}
+
 	public ApiForCreateLabel getApiForCreateLabel() {
 		return apiForCreateLabel;
 	}
