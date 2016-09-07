@@ -62,7 +62,7 @@
 		</ul>
 	</article>
 	<footer class="follow">
-		<div class="head" @click="openApp"><img :src="res.contentBasicInfo.userBasicInfo.aboutHead" alt=""><em class="vip" v-if="res.contentBasicInfo.userBasicInfo.type == 'dzsd4107100310010002'"></em></div>
+		<div class="head" @click="openApp"><img :src="res.contentBasicInfo.userBasicInfo.aboutHead?res.contentBasicInfo.userBasicInfo.aboutHead:'../static/img/default_photo.png'" alt=""><em class="vip" v-if="res.contentBasicInfo.userBasicInfo.type == 'dzsd4107100310010002'"></em></div>
 		<h1 class="name">{{res.contentBasicInfo.userBasicInfo.nickName}}</h1>
 		<h2 class="title">{{res.contentBasicInfo.userBasicInfo.title}}</h2>
 		<a href="javascript:;" class="submit" @click="openApp">进入个人中心</a>

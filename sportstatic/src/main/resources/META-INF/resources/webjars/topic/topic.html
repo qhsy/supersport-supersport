@@ -2,7 +2,7 @@
 <html lang="en" id="sports" v-cloak>
 <head>
 <meta charset="UTF-8">
-<title>{{result.name}}</title>
+<title v-text="result.name"></title>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta name="format-detection" content="telephone=no">
 <meta name="format-detection" content="email=no" >
@@ -60,7 +60,10 @@ html{background: #f0f0f0;}
 		<article class="master-con" v-bind:style="styleObject" v-if="model.recomms.length" v-on:touchstart="touchstart">
 			<ul class="master-list" :style="{width:model.recomms.length*80 + 16 + 'px'}">
 				<li class="master" v-for="item in model.recomms" @click="headCallback(item.userCode)">
-					<div class="photo"><img :src="item.aboutHead"><em class="vip" v-if="item.type == 'dzsd4107100310010002'"></em></div>
+					<div class="photo">
+						<img :src="item.aboutHead?item.aboutHead:'../static/img/default_photo.png'">
+						<em class="vip" v-if="item.type == 'dzsd4107100310010002'"></em>
+					</div>
 					<h1 class="name">{{item.nickName}}</h1>
 					<h2 class="title">{{item.title}}</h2>
 				</li>
@@ -75,7 +78,7 @@ html{background: #f0f0f0;}
 						<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="info.cover" :alt="info.title"></div>
 						<h1 class="title">{{info.title}}</h1>
 						<div class="user">
-							<span class="photo"><img :src="info.userBasicInfo.aboutHead" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span>
+							<span class="photo"><img :src="info.userBasicInfo.aboutHead?info.userBasicInfo.aboutHead:'../static/img/default_photo.png'" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span>
 							<em class="zan">喜欢 {{info.praiseNum}}</em>
 							<em class="sign" v-if="info.userBasicInfo.type == 'dzsd4107100310010002'"><img src="img/sign.png" alt=""></em>
 						</div>
