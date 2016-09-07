@@ -129,7 +129,7 @@ html{background: #f0f0f0;}
 				success:function(data){
 					if(data.status == 1) {
 						self.result = data;
-						if(data.shareFlag){
+						if(data.shareFlag && !self.share){
 							callbackShare(data.code);
 						}
 						setTimeout(function(){
