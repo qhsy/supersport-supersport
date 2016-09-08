@@ -31,8 +31,9 @@ public class CnThemeRelPageFuncEdit extends RootFunc {
 			rel.setZa(input.getDataMap().get("za"));
 			rel.setCode(input.getDataMap().get("code"));
 			rel.setContentCode(input.getDataMap().get("content_code"));
+			rel.setThemeCover(input.getDataMap().get("theme_cover"));
 			rel.setSort(Integer.valueOf(input.getDataMap().get("sort")));
-			JdbcHelper.update(rel, "sort", "za");
+			JdbcHelper.update(rel, "sort,themeCover", "za");
 		}
 		return result;
 	}

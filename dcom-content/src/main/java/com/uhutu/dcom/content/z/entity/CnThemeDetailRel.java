@@ -29,6 +29,10 @@ public class CnThemeDetailRel extends BaseEntity {
 			DefineWebInc.Web_Component + "=dzcw410710010010" })
 	@Column(length = 50)
 	private String contentCode;
+	
+	@ZooData(name = "主题封面", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
+	private String themeCover;
 
 	@ZooData(name = "排序", require = "1")
 	private int sort;
@@ -55,6 +59,14 @@ public class CnThemeDetailRel extends BaseEntity {
 
 	public void setSort(int sort) {
 		this.sort = sort;
+	}
+
+	public String getThemeCover() {
+		return themeCover;
+	}
+
+	public void setThemeCover(String themeCover) {
+		this.themeCover = themeCover;
 	}
 
 }

@@ -25,6 +25,7 @@ public class CnThemeRelPageFuncAdd extends RootFunc {
 			rel = new CnThemeDetailRel();
 			rel.setCode(input.getDataMap().get("code"));
 			rel.setContentCode(input.getDataMap().get("content_code"));
+			rel.setThemeCover(input.getDataMap().get("theme_cover"));
 			rel.setSort(Integer.valueOf(input.getDataMap().get("sort")));
 			JdbcHelper.insert(rel);
 		}
