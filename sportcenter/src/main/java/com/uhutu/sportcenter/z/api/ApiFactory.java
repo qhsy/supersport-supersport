@@ -61,6 +61,7 @@ import com.uhutu.sportcenter.z.api.label.ApiForCreateLabel;
 import com.uhutu.sportcenter.z.api.label.ApiForLabels;
 import com.uhutu.sportcenter.z.api.label.ApiForSearchLabels;
 import com.uhutu.sportcenter.z.api.label.ApiLabelRelList;
+import com.uhutu.sportcenter.z.api.label.ApiRecommLabelList;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinAccInfo;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinCharge;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinFlowInfo;
@@ -416,6 +417,13 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiForSearchLabels apiForSearchLabels;
+	
+	@Autowired
+	private ApiRecommLabelList apiRecommLabelList;
+
+	public ApiRecommLabelList getApiRecommLabelList() {
+		return apiRecommLabelList;
+	}
 
 	public ApiForSearchLabels getApiForSearchLabels() {
 		return apiForSearchLabels;

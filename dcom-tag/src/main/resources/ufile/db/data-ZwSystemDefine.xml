@@ -5,7 +5,8 @@
 		<item code="dzsd412410011001" defineName="标签类型" parentCode="" />
 		<item code="dzsd4124100110010001" defineName="系统" parentCode="dzsd412410011001" />
 		<item code="dzsd4124100110010002" defineName="用户" parentCode="dzsd412410011001" />
-
+		<item code="dzsd412410011002" defineName="推荐类型" parentCode="" />
+		<item code="dzsd4124100110020001" defineName="推荐标签" parentCode="dzsd412410011002" />
 	</data>
 
 </db>

@@ -47,6 +47,7 @@
 		<item code="dzpi4514100310081001" nodeName="评论信息" parentCode="dzpi451410031008" pageUrl="/zpage/pg/com_uhutu_dcom_remark_z_page_ContentRemarkPage" pageIcon="glyphicon-phone-alt" />
 		<item code="dzpi451410031009" nodeName="标签管理" parentCode="dzpi45141003" />
 		<item code="dzpi4514100310091001" nodeName="标签信息" parentCode="dzpi451410031009" pageUrl="/zpage/pg/com_uhutu_dcom_tag_z_page_ContentLabelPage" pageIcon="glyphicon-lamp" />
+		<item code="dzpi4514100310091002" nodeName="推荐标签" parentCode="dzpi451410031009" pageUrl="/zpage/pg/com_uhutu_dcom_tag_z_page_CnLabelRecommPage" pageIcon="glyphicon-thumbs-up" />
 		<item code="dzpi45141004" nodeName="专题管理" parentCode="" />
 		<item code="dzpi451410041001" nodeName="专题管理" parentCode="dzpi45141004" />
 		<item code="dzpi4514100410011001" nodeName="专题信息" parentCode="dzpi451410041001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnThemeInfoPage" pageIcon="glyphicon-thumbs-down" />

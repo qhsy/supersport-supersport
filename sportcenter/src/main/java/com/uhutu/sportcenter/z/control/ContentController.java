@@ -22,6 +22,7 @@ import com.uhutu.sportcenter.z.input.ApiLabelRelListInput;
 import com.uhutu.sportcenter.z.input.ApiOperContentInput;
 import com.uhutu.sportcenter.z.input.ApiPublishContentPhotosInput;
 import com.uhutu.sportcenter.z.input.ApiPublishSportingMomentInput;
+import com.uhutu.sportcenter.z.input.ApiRecommLabelListInput;
 import com.uhutu.sportcenter.z.input.ApiShareInfoInput;
 import com.uhutu.sportcenter.z.input.ApiSportChickenSoupInput;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
@@ -41,6 +42,7 @@ import com.uhutu.sportcenter.z.result.ApiLabelRelListResult;
 import com.uhutu.sportcenter.z.result.ApiOperContentResult;
 import com.uhutu.sportcenter.z.result.ApiPublishContentPhotosResult;
 import com.uhutu.sportcenter.z.result.ApiPublishSportingMomentResult;
+import com.uhutu.sportcenter.z.result.ApiRecommLableListResult;
 import com.uhutu.sportcenter.z.result.ApiShareInfoResult;
 import com.uhutu.sportcenter.z.result.ApiSportChickenSoupResult;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
@@ -223,6 +225,15 @@ public class ContentController {
 	public ApiLabelRelListResult lableRelList(@RequestBody ApiLabelRelListInput input) {
 
 		return apiFactory.getApiLabelRelList().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/recommLabelList", method = RequestMethod.POST)
+	@ApiOperation(value = "推荐标签列表", notes = "推荐标签列表")
+	public ApiRecommLableListResult recommLabelList(@RequestBody ApiRecommLabelListInput input) {
+
+		return apiFactory.getApiRecommLabelList().api(input);
 
 	}
 
