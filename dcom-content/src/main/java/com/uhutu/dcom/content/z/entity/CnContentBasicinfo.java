@@ -2,6 +2,7 @@ package com.uhutu.dcom.content.z.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -53,6 +54,7 @@ public class CnContentBasicinfo extends BaseEntity {
 	private String categoryCode;
 
 	@ZooData(name = "标签编码")
+	@Column(columnDefinition = "longtext")
 	private String tagCode;
 
 	@ZooData(name = "内容作者")
