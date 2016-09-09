@@ -21,7 +21,7 @@ public class ApiForCreateLabel extends RootApiToken<ApiForCreateLabelInput, ApiF
 	protected ApiForCreateLabelResult process(ApiForCreateLabelInput input) {
 		ApiForCreateLabelResult result = new ApiForCreateLabelResult();
 		CnContentLabel contentLabel = new CnContentLabel();
-		contentLabel = JdbcHelper.queryOne(CnContentLabel.class, "name", input.getName());
+		contentLabel = JdbcHelper.queryOne(CnContentLabel.class, "name", input.getName(),"labelType","dzsd4124100110010002");
 		if (contentLabel == null) {
 			contentLabel = new CnContentLabel();
 			contentLabel.setCode(WebHelper.upCode("GGBH"));
