@@ -20,7 +20,7 @@ public class CnLabelRecommPageFuncAdd extends RootFunc {
 		CnLabelRecomm recommen = JdbcHelper.queryOne(CnLabelRecomm.class, "type", "dzsd4124100110020001",
 				"tag_code", input.getDataMap().get("tag_code"));
 		if (recommen != null) {
-			result.inError(88880003);
+			result.inError(81140001);
 		} else {
 			JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), mDataMap);
 		}
