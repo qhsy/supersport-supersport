@@ -94,7 +94,7 @@
 		</p>
 	</div>
 	<div class="detail">
-		{{{res.contentDetailInfo.content | filterVideo}}}
+		{{{res.contentDetailInfo.content | filterVideo res.contentDetailInfo.videoUrl res.contentDetailInfo.videoCover}}}
 	</div>
 	<child-tag :res="res"></child-tag>
 </script>
@@ -216,9 +216,16 @@ Vue.component('child-tag',{
 		}
 	}
 });
-Vue.filter('template-video', function (value, url, conver) {
+Vue.filter('filterVideo', function (value, url, conver) {
+	var ele = '<div class="zy_media">\
+				<div class="zy_wrap">\
+					<video poster="' + conver + '" preload="auto" style="' + window.innerWidth + '">\
+					<source type="video/mp4" src="' + url + '">您的浏览器不支持HTML5视频</video>\
+					</div>\
+				</div>';
+	//var re = /<span style="display: block;"([^<>]*)>([^<>]*)<\/span>/gi;
 	var re = /<span style="display: block;"([^<>]*)>([^<>]*)<\/span>|\[godovideobingo\]/gi;
-	return value.replace(re,value);
+	return value.replace(re,ele);
 })
 var vm = new Vue({
 	el:'.container',
