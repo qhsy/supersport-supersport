@@ -216,16 +216,9 @@ Vue.component('child-tag',{
 		}
 	}
 });
-Vue.filter('filterVideo', function (value, url, conver) {
-	var ele = '<div class="zy_media">\
-				<div class="zy_wrap">\
-					<video poster="http://img-cdn.bigtiyu.com/wsc/sport/2743f/s-320-240/28fed0e0c47742a7b858eb83185aed4a.png" preload="auto" style="height: 375px;">\
-					<source type="video/mp4" src="http://godo.s.qupai.me/v/697a2f80-053c-4425-85de-c707ae9b9651.mp4?token=YzljMWZlZThiZDQ0NDA2ZmE4ODAxNGE5ZDZhMmNhOTMtYW5kcm9pZC1iNjQ3ZDQwY2RiZDk0MWUxOGU3Yg">您的浏览器不支持HTML5视频</video>\
-					</div>\
-				</div>';
-	//var re = /<span style="display: block;"([^<>]*)>([^<>]*)<\/span>/gi;
+Vue.filter('template-video', function (value, url, conver) {
 	var re = /<span style="display: block;"([^<>]*)>([^<>]*)<\/span>|\[godovideobingo\]/gi;
-	return value.replace(re,ele);
+	return value.replace(re,value);
 })
 var vm = new Vue({
 	el:'.container',
