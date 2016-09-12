@@ -35,8 +35,4 @@ public class UserTitlePageFuncEdit extends RootFunc {
 		return new WebOperateResult();
 	}
 
-	@Override
-	public boolean upFlagCheck() {
-		return false;
-	}
 }

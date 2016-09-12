@@ -4,6 +4,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -59,7 +60,7 @@ public class UcUserinfoExt extends BaseEntity {
 			DefineWebPage.Page_Grid + "=0",DefineWebPage.Page_Edit+"=0" })
 	private String aboutHead;
 	
-	@ZooData(name = "头衔",sort={DefineWebPage.Page_Query + "=0"})
+	@ZooData(name = "头衔",sort={DefineWebPage.Page_Query + "=0"},verify = { DefineWebVerify.Max_Length + "=18" })
 	private String title;
 
 	/**
