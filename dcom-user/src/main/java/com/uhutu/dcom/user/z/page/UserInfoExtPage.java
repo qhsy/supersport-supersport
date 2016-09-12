@@ -15,7 +15,7 @@ import com.uhutu.zooweb.define.DefineZooWeb;
  */
 @ZooPage(name = "详情", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = { DefineZooWeb.PAGE_DEFAULT_OPERATE,
 		DefineWebPage.Page_Query + "=dzoi4699100110171001",
-		DefineWebPage.Page_Grid + "=" }, deploy = { DefineWebDeploy.Url_Query + "=userCode" })
+		DefineWebPage.Page_Grid + "=dzoi4699100110091001",DefineWebPage.Page_Edit + "=dzoi41101010"}, deploy = { DefineWebDeploy.Url_Query + "=userCode" })
 public class UserInfoExtPage extends RootPageSimple<UcUserinfoExt> {
 
 }

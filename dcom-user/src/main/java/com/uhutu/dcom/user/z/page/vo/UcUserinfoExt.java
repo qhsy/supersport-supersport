@@ -4,7 +4,6 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
-import com.uhutu.zoocom.define.DefineWebSort;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -17,40 +16,38 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class UcUserinfoExt extends BaseEntity {
 
-	@ZooData(name = "用户编号", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process,
-			DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=userCode")
+	@ZooData(name = "用户编号", sort = { DefineWebPage.Page_Query + "=0",DefineWebPage.Page_Edit + "=0" })
 	private String userCode;
 
 	@ApiModelProperty(name = "昵称", notes = "昵称", example = "papi酱")
-	@ZooData(name = "昵称", require = "1")
+	@ZooData(name = "昵称", require = "1",sort={DefineWebPage.Page_Edit+"=0"})
 	private String nickName;
 
 	@ZooData(name = "性别", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd410710051001" }, sort = { DefineWebPage.Page_Query + "=0" })
+			DefineWebInc.System_Define + "=dzsd410710051001" }, sort = { DefineWebPage.Page_Query + "=0",DefineWebPage.Page_Edit+"=0" })
 	private String sex;
 
-	@ZooData(name = "位置", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "位置", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",DefineWebPage.Page_Edit+"=0" })
 	private String location;
 
 	@ZooData(name = "简介封面(1080*1080)", element = DefineWebElement.Upload, require = "1", sort = {
-			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",DefineWebPage.Page_Edit+"=0" })
 	private String aboutCover;
 
 	@ZooData(name = "简介标签", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" }, element = DefineWebElement.Model, inc = {
+			DefineWebPage.Page_Grid + "=0",DefineWebPage.Page_Edit+"=0" }, element = DefineWebElement.Model, inc = {
 					DefineWebInc.Web_Component + "=dzcw412410010001" })
 	private String aboutTag;
 
-	@ZooData(name = "简介视频", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "简介视频", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",DefineWebPage.Page_Edit+"=0" })
 	private String aboutVideo;
 
 	@ZooData(name = "简介描述", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" })
+			DefineWebPage.Page_Grid + "=0",DefineWebPage.Page_Edit+"=0" })
 	private String aboutDesc;
 
 	@ZooData(name = "关注领域", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" }, element = DefineWebElement.Model, inc = {
+			DefineWebPage.Page_Grid + "=0",DefineWebPage.Page_Edit+"=0" }, element = DefineWebElement.Model, inc = {
 					DefineWebInc.Web_Component + "=dzcw410710010004" })
 	private String domain;
 
@@ -59,8 +56,11 @@ public class UcUserinfoExt extends BaseEntity {
 	private String level;
 
 	@ZooData(name = "用户头像", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" })
+			DefineWebPage.Page_Grid + "=0",DefineWebPage.Page_Edit+"=0" })
 	private String aboutHead;
+	
+	@ZooData(name = "头衔",sort={DefineWebPage.Page_Query + "=0"})
+	private String title;
 
 	/**
 	 * 获取用户编号
@@ -248,6 +248,14 @@ public class UcUserinfoExt extends BaseEntity {
 
 	public void setAboutHead(String aboutHead) {
 		this.aboutHead = aboutHead;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }
