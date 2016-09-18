@@ -33,9 +33,6 @@ public class SpAppVersion extends BaseEntity {
 			DefineWebInc.System_Define + "=dzsd410710021001" })
 	private String systemType;
 
-	@ZooData(value="系统版本号",element= DefineWebElement.Hidden)
-	private String systemVersionNumber; 
-	
 	public String getVersionNo() {
 		return versionNo;
 	}
@@ -76,11 +73,4 @@ public class SpAppVersion extends BaseEntity {
 		this.systemType = systemType;
 	}
 
-	public String getSystemVersionNumber() {
-		return systemVersionNumber;
-	}
-
-	public void setSystemVersionNumber(String systemVersionNumber) {
-		this.systemVersionNumber = systemVersionNumber;
-	}
 }
