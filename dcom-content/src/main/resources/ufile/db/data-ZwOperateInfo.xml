@@ -203,6 +203,16 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_CnThemeRecommendDetailRelPage?u_code=[[data:code]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071047" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.CnHomeNavMenuPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071048" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.CnHomeNavMenuPageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
