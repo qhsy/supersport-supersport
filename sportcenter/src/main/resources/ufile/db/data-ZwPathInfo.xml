@@ -64,6 +64,12 @@
 		<item code="dzpi45141006" nodeName="app相关" parentCode="" />
 		<item code="dzpi451410060001" nodeName="app管理" parentCode="dzpi45141006" />
 		<item code="dzpi4514100600010001" nodeName="app版本信息" parentCode="dzpi451410060001" pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_AppVersionInfoPage" pageIcon="glyphicon-phone" />
+		<item code="dzpi45141007" nodeName="首页相关" parentCode="" />
+		<item code="dzpi451410070001" nodeName="广告相关" parentCode="dzpi45141007" />
+		<item code="dzpi4514100700010001" nodeName="广告图库" parentCode="dzpi451410070001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_AdvertiseDetailPage" pageIcon="glyphicon-picture" />
+		<item code="dzpi4514100700010002" nodeName="广告栏目信息" parentCode="dzpi451410070001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForAdvPage" pageIcon="glyphicon-credit-card" />
+		<item code="dzpi451410070002" nodeName="导航栏" parentCode="dzpi45141007" />
+		<item code="dzpi4514100700020001" nodeName="导航栏设置" parentCode="dzpi451410070002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnHomeNavMenuPage" pageIcon="glyphicon-home" />
 	</data>
 
 </db>
