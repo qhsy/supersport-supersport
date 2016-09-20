@@ -56,7 +56,10 @@ import com.uhutu.sportcenter.z.api.donate.ApiUserPowerShare;
 import com.uhutu.sportcenter.z.api.donate.ApiUserShareInfo;
 import com.uhutu.sportcenter.z.api.extend.ApiSendSms;
 import com.uhutu.sportcenter.z.api.home.APiStartPage;
+import com.uhutu.sportcenter.z.api.home.ApiExpertChat;
 import com.uhutu.sportcenter.z.api.home.ApiHomePage;
+import com.uhutu.sportcenter.z.api.home.ApiHotTopic;
+import com.uhutu.sportcenter.z.api.home.ApiWonderfulVideo;
 import com.uhutu.sportcenter.z.api.label.ApiForCreateLabel;
 import com.uhutu.sportcenter.z.api.label.ApiForLabels;
 import com.uhutu.sportcenter.z.api.label.ApiForSearchLabels;
@@ -420,6 +423,15 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiRecommLabelList apiRecommLabelList;
+	
+	@Autowired
+	private ApiHotTopic apiHotTopic;
+	
+	@Autowired
+	private ApiWonderfulVideo apiWonderfulVideo;
+	
+	@Autowired
+	private ApiExpertChat apiExpertChat;
 
 	public ApiRecommLabelList getApiRecommLabelList() {
 		return apiRecommLabelList;
@@ -827,6 +839,18 @@ public class ApiFactory {
 
 	public ApiSignLogin getApiSignLogin() {
 		return apiSignLogin;
+	}
+
+	public ApiHotTopic getApiHotTopic() {
+		return apiHotTopic;
+	}
+
+	public ApiWonderfulVideo getApiWonderfulVideo() {
+		return apiWonderfulVideo;
+	}
+
+	public ApiExpertChat getApiExpertChat() {
+		return apiExpertChat;
 	}
 
 }
