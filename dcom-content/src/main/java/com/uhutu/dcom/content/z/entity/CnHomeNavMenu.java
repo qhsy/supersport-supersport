@@ -6,6 +6,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -43,6 +44,23 @@ public class CnHomeNavMenu extends BaseEntity {
 	@ZooData(name = "跳转后标题", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@ApiModelProperty(name = "跳转后标题", notes = "跳转后标题", example = "http://www.ichsy.com")
 	private String contentTitle;
+	
+	@ZooData(name = "发布状态", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd469910011001" })
+	private String status;
+
+	@ZooData(name = "排序(倒序)", element = DefineWebElement.Input, verify = { DefineWebVerify.Base_Number }, sort = {
+			DefineWebPage.Page_Query + "=0" }, require = "1")
+	private int sort;
+
+	@ZooData(name = "开始时间", element = DefineWebElement.Datehms, require = "1")
+	private String startTime;
+
+	@ZooData(name = "结束时间", element = DefineWebElement.Datehms, require = "1")
+	private String endTime;
+
+	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
+	private String remark;
 
 	public String getCode() {
 		return code;
@@ -90,6 +108,46 @@ public class CnHomeNavMenu extends BaseEntity {
 
 	public void setContentTitle(String contentTitle) {
 		this.contentTitle = contentTitle;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
+	}
+
+	public String getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 }
