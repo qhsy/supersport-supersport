@@ -2,6 +2,8 @@ package com.uhutu.dcom.content.func;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.uhutu.dcom.content.z.entity.CnAdvertiseDetail;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentItem;
@@ -92,7 +94,7 @@ public class CnContentItemRelFuncEdit extends RootFunc {
 			if (li != null && !li.isEmpty() && li.size() > 0) {
 				result.inError(810710009);
 			}
-		} else if ("dzsd4107100110060003".equals(itemType)) {// 同一栏目下，内容只可关联一次
+		} else if (StringUtils.isNotBlank(itemType)) {// 同一栏目下，内容只可关联一次
 			MDataMap relMap = new MDataMap();
 			relMap.put("itemCode", itemCode);
 			relMap.put("contentCode", contentCode);

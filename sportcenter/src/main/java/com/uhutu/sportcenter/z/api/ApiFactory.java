@@ -58,6 +58,7 @@ import com.uhutu.sportcenter.z.api.extend.ApiSendSms;
 import com.uhutu.sportcenter.z.api.home.APiStartPage;
 import com.uhutu.sportcenter.z.api.home.ApiExpertChat;
 import com.uhutu.sportcenter.z.api.home.ApiHomePage;
+import com.uhutu.sportcenter.z.api.home.ApiHomePageSecond;
 import com.uhutu.sportcenter.z.api.home.ApiHotTopic;
 import com.uhutu.sportcenter.z.api.home.ApiWonderfulVideo;
 import com.uhutu.sportcenter.z.api.label.ApiForCreateLabel;
@@ -432,6 +433,14 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiExpertChat apiExpertChat;
+
+	@Autowired
+	private ApiHomePageSecond apiHomePageSecond;
+	
+	
+	public ApiHomePageSecond getApiHomePageSecond() {
+		return apiHomePageSecond;
+	}
 
 	public ApiRecommLabelList getApiRecommLabelList() {
 		return apiRecommLabelList;
