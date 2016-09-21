@@ -56,7 +56,7 @@ public class HomePageSecondSupport {
 		return cff;
 	}
 
-	public List<HomePageSecond> getPageModels(String width, String token) {
+	public List<HomePageSecond> getPageModels(int width, String token) {
 		List<HomePageSecond> li = new ArrayList<HomePageSecond>();
 		MDataMap mDataMap = new MDataMap();
 		mDataMap.put("status", "dzsd4699100110010001");
@@ -66,12 +66,15 @@ public class HomePageSecondSupport {
 						+ "'dzsd4107100110060006','dzsd4107100110060007','dzsd4107100110060008','dzsd4107100110060009') ",
 				mDataMap);
 		for (int i = 0; i < items.size(); i++) {
-			li.add(PageModel(items.get(i), width, token));
+			HomePageSecond pageSecond = PageModel(items.get(i), width, token);
+			if (pageSecond != null) {
+				li.add(pageSecond);
+			}
 		}
 		return li;
 	}
 
-	private HomePageSecond PageModel(CnContentItem item, String width, String token) {
+	private HomePageSecond PageModel(CnContentItem item, int width, String token) {
 		HomePageSecond hmp = new HomePageSecond();
 		hmp.setShowType(item.getType());
 		MDataMap map = new MDataMap();
@@ -130,7 +133,11 @@ public class HomePageSecondSupport {
 							info.setTitle(
 									StringUtils.isNotBlank(recomm.getTitle()) ? recomm.getTitle() : info.getTitle());
 						}
-						if (StringUtils.isNotBlank(info.getCover()) && StringUtils.isNotBlank(width)) {
+						width = (int) (("dzsd4107100110060006".equals(item.getType())
+								|| "dzsd4107100110060007".equals(item.getType())) ? Math.ceil(width / 2)
+										: ("dzsd4107100110060008".equals(item.getType()) ? Math.ceil(width) / 3
+												: width));
+						if (StringUtils.isNotBlank(info.getCover()) && width > 0) {
 							info.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(width)));
 						}
 						BeanUtils.copyProperties(info, infoApi);
@@ -149,6 +156,8 @@ public class HomePageSecondSupport {
 						infoApi.getUserBasicInfo().setType(userInfoApi.getType());
 						hmp.getInfos().add(getSingleTitle(infoApi));
 					}
+				} else {
+					hmp = null;
 				}
 			} else if ("dzsd4107100110060002".equals(item.getType())) {// 单图广告
 
@@ -164,7 +173,7 @@ public class HomePageSecondSupport {
 						dfa.setType(cbi.getContentType());
 					}
 				}
-				if (StringUtils.isNotBlank(dfa.getPicUrl()) && StringUtils.isNotBlank(width)) {
+				if (StringUtils.isNotBlank(dfa.getPicUrl()) && width > 0) {
 					dfa.setPicUrl(ImageHelper.upImageThumbnail(dfa.getPicUrl(), Integer.valueOf(width)));
 				}
 				hmp.getAdv().getDetails().add(dfa);
@@ -176,7 +185,7 @@ public class HomePageSecondSupport {
 					for (int j = 0; j < details.size(); j++) {
 						AdvertiseDetailForApi dfa = new AdvertiseDetailForApi();
 						BeanUtils.copyProperties(details.get(j), dfa);
-						if (StringUtils.isNotBlank(dfa.getPicUrl()) && StringUtils.isNotBlank(width)) {
+						if (StringUtils.isNotBlank(dfa.getPicUrl()) && width > 0) {
 							dfa.setPicUrl(ImageHelper.upImageThumbnail(dfa.getPicUrl(), Integer.valueOf(width)));
 						}
 						hmp.getAdv().getDetails().add(dfa);
