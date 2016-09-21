@@ -33,6 +33,7 @@
 		<item code="dzsd4107100110060006" defineName="两栏内容1:1" parentCode="dzsd410710011006" />
 		<item code="dzsd4107100110060007" defineName="两栏内容4:3" parentCode="dzsd410710011006" />
 		<item code="dzsd4107100110060008" defineName="三栏内容" parentCode="dzsd410710011006" />
+		<item code="dzsd4107100110060009" defineName="导航栏" parentCode="dzsd410710011006" />
 		<item code="dzsd410710011007" defineName="栏目类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110070001" defineName="内容信息" parentCode="dzsd410710011007" />
 		<item code="dzsd4107100110070002" defineName="达人信息" parentCode="dzsd410710011007" />
