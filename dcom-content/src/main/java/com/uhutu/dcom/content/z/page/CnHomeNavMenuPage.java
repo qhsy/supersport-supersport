@@ -9,7 +9,7 @@ import com.uhutu.zooweb.define.DefineZooWeb;
 
 @ZooPage(name = "导航栏", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = { DefineZooWeb.PAGE_DEFAULT_OPERATE,
 		DefineWebPage.Page_Add + "=dzoi41071047", DefineWebPage.Page_Edit + "=dzoi41071048" }, deploy = {
-				DefineWebDeploy.Grid_Order + "= DATE_FORMAT(start_time,'%Y-%m-%d') desc,sort desc,zc desc", DefineWebDeploy.Url_Query + "=code" })
+				DefineWebDeploy.Grid_Order + "= zc desc", DefineWebDeploy.Url_Query + "=code" })
 public class CnHomeNavMenuPage extends RootPageSimple<CnHomeNavMenu> {
 
 }

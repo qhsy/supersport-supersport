@@ -69,12 +69,13 @@
 		<item code="dzpi4514100700010001" nodeName="广告图库" parentCode="dzpi451410070001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_AdvertiseDetailPage" pageIcon="glyphicon-picture" />
 		<item code="dzpi4514100700010002" nodeName="广告栏目" parentCode="dzpi451410070001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForAdvPage" pageIcon="glyphicon-credit-card" />
 		<item code="dzpi451410070002" nodeName="首页导航" parentCode="dzpi45141007" />
-		<item code="dzpi4514100700020001" nodeName="导航栏栏目" parentCode="dzpi451410070002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnHomeNavMenuPage" pageIcon="glyphicon-home" />
+		<item code="dzpi4514100700020001" nodeName="导航栏设置" parentCode="dzpi451410070002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnHomeNavMenuPage" pageIcon="glyphicon-home" />
 		<item code="dzpi451410070003" nodeName="首页内容" parentCode="dzpi45141007" />
-		<item code="dzpi4514100700030001" nodeName="一栏内容" parentCode="dzpi451410070003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForFrist" pageIcon="glyphicon-minus" />
-		<item code="dzpi4514100700030002" nodeName="两栏内容1:1" parentCode="dzpi451410070003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForSecondOne" pageIcon="glyphicon-pause" />
-		<item code="dzpi4514100700030003" nodeName="两栏内容4:3" parentCode="dzpi451410070003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForSecondFour" pageIcon="glyphicon-pause" />
-		<item code="dzpi4514100700030004" nodeName="三栏内容" parentCode="dzpi451410070003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForThird" pageIcon="glyphicon-stats" />
+		<item code="dzpi4514100700030001" nodeName="导航栏内容" parentCode="dzpi451410070003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForNavMenu" pageIcon="glyphicon-eject" />
+		<item code="dzpi4514100700030002" nodeName="一栏内容" parentCode="dzpi451410070003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForFrist" pageIcon="glyphicon-minus" />
+		<item code="dzpi4514100700030003" nodeName="两栏内容1:1" parentCode="dzpi451410070003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForSecondOne" pageIcon="glyphicon-pause" />
+		<item code="dzpi4514100700030004" nodeName="两栏内容4:3" parentCode="dzpi451410070003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForSecondFour" pageIcon="glyphicon-pause" />
+		<item code="dzpi4514100700030005" nodeName="三栏内容" parentCode="dzpi451410070003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForThird" pageIcon="glyphicon-stats" />
 	</data>
 
 </db>

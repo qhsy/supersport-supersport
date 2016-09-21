@@ -8,6 +8,7 @@ import com.uhutu.dcom.content.z.entity.CnAdvertiseDetail;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentItem;
 import com.uhutu.dcom.content.z.entity.CnContentItemRel;
+import com.uhutu.dcom.content.z.entity.CnHomeNavMenu;
 import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
@@ -36,7 +37,10 @@ public class CnContentItemRelFuncAdd extends RootFunc {
 					input.getDataMap().get("content_code"));
 			CnAdvertiseDetail ainfo = JdbcHelper.queryOne(CnAdvertiseDetail.class, "code",
 					input.getDataMap().get("content_code"));
-			if ((item != null && ainfo != null) || (item != null && binfo != null)) {
+			CnHomeNavMenu cnavinfo = JdbcHelper.queryOne(CnHomeNavMenu.class, "code",
+					input.getDataMap().get("content_code"));
+			if ((item != null && ainfo != null) || (item != null && binfo != null)
+					|| (item != null && cnavinfo != null)) {
 				// 根据栏目类型做校验
 				result = check(item.getType(), input.getDataMap().get("item_code"),
 						input.getDataMap().get("content_code"), input.getDataMap().get("start_time"),

@@ -213,6 +213,14 @@
 			operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071049" operateName="已关联" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_ContentItemRelForNavMenuPage?u_itemCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071050" operateName="关联" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_ContentItemRelForNavMenuPage?u_itemCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>

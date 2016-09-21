@@ -26,6 +26,7 @@ public class CnContentItem extends BaseEntity {
 	private String code;
 
 	@ZooData(name = "栏目名称", require = "1")
+	@ApiModelProperty(name="栏目名称",notes="栏目名称")
 	private String name;
 
 	@ZooData(value = "栏目类型", element = DefineWebElement.Select, inc = {
@@ -42,6 +43,7 @@ public class CnContentItem extends BaseEntity {
 			DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" }, demo = "0:已开通,1:未关闭")
 	@Column(length = 50)
+	@ApiModelProperty(name = "更多是否开通0:已开通,1:未关闭", notes = "更多是否开通0:已开通,1:未关闭")
 	private String moreStatus;
 
 	@ZooData(name = "更多内容", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
