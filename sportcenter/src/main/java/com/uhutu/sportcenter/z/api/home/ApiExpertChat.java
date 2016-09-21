@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnExpertChat;
-import com.uhutu.sportcenter.z.api.util.ContentComponent;
 import com.uhutu.sportcenter.z.entity.ContentShowInfo;
 import com.uhutu.sportcenter.z.entity.ContentShowModel;
 import com.uhutu.sportcenter.z.entity.UserBasicInfo;
@@ -90,8 +89,6 @@ public class ApiExpertChat extends RootApiBase<ApiExpertChatInput, ApiExpertChat
 			showInfo.setTitle(title);
 			
 			showInfo.setType(basicInfo.getContentType());
-			
-			showInfo.setReadNum(ContentComponent.readNum(code));
 			
 			UserBasicInfo userBasicInfo = new UserBasicInfo();
 			
