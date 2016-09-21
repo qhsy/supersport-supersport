@@ -221,6 +221,36 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_ContentItemRelForNavMenuPage?u_itemCode=[[data:code]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071051" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.CnExpertChatPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071052" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.CnExpertChatPageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071053" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.CnWonderfulVideoPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071054" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.CnWonderfulVideoPageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071055" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.CnHotTopicPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071056" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.CnHotTopicPageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
