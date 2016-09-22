@@ -26,7 +26,7 @@ public class CnContentItem extends BaseEntity {
 	private String code;
 
 	@ZooData(name = "栏目名称", require = "1")
-	@ApiModelProperty(name="栏目名称",notes="栏目名称")
+	@ApiModelProperty(name = "栏目名称", notes = "栏目名称")
 	private String name;
 
 	@ZooData(value = "栏目类型", element = DefineWebElement.Select, inc = {
@@ -61,6 +61,10 @@ public class CnContentItem extends BaseEntity {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@ApiModelProperty(name = "更多跳转参数", notes = "更多跳转参数", example = "http://www.ichsy.com")
 	private String piclinkContent;
+
+	@ZooData(name = "跳转后标题", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ApiModelProperty(name = "跳转后标题", notes = "跳转后标题", example = "http://www.ichsy.com")
+	private String piclinkTitle;
 
 	@ZooData(name = "发布状态", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
@@ -97,6 +101,14 @@ public class CnContentItem extends BaseEntity {
 
 	public String getMoreStatus() {
 		return moreStatus;
+	}
+
+	public String getPiclinkTitle() {
+		return piclinkTitle;
+	}
+
+	public void setPiclinkTitle(String piclinkTitle) {
+		this.piclinkTitle = piclinkTitle;
 	}
 
 	public void setMoreStatus(String moreStatus) {
