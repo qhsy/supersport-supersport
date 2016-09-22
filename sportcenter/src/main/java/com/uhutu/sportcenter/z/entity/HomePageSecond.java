@@ -3,8 +3,8 @@ package com.uhutu.sportcenter.z.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.uhutu.dcom.content.z.entity.CnContentItem;
-import com.uhutu.dcom.content.z.entity.CnHomeNavMenu;
+import com.uhutu.dcom.content.z.entity.CnContentItemForApi;
+import com.uhutu.dcom.content.z.entity.CnHomeNavMenuForApi;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -22,13 +22,13 @@ public class HomePageSecond {
 	private String showType = "";
 
 	@ApiModelProperty(name = "栏目信息", notes = "栏目信息", example = "栏目信息")
-	private CnContentItem item = new CnContentItem();
+	private CnContentItemForApi item = new CnContentItemForApi();
 
 	@ApiModelProperty(name = "内容信息", notes = "内容信息", example = "张嘉译拍摄《营盘镇警事》杀青新闻")
 	List<ContentBasicinfoForApi> infos = new ArrayList<ContentBasicinfoForApi>();
 
 	@ApiModelProperty(name = "导航栏信息")
-	List<CnHomeNavMenu> navs = new ArrayList<CnHomeNavMenu>();
+	List<CnHomeNavMenuForApi> navs = new ArrayList<CnHomeNavMenuForApi>();
 
 	@ApiModelProperty(name = "广告信息", notes = "广告信息")
 	private AdvertiseMent adv = new AdvertiseMent();
@@ -41,14 +41,6 @@ public class HomePageSecond {
 		this.showType = showType;
 	}
 
-	public CnContentItem getItem() {
-		return item;
-	}
-
-	public void setItem(CnContentItem item) {
-		this.item = item;
-	}
-
 	public List<ContentBasicinfoForApi> getInfos() {
 		return infos;
 	}
@@ -57,11 +49,19 @@ public class HomePageSecond {
 		this.infos = infos;
 	}
 
-	public List<CnHomeNavMenu> getNavs() {
+	public CnContentItemForApi getItem() {
+		return item;
+	}
+
+	public void setItem(CnContentItemForApi item) {
+		this.item = item;
+	}
+
+	public List<CnHomeNavMenuForApi> getNavs() {
 		return navs;
 	}
 
-	public void setNavs(List<CnHomeNavMenu> navs) {
+	public void setNavs(List<CnHomeNavMenuForApi> navs) {
 		this.navs = navs;
 	}
 

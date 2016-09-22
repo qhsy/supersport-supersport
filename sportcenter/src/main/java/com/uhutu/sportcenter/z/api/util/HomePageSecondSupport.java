@@ -10,10 +10,12 @@ import com.uhutu.dcom.content.z.entity.CnAdvertiseDetail;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentItem;
+import com.uhutu.dcom.content.z.entity.CnContentItemForApi;
 import com.uhutu.dcom.content.z.entity.CnContentItemRel;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
 import com.uhutu.dcom.content.z.entity.CnHomeNavMenu;
+import com.uhutu.dcom.content.z.entity.CnHomeNavMenuForApi;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
@@ -66,7 +68,9 @@ public class HomePageSecondSupport {
 						+ "'dzsd4107100110060006','dzsd4107100110060007','dzsd4107100110060008','dzsd4107100110060009') ",
 				mDataMap);
 		for (int i = 0; i < items.size(); i++) {
-			HomePageSecond pageSecond = PageModel(items.get(i), width, token);
+			CnContentItemForApi forApi = new CnContentItemForApi();
+			BeanUtils.copyProperties(items.get(i), forApi);
+			HomePageSecond pageSecond = PageModel(forApi, width, token);
 			if (pageSecond != null) {
 				li.add(pageSecond);
 			}
@@ -74,7 +78,7 @@ public class HomePageSecondSupport {
 		return li;
 	}
 
-	private HomePageSecond PageModel(CnContentItem item, int width, String token) {
+	private HomePageSecond PageModel(CnContentItemForApi item, int width, String token) {
 		HomePageSecond hmp = new HomePageSecond();
 		hmp.setShowType(item.getType());
 		MDataMap map = new MDataMap();
@@ -96,6 +100,14 @@ public class HomePageSecondSupport {
 		if (StringUtils.isNotBlank(str)) {
 			if ("dzsd4107100110060005".equals(item.getType()) || "dzsd4107100110060006".equals(item.getType())
 					|| "dzsd4107100110060007".equals(item.getType()) || "dzsd4107100110060008".equals(item.getType())) {// 内容
+				if ("dzsd4107100110050002".equals(item.getPiclinkType())
+						&& StringUtils.isNotBlank(item.getPiclinkContent())) {
+					CnContentBasicinfo cbi = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
+							item.getPiclinkContent());
+					if (cbi != null) {
+						hmp.getItem().setType(cbi.getContentType());
+					}
+				}
 				hmp.setItem(item);
 				List<CnContentBasicinfo> basics = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "",
 						"status='dzsd4699100110010001' and shareScope='dzsd4699100110010001' and code in("
@@ -195,7 +207,19 @@ public class HomePageSecondSupport {
 				List<CnHomeNavMenu> navMenus = JdbcHelper.queryForList(CnHomeNavMenu.class, "",
 						" field(code," + str.toString() + ")", " code in(" + str.toString() + ")", new MDataMap());
 				if (navMenus != null && !navMenus.isEmpty() && navMenus.size() > 0) {
-					hmp.setNavs(navMenus);
+					for (int i = 0; i < navMenus.size(); i++) {
+						CnHomeNavMenuForApi navMenuForApi = new CnHomeNavMenuForApi();
+						BeanUtils.copyProperties(navMenus.get(i), navMenuForApi);
+						if ("dzsd4107100110050002".equals(navMenuForApi.getPiclinkType())
+								&& StringUtils.isNotBlank(navMenuForApi.getPiclinkContent())) {
+							CnContentBasicinfo cbi = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
+									navMenuForApi.getPiclinkContent());
+							if (cbi != null) {
+								navMenuForApi.setType(cbi.getContentType());
+							}
+						}
+						hmp.getNavs().add(navMenuForApi);
+					}
 				}
 			}
 		}
