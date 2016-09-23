@@ -22,12 +22,13 @@ public class CnAdvertiseDetail extends BaseEntity {
 	// DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process,
 	// DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc =
 	// DefineWebInc.Url_Param + "=code")
-	@ZooData(name = "广告图编号", inc = DefineWebInc.Insert_Code + "=GGTBH", sort = { DefineWebPage.Page_Add + "=1",
+	@ZooData(name = "图片编号", inc = DefineWebInc.Insert_Code + "=GGTBH", sort = { DefineWebPage.Page_Add + "=1",
 			DefineWebPage.Page_Edit + "=0" })
-	@ApiModelProperty(name = "广告图编号", notes = "广告编号", example = "ADBH0001")
+	@ApiModelProperty(name = "图片编号", notes = "图片编号", example = "ADBH0001")
 	private String code;
 
-	@ZooData(name = "广告图名称", require = "1")
+	@ZooData(name = "图片内容", require = "1")
+	@ApiModelProperty(name = "图片内容", notes = "图片内容")
 	private String name;
 
 	@ZooData(name = "图片(轮播:1080*608;单图:1080*420)", require = "1", element = DefineWebElement.Upload, sort = {

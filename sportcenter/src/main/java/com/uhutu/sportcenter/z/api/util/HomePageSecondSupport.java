@@ -98,8 +98,8 @@ public class HomePageSecondSupport {
 			}
 		}
 		if (StringUtils.isNotBlank(str)) {
-			if ("dzsd4107100110060005".equals(item.getType()) || "dzsd4107100110060006".equals(item.getType())
-					|| "dzsd4107100110060007".equals(item.getType()) || "dzsd4107100110060008".equals(item.getType())) {// 内容
+			if ("dzsd4107100110060006".equals(item.getType()) || "dzsd4107100110060007".equals(item.getType())
+					|| "dzsd4107100110060008".equals(item.getType())) {// 内容
 				if ("dzsd4107100110050002".equals(item.getPiclinkType())
 						&& StringUtils.isNotBlank(item.getPiclinkContent())) {
 					CnContentBasicinfo cbi = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
@@ -171,8 +171,8 @@ public class HomePageSecondSupport {
 				} else {
 					hmp = null;
 				}
-			} else if ("dzsd4107100110060002".equals(item.getType())) {// 单图广告
-
+			} else if ("dzsd4107100110060002".equals(item.getType()) || "dzsd4107100110060005".equals(item.getType())) {// 单图广告&一栏内容
+				hmp.setItem("dzsd4107100110060005".equals(item.getType()) ? item : null);
 				CnAdvertiseDetail detail = JdbcHelper.queryOne(CnAdvertiseDetail.class, "", "",
 						" code in(" + str.toString() + ")", new MDataMap());
 				AdvertiseDetailForApi dfa = new AdvertiseDetailForApi();

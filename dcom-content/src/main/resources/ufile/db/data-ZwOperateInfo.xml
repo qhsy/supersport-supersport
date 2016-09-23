@@ -78,7 +78,7 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_ContentItemRelPage?u_itemCode=[[data:code]]')"
 			parentCode="" noteRemark="" />
-		<item code="dzoi41071017" operateName="已关联广告图" operateFunc=""
+		<item code="dzoi41071017" operateName="已关联图片" operateFunc=""
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_ContentItemRelForAdvPage?u_itemCode=[[data:code]]')"
 			parentCode="" noteRemark="" />
