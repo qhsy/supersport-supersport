@@ -15,6 +15,9 @@ public class AdvertiseDetailForApi {
 	@ApiModelProperty(name = "图片url", notes = "轮播图图片url", example = "http://www.ichsy.com")
 	private String picUrl;
 
+	@ApiModelProperty(name = "图片内容", notes = "图片内容")
+	private String name;
+
 	@ApiModelProperty(name = "图片超链接跳转类型", notes = "轮播图链接跳转类型dzsd4107100110050003:超链接,dzsd4107100110050002:内容详情页,dzsd4107100110050001:个人中心,dzsd4107100110050006:专题,dzsd4107100110050007:标签详情,dzsd4107100110050008:时刻列表,dzsd4107100110050009:问答列表", example = "01")
 	private String piclinkType;
 
@@ -49,6 +52,14 @@ public class AdvertiseDetailForApi {
 
 	public void setPicUrl(String picUrl) {
 		this.picUrl = picUrl;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPiclinkType() {
