@@ -71,3 +71,16 @@ function callbackSportTime(code,type){
 		javascript:android.callbackSportTime(code,type);
 	}
 }
+
+/**
+ * @callWebTitle
+ * @param  [string]	val
+ * @return [Function]
+ * @author [wangxh]
+ */
+function callWebTitle(val){
+	var userAgent = navigator.userAgent;
+	if(userAgent.indexOf('Android') != -1){
+		javascript:android.callWebTitle(val);
+	}
+}
