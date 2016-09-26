@@ -251,6 +251,56 @@
 			operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071057" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.ContentItemFristPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071058" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.ContentItemFristPageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071059" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.ContentItemNavMenuPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071060" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.ContentItemNavMenuPageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071061" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.ContentItemSecondFourPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071062" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.ContentItemSecondFourPageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071063" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.ContentItemSecondOnePageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071064" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.ContentItemSecondOnePageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071065" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.ContentItemThirdPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071066" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.ContentItemThirdPageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>

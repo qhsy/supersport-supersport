@@ -1,4 +1,4 @@
-package com.uhutu.dcom.content.z.entity.ext;
+package com.uhutu.dcom.content.z.entity.ext.item.secondFour;
 
 import javax.persistence.Column;
 
@@ -12,7 +12,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * 栏目数据模型
+ * 栏目数据模型（导航栏专用）
  * 
  * @author xiegj
  *
@@ -27,7 +27,8 @@ public class CnContentItem extends BaseEntity {
 	private String name;
 
 	@ZooData(value = "栏目类型", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd410710011006" })
+			DefineWebInc.System_Define + "=dzsd410710011006" }, sort = { DefineWebPage.Page_Query + "=0",
+					DefineWebPage.Page_Grid + "=0", DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
 	private String type;
 
 	@ZooData(name = "栏目图标(宽:待定;高:待定)", require = "1", element = DefineWebElement.Upload, sort = {
