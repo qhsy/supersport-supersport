@@ -1,13 +1,14 @@
 package com.uhutu.sportcenter.z.api.user;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
-import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
@@ -20,6 +21,7 @@ import com.uhutu.sportcenter.z.entity.ContentRemarkInfo;
 import com.uhutu.sportcenter.z.entity.ContentReplyInfo;
 import com.uhutu.sportcenter.z.input.ApiMsgRemarkListInput;
 import com.uhutu.sportcenter.z.result.ApiMsgRemarkResult;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.helper.ImageHelper;
@@ -45,15 +47,22 @@ public class ApiMsgRemarkList extends RootApiToken<ApiMsgRemarkListInput, ApiMsg
 		ApiMsgRemarkResult msgRemarkResult = new ApiMsgRemarkResult();
 
 		String userCode = upUserCode();
-
-		QueryConditions conditions = new QueryConditions();
-
-		conditions.setConditionEqual("userCode", userCode);
-
-		Page<UcMsgRemark> msgRemarkPage = userSerivceFactory.getMsgRemarkService()
-				.queryPageByUserCode(input.getPagination(), 10, conditions);
-
-		msgRemarkPage.getContent().forEach(msgRemark -> {
+		
+		int iNumber = 10;
+		
+		int iStart = (input.getPagination() - 1) * iNumber;
+		
+		String sqlWhere = "EXISTS (select 1 from cn_content_remark where remark_code = code and status = 'dzsd4699100110010001') and user_code='"+userCode+"'";
+		
+		List<UcMsgRemark> msgRemarkList = JdbcHelper.queryForList(UcMsgRemark.class, "", "msg_time desc", sqlWhere, new MDataMap(), iStart, iNumber);
+		
+		int count = JdbcHelper.count(UcMsgRemark.class, sqlWhere, new MDataMap());
+		
+		PageInfo pageInfo = new PageInfo(count, input.getPagination(), iNumber);
+		
+		msgRemarkResult.setNextflag(pageInfo.hasNext());
+		
+		msgRemarkList.forEach(msgRemark -> {
 
 			ContentReplyInfo contentReplyInfo = new ContentReplyInfo();
 
@@ -88,7 +97,7 @@ public class ApiMsgRemarkList extends RootApiToken<ApiMsgRemarkListInput, ApiMsg
 
 			contentReplyInfo.setReplyInfo(initRemarkInfo(contentRemarkInfo));
 
-			if (StringUtils.isNotBlank(msgRemark.getRemarkParentCode())) {
+			if (StringUtils.isNotBlank(msgRemark.getRemarkParentCode()) && contentReplyInfo.getReplyInfo() != null) {
 
 				CnContentRemark parentRemarkInfo = serviceFactory.getContentRemarkService()
 						.queryByCode(msgRemark.getRemarkParentCode());
