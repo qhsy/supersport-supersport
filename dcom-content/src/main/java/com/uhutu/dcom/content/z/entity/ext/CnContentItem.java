@@ -50,14 +50,14 @@ public class CnContentItem extends BaseEntity {
 	@ApiModelProperty(name = "更多跳转类型", notes = "轮播图链接跳转类型dzsd4107100110050003:超链接,dzsd4107100110050002:内容详情页,dzsd4107100110050001:个人中心,dzsd4107100110050006:专题,dzsd4107100110050007:标签详情,dzsd4107100110050008:时刻列表,dzsd4107100110050009:问答列表")
 	private String piclinkType;
 
-	@ZooData(name = "更多跳转参数", sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "更多跳转参数", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@ApiModelProperty(name = "更多跳转参数", notes = "更多跳转参数", example = "http://www.ichsy.com")
 	private String piclinkContent;
 
 	@ZooData(name = "跳转后标题", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@ApiModelProperty(name = "跳转后标题", notes = "跳转后标题", example = "http://www.ichsy.com")
 	private String piclinkTitle;
-	
+
 	@ZooData(name = "栏目发布状态", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String status;
