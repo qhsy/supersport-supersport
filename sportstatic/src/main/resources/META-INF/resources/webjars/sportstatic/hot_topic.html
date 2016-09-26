@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <title>热门话题</title>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta name="format-detection" content="telephone=no">
-<meta name="format-detection" content="email=no" >
+<meta name="format-detection" content="telephone=no,email=no"> 
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes"> 
+<meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes"/>
 <meta name="author" content="">
 <link rel="stylesheet" type="text/css" href="../static/css/base.css">
 <style type="text/css">
@@ -19,7 +20,7 @@
 <body>
 <section class="content">
 	<ul class="hot-topic" v-cloak>
-		<li class="item" v-for="item in commits">
+		<li class="item" v-for="item in commits" @click="backSportTime(item.userBasicInfo.userCode,item.contentShowInfo.type)">
 			<a href="javascript:;">
 				<img :src="item.contentShowInfo.cover" :alt="item.contentShowInfo.title" class="photo">
 				<h1 class="title">{{item.contentShowInfo.title}}</h1>
@@ -77,6 +78,9 @@ new Vue({
 			if(this.next && bodyHeight <= (winHeight + scrollTop)){
 				this.page++;
 			}
+		},
+		backSportTime:function(code,type) {
+			callbackSportTime(code,type);
 		}
 	}
 })

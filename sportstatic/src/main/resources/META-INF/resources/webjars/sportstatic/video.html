@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <title>精彩视频</title>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<meta name="format-detection" content="telephone=no">
-<meta name="format-detection" content="email=no" >
+<meta name="format-detection" content="telephone=no,email=no"> 
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes"> 
+<meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes"/>
 <meta name="author" content="">
 <link rel="stylesheet" type="text/css" href="../static/css/base.css">
 <style type="text/css">
@@ -29,7 +30,7 @@
 <body>
 <section class="content">
 	<ul class="video" v-cloak>
-		<li class="item" v-for="item in commits">
+		<li class="item" v-for="item in commits" @click="backSportTime(item.userBasicInfo.userCode,item.contentShowInfo.type)">
 			<a href="javascript:;" class="photo">
 				<img :src="item.contentShowInfo.cover" alt="">
 				<h3 class="name"><span>{{item.userBasicInfo.nickName}}</span><em class="vip" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></em></h3>
@@ -90,6 +91,9 @@ new Vue({
 			if(this.next && bodyHeight <= (winHeight + scrollTop)){
 				this.page++;
 			}
+		},
+		backSportTime:function(code,type) {
+			callbackSportTime(code,type);
 		}
 	}
 })

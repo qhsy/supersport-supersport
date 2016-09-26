@@ -1,210 +1,102 @@
 <!DOCTYPE html>
-<html lang="en" id="sports" v-cloak>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title v-text="result.name"></title>
+<title></title>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta name="format-detection" content="telephone=no">
 <meta name="format-detection" content="email=no" >
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="author" content="果冻体育">
-<link rel="stylesheet" href="../static/css/base.css">
+<meta name="author" content="">
+<script type="text/javascript">
+	window.location.href = 'https://jinshuju.net/f/FaIpRG'
+</script>
 <style type="text/css">
-html{background: #f0f0f0;}
-.header{font-size: 0.18rem; line-height: 0.24rem; color: #FFFFFF; position: relative;}
-.header.space{margin-top: 0.6rem;}
-.desc{background: #fff; padding: 0.16rem 0.45rem 0.19rem; margin-bottom: 0.1rem; font-size: 0.14rem; line-height: 0.2rem; color: #757575;}
+/*base*/
+/*html{font-size: 100px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,pre,form,fieldset,input,textarea,blockquote,p,button,header,footer,nav,section,article,aside,video,audio,figure,figcaption,hgroup{padding: 0px; margin: 0px; tap-highlight-color: rgba(0, 0, 0, 0); -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -ms-tap-highlight-color: rgba(0, 0, 0, 0); font-size: 0.14rem; line-height: 0.22rem;}
+table,td,tr,th{font-size: 0.12rem;}
+table{margin: 0 auto;}
+img{vertical-align: top; border: 0;}
+ol,ul{list-style: none;}
+li{list-style-type: none;}
+h1,h2,h3,h4,h5,h6{font-weight:normal; font-size: 100%;}
+img{width: 100%; height: auto; vertical-align: top; }
+address,caption,cite,code,dfn,em,i,b{font-weight: normal; font-style: normal;}
+input,textarea,select,button{outline: none; resize: none; border: 0;}
+a{-webkit-appearance: none; outline: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-touch-callout: none; text-decoration: none;}
+a:hover {text-decoration: none; }
+.f12{font-size: 0.12rem;}.f14{font-size: 0.14rem;}.f16{font-size: 0.16rem;}.f18{font-size: 0.18rem;}
+.tl{text-align: left;}.tr{text-align: right;}.tc{text-align: center;}
+.fl{float: left;}.fr{float: right;}
+.pos-r{position: relative;}.pos-f{position: fixed;}
 
-.topic-title{height: 0.46rem; overflow: hidden; color: #4A4A4A; padding-left:0.23rem; font-size: 0.14rem; word-break: break-all; word-wrap: break-word; font-weight: 700; line-height: 0.46rem; position: relative;}
-.topic-title:after{content: ""; width: 2px; height: 0.14rem; background: #F8800A; position: absolute; left: 0.15rem; top: 0.15rem;}
-.topic-title.bg{background: #fff;}
-/*专题内容*/
-.sports-con .sports-list{-webkit-flex-wrap:wrap; flex-wrap:wrap; display: -webkit-flex; display: -moz-flex; display: -ms-flexbox; display: flex; overflow: auto}
-.sports-con .sport{width: 50%; padding: 0 4px; margin-bottom: 4px; float: left; box-sizing: border-box; -webkit-box-sizing: border-box; border-radius: 2px; -webkit-border-radius: 2px;}
-.sports-con .title{height: 0.3rem; overflow: hidden; margin: 0.08rem 0.09rem 0.05rem; line-height: 0.16rem; font-size: 0.12rem; word-break: break-all; word-wrap: break-word;}
-.sports-con .user{margin-left: 0.09rem; padding: 0.05rem 0.08rem 0.05rem 0; border-top: #F0F0F0 1px solid; font-size: 0.12rem; line-height: 0.18rem; position: relative;}
-.sports-con .show{display: none;}
-.sports-con .photo{ width: 1rem; display: inline-block; height: 0.18rem; overflow: hidden; font-weight: 700; color: #4A4A4A;}
-.sports-con .photo img{width: 0.18rem; height: 0.18rem; border-radius: 50%; margin-right: 0.07rem;}
-.sports-con .sign{width: 0.08rem; height: 0.1rem; position: absolute; left: 0.12rem; bottom: 0.03rem;}
-.sports-con .zan{float: right; color: #9B9B9B;}
-.sports-con .sport a{display: block; color: #4A4A4A; background: #fff; box-shadow: 0 1px 3px #D6D6D6;}
-.sports-con .canvas img {transition: opacity 0.2s !important;}
-.sports-con .sport-event{display: block; width: 1rem; height: 0.3rem; margin: 0.2rem auto 0.25rem; border-radius: 4px; border: #C6C6C6 1px solid; font-size: 0.12rem; color: #9F9F9F; text-align: center; line-height: 0.3rem; position: relative;}
-.sports-con .sport-event:before{content: ""; width: 0.08rem; height: 0.03rem; display: block; background: url(img/sport_event.png) no-repeat; background-size: 0.08rem; position: absolute; right: 0.16rem; top: 0.13rem;}
-.sports-con .sport-event.down:before{background-position: 0 -0.03rem;}
-.sports-con .sport-event.up:before{background-position: 0 0;}
-/*达人推荐*/
-.master-con{background: #fff; position: relative; height: 129px;}
-.master-con .master-list{box-sizing: border-box; -webkit-box-sizing: border-box; -o-box-sizing: border-box; -moz-box-sizing: border-box; display: -webkit-flex; display: -moz-flex; display: -o-flex; display: flex; -webkit-flex-wrap: wrap; -moz-flex-wrap: wrap; -o-flex-wrap: wrap; flex-wrap: wrap; position: absolute; left: 0; top: 0;}
-.master-con .master{width: 64px; padding-left: 16px; font-size: 12px; text-align: center;}
-.master-con .photo{position: relative;}
-.master-con .photo img{width: 64px; height: 64px; display: block; border-radius: 50%; pointer-events: none;}
-.master-con .name{height: 20px; overflow: hidden; color: #333; padding-top: 10px; font-weight: 700; line-height: 20px;}
-.master-con .title{margin-bottom: 20px; height: 0.18rem; overflow: hidden; line-height: 0.18rem; color: #AAAAAA;}
-.master-con .vip{width: 0.15rem; height: 0.15rem; background: url(../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
-@media screen and (min-width:640px) {
-	.container{width: 640px; margin: auto;}
+
+.body{background: url(image/topic/bodyBg.png);}
+.section{padding: 0rem 0.45rem 1.85rem; overflow: auto;}
+.section p{margin-bottom: 0.18rem; line-height: 0.2rem; color: #575049; position: relative;}
+
+.section .title{margin-bottom: 20px; font-weight: 700;}
+.section .title:after{display: none;}
+.footer{width: 100%; position: fixed; bottom: 0; left: 0; box-shadow: 0 0 0.5rem 0.33rem rgba(248, 246, 243, 1); -webkit-box-shadow: 0 0 0.5rem 0.33rem rgba(248, 246, 243, 1);}
+
+
+@media screen and (max-width: 320px){
+	html{font-size: 85.7px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
 }
+@media screen and (min-width: 375px){
+	html{font-size: 100px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
+}*/
 </style>
 </head>
-<body>
-<section class="container">
-	<header class="header" :class="{'space':isShare}" v-if="result.cover != ''"><img :src="result.cover" alt=""></header>
-	<p class="desc" v-if="result.cover != ''">{{result.aboutDesc}}</p>
-	<section class="wrap" v-for="model in result.models">
-		<h1 class="topic-title" :class="{bg:model.recomms.length}">{{model.title}}</h1>
-		<!-- 推荐达人 -->
-		<article class="master-con" v-bind:style="styleObject" v-if="model.recomms.length" v-on:touchstart="touchstart">
-			<ul class="master-list" :style="{width:model.recomms.length*80 + 16 + 'px'}">
-				<li class="master" v-for="item in model.recomms" @click="headCallback(item.userCode)">
-					<div class="photo">
-						<img :src="item.aboutHead?item.aboutHead:'../static/img/default_photo.png'">
-						<em class="vip" v-if="item.type == 'dzsd4107100310010002'"></em>
-					</div>
-					<h1 class="name">{{item.nickName}}</h1>
-					<h2 class="title">{{item.title}}</h2>
-				</li>
-			</ul>
-		</article>
-		<!-- end -->
-		<!-- 专题内容 -->
-		<article class="sports-con" v-if="model.infos.length">
-			<ul class="sports-list">
-				<li class="sport" v-for="info in model.infos" :class="{show:$index >=4}">
-					<a href="javascript:;" @click="backSportTime(info.code,info.contentType)">
-						<div class="canvas"><img src="img/lazyload.jpg" v-lazyload:opt.fadein="info.cover" :alt="info.title"></div>
-						<h1 class="title">{{info.title}}</h1>
-						<div class="user">
-							<span class="photo"><img :src="info.userBasicInfo.aboutHead?info.userBasicInfo.aboutHead:'../static/img/default_photo.png'" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span>
-							<em class="zan">喜欢 {{info.praiseNum}}</em>
-							<em class="sign" v-if="info.userBasicInfo.type == 'dzsd4107100310010002'"><img src="img/sign.png" alt=""></em>
-						</div>
-					</a>					
-				</li>
-			</ul>
-			<template v-if="model.infos.length > num">
-				<a href="javascript:;" class="sport-event up" @click="toggle">展开更多</a>
-				<!-- <a href="javascript:;" class="sport-event down">收起</a> -->
-			</template>
-		</article>
-		<!-- end -->
+<body class="body">
+<!-- <section class="main">
+	<header class="header"><img src="image/topic/header.jpg" alt="运动达人"></header>
+	<section class="section">
+		<p>
+			如果你热爱运动健身，经常发起或参与运动；
+		</p>
+		<p>
+			如果你喜欢记录运动健身日记，分享你的运动时刻；
+		</p>
+		<p>
+			如果你在运动方面有一定专业知识，乐于帮助其他同学答疑解惑；
+		</p>
+		<p>
+			如果你在运动健身领域有任何的出色之举，取得优异的成绩；
+		</p>
+		<p style="color: #f25b0b;">欢迎加入GODO运动达人大家庭！！！</p>
+		<p class="title">成为GODO运动达人，你可以：</p>
+		<p>
+			拥有在首页达人专区展示的机会，让更多的果冻认识你了解你；
+		</p>
+		<p>
+			你的游记拥有在GODO被优先推荐的特权，让你被更多的运动同好关注；
+		</p>
+		<p>
+			优先参与GODO线上线下的各种活动；
+		</p>
+		<p>
+			还有一些达人专享的惊喜福利。
+		</p>
+		<p class="title">如何申请：</p>
+		<p>
+			想要成为GODO运动达人的果冻，请根据提示，将申请资料发送至GODO官方邮箱：<a href="mailto:godoservice@ichsy.com" style="color: #f25b0b;">godoservice@ichsy.com</a>，提交申请资料后，我们将会在五个工作日内审核资料并反馈！邮件标题请以【<em style="color: #f25b0b;">姓名+GODO达人申请</em>】格式为准。么么哒~
+		</p>
+		<p>
+			如有疑问，请拨打客服电话<br>010-82710836咨询，感谢您对GODO的支持！
+		</p>
+		<p class="title">申请格式：</p>
+		<p>
+			申请资料中一定要注明<em style="color: #f25b0b;">真实姓名、联系方式（越详细越好，例如邮箱、电话、详细地址）、微博</em>或者任何社交平台，当然如果有与运动相关的头衔也可以放上来哦（例如国家一级运动员/国家级健身指导员），最后请附上<em style="color: #f25b0b;">申请理由</em>，介绍下你认为自己称得上运动达人的理由。
+		</p>
+		<p>
+			注：GODO将严格保密，不会将您提交的申请资料用于任何商业用途！
+		</p>
 	</section>
-</section>
-<aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
-<script type="text/javascript" src="../static/js/lib/zepto.min.js"></script>
-<script type="text/javascript" src="../static/js/lib/vue.min.js"></script>
-<script type="text/javascript" src="../static/js/vue.lazyimg.js"></script>
-<script type="text/javascript" src="../static/js/tools.js"></script>
-<script type="text/javascript" src="../static/js/share.js"></script>
-<script type="text/javascript">
-	var width = $(window).width();
-	Vue.use(Vue.lazyimg,{
-	    fade: true,
-	    nohori: true,
-	    speed: 20
-	});
-	var vm = new Vue({
-		el:'#sports',
-		data:{
-			result: null,
-			num:4,
-			loading:true,
-			styleObject:{
-				width:window.innerWidth + 'px',
-				overflow:'hidden'
-			},
-			share:queryUrl('share')
-		},
-		created:function(){
-			var self = this;
-			$.ajax({
-				url:'/api/contentController/themePage',
-				type:'POST',
-				data:'{"code": "' + queryUrl('id') + '","width": "' + width + '","zoo": {"key": "tesetkey","token": " "}}',
-				contentType:'application/json',
-				dataType:'json',
-				success:function(data){
-					if(data.status == 1) {
-						self.result = data;
-						if(data.shareFlag && !self.share){
-							callbackShare(data.code);
-						}
-						// if(!self.share){
-						// 	webTitle(data.name);
-						// }
-						setTimeout(function(){
-							self.loading = false;
-						}, 1700);
-					}else {
-						alert(data.error)
-					}
-				}
-			});
-			if(self.share){
-				share()
-			}
-		},
-		methods:{
-			backSportTime:function(code,type) {
-				if(!this.share){
-					callbackSportTime(code,type);
-				}else{
-					open()
-				}
-			},
-			headCallback:function(code){
-				if(!this.share){
-					callbackFunc(code);
-				}else{
-					open()
-				}
-			},
-			// webTitle:function(val){
-			// 	var _this = this;
-			// 	if(!_this.share){
-			// 		callWebTitle(val);
-			// 	}
-			// },
-			touchstart:function(event){
-				var _this = event.currentTarget;
-				var target = event.targetTouches[0];
-				var start = target.pageX;
-				var disX = $(_this).children('ul').offset().left;
-					_this.addEventListener('touchmove', function(event){
-						var target = event.targetTouches[0];
-						var move = target.pageX - start + disX;
-						$(_this).children('ul').css('left',move);
-						event.preventDefault();
-					},false);
-
-					_this.addEventListener('touchend', function(event){
-						var endX = $(_this).children('ul').offset().left;
-							if(endX > 0){
-								endX = 0;
-							} else if(endX < ($(_this).width() - $(_this).children('ul').width())){
-								endX = $(_this).width() - $(_this).children('ul').width()
-							}
-							$(_this).children('ul').css({
-								'left':endX
-							});
-					},false);
-			}
-		}
-	});
-	$('.sport-event').live('click',function(){
-		var index = $('.sport-event').index($(this));
-		if($(this).hasClass('up')){
-			$(this).removeClass('up').addClass('down').text('收起');
-			$(this).parent().find('.show').css('display','block');
-			
-		}else{
-			$(this).removeClass('down').addClass('up').text('展开更多');
-			$(this).parent().find('.show').removeAttr('style');
-		}
-	});
-</script>
+	<footer class="footer"><img src="image/topic/footer.jpg" alt="运动达人"></footer>
+</section> -->
 </body>
 </html>
