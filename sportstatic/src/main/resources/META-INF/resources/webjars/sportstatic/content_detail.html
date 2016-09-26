@@ -252,7 +252,7 @@ var vm = new Vue({
 				success: function(resp) {
 					if(resp.status == 1){
 						_this.res = resp;
-						_this.webTitle(resp.sportingMoment.title);
+						//_this.webTitle(resp.sportingMoment.title);
 						setTimeout(function(){
 							_this.loading = false;
 						}, 1700)
@@ -277,13 +277,14 @@ var vm = new Vue({
 			}else{
 				open()
 			}
-		},
-		webTitle:function(val){
-			var _this = this;
-			if(!_this.share){
-				callWebTitle(val);
-			}
 		}
+		// ,
+		// webTitle:function(val){
+		// 	var _this = this;
+		// 	if(!_this.share){
+		// 		callWebTitle(val);
+		// 	}
+		// }
 	}
 });
 </script>

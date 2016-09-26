@@ -132,9 +132,9 @@ html{background: #f0f0f0;}
 						if(data.shareFlag && !self.share){
 							callbackShare(data.code);
 						}
-						if(!self.share){
-							webTitle(data.name);
-						}
+						// if(!self.share){
+						// 	webTitle(data.name);
+						// }
 						setTimeout(function(){
 							self.loading = false;
 						}, 1700);
@@ -162,12 +162,12 @@ html{background: #f0f0f0;}
 					open()
 				}
 			},
-			webTitle:function(val){
-				var _this = this;
-				if(!_this.share){
-					callWebTitle(val);
-				}
-			},
+			// webTitle:function(val){
+			// 	var _this = this;
+			// 	if(!_this.share){
+			// 		callWebTitle(val);
+			// 	}
+			// },
 			touchstart:function(event){
 				var _this = event.currentTarget;
 				var target = event.targetTouches[0];
