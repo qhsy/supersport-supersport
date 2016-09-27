@@ -76,7 +76,7 @@
 		<item code="dzpi4514100700030004" nodeName="两栏内容1:1" parentCode="dzpi451410070003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForSecondOne" pageIcon="glyphicon-pause" />
 		<item code="dzpi4514100700030005" nodeName="两栏内容4:3" parentCode="dzpi451410070003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForSecondFour" pageIcon="glyphicon-pause" />
 		<item code="dzpi4514100700030006" nodeName="三栏内容" parentCode="dzpi451410070003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForThird" pageIcon="glyphicon-stats" />
-		<item code="dzpi4514100700030007" nodeName="首页内容排版" parentCode="dzpi451410070003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForSort" pageIcon="glyphicon-th" />
+		<item code="dzpi4514100700030007" nodeName="首页内容排版" parentCode="dzpi451410070003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_HomeStylePage" pageIcon="glyphicon-th" />
 		<item code="dzpi451410070004" nodeName="首页相关" parentCode="dzpi45141007" />
 		<item code="dzpi4514100700040001" nodeName="达人专访" parentCode="dzpi451410070004" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnExpertChatPage" pageIcon="glyphicon-bullhorn" />
 		<item code="dzpi4514100700040002" nodeName="精彩视频" parentCode="dzpi451410070004" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnWonderfulVideoPage" pageIcon="glyphicon-facetime-video" />
