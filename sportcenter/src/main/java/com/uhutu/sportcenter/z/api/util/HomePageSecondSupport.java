@@ -16,6 +16,7 @@ import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
 import com.uhutu.dcom.content.z.entity.CnHomeNavMenu;
 import com.uhutu.dcom.content.z.entity.CnHomeNavMenuForApi;
+import com.uhutu.dcom.content.z.entity.CnHomeStyle;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
@@ -60,19 +61,33 @@ public class HomePageSecondSupport {
 
 	public List<HomePageSecond> getPageModels(int width, String token) {
 		List<HomePageSecond> li = new ArrayList<HomePageSecond>();
-		MDataMap mDataMap = new MDataMap();
-		mDataMap.put("status", "dzsd4699100110010001");
-		List<CnContentItem> items = JdbcHelper.queryForList(CnContentItem.class, "", "-sort,-start_time",
-				"  startTime<=NOW() and endTime>=NOW() and status=:status "
-						+ "and type in ('dzsd4107100110060001','dzsd4107100110060002','dzsd4107100110060005',"
-						+ "'dzsd4107100110060006','dzsd4107100110060007','dzsd4107100110060008','dzsd4107100110060009') ",
-				mDataMap);
-		for (int i = 0; i < items.size(); i++) {
-			CnContentItemForApi forApi = new CnContentItemForApi();
-			BeanUtils.copyProperties(items.get(i), forApi);
-			HomePageSecond pageSecond = PageModel(forApi, width, token);
-			if (pageSecond != null) {
-				li.add(pageSecond);
+		List<CnHomeStyle> styles = JdbcHelper.queryForList(CnHomeStyle.class, "", "sort desc", "", new MDataMap());
+		StringBuffer str = new StringBuffer();
+		if (styles != null && !styles.isEmpty() && styles.size() > 0) {
+			for (int i = 0; i < styles.size(); i++) {
+				if (i == styles.size() - 1) {
+					str.append("'" + styles.get(i).getColumnCode() + "'");
+				} else {
+					str.append("'" + styles.get(i).getColumnCode() + "',");
+				}
+			}
+		}
+		if (StringUtils.isNotBlank(str)) {
+			MDataMap mDataMap = new MDataMap();
+			mDataMap.put("status", "dzsd4699100110010001");
+			List<CnContentItem> items = JdbcHelper.queryForList(CnContentItem.class, "",
+					" field(code," + str.toString() + ")",
+					" code in(" + str.toString() + ")" + " and  startTime<=NOW() and endTime>=NOW() and status=:status "
+							+ "and type in ('dzsd4107100110060001','dzsd4107100110060002','dzsd4107100110060005',"
+							+ "'dzsd4107100110060006','dzsd4107100110060007','dzsd4107100110060008','dzsd4107100110060009') ",
+					mDataMap);
+			for (int i = 0; i < items.size(); i++) {
+				CnContentItemForApi forApi = new CnContentItemForApi();
+				BeanUtils.copyProperties(items.get(i), forApi);
+				HomePageSecond pageSecond = PageModel(forApi, width, token);
+				if (pageSecond != null) {
+					li.add(pageSecond);
+				}
 			}
 		}
 		return li;
