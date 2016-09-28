@@ -24,9 +24,8 @@
 </head>
 <body>
 <section class="content" v-cloak>
-	<!-- <aside class="load" v-if="load" :style="{height: styleHeight + 'px',overflow:'hidden'}"><img src="../static/img/godo.gif" alt=""></aside> -->
 	<ul class="talent">
-		<li class="item" v-for="item in commits" @click="backSportTime(item.userBasicInfo.userCode,item.contentShowInfo.type)">
+		<li class="item" v-for="item in commits" @click="backSportTime(item.contentShowInfo.code,item.contentShowInfo.type)">
 			<a href="javascript:;" class="photo"><img :src="item.contentShowInfo.cover" alt=""></a>
 			<h1 class="title">{{item.contentShowInfo.title}}</h1>
 			<h3 class="name">{{item.userBasicInfo.nickName}}</h3>
@@ -46,48 +45,13 @@ new Vue({
 	data:{
 		commits:[],
 		page:1,
-		next:false,
-		load:true,
-		styleHeight: 30,
-		isTop: true
+		next:false
+
 	},
 	created:function(){
 		var _this = this;
 		_this.getData();
 		window.addEventListener('scroll', _this.refresh, false);
-		// var startY = 0;
-		// var moveY = 0;
-		// window.addEventListener('touchstart',function(event){
-		// 	if(!_this.isTop){
-		// 		return false;
-		// 	}
-		// 	_this.load = true;
-		// 	var event = event || window.event;
-		// 	startY = event.targetTouches[0].clientY;
-		// },false);
-
-		// window.addEventListener('touchmove',function(){
-		// 	if(!_this.isTop){
-		// 		return false;
-		// 	}
-		// 	var event = event || window.event;
-		// 	moveY = event.targetTouches[0].clientY - startY;
-		// 	_this.styleHeight = moveY;
-		// },false);
-
-		// window.addEventListener('touchend',function(){
-		// 	if(!_this.isTop){
-		// 		return false;
-		// 	}
-		// 	if(_this.styleHeight >= 30){
-		// 		_this.styleHeight = 30;
-		// 		_this.commits = [];
-		// 		_this.page == 1?_this.getData():_this.page = 1;
-		// 	}else{
-		// 		_this.styleHeight = 0;
-		// 	}
-		// },false);
-
 	},
 	watch:{
 		page:'getData'
@@ -105,8 +69,6 @@ new Vue({
 					if(resp.status == 1){
 						_this.commits = _this.commits.concat(resp.contentShowModels);
 						_this.next = resp.nextPageFlag;
-						//_this.load = false;
-						//_this.styleHeight = 0;
 						callWebTitle('达人专访');
 					}else{
 						alert(resp.error)
@@ -118,7 +80,6 @@ new Vue({
 			var winHeight = window.innerHeight;
 			var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
 			var bodyHeight = document.body.clientHeight;
-			//scrollTop >=1?this.isTop = false:this.isTop = true;
 			if(this.next && bodyHeight <= (winHeight + scrollTop)){
 				this.page++;
 			}
@@ -129,5 +90,6 @@ new Vue({
 	}
 })
 </script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
 </html>

@@ -132,6 +132,9 @@ html{background: #f0f0f0;}
 						if(data.shareFlag && !self.share){
 							callbackShare(data.code);
 						}
+						if(!self.share){
+							self.webTitle(data.name);
+						}
 						setTimeout(function(){
 							self.loading = false;
 						}, 1700);
@@ -157,6 +160,12 @@ html{background: #f0f0f0;}
 					callbackFunc(code);
 				}else{
 					open()
+				}
+			},
+			webTitle:function(val){
+				var _this = this;
+				if(!_this.share){
+					callWebTitle(val);
 				}
 			},
 			touchstart:function(event){
@@ -197,5 +206,6 @@ html{background: #f0f0f0;}
 		}
 	});
 </script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
 </html>
