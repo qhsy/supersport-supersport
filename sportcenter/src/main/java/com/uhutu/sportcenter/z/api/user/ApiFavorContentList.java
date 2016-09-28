@@ -58,6 +58,8 @@ public class ApiFavorContentList extends RootApiBase<ApiFavorContentListInput, A
 		conditions.setConditionEqual("status", ContentEnum.FAVOR_STATUS_YES.getCode());
 
 		conditions.setConditionEqual("type", ContentEnum.FAVOR_TYPE_LIKE.getCode());
+		
+		conditions.setConditionLeftInclude("contentCode", "CNBH");
 
 		Page<CnSupportPraise> praisePage = contentServiceFactory.getSupportPraiseService()
 				.queryPageByCondition(input.getPagination(), 10, conditions);
