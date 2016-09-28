@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.uhutu.dcom.answer.z.entity.AwSettleAccount;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.component.z.util.RandomUtil;
 import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
@@ -166,8 +167,10 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 			
 			ucUserinfoExt = new UcUserinfoExt();
 			
-			String nickName = initNickName(input.getAccountName(), userCode);
+			String accountName = EmojiUtil.emojiFilter(input.getAccountName());
 			
+			String nickName = initNickName(accountName, userCode);
+	
 			ucUserinfoExt.setNickName(nickName);
 			
 			ucUserinfoExt.setUserCode(userCode);
@@ -197,7 +200,9 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 			
 			social.setAccountId(input.getAccountId());
 			
-			social.setAccountName(input.getAccountName());
+			String accountName = EmojiUtil.emojiFilter(input.getAccountName());
+			
+			social.setAccountName(accountName);
 			
 			social.setAccountType(input.getAccountType());
 			
