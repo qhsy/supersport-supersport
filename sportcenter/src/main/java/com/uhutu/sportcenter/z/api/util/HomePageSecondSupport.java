@@ -100,7 +100,7 @@ public class HomePageSecondSupport {
 		MDataMap map = new MDataMap();
 		map.put("itemType", item.getType());
 		map.put("itemCode", item.getCode());
-		List<CnContentItemRel> rels = JdbcHelper.queryForList(CnContentItemRel.class, "contentCode",
+		List<CnContentItemRel> rels = JdbcHelper.queryForList(CnContentItemRel.class, "",
 				"sort desc,start_time desc,zc desc",
 				" itemCode=:itemCode and itemType=:itemType and endTime>=NOW() and startTime<=NOW() ", map);
 		StringBuffer str = new StringBuffer();
@@ -188,22 +188,29 @@ public class HomePageSecondSupport {
 				}
 			} else if ("dzsd4107100110060002".equals(item.getType()) || "dzsd4107100110060005".equals(item.getType())) {// 单图广告&一栏内容
 				hmp.setItem("dzsd4107100110060005".equals(item.getType()) ? item : null);
-				CnAdvertiseDetail detail = JdbcHelper.queryOne(CnAdvertiseDetail.class, "", "",
-						" code in(" + str.toString() + ")", new MDataMap());
-				AdvertiseDetailForApi dfa = new AdvertiseDetailForApi();
-				BeanUtils.copyProperties(detail, dfa);
-				if ("dzsd4107100110050002".equals(detail.getPiclinkType())
-						&& StringUtils.isNotBlank(detail.getPiclinkContent())) {
-					CnContentBasicinfo cbi = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
-							detail.getPiclinkContent());
-					if (cbi != null) {
-						dfa.setType(cbi.getContentType());
+				List<CnAdvertiseDetail> details = JdbcHelper.queryForList(CnAdvertiseDetail.class, "",
+						" field(code," + str.toString() + ")", " code in(" + str.toString() + ")", new MDataMap());
+				if (details != null && !details.isEmpty() && details.size() > 0) {
+					for (int i = 0; i < details.size(); i++) {
+						AdvertiseDetailForApi dfa = new AdvertiseDetailForApi();
+						BeanUtils.copyProperties(details.get(i), dfa);
+						if ("dzsd4107100110050002".equals(details.get(i).getPiclinkType())
+								&& StringUtils.isNotBlank(details.get(i).getPiclinkContent())) {
+							CnContentBasicinfo cbi = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
+									details.get(i).getPiclinkContent());
+							if (cbi != null) {
+								dfa.setType(cbi.getContentType());
+							}
+						}
+						if (titleMap.containsKey(dfa.getCode())) {
+							dfa.setName(titleMap.get(dfa.getCode()));
+						}
+						if (StringUtils.isNotBlank(dfa.getPicUrl()) && width > 0) {
+							dfa.setPicUrl(ImageHelper.upImageThumbnail(dfa.getPicUrl(), Integer.valueOf(width)));
+						}
+						hmp.getAdv().getDetails().add(dfa);
 					}
 				}
-				if (StringUtils.isNotBlank(dfa.getPicUrl()) && width > 0) {
-					dfa.setPicUrl(ImageHelper.upImageThumbnail(dfa.getPicUrl(), Integer.valueOf(width)));
-				}
-				hmp.getAdv().getDetails().add(dfa);
 			} else if ("dzsd4107100110060001".equals(item.getType())) {// 轮播广告
 
 				List<CnAdvertiseDetail> details = JdbcHelper.queryForList(CnAdvertiseDetail.class, "",
