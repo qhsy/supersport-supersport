@@ -2,8 +2,10 @@ package com.uhutu.dcom.content.func;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.uhutu.dcom.content.z.entity.CnContentRecomm;
 import com.uhutu.dcom.content.z.entity.CnShareInfo;
 import com.uhutu.zoocom.define.DefineWebInc;
+import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.model.MParamReplace;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
@@ -21,7 +23,7 @@ public class CnContentRecommFuncAdd extends RootFunc {
 	@Override
 	public WebOperateResult process(WebPageModel webPageModel, ExtendPageDefine extendPageDefine,
 			WebOperateInput input) {
-
+		WebOperateResult result = new WebOperateResult();
 		MDataMap mInsertMap = new MDataMap();
 
 		// 只有存在于预定义列中的值才进行操作
@@ -69,13 +71,19 @@ public class CnContentRecommFuncAdd extends RootFunc {
 			}
 
 		}
-
-		JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), mInsertMap);
-		CnShareInfo shareInfo = new CnShareInfo();
-		shareInfo.setCode(mInsertMap.get("code"));
-		shareInfo.setStatus("0");
-		JdbcHelper.insert(shareInfo);
-		return new WebOperateResult();
+		CnContentRecomm exit = JdbcHelper.queryOne(CnContentRecomm.class, "", "", " contentCode=:content_code",
+				input.getDataMap());
+		if (exit != null) {
+			result.setStatus(810710003);
+			result.setError(TopHelper.upInfo(810710003));
+		} else {
+			JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), mInsertMap);
+			CnShareInfo shareInfo = new CnShareInfo();
+			shareInfo.setCode(mInsertMap.get("code"));
+			shareInfo.setStatus("0");
+			JdbcHelper.insert(shareInfo);
+		}
+		return result;
 	}
 
 }
