@@ -1,9 +1,6 @@
 package com.uhutu.sportcenter.z.api.home;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -50,84 +47,69 @@ public class ApiWonderfulVideo extends RootApiBase<ApiWonderfulVideoInput, ApiWo
 		
 		List<CnWonderfulVideo> expertChats = JdbcHelper.queryForList(CnWonderfulVideo.class, "", "-sort", "", new MDataMap(), iStart, pageInfo.getPageNum());
 		
-		Map<String,CnWonderfulVideo> expertMap = new HashMap<String,CnWonderfulVideo>();
-		
-		List<String> whereList = new ArrayList<String>();
-		
 		expertChats.forEach(video -> {
 			
-			expertMap.put(video.getContentCode(), video);
+			CnContentBasicinfo basicInfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",video.getContentCode());
 			
-			whereList.add(video.getContentCode());
-			
-		});
-		
-		String[] values = {};
-		
-		values = whereList.toArray(values);
-		
-		List<CnContentBasicinfo> basicinfos = JdbcHelper.queryForIn(CnContentBasicinfo.class, "code", values);
-		
-		basicinfos.forEach(basicInfo -> {
-			
-			String code = basicInfo.getCode();
-			
-			ContentShowInfo showInfo = new ContentShowInfo();
-			
-			ContentShowModel showModel = new ContentShowModel();
-			
-			CnWonderfulVideo video = expertMap.get(code);
-			
-			showInfo.setCode(code);
-			
-			String cover = StringUtils.isEmpty(video.getCover())?basicInfo.getCover():video.getCover();
-			
-			if(StringUtils.isNotBlank(cover)){
+			if(basicInfo != null){
 				
-				cover = ImageHelper.upImageThumbnail(cover, input.getWidth());
+				String code = basicInfo.getCode();
 				
-			}
-			
-			String title = StringUtils.isEmpty(video.getTitle())?basicInfo.getTitle():video.getTitle();
-			
-			showInfo.setCover(cover);
-			
-			showInfo.setTitle(title);
-			
-			showInfo.setType(basicInfo.getContentType());
-			
-			showInfo.setReadNum(ContentComponent.readNum(code));
-			
-			UserBasicInfo userBasicInfo = new UserBasicInfo();
-			
-			UcUserinfo userinfo = userInfoSupport.getUserInfo(basicInfo.getAuthor());
-			
-			UcUserinfoExt userinfoExt = userInfoSupport.getUserInfoExt(basicInfo.getAuthor());
-			
-			if(userinfo != null){
+				ContentShowInfo showInfo = new ContentShowInfo();
 				
-				userBasicInfo.setType(userinfo.getType());
+				ContentShowModel showModel = new ContentShowModel();
 				
-			}
-			
-			if(userinfoExt != null){
+				showInfo.setCode(code);
 				
-				userBasicInfo.setAboutHead(userinfoExt.getAboutHead());
+				String cover = StringUtils.isEmpty(video.getCover())?basicInfo.getCover():video.getCover();
 				
-				userBasicInfo.setNickName(userinfoExt.getNickName());
+				if(StringUtils.isNotBlank(cover)){
+					
+					cover = ImageHelper.upImageThumbnail(cover, input.getWidth());
+					
+				}
 				
-				userBasicInfo.setTitle(userinfoExt.getTitle());
+				String title = StringUtils.isEmpty(video.getTitle())?basicInfo.getTitle():video.getTitle();
 				
-				userBasicInfo.setUserCode(userinfoExt.getUserCode());
+				showInfo.setCover(cover);
+				
+				showInfo.setTitle(title);
+				
+				showInfo.setType(basicInfo.getContentType());
+				
+				showInfo.setReadNum(ContentComponent.readNum(code));
+				
+				UserBasicInfo userBasicInfo = new UserBasicInfo();
+				
+				UcUserinfo userinfo = userInfoSupport.getUserInfo(basicInfo.getAuthor());
+				
+				UcUserinfoExt userinfoExt = userInfoSupport.getUserInfoExt(basicInfo.getAuthor());
+				
+				if(userinfo != null){
+					
+					userBasicInfo.setType(userinfo.getType());
+					
+				}
+				
+				if(userinfoExt != null){
+					
+					userBasicInfo.setAboutHead(userinfoExt.getAboutHead());
+					
+					userBasicInfo.setNickName(userinfoExt.getNickName());
+					
+					userBasicInfo.setTitle(userinfoExt.getTitle());
+					
+					userBasicInfo.setUserCode(userinfoExt.getUserCode());
+					
+				}
+				
+				showModel.setContentShowInfo(showInfo);
+				
+				showModel.setUserBasicInfo(userBasicInfo);
+				
+				videoResult.getContentShowModels().add(showModel);
 				
 			}
-			
-			showModel.setContentShowInfo(showInfo);
-			
-			showModel.setUserBasicInfo(userBasicInfo);
-			
-			videoResult.getContentShowModels().add(showModel);
-			
 			
 		});
 		
