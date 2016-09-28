@@ -36,9 +36,6 @@ public class CnContentItem extends BaseEntity {
 	@ApiModelProperty(name = "栏目图标", notes = "栏目图标", example = "http://www.ichsy.com")
 	private String picUrl;
 
-	@ZooData(name = "简介", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
-	private String remark;
-
 	@ZooData(value = "是否显示更多", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=10" }, demo = "1:显示,0:不显示")
 	@Column(length = 50)
@@ -75,6 +72,9 @@ public class CnContentItem extends BaseEntity {
 
 	@ZooData(name = "结束时间", element = DefineWebElement.Datehms, require = "1")
 	private String endTime;
+	
+	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
+	private String remark;
 
 	public String getCode() {
 		return code;

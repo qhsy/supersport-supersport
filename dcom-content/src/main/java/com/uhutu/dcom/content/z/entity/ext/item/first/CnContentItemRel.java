@@ -1,7 +1,6 @@
-package com.uhutu.dcom.content.z.entity;
+package com.uhutu.dcom.content.z.entity.ext.item.first;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
@@ -17,7 +16,6 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author xiegj
  *
  */
-@Entity
 public class CnContentItemRel extends BaseEntity {
 
 	@ZooData(name = "栏目名称", sort = { DefineWebPage.Page_Query + "=0",
@@ -30,14 +28,14 @@ public class CnContentItemRel extends BaseEntity {
 					DefineWebInc.System_Define + "=dzsd410710011006" })
 	private String itemType;
 
-	@ZooData(name = "内容标题", require = "1", element = DefineWebElement.Model, inc = {
-			DefineWebInc.Web_Component + "=dzcw410710010002" })
+	@ZooData(name = "图片内容", require = "1", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw410710010009" })
 	private String contentCode;
 
 	@ZooData(name = "自定义标题", verify = { DefineWebVerify.Max_Length + "=50" })
 	@Column(length = 255)
 	private String title;
-
+	
 	@ZooData(name = "展示顺序(倒序)", require = "1", verify = { DefineWebVerify.Base_Number })
 	private int sort;
 

@@ -1,7 +1,9 @@
 package com.uhutu.sportcenter.z.api.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -13,7 +15,6 @@ import com.uhutu.dcom.content.z.entity.CnContentItem;
 import com.uhutu.dcom.content.z.entity.CnContentItemForApi;
 import com.uhutu.dcom.content.z.entity.CnContentItemRel;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
-import com.uhutu.dcom.content.z.entity.CnContentRecomm;
 import com.uhutu.dcom.content.z.entity.CnHomeNavMenu;
 import com.uhutu.dcom.content.z.entity.CnHomeNavMenuForApi;
 import com.uhutu.dcom.content.z.entity.CnHomeStyle;
@@ -103,8 +104,12 @@ public class HomePageSecondSupport {
 				"sort desc,start_time desc,zc desc",
 				" itemCode=:itemCode and itemType=:itemType and endTime>=NOW() and startTime<=NOW() ", map);
 		StringBuffer str = new StringBuffer();
+		Map<String, String> titleMap = new HashMap<String, String>();
 		if (rels != null && !rels.isEmpty() && rels.size() > 0) {
 			for (int i = 0; i < rels.size(); i++) {
+				if (StringUtils.isNotBlank(rels.get(i).getTitle())) {
+					titleMap.put(rels.get(i).getContentCode(), rels.get(i).getTitle());
+				}
 				if (i == rels.size() - 1) {
 					str.append("'" + rels.get(i).getContentCode() + "'");
 				} else {
@@ -152,13 +157,8 @@ public class HomePageSecondSupport {
 								userInfoApi.setType(ubi.getUcUserinfo().getType());
 							}
 						}
-						CnContentRecomm recomm = JdbcHelper.queryOne(CnContentRecomm.class, "contentCode",
-								info.getCode());
-						if (recomm != null) {
-							info.setCover(
-									StringUtils.isNotBlank(recomm.getCover()) ? recomm.getCover() : info.getCover());
-							info.setTitle(
-									StringUtils.isNotBlank(recomm.getTitle()) ? recomm.getTitle() : info.getTitle());
+						if (titleMap.containsKey(info.getCode())) {
+							info.setTitle(titleMap.get(info.getCode()));
 						}
 						width = (int) (("dzsd4107100110060006".equals(item.getType())
 								|| "dzsd4107100110060007".equals(item.getType())) ? Math.ceil(width / 2)
