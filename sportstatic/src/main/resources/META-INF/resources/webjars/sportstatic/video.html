@@ -30,7 +30,7 @@
 <body>
 <section class="content">
 	<ul class="video" v-cloak>
-		<li class="item" v-for="item in commits" @click="backSportTime(item.userBasicInfo.userCode,item.contentShowInfo.type)">
+		<li class="item" v-for="item in commits" @click="backSportTime(item.contentShowInfo.code,item.contentShowInfo.type)">
 			<a href="javascript:;" class="photo">
 				<img :src="item.contentShowInfo.cover" alt="">
 				<h3 class="name"><span>{{item.userBasicInfo.nickName}}</span><em class="vip" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></em></h3>
@@ -98,5 +98,6 @@ new Vue({
 	}
 })
 </script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
 </html>

@@ -17,8 +17,8 @@
 .user .head{width: 0.32rem; height: 0.32rem; margin-right: 0.1rem; float: left; position: relative;}
 .user .head img{border-radius: 50%;}
 .user .name{ width: 1.7rem; height: 0.15rem; overflow: hidden; font-size: 0.13rem; font-weight: 700; color: #212121; line-height: 0.15rem;}
-.user .title{color: #BDBDBD; font-size: 0.12rem;}
-.user .info{float: left;}
+.user .title{height: 0.16rem; overflow: hidden; color: #BDBDBD; font-size: 0.12rem; line-height: 0.16rem;}
+.user .info{float: left; max-width: 2.1rem;}
 .user .time{float: right; line-height: 0.32rem; font-size: 0.12rem; color: #BDBDBD; font-family: 'Helvetica-Light';}
 .user .num{padding-right: 0.12rem;}
 .user .num:before{content: ""; float: left; width: 0.17rem; height: 0.12rem; margin: 0.1rem 0.06rem 0 0; background: url(css/img/icon.png) no-repeat; background-size: 0.17rem;}
@@ -252,7 +252,7 @@ var vm = new Vue({
 				success: function(resp) {
 					if(resp.status == 1){
 						_this.res = resp;
-						//_this.webTitle(resp.sportingMoment.title);
+						_this.webTitle(resp.sportingMoment.title);
 						setTimeout(function(){
 							_this.loading = false;
 						}, 1700)
@@ -277,16 +277,16 @@ var vm = new Vue({
 			}else{
 				open()
 			}
+		},
+		webTitle:function(val){
+			var _this = this;
+			if(!_this.share){
+				callWebTitle(val);
+			}
 		}
-		// ,
-		// webTitle:function(val){
-		// 	var _this = this;
-		// 	if(!_this.share){
-		// 		callWebTitle(val);
-		// 	}
-		// }
 	}
 });
 </script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
 </html>
