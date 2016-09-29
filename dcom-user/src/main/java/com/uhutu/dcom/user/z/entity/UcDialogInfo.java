@@ -18,7 +18,6 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  *
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "code" }))
 public class UcDialogInfo extends BaseEntity {
 
 	@ZooData(name = "用户编号", require = "1", sort = {
