@@ -59,6 +59,7 @@ new Vue({
 		var _this = this;
 		_this.getData();
 		window.addEventListener('scroll', _this.refresh, false);
+		callWebTitle('精彩视频');
 	},
 	watch:{
 		page:'getData'
@@ -76,8 +77,6 @@ new Vue({
 					if(resp.status == 1){
 						_this.commits = _this.commits.concat(resp.contentShowModels);
 						_this.next = resp.nextPageFlag;
-						callWebTitle('精彩视频');
-
 					}else{
 						alert(resp.error)
 					}

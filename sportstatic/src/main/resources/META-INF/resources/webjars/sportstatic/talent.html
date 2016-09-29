@@ -52,6 +52,7 @@ new Vue({
 		var _this = this;
 		_this.getData();
 		window.addEventListener('scroll', _this.refresh, false);
+		callWebTitle('达人专访');
 	},
 	watch:{
 		page:'getData'
@@ -69,7 +70,6 @@ new Vue({
 					if(resp.status == 1){
 						_this.commits = _this.commits.concat(resp.contentShowModels);
 						_this.next = resp.nextPageFlag;
-						callWebTitle('达人专访');
 					}else{
 						alert(resp.error)
 					}
