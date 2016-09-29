@@ -20,7 +20,7 @@
 <body>
 <section class="content">
 	<ul class="hot-topic" v-cloak>
-		<li class="item" v-for="item in commits" @click="backSportTime(item.contentShowInfo.code,item.contentShowInfo.type)">
+		<li class="item" v-for="item in commits" @click="tagCallback(item.contentShowInfo.code,item.contentShowInfo.title)">
 			<a href="javascript:;">
 				<img :src="item.contentShowInfo.cover" :alt="item.contentShowInfo.title" class="photo">
 				<h1 class="title">{{item.contentShowInfo.title}}</h1>
@@ -81,6 +81,9 @@ new Vue({
 		},
 		backSportTime:function(code,type) {
 			callbackSportTime(code,type);
+		},
+		tagCallback:function(code,name){
+			callbackLabel(code,name)
 		}
 	}
 })
