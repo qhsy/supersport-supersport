@@ -30,13 +30,17 @@ public class CnContentItemRel extends BaseEntity {
 					DefineWebInc.System_Define + "=dzsd410710011006" })
 	private String itemType;
 
-	@ZooData(name = "内容标题", require = "1", element = DefineWebElement.Model, inc = {
+	@ZooData(name = "内容", require = "1", element = DefineWebElement.Model, inc = {
 			DefineWebInc.Web_Component + "=dzcw410710010002" })
 	private String contentCode;
 
 	@ZooData(name = "自定义标题", verify = { DefineWebVerify.Max_Length + "=50" })
 	@Column(length = 255)
 	private String title;
+
+	@ZooData(name = "自定义封面图", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
+	private String cover;
 
 	@ZooData(name = "展示顺序(倒序)", require = "1", verify = { DefineWebVerify.Base_Number })
 	private int sort;
@@ -114,6 +118,14 @@ public class CnContentItemRel extends BaseEntity {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 
 }
