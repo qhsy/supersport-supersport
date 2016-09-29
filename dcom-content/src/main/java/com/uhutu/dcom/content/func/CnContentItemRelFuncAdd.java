@@ -50,6 +50,7 @@ public class CnContentItemRelFuncAdd extends RootFunc {
 					relInfo.setContentCode(input.getDataMap().get("content_code"));
 					relInfo.setItemCode(input.getDataMap().get("item_code"));
 					relInfo.setItemType(item.getType());
+					relInfo.setCover(input.getDataMap().get("cover"));
 					relInfo.setTitle(input.getDataMap().get("title"));
 					relInfo.setSort(Integer.valueOf(input.getDataMap().get("sort")));
 					relInfo.setStartTime(input.getDataMap().get("start_time"));

@@ -105,10 +105,14 @@ public class HomePageSecondSupport {
 				" itemCode=:itemCode and itemType=:itemType and endTime>=NOW() and startTime<=NOW() ", map);
 		StringBuffer str = new StringBuffer();
 		Map<String, String> titleMap = new HashMap<String, String>();
+		Map<String, String> coverMap = new HashMap<String, String>();
 		if (rels != null && !rels.isEmpty() && rels.size() > 0) {
 			for (int i = 0; i < rels.size(); i++) {
 				if (StringUtils.isNotBlank(rels.get(i).getTitle())) {
 					titleMap.put(rels.get(i).getContentCode(), rels.get(i).getTitle());
+				}
+				if (StringUtils.isNotBlank(rels.get(i).getCover())) {
+					coverMap.put(rels.get(i).getContentCode(), rels.get(i).getCover());
 				}
 				if (i == rels.size() - 1) {
 					str.append("'" + rels.get(i).getContentCode() + "'");
@@ -159,6 +163,9 @@ public class HomePageSecondSupport {
 						}
 						if (titleMap.containsKey(info.getCode())) {
 							info.setTitle(titleMap.get(info.getCode()));
+						}
+						if (coverMap.containsKey(info.getCode())) {
+							info.setCover(coverMap.get(info.getCode()));
 						}
 						width = (int) (("dzsd4107100110060006".equals(item.getType())
 								|| "dzsd4107100110060007".equals(item.getType())) ? Math.ceil(width / 2)

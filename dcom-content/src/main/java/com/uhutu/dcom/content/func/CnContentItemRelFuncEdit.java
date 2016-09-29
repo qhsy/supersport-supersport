@@ -52,10 +52,11 @@ public class CnContentItemRelFuncEdit extends RootFunc {
 					relInfo.setSort(Integer.valueOf(input.getDataMap().get("sort")));
 					relInfo.setZa(input.getDataMap().get("za"));
 					relInfo.setTitle(input.getDataMap().get("title"));
+					relInfo.setCover(input.getDataMap().get("cover"));
 					relInfo.setStartTime(input.getDataMap().get("start_time"));
 					relInfo.setEndTime(input.getDataMap().get("end_time"));
 					relInfo.setRemark(input.getDataMap().get("remark"));
-					JdbcHelper.update(relInfo, "itemCode,contentCode,itemType,sort,title,start_time,end_time,remark", "za");
+					JdbcHelper.update(relInfo, "itemCode,contentCode,itemType,cover,sort,title,start_time,end_time,remark", "za");
 				}
 
 			} else if (item == null || binfo == null || ainfo == null) {
