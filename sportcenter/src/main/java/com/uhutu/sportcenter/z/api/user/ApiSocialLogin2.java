@@ -47,39 +47,47 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 
 	public ApiSocialLoginResult2 process(ApiSocialLoginInput2 inputParam) {
 		
-	    ApiSocialLoginResult2 result = null;
-		
-	    saveSocialLogin(inputParam);
+	    ApiSocialLoginResult2 result = new ApiSocialLoginResult2();
 	    
-	    UserReginsterResult userRegResult = userRegister(inputParam.getAccountId());
-	    
-	    if(userRegResult.upFlagTrue()){
+	    if(StringUtils.isBlank(inputParam.getAccountName())){
 	    	
-	    	result = new ApiSocialLoginResult2();
-	    	
-	    	saveUserInfo(userRegResult, inputParam);
-		    
-		    saveUserInfoExt(userRegResult.getUserCode(), inputParam);
-		    
-		    saveSocialInfo(userRegResult.getUserCode(), inputParam);
-		    
-		    result.setFirstLogin(true);
-		    
-		    result.setUserToken(userRegResult.getToken());
-		    
-		    result.setUserCode(userRegResult.getUserCode());
-	    	
-	    }else{
-	    	
-	    	result = loginSytem(inputParam.getAccountId());
+	    	result.inError(81100017);
 	    	
 	    }
 	    
-	    if(StringUtils.equals(inputParam.getAccountType(), "wechat") || StringUtils.equals(inputParam.getAccountType(), "wechat_h5")){
-	    	
-	    	 bindSettleAccount(result.getUserCode(), inputParam.getAccountName(),inputParam.getAccountType(), inputParam.getOpenid(), inputParam.getAccountId());
-	    	
-	    }
+		if(result.upFlagTrue()){
+			
+		    saveSocialLogin(inputParam);
+		    
+		    UserReginsterResult userRegResult = userRegister(inputParam.getAccountId());
+		    
+		    if(userRegResult.upFlagTrue()){
+		    	
+		    	saveUserInfo(userRegResult, inputParam);
+			    
+			    saveUserInfoExt(userRegResult.getUserCode(), inputParam);
+			    
+			    saveSocialInfo(userRegResult.getUserCode(), inputParam);
+			    
+			    result.setFirstLogin(true);
+			    
+			    result.setUserToken(userRegResult.getToken());
+			    
+			    result.setUserCode(userRegResult.getUserCode());
+		    	
+		    }else{
+		    	
+		    	result = loginSytem(inputParam.getAccountId());
+		    	
+		    }
+		    
+		    if(StringUtils.equals(inputParam.getAccountType(), "wechat") || StringUtils.equals(inputParam.getAccountType(), "wechat_h5")){
+		    	
+		    	 bindSettleAccount(result.getUserCode(), inputParam.getAccountName(),inputParam.getAccountType(), inputParam.getOpenid(), inputParam.getAccountId());
+		    	
+		    }
+			
+		}
 
 		return result;
 	}
