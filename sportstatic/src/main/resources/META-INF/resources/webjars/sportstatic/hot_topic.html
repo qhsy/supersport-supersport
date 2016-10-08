@@ -18,8 +18,8 @@
 </style>
 </head>
 <body>
-<section class="content">
-	<ul class="hot-topic" v-cloak>
+<section class="content" v-cloak>
+	<ul class="hot-topic">
 		<li class="item" v-for="item in commits" @click="tagCallback(item.contentShowInfo.code,item.contentShowInfo.title)">
 			<a href="javascript:;">
 				<img :src="item.contentShowInfo.cover" :alt="item.contentShowInfo.title" class="photo">

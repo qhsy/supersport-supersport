@@ -22,16 +22,16 @@
 .video .name:after{content: ""; float: left; width: .1rem; height: .1rem; margin: .04rem .04rem 0 .06rem; background: url(../static/img/touxiang@3x.png) no-repeat; background-size: cover;}
 .video .reading{width: .74rem; height: .18rem; padding-right: .06rem; background: url(../static/img/bg_top@3x.png) no-repeat; background-size: cover; position: absolute; right: 0; top: 0; font-size: .1rem; color: #fff; line-height: .18rem; font-family: "Arial"; text-align: right;}
 .video .reading:before{width: .13rem; height: .09rem; content: ""; display: inline-block; vertical-align: top; margin: .04rem .06rem 0 0; background: url(../static/img/jingcaishipin_little@3x.png) no-repeat; background-size: cover;}
-.video .title{max-height: .3rem; overflow: hidden; margin: .07rem 0 .12rem; color: #212121; word-break: break-all; word-wrap: break-word;}
+.video .title{max-height: .32rem; overflow: hidden; margin: .07rem 0 .12rem; color: #212121; word-break: break-all; word-wrap: break-word; line-height: .16rem;}
 .video .vip{display: inline-block; width: .1rem; height: .08rem; margin: .05rem 0 0 .05rem; vertical-align: top; background: url(../static/img/darenbiaozhi@3x.png) no-repeat; background-size: cover;}
 </style>
 
 </head>
 <body>
-<section class="content">
-	<ul class="video" v-cloak>
+<section class="content" v-cloak>
+	<ul class="video">
 		<li class="item" v-for="item in commits" @click="backSportTime(item.contentShowInfo.code,item.contentShowInfo.type)">
-			<a href="javascript:;" class="photo">
+			<a href="javascript:;" class="photo" v-cloak>
 				<img :src="item.contentShowInfo.cover" alt="">
 				<h3 class="name"><span>{{item.userBasicInfo.nickName}}</span><em class="vip" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></em></h3>
 				<span class="reading">{{item.contentShowInfo.readNum}}</span>
