@@ -1,6 +1,6 @@
 package com.uhutu.dcom.content.func;
 
-import com.uhutu.dcom.content.z.entity.CnExpertChat;
+import com.uhutu.dcom.content.z.entity.CnWonderfulVideo;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.api.webpage.WebOperateInput;
@@ -19,10 +19,10 @@ public class CnWonderfulVideoPageFuncAdd extends RootFunc {
 		
 		MDataMap mDataMap = input.getDataMap();
 		
-		CnExpertChat expertCaht = JdbcHelper.queryOne(CnExpertChat.class, "content_code",
+		CnWonderfulVideo video = JdbcHelper.queryOne(CnWonderfulVideo.class, "content_code",
 				input.getDataMap().get("content_code"));
 
-		if (expertCaht != null) {
+		if (video != null) {
 
 			result.inError(810710015);
 

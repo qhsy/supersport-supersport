@@ -5,6 +5,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -23,7 +24,7 @@ public class CnHotTopic extends BaseEntity {
 			DefineWebPage.Page_Grid + "=0" })
 	private String cover;
 	
-	@ZooData(value="话题标题")
+	@ZooData(value="话题标题", verify = { DefineWebVerify.Max_Length + "=28" })
 	private String title;
 	
 	@ZooData(value="排序",require = "1" ,sort = { DefineWebPage.Page_Query + "=0"})
