@@ -6,6 +6,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -23,7 +24,7 @@ public class CnHomeNavMenu extends BaseEntity {
 	@ApiModelProperty(name = "导航栏图标编号", notes = "导航栏图标编号", example = "DHLTBBH0001")
 	private String code;
 
-	@ZooData(name = "图标内容", require = "1")
+	@ZooData(name = "图标内容", require = "1",verify = { DefineWebVerify.Max_Length + "=4" })
 	private String name;
 
 	@ZooData(name = "导航图标(宽:待定;高:待定)", require = "1", element = DefineWebElement.Upload, sort = {
