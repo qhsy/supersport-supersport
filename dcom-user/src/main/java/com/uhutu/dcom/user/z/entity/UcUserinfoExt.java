@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
@@ -91,6 +94,13 @@ public class UcUserinfoExt extends BaseEntity {
 	 * @return
 	 */
 	public String getNickName() {
+		
+		if(StringUtils.isNotBlank(nickName)){
+			
+			setNickName(EmojiUtil.emojiRecovery(nickName));
+			
+		}
+		
 		return nickName;
 	}
 
