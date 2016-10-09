@@ -103,7 +103,7 @@
 <script type="text/x-template" id="template-picture">
 	<div class="cover"><img :src="res.sportingMoment.cover" alt=""></div>
 	<p class="caption">
-		{{res.contentDetailInfo.content}}
+		{{{res.contentDetailInfo.content}}}
 	</p>
 	<h2 class="address" v-if="res.sportingMoment.localtionName">{{res.sportingMoment.localtionName}}</h2>
 	<child-tag :res="res"></child-tag>
