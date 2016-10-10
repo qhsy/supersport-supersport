@@ -1,11 +1,12 @@
 package com.uhutu.sportcenter.z.api.user;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
-import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
@@ -22,6 +23,7 @@ import com.uhutu.sportcenter.z.api.util.HomePageSupport;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.input.ApiFavorContentListInput;
 import com.uhutu.sportcenter.z.result.ApiFavorContentListResult;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 
@@ -51,93 +53,87 @@ public class ApiFavorContentList extends RootApiBase<ApiFavorContentListInput, A
 
 		ApiFavorContentListResult result = new ApiFavorContentListResult();
 
-		QueryConditions conditions = new QueryConditions();
+		int iNumber = 10;
 
-		conditions.setConditionEqual("userCode", input.getUserCode());
+		int iStart = (input.getPagination() - 1) * iNumber;
 
-		conditions.setConditionEqual("status", ContentEnum.FAVOR_STATUS_YES.getCode());
+		StringBuffer sqlBuffer = new StringBuffer(" user_code='").append(input.getUserCode()).append("'");
 
-		conditions.setConditionEqual("type", ContentEnum.FAVOR_TYPE_LIKE.getCode());
+		sqlBuffer.append(" and status='").append(ContentEnum.FAVOR_STATUS_YES.getCode()).append("'");
+
+		sqlBuffer.append(" and type='").append(ContentEnum.FAVOR_TYPE_LIKE.getCode()).append("'");
+
+		sqlBuffer.append(" and content_code like '").append("CNBH%").append("'");
+
+		sqlBuffer.append(" and exists(select 1 from cn_content_basicinfo where status = 'dzsd4699100110010001')");
+
+		List<CnSupportPraise> praiseList = JdbcHelper.queryForList(CnSupportPraise.class, "", "-zc",
+				sqlBuffer.toString(), new MDataMap(), iStart, iNumber);
+
+		int total = JdbcHelper.count(CnSupportPraise.class, sqlBuffer.toString(), new MDataMap());
 		
-		conditions.setConditionLeftInclude("contentCode", "CNBH");
+		PageInfo pageInfo = new PageInfo(total, input.getPagination(), iNumber);
+		
+		result.setNextPageFlag(pageInfo.hasNext());
 
-		Page<CnSupportPraise> praisePage = contentServiceFactory.getSupportPraiseService()
-				.queryPageByCondition(input.getPagination(), 10, conditions);
+		praiseList.forEach(praise -> {
 
-		if (praisePage.hasNext()) {
+			ContentBasicinfoForApi basicinfoForApi = new ContentBasicinfoForApi();
 
-			result.setNextPageFlag(true);
+			CnContentBasicinfo basicinfo = contentServiceFactory.getContentBasicinfoService()
+					.queryByCode(praise.getContentCode());
 
-		} else {
+			if (basicinfo != null) {
 
-			result.setNextPageFlag(false);
+				BeanUtils.copyProperties(basicinfo, basicinfoForApi);
 
-		}
+				UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(basicinfo.getAuthor());
 
-		if (praisePage.hasContent()) {
+				UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(basicinfo.getAuthor());
 
-			praisePage.getContent().forEach(praise -> {
+				if (ucUserinfoExt != null) {
 
-				ContentBasicinfoForApi basicinfoForApi = new ContentBasicinfoForApi();
+					basicinfoForApi.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
 
-				CnContentBasicinfo basicinfo = contentServiceFactory.getContentBasicinfoService()
-						.queryByCode(praise.getContentCode());
+					basicinfoForApi.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
 
-				if (basicinfo != null) {
-
-					BeanUtils.copyProperties(basicinfo, basicinfoForApi);
-
-					UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(basicinfo.getAuthor());
-
-					UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(basicinfo.getAuthor());
-
-					if (ucUserinfoExt != null) {
-
-						basicinfoForApi.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
-
-						basicinfoForApi.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
-						
-						basicinfoForApi.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
-
-					}
-
-					if (ucUserinfo != null) {
-
-						basicinfoForApi.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
-
-						basicinfoForApi.getUserBasicInfo().setType(ucUserinfo.getType());
-
-					}
-
-					String tagName = labelServiceFactory.getContentLabelService()
-							.initTagName(basicinfoForApi.getTagCode());
-
-					basicinfoForApi.setTagName(tagName);
-
-					basicinfoForApi.setTags(
-							labelServiceFactory.getContentLabelService().getLabels(basicinfoForApi.getTagCode()));
-					basicinfoForApi.setFavorFlag(
-							ContentComponent.lightFavor(basicinfoForApi.getCode(), input.getZoo().getToken()));
-
-					basicinfoForApi.setPublishTimeStr("MM-dd HH:mm");
-					basicinfoForApi.setPublishTimeStr("MM-dd HH:mm");
-					CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
-							basicinfoForApi.getCode());
-					basicinfoForApi.setReadNum(contentReadCount != null ? contentReadCount.getCount() : 0);
-					int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(basicinfoForApi.getCode(),
-							RemarkEnum.FLAG_ENABLE.getCode());
-					basicinfoForApi.setRemarkNum(remarkNum);
-					int praiseNum = contentServiceFactory.getSupportPraiseService()
-							.queryCountByCode(basicinfoForApi.getCode(), ContentEnum.FAVOR_STATUS_YES.getCode());
-					basicinfoForApi.setPraiseNum(praiseNum);
-					result.getContentInfoList()
-							.add(new HomePageSupport(userInfoSupport).getSingleTitle(basicinfoForApi));
+					basicinfoForApi.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
 
 				}
 
-			});
+				if (ucUserinfo != null) {
 
-		}
+					basicinfoForApi.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
+
+					basicinfoForApi.getUserBasicInfo().setType(ucUserinfo.getType());
+
+				}
+
+				String tagName = labelServiceFactory.getContentLabelService().initTagName(basicinfoForApi.getTagCode());
+
+				basicinfoForApi.setTagName(tagName);
+
+				basicinfoForApi
+						.setTags(labelServiceFactory.getContentLabelService().getLabels(basicinfoForApi.getTagCode()));
+				basicinfoForApi.setFavorFlag(
+						ContentComponent.lightFavor(basicinfoForApi.getCode(), input.getZoo().getToken()));
+
+				basicinfoForApi.setPublishTimeStr("MM-dd HH:mm");
+				basicinfoForApi.setPublishTimeStr("MM-dd HH:mm");
+				CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
+						basicinfoForApi.getCode());
+				basicinfoForApi.setReadNum(contentReadCount != null ? contentReadCount.getCount() : 0);
+				int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(basicinfoForApi.getCode(),
+						RemarkEnum.FLAG_ENABLE.getCode());
+				basicinfoForApi.setRemarkNum(remarkNum);
+				int praiseNum = contentServiceFactory.getSupportPraiseService()
+						.queryCountByCode(basicinfoForApi.getCode(), ContentEnum.FAVOR_STATUS_YES.getCode());
+				basicinfoForApi.setPraiseNum(praiseNum);
+				result.getContentInfoList().add(new HomePageSupport(userInfoSupport).getSingleTitle(basicinfoForApi));
+
+			}
+
+		});
 
 		return result;
 	}
