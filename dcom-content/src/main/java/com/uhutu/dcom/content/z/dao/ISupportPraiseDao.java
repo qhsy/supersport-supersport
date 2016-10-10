@@ -117,7 +117,7 @@ public interface ISupportPraiseDao extends JpaRepository<CnSupportPraise, String
 	 * @return 标签信息
 	 */
 	
-	@Query("select count(1) from CnSupportPraise cp where cp.type=:type and cp.userCode=:userCode and contentCode like 'CNBH%' and status=:status")
+	@Query("select count(1) from CnSupportPraise cp where cp.type=:type and cp.userCode=:userCode and contentCode like 'CNBH%' and exists(select 1 from CnContentBasicinfo where code = content_code and status = 'dzsd4699100110010001'  ) and status=:status")
 	public int favored(@Param("type") String type, @Param("userCode") String userCode,@Param("status") String status);
 	
 }
