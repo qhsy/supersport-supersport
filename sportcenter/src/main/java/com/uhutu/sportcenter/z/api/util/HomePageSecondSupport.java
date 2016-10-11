@@ -167,12 +167,12 @@ public class HomePageSecondSupport {
 						if (coverMap.containsKey(info.getCode())) {
 							info.setCover(coverMap.get(info.getCode()));
 						}
-						width = (int) (("dzsd4107100110060006".equals(item.getType())
+						int wid = (int) (("dzsd4107100110060006".equals(item.getType())
 								|| "dzsd4107100110060007".equals(item.getType())) ? Math.ceil(width / 2)
 										: ("dzsd4107100110060008".equals(item.getType()) ? Math.ceil(width) / 3
 												: width));
-						if (StringUtils.isNotBlank(info.getCover()) && width > 0) {
-							info.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(width)));
+						if (StringUtils.isNotBlank(info.getCover()) && wid > 0) {
+							info.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(wid)));
 						}
 						BeanUtils.copyProperties(info, infoApi);
 						int praiseNum = JdbcHelper.count(CnSupportPraise.class, "",
