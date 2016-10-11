@@ -32,6 +32,8 @@ public class WaterMarkerSupport {
 				result = this.getCrossFitWaterMarker(picUrl);
 			} else if (tagCode.contains("GGBH160719110001")) {// 为翘而生
 				result = this.getWqes(picUrl);
+			} else if (tagCode.contains("GGBH161011110001")) {//昆赛搏击
+				result = this.getKSBJWaterMarker(picUrl);
 			}
 		}
 
