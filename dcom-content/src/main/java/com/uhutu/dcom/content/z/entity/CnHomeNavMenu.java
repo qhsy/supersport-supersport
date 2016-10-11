@@ -27,7 +27,7 @@ public class CnHomeNavMenu extends BaseEntity {
 	@ZooData(name = "图标内容", require = "1",verify = { DefineWebVerify.Max_Length + "=4" })
 	private String name;
 
-	@ZooData(name = "导航图标(宽:待定;高:待定)", require = "1", element = DefineWebElement.Upload, sort = {
+	@ZooData(name = "导航图标(宽:180;高:180)", require = "1", element = DefineWebElement.Upload, sort = {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@ApiModelProperty(name = "导航图标", notes = "导航图标", example = "http://www.ichsy.com")
 	private String picUrl;

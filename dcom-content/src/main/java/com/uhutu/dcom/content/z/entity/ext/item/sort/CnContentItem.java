@@ -29,7 +29,7 @@ public class CnContentItem extends BaseEntity {
 					DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
 	private String type;
 
-	@ZooData(name = "栏目图标(宽:待定;高:待定)", require = "1", element = DefineWebElement.Upload, sort = {
+	@ZooData(name = "栏目图标", require = "1", element = DefineWebElement.Upload, sort = {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0", DefineWebPage.Page_Add + "=0",
 			DefineWebPage.Page_Edit + "=0" })
 	private String picUrl;
