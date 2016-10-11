@@ -6,6 +6,7 @@ import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.api.webpage.WebOperateInput;
 import com.uhutu.zooweb.api.webpage.WebOperateResult;
 import com.uhutu.zooweb.api.webpage.WebPageModel;
+import com.uhutu.zooweb.helper.WebHelper;
 import com.uhutu.zooweb.model.ExtendPageDefine;
 import com.uhutu.zooweb.root.RootFunc;
 
@@ -16,11 +17,12 @@ public class CnContentLabelPageFuncAdd extends RootFunc {
 			WebOperateInput input) {
 		WebOperateResult result = new WebOperateResult();
 		MDataMap mDataMap = input.getDataMap();
-		CnContentLabel contentLabel = JdbcHelper.queryOne(CnContentLabel.class, "label_type", input.getDataMap().get("label_type"),
-				"name", input.getDataMap().get("name"));
+		CnContentLabel contentLabel = JdbcHelper.queryOne(CnContentLabel.class, "label_type",
+				input.getDataMap().get("label_type"), "name", input.getDataMap().get("name"));
 		if (contentLabel != null) {
 			result.inError(81140002);
 		} else {
+			mDataMap.put("code", WebHelper.upCode("GGBH"));
 			JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), mDataMap);
 		}
 		return result;

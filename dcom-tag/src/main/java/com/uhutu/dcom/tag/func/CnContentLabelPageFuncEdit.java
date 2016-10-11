@@ -21,7 +21,7 @@ public class CnContentLabelPageFuncEdit extends RootFunc {
 		if (contentLabel != null) {
 			result.inError(81140002);
 		} else {
-			JdbcHelper.dataUpdate(extendPageDefine.getPageSource().getTableName(), mDataMap, "", "");
+			JdbcHelper.dataUpdate(extendPageDefine.getPageSource().getTableName(), mDataMap, "", "za");
 		}
 		return result;
 	}

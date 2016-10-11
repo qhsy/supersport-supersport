@@ -150,4 +150,59 @@ public class WaterMarkerSupport {
 		return result;
 	}
 
+	/**
+	 * 给图片添加水印、可设置水印图片旋转角度
+	 * 
+	 * @param srcImgPath
+	 *            源图片路径
+	 */
+	private String getKSBJWaterMarker(String url) {
+		String result = "";
+		OutputStream os = null;
+		String waterPic = "http://img-cdn.bigtiyu.com/wsc/sport/274f3/s-186-52/4d9b04fff18449de936f124d30cafcf1.png";
+		try {
+			HttpEntity httpEntity = WebClientSupport.create().upEntity(url);
+			InputStream buffin = httpEntity.getContent();
+			Image srcImg = ImageIO.read(buffin);
+			BufferedImage buffImg = new BufferedImage(srcImg.getWidth(null), srcImg.getHeight(null),
+					BufferedImage.TYPE_INT_RGB);
+			// 得到画笔对象
+			Graphics2D g = buffImg.createGraphics();
+			// 设置对线段的锯齿状边缘处理
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g.drawImage(srcImg.getScaledInstance(srcImg.getWidth(null), srcImg.getHeight(null), Image.SCALE_SMOOTH), 0,
+					0, null);
+			// 根据1080原图等比压缩水印图大小及边距
+			double prop = Double.valueOf(srcImg.getWidth(null)) / Double.valueOf(1080);
+			waterPic = ImageHelper.upImageThumbnail(waterPic, (int) (prop * 186));
+			// 得到水印Image对象。
+			Image img = ImageIO.read(WebClientSupport.create().upEntity(waterPic).getContent());
+			float alpha = 1.0f; // 透明度
+			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, alpha));
+			// 表示水印图片的位置
+			int width = (int) (prop * 196);
+			int high = (int) (prop * 52);
+			g.drawImage(img, srcImg.getWidth(null) - width, srcImg.getHeight(null) - high - 10, null);
+			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
+			g.dispose();
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			ImageIO.write(buffImg, StringUtils.substringAfterLast(url, ".").toUpperCase(), bos);
+			byte b[] = bos.toByteArray();
+			FileUploadResult webUploadResult = new WebUploadSupport().remoteUpload("buttock",
+					TopHelper.upUuid() + "." + StringUtils.substringAfterLast(url, "."), b);
+			if (webUploadResult.upFlagTrue()) {
+				result = webUploadResult.getFileUrl();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (null != os)
+					os.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 }

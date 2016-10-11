@@ -22,7 +22,7 @@ public class CnLabelRecommPageFuncEdit extends RootFunc {
 		if (recommen != null) {
 			result.inError(81140001);
 		} else {
-			JdbcHelper.dataUpdate(extendPageDefine.getPageSource().getTableName(), mDataMap, "tag_code,sort", "");
+			JdbcHelper.dataUpdate(extendPageDefine.getPageSource().getTableName(), mDataMap, "tag_code,sort", "za");
 		}
 		return result;
 	}
