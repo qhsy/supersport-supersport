@@ -18,7 +18,7 @@
 .talent .item{width: 50%; padding: 0 .03rem; box-sizing: border-box; line-height: .15rem;}
 .talent .photo{display: block; width: 1.76rem; height: 1.76rem;}
 .talent .photo img{width: 1.76rem; height: 1.76rem;}
-.talent .title{width: 100%; margin-top: .06rem; color: #212121; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: .12rem;}
+.talent .title{width: 100%; margin-top: .06rem; margin-bottom: .125rem; color: #212121; font-size: .12rem; word-break: break-all; word-wrap: break-word; line-height: .15rem; display: -webkit-box; display: -moz-box; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; -webkit-line-clamp:2; }
 .talent .name{color: #BDBDBD; padding-bottom: .125rem; font-size: .12rem;}
 </style>
 </head>
@@ -28,7 +28,7 @@
 		<li class="item" v-for="item in commits" @click="backSportTime(item.contentShowInfo.code,item.contentShowInfo.type)">
 			<a href="javascript:;" class="photo"><img :src="item.contentShowInfo.cover" alt=""></a>
 			<h1 class="title">{{item.contentShowInfo.title}}</h1>
-			<h3 class="name">{{item.userBasicInfo.nickName}}</h3>
+			<!-- <h3 class="name">{{item.userBasicInfo.nickName}}</h3> -->
 		</li>
 	</ul>
 	<aside class="load" v-if="next"><img src="../static/img/godo.gif" alt=""></aside>
