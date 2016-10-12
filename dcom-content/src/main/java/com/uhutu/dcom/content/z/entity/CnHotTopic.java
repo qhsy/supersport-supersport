@@ -20,7 +20,7 @@ public class CnHotTopic extends BaseEntity {
 			DefineWebInc.Web_Component + "=dzcw412410010001" })
 	private String contentCode;
 	
-	@ZooData(value="话题封面", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
+	@ZooData(value="话题封面(1080*420)", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
 	private String cover;
 	

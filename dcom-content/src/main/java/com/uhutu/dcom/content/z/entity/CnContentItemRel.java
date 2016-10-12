@@ -38,8 +38,8 @@ public class CnContentItemRel extends BaseEntity {
 	@Column(length = 255)
 	private String title;
 
-	@ZooData(name = "自定义封面图", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "自定义封面", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" }, comment = "两栏1:1:不低于540*540,两栏4:3:不低于540*405,三栏:不低于540*540")
 	private String cover;
 
 	@ZooData(name = "展示顺序(倒序)", require = "1", verify = { DefineWebVerify.Base_Number })
