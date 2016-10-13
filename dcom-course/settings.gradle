@@ -1,0 +1,10 @@
+
+
+include ':dcom-config'
+project(':dcom-config').projectDir = new File(settingsDir, '../dcom-config')
+
+include ':dcom-component'
+project(':dcom-component').projectDir = new File(settingsDir, '../dcom-component')
+
+include ':dcom-user'
+project(':dcom-user').projectDir = new File(settingsDir, '../dcom-user')
