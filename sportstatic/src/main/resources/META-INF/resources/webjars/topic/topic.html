@@ -96,16 +96,16 @@ html{background: #f0f0f0;}
 <aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
 <script type="text/javascript" src="../static/js/lib/zepto.min.js"></script>
 <script type="text/javascript" src="../static/js/lib/vue.min.js"></script>
-<script type="text/javascript" src="../static/js/vue.lazyimg.js"></script>
+<!-- <script type="text/javascript" src="../static/js/vue.lazyimg.js"></script> -->
 <script type="text/javascript" src="../static/js/tools.js"></script>
 <script type="text/javascript" src="../static/js/share.js"></script>
 <script type="text/javascript">
 	var width = $(window).width();
-	Vue.use(Vue.lazyimg,{
-	    fade: true,
-	    nohori: true,
-	    speed: 20
-	});
+	// Vue.use(Vue.lazyimg,{
+	//     fade: true,
+	//     nohori: true,
+	//     speed: 20
+	// });
 	var vm = new Vue({
 		el:'#sports',
 		data:{
