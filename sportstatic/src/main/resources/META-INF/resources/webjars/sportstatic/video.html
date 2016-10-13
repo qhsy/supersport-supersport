@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="../static/css/base.css">
 <style type="text/css">
 .video{width: 100%; padding: 0 .05rem; box-sizing: border-box; display: -webkit-flex; display: -moz-flex; display: -o-flex; display: flex; -webkit-flex-wrap:wrap; -o-flex-wrap:wrap; -moz-flex-wrap:wrap; flex-wrap:wrap;}
-.video .item{width: 50%; padding: 0 .03rem; box-sizing: border-box; font-size: .12rem; line-height: .15rem;}
+.video .item{width: 50%; padding: 0 .03rem; box-sizing: border-box; font-size: .12rem; line-height: .15rem; float: left;}
 .video .photo{display: block; width: 1.76rem; height: 1.76rem; position: relative;}
 .video .photo img{width: 1.76rem; height: 1.76rem;}
 .video .name{width: 100%; height: .18rem; line-height: .18rem; position: absolute; left: 0; bottom: 0; font-family: "Helvetica"; color: #fff; font-weight: 400;}
@@ -24,6 +24,7 @@
 .video .reading:before{width: .13rem; height: .09rem; content: ""; display: inline-block; vertical-align: top; margin: .04rem .06rem 0 0; background: url(../static/img/jingcaishipin_little@3x.png) no-repeat; background-size: cover;}
 .video .title{margin: .07rem 0 .12rem; color: #212121; word-break: break-all; word-wrap: break-word; line-height: .16rem; display: -webkit-box;display: -moz-box; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; -webkit-line-clamp:2;}
 .video .vip{display: inline-block; width: .1rem; height: .08rem; margin: .05rem 0 0 .05rem; vertical-align: top; background: url(../static/img/darenbiaozhi@3x.png) no-repeat; background-size: cover;}
+.video  .h-3{height: 0.3rem;}
 </style>
 
 </head>
@@ -36,7 +37,7 @@
 				<h3 class="name"><span>{{item.userBasicInfo.nickName}}</span><em class="vip" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></em></h3>
 				<span class="reading">{{item.contentShowInfo.readNum}}</span>
 			</a>
-			<h1 class="title">{{item.contentShowInfo.title}}</h1>
+			<h1 class="title" :class="{'h-3':browser}">{{item.contentShowInfo.title}}</h1>
 		</li>
 	</ul>
 	<aside class="load" v-if="next"><img src="../static/img/godo.gif" alt=""></aside>
@@ -50,7 +51,8 @@ new Vue({
 	data:{
 		commits:[],
 		page:1,
-		next:true
+		next:true,
+		browser:navigator.userAgent.indexOf('Lenovo') > -1
 	},
 	created:function(){
 		var _this = this;
