@@ -20,7 +20,7 @@ public class CnExpertChat extends BaseEntity {
 			DefineWebInc.Web_Component + "=dzcw410710010010" })
 	private String contentCode;
 	
-	@ZooData(value="专访文章封面", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
+	@ZooData(value="专访文章封面(不低于540*540)", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
 	private String cover;
 	
