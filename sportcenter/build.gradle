@@ -28,7 +28,7 @@ dependencies {
 	compile project(':dcom-pay'){version=zooInitVersion;group=zooInitGroupId}
 	compile project(':dcom-evaluate'){version=zooInitVersion;group=zooInitGroupId}
 	compile project(':dcom-answer'){version=zooInitVersion;group=zooInitGroupId}
+	compile project(':dcom-course'){version=zooInitVersion;group=zooInitGroupId}
 	testCompile('org.springframework.boot:spring-boot-starter-test') 	
-	
 }
 
