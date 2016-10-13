@@ -75,7 +75,7 @@ html{background: #f0f0f0;}
 			<ul class="sports-list">
 				<li class="sport" v-for="info in model.infos" :class="{show:$index >=4}">
 					<a href="javascript:;" @click="backSportTime(info.code,info.contentType)">
-						<div class="canvas"><img src="info.cover" :alt="info.title"></div>
+						<div class="canvas"><img :src="info.cover" :alt="info.title"></div>
 						<h1 class="title">{{info.title}}</h1>
 						<div class="user">
 							<span class="photo"><img :src="info.userBasicInfo.aboutHead?info.userBasicInfo.aboutHead:'../static/img/default_photo.png'" :alt="{{info.userBasicInfo.nickName}}">{{info.userBasicInfo.nickName}}</span>
