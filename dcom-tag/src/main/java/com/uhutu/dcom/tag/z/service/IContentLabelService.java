@@ -71,5 +71,16 @@ public interface IContentLabelService {
 	 *            多个编号以逗号隔开
 	 */
 	public List<CnContentLabel> getLabels(String codes);
+	
+	/**
+	 * 查询名称列表
+	 * 
+	 * @param codes
+	 *            代码集合
+	 * @return
+	 */
+	public List<CnContentLabel> queryByCodeIn(List<String> codes);
+	
+	
 
 }
