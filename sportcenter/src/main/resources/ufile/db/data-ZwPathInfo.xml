@@ -31,6 +31,7 @@
 		<item code="dzpi4514100310031003" nodeName="广告栏目信息" parentCode="dzpi451410031003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForAdvPage" pageIcon="glyphicon-heart" />
 		<item code="dzpi451410031002" nodeName="广告管理" parentCode="dzpi45141003" />
 		<item code="dzpi4514100310021001" nodeName="图库" parentCode="dzpi451410031002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_AdvertiseDetailPage" pageIcon="glyphicon-film" />
+		<item code="dzpi4514100310021002" nodeName="贴纸" parentCode="dzpi451410031002" pageUrl="/zpage/pg/com_uhutu_dcom_tag_z_page_PicPasterPage" pageIcon="glyphicon-film" />
 		<item code="dzpi451410031005" nodeName="内容管理" parentCode="dzpi45141003" />
 		<item code="dzpi4514100310051002" nodeName="文章信息" parentCode="dzpi451410031005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoPage" pageIcon="glyphicon-adjust" />
 		<item code="dzpi4514100310051004" nodeName="文章(含视频)信息" parentCode="dzpi451410031005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForVideoPage" pageIcon="glyphicon-adjust" />
