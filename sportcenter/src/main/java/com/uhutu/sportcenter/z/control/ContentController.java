@@ -20,6 +20,7 @@ import com.uhutu.sportcenter.z.input.ApiForSportsInput;
 import com.uhutu.sportcenter.z.input.ApiHomePageInput;
 import com.uhutu.sportcenter.z.input.ApiLabelRelListInput;
 import com.uhutu.sportcenter.z.input.ApiOperContentInput;
+import com.uhutu.sportcenter.z.input.ApiPicPasterListInput;
 import com.uhutu.sportcenter.z.input.ApiPublishContentPhotosInput;
 import com.uhutu.sportcenter.z.input.ApiPublishSportingMomentInput;
 import com.uhutu.sportcenter.z.input.ApiRecommLabelListInput;
@@ -40,6 +41,7 @@ import com.uhutu.sportcenter.z.result.ApiForSportsResult;
 import com.uhutu.sportcenter.z.result.ApiHomePageResult;
 import com.uhutu.sportcenter.z.result.ApiLabelRelListResult;
 import com.uhutu.sportcenter.z.result.ApiOperContentResult;
+import com.uhutu.sportcenter.z.result.ApiPicPasterListResult;
 import com.uhutu.sportcenter.z.result.ApiPublishContentPhotosResult;
 import com.uhutu.sportcenter.z.result.ApiPublishSportingMomentResult;
 import com.uhutu.sportcenter.z.result.ApiRecommLableListResult;
@@ -237,4 +239,12 @@ public class ContentController {
 
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/picPasterList", method = RequestMethod.POST)
+	@ApiOperation(value = "贴纸列表", notes = "贴纸列表")
+	public ApiPicPasterListResult picPasterList(@RequestBody ApiPicPasterListInput input) {
+
+		return apiFactory.getApiPicPasterList().api(input);
+
+	}
 }
