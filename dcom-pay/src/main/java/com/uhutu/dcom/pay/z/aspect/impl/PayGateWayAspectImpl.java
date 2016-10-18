@@ -5,7 +5,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.pay.z.aspect.IPayGateWayAspect;
@@ -26,7 +25,6 @@ import com.uhutu.zooweb.helper.WebHelper;
  */
 @Component
 @Aspect
-@EnableAspectJAutoProxy(proxyTargetClass=true)
 public class PayGateWayAspectImpl implements IPayGateWayAspect {
 
 	@Pointcut("execution(* com.uhutu.dcom.pay.z.process.impl.PayGateProcess.process(..))")

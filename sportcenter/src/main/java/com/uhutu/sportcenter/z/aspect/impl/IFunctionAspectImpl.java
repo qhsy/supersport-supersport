@@ -1,14 +1,12 @@
 package com.uhutu.sportcenter.z.aspect.impl;
 
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.sportcenter.z.aspect.IFunctionAspect;
-import com.uhutu.zooweb.api.webpage.WebOperateResult;
 
 /**
  * 操作日志切面接口处理
@@ -18,20 +16,19 @@ import com.uhutu.zooweb.api.webpage.WebOperateResult;
  */
 @Component
 @Aspect
-@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class IFunctionAspectImpl implements IFunctionAspect {
 
-	@Pointcut("execution(* *..*Func*.process(..))")
+	@Pointcut("execution(* com.uhutu.dcom..*.*(..))")
 	public void pointAround() {
 	}
 
 	@Override
-	@After("pointAround()")
-	public WebOperateResult doAround(JoinPoint joinPoint) throws Throwable {
+	@Around("pointAround()")
+	public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
 
-		System.out.println("success");
+		System.out.println("--------------------------------------------------");
 
-		return null;
+		return joinPoint.proceed();
 
 	}
 
