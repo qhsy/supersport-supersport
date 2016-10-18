@@ -38,7 +38,7 @@ dependencies {
 	compile project(':sportstatic'){version=zooInitVersion;group=zooInitGroupId}
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: zooVersionSpringFox
 	compile('org.springframework.boot:spring-boot-starter-web')
-	
+	compile('org.springframework.boot:spring-boot-starter-aop')
 	compile group: zooInitGroupId, name: 'zoocom', version: zooInitVersion, changing: true
 	compile group: zooInitGroupId, name: 'zoodata', version: zooInitVersion, changing: true
 	compile group: zooInitGroupId, name: 'zooweb', version: zooInitVersion, changing: true
