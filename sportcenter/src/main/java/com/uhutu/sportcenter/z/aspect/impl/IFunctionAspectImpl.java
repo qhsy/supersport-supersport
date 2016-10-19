@@ -38,7 +38,7 @@ public class IFunctionAspectImpl {
 		WebOperateInput input = (WebOperateInput) joinPoint.getArgs()[0];
 
 		if (input.getPageUnique().startsWith("pa") || input.getPageUnique().startsWith("pe")
-				|| input.getPageUnique().startsWith("pd")) {
+				|| input.getPageUnique().startsWith("pg")) {
 
 			LcWebOperInfo lcWebOperInfo = new LcWebOperInfo();
 
