@@ -42,6 +42,7 @@
 		<item code="dzpi4514100310061002" nodeName="编辑推荐列表" parentCode="dzpi451410031006" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentRecommPage" pageIcon="glyphicon-list-alt" />
 		<item code="dzpi4514100310061003" nodeName="阅读量设置" parentCode="dzpi451410031006" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnContentReadCountPage" pageIcon="glyphicon-list-alt" />
 		<item code="dzpi4514100310061004" nodeName="运动小知识" parentCode="dzpi451410031006" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ChickenSoupPage" pageIcon="glyphicon-list-alt" />
+		<item code="dzpi4514100310061005" nodeName="分享设置" parentCode="dzpi451410031006" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ShareInfoPage" pageIcon="glyphicon-list-alt" />
 		<item code="dzpi451410031007" nodeName="运动管理" parentCode="dzpi45141003" />
 		<item code="dzpi4514100310071001" nodeName="运动信息" parentCode="dzpi451410031007" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_SportCategoryPage" pageIcon="glyphicon-asterisk" />
 		<item code="dzpi451410031008" nodeName="评论管理" parentCode="dzpi45141003" />
