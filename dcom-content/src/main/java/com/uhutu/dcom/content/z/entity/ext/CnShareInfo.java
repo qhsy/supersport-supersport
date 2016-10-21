@@ -20,7 +20,7 @@ public class CnShareInfo extends BaseEntity {
 	@Column(length = 50)
 	private String code;
 
-	@ZooData(name = "分享标题")
+	@ZooData(name = "分享标题",require="1")
 	@Column(length = 50)
 	private String title;
 
@@ -29,7 +29,7 @@ public class CnShareInfo extends BaseEntity {
 	@Column(length = 255)
 	private String cover;
 
-	@ZooData(name = "分享链接", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "分享链接",require="1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 255)
 	private String url;
 
