@@ -83,6 +83,9 @@
 		<item code="dzpi4514100700040001" nodeName="达人专访" parentCode="dzpi451410070004" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnExpertChatPage" pageIcon="glyphicon-bullhorn" />
 		<item code="dzpi4514100700040002" nodeName="精彩视频" parentCode="dzpi451410070004" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnWonderfulVideoPage" pageIcon="glyphicon-facetime-video" />
 		<item code="dzpi4514100700040003" nodeName="热门话题" parentCode="dzpi451410070004" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnHotTopicPage" pageIcon="glyphicon-fire" />
+		<item code="dzpi45141008" nodeName="商品相关" parentCode="" />
+		<item code="dzpi451410080001" nodeName="商品管理" parentCode="dzpi45141008" />
+		<item code="dzpi4514100800010001" nodeName="商品信息" parentCode="dzpi451410080001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ProductInfoPage" pageIcon="glyphicon-bullhorn" />
 		
 	</data>
 
