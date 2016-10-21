@@ -39,13 +39,13 @@ public class CnContentLabel extends BaseEntity {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String status;
 
-	@ZooData(name = "封面图(宽1080)", element = DefineWebElement.Upload, require = "1", sort = {
-			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "封面图", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" }, comment = "1080*540")
 	private String cover;
 
-	@ZooData(name = "推广内容", element = DefineWebElement.Textarea, require = "1", sort = {
-			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" }, verify = {
-					DefineWebVerify.Max_Length + "=280", DefineWebVerify.Min_Length + "=2" })
+	@ZooData(name = "推广内容", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" }, verify = { DefineWebVerify.Max_Length + "=280",
+					DefineWebVerify.Min_Length + "=2" })
 	@Column(length = 300)
 	private String content;
 

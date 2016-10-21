@@ -16,7 +16,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  */
 public class CnShareInfo extends BaseEntity {
 
-	@ZooData(name = "分享的标签编号")
+	@ZooData(name = "分享的标签编号", require = "1")
 	@Column(length = 50)
 	private String code;
 
