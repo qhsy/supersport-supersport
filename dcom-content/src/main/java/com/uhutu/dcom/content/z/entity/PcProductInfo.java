@@ -46,9 +46,15 @@ public class PcProductInfo extends BaseEntity {
 	@Column(length = 255)
 	private String remark;
 
-	@ZooData(name = "淘宝链接", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "IOS-淘宝链接", require = "1", sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 255)
-	private String url;
+	private String iosUrl;
+
+	@ZooData(name = "Android-淘宝链接", require = "1", sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
+	@Column(length = 255)
+	private String androidUrl;
 
 	public String getCode() {
 		return code;
@@ -98,12 +104,20 @@ public class PcProductInfo extends BaseEntity {
 		this.remark = remark;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getIosUrl() {
+		return iosUrl;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setIosUrl(String iosUrl) {
+		this.iosUrl = iosUrl;
+	}
+
+	public String getAndroidUrl() {
+		return androidUrl;
+	}
+
+	public void setAndroidUrl(String androidUrl) {
+		this.androidUrl = androidUrl;
 	}
 
 }
