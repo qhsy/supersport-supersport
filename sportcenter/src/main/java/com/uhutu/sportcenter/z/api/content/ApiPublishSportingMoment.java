@@ -62,7 +62,7 @@ public class ApiPublishSportingMoment
 		contentDetail.setCode(contentBasicinfo.getCode());
 
 		contentServiceFactory.getContentDetailService().save(contentDetail);
-
+		momentResult.setCode(contentBasicinfo.getCode());
 		return momentResult;
 	}
 
