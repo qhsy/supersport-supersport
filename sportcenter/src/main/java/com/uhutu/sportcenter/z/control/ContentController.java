@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiComplainInfoInput;
 import com.uhutu.sportcenter.z.input.ApiContentDetailInput;
+import com.uhutu.sportcenter.z.input.ApiContentDetailProductsInput;
 import com.uhutu.sportcenter.z.input.ApiContentPhotosInput;
 import com.uhutu.sportcenter.z.input.ApiContentReadCountInput;
 import com.uhutu.sportcenter.z.input.ApiContentRecommInput;
@@ -30,6 +31,7 @@ import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.z.input.ApiSupportPraiseInput;
 import com.uhutu.sportcenter.z.input.ApiThemePageInput;
 import com.uhutu.sportcenter.z.result.ApiComplainInfoResult;
+import com.uhutu.sportcenter.z.result.ApiContentDetailProductsResult;
 import com.uhutu.sportcenter.z.result.ApiContentDetailResult;
 import com.uhutu.sportcenter.z.result.ApiContentPhotosResult;
 import com.uhutu.sportcenter.z.result.ApiContentReadCountResult;
@@ -229,7 +231,7 @@ public class ContentController {
 		return apiFactory.getApiLabelRelList().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/recommLabelList", method = RequestMethod.POST)
 	@ApiOperation(value = "推荐标签列表", notes = "推荐标签列表")
@@ -245,6 +247,15 @@ public class ContentController {
 	public ApiPicPasterListResult picPasterList(@RequestBody ApiPicPasterListInput input) {
 
 		return apiFactory.getApiPicPasterList().api(input);
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/contentDetailProducts", method = RequestMethod.POST)
+	@ApiOperation(value = "文章详情页商品列表", notes = "文章详情页商品列表")
+	public ApiContentDetailProductsResult contentDetailProducts(@RequestBody ApiContentDetailProductsInput input) {
+
+		return apiFactory.getApiContentDetailProducts().api(input);
 
 	}
 }

@@ -319,6 +319,24 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_ContentItemRelForFristPage?u_itemCode=[[data:code]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071071" operateName="商品列表" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_ContentProductRelPage?u_contentCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071072" operateName="关联商品" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_ContentProductRelPage?u_contentCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071073" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.ContentProductRelPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071074" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.ContentProductRelPageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>

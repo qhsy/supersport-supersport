@@ -1,8 +1,10 @@
 package com.uhutu.dcom.content.z.entity;
 
 import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
@@ -20,11 +22,11 @@ public class PcProductInfo extends BaseEntity {
 
 	@ZooData(name = "商品编号", inc = DefineWebInc.Insert_Code + "=PIBH", sort = { DefineWebPage.Page_Add + "=1",
 			DefineWebPage.Page_Edit + "=0" })
-	@Column(length = 50)
+	@Column(length = 80)
 	private String code;
 
-	@ZooData(name = "商品名称")
-	@Column(length = 50)
+	@ZooData(name = "商品名称", require = "1")
+	@Column(length = 255)
 	private String name;
 
 	@ZooData(name = "商品图片", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
@@ -32,7 +34,7 @@ public class PcProductInfo extends BaseEntity {
 	@Column(length = 255)
 	private String picurl;
 
-	@ZooData(name = "商品价格", sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "商品价格", require = "1", sort = { DefineWebPage.Page_Query + "=0" })
 	private BigDecimal price;
 
 	@ZooData(name = "是否可售 ", element = DefineWebElement.Select, inc = { DefineWebInc.System_Define + "=10" })
@@ -42,9 +44,9 @@ public class PcProductInfo extends BaseEntity {
 	@ZooData(name = "商品描述", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 255)
-	private String desc;
+	private String remark;
 
-	@ZooData(name = "淘宝链接", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "淘宝链接", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 255)
 	private String url;
 
@@ -88,12 +90,12 @@ public class PcProductInfo extends BaseEntity {
 		this.price = price;
 	}
 
-	public String getDesc() {
-		return desc;
+	public String getRemark() {
+		return remark;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 	public String getUrl() {
