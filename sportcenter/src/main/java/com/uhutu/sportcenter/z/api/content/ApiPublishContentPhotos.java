@@ -78,6 +78,12 @@ public class ApiPublishContentPhotos extends RootApiToken<ApiPublishContentPhoto
 			contentPhotosResult.setError("内容信息不存在");
 
 		}
+		
+		if(contentPhotosResult.upFlagTrue()){
+			
+			contentPhotosResult.setCode(input.getContentBasicInfo().getCode());
+			
+		}
 
 		return contentPhotosResult;
 	}
