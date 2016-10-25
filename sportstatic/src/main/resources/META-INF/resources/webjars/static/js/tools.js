@@ -142,12 +142,6 @@ function callbackTaobao(ios,android){
 		window.webkit.messageHandlers.callbackTaobao.postMessage([ios,android]);
 	}
 }
-
-
-
-function shareWeixin(){
-	
-}
 function shareWeiXin(config){
 	var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
 	var con = {
@@ -169,6 +163,7 @@ function shareWeiXin(config){
 			type: 'json',
 			contentType: 'application/json',
 			success: function(res) {
+				console.log(res)
 				if(res.status == 1){
 					wx.config({    
 						debug: false,
@@ -179,6 +174,7 @@ function shareWeiXin(config){
 						jsApiList: ['checkJsApi','onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone']
 					});
 					wx.ready(function(){
+						console.log(con)
 						//分享到朋友圈
 						wx.onMenuShareTimeline({
 						    title: con.title,
@@ -195,7 +191,7 @@ function shareWeiXin(config){
 						wx.onMenuShareAppMessage({
 						    title: con.title,
 						    desc: con.desc,
-						    link: oon.link,
+						    link: con.link,
 						    imgUrl: con.imgUrl,
 						    type: con.type,
 						    dataUrl: con.dataUrl,
