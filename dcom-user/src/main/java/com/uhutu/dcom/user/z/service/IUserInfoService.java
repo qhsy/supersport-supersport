@@ -52,5 +52,12 @@ public interface IUserInfoService {
 	 */
 	public UserReginsterResult regAuthUser(String loginName, String loginPass);
 	
+	/**
+	 * 关注官方帐号
+	 * @param userCode
+	 * 		关注用户编号
+	 */
+	public void attendOffice(String userCode);
+	
 
 }

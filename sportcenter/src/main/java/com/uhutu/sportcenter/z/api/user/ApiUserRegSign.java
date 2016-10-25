@@ -121,8 +121,16 @@ public class ApiUserRegSign extends RootApiBase<ApiUserRegSignInput, ApiUserRegS
 			
 		}
 		
+		if(userRegResult.upFlagTrue()){
+			
+			userServiceFactory.getUserInfoService().attendOffice(userRegResult.getUserCode());
+			
+		}
+		
 		return userRegResult;
 
 	}
+	
+	
 
 }

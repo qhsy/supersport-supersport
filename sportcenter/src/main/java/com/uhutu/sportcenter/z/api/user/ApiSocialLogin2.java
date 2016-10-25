@@ -61,21 +61,24 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 		    
 		    UserReginsterResult userRegResult = userRegister(inputParam.getAccountId());
 		    
-		    if(userRegResult.upFlagTrue()){
-		    	
-		    	saveUserInfo(userRegResult, inputParam);
-			    
-			    saveUserInfoExt(userRegResult.getUserCode(), inputParam);
-			    
-			    saveSocialInfo(userRegResult.getUserCode(), inputParam);
-			    
-			    result.setFirstLogin(true);
-			    
-			    result.setUserToken(userRegResult.getToken());
-			    
-			    result.setUserCode(userRegResult.getUserCode());
-		    	
-		    }else{
+			if (userRegResult.upFlagTrue()) {
+
+				saveUserInfo(userRegResult, inputParam);
+
+				saveUserInfoExt(userRegResult.getUserCode(), inputParam);
+
+				saveSocialInfo(userRegResult.getUserCode(), inputParam);
+				
+				/*关注官方帐号*/
+				userServiceFactory.getUserInfoService().attendOffice(userRegResult.getUserCode());
+
+				result.setFirstLogin(true);
+
+				result.setUserToken(userRegResult.getToken());
+
+				result.setUserCode(userRegResult.getUserCode());
+
+			}else{
 		    	
 		    	result = loginSytem(inputParam.getAccountId());
 		    	
