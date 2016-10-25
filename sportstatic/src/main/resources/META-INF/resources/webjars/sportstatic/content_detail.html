@@ -12,6 +12,7 @@
 <meta name="author" content="">
 <link rel="stylesheet" type="text/css" href="../static/css/base.css">
 <style type="text/css">
+.container{padding-bottom: 0.5rem;}
 /*user*/
 .user{padding: 0.13rem 0.13rem; overflow: auto;}
 .user .head{width: 0.32rem; height: 0.32rem; margin-right: 0.1rem; float: left; position: relative;}
@@ -52,10 +53,22 @@
 .follow .submit{width: 1.1rem; border: #F8800A 1px solid; display: block; margin: auto; border-radius: 1.2rem; font-size: 0.12rem; line-height: 0.27rem; color: #F8800A;}
 .follow .submit.curr{background: #f8800a; color: #fff;}
 .follow .vip{width: 0.15rem; height: 0.15rem; background: url(../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
+/*shop*/
+.shop{padding: 0.24rem 0.12rem 0;}
+.shop .title{color: #212121; line-height: 0.2rem;}
+.shop .item{height: 1rem; padding: 0.12rem 0; border-bottom: #F0F0F0 1px solid;}
+.shop .item:last-child{border-bottom: 0;}
+.shop .list-img{width: 1rem; height: 1rem; margin-right: 0.24rem; float: left;}
+.shop .list-img img{width: 100%; height: 100%;}
+.shop .name{color: ##343434 100%; line-height: 0.2rem;}
+.shop .price{float: left; padding-top: 0.3rem; color: #FF7E00; font-size: 0.12rem;}
+.shop .price em{font-size: 0.2rem; line-height: 0.3rem;}
+.shop .btn{width: 0.6rem; height: 0.24rem; margin: 0.33rem 0 0; background: #FF7E00; color: #fff; text-align: center; line-height: 0.24rem; float: right; font-size: 0.12rem;}
 </style>
 </head>
 <body>
 <section class="container" v-cloak>
+	<!-- head user -->
 	<header class="user">
 		<div class="head" @click="headCallback(res.sportingMoment.userBasicInfo.userCode)">
 		<img :src="res.sportingMoment.userBasicInfo.aboutHead?res.sportingMoment.userBasicInfo.aboutHead:'../static/img/default_photo.png'" alt=""><em class="vip" v-if="res.sportingMoment.userBasicInfo.type == 'dzsd4107100310010002'"></em></div>
@@ -67,12 +80,16 @@
 			<em class="num">{{res.sportingMoment.readNum}}</em>{{res.sportingMoment.publishTimeStr}}
 		</div>
 	</header>
+	<!-- end -->
+	<!-- content -->
 	<article class="content">
 		<child-detail :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030001'"></child-detail>
 		<child-detail :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030002'"></child-detail>
 		<child-picture :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030004'"></child-picture>
 		<child-video :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030005'"></child-video>
 	</article>
+	<!-- end -->
+	<!-- user conter -->
 	<footer class="follow">
 		<div class="head" @click="headCallback(res.sportingMoment.userBasicInfo.userCode)">
 		<img :src="res.sportingMoment.userBasicInfo.aboutHead?res.sportingMoment.userBasicInfo.aboutHead:'../static/img/default_photo.png'" alt=""><em class="vip" v-if="res.sportingMoment.userBasicInfo.type == 'dzsd4107100310010002'"></em></div>
@@ -80,11 +97,30 @@
 		<h2 class="title">{{res.sportingMoment.userBasicInfo.title}}</h2>
 		<a href="javascript:;" class="submit" @click="headCallback(res.sportingMoment.userBasicInfo.userCode)">进入TA的主页</a>
 	</footer>
+	<!-- end -->
+	<!-- shop module -->
+	<article class="shop">
+		<h3 class="title">相关装备</h3>
+		<ul class="list">
+			<li class="item clearfix" v-for="item in shopList" @click="callTaobao(item.iosUrl,item.androidUrl)">
+				<div class="list-img">
+					<img src="../static/img/lazyload.jpg" v-lazyload="item.picurl" alt="">
+				</div>
+				<div class="list-info">
+					<h1 class="name">{{item.name}}</h1>
+					<span class="price">￥<em>{{item.price}}</em></span>
+					<em class="btn">去购买</em>
+				</div>
+			</li>
+		</ul>
+	</article>
+	<!-- end -->
+	<!-- data loading -->
 	<aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
 </section>
 <!-- 文章详情 -->
 <script type="text/x-template" id="template-detail">
-	<div class="cover"><img :src="res.sportingMoment.cover" alt=""></div>
+	<div class="cover"><img src="../static/img/lazyload.jpg" v-lazyload:opt.fadeIn="res.sportingMoment.cover" alt=""></div>
 	<h1 class="title">{{res.sportingMoment.title}}</h1>
 	<h2 class="address" v-if="res.sportingMoment.localtionName">{{res.sportingMoment.localtionName}}</h2>
 	<div class="referral" v-if="res.contentRecommInfo.content">
@@ -101,7 +137,7 @@
 <!-- end -->
 <!-- 单图详情 -->
 <script type="text/x-template" id="template-picture">
-	<div class="cover"><img :src="res.sportingMoment.cover" alt=""></div>
+	<div class="cover"><img src="../static/img/lazyload.jpg" v-lazyload="res.sportingMoment.cover" alt=""></div>
 	<p class="caption">
 		{{{res.contentDetailInfo.content}}}
 	</p>
@@ -134,7 +170,12 @@
 <script type="text/javascript" src="../static/js/tools.js"></script>
 <script type="text/javascript" src="../static/js/share.js"></script>
 <script type="text/javascript" src="../static/js/zy.media.js"></script>
+<script type="text/javascript" src="../static/js/lazyImg.min.js"></script>
+<script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
+Vue.use(Vue.lazyimg,{
+		nohori: true
+	});
 Vue.component('child-detail',{
 	template:'#template-detail',
 	props:{
@@ -156,8 +197,8 @@ Vue.component('child-detail',{
 			zymedia('video',{
 				alwaysShowControls: true,
 				hideVideoControlsOnLoad:true,
-				videoWidth: _this.videoWd,
-				videoHeight: _this.videoWd,
+				videoWidth: window.innerWidth-26,
+				videoHeight: window.innerWidth-26,
 				preload:'auto'
 			});
 		}
@@ -188,8 +229,8 @@ Vue.component('child-video',{
 			zymedia('video',{
 				alwaysShowControls: true,
 				hideVideoControlsOnLoad:true,
-				videoWidth: _this.videoWd,
-				videoHeight: _this.videoWd,
+				videoWidth: window.innerWidth,
+				videoHeight: window.innerWidth,
 				preload:'auto'
 			});
 		}
@@ -207,7 +248,6 @@ Vue.component('child-tag',{
 	template:'#template-tag',
 	methods:{
 		tagCallback:function(code,name){
-			console.log(this.share)
 			if(!this.share){
 				callbackLabel(code,name)
 			}else{
@@ -231,6 +271,7 @@ var vm = new Vue({
 	el:'.container',
 	data:{
 		res: null,
+		shopList: [],
 		share: queryUrl('share'),
 		loading: true
 	},
@@ -254,9 +295,43 @@ var vm = new Vue({
 						_this.res = resp;
 						setTimeout(function(){
 							_this.loading = false;
-						}, 1700)
+						}, 1700);
 					}else{
-						alert(resp.error)
+						_this.loading = false;
+						alert('数据请求失败');
+						_this.fineshPage();
+					}
+				}
+			});
+			reqwest({
+				url: '/api/userController/shareContent',
+				method: 'post',
+				data: '{"contentCode": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": " "}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {
+					if(resp.status == 1){
+						shareWeiXin({
+							'url':'/api/wechatController/configInfo',
+							'imgUrl':resp.iconUrl,
+							'title':resp.title,
+							'link':window.location.href,
+							'desc':resp.content,
+						});
+					}
+				}
+			});
+			reqwest({
+				url: '/api/contentController/contentDetailProducts',
+				method: 'post',
+				data: '{"code": "CNBH161020210010","zoo": {"key": "tesetkey","token": " "}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {
+					if(resp.status == 1){
+						_this.shopList = resp.productInfos;
+					}else{
+						
 					}
 				}
 			});
@@ -275,6 +350,20 @@ var vm = new Vue({
 				callbackFunc(code);
 			}else{
 				open()
+			}
+		},
+		fineshPage:function(){
+			var _this = this;
+			if(!_this.share){
+				callFineshPage();
+			}
+		},
+		callTaobao:function(ios,and){
+			var _this = this;
+			if(!this.share){
+				callbackTaobao(ios,and)
+			} else {
+				window.location.href = ios;
 			}
 		}
 	}
