@@ -27,18 +27,18 @@ public class WaterMarkerSupport {
 	 */
 	public String getWaterMarker(String picUrl, String tagCode) {
 		String result = picUrl;
-		if (StringUtils.isNotBlank(tagCode) && StringUtils.isNotBlank(picUrl)) {
-			if (tagCode.contains("GGBH160823110001")) {// cross
-				result = this.getCrossFitWaterMarker(picUrl);
-			} else if (tagCode.contains("GGBH160719110001")) {// 为翘而生
-				result = this.getWqes(picUrl);
-			} else if (tagCode.contains("GGBH161011110001")) {// 昆赛搏击
-				result = this.getKSBJWaterMarker(picUrl);
-			} else if (tagCode.contains("GGBH161020110001") || tagCode.contains("GGBH161020210001")
-					|| tagCode.contains("GGBH161020210002") || tagCode.contains("GGBH161020210003")) {//games
-				result = this.getGODOGamesWaterMarker(picUrl);
-			}
-		}
+//		if (StringUtils.isNotBlank(tagCode) && StringUtils.isNotBlank(picUrl)) {
+//			if (tagCode.contains("GGBH160823110001")) {// cross
+//				result = this.getCrossFitWaterMarker(picUrl);
+//			} else if (tagCode.contains("GGBH160719110001")) {// 为翘而生
+//				result = this.getWqes(picUrl);
+//			} else if (tagCode.contains("GGBH161011110001")) {// 昆赛搏击
+//				result = this.getKSBJWaterMarker(picUrl);
+//			} else if (tagCode.contains("GGBH161020110001") || tagCode.contains("GGBH161020210001")
+//					|| tagCode.contains("GGBH161020210002") || tagCode.contains("GGBH161020210003")) {//games
+//				result = this.getGODOGamesWaterMarker(picUrl);
+//			}
+//		}
 
 		return result;
 	}
