@@ -23,7 +23,7 @@ public class CnPicPaster extends BaseEntity {
 			DefineWebPage.Page_Edit + "=0" })
 	private String code;
 
-	@ZooData(name = "标题", require = "1")
+	@ZooData(name = "标题", require = "1", verify = { DefineWebVerify.Max_Length + "=20" })
 	private String name;
 
 	@ZooData(name = "位置(倒序)", require = "1", verify = { DefineWebVerify.Base_Number })
