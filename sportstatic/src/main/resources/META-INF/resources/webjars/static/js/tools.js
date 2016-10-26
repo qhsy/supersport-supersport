@@ -129,17 +129,32 @@ function callbackPublish(type, code, name){
 }
 
 /**
+ * @图片保存
+ * @param  href
+ * @return [Function]
+ * @author [wangxh]
+ */
+function callbackSavePic(href){
+	var userAgent = navigator.userAgent;
+	if(userAgent.indexOf('Android') != -1){
+		javascript:android.callbackSavePic(href);
+	} else {
+		window.webkit.messageHandlers.callbackSavePic.postMessage(href);
+	}
+}
+
+/**
  * @商品跳转
  * @param  url
  * @return [Function]
  * @author [wangxh]
  */
-function callbackTaobao(ios,android){
+function callbackTaobao(ios,and){
 	var userAgent = navigator.userAgent;
 	if(userAgent.indexOf('Android') != -1){
-		javascript:android.callbackTaobao(ios,android);
+		javascript:android.callbackTaobao(ios,and);
 	} else {
-		window.webkit.messageHandlers.callbackTaobao.postMessage([ios,android]);
+		window.webkit.messageHandlers.callbackTaobao.postMessage([ios,and]);
 	}
 }
 
