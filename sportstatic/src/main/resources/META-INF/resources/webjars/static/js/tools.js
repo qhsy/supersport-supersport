@@ -142,6 +142,13 @@ function callbackTaobao(ios,android){
 		window.webkit.messageHandlers.callbackTaobao.postMessage([ios,android]);
 	}
 }
+
+/**
+ * @微信分享
+ * @param  config
+ * @return [Function]
+ * @author [wangxh]
+ */
 function shareWeiXin(config){
 	var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
 	var con = {
@@ -174,7 +181,6 @@ function shareWeiXin(config){
 						jsApiList: ['checkJsApi','onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone']
 					});
 					wx.ready(function(){
-						console.log(con)
 						//分享到朋友圈
 						wx.onMenuShareTimeline({
 						    title: con.title,

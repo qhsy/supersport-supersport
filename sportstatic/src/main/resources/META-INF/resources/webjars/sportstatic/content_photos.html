@@ -12,6 +12,7 @@
 <meta name="author" content="">
 <link rel="stylesheet" type="text/css" href="../static/css/base.css">
 <style type="text/css">
+.container{padding-bottom: 0.5rem;}
 /* content */
 .content .address, .content .tag{padding: 0 0.16rem;}
 .content{color: #4A4A4A!important;}
@@ -30,7 +31,6 @@
 .content .tag li{border: #757575 1px solid; display: inline-block; border-radius: 4px; margin: 0 0.08rem 0.1rem 0; padding: 0 0.09rem; font-size: 0.12rem; line-height: 0.18rem;}
 .content .caption{padding: 0.36rem 0.22rem 0.1rem; line-height: 0.2rem; text-align: justify;}
 .content .cover{text-align: center;}
-
 /*follow*/
 .follow{text-align: center;}
 .follow .head{width: 0.52rem; height: 0.52rem; margin: auto; position: relative;}
@@ -39,6 +39,18 @@
 .follow .title{padding-bottom: 0.13rem; color: #BDBDBD; font-size: 0.12rem; line-height: 0.2rem;}
 .follow .submit{width: 1.1rem; border: #F8800A 1px solid; display: block; margin: auto; border-radius: 1.2rem; font-size: 0.12rem; line-height: 0.27rem; color: #F8800A;}
 .follow .vip{width: 0.15rem; height: 0.15rem; background: url(../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
+/*shop*/
+.shop{padding: 0.24rem 0.12rem 0;}
+.shop a{color: #343434;}
+.shop .title{color: #212121; line-height: 0.2rem;}
+.shop .item{height: 1rem; padding: 0.12rem 0; border-bottom: #F0F0F0 1px solid;}
+.shop .item:last-child{border-bottom: 0;}
+.shop .list-img{width: 1rem; height: 1rem; margin-right: 0.24rem; float: left;}
+.shop .list-img img{width: 100%; height: 100%;}
+.shop .name{color: #343434; line-height: 0.2rem;}
+.shop .price{float: left; padding-top: 0.3rem; color: #FF7E00; font-size: 0.12rem;}
+.shop .price em{font-size: 0.2rem; line-height: 0.3rem;}
+.shop .btn{width: 0.6rem; height: 0.24rem; margin: 0.33rem 0 0; background: #FF7E00; color: #fff; text-align: center; line-height: 0.24rem; float: right; font-size: 0.12rem;}
 </style>
 </head>
 <body>
@@ -67,11 +79,32 @@
 		<h2 class="title">{{res.contentBasicInfo.userBasicInfo.title}}</h2>
 		<a href="javascript:;" class="submit" @click="openApp">进入TA的主页</a>
 	</footer>
+	<!-- shop module -->
+	<article class="shop">
+		<h3 class="title">相关装备</h3>
+		<ul class="list">
+			<li class="item clearfix" v-for="item in shopList">
+				<a :href="item.iosUrl">
+					<div class="list-img">
+						<img src="../static/img/lazyload.jpg" v-lazyload="item.picurl" alt="">
+					</div>
+					<div class="list-info">
+						<h1 class="name">{{item.name}}</h1>
+						<span class="price">￥<em>{{item.price}}</em></span>
+						<em class="btn">去购买</em>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</article>
+	<!-- end -->
+	<aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
 </section>
 <script type="text/javascript" src="../static/js/lib/vue.min.js"></script>
 <script type="text/javascript" src="../static/js/tools.js"></script>
 <script type="text/javascript" src="../static/js/share.js"></script>
 <script type="text/javascript" src="../static/js/vue.lazyimg.js"></script>
+<script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
 Vue.use(Vue.lazyimg,{
 	nohori: true
@@ -80,7 +113,9 @@ new Vue({
 	el:'.container',
 	data:{
 		res: null,
-		share:queryUrl('share')
+		share:queryUrl('share'),
+		loading: true,
+		shopList: []
 	},
 	created:function(){
 		this.reqwest();
@@ -99,7 +134,40 @@ new Vue({
 				contentType: 'application/json',
 				success: function(resp) {
 					if(resp.status == 1){
+						_this.loading = false;
 						_this.res = resp;
+					}
+				}
+			});
+			reqwest({
+				url: '/api/userController/shareContent',
+				method: 'post',
+				data: '{"contentCode": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": " "}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {
+					if(resp.status == 1){
+						shareWeiXin({
+							'url':'/api/wechatController/configInfo',
+							'imgUrl':resp.iconUrl,
+							'title':resp.title,
+							'link':window.location.href,
+							'desc':resp.content
+						});
+					}
+				}
+			});
+			reqwest({
+				url: '/api/contentController/contentDetailProducts',
+				method: 'post',
+				data: '{"code": "CNBH161020210010","zoo": {"key": "tesetkey","token": " "}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {
+					if(resp.status == 1){
+						_this.shopList = resp.productInfos;
+					}else{
+						
 					}
 				}
 			});
