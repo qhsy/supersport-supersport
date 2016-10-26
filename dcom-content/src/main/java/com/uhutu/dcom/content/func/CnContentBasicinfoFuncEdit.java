@@ -1,6 +1,9 @@
 package com.uhutu.dcom.content.func;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.support.WaterMarkerSupport;
 import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
@@ -25,7 +28,10 @@ public class CnContentBasicinfoFuncEdit extends RootFunc {
 				&& "dzsd4699100110010002".equals(info.getStatus())) {
 			map.put("publish_time", DateHelper.upNow());
 		}
-
+		if (StringUtils.isNotBlank(input.getDataMap().get("cover"))) {
+			String wh = new WaterMarkerSupport().getBufferedImage(input.getDataMap().get("cover"));
+			input.getDataMap().put("coverwh", wh);
+		}
 		JdbcHelper.dataUpdate(extendPageDefine.getPageSource().getTableName(), map, "", "za");
 		return new WebOperateResult();
 	}

@@ -52,6 +52,10 @@ public class CnContentBasicinfoFuncAdd extends RootFunc {
 			input.getDataMap().put("cover",
 					StringUtils.isNotBlank(waterMarker) ? waterMarker : input.getDataMap().get("cover"));
 		}
+		if (StringUtils.isNotBlank(input.getDataMap().get("cover"))) {
+			String wh = new WaterMarkerSupport().getBufferedImage(input.getDataMap().get("cover"));
+			input.getDataMap().put("coverwh", wh);
+		}
 		JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), input.getDataMap());
 		if ("dzsd4107100110030001".equals(map.get("content_type"))
 				|| "dzsd4107100110030002".equals(map.get("content_type"))

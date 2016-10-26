@@ -6,8 +6,11 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 
@@ -27,18 +30,21 @@ public class WaterMarkerSupport {
 	 */
 	public String getWaterMarker(String picUrl, String tagCode) {
 		String result = picUrl;
-//		if (StringUtils.isNotBlank(tagCode) && StringUtils.isNotBlank(picUrl)) {
-//			if (tagCode.contains("GGBH160823110001")) {// cross
-//				result = this.getCrossFitWaterMarker(picUrl);
-//			} else if (tagCode.contains("GGBH160719110001")) {// 为翘而生
-//				result = this.getWqes(picUrl);
-//			} else if (tagCode.contains("GGBH161011110001")) {// 昆赛搏击
-//				result = this.getKSBJWaterMarker(picUrl);
-//			} else if (tagCode.contains("GGBH161020110001") || tagCode.contains("GGBH161020210001")
-//					|| tagCode.contains("GGBH161020210002") || tagCode.contains("GGBH161020210003")) {//games
-//				result = this.getGODOGamesWaterMarker(picUrl);
-//			}
-//		}
+		// if (StringUtils.isNotBlank(tagCode) &&
+		// StringUtils.isNotBlank(picUrl)) {
+		// if (tagCode.contains("GGBH160823110001")) {// cross
+		// result = this.getCrossFitWaterMarker(picUrl);
+		// } else if (tagCode.contains("GGBH160719110001")) {// 为翘而生
+		// result = this.getWqes(picUrl);
+		// } else if (tagCode.contains("GGBH161011110001")) {// 昆赛搏击
+		// result = this.getKSBJWaterMarker(picUrl);
+		// } else if (tagCode.contains("GGBH161020110001") ||
+		// tagCode.contains("GGBH161020210001")
+		// || tagCode.contains("GGBH161020210002") ||
+		// tagCode.contains("GGBH161020210003")) {//games
+		// result = this.getGODOGamesWaterMarker(picUrl);
+		// }
+		// }
 
 		return result;
 	}
@@ -210,7 +216,7 @@ public class WaterMarkerSupport {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 给图片添加水印、可设置水印图片旋转角度
 	 * 
@@ -261,6 +267,38 @@ public class WaterMarkerSupport {
 				if (null != os)
 					os.close();
 			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * 
+	 * @param imgUrl
+	 *            图片地址
+	 * @return
+	 */
+	public String getBufferedImage(String imgUrl) {
+		URL url = null;
+		InputStream is = null;
+		String result = null;
+		try {
+			url = new URL(imgUrl);
+			is = url.openStream();
+			BufferedImage img = ImageIO.read(is);
+			if (img != null) {
+				result = img.getWidth() + "*" + img.getHeight();
+			}
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+
+			try {
+				is.close();
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}

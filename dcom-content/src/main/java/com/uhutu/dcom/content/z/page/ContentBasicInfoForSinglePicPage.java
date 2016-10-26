@@ -1,6 +1,6 @@
 package com.uhutu.dcom.content.z.page;
 
-import com.uhutu.dcom.content.z.page.vo.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.page.vo.singlePic.CnContentBasicinfo;
 import com.uhutu.zoocom.baseannotation.ZooPage;
 import com.uhutu.zoocom.define.DefineWebDeploy;
 import com.uhutu.zoocom.define.DefineWebPage;
