@@ -337,6 +337,10 @@
 			operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071075" operateName="详情" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_href('[[data:content_type]]'=='图集' ? 'http://beta-sportcloud.ntw.srnpr.com/webjars/sportstatic/content_photos.html?code=[[data:code]]':'http://beta-sportcloud.ntw.srnpr.com/webjars/sportstatic/content_detail.html?code=[[data:code]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>

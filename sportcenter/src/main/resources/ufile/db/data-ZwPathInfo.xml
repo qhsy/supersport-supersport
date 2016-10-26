@@ -25,6 +25,8 @@
 		<item code="dzpi4514100200010004" nodeName="捐赠流水" parentCode="dzpi451410020001" pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UcDonateFlowPage" pageIcon="glyphicon-phone" />
 		<item code="dzpi451410020002" nodeName="美臀大赛" parentCode="dzpi45141002" />
 		<item code="dzpi4514100200021001" nodeName="实力派" parentCode="dzpi451410020002" pageUrl="/zpage/pg/com_uhutu_dcom_answer_z_page_AwPowerPage" pageIcon="glyphicon-heart-empty" />
+		<item code="dzpi451410020003" nodeName="活动管理" parentCode="dzpi45141002" />
+		<item code="dzpi4514100200031002" nodeName="中奖管理" parentCode="dzpi451410020003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForDrawPage" pageIcon="glyphicon-forward" />
 		<item code="dzpi45141003" nodeName="内容管理" parentCode="" />
 		<item code="dzpi451410031003" nodeName="栏目管理" parentCode="dzpi45141003" />
 		<item code="dzpi4514100310031001" nodeName="内容栏目信息" parentCode="dzpi451410031003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemPage" pageIcon="glyphicon-heart-empty" />
