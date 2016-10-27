@@ -28,8 +28,7 @@ public class CnPrizesInfo extends BaseEntity {
 	@ZooData(name = "奖品名称", require = "1", verify = { DefineWebVerify.Max_Length + "=28" })
 	private String name;
 
-	@ZooData(name = "奖品简介", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "奖品简介", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
 	private String aboutDesc;
 
 	@ZooData(name = "奖品类型", element = DefineWebElement.Select, inc = {
