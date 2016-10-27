@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>方法</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<style type="text/css">
+	input{padding: 10px; border: #000 1px solid; margin: 20px 10px;}
+</style>
+</head>
+<body>
+<input type="button" id="btn1" value="头像跳转个人主页">
+<input type="button" id="btn2" value="标签跳转列表">
+<input type="button" id="btn3" value="是否分享">
+<input type="button" id="btn4" value="时刻跳转详情">
+<input type="button" id="btn5" value="标题">
+<input type="button" id="btn6" value="请求错误回退">
+<input type="button" id="btn7" value="商品跳转">
+<input type="button" id="btn8" value="时刻发布-图片">
+<input type="button" id="btn9" value="时刻发布-图集">
+<input type="button" id="btn10" value="时刻发布-文章">
+<input type="button" id="btn11" value="时刻发布-视频">
+<input type="button" id="btn12" value="图片下载">
+<script type="text/javascript" src="../static/js/tools.js"></script>
+<script type="text/javascript">
+	window.onload = function(){
+		document.querySelector('#btn1').addEventListener('click', function(){
+			callbackFunc('UC161025110002');
+		}, false);
+		document.querySelector('#btn2').addEventListener('click', function(){
+			callbackLabel('GGBH160909110001','瑜伽');
+		}, false);
+		document.querySelector('#btn3').addEventListener('click', function(){
+			callbackShare('GGBH160719110001');
+		}, false);
+		document.querySelector('#btn4').addEventListener('click', function(){
+			callbackSportTime('CNBH161020310006','dzsd4107100110030002')
+		}, false);
+		document.querySelector('#btn5').addEventListener('click', function(){
+			callWebTitle('标题')
+		}, false);
+		document.querySelector('#btn6').addEventListener('click', function(){
+			callFineshPage();
+		}, false);
+		document.querySelector('#btn7').addEventListener('click', function(){
+			callbackTaobao('http://s.click.taobao.com/Z0hczPx','http://s.click.taobao.com/zGQczPx')
+		}, false);
+		document.querySelector('#btn8').addEventListener('click', function(){
+			callbackPublish('1','GGBH160531110005','足球')
+		}, false);
+		document.querySelector('#btn9').addEventListener('click', function(){
+			callbackPublish('2','GGBH160531110005','足球')
+		}, false);
+		document.querySelector('#btn10').addEventListener('click', function(){
+			callbackPublish('3','GGBH160531110005','足球')
+		}, false);
+		document.querySelector('#btn11').addEventListener('click', function(){
+			callbackPublish('4','','')
+		}, false);
+		document.querySelector('#btn12').addEventListener('click', function(){
+			callbackSavePic('http://ali-cfile.ichsy.com/cfiles/staticfiles/zoofile/2735f/s-1080-811/2a8010727e73446f852f5e85443ca267.jpeg');
+		}, false);
+	}
+</script>
+</body>
+</html>

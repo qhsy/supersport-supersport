@@ -65,10 +65,11 @@
 .shop .price em{font-size: 0.2rem; line-height: 0.3rem;}
 .shop .btn{width: 0.6rem; height: 0.24rem; margin: 0.33rem 0 0; background: #FF7E00; color: #fff; text-align: center; line-height: 0.24rem; float: right; font-size: 0.12rem;}
 /*canvas*/
-.canvas{height: 100%; width: 100%; overflow: hidden; position: fixed; left: 0; top: 0; display: none; background:rgba(0,0,0,0.7);}
+.slider{display: none;}
+.canvas{height: 100%; width: 100%; overflow: hidden; position: fixed; left: 0; top: 0; background:rgba(0,0,0,0.7);}
 .canvas ul,.canvas li{height: 100%; overflow: hidden;}
 .canvas li{position: absolute; display: -webkit-box; -webkit-box-pack: center; -webkit-box-align: center;}
-.close{width: 20px; height: 20px; position: fixed; right: 20px; top: 20px; background: url(../static/img/back_but@2x.png) no-repeat; background-size: cover; z-index: 999;}
+.close{width: 40px; height: 40px; position: fixed; right: 15px; top: 15px; background: url(../static/img/back_but@2x.png) no-repeat center center; background-size: 25px; z-index: 999;}
 </style>
 </head>
 <body>
@@ -123,9 +124,10 @@
 	<!-- data loading -->
 	<aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
 </section>
-<div class="canvas">
+<section class="slider">
 	<span class="close"></span>
-</div>
+	<div class="canvas"></div>
+</section>
 <!-- 文章详情 -->
 <script type="text/x-template" id="template-detail">
 	<div class="cover"><img src="../static/img/lazyload.jpg" v-lazyload:opt.fadeIn="res.sportingMoment.cover" alt=""></div>
@@ -377,7 +379,61 @@ var vm = new Vue({
 		}
 	}
 });
+window.onload = function(){
+	var oSlider= document.querySelector('.slider');
+	var oWrap = document.querySelector('.content');
+	var aImg = oWrap.querySelectorAll('img');
+	var oCanvas = oSlider.querySelector('.canvas');
+	var oClose = oSlider.querySelector('.close');
+	var list = [];
+	var timer = null;
+	for(var i=0; i<aImg.length; i++){
+		aImg[i].index = i;
+		aImg[i].addEventListener('click', function(){
+			oSlider.style.display ='block';
+			list = [];
+			for(var j=0; j<aImg.length; j++){
+				var item = {
+					'width':aImg[j].naturalWidth,
+					'height':aImg[j].naturalHeight,
+					'img':aImg[j].src
+				}
+				list.push(item);
+			}
+			new Slider({
+				dom : document.querySelector('.canvas'),
+				list : list,
+				index : this.index
+			});
+		}, false);
+	}
+	oClose.addEventListener('click', function(){
+		oSlider.removeAttribute('style');
+		oCanvas.removeAttribute('style');
+		oCanvas.removeChild(oCanvas.querySelector('ul'))
+	}, false);
 
+	oCanvas.addEventListener('touchstart',function(event){
+		var share = !queryUrl('share');
+		var href = this.querySelector('.curr').querySelector('img').src;
+		if(!share){
+			return false;
+		}
+		timer = setTimeout(function(){
+			callbackSavePic(href);
+		}, 1000)
+		event.preventDefault();
+	}, false);
+	oCanvas.addEventListener('touchmove',function(event){
+		event.preventDefault();
+		clearTimeout(timer);
+	}, false);
+	oCanvas.addEventListener('touchend',function(event){
+		event.preventDefault();
+		clearTimeout(timer);
+	}, false);
+
+}
 </script>
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>

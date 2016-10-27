@@ -51,6 +51,12 @@
 .shop .price{float: left; padding-top: 0.3rem; color: #FF7E00; font-size: 0.12rem;}
 .shop .price em{font-size: 0.2rem; line-height: 0.3rem;}
 .shop .btn{width: 0.6rem; height: 0.24rem; margin: 0.33rem 0 0; background: #FF7E00; color: #fff; text-align: center; line-height: 0.24rem; float: right; font-size: 0.12rem;}
+/*canvas*/
+.slider{display: none;}
+.canvas{height: 100%; width: 100%; overflow: hidden; position: fixed; left: 0; top: 0; background:rgba(0,0,0,0.7);}
+.canvas ul,.canvas li{height: 100%; overflow: hidden;}
+.canvas li{position: absolute; display: -webkit-box; -webkit-box-pack: center; -webkit-box-align: center;}
+.close{width: 40px; height: 40px; position: fixed; right: 15px; top: 15px; background: url(../static/img/back_but@2x.png) no-repeat center center; background-size: 25px; z-index: 999;}
 </style>
 </head>
 <body>
@@ -62,7 +68,7 @@
 		<div class="address" v-if="res.contentBasicInfo.localtionName">{{res.contentBasicInfo.localtionName}}</div>
 		<ul class="list">
 			<li v-for="photo in res.contentPhotosDetails" track-by="$index">
-				<div class="photo"><img src="../static/img/lazyload.jpg" v-lazyload="photo.thumb.thumbUrl" alt=""></div>
+				<div class="photo"><img src="../static/img/lazyload.jpg" :data-src="photo.thumb.thumbUrl" v-lazyload="photo.thumb.thumbUrl" alt=""></div>
 				<div class="info">
 					<em class="num">{{$index+1}}/{{res.contentPhotosDetails.length}}</em>
 					<p class="text">{{photo.content}}</p>
@@ -80,7 +86,7 @@
 		<a href="javascript:;" class="submit" @click="openApp">进入TA的主页</a>
 	</footer>
 	<!-- shop module -->
-	<article class="shop">
+	<article class="shop" v-if="shopList.length">
 		<h3 class="title">相关装备</h3>
 		<ul class="list">
 			<li class="item clearfix" v-for="item in shopList">
@@ -100,9 +106,14 @@
 	<!-- end -->
 	<aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
 </section>
+<section class="slider">
+	<span class="close"></span>
+	<div class="canvas"></div>
+</section>
 <script type="text/javascript" src="../static/js/lib/vue.min.js"></script>
 <script type="text/javascript" src="../static/js/tools.js"></script>
 <script type="text/javascript" src="../static/js/share.js"></script>
+<script type="text/javascript" src="../static/js/slider.js"></script>
 <script type="text/javascript" src="../static/js/vue.lazyimg.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
@@ -160,7 +171,7 @@ new Vue({
 			reqwest({
 				url: '/api/contentController/contentDetailProducts',
 				method: 'post',
-				data: '{"code": "CNBH161020210010","zoo": {"key": "tesetkey","token": " "}}',
+				data: '{"code": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": " "}}',
 				type: 'json',
 				contentType: 'application/json',
 				success: function(resp) {
@@ -185,6 +196,41 @@ new Vue({
 		}
 	}
 });
+window.onload = function(){
+	var oSlider= document.querySelector('.slider');
+	var oWrap = document.querySelector('.content');
+	var aImg = oWrap.querySelectorAll('img');
+	var oCanvas = oSlider.querySelector('.canvas');
+	var oClose = oSlider.querySelector('.close');
+	var list = [];
+	var timer = null;
+	for(var i=0; i<aImg.length; i++){
+		aImg[i].index = i;
+		aImg[i].addEventListener('click', function(){
+			oSlider.style.display ='block';
+			list = [];
+			for(var j=0; j<aImg.length; j++){
+				var item = {
+					'width':aImg[j].naturalWidth,
+					'height':aImg[j].naturalHeight,
+					'img':aImg[j].src
+				}
+				list.push(item);
+			}
+			new Slider({
+				dom : document.querySelector('.canvas'),
+				list : list,
+				index : this.index
+			});
+		}, false);
+	}
+	oClose.addEventListener('click', function(){
+		oSlider.removeAttribute('style');
+		oCanvas.removeAttribute('style');
+		oCanvas.removeChild(oCanvas.querySelector('ul'))
+	}, false);
+
+}
 </script>
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
