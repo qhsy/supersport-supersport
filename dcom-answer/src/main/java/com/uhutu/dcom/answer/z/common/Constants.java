@@ -46,4 +46,10 @@ public class Constants {
 
 	/** 推送跳转类型：问达详情页 */
 	public static final String PUSH_JUMP_ANSWERDETAIL = "6";
+	
+	/** 推送跳转类型：消息中心 */
+	public static final String PUSH_JUMP_MSGCENTER = "7";
+	
+	/** 推送跳转类型：超链接 */
+	public static final String PUSH_JUMP_URL = "8";
 }

@@ -19,7 +19,7 @@ public class BaiduPush {
 	 * @param channelId
 	 *            设备id
 	 * @param jumpType
-	 *            推送跳转类型  0个人中心 1运动时刻详情页 2首页 3问达详情页
+	 *            推送跳转类型 0个人中心 1运动时刻详情页 2首页 3问达详情页       新增：7:消息中心 8跳转url
 	 * @param jumpJson
 	 *            推送跳转内容
 	 * @throws PushServerException

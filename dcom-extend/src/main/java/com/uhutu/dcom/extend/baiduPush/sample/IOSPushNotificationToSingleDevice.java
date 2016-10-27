@@ -46,7 +46,7 @@ public class IOSPushNotificationToSingleDevice {
 			JSONObject notification = new JSONObject();
 			JSONObject jsonAPS = new JSONObject();
 			JSONObject jumpJson = new JSONObject();
-			jumpJson.put("jt", jumpType);// 0个人中心 1文章 2图集 3单图 4 单视频 5首页 6问达详情页
+			jumpJson.put("jt", jumpType);// 0个人中心 1文章 2图集 3单图 4 单视频 5首页 6问达详情页7:消息中心 8跳转url
 			jumpJson.put("jc", jumpContent);
 			notification.put("jm", jumpJson);
 			jsonAPS.put("alert", msg);
