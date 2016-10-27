@@ -82,6 +82,12 @@ public class CnContentBasicinfo extends BaseEntity {
 	@ZooData(name = "赞的起始数")
 	private int praiseBase;
 
+	@ZooData(name = "审核状态")
+	private String reviewStatus;
+
+	@ZooData(name = "成绩")
+	private int mark;
+
 	public String getCode() {
 		return code;
 	}
@@ -216,6 +222,22 @@ public class CnContentBasicinfo extends BaseEntity {
 
 	public void setCoverWH(String coverWH) {
 		this.coverWH = coverWH;
+	}
+
+	public String getReviewStatus() {
+		return reviewStatus;
+	}
+
+	public void setReviewStatus(String reviewStatus) {
+		this.reviewStatus = reviewStatus;
+	}
+
+	public int getMark() {
+		return mark;
+	}
+
+	public void setMark(int mark) {
+		this.mark = mark;
 	}
 
 }

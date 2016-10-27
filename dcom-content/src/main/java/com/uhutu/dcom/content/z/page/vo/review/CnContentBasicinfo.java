@@ -1,4 +1,4 @@
-package com.uhutu.dcom.content.z.page.vo.ext;
+package com.uhutu.dcom.content.z.page.vo.review;
 
 import java.util.Date;
 
@@ -87,10 +87,11 @@ public class CnContentBasicinfo extends BaseEntity {
 	private int praiseBase;
 
 	@ZooData(name = "审核状态", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd410710011008" }, sort = { DefineWebPage.Page_Edit + "=0" })
+			DefineWebInc.System_Define + "=dzsd410710011008" })
 	private String reviewStatus;
 
-	@ZooData(name = "成绩", verify = { DefineWebVerify.Base_Number }, sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "成绩", verify = { DefineWebVerify.Base_Number }, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Edit + "=0" })
 	private int mark;
 
 	public String getCover() {

@@ -341,6 +341,17 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_href('[[data:content_type]]'=='图集' ? 'http://beta-sportcloud.ntw.srnpr.com/webjars/sportstatic/content_photos.html?code=[[data:code]]':'http://beta-sportcloud.ntw.srnpr.com/webjars/sportstatic/content_detail.html?code=[[data:code]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071076" operateName="填写成绩" operateFunc=""
+			operateType="button" operateLink="zstatic_operate.ope_link('../pe/[[struct:pagePath]]?u_za=[[data:za]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071077" operateName="审核" operateFunc=""
+			operateType="button" operateLink="zstatic_operate.ope_link('../pe/com_uhutu_dcom_content_z_page_ContentBasicInfoForReviewPage?u_za=[[data:za]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071078" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.ContentBasicInfoForReviewPageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>

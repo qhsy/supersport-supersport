@@ -37,6 +37,13 @@
 		<item code="dzsd410710011007" defineName="栏目类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110070001" defineName="内容信息" parentCode="dzsd410710011007" />
 		<item code="dzsd4107100110070002" defineName="达人信息" parentCode="dzsd410710011007" />
+		<item code="dzsd410710011008" defineName="审核状态" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110080001" defineName="待审核" parentCode="dzsd410710011008" />
+		<item code="dzsd4107100110080002" defineName="通过" parentCode="dzsd410710011008" />
+		<item code="dzsd4107100110080003" defineName="未通过" parentCode="dzsd410710011008" />
+		<item code="dzsd410710011009" defineName="奖品类型" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110090001" defineName="优惠券" parentCode="dzsd410710011009" />
+		<item code="dzsd4107100110090002" defineName="手机" parentCode="dzsd410710011009" />
 	</data>
 
 </db>
