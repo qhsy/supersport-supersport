@@ -64,6 +64,11 @@
 .shop .price{float: left; padding-top: 0.3rem; color: #FF7E00; font-size: 0.12rem;}
 .shop .price em{font-size: 0.2rem; line-height: 0.3rem;}
 .shop .btn{width: 0.6rem; height: 0.24rem; margin: 0.33rem 0 0; background: #FF7E00; color: #fff; text-align: center; line-height: 0.24rem; float: right; font-size: 0.12rem;}
+/*canvas*/
+.canvas{height: 100%; width: 100%; overflow: hidden; position: fixed; left: 0; top: 0; display: none; background:rgba(0,0,0,0.7);}
+.canvas ul,.canvas li{height: 100%; overflow: hidden;}
+.canvas li{position: absolute; display: -webkit-box; -webkit-box-pack: center; -webkit-box-align: center;}
+.close{width: 20px; height: 20px; position: fixed; right: 20px; top: 20px; background: url(../static/img/back_but@2x.png) no-repeat; background-size: cover; z-index: 999;}
 </style>
 </head>
 <body>
@@ -99,7 +104,7 @@
 	</footer>
 	<!-- end -->
 	<!-- shop module -->
-	<article class="shop">
+	<article class="shop" v-if="shopList.length">
 		<h3 class="title">相关装备</h3>
 		<ul class="list">
 			<li class="item clearfix" v-for="item in shopList" @click="callTaobao(item.iosUrl,item.androidUrl)">
@@ -118,6 +123,9 @@
 	<!-- data loading -->
 	<aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
 </section>
+<div class="canvas">
+	<span class="close"></span>
+</div>
 <!-- 文章详情 -->
 <script type="text/x-template" id="template-detail">
 	<div class="cover"><img src="../static/img/lazyload.jpg" v-lazyload:opt.fadeIn="res.sportingMoment.cover" alt=""></div>
@@ -171,6 +179,7 @@
 <script type="text/javascript" src="../static/js/share.js"></script>
 <script type="text/javascript" src="../static/js/zy.media.js"></script>
 <script type="text/javascript" src="../static/js/vue.lazyimg.js"></script>
+<script type="text/javascript" src="../static/js/slider.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
 Vue.use(Vue.lazyimg,{
@@ -324,7 +333,7 @@ var vm = new Vue({
 			reqwest({
 				url: '/api/contentController/contentDetailProducts',
 				method: 'post',
-				data: '{"code": "CNBH161020210010","zoo": {"key": "tesetkey","token": " "}}',
+				data: '{"code": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": " "}}',
 				type: 'json',
 				contentType: 'application/json',
 				success: function(resp) {
@@ -361,13 +370,14 @@ var vm = new Vue({
 		callTaobao:function(ios,and){
 			var _this = this;
 			if(!_this.share){
-				callbackTaobao(ios,and)
+				callbackTaobao(ios,and);
 			} else {
 				window.location.href = ios;
 			}
 		}
 	}
 });
+
 </script>
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
