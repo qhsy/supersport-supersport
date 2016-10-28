@@ -55,7 +55,8 @@ public class ApiRecentMsgList extends RootApiToken<ApiRecentMsgListInput, ApiRec
 		
 		if(!StringUtils.equals(flag, MsgEnum.FLAG_READ.getCode()) ){
 			
-			UcMsgNoticeUser ucMsgNoticeUser = JdbcHelper.queryOne(UcMsgNoticeUser.class, "", "-zc", "", MapHelper.initMap("userCode",upUserCode(),"status",MsgEnum.FLAG_UNREAD.getCode()));
+//			UcMsgNoticeUser ucMsgNoticeUser = JdbcHelper.queryOne(UcMsgNoticeUser.class, "", "-zc", "", MapHelper.initMap("userCode",upUserCode(),"status",MsgEnum.FLAG_UNREAD.getCode()));
+			UcMsgNoticeUser ucMsgNoticeUser = JdbcHelper.queryOne(UcMsgNoticeUser.class, "", "-zc", "", MapHelper.initMap("userCode",upUserCode()));
 			
 			if(ucMsgNoticeUser != null){
 				
