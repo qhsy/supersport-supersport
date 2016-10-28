@@ -20,7 +20,7 @@ public interface IMsgNoticeDao extends JpaRepository<UcMsgNotice, String>,JpaSpe
 	@Query("select t from UcMsgNotice t where code=:code")
 	public UcMsgNotice queryByCode(@Param("code") String code);
 	
-	@Query(value = "select t.* from uc_msg_notice t where not exists(select 1 from uc_msg_notice_user p where p.user_code =:userCode and p.notice_code=t.code)",nativeQuery=true)
+	@Query(value = "select t.* from uc_msg_notice t where not exists(select 1 from uc_msg_notice_user p where p.user_code =:userCode and p.notice_code=t.code) and send_type='many'",nativeQuery=true)
 	public List<UcMsgNotice> queryUnReadMsgList(@Param("userCode") String userCode);
 
 }

@@ -159,6 +159,7 @@ public class DrawSupport {
 		notice.setStatus("0");
 		notice.setTitle("系统消息");
 		notice.setType(MsgEnum.TYPE_SYSTEM.getCode());
+		notice.setSendType(MsgEnum.TO_ONE.getCode());
 		JdbcHelper.insert(notice);
 		UcMsgNoticeUser ucMsgNoticeUser = new UcMsgNoticeUser();
 

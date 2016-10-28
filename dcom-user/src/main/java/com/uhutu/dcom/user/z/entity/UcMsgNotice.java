@@ -4,31 +4,44 @@ import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
+
 /**
  * 消息通知实体
+ * 
  * @author 逄小帅
  *
  */
 @Entity
 public class UcMsgNotice extends BaseEntity {
-	
-	@ZooData(value="通知编号")
+
+	@ZooData(value = "通知编号")
 	private String code;
-	
-	@ZooData(value="通知标题")
+
+	@ZooData(value = "通知标题")
 	private String title;
-	
-	@ZooData(value="消息内容")
+
+	@ZooData(value = "消息内容")
 	private String content;
-	
-	@ZooData(value="通知类型")
+
+	@ZooData(value = "通知类型")
 	private String type;
-	
-	@ZooData(value="通知时间")
+
+	@ZooData(value = "通知时间")
 	private String notifyTime;
-	
-	@ZooData(value="状态")
+
+	@ZooData(value = "状态")
 	private String status;
+
+	@ZooData(value = "发送类型")
+	private String sendType;
+
+	public String getSendType() {
+		return sendType;
+	}
+
+	public void setSendType(String sendType) {
+		this.sendType = sendType;
+	}
 
 	public String getCode() {
 		return code;
