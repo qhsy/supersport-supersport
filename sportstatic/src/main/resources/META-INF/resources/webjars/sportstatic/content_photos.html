@@ -106,14 +106,13 @@
 	<!-- end -->
 	<aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
 </section>
-<section class="slider">
+<!-- <section class="slider">
 	<span class="close"></span>
 	<div class="canvas"></div>
-</section>
+</section> -->
 <script type="text/javascript" src="../static/js/lib/vue.min.js"></script>
 <script type="text/javascript" src="../static/js/tools.js"></script>
 <script type="text/javascript" src="../static/js/share.js"></script>
-<script type="text/javascript" src="../static/js/slider.js"></script>
 <script type="text/javascript" src="../static/js/vue.lazyimg.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
@@ -196,41 +195,41 @@ new Vue({
 		}
 	}
 });
-window.onload = function(){
-	var oSlider= document.querySelector('.slider');
-	var oWrap = document.querySelector('.content');
-	var aImg = oWrap.querySelectorAll('img');
-	var oCanvas = oSlider.querySelector('.canvas');
-	var oClose = oSlider.querySelector('.close');
-	var list = [];
-	var timer = null;
-	for(var i=0; i<aImg.length; i++){
-		aImg[i].index = i;
-		aImg[i].addEventListener('click', function(){
-			oSlider.style.display ='block';
-			list = [];
-			for(var j=0; j<aImg.length; j++){
-				var item = {
-					'width':aImg[j].naturalWidth,
-					'height':aImg[j].naturalHeight,
-					'img':aImg[j].getAttribute('data-src')
-				}
-				list.push(item);
-			}
-			console.log(list)
-			new Slider({
-				dom : document.querySelector('.canvas'),
-				list : list,
-				index : this.index
-			});
-		}, false);
-	}
-	oClose.addEventListener('click', function(){
-		oSlider.style.display = 'none';
-		oCanvas.removeChild(oCanvas.querySelector('ul'))
-	}, false);
+// window.onload = function(){
+// 	var oSlider= document.querySelector('.slider');
+// 	var oWrap = document.querySelector('.content');
+// 	var aImg = oWrap.querySelectorAll('img');
+// 	var oCanvas = oSlider.querySelector('.canvas');
+// 	var oClose = oSlider.querySelector('.close');
+// 	var list = [];
+// 	var timer = null;
+// 	for(var i=0; i<aImg.length; i++){
+// 		aImg[i].index = i;
+// 		aImg[i].addEventListener('click', function(){
+// 			oSlider.style.display ='block';
+// 			list = [];
+// 			for(var j=0; j<aImg.length; j++){
+// 				var item = {
+// 					'width':aImg[j].naturalWidth,
+// 					'height':aImg[j].naturalHeight,
+// 					'img':aImg[j].getAttribute('data-src')
+// 				}
+// 				list.push(item);
+// 			}
+// 			console.log(list)
+// 			new Slider({
+// 				dom : document.querySelector('.canvas'),
+// 				list : list,
+// 				index : this.index
+// 			});
+// 		}, false);
+// 	}
+// 	oClose.addEventListener('click', function(){
+// 		oSlider.style.display = 'none';
+// 		oCanvas.removeChild(oCanvas.querySelector('ul'))
+// 	}, false);
 
-}
+// }
 </script>
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>

@@ -339,7 +339,7 @@
 			parentCode="" noteRemark="" />
 		<item code="dzoi41071075" operateName="详情" operateFunc=""
 			operateType="button"
-			operateLink="zstatic_operate.ope_href('[[data:content_type]]'=='图集' ? 'http://beta-sportcloud.ntw.srnpr.com/webjars/sportstatic/content_photos.html?code=[[data:code]]':'http://beta-sportcloud.ntw.srnpr.com/webjars/sportstatic/content_detail.html?code=[[data:code]]')"
+			operateLink="zstatic_operate.ope_href('[[data:content_type]]'=='图集' ? 'https://manager.sport.bigtiyu.com/webjars/sportstatic/content_photos.html?code=[[data:code]]':'https://manager.sport.bigtiyu.com/webjars/sportstatic/content_detail.html?code=[[data:code]]')"
 			parentCode="" noteRemark="" />
 		<item code="dzoi41071076" operateName="填写成绩" operateFunc=""
 			operateType="button"

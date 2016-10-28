@@ -124,10 +124,10 @@
 	<!-- data loading -->
 	<aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
 </section>
-<section class="slider">
+<!-- <section class="slider">
 	<span class="close"></span>
 	<div class="canvas"></div>
-</section>
+</section> -->
 <!-- 文章详情 -->
 <script type="text/x-template" id="template-detail">
 	<div class="cover"><img src="../static/img/lazyload.jpg" v-lazyload:opt.fadeIn="res.sportingMoment.cover" alt=""></div>
@@ -181,7 +181,6 @@
 <script type="text/javascript" src="../static/js/share.js"></script>
 <script type="text/javascript" src="../static/js/zy.media.js"></script>
 <script type="text/javascript" src="../static/js/vue.lazyimg.js"></script>
-<script type="text/javascript" src="../static/js/slider.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
 Vue.use(Vue.lazyimg,{
@@ -379,69 +378,69 @@ var vm = new Vue({
 		}
 	}
 });
-window.onload = function(){
-	var oSlider= document.querySelector('.slider');
-	var oWrap = document.querySelector('.content');
-	var aImg = oWrap.querySelectorAll('img');
-	var oCanvas = oSlider.querySelector('.canvas');
-	var oClose = oSlider.querySelector('.close');
-	var list = [];
-	var timer = null;
-	var startX = 0, startY = 0;
-	for(var i=0; i<aImg.length; i++){
-		aImg[i].index = i;
-		aImg[i].addEventListener('click', function(){
-			oSlider.style.display ='block';
-			list = [];
-			for(var j=0; j<aImg.length; j++){
-				var item = {
-					'width':aImg[j].naturalWidth,
-					'height':aImg[j].naturalHeight,
-					'img':aImg[j].src
-				}
-				list.push(item);
-			}
-			new Slider({
-				dom : document.querySelector('.canvas'),
-				list : list,
-				index : this.index
-			});
-		}, false);
-	}
-	oClose.addEventListener('click', function(){
-		oSlider.style.display = 'none';
-		oCanvas.removeChild(oCanvas.querySelector('ul'))
-	}, false);
+// window.onload = function(){
+// 	var oSlider= document.querySelector('.slider');
+// 	var oWrap = document.querySelector('.content');
+// 	var aImg = oWrap.querySelectorAll('img');
+// 	var oCanvas = oSlider.querySelector('.canvas');
+// 	var oClose = oSlider.querySelector('.close');
+// 	var list = [];
+// 	var timer = null;
+// 	var startX = 0, startY = 0;
+// 	for(var i=0; i<aImg.length; i++){
+// 		aImg[i].index = i;
+// 		aImg[i].addEventListener('click', function(){
+// 			oSlider.style.display ='block';
+// 			list = [];
+// 			for(var j=0; j<aImg.length; j++){
+// 				var item = {
+// 					'width':aImg[j].naturalWidth,
+// 					'height':aImg[j].naturalHeight,
+// 					'img':aImg[j].src
+// 				}
+// 				list.push(item);
+// 			}
+// 			new Slider({
+// 				dom : document.querySelector('.canvas'),
+// 				list : list,
+// 				index : this.index
+// 			});
+// 		}, false);
+// 	}
+// 	oClose.addEventListener('click', function(){
+// 		oSlider.style.display = 'none';
+// 		oCanvas.removeChild(oCanvas.querySelector('ul'))
+// 	}, false);
 
-	oCanvas.addEventListener('touchstart',function(event){
-		var target = event.targetTouches[0];
-		var share = !queryUrl('share');
-		var href = this.querySelector('.curr').querySelector('img').src;
-			startX = target.pageX;
-			startY = target.pageY;
-		if(!share){
-			return false;
-		}
-		timer = setTimeout(function(){
-			callbackSavePic(href);
-		}, 1000)
-		event.preventDefault();
-	}, false);
-	oCanvas.addEventListener('touchmove',function(event){
-		var target = event.targetTouches[0];
-		var moveX = target.pageX;
-		var moveY = target.pageY;
-		if((moveX - startX) <= 5 && (moveX - startX) >= -5 && (moveY - startY) <= 5 && (moveY - startY) >= -5) return false;
-		clearTimeout(timer);		
-		event.preventDefault();
-	}, false);
-	oCanvas.addEventListener('touchend',function(event){
-		clearTimeout(timer);
-		event.preventDefault();
+// 	oCanvas.addEventListener('touchstart',function(event){
+// 		var target = event.targetTouches[0];
+// 		var share = !queryUrl('share');
+// 		var href = this.querySelector('.curr').querySelector('img').src;
+// 			startX = target.pageX;
+// 			startY = target.pageY;
+// 		if(!share){
+// 			return false;
+// 		}
+// 		timer = setTimeout(function(){
+// 			callbackSavePic(href);
+// 		}, 1000)
+// 		event.preventDefault();
+// 	}, false);
+// 	oCanvas.addEventListener('touchmove',function(event){
+// 		var target = event.targetTouches[0];
+// 		var moveX = target.pageX;
+// 		var moveY = target.pageY;
+// 		if((moveX - startX) <= 5 && (moveX - startX) >= -5 && (moveY - startY) <= 5 && (moveY - startY) >= -5) return false;
+// 		clearTimeout(timer);		
+// 		event.preventDefault();
+// 	}, false);
+// 	oCanvas.addEventListener('touchend',function(event){
+// 		clearTimeout(timer);
+// 		event.preventDefault();
 		
-	}, false);
+// 	}, false);
 
-}
+// }
 </script>
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
