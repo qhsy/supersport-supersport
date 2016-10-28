@@ -387,6 +387,7 @@ window.onload = function(){
 	var oClose = oSlider.querySelector('.close');
 	var list = [];
 	var timer = null;
+	var startX = 0, startY = 0;
 	for(var i=0; i<aImg.length; i++){
 		aImg[i].index = i;
 		aImg[i].addEventListener('click', function(){
@@ -408,14 +409,16 @@ window.onload = function(){
 		}, false);
 	}
 	oClose.addEventListener('click', function(){
-		oSlider.removeAttribute('style');
-		oCanvas.removeAttribute('style');
+		oSlider.style.display = 'none';
 		oCanvas.removeChild(oCanvas.querySelector('ul'))
 	}, false);
 
 	oCanvas.addEventListener('touchstart',function(event){
+		var target = event.targetTouches[0];
 		var share = !queryUrl('share');
 		var href = this.querySelector('.curr').querySelector('img').src;
+			startX = target.pageX;
+			startY = target.pageY;
 		if(!share){
 			return false;
 		}
@@ -425,12 +428,17 @@ window.onload = function(){
 		event.preventDefault();
 	}, false);
 	oCanvas.addEventListener('touchmove',function(event){
+		var target = event.targetTouches[0];
+		var moveX = target.pageX;
+		var moveY = target.pageY;
+		if((moveX - startX) <= 5 && (moveX - startX) >= -5 && (moveY - startY) <= 5 && (moveY - startY) >= -5) return false;
+		clearTimeout(timer);		
 		event.preventDefault();
-		clearTimeout(timer);
 	}, false);
 	oCanvas.addEventListener('touchend',function(event){
-		event.preventDefault();
 		clearTimeout(timer);
+		event.preventDefault();
+		
 	}, false);
 
 }

@@ -40,12 +40,12 @@ public class ApiPublishContentPhotos extends RootApiToken<ApiPublishContentPhoto
 			CnContentBasicinfo contentBasicinfo = new CnContentBasicinfo();
 
 			BeanUtils.copyProperties(input.getContentBasicInfo(), contentBasicinfo);
-			code = contentBasicinfo.getCode();
 			contentBasicinfo.setAuthor(upUserCode());
 			String waterMarker = new WaterMarkerSupport().getWaterMarker(contentBasicinfo.getCover(),
 					contentBasicinfo.getTagCode());// 背景图加水印
 			contentBasicinfo.setCover(StringUtils.isNotBlank(waterMarker) ? waterMarker : contentBasicinfo.getCover());
 			serviceFactory.getContentBasicinfoService().save(contentBasicinfo);
+			code = contentBasicinfo.getCode();
 
 			int sort = 0;
 

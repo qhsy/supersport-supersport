@@ -135,7 +135,6 @@ function callbackPublish(type, code, name){
  * @author [wangxh]
  */
 function callbackSavePic(href){
-	console.log(1)
 	var userAgent = navigator.userAgent;
 	if(userAgent.indexOf('Android') != -1){
 		javascript:android.callbackSavePic(href);
