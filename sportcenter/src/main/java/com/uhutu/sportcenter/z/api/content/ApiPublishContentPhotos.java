@@ -34,13 +34,13 @@ public class ApiPublishContentPhotos extends RootApiToken<ApiPublishContentPhoto
 	protected ApiPublishContentPhotosResult process(ApiPublishContentPhotosInput input) {
 
 		ApiPublishContentPhotosResult contentPhotosResult = new ApiPublishContentPhotosResult();
-
+		String code = "";
 		if (input.getContentBasicInfo() != null && input.getContentPhotos() != null) {
 
 			CnContentBasicinfo contentBasicinfo = new CnContentBasicinfo();
 
 			BeanUtils.copyProperties(input.getContentBasicInfo(), contentBasicinfo);
-
+			code = contentBasicinfo.getCode();
 			contentBasicinfo.setAuthor(upUserCode());
 			String waterMarker = new WaterMarkerSupport().getWaterMarker(contentBasicinfo.getCover(),
 					contentBasicinfo.getTagCode());// 背景图加水印
@@ -78,11 +78,11 @@ public class ApiPublishContentPhotos extends RootApiToken<ApiPublishContentPhoto
 			contentPhotosResult.setError("内容信息不存在");
 
 		}
-		
-		if(contentPhotosResult.upFlagTrue()){
-			
-			contentPhotosResult.setCode(input.getContentBasicInfo().getCode());
-			
+
+		if (contentPhotosResult.upFlagTrue()) {
+
+			contentPhotosResult.setCode(code);
+
 		}
 
 		return contentPhotosResult;
