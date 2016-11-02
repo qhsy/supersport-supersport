@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.APiStartPageInput;
 import com.uhutu.sportcenter.z.input.ApiAttendListInput;
@@ -24,6 +25,7 @@ import com.uhutu.sportcenter.z.input.ApiSignLoginInput;
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput;
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput2;
 import com.uhutu.sportcenter.z.input.ApiUpdateUserInfoInput;
+import com.uhutu.sportcenter.z.input.ApiUserDataExpertInput;
 import com.uhutu.sportcenter.z.input.ApiUserInfoAllInput;
 import com.uhutu.sportcenter.z.input.ApiUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiUserRegInput;
@@ -48,6 +50,7 @@ import com.uhutu.sportcenter.z.result.ApiSignLoginResult;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult2;
 import com.uhutu.sportcenter.z.result.ApiUpdateUserInfoResult;
+import com.uhutu.sportcenter.z.result.ApiUserDataExpertResult;
 import com.uhutu.sportcenter.z.result.ApiUserInfoAllResult;
 import com.uhutu.sportcenter.z.result.ApiUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiUserRegResult;
@@ -77,9 +80,9 @@ public class UserController {
 	@RequestMapping(value = "/versionInfo", method = RequestMethod.POST)
 	@ApiOperation(value = "app版本升级提示接口", notes = "版本升级")
 	public ApiVersionInfoResult versionInfo(@RequestBody ApiVersionInfoInput input) {
-		
+
 		return apiFactory.getApiVersionInfo().api(input);
-	
+
 	}
 
 	@ResponseBody
@@ -89,7 +92,7 @@ public class UserController {
 
 		return apiFactory.getApiUserRegister().api(input);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/userRegSign", method = RequestMethod.POST)
 	@ApiOperation(value = "用户注册接口(签名)", notes = "用户注册接口(签名)")
@@ -113,7 +116,7 @@ public class UserController {
 
 		return apiFactory.getApiSocialLogin().api(input);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/socialLogin2", method = RequestMethod.POST)
 	@ApiOperation(value = "社交类app登录2", notes = "用户登录2")
@@ -146,7 +149,7 @@ public class UserController {
 		return apiFactory.getApiForLogin().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/signLogin", method = RequestMethod.POST)
 	@ApiOperation(value = "用户登录接口(签名)", notes = "用户登录接口(签名)")
@@ -260,7 +263,7 @@ public class UserController {
 		return apiFactory.getApiRecommendExpert().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/allUserInfo", method = RequestMethod.POST)
 	@ApiOperation(value = "全部用户信息", notes = "全部的用户信息")
@@ -269,7 +272,7 @@ public class UserController {
 		return apiFactory.getApiUserInfoAll().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/ownSportMoment", method = RequestMethod.POST)
 	@ApiOperation(value = "我发布的运动时刻", notes = "我发布的运动时刻")
@@ -277,6 +280,15 @@ public class UserController {
 
 		return apiFactory.getApiOwnSportMoment().api(input);
 
-	}	
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/userDataExpert", method = RequestMethod.POST)
+	@ApiOperation(value = "用户数据导出", notes = "用户数据导出")
+	public ApiUserDataExpertResult userDataExpert(@RequestBody ApiUserDataExpertInput input) {
+
+		return apiFactory.getApiUserDataExpert().api(input);
+
+	}
 
 }

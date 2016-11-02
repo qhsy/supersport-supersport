@@ -101,6 +101,7 @@ import com.uhutu.sportcenter.z.api.user.ApiSocialLogin;
 import com.uhutu.sportcenter.z.api.user.ApiSocialLogin2;
 import com.uhutu.sportcenter.z.api.user.ApiUpdateMsgStatus;
 import com.uhutu.sportcenter.z.api.user.ApiUpdateUserInfo;
+import com.uhutu.sportcenter.z.api.user.ApiUserDataExpert;
 import com.uhutu.sportcenter.z.api.user.ApiUserInfo;
 import com.uhutu.sportcenter.z.api.user.ApiUserInfoAll;
 import com.uhutu.sportcenter.z.api.user.ApiUserRegSign;
@@ -444,6 +445,10 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiContentDetailProducts apiContentDetailProducts;
+	
+	@Autowired
+	private ApiUserDataExpert apiUserDataExpert;
+	
 	public ApiHomePageSecond getApiHomePageSecond() {
 		return apiHomePageSecond;
 	}
@@ -874,6 +879,10 @@ public class ApiFactory {
 
 	public ApiContentDetailProducts getApiContentDetailProducts() {
 		return apiContentDetailProducts;
+	}
+
+	public ApiUserDataExpert getApiUserDataExpert() {
+		return apiUserDataExpert;
 	}
 
 }
