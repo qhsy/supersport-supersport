@@ -43,31 +43,34 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 				shareResult.setUrl(shareInfo.getUrl());
 			}
 		}
+		if (StringUtils.isNotBlank(input.getContentCode()) && input.getContentCode().startsWith("CNBH")) {
 
-		CnContentBasicinfo basicInfo = contentServiceFactory.getContentBasicinfoService()
-				.queryByCode(input.getContentCode());
+			CnContentBasicinfo basicInfo = contentServiceFactory.getContentBasicinfoService()
+					.queryByCode(input.getContentCode());
 
-		CnContentRecomm recomm = contentServiceFactory.getContentRecommService()
-				.queryEntityByCode(input.getContentCode());
+			CnContentRecomm recomm = contentServiceFactory.getContentRecommService()
+					.queryEntityByCode(input.getContentCode());
 
-		if (basicInfo != null) {
+			if (basicInfo != null) {
 
-			shareResult.setTitle(basicInfo.getTitle());
-			if (StringUtils.isNotBlank(basicInfo.getCover())) {
-				shareResult.setIconUrl(ImageHelper.upImageThumbnail(basicInfo.getCover(), 120));
-			}
-			if (StringUtils.isNotBlank(basicInfo.getTagCode()) && (basicInfo.getTagCode().contains("GGBH161020110001")
-					|| basicInfo.getTagCode().contains("GGBH161020210001")
-					|| basicInfo.getTagCode().contains("GGBH161020210002")
-					|| basicInfo.getTagCode().contains("GGBH161020210003"))) {
-				shareResult.setContent(TopHelper.upInfo(810710021));
-			} else if (recomm != null && StringUtils.isNotBlank(recomm.getContent())) {
-				shareResult.setContent(recomm.getContent());
+				shareResult.setTitle(basicInfo.getTitle());
+				if (StringUtils.isNotBlank(basicInfo.getCover())) {
+					shareResult.setIconUrl(ImageHelper.upImageThumbnail(basicInfo.getCover(), 120));
+				}
+				if (StringUtils.isNotBlank(basicInfo.getTagCode())
+						&& (basicInfo.getTagCode().contains("GGBH161020110001")
+								|| basicInfo.getTagCode().contains("GGBH161020210001")
+								|| basicInfo.getTagCode().contains("GGBH161020210002")
+								|| basicInfo.getTagCode().contains("GGBH161020210003"))) {
+					shareResult.setContent(TopHelper.upInfo(810710021));
+				} else if (recomm != null && StringUtils.isNotBlank(recomm.getContent())) {
+					shareResult.setContent(recomm.getContent());
+				} else {
+					shareResult.setContent(TopHelper.upInfo(810710011));
+				}
 			} else {
-				shareResult.setContent(TopHelper.upInfo(810710011));
+				shareResult.inError(810710008);
 			}
-		} else {
-			shareResult.inError(810710008);
 		}
 
 		return shareResult;

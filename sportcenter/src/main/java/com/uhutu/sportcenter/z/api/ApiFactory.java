@@ -57,6 +57,7 @@ import com.uhutu.sportcenter.z.api.donate.ApiUserPowerInit;
 import com.uhutu.sportcenter.z.api.donate.ApiUserPowerShare;
 import com.uhutu.sportcenter.z.api.donate.ApiUserShareInfo;
 import com.uhutu.sportcenter.z.api.extend.ApiSendSms;
+import com.uhutu.sportcenter.z.api.extend.ApiStartUp;
 import com.uhutu.sportcenter.z.api.home.APiStartPage;
 import com.uhutu.sportcenter.z.api.home.ApiExpertChat;
 import com.uhutu.sportcenter.z.api.home.ApiHomePage;
@@ -424,31 +425,34 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiForSearchLabels apiForSearchLabels;
-	
+
 	@Autowired
 	private ApiRecommLabelList apiRecommLabelList;
-	
+
 	@Autowired
 	private ApiHotTopic apiHotTopic;
-	
+
 	@Autowired
 	private ApiWonderfulVideo apiWonderfulVideo;
-	
+
 	@Autowired
 	private ApiExpertChat apiExpertChat;
 
 	@Autowired
 	private ApiHomePageSecond apiHomePageSecond;
-	
+
 	@Autowired
 	private ApiPicPasterList apiPicPasterList;
-	
+
 	@Autowired
 	private ApiContentDetailProducts apiContentDetailProducts;
-	
+
 	@Autowired
 	private ApiUserDataExpert apiUserDataExpert;
-	
+
+	@Autowired
+	private ApiStartUp apiStartUp;
+
 	public ApiHomePageSecond getApiHomePageSecond() {
 		return apiHomePageSecond;
 	}
@@ -883,6 +887,10 @@ public class ApiFactory {
 
 	public ApiUserDataExpert getApiUserDataExpert() {
 		return apiUserDataExpert;
+	}
+
+	public ApiStartUp getApiStartUp() {
+		return apiStartUp;
 	}
 
 }

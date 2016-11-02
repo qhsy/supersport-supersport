@@ -11,10 +11,12 @@ import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiExpertChatInput;
 import com.uhutu.sportcenter.z.input.ApiHomePageSecondInput;
 import com.uhutu.sportcenter.z.input.ApiHotTopicInput;
+import com.uhutu.sportcenter.z.input.ApiStartUpInput;
 import com.uhutu.sportcenter.z.input.ApiWonderfulVideoInput;
 import com.uhutu.sportcenter.z.result.ApiExpertChatResult;
 import com.uhutu.sportcenter.z.result.ApiHomePageSecondResult;
 import com.uhutu.sportcenter.z.result.ApiHotTopicResult;
+import com.uhutu.sportcenter.z.result.ApiStartUpResult;
 import com.uhutu.sportcenter.z.result.ApiWonderfulVideoResult;
 
 import io.swagger.annotations.Api;
@@ -65,6 +67,15 @@ public class HomeController {
 	public ApiHotTopicResult hotTopic(@RequestBody ApiHotTopicInput input) {
 
 		return apiFactory.getApiHotTopic().api(input);
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/startUpApi", method = RequestMethod.POST)
+	@ApiOperation(value = "启动页图片接口", notes = "启动页图片接口")
+	public ApiStartUpResult startUpApi(@RequestBody ApiStartUpInput input) {
+
+		return apiFactory.getApiStartUp().api(input);
 
 	}
 
