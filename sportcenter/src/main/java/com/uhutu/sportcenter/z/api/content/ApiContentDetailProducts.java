@@ -13,6 +13,7 @@ import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
+import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 详情页推荐的商品列表
@@ -48,6 +49,11 @@ public class ApiContentDetailProducts
 				List<PcProductInfo> pros = JdbcHelper.queryForList(PcProductInfo.class, "",
 						" field(code," + str.toString() + ")",
 						" code in(" + str.toString() + ")" + " and status=:status ", mDataMap);
+				if (pros != null && pros.size() > 0 && input.getWidth() > 0) {
+					for (int i = 0; i < pros.size(); i++) {
+						pros.get(i).setPicurl(ImageHelper.upImageThumbnail(pros.get(i).getPicurl(), input.getWidth()));
+					}
+				}
 				result.setProductInfos(pros);
 			}
 		} else {

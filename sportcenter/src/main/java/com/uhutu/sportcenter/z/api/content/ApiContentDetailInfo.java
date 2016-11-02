@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.api.content;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.api.util.ContentComponent;
+import com.uhutu.sportcenter.z.api.util.PictureUtil;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.entity.ContentDetailInfo;
 import com.uhutu.sportcenter.z.entity.ContentRecommInfo;
@@ -25,6 +28,7 @@ import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoocom.z.bean.TopUserFactory;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
+import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 内容详情信息
@@ -121,6 +125,16 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 
 				}
 
+				if (contentDetailInfo != null && StringUtils.isNotBlank(contentDetailInfo.getContent())) {
+					List<String> picList = PictureUtil.getImgStr(contentDetailInfo.getContent());
+					if (input.getWidth() > 0) {
+						for (int j = 0; j < picList.size(); j++) {
+							// 图片压缩处理
+							String imgSrc = ImageHelper.upImageThumbnail(picList.get(j), input.getWidth());
+							contentDetailInfo.getContent().replace(picList.get(j), imgSrc);
+						}
+					}
+				}
 				contentDetailResult.setContentDetailInfo(contentDetailInfo);
 				if ("dzsd4107100110030004".equals(contentBasicinfoForApi.getContentType())) {// 单图模式的时候内容做标题
 					contentBasicinfoForApi.setTitle(contentDetailInfo.getContent());

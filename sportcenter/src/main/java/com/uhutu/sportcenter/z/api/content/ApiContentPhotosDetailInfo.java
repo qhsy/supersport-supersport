@@ -105,10 +105,14 @@ public class ApiContentPhotosDetailInfo extends RootApiBase<ApiContentPhotosInpu
 					BeanUtils.copyProperties(entity, contentPhotosDetail);
 
 					if (StringUtils.isNotBlank(contentPhotosDetail.getPicture())) {
+						if (input.getWidth() > 0) {
+							contentPhotosDetail.setPicture(
+									ImageHelper.upImageThumbnail(contentPhotosDetail.getPicture(), input.getWidth()));
+						} else {
+							ImageThumb thumb = ImageHelper.upThumbWithHeight(contentPhotosDetail.getPicture(), 0);
 
-						ImageThumb thumb = ImageHelper.upThumbWithHeight(contentPhotosDetail.getPicture(), 0);
-
-						contentPhotosDetail.setThumb(thumb);
+							contentPhotosDetail.setThumb(thumb);
+						}
 
 					}
 
