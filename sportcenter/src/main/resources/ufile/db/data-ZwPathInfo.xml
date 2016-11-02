@@ -70,6 +70,8 @@
 		<item code="dzpi45141006" nodeName="app相关" parentCode="" />
 		<item code="dzpi451410060001" nodeName="app管理" parentCode="dzpi45141006" />
 		<item code="dzpi4514100600010001" nodeName="app版本信息" parentCode="dzpi451410060001" pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_AppVersionInfoPage" pageIcon="glyphicon-phone" />
+		<item code="dzpi451410060002" nodeName="app管理" parentCode="dzpi45141006" />
+		<item code="dzpi4514100600020001" nodeName="app启动页信息" parentCode="dzpi451410060002" pageUrl="/zpage/pg/com_uhutu_dcom_extend_sensitive_z_page_CnStartUpPage" pageIcon="glyphicon-phone" />
 		<item code="dzpi45141007" nodeName="首页相关" parentCode="" />
 		<item code="dzpi451410070001" nodeName="首页广告" parentCode="dzpi45141007" />
 		<item code="dzpi4514100700010001" nodeName="图库" parentCode="dzpi451410070001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_AdvertiseDetailPage" pageIcon="glyphicon-picture" />
