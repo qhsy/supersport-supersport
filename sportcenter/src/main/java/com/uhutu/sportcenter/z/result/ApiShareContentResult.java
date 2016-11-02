@@ -7,20 +7,27 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 分享内容
+ * 
  * @author 逄小帅
  *
  */
 @ApiModel
 public class ApiShareContentResult extends RootApiResult {
-	
-	@ApiModelProperty(value="缩略图")
+
+	@ApiModelProperty(value = "缩略图")
 	private String iconUrl;
-	
-	@ApiModelProperty(value="标题")
+
+	@ApiModelProperty(value = "标题")
 	private String title;
-	
-	@ApiModelProperty(value="内容缩写")
+
+	@ApiModelProperty(value = "内容缩写")
 	private String content;
+
+	@ApiModelProperty(name = "分享的内容编号")
+	private String code;
+
+	@ApiModelProperty(name = "分享链接")
+	private String url;
 
 	public String getIconUrl() {
 		return iconUrl;
@@ -45,7 +52,21 @@ public class ApiShareContentResult extends RootApiResult {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
 }

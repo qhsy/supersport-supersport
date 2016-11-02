@@ -108,18 +108,18 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 		List<CnThemeDetailRel> detailRels = JdbcHelper.queryForList(CnThemeDetailRel.class, "", "sort desc",
 				"code='" + columnCode + "'", new MDataMap());
 		StringBuffer contentCodes = new StringBuffer();
-		
+
 		MDataMap coverMap = new MDataMap();
-		
+
 		if (detailRels != null && !detailRels.isEmpty() && detailRels.size() > 0) {
 			for (int i = 0; i < detailRels.size(); i++) {
-				
-				if(StringUtils.isNotEmpty(detailRels.get(i).getThemeCover())){
-					
+
+				if (StringUtils.isNotEmpty(detailRels.get(i).getThemeCover())) {
+
 					coverMap.put(detailRels.get(i).getContentCode(), detailRels.get(i).getThemeCover());
-					
+
 				}
-				
+
 				if (i == detailRels.size() - 1) {
 					contentCodes.append("'" + detailRels.get(i).getContentCode() + "'");
 				} else {
@@ -141,7 +141,10 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 						UcUserinfo userInfo = userInfoSupport.getUserInfo(re.getAuthor());
 						UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(re.getAuthor());
 						if (ucUserinfoExt != null) {
-							re.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+							if (StringUtils.isNotBlank(ucUserinfoExt.getAboutHead())) {
+								re.getUserBasicInfo()
+										.setAboutHead(ImageHelper.upImageThumbnail(ucUserinfoExt.getAboutHead(), 80));
+							}
 							re.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
 						}
 						if (userInfo != null) {
@@ -150,25 +153,25 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 						}
 						re.setPraiseNum(contentServiceFactory.getSupportPraiseService().queryCountByCode(re.getCode(),
 								ContentEnum.FAVOR_STATUS_YES.getCode()));
-						
+
 						String themeCover = coverMap.get(basicInfo.getCode());
-	
-						int coverWidth = StringUtils.isNotEmpty(width)?Integer.valueOf(width):0;
-						
-						if(StringUtils.isNotBlank(themeCover)){
-							
+
+						int coverWidth = StringUtils.isNotEmpty(width) ? Integer.valueOf(width) : 0;
+
+						if (StringUtils.isNotBlank(themeCover)) {
+
 							re.setCover(ImageHelper.upImageThumbnail(themeCover, coverWidth));
-							
-						}else{
-							
+
+						} else {
+
 							if (StringUtils.isNotBlank(re.getCover())) {
-								
+
 								re.setCover(ImageHelper.upImageThumbnail(re.getCover(), coverWidth));
-								
+
 							}
-							
+
 						}
-						
+
 						result.add(re);
 					}
 				}
@@ -200,7 +203,8 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 						UcUserinfoExt uie = us.get(i);
 						BeanUtils.copyProperties(uie, recommExpertInfo);
 						if (StringUtils.isNoneBlank(recommExpertInfo.getAboutHead())) {
-							recommExpertInfo.setAboutHead(recommExpertInfo.getAboutHead());
+							recommExpertInfo
+									.setAboutHead(ImageHelper.upImageThumbnail(recommExpertInfo.getAboutHead(), 80));
 						}
 						UcUserinfo uui = JdbcHelper.queryOne(UcUserinfo.class, "code", recommExpertInfo.getUserCode());
 						AwAnswerExpert answerExpert = JdbcHelper.queryOne(AwAnswerExpert.class, "userCode",
