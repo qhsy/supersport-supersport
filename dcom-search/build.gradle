@@ -18,7 +18,7 @@ jar {
 dependencies {
 	//compile project(':zoozero'){version=zooInitVersion;group=zooInitGroupId}
 	compile group: zooInitGroupId, name: 'zoozero', version: zooInitVersion, changing: true
-	
+	compile group: 'org.apache.solr', name: 'solr-solrj', version: '6.2.1'
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 	
 	
