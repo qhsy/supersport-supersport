@@ -131,7 +131,7 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 						for (int j = 0; j < picList.size(); j++) {
 							// 图片压缩处理
 							String imgSrc = ImageHelper.upImageThumbnail(picList.get(j), input.getWidth());
-							contentDetailInfo.getContent().replace(picList.get(j), imgSrc);
+							contentDetailInfo.setContent(contentDetailInfo.getContent().replace(picList.get(j), imgSrc));
 						}
 					}
 				}
