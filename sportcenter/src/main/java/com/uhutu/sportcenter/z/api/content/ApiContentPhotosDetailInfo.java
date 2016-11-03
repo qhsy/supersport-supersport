@@ -58,7 +58,10 @@ public class ApiContentPhotosDetailInfo extends RootApiBase<ApiContentPhotosInpu
 		if (cnContentBasicinfo != null) {
 
 			BeanUtils.copyProperties(cnContentBasicinfo, result.getContentBasicInfo());
-
+			if (input.getWidth() > 0 && StringUtils.isNotBlank(result.getContentBasicInfo().getCover())) {
+				result.getContentBasicInfo().setCover(
+						ImageHelper.upImageThumbnail(result.getContentBasicInfo().getCover(), input.getWidth()));
+			}
 			UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(cnContentBasicinfo.getAuthor());
 
 			UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(cnContentBasicinfo.getAuthor());
