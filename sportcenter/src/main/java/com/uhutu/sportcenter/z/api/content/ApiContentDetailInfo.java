@@ -139,6 +139,10 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 				if ("dzsd4107100110030004".equals(contentBasicinfoForApi.getContentType())) {// 单图模式的时候内容做标题
 					contentBasicinfoForApi.setTitle(contentDetailInfo.getContent());
 				}
+				if (StringUtils.isNotBlank(contentBasicinfoForApi.getCover())) {
+					contentBasicinfoForApi.setCover(
+							ImageHelper.upImageThumbnail(contentBasicinfoForApi.getCover(), input.getWidth()));
+				}
 				contentDetailResult.setSportingMoment(contentBasicinfoForApi);
 
 			} else {
