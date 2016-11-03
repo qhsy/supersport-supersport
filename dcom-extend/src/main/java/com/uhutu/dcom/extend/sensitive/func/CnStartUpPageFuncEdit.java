@@ -1,9 +1,11 @@
 package com.uhutu.dcom.extend.sensitive.func;
 
 import java.util.Date;
+import java.util.List;
 
 import com.uhutu.dcom.extend.sensitive.z.entity.CnStartUp;
 import com.uhutu.zoocom.helper.DateHelper;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.api.webpage.WebOperateInput;
 import com.uhutu.zooweb.api.webpage.WebOperateResult;
@@ -21,6 +23,17 @@ public class CnStartUpPageFuncEdit extends RootFunc {
 				|| DateHelper.parseDate(input.getDataMap().get("start_time"))
 						.after(DateHelper.parseDate(input.getDataMap().get("end_time")))) {
 			result.inError(81090005);
+		} else {
+			MDataMap map = new MDataMap();
+			map.put("startTime", input.getDataMap().get("start_time"));
+			map.put("endTime", input.getDataMap().get("end_time"));
+			map.put("za", input.getDataMap().get("za"));
+			List<CnStartUp> li = JdbcHelper.queryForList(CnStartUp.class, "", "",
+					" za!=:za and ((endTime>=:startTime and endTime<=:endTime) or (startTime>=:startTime and startTime<=:endTime) or (startTime<=:startTime and endTime>=:endTime) or (startTime>=:startTime and endTime<=:endTime)) ",
+					map);
+			if (li != null && !li.isEmpty() && li.size() > 0) {
+				result.inError(81090006);
+			}
 		}
 		if (result.upFlagTrue()) {
 			CnStartUp up = new CnStartUp();
