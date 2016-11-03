@@ -1,0 +1,28 @@
+buildscript {
+		repositories {
+			 maven {url zooInitMavenCenter}
+		}
+		dependencies {
+			classpath("org.springframework.boot:spring-boot-gradle-plugin:${zooInitSpringBoot}") 
+		}
+}
+
+apply plugin: 'spring-boot'
+
+jar {
+	baseName = 'dcom-search'
+	version = zooInitVersion
+}
+
+
+dependencies {
+	//compile project(':zoozero'){version=zooInitVersion;group=zooInitGroupId}
+	compile group: zooInitGroupId, name: 'zoozero', version: zooInitVersion, changing: true
+	
+	testCompile('org.springframework.boot:spring-boot-starter-test') 
+	
+	
+}
+configurations.all {
+    	resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+	}
