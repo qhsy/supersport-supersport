@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentPhotos;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
@@ -91,6 +92,13 @@ public class ApiContentPhotosDetailInfo extends RootApiBase<ApiContentPhotosInpu
 			result.getContentBasicInfo().setRemarkNum(remarkNum);
 
 			result.getContentBasicInfo().setPraiseNum(ContentComponent.praiseNum(cnContentBasicinfo.getCode()));
+			
+			/*标题emoji表情处理*/
+			String title = result.getContentBasicInfo().getTitle();
+			
+			title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+			
+			result.getContentBasicInfo().setTitle(title);
 
 			List<ContentPhotosDetail> cnContentPhotosDetails = new ArrayList<ContentPhotosDetail>();
 
@@ -115,6 +123,12 @@ public class ApiContentPhotosDetailInfo extends RootApiBase<ApiContentPhotosInpu
 						}
 
 					}
+					
+					String content = contentPhotosDetail.getContent();
+					
+					content =  StringUtils.isEmpty(content) ? "" : EmojiUtil.emojiRecovery(content);
+					
+					contentPhotosDetail.setContent(content);
 
 					cnContentPhotosDetails.add(contentPhotosDetail);
 

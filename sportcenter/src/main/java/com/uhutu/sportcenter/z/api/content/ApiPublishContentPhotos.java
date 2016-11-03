@@ -9,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentPhotos;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
@@ -44,7 +45,15 @@ public class ApiPublishContentPhotos extends RootApiToken<ApiPublishContentPhoto
 			String waterMarker = new WaterMarkerSupport().getWaterMarker(contentBasicinfo.getCover(),
 					contentBasicinfo.getTagCode());// 背景图加水印
 			contentBasicinfo.setCover(StringUtils.isNotBlank(waterMarker) ? waterMarker : contentBasicinfo.getCover());
+			
+			String title = contentBasicinfo.getTitle();
+					
+			title = StringUtils.isEmpty(title)? "" : EmojiUtil.emojiFilter(title);
+			
+			contentBasicinfo.setTitle(title);
+			
 			serviceFactory.getContentBasicinfoService().save(contentBasicinfo);
+			
 			code = contentBasicinfo.getCode();
 
 			int sort = 0;
@@ -60,6 +69,12 @@ public class ApiPublishContentPhotos extends RootApiToken<ApiPublishContentPhoto
 				BeanUtils.copyProperties(entity, temp);
 
 				temp.setContentCode(contentBasicinfo.getCode());
+				
+				String content = temp.getContent();
+						
+				content = StringUtils.isEmpty(content)? "" : EmojiUtil.emojiFilter(content);
+				
+				temp.setContent(content);
 
 				temp.setZc(new Date());
 

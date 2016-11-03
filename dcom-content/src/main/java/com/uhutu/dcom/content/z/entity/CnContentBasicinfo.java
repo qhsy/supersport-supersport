@@ -35,6 +35,7 @@ public class CnContentBasicinfo extends BaseEntity {
 
 	@ApiModelProperty(name = "标题", notes = "标题", example = "新体优家，您运动的首选~")
 	@ZooData(name = "内容标题")
+	@Column(columnDefinition = "longtext")
 	private String title;
 
 	@ApiModelProperty(name = "日期展示", notes = "日期展示", example = "2016-4-19")

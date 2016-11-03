@@ -13,6 +13,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
@@ -45,6 +46,18 @@ public class ApiPublishSportingMoment
 		BeanUtils.copyProperties(input.getMoment(), contentBasicinfo);
 
 		BeanUtils.copyProperties(input.getMomentDetailInfo(), contentDetail);
+		
+		String title = contentBasicinfo.getTitle();
+				
+		title =	StringUtils.isEmpty(title)? "" : EmojiUtil.emojiFilter(title);
+		
+		contentBasicinfo.setTitle(title);
+		
+		String content = contentDetail.getContent();
+				
+		content	= StringUtils.isEmpty(content)? "" : EmojiUtil.emojiFilter(content);
+		
+		contentDetail.setContent(content);
 
 		contentBasicinfo.setAuthor(upUserCode());
 

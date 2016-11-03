@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
@@ -135,6 +136,14 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 						}
 					}
 				}
+				
+				/*内容emoji表情处理*/
+				String content = contentDetailInfo.getContent();
+						
+				content = StringUtils.isEmpty(content) ? "" : EmojiUtil.emojiRecovery(content);
+				
+				contentDetailInfo.setContent(content);
+				
 				contentDetailResult.setContentDetailInfo(contentDetailInfo);
 				if ("dzsd4107100110030004".equals(contentBasicinfoForApi.getContentType())) {// 单图模式的时候内容做标题
 					contentBasicinfoForApi.setTitle(contentDetailInfo.getContent());
@@ -143,6 +152,14 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 					contentBasicinfoForApi.setCover(
 							ImageHelper.upImageThumbnail(contentBasicinfoForApi.getCover(), input.getWidth()));
 				}
+				
+				/*标题emoji表情处理*/
+				String title = contentBasicinfoForApi.getTitle();
+						
+				title =	StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+				
+				contentBasicinfoForApi.setTitle(title);
+				
 				contentDetailResult.setSportingMoment(contentBasicinfoForApi);
 
 			} else {
