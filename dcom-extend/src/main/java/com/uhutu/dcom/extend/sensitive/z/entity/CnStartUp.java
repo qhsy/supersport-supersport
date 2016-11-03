@@ -9,6 +9,8 @@ import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * 启动页接口
  * 
@@ -18,28 +20,35 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class CnStartUp extends BaseEntity {
 
+	@ApiModelProperty(name = "启动图编号", notes = "启动图编号")
 	@ZooData(name = "启动图编号", inc = DefineWebInc.Insert_Code + "=QDTBH", sort = { DefineWebPage.Page_Add + "=1",
 			DefineWebPage.Page_Edit + "=0" })
 	private String code;
 
+	@ApiModelProperty(name = "启动图", notes = "启动图")
 	@ZooData(name = "启动图", element = DefineWebElement.Upload, require = "1", sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
 	private String cover;
 
+	@ApiModelProperty(name = "开始时间", notes = "开始时间")
 	@ZooData(name = "开始时间", element = DefineWebElement.Datehms, require = "1", sort = {
 			DefineWebPage.Page_Query + "=0" })
 	private String startTime;
 
+	@ApiModelProperty(name = "结束时间", notes = "结束时间")
 	@ZooData(name = "结束时间", element = DefineWebElement.Datehms, require = "1", sort = {
 			DefineWebPage.Page_Query + "=0" })
 	private String endTime;
 
+	@ApiModelProperty(name = "跳转链接", notes = "跳转链接")
 	@ZooData(name = "跳转链接", sort = { DefineWebPage.Page_Query + "=0" })
 	private String jumpUrl;
 
-	@ZooData(name = "停留时间", require = "1", verify = { DefineWebVerify.Base_Number })
+	@ApiModelProperty(name = "停留时间(秒)", notes = "停留时间(秒)")
+	@ZooData(name = "停留时间(秒)", require = "1", verify = { DefineWebVerify.Base_Number })
 	private int stayTime;
 
+	@ApiModelProperty(name = "倒计时是否显示", notes = "倒计时是否显示")
 	@ZooData(name = "倒计时是否显示", element = DefineWebElement.Select, inc = { DefineWebInc.System_Define + "=10" })
 	private String showStatus;
 

@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class ApiStartUpResult extends RootApiResult {
 
-	@ApiModelProperty(name = "专题编号")
+	@ApiModelProperty(name = "启动页信息")
 	private CnStartUp startUp = new CnStartUp();
 
 	public CnStartUp getStartUp() {
