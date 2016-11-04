@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentProductRel;
 import com.uhutu.dcom.content.z.entity.PcProductInfo;
 import com.uhutu.sportcenter.z.input.ApiContentDetailProductsInput;
@@ -59,6 +60,13 @@ public class ApiContentDetailProducts
 		} else {
 			result.setStatus(0);
 			result.setError("编号不能为空");
+		}
+		if (result.upFlagTrue() && result.getProductInfos() != null && result.getProductInfos().size() > 0) {
+			CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code", input.getCode());
+			result.setTitle("相关装备");
+			if (detail != null && StringUtils.isNotBlank(detail.getTitle())) {
+				result.setTitle(detail.getTitle());
+			}
 		}
 		return result;
 	}
