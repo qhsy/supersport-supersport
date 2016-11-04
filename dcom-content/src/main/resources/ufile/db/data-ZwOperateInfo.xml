@@ -364,6 +364,10 @@
 			operateType="js"
 			operateLink="zstatic_operate.ope_pd('[[struct:pageUnique]]','[[data:za]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071081" operateName="维护标题" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pe/com_uhutu_dcom_content_z_page_ContentDetailForProductTitlePage?u_za=[[data:za]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>

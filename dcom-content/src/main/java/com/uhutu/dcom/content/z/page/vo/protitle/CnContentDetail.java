@@ -1,4 +1,4 @@
-package com.uhutu.dcom.content.z.page.vo.ext;
+package com.uhutu.dcom.content.z.page.vo.protitle;
 
 import javax.persistence.Column;
 
@@ -24,22 +24,25 @@ public class CnContentDetail extends BaseEntity {
 	private String code;
 
 	@ZooData(name = "商品标题", verify = { DefineWebVerify.Max_Length + "=20" }, sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Add + "=0" })
+			DefineWebPage.Page_Add + "=0" })
 	@Column(length = 100)
 	private String title;
 
-	@ZooData(name = "视频地址", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "视频地址", require = "1", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String videoUrl;
 
 	@ZooData(name = "视频封面(1080*810)", require = "1", element = DefineWebElement.Upload, sort = {
-			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+			DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Grid + "=0",
+			DefineWebPage.Page_Query + "=0" })
 	private String videoCover;
 
-	@ZooData(name = "视频简述", element = DefineWebElement.Textarea)
+	@ZooData(name = "视频简述", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Add + "=0",
+			DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Grid + "=0", DefineWebPage.Page_Query + "=0" })
 	private String description;
 
-	@ZooData(name = "内容信息", element = DefineWebElement.Editor, sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "内容信息", element = DefineWebElement.Editor, sort = { DefineWebPage.Page_Add + "=0",
+			DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Grid + "=0", DefineWebPage.Page_Query + "=0" })
 	private String content;
 
 	public String getCode() {
@@ -48,14 +51,6 @@ public class CnContentDetail extends BaseEntity {
 
 	public void setCode(String code) {
 		this.code = code;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public String getContent() {
@@ -88,6 +83,14 @@ public class CnContentDetail extends BaseEntity {
 
 	public void setVideoCover(String videoCover) {
 		this.videoCover = videoCover;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }
