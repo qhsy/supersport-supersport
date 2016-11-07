@@ -22,17 +22,18 @@
 	<ul class="hot-topic">
 		<li class="item" v-for="item in commits" @click="tagCallback(item.contentShowInfo.code,item.contentShowInfo.title)">
 			<a href="javascript:;">
-				<img :src="item.contentShowInfo.cover" :alt="item.contentShowInfo.title" class="photo">
+				<img src="../static/img/lazyload.jpg" v-lazyload:opts.fadein="item.contentShowInfo.cover" alt="" class="photo">
 				<h1 class="title">{{item.contentShowInfo.title}}</h1>
 			</a>
 		</li>
 	</ul>
 	<aside class="load" v-if="next"><img src="../static/img/godo.gif" alt=""></aside>
 </section>
-<script type="text/javascript" src="../static/js/lib/vue.min.js"></script>
-<!-- <script type="text/javascript" src="../static/js/vue.lazyimg.js"></script> -->
-<script type="text/javascript" src="../static/js/tools.js"></script>
+<script type="text/javascript" src="script/common.min.js"></script>
 <script>
+Vue.use(Vue.lazyimg,{
+	nohori: true
+});
 new Vue({
 	el:'.content',
 	data:{
@@ -55,7 +56,7 @@ new Vue({
 			reqwest({
 				url: '/api/homeController/hotTopic',
 				method: 'post',
-				data: '{"pagination": "' + _this.page + '", "width": 375, "zoo": {"key": "tesetkey", "token": " "}}',
+				data: '{"pagination": "' + _this.page + '", "width": "' + window.innerWidth + '", "zoo": {"key": "tesetkey", "token": " "}}',
 				type: 'json',
 				contentType: 'application/json',
 				success: function(resp) {

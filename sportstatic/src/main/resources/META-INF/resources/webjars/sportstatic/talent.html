@@ -27,17 +27,17 @@
 <section class="content" v-cloak>
 	<ul class="talent">
 		<li class="item" v-for="item in commits" @click="backSportTime(item.contentShowInfo.code,item.contentShowInfo.type)">
-			<a href="javascript:;" class="photo"><img :src="item.contentShowInfo.cover" alt=""></a>
+			<a href="javascript:;" class="photo"><img src="../static/img/lazyload.jpg" v-lazyload:opts.fadein="item.contentShowInfo.cover" alt=""></a>
 			<h1 class="title" :class="{'h-3':browser}">{{item.contentShowInfo.title}}</h1>
-			<!-- <h3 class="name">{{item.userBasicInfo.nickName}}</h3> -->
 		</li>
 	</ul>
 	<aside class="load" v-if="next"><img src="../static/img/godo.gif" alt=""></aside>
 </section>
-<script type="text/javascript" src="../static/js/lib/vue.min.js"></script>
-<!-- <script type="text/javascript" src="../static/js/vue.lazyimg.js"></script> -->
-<script type="text/javascript" src="../static/js/tools.js"></script>
+<script type="text/javascript" src="script/common.min.js"></script>
 <script>
+Vue.use(Vue.lazyimg,{
+	nohori: true
+});
 new Vue({
 	el:'.content',
 	data:{
@@ -45,7 +45,6 @@ new Vue({
 		page:1,
 		next:true,
 		browser:navigator.userAgent.indexOf('Lenovo') > -1
-
 	},
 	created:function(){
 		var _this = this;
@@ -62,7 +61,7 @@ new Vue({
 			reqwest({
 				url: '/api/homeController/expertChat',
 				method: 'post',
-				data: '{"pagination": "' + _this.page + '", "width": 375, "zoo": {"key": "tesetkey", "token": " "}}',
+				data: '{"pagination": "' + _this.page + '", "width": "' + window.innerWidth + '", "zoo": {"key": "tesetkey", "token": " "}}',
 				type: 'json',
 				contentType: 'application/json',
 				success: function(resp) {
