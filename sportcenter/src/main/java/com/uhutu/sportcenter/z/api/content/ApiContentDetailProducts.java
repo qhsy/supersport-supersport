@@ -63,7 +63,6 @@ public class ApiContentDetailProducts
 		}
 		if (result.upFlagTrue() && result.getProductInfos() != null && result.getProductInfos().size() > 0) {
 			CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code", input.getCode());
-			result.setTitle("相关装备");
 			if (detail != null && StringUtils.isNotBlank(detail.getTitle())) {
 				result.setTitle(detail.getTitle());
 			}
