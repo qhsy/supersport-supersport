@@ -62,13 +62,13 @@
 <body>
 <section class="container" v-cloak>
 	<article class="content">
-		<div class="cover"><img :src="res.contentBasicInfo.cover" :data-src="res.contentBasicInfo.cover" alt=""></div>
+		<div class="cover"><img :src="res.contentBasicInfo.cover" alt=""></div>
 		<div class="title">{{res.contentBasicInfo.title}}</div>
 		<div class="name">by {{res.contentBasicInfo.userBasicInfo.nickName}}<em>{{res.contentBasicInfo.publishTimeStr}}</em></div>
 		<div class="address" v-if="res.contentBasicInfo.localtionName">{{res.contentBasicInfo.localtionName}}</div>
 		<ul class="list">
 			<li v-for="photo in res.contentPhotosDetails" track-by="$index">
-				<div class="photo"><img src="../static/img/lazyload.jpg" :data-src="photo.thumb.thumbUrl" v-lazyload="photo.thumb.thumbUrl" alt=""></div>
+				<div class="photo"><img src="../static/img/lazyload.jpg" v-lazyload:opts.fadein="photo.picture" alt=""></div>
 				<div class="info">
 					<em class="num">{{$index+1}}/{{res.contentPhotosDetails.length}}</em>
 					<p class="text">{{photo.content}}</p>
@@ -86,10 +86,10 @@
 		<a href="javascript:;" class="submit" @click="openApp">进入TA的主页</a>
 	</footer>
 	<!-- shop module -->
-	<article class="shop" v-if="shopList.length">
-		<h3 class="title">相关装备</h3>
+	<article class="shop" v-if="shop.productInfos.length">
+		<h3 class="title">{{shop.title}}</h3>
 		<ul class="list">
-			<li class="item clearfix" v-for="item in shopList">
+			<li class="item clearfix" v-for="item in shop.productInfos">
 				<a :href="item.iosUrl">
 					<div class="list-img">
 						<img src="../static/img/lazyload.jpg" v-lazyload="item.picurl" alt="">
@@ -106,14 +106,7 @@
 	<!-- end -->
 	<aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
 </section>
-<!-- <section class="slider">
-	<span class="close"></span>
-	<div class="canvas"></div>
-</section> -->
-<script type="text/javascript" src="../static/js/lib/vue.min.js"></script>
-<script type="text/javascript" src="../static/js/tools.js"></script>
-<script type="text/javascript" src="../static/js/share.js"></script>
-<script type="text/javascript" src="../static/js/vue.lazyimg.js"></script>
+<script type="text/javascript" src="script/common.min.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
 Vue.use(Vue.lazyimg,{
@@ -125,7 +118,7 @@ new Vue({
 		res: null,
 		share:queryUrl('share'),
 		loading: true,
-		shopList: []
+		shop: null
 	},
 	created:function(){
 		this.reqwest();
@@ -139,13 +132,15 @@ new Vue({
 			reqwest({
 				url: '/api/contentController/contentPhotosDetail',
 				method: 'post',
-				data: '{"content_code": "' + queryUrl('code') + '", "zoo": {"key": "tesetkey","token": ""}}',
+				data: '{"content_code": "' + queryUrl('code') + '","width": "' + window.innerWidth + '","zoo": {"key": "tesetkey","token": " "}}',
 				type: 'json',
 				contentType: 'application/json',
 				success: function(resp) {
 					if(resp.status == 1){
 						_this.loading = false;
 						_this.res = resp;
+					}else{
+						alert(resp.error)
 					}
 				}
 			});
@@ -175,9 +170,7 @@ new Vue({
 				contentType: 'application/json',
 				success: function(resp) {
 					if(resp.status == 1){
-						_this.shopList = resp.productInfos;
-					}else{
-						
+						_this.shop = resp;
 					}
 				}
 			});
@@ -195,41 +188,6 @@ new Vue({
 		}
 	}
 });
-// window.onload = function(){
-// 	var oSlider= document.querySelector('.slider');
-// 	var oWrap = document.querySelector('.content');
-// 	var aImg = oWrap.querySelectorAll('img');
-// 	var oCanvas = oSlider.querySelector('.canvas');
-// 	var oClose = oSlider.querySelector('.close');
-// 	var list = [];
-// 	var timer = null;
-// 	for(var i=0; i<aImg.length; i++){
-// 		aImg[i].index = i;
-// 		aImg[i].addEventListener('click', function(){
-// 			oSlider.style.display ='block';
-// 			list = [];
-// 			for(var j=0; j<aImg.length; j++){
-// 				var item = {
-// 					'width':aImg[j].naturalWidth,
-// 					'height':aImg[j].naturalHeight,
-// 					'img':aImg[j].getAttribute('data-src')
-// 				}
-// 				list.push(item);
-// 			}
-// 			console.log(list)
-// 			new Slider({
-// 				dom : document.querySelector('.canvas'),
-// 				list : list,
-// 				index : this.index
-// 			});
-// 		}, false);
-// 	}
-// 	oClose.addEventListener('click', function(){
-// 		oSlider.style.display = 'none';
-// 		oCanvas.removeChild(oCanvas.querySelector('ul'))
-// 	}, false);
-
-// }
 </script>
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>

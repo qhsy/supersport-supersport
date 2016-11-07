@@ -105,10 +105,10 @@
 	</footer>
 	<!-- end -->
 	<!-- shop module -->
-	<article class="shop" v-if="shopList.length">
-		<h3 class="title">相关装备</h3>
+	<article class="shop" v-if="shop.productInfos.length || shop != null">
+		<h3 class="title">{{shop.title}}</h3>
 		<ul class="list">
-			<li class="item clearfix" v-for="item in shopList" @click="callTaobao(item.iosUrl,item.androidUrl)">
+			<li class="item clearfix" v-for="item in shop.productInfos" @click="callTaobao(item.iosUrl,item.androidUrl)">
 				<div class="list-img">
 					<img src="../static/img/lazyload.jpg" v-lazyload="item.picurl" alt="">
 				</div>
@@ -124,10 +124,6 @@
 	<!-- data loading -->
 	<aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
 </section>
-<!-- <section class="slider">
-	<span class="close"></span>
-	<div class="canvas"></div>
-</section> -->
 <!-- 文章详情 -->
 <script type="text/x-template" id="template-detail">
 	<div class="cover"><img src="../static/img/lazyload.jpg" v-lazyload:opt.fadeIn="res.sportingMoment.cover" alt=""></div>
@@ -158,7 +154,6 @@
 <!-- 视频详情 -->
 <script type="text/x-template" id="template-video">
 	<div class="zy_media">
-		<!-- <div id="JprismPlayer" class="prism-player"></div> -->
 		<video :poster="res.contentDetailInfo.videoCover">
 	        <source :src="res.contentDetailInfo.videoUrl" type="video/mp4">
 	        您的浏览器不支持HTML5视频
@@ -176,11 +171,7 @@
 </ul>
 </script>
 <!-- end -->
-<script type="text/javascript" src="../static/js/lib/vue.min.js"></script>
-<script type="text/javascript" src="../static/js/tools.js"></script>
-<script type="text/javascript" src="../static/js/share.js"></script>
-<script type="text/javascript" src="../static/js/zy.media.js"></script>
-<script type="text/javascript" src="../static/js/vue.lazyimg.js"></script>
+<script type="text/javascript" src="script/common.min.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
 Vue.use(Vue.lazyimg,{
@@ -281,7 +272,7 @@ var vm = new Vue({
 	el:'.container',
 	data:{
 		res: null,
-		shopList: [],
+		shop: [],
 		share: queryUrl('share'),
 		loading: true
 	},
@@ -297,7 +288,7 @@ var vm = new Vue({
 			reqwest({
 				url: '/api/contentController/contentDetail',
 				method: 'post',
-				data: '{"content_code": "' + queryUrl('code') + '", "zoo": {"key": "tesetkey","token": "' + queryUrl('token') + '"}}',
+				data: '{"content_code": "' + queryUrl('code') + '", "width": "' + window.innerWidth + '","zoo": {"key": "tesetkey","token": "' + queryUrl('token') + '"}}',
 				type: 'json',
 				contentType: 'application/json',
 				success: function(resp) {
@@ -339,9 +330,7 @@ var vm = new Vue({
 				contentType: 'application/json',
 				success: function(resp) {
 					if(resp.status == 1){
-						_this.shopList = resp.productInfos;
-					}else{
-						
+						_this.shop = resp;
 					}
 				}
 			});
