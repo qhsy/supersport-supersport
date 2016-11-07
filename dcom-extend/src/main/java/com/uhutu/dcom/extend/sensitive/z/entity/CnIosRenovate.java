@@ -25,7 +25,7 @@ public class CnIosRenovate extends BaseEntity {
 	private String code;
 
 	@ApiModelProperty(name = "版本号v1.0.0", notes = "版本号v1.0.0")
-	@ZooData(name = "版本号")
+	@ZooData(name = "版本号",require="1")
 	private String version;
 
 	@ApiModelProperty(name = "下载链接", notes = "下载链接")

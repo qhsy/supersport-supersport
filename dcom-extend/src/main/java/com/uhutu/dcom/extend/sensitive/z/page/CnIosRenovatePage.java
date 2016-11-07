@@ -9,9 +9,8 @@ import com.uhutu.zooweb.define.DefineZooWeb;
 
 @ZooPage(name = "IOS修复功能", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = { DefineZooWeb.PAGE_DEFAULT_OPERATE,
 		DefineWebPage.Page_Grid + "=dzoi469910011009"
-		// ,
-		// DefineWebPage.Page_Add + "=dzoi41091001",
-		// DefineWebPage.Page_Edit + "=dzoi41091002"
+		, DefineWebPage.Page_Add + "=dzoi41091003",
+		DefineWebPage.Page_Edit + "=dzoi41091004"
 }, deploy = { DefineWebDeploy.Grid_Order + "= zc desc" })
 public class CnIosRenovatePage extends RootPageSimple<CnIosRenovate> {
 
