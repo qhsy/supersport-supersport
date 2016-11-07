@@ -11,11 +11,13 @@ import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiExpertChatInput;
 import com.uhutu.sportcenter.z.input.ApiHomePageSecondInput;
 import com.uhutu.sportcenter.z.input.ApiHotTopicInput;
+import com.uhutu.sportcenter.z.input.ApiIosRenovateInput;
 import com.uhutu.sportcenter.z.input.ApiStartUpInput;
 import com.uhutu.sportcenter.z.input.ApiWonderfulVideoInput;
 import com.uhutu.sportcenter.z.result.ApiExpertChatResult;
 import com.uhutu.sportcenter.z.result.ApiHomePageSecondResult;
 import com.uhutu.sportcenter.z.result.ApiHotTopicResult;
+import com.uhutu.sportcenter.z.result.ApiIosRenovateResult;
 import com.uhutu.sportcenter.z.result.ApiStartUpResult;
 import com.uhutu.sportcenter.z.result.ApiWonderfulVideoResult;
 
@@ -76,6 +78,15 @@ public class HomeController {
 	public ApiStartUpResult startUpApi(@RequestBody ApiStartUpInput input) {
 
 		return apiFactory.getApiStartUp().api(input);
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/iosRenovatePage", method = RequestMethod.POST)
+	@ApiOperation(value = "IOS热修复接口", notes = "IOS热修复接口")
+	public ApiIosRenovateResult iosRenovatePage(@RequestBody ApiIosRenovateInput input) {
+
+		return apiFactory.getApiIosRenovate().api(input);
 
 	}
 
