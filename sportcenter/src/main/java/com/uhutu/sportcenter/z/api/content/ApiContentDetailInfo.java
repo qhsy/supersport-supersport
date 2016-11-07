@@ -132,18 +132,22 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 						for (int j = 0; j < picList.size(); j++) {
 							// 图片压缩处理
 							String imgSrc = ImageHelper.upImageThumbnail(picList.get(j), input.getWidth());
-							contentDetailInfo.setContent(contentDetailInfo.getContent().replace(picList.get(j), imgSrc));
+							contentDetailInfo
+									.setContent(contentDetailInfo.getContent().replace(picList.get(j), imgSrc));
 						}
 					}
 				}
-				
-				/*内容emoji表情处理*/
+
+				/* 内容emoji表情处理 */
 				String content = contentDetailInfo.getContent();
-						
+
 				content = StringUtils.isEmpty(content) ? "" : EmojiUtil.emojiRecovery(content);
-				
+
 				contentDetailInfo.setContent(content);
-				
+				if (StringUtils.isNotBlank(contentDetailInfo.getVideoCover())) {
+					contentDetailInfo.setVideoCover(
+							ImageHelper.upImageThumbnail(contentDetailInfo.getVideoCover(), input.getWidth()));
+				}
 				contentDetailResult.setContentDetailInfo(contentDetailInfo);
 				if ("dzsd4107100110030004".equals(contentBasicinfoForApi.getContentType())) {// 单图模式的时候内容做标题
 					contentBasicinfoForApi.setTitle(contentDetailInfo.getContent());
@@ -152,14 +156,14 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 					contentBasicinfoForApi.setCover(
 							ImageHelper.upImageThumbnail(contentBasicinfoForApi.getCover(), input.getWidth()));
 				}
-				
-				/*标题emoji表情处理*/
+
+				/* 标题emoji表情处理 */
 				String title = contentBasicinfoForApi.getTitle();
-						
-				title =	StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
-				
+
+				title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+
 				contentBasicinfoForApi.setTitle(title);
-				
+
 				contentDetailResult.setSportingMoment(contentBasicinfoForApi);
 
 			} else {
