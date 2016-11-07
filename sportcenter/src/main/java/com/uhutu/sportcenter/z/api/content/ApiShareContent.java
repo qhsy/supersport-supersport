@@ -8,6 +8,7 @@ import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
 import com.uhutu.dcom.content.z.entity.CnShareInfo;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
+import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.sportcenter.z.input.ApiShareContentInput;
 import com.uhutu.sportcenter.z.result.ApiShareContentResult;
 import com.uhutu.zoocom.helper.TopHelper;
@@ -50,7 +51,11 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 
 			CnContentRecomm recomm = contentServiceFactory.getContentRecommService()
 					.queryEntityByCode(input.getContentCode());
-
+			String authorName = "";
+			if (StringUtils.isNotBlank(basicInfo.getAuthor())) {
+				UcUserinfoExt ue = JdbcHelper.queryOne(UcUserinfoExt.class, "userCode", basicInfo.getAuthor());
+				authorName = StringUtils.isNotBlank(ue.getNickName()) ? ue.getNickName() : "";
+			}
 			if (basicInfo != null) {
 
 				shareResult.setTitle(basicInfo.getTitle());
@@ -66,7 +71,7 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 				} else if (recomm != null && StringUtils.isNotBlank(recomm.getContent())) {
 					shareResult.setContent(recomm.getContent());
 				} else {
-					shareResult.setContent(TopHelper.upInfo(810710011));
+					shareResult.setContent(TopHelper.upInfo(810710011, authorName));
 				}
 			} else {
 				shareResult.inError(810710008);
