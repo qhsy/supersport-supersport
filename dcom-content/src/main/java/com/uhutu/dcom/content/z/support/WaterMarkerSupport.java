@@ -273,35 +273,4 @@ public class WaterMarkerSupport {
 		return result;
 	}
 
-	/**
-	 * 
-	 * @param imgUrl
-	 *            图片地址
-	 * @return
-	 */
-	public String getBufferedImage(String imgUrl) {
-		URL url = null;
-		InputStream is = null;
-		String result = null;
-		try {
-			url = new URL(imgUrl);
-			is = url.openStream();
-			BufferedImage img = ImageIO.read(is);
-			if (img != null) {
-				result = img.getWidth() + "*" + img.getHeight();
-			}
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-
-			try {
-				is.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return result;
-	}
 }

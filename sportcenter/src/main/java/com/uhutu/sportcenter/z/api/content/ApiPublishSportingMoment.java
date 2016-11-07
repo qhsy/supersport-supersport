@@ -1,13 +1,5 @@
 package com.uhutu.sportcenter.z.api.content;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +13,8 @@ import com.uhutu.dcom.content.z.support.WaterMarkerSupport;
 import com.uhutu.sportcenter.z.input.ApiPublishSportingMomentInput;
 import com.uhutu.sportcenter.z.result.ApiPublishSportingMomentResult;
 import com.uhutu.zoocom.root.RootApiToken;
+import com.uhutu.zooweb.helper.ImageHelper;
+import com.uhutu.zooweb.io.ImageThumb;
 
 /**
  * 发布运动时刻
@@ -46,17 +40,17 @@ public class ApiPublishSportingMoment
 		BeanUtils.copyProperties(input.getMoment(), contentBasicinfo);
 
 		BeanUtils.copyProperties(input.getMomentDetailInfo(), contentDetail);
-		
+
 		String title = contentBasicinfo.getTitle();
-				
-		title =	StringUtils.isEmpty(title)? "" : EmojiUtil.emojiFilter(title);
-		
+
+		title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiFilter(title);
+
 		contentBasicinfo.setTitle(title);
-		
+
 		String content = contentDetail.getContent();
-				
-		content	= StringUtils.isEmpty(content)? "" : EmojiUtil.emojiFilter(content);
-		
+
+		content = StringUtils.isEmpty(content) ? "" : EmojiUtil.emojiFilter(content);
+
 		contentDetail.setContent(content);
 
 		contentBasicinfo.setAuthor(upUserCode());
@@ -65,9 +59,9 @@ public class ApiPublishSportingMoment
 				contentBasicinfo.getTagCode());// 背景图加水印
 		contentBasicinfo.setCover(StringUtils.isNotBlank(waterMarker) ? waterMarker : contentBasicinfo.getCover());
 		if (StringUtils.isNotBlank(contentBasicinfo.getCover())) {
-			String wh = getBufferedImage(contentBasicinfo.getCover());
-			if (StringUtils.isNotBlank(wh)) {
-				contentBasicinfo.setCoverWH(wh);
+			ImageThumb thumb = ImageHelper.upThumbWithHeight(contentBasicinfo.getCover(), 640);
+			if (thumb != null) {
+				contentBasicinfo.setCoverWH(thumb.getSourceWidth() + "*" + thumb.getSourceHeight());
 			}
 		}
 		contentServiceFactory.getContentBasicinfoService().save(contentBasicinfo);
@@ -79,35 +73,4 @@ public class ApiPublishSportingMoment
 		return momentResult;
 	}
 
-	/**
-	 * 
-	 * @param imgUrl
-	 *            图片地址
-	 * @return
-	 */
-	public static String getBufferedImage(String imgUrl) {
-		URL url = null;
-		InputStream is = null;
-		String result = null;
-		try {
-			url = new URL(imgUrl);
-			is = url.openStream();
-			BufferedImage img = ImageIO.read(is);
-			if (img != null) {
-				result = img.getWidth() + "*" + img.getHeight();
-			}
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-
-			try {
-				is.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return result;
-	}
 }

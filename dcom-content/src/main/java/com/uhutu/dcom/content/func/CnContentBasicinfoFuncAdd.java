@@ -11,7 +11,9 @@ import com.uhutu.zooweb.api.webpage.WebOperateInput;
 import com.uhutu.zooweb.api.webpage.WebOperateResult;
 import com.uhutu.zooweb.api.webpage.WebPageField;
 import com.uhutu.zooweb.api.webpage.WebPageModel;
+import com.uhutu.zooweb.helper.ImageHelper;
 import com.uhutu.zooweb.helper.WebHelper;
+import com.uhutu.zooweb.io.ImageThumb;
 import com.uhutu.zooweb.model.ExtendPageDefine;
 import com.uhutu.zooweb.root.RootFunc;
 
@@ -53,8 +55,10 @@ public class CnContentBasicinfoFuncAdd extends RootFunc {
 					StringUtils.isNotBlank(waterMarker) ? waterMarker : input.getDataMap().get("cover"));
 		}
 		if (StringUtils.isNotBlank(input.getDataMap().get("cover"))) {
-			String wh = new WaterMarkerSupport().getBufferedImage(input.getDataMap().get("cover"));
-			input.getDataMap().put("coverwh", wh);
+			ImageThumb thumb = ImageHelper.upThumbWithHeight(input.getDataMap().get("cover"), 640);
+			if (thumb != null) {
+				input.getDataMap().put("coverwh", thumb.getSourceWidth() + "*" + thumb.getSourceHeight());
+			}
 		}
 		JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), input.getDataMap());
 		if ("dzsd4107100110030001".equals(map.get("content_type"))
