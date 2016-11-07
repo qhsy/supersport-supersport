@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
@@ -198,7 +199,15 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 				sportingMoment.setRemarkNum(remarkNum);
 				int praiseNum = serviceFactory.getSupportPraiseService().queryCountByCode(sportingMoment.getCode(),
 						ContentEnum.FAVOR_STATUS_YES.getCode());
+				
 				sportingMoment.setPraiseNum(praiseNum);
+				
+				String title = sportingMoment.getTitle();
+				
+				title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+				
+				sportingMoment.setTitle(title);
+				
 				sports.add(sportingMoment);
 
 			}
