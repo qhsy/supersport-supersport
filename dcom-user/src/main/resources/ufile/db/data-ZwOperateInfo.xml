@@ -53,7 +53,7 @@
 			parentCode="" noteRemark="" />
 		<item code="dzoi41101012" operateName="发送站内信"
 			operateFunc="com.uhutu.dcom.user.z.page.func.UcMsgNoticeFuncEdit"
-			operateType="js"
+			operateType="button"
 			operateLink="zstatic_operate.ope_pd_noconfirm('[[struct:pageUnique]]','[[data:za]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
 	</data>
