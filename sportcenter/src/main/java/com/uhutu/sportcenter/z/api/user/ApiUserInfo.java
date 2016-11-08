@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
@@ -137,6 +138,12 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 				sportingMoment.getUserBasicInfo().setUserCode(userCode);
 				
 			}
+			
+			String title = sportingMoment.getTitle();
+			
+			title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+			
+			sportingMoment.setTitle(title);
 
 			sports.add(sportingMoment);
 

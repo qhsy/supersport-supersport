@@ -2,11 +2,13 @@ package com.uhutu.sportcenter.z.api.user;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.PageInfo;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
@@ -129,7 +131,16 @@ public class ApiFavorContentList extends RootApiBase<ApiFavorContentListInput, A
 				int praiseNum = contentServiceFactory.getSupportPraiseService()
 						.queryCountByCode(basicinfoForApi.getCode(), ContentEnum.FAVOR_STATUS_YES.getCode());
 				basicinfoForApi.setPraiseNum(praiseNum);
-				result.getContentInfoList().add(new HomePageSupport(userInfoSupport).getSingleTitle(basicinfoForApi));
+				
+				basicinfoForApi = new HomePageSupport(userInfoSupport).getSingleTitle(basicinfoForApi);
+				
+				String title = basicinfoForApi.getTitle();
+				
+				title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+				
+				basicinfoForApi.setTitle(title);
+				
+				result.getContentInfoList().add(basicinfoForApi);
 
 			}
 

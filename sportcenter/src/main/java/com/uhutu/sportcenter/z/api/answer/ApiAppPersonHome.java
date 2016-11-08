@@ -18,6 +18,7 @@ import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
 import com.uhutu.dcom.answer.z.support.QuestionSupport;
 import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
@@ -290,6 +291,12 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 			sportingMoment.setRemarkNum(ContentComponent.remarkNum(sportingMoment.getCode()));
 			
 			sportingMoment.setPraiseNum(ContentComponent.praiseNum(sportingMoment.getCode()));
+			
+			String title = sportingMoment.getTitle();
+			
+			title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+			
+			sportingMoment.setTitle(title);
 
 			sports.add(sportingMoment);
 

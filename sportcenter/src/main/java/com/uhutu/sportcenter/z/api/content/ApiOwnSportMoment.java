@@ -2,11 +2,14 @@ package com.uhutu.sportcenter.z.api.content;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
@@ -105,6 +108,14 @@ public class ApiOwnSportMoment extends RootApiToken<ApiOwnSportMomentInput, ApiO
 			sportingMoment.setPraiseNum(praiseNum);
 			
 			sportingMoment.setFavorFlag(ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken()));
+			
+			sportingMoment = new HomePageSupport(userInfoSupport).getSingleTitle(sportingMoment);
+			
+			String title = sportingMoment.getTitle();
+			
+			title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+			
+			sportingMoment.setTitle(title);
 			
 			sports.add(new HomePageSupport(userInfoSupport).getSingleTitle(sportingMoment));
 
