@@ -67,6 +67,8 @@
 		<item code="dzpi4514100500010004" nodeName="关注信息" parentCode="dzpi451410050001" pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UserAttenTionPage" pageIcon="glyphicon-th" />
 		<item code="dzpi451410050002" nodeName="用户反馈" parentCode="dzpi45141005" />
 		<item code="dzpi4514100500020001" nodeName="反馈信息" parentCode="dzpi451410050002" pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_MsgAdvicePage" pageIcon="glyphicon-exclamation-sign" />
+		<item code="dzpi451410050003" nodeName="消息推送" parentCode="dzpi45141005" />
+		<item code="dzpi4514100500030001" nodeName="消息管理" parentCode="dzpi451410050003" pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_MsgNoticePushPage" pageIcon="glyphicon-exclamation-sign" />
 		<item code="dzpi45141006" nodeName="app相关" parentCode="" />
 		<item code="dzpi451410060001" nodeName="app管理" parentCode="dzpi45141006" />
 		<item code="dzpi4514100600010001" nodeName="app版本信息" parentCode="dzpi451410060001" pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_AppVersionInfoPage" pageIcon="glyphicon-phone" />

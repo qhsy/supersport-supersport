@@ -21,6 +21,7 @@ dependencies {
 	compile group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: zooVersionBcpkix
 	compile group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: zooVersionBcprov
 	compile project(':dcom-component'){version=zooInitVersion;group=zooInitGroupId}
+	compile project(':dcom-extend'){version=zooInitVersion;group=zooInitGroupId}
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 	
 	
