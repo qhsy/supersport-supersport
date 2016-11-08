@@ -13,6 +13,19 @@
 <link rel="stylesheet" type="text/css" href="../static/css/base.css">
 <style type="text/css">
 .container{padding-bottom: 0.5rem;}
+/* Header Style */
+.user{height: 0.58rem; padding: 0 0.16rem 0 0.22rem; display: flex; display: -webkit-flex; display: -moz-flex; justify-content: space-between; -webkit-justify-content: space-between; align-items: center; -webkit-align-items: center;}
+.user .head{height: 0.32rem; display: -webkit-flex; display: flex;}
+.user .photo{width: 0.32rem; height: 0.32rem; margin-right: 0.1rem; position: relative; border-radius: 50%;}
+.user .photo img{width: 0.32rem; height: 0.32rem; border-radius: 50%;}
+.user .mark{width: 0.1rem; height: 0.1rem; background: url(../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
+.user .info{height: 0.32rem; line-height: 0.16rem; overflow: hidden;}
+.user .name{max-width: 1.95rem; height: 0.16rem; white-space: nowrap; font-size: 0.13rem; overflow: hidden; line-height: 0.16rem; font-weight: 700; color: #212121;}
+.user .name.ct{height: 0.32rem; line-height: 0.32rem;}
+.user .title{height: 0.16rem; overflow: hidden; font-size: 0.12rem; color: #757575;}
+.user .index{width: 0.7rem; height: 0.26rem; border: #F8800A 1px solid; font-size: 0.12rem; text-align: center; line-height: 0.27rem; color: #F8800A;}
+.readRate{padding: 0.16rem 0.22rem 0.1rem; display: flex; display: -webkit-flex; justify-content: space-between; -webkit-justify-content: space-between; line-height: 0.18rem; color: #BDBDBD; font-size: 0.13rem;}
+
 /* content */
 .content .address, .content .tag{padding: 0 0.16rem;}
 .content{color: #4A4A4A!important;}
@@ -27,8 +40,8 @@
 .content .info{padding-top: 0.1rem;}
 .content .num{float: left; font-family: "PingFangSC-Light"; color: #000; font-size: 0.12rem; line-height: 0.20rem;}
 .content .text{padding-left: 1.04rem; font-size: 0.12rem; line-height: 0.20rem; color: #7F7F7F; text-align: justify; word-wrap: break-word; word-break: break-all;}
-.content .tag{padding: 0.36rem 0.22rem 0.46rem;}
-.content .tag li{border: #757575 1px solid; display: inline-block; border-radius: 4px; margin: 0 0.08rem 0.1rem 0; padding: 0 0.09rem; font-size: 0.12rem; line-height: 0.18rem;}
+.content .tag{padding: 0.16rem 0.13rem 0;}
+.content .tag li{border: #e6e6e6 1px solid; display: inline-block; border-radius: 4px; margin: 0 0.08rem 0.1rem 0; padding: 0 0.1rem; font-size: 0.14rem; color: #757575; line-height: 0.27rem;}
 .content .caption{padding: 0.36rem 0.22rem 0.1rem; line-height: 0.2rem; text-align: justify;}
 .content .cover{text-align: center;}
 /*follow*/
@@ -61,6 +74,19 @@
 </head>
 <body>
 <section class="container" v-cloak>
+	<header class="user">
+		<div class="head">
+			<div class="photo" @click="openApp">
+				<img :src="res.contentBasicInfo.userBasicInfo.aboutHead?res.contentBasicInfo.userBasicInfo.aboutHead:'../static/img/default_photo.png'" alt="">
+				<em class="mark" v-if="res.contentBasicInfo.userBasicInfo.type == 'dzsd4107100310010002'"></em>
+			</div>
+			<div class="info">
+				<h1 class="name" :class="{ct:!res.contentBasicInfo.userBasicInfo.title}">{{res.contentBasicInfo.userBasicInfo.nickName}}</h1>
+				<h3 class="title" v-if="!!res.contentBasicInfo.userBasicInfo.title">{{res.contentBasicInfo.userBasicInfo.title}}</h3>
+			</div>
+		</div>
+		<a href="javascript:;" class="index" @click="openApp">Ta的主页</a>
+	</header>
 	<article class="content">
 		<div class="cover"><img :src="res.contentBasicInfo.cover" alt=""></div>
 		<div class="title">{{res.contentBasicInfo.title}}</div>
@@ -79,12 +105,6 @@
 			<li v-for="tag in res.contentBasicInfo.tags">{{tag.name}}</li>
 		</ul>
 	</article>
-	<footer class="follow">
-		<div class="head" @click="openApp"><img :src="res.contentBasicInfo.userBasicInfo.aboutHead?res.contentBasicInfo.userBasicInfo.aboutHead:'../static/img/default_photo.png'" alt=""><em class="vip" v-if="res.contentBasicInfo.userBasicInfo.type == 'dzsd4107100310010002'"></em></div>
-		<h1 class="name">{{res.contentBasicInfo.userBasicInfo.nickName}}</h1>
-		<h2 class="title">{{res.contentBasicInfo.userBasicInfo.title}}</h2>
-		<a href="javascript:;" class="submit" @click="openApp">进入TA的主页</a>
-	</footer>
 	<!-- shop module -->
 	<article class="shop" v-if="shop.productInfos.length">
 		<h3 class="title">{{shop.title}}</h3>

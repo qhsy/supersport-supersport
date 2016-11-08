@@ -88,7 +88,7 @@
 		<ul class="list">
 			<li class="item clearfix" v-for="item in shop.productInfos" @click="callTaobao(item.iosUrl,item.androidUrl)">
 				<div class="list-img">
-					<img src="../static/img/lazyload.jpg" v-lazyload:opt.fadein=="item.picurl" alt="">
+					<img src="../static/img/lazyload.jpg" v-lazyload:opt.fadein="item.picurl" alt="">
 				</div>
 				<div class="list-info">
 					<h1 class="name">{{item.name}}</h1>
