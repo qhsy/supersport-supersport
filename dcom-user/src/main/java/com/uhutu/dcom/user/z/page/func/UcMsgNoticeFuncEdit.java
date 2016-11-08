@@ -49,6 +49,8 @@ public class UcMsgNoticeFuncEdit extends RootFunc {
 				ucMsgNoticeUser.setZc(new Date());
 				JdbcHelper.insert(ucMsgNoticeUser);
 			}
+			push.setNum(push.getNum()+1);
+			JdbcHelper.update(push, "num", "za");
 		} else {
 			result.inError(81100018);
 		}

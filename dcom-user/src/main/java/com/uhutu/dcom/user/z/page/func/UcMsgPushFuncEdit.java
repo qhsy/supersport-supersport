@@ -50,6 +50,8 @@ public class UcMsgPushFuncEdit extends RootFunc {
 								"7", "");
 					}
 				}
+				push.setPushNum(push.getPushNum()+1);
+				JdbcHelper.update(push, "pushNum", "za");
 			} else {
 				result.inError(81100019);
 			}
