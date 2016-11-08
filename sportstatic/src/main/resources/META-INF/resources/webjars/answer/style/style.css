@@ -165,25 +165,25 @@ a:hover {text-decoration: none;}
 .personal{background: #fff; border-radius: 2px; overflow: auto; box-shadow: 0 1px 3px rgba(214,214,214,0.5); color: #4A4A4A;}
 .personal .user{text-align: center; font-size: 0.12rem;}
 .personal .attend,.personal .fans{display: inline-block; width: 40px; margin-top: 0.7rem; vertical-align: top; font-family: "STHeitiSC-Light";line-height: 0.18rem;}
-.personal .attend em{display: block;}
-.personal .fans em{display: block;}
+.personal .attend em{display: block; font-size: 0.18rem;}
+.personal .fans em{display: block; font-size: 0.18rem;}
 
-.personal .head{overflow: auto; padding-bottom: 0.22rem; background: url(img/share_bg.png) no-repeat center top; background-size: cover; color: #fff; position: relative;}
+.personal .head{overflow: auto; padding-bottom: 0.22rem; background: url(img/beijing@2x.jpg) no-repeat center top; background-size: cover; color: #fff; position: relative;}
 .personal .photo{width: 0.86rem; height: 0.86rem; display: inline-block; margin: 0.44rem 0.1rem 0.3rem; }
 .personal .photo img{width: 0.86rem; height: 0.86rem; border-radius: 50%; overflow: hidden;}
 .personal .name{text-align: center; font-size: 0.16rem;}
 .personal .tag{padding: 0 0.3rem; text-align: center; font-size: 0.12rem; opacity: 0.7;}
-.personal .follow{width: 0.86rem; height: 0.36rem; margin: 0.06rem auto 0; display: block; background: #fff; border-radius: 100px; text-align: center; line-height: 0.36rem; color: #f8800a;}
+.personal .follow{width: 0.7rem; height: 0.28rem; margin: 0.06rem auto 0; display: block; background: #FF7E00; text-align: center; font-size: 0.12rem; line-height: 0.28rem; color: #fff;}
 .personal .follow.un{background: #aaa; color: #fff;}
 .personal .info{padding: 0 0.52rem;}
-.personal .about{padding: 0.12rem 0 0.18rem; font-size: 0.12rem; line-height: 0.16rem; color: #9B9B9B;}
+.personal .about{padding: 0.12rem 0 0; font-size: 0.12rem; line-height: 0.16rem; color: #9B9B9B;}
 .personal .about:before{content: ""; width: 2px; height: 0.11rem; float: left; display: block; background: #f8800a; transform: translate3d(-7px,2px,0); transform: -webkit-translate3d(-7px,2px,0);}
 .personal .cent-txt{padding: 0.28rem 0 0.18rem; font-size: 0.12rem; line-height: 0.16rem; color: #9B9B9B;}
 .personal .cent-txt:before{content: ""; width: 2px; height: 0.11rem; float: left; display: block; background: #9B9B9B; transform: translate3d(-7px,2px,0); transform: -webkit-translate3d(-7px,2px,0);}
 .personal .cent-profit{padding: 0.12rem 0 0.18rem; font-size: 0.12rem; line-height: 0.24rem; color: #9B9B9B;}
 .personal .cent-profit:before{content: ""; width: 2px; height: 0.11rem; float: left; display: block; background: #f8800a; transform: translate3d(-7px,6px,0); transform: -webkit-translate3d(-7px,6px,0);}
 .personal .cent-profit em{color: #f8800a;}
-.personal .quiz{width: 0.89rem; height: 0.36rem; display: block; margin: 0 auto 0.18rem; background: #F38540; border-radius: 1rem; text-align: center; color: #fff; line-height: 0.36rem;}
+.personal .quiz{width: 0.89rem; height: 0.36rem; display: block; margin: 0.18rem auto 0.18rem; background: #F38540; border-radius: 1rem; text-align: center; color: #fff; line-height: 0.36rem;}
 .personal .edit{width: 0.3rem; height: 0.3rem; display: block; background: url(img/bj-icon.png) no-repeat center center; background-size: 0.15rem; position: absolute; right: 0.15rem; top: 0.15rem;}
 .personal .open{width: 1.15rem; height: 0.4rem; display: block; margin: 0.1rem auto 0; background: #f8800a; border-radius: 4px; color: #fff; line-height: 0.4rem; text-align: center;}
 
@@ -204,8 +204,8 @@ a:hover {text-decoration: none;}
 
 .personal-tab{margin-bottom: 0.1rem; padding: 0 0.14rem; box-sizing: border-box; background: #fff; overflow: auto; box-shadow: 0 1px 3px #}
 .personal-tab li{width: 50%; float: left; border-top: #D6D6D6 1px solid; text-align: center; font-size: 0.12rem; line-height: 0.34rem;}
-.personal-tab li.curr span{color: #F99653; border-bottom: #F99653 2px solid; line-height: 0.34rem; display: inline-block;}
-.personal-tab li:first-child:after{content: ""; float: right; width: 1px; height: 0.14rem; margin-top: 0.1rem; background: #D6D6D6;}
+.personal-tab li.curr span{width: 100%; color: #F99653; border-bottom: #F99653 2px solid; line-height: 0.34rem; display: inline-block;}
+/*.personal-tab li:first-child:after{content: ""; float: right; width: 1px; height: 0.14rem; margin-top: 0.1rem; background: #D6D6D6;}*/
 .personal-sports li{margin-bottom: 0.04rem; position: relative;}
 .personal-sports li a{display: block;}
 .personal-sports .title{width: 100%; padding: 0 0.5rem; box-sizing: border-box; text-align: center; font-size: 0.18rem; color: #fff; line-height: 0.24rem;}
