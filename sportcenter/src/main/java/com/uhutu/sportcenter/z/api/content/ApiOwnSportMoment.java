@@ -117,7 +117,7 @@ public class ApiOwnSportMoment extends RootApiToken<ApiOwnSportMomentInput, ApiO
 			
 			sportingMoment.setTitle(title);
 			
-			sports.add(new HomePageSupport(userInfoSupport).getSingleTitle(sportingMoment));
+			sports.add(sportingMoment);
 
 		}
 
