@@ -12,81 +12,64 @@
 <meta name="author" content="">
 <link rel="stylesheet" type="text/css" href="../static/css/base.css">
 <style type="text/css">
-.container{padding-bottom: 0.5rem;}
-/*user*/
-.user{padding: 0.13rem 0.13rem; overflow: auto;}
-.user .head{width: 0.32rem; height: 0.32rem; margin-right: 0.1rem; float: left; position: relative;}
-.user .head img{border-radius: 50%;}
-.user .name{ width: 1.7rem; height: 0.15rem; overflow: hidden; font-size: 0.13rem; font-weight: 700; color: #212121; line-height: 0.15rem;}
-.user .title{height: 0.16rem; overflow: hidden; color: #BDBDBD; font-size: 0.12rem; line-height: 0.16rem;}
-.user .info{float: left; max-width: 2.1rem;}
-.user .time{float: right; line-height: 0.32rem; font-size: 0.12rem; color: #BDBDBD; font-family: 'Helvetica-Light';}
-.user .num{padding-right: 0.12rem;}
-.user .num:before{content: ""; float: left; width: 0.17rem; height: 0.12rem; margin: 0.1rem 0.06rem 0 0; background: url(css/img/icon.png) no-repeat; background-size: 0.17rem;}
-.user .vip{width: 0.1rem; height: 0.1rem; background: url(../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
-.user .vertical{width: 1.7rem; height: 0.32rem; overflow: hidden; line-height: 0.32rem!important;}
-/* content */
-.content .title, .content .address, .content .detail, .content .tag{padding: 0 0.13rem;}
-.content{color: #757575!important;}
-.content .title{padding: 0.35rem 0.13rem 0.04rem; line-height: 0.24rem; font-size: 0.2rem; color: #212121; font-weight: 700; word-wrap: break-word; word-break: break-all;}
-.content .video-title{padding: 0.13rem 0.13rem 0.04rem; line-height: 0.24rem; font-size: 0.2rem; color: #212121; font-weight: 700;}
-.content .address{font-size: 0.12rem;}
-.content .address:after{content: ""; float: left; width: 0.08rem; height: 0.1rem; margin: 0.03rem 0.05rem 0 1px; background: url(css/img/icon.png) no-repeat -0.05rem -0.12rem; background-size: 0.17rem;}
-.content .referral{margin: 0 0.13rem 0; border-bottom: #979797 dotted 1px;}
-.content .referral h3{padding: 0.13rem 0 0.09rem;}
-.content .referral h3:before{content: ""; width: 1px; height: 0.12rem; display: inline-block; margin-right: 5px; background: #F8800A;}
-.content .referral p{padding-bottom: 0.14rem; font-size: 0.12rem; font-style: italic; line-height: 0.16rem; text-indent: 0.24rem;}
-.content .detail{ margin-top: 0.15rem; line-height: 0.23rem; word-wrap: break-word; word-break: break-all;}
-.content .detail p{margin-bottom: 0.1rem; text-align: justify;}
+.container{padding-bottom: 0.6rem;}
+/* Header Style */
+.user{height: 0.58rem; padding: 0 0.16rem 0 0.22rem; display: flex; display: -webkit-flex; display: -moz-flex; justify-content: space-between; -webkit-justify-content: space-between; align-items: center; -webkit-align-items: center;}
+.user .head{height: 0.32rem; display: -webkit-flex; display: flex;}
+.user .photo{width: 0.32rem; height: 0.32rem; margin-right: 0.1rem; position: relative; border-radius: 50%;}
+.user .photo img{width: 0.32rem; height: 0.32rem; border-radius: 50%;}
+.user .mark{width: 0.1rem; height: 0.1rem; background: url(../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
+.user .info{height: 0.32rem; line-height: 0.16rem; overflow: hidden;}
+.user .name{max-width: 1.95rem; height: 0.16rem; white-space: nowrap; font-size: 0.13rem; overflow: hidden; line-height: 0.16rem; font-weight: 700; color: #212121;}
+.user .name.ct{height: 0.32rem; line-height: 0.32rem;}
+.user .title{height: 0.16rem; overflow: hidden; font-size: 0.12rem; color: #757575;}
+.user .index{width: 0.7rem; height: 0.26rem; border: #F8800A 1px solid; font-size: 0.12rem; text-align: center; line-height: 0.26rem; color: #F8800A;}
+.readRate{padding: 0.16rem 0.22rem 0; display: flex; display: -webkit-flex; justify-content: space-between; -webkit-justify-content: space-between; line-height: 0.18rem; color: #BDBDBD; font-size: 0.13rem;}
+/* Content Style */
+.content .title{padding: 0.25rem 0.22rem 0.04rem; line-height: 0.24rem; font-size: 0.2rem; color: #212121; font-weight: 700; word-wrap: break-word; word-break: break-all;}
+.content .video-title{padding: 0.13rem 0.22rem 0.04rem; line-height: 0.24rem; font-size: 0.2rem; color: #212121; font-weight: 700;}
+.content .address{margin-top: 0.05rem; padding: 0 0.22rem; font-size: 0.13rem; line-height: 0.18rem; color: #BDBDBD;}
+.content .address:after{content: ""; float: left; width: 13px; height: 13px; margin: 0.02rem 0.05rem 0 1px; background: url(css/img/zuobiao@3x.png) no-repeat; background-size: 13px;}
+.content .referral{margin: 0.24rem 0.22rem 0; border-bottom: #E6E6E6 solid 1px;}
+.content .referral h3{font-size: 0.16rem; line-height: 0.22rem; color: #212121;}
+.content .referral p{padding: 0.1rem 0 0.11rem; font-size: 0.13rem; color: #BDBDBD; line-height: 0.18rem; text-indent: 0.26rem; text-align: justify;}
+.content .detail{padding: 0 0.22rem; margin-top: 0.1rem; line-height: 0.27rem; word-wrap: break-word; word-break: break-all; font-size: 16px; color: #535252;}
+.content .detail p{margin-bottom: 0.1rem; text-align: justify; font-size: 16px;}
 .content .detail img{display: block; margin: 0 auto 0.1rem;}
-.content .tag{padding: 0.36rem 0.13rem 0.46rem;}
-.content .tag li{border: #757575 1px solid; display: inline-block; border-radius: 4px; margin: 0 0.08rem 0.1rem 0; padding: 0 0.09rem; font-size: 0.12rem; line-height: 0.18rem;}
-.content .caption{padding: 0.36rem 0.13rem 0.1rem; line-height: 0.2rem; text-align: justify; word-break: break-all; word-wrap: break-word;}
+.content .detail p img{margin: 0;}
+.content .tag{padding: 0.16rem 0.22rem 0;}
+.content .tag li{border: #BDBDBD 1px solid; display: inline-block; border-radius: 4px; margin: 0 0.08rem 0.1rem 0; padding: 0 0.1rem; font-size: 0.14rem; color: #757575; line-height: 0.27rem;}
+.content .caption{padding: 0.16rem 0.22rem 0; line-height: 0.27rem; font-size: 0.16rem; color: #535252; text-align: justify; word-break: break-all; word-wrap: break-word;}
 .content .cover{text-align: center;}
 .content .video{background: #000;}
-/*follow*/
-.follow{text-align: center;}
-.follow .head{width: 0.52rem; height: 0.52rem; margin: auto; position: relative;}
-.follow .head img{border-radius: 50%; width: 100%; height: 100%;}
-.follow .name{padding: 0.1rem 0 0; font-size: 0.13rem; color: #212121; line-height: 0.2rem;}
-.follow .title{padding-bottom: 0.13rem; color: #BDBDBD; font-size: 0.12rem; line-height: 0.2rem;}
-.follow .submit{width: 1.1rem; border: #F8800A 1px solid; display: block; margin: auto; border-radius: 1.2rem; font-size: 0.12rem; line-height: 0.27rem; color: #F8800A;}
-.follow .submit.curr{background: #f8800a; color: #fff;}
-.follow .vip{width: 0.15rem; height: 0.15rem; background: url(../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
-/*shop*/
-.shop{padding: 0.24rem 0.12rem 0;}
-.shop .title{color: #212121; line-height: 0.2rem;}
+/* Shop Style */
+.shop{padding: 0.3rem 0.22rem 0;}
+.shop .title{line-height: 0.25rem; font-size: 0.18rem; color: #535252;}
 .shop .item{height: 1rem; padding: 0.12rem 0; border-bottom: #F0F0F0 1px solid;}
 .shop .item:last-child{border-bottom: 0;}
-.shop .list-img{width: 1rem; height: 1rem; margin-right: 0.24rem; float: left;}
+.shop .list-img{width: 1rem; height: 1rem; margin-right: 0.15rem; float: left;}
 .shop .list-img img{width: 100%; height: 100%;}
 .shop .name{color: #343434; line-height: 0.2rem;}
 .shop .price{float: left; padding-top: 0.3rem; color: #FF7E00; font-size: 0.12rem;}
 .shop .price em{font-size: 0.2rem; line-height: 0.3rem;}
-.shop .btn{width: 0.6rem; height: 0.24rem; margin: 0.33rem 0 0; background: #FF7E00; color: #fff; text-align: center; line-height: 0.24rem; float: right; font-size: 0.12rem;}
-/*canvas*/
-.slider{display: none;}
-.canvas{height: 100%; width: 100%; overflow: hidden; position: fixed; left: 0; top: 0; background:rgba(0,0,0,0.7);}
-.canvas ul,.canvas li{height: 100%; overflow: hidden;}
-.canvas li{position: absolute; display: -webkit-box; -webkit-box-pack: center; -webkit-box-align: center;}
-.close{width: 40px; height: 40px; position: fixed; right: 15px; top: 15px; background: url(../static/img/back_but@2x.png) no-repeat center center; background-size: 25px; z-index: 999;}
+.shop .btn{width: 0.66rem; height: 0.26rem; margin: 0.33rem 0 0; background: #FF7E00; color: #fff; text-align: center; line-height: 0.26rem; float: right; font-size: 0.12rem;}
 </style>
 </head>
 <body>
 <section class="container" v-cloak>
-	<!-- head user -->
 	<header class="user">
-		<div class="head" @click="headCallback(res.sportingMoment.userBasicInfo.userCode)">
-		<img :src="res.sportingMoment.userBasicInfo.aboutHead?res.sportingMoment.userBasicInfo.aboutHead:'../static/img/default_photo.png'" alt=""><em class="vip" v-if="res.sportingMoment.userBasicInfo.type == 'dzsd4107100310010002'"></em></div>
-		<div class="info">
-			<h1 class="name" :class={vertical:!res.sportingMoment.userBasicInfo.title}>{{res.sportingMoment.userBasicInfo.nickName}}</h1>
-			<h2 class="title" v-if="!!res.sportingMoment.userBasicInfo.title">{{res.sportingMoment.userBasicInfo.title}}</h2>
+		<div class="head">
+			<div class="photo" @click="headCallback(res.sportingMoment.userBasicInfo.userCode)">
+				<img :src="res.sportingMoment.userBasicInfo.aboutHead?res.sportingMoment.userBasicInfo.aboutHead:'../static/img/default_photo.png'" alt="">
+				<em class="mark" v-if="res.sportingMoment.userBasicInfo.type == 'dzsd4107100310010002'"></em>
+			</div>
+			<div class="info">
+				<h1 class="name" :class="{ct:!res.sportingMoment.userBasicInfo.title}">{{res.sportingMoment.userBasicInfo.nickName}}</h1>
+				<h3 class="title" v-if="!!res.sportingMoment.userBasicInfo.title">{{res.sportingMoment.userBasicInfo.title}}</h3>
+			</div>
 		</div>
-		<div class="time">
-			<em class="num">{{res.sportingMoment.readNum}}</em>{{res.sportingMoment.publishTimeStr}}
-		</div>
+		<a href="javascript:;" class="index" @click="headCallback(res.sportingMoment.userBasicInfo.userCode)">Ta的主页</a>
 	</header>
-	<!-- end -->
 	<!-- content -->
 	<article class="content">
 		<child-detail :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030001'"></child-detail>
@@ -95,22 +78,17 @@
 		<child-video :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030005'"></child-video>
 	</article>
 	<!-- end -->
-	<!-- user conter -->
-	<footer class="follow">
-		<div class="head" @click="headCallback(res.sportingMoment.userBasicInfo.userCode)">
-		<img :src="res.sportingMoment.userBasicInfo.aboutHead?res.sportingMoment.userBasicInfo.aboutHead:'../static/img/default_photo.png'" alt=""><em class="vip" v-if="res.sportingMoment.userBasicInfo.type == 'dzsd4107100310010002'"></em></div>
-		<h1 class="name">{{res.sportingMoment.userBasicInfo.nickName}}</h1>
-		<h2 class="title">{{res.sportingMoment.userBasicInfo.title}}</h2>
-		<a href="javascript:;" class="submit" @click="headCallback(res.sportingMoment.userBasicInfo.userCode)">进入TA的主页</a>
-	</footer>
-	<!-- end -->
+	<article class="readRate">
+		<em>{{res.sportingMoment.publishTimeStr}}</em>
+		<em>{{res.sportingMoment.readNum}}次浏览</em>
+	</article>
 	<!-- shop module -->
-	<article class="shop" v-if="shop.productInfos.length || shop != null">
+	<article class="shop" v-if="shop.productInfos.length">
 		<h3 class="title">{{shop.title}}</h3>
 		<ul class="list">
 			<li class="item clearfix" v-for="item in shop.productInfos" @click="callTaobao(item.iosUrl,item.androidUrl)">
 				<div class="list-img">
-					<img src="../static/img/lazyload.jpg" v-lazyload="item.picurl" alt="">
+					<img src="../static/img/lazyload.jpg" v-lazyload:opt.fadein=="item.picurl" alt="">
 				</div>
 				<div class="list-info">
 					<h1 class="name">{{item.name}}</h1>
@@ -126,7 +104,7 @@
 </section>
 <!-- 文章详情 -->
 <script type="text/x-template" id="template-detail">
-	<div class="cover"><img src="../static/img/lazyload.jpg" v-lazyload:opt.fadeIn="res.sportingMoment.cover" alt=""></div>
+	<div class="cover"><img src="../static/img/lazyload.jpg" v-lazyload:opt.fadein="res.sportingMoment.cover" alt=""></div>
 	<h1 class="title">{{res.sportingMoment.title}}</h1>
 	<h2 class="address" v-if="res.sportingMoment.localtionName">{{res.sportingMoment.localtionName}}</h2>
 	<div class="referral" v-if="res.contentRecommInfo.content">
@@ -143,7 +121,7 @@
 <!-- end -->
 <!-- 单图详情 -->
 <script type="text/x-template" id="template-picture">
-	<div class="cover"><img src="../static/img/lazyload.jpg" v-lazyload="res.sportingMoment.cover" alt=""></div>
+	<div class="cover"><img src="../static/img/lazyload.jpg" v-lazyload:opt.fadein="res.sportingMoment.cover" alt=""></div>
 	<p class="caption">
 		{{{res.contentDetailInfo.content}}}
 	</p>
@@ -166,17 +144,17 @@
 <!-- end -->
 <!-- 标签类型 -->
 <script type="text/x-template" id="template-tag">
-<ul class="tag">
-	<li v-for="tag in res.sportingMoment.tags" @click="tagCallback(tag.code,tag.name)">{{tag.name}}</li>
-</ul>
+	<ul class="tag" v-if="res.sportingMoment.tags.length">
+		<li v-for="tag in res.sportingMoment.tags" @click="tagCallback(tag.code,tag.name)">{{tag.name}}</li>
+	</ul>
 </script>
 <!-- end -->
 <script type="text/javascript" src="script/common.min.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
 Vue.use(Vue.lazyimg,{
-		nohori: true
-	});
+	nohori: true
+});
 Vue.component('child-detail',{
 	template:'#template-detail',
 	props:{
@@ -367,69 +345,6 @@ var vm = new Vue({
 		}
 	}
 });
-// window.onload = function(){
-// 	var oSlider= document.querySelector('.slider');
-// 	var oWrap = document.querySelector('.content');
-// 	var aImg = oWrap.querySelectorAll('img');
-// 	var oCanvas = oSlider.querySelector('.canvas');
-// 	var oClose = oSlider.querySelector('.close');
-// 	var list = [];
-// 	var timer = null;
-// 	var startX = 0, startY = 0;
-// 	for(var i=0; i<aImg.length; i++){
-// 		aImg[i].index = i;
-// 		aImg[i].addEventListener('click', function(){
-// 			oSlider.style.display ='block';
-// 			list = [];
-// 			for(var j=0; j<aImg.length; j++){
-// 				var item = {
-// 					'width':aImg[j].naturalWidth,
-// 					'height':aImg[j].naturalHeight,
-// 					'img':aImg[j].src
-// 				}
-// 				list.push(item);
-// 			}
-// 			new Slider({
-// 				dom : document.querySelector('.canvas'),
-// 				list : list,
-// 				index : this.index
-// 			});
-// 		}, false);
-// 	}
-// 	oClose.addEventListener('click', function(){
-// 		oSlider.style.display = 'none';
-// 		oCanvas.removeChild(oCanvas.querySelector('ul'))
-// 	}, false);
-
-// 	oCanvas.addEventListener('touchstart',function(event){
-// 		var target = event.targetTouches[0];
-// 		var share = !queryUrl('share');
-// 		var href = this.querySelector('.curr').querySelector('img').src;
-// 			startX = target.pageX;
-// 			startY = target.pageY;
-// 		if(!share){
-// 			return false;
-// 		}
-// 		timer = setTimeout(function(){
-// 			callbackSavePic(href);
-// 		}, 1000)
-// 		event.preventDefault();
-// 	}, false);
-// 	oCanvas.addEventListener('touchmove',function(event){
-// 		var target = event.targetTouches[0];
-// 		var moveX = target.pageX;
-// 		var moveY = target.pageY;
-// 		if((moveX - startX) <= 5 && (moveX - startX) >= -5 && (moveY - startY) <= 5 && (moveY - startY) >= -5) return false;
-// 		clearTimeout(timer);		
-// 		event.preventDefault();
-// 	}, false);
-// 	oCanvas.addEventListener('touchend',function(event){
-// 		clearTimeout(timer);
-// 		event.preventDefault();
-		
-// 	}, false);
-
-// }
 </script>
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
