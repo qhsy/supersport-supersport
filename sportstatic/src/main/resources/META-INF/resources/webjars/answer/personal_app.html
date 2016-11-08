@@ -81,11 +81,9 @@ var require = {
 		<template v-else>
 			<ul class="personal-sports" v-cloak>
 				<li v-for="item in result.userContentTabInfo.contentInfos">
-					<template v-if="item.contentType == 'dzsd4107100110030003'">
-						<a href="javascript:;" @click="open">
-							<sports :item="item"></sports>
-						</a>
-					</template>
+					<a href="javascript:;" @click="open">
+						<sports :item="item"></sports>
+					</a>
 				</li>
 			</ul>
 		</template>
