@@ -6,6 +6,7 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -28,15 +29,16 @@ public class UcMsgNoticePush extends BaseEntity {
 			DefineWebInc.Web_Component + "=dzcw451010010005" }, require = "1")
 	private String userCode;
 
-	@ZooData(value = "站内信", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(value = "站内信", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" }, verify = {
+			DefineWebVerify.Max_Length + "=200" })
 	private String content;
 
 	@ZooData(value = "Android推送内容", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" })
+			DefineWebPage.Page_Grid + "=0" }, verify = { DefineWebVerify.Max_Length + "=200" })
 	private String androidContent;
 
 	@ZooData(value = "IOS推送内容", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" })
+			DefineWebPage.Page_Grid + "=0" }, verify = { DefineWebVerify.Max_Length + "=200" })
 	private String iosContent;
 
 	@ZooData(value = "站内信次数", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Add + "=0",
