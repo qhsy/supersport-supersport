@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.page.PageInfo;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnWonderfulVideo;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
@@ -70,6 +71,8 @@ public class ApiWonderfulVideo extends RootApiBase<ApiWonderfulVideoInput, ApiWo
 				}
 				
 				String title = StringUtils.isEmpty(video.getTitle())?basicInfo.getTitle():video.getTitle();
+				
+				title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
 				
 				showInfo.setCover(cover);
 				

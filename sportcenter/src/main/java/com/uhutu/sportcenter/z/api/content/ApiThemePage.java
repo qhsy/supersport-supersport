@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnShareInfo;
 import com.uhutu.dcom.content.z.entity.CnThemeDetail;
@@ -171,6 +172,12 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 							}
 
 						}
+						
+						String title = re.getTitle();
+						
+						title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+						
+						re.setTitle(title);
 
 						result.add(re);
 					}

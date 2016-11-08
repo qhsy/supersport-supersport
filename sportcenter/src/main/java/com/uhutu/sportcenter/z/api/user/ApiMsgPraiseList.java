@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcMsgPraise;
@@ -57,7 +58,12 @@ public class ApiMsgPraiseList extends RootApiToken<ApiMsgPraiseListInput, ApiMsg
 			if (StringUtils.isNoneBlank(basicinfo.getCover())) {
 				msgPraiseInfo.setContentCover(ImageHelper.upImageThumbnail(basicinfo.getCover(), 100));
 			}
-			msgPraiseInfo.setContentTitle(msgPraise.getContentTitle());
+			
+			String title = msgPraise.getContentTitle();
+			
+			title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+			
+			msgPraiseInfo.setContentTitle(title);
 
 			msgPraiseInfo.setPraiseUserCode(msgPraise.getPraiseUserCode());
 

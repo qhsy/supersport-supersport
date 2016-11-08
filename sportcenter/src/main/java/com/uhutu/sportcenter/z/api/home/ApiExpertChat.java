@@ -4,6 +4,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.page.PageInfo;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnExpertChat;
 import com.uhutu.sportcenter.z.entity.ContentShowInfo;
@@ -62,6 +63,8 @@ public class ApiExpertChat extends RootApiBase<ApiExpertChatInput, ApiExpertChat
 				}
 				
 				String title = StringUtils.isEmpty(expertChat.getTitle())?basicInfo.getTitle():expertChat.getTitle();
+				
+				title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
 				
 				showInfo.setCover(cover);
 				

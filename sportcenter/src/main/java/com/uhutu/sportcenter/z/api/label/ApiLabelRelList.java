@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.PageInfo;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.tag.z.entity.CnContentLabel;
@@ -241,6 +242,12 @@ public class ApiLabelRelList extends RootApiBase<ApiLabelRelListInput, ApiLabelR
 					sportingMoment.setReadNum(contentReadCount.getCount());
 
 				}
+				
+				String title = sportingMoment.getTitle();
+				
+				title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+				
+				sportingMoment.setTitle(title);
 
 				basicInfoApis.add(sportingMoment);
 
