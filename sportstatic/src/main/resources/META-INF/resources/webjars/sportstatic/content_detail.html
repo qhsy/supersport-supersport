@@ -84,7 +84,7 @@
 	</article>
 	<!-- shop module -->
 	<article class="shop" v-if="shop.productInfos.length">
-		<h3 class="title">说的{{shop.title}}</h3>
+		<h3 class="title">{{shop.title}}</h3>
 		<ul class="list">
 			<li class="item clearfix" v-for="item in shop.productInfos" @click="callTaobao(item.iosUrl,item.androidUrl)">
 				<div class="list-img">
@@ -162,7 +162,7 @@ Vue.component('child-detail',{
 	},
 	data:function(){
 		return {
-			videoWd:window.innerWidth - 26 
+			videoWd:window.innerWidth - 44 
 		}
 	},
 	ready:function(){
@@ -176,8 +176,8 @@ Vue.component('child-detail',{
 			zymedia('video',{
 				alwaysShowControls: true,
 				hideVideoControlsOnLoad:true,
-				videoWidth: window.innerWidth-26,
-				videoHeight: window.innerWidth-26,
+				videoWidth: window.innerWidth-44,
+				videoHeight: window.innerWidth-44,
 				preload:'auto'
 			});
 		}
