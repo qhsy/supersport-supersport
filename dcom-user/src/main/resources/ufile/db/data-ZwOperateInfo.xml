@@ -46,6 +46,16 @@
 			operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41101011" operateName="push"
+			operateFunc="com.uhutu.dcom.user.z.page.func.UcMsgPushFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.ope_pd_noconfirm('[[struct:pageUnique]]','[[data:za]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41101012" operateName="发送站内信"
+			operateFunc="com.uhutu.dcom.user.z.page.func.UcMsgNoticeFuncEdit"
+			operateType="js"
+			operateLink="zstatic_operate.ope_pd_noconfirm('[[struct:pageUnique]]','[[data:za]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
