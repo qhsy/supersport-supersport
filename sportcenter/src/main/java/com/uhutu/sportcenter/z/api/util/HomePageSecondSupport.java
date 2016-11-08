@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnAdvertiseDetail;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
@@ -188,6 +189,13 @@ public class HomePageSecondSupport {
 						infoApi.getUserBasicInfo().setNickName(userInfoApi.getNickName());
 						infoApi.getUserBasicInfo().setAboutHead(userInfoApi.getAboutHead());
 						infoApi.getUserBasicInfo().setType(userInfoApi.getType());
+						
+						String title = infoApi.getTitle();
+						
+						title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+						
+						infoApi.setTitle(title);
+						
 						hmp.getInfos().add(getSingleTitle(infoApi));
 					}
 				} else {

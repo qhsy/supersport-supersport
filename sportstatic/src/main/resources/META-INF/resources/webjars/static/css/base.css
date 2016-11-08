@@ -125,8 +125,8 @@ a:hover {text-decoration: none; }
 	html{font-size: 106.66px;}
 }
 @media screen and (min-width: 414px){
-	/*html{font-size: 110.15px;}*/
-	html{font-size: 100px;}
+	html{font-size: 110.15px;}
+	/*html{font-size: 100px;}*/
 }
 @media screen and (min-width: 420px){
 	html{font-size: 112px;}

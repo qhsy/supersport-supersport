@@ -65,8 +65,12 @@ public class ApiMsgRemarkList extends RootApiToken<ApiMsgRemarkListInput, ApiMsg
 		msgRemarkList.forEach(msgRemark -> {
 
 			ContentReplyInfo contentReplyInfo = new ContentReplyInfo();
+			
+			String title = msgRemark.getContentTitle();
+			
+			title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
 
-			contentReplyInfo.setContentTitle(msgRemark.getContentTitle());
+			contentReplyInfo.setContentTitle(title);
 
 			CnContentBasicinfo contentBasicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
 					msgRemark.getContentCode());

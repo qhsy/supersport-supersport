@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
 import com.uhutu.dcom.content.z.entity.CnShareInfo;
@@ -56,9 +57,14 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 				UcUserinfoExt ue = JdbcHelper.queryOne(UcUserinfoExt.class, "userCode", basicInfo.getAuthor());
 				authorName = StringUtils.isNotBlank(ue.getNickName()) ? ue.getNickName() : "";
 			}
+			
+			String title = basicInfo.getTitle();
+			
+			title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+			
 			if (basicInfo != null) {
 
-				shareResult.setTitle(basicInfo.getTitle());
+				shareResult.setTitle(title);
 				if (StringUtils.isNotBlank(basicInfo.getCover())) {
 					shareResult.setIconUrl(ImageHelper.upImageThumbnail(basicInfo.getCover(), 120));
 				}
@@ -73,9 +79,7 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 				} else {
 					shareResult.setContent(TopHelper.upInfo(810710011, authorName));
 				}
-			} else {
-				shareResult.inError(810710008);
-			}
+			} 
 		}
 
 		return shareResult;
