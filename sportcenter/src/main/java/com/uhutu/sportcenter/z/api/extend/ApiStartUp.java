@@ -19,8 +19,10 @@ public class ApiStartUp extends RootApiBase<ApiStartUpInput, ApiStartUpResult> {
 
 	protected ApiStartUpResult process(ApiStartUpInput input) {
 		ApiStartUpResult result = new ApiStartUpResult();
-		CnStartUp startUp = JdbcHelper.queryOne(CnStartUp.class, "", "", " endTime>=NOW() and startTime<=NOW() ", new MDataMap());
-		if(startUp!=null){
+		CnStartUp startUp = JdbcHelper.queryOne(CnStartUp.class, "", "", " endTime>=NOW() and startTime<=NOW() ",
+				new MDataMap());
+		if (startUp != null) {
+			startUp.setCode(startUp.getRandomNum());
 			result.setStartUp(startUp);
 		}
 		return result;
