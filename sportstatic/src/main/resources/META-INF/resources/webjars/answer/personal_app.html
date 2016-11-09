@@ -44,9 +44,9 @@ var require = {
 	<span class="app-logo"><img src="style/img/about.png"></span>
 	<a href="javascript:;" class="app-btn" @click="open">打开App</a>
 </header>
-<section class="wrap" style="padding: 0.6rem 0 0;">
-	<article class="personal" v-cloak>
-		<header class="head">
+<section class="wrap" v-cloak style="padding: 0.6rem 0 0;">
+	<article class="personal">
+		<header class="head" style="background-image: url('{{result.userInfo.aboutCover}}');">
 			<div class="user">
 				<span class="attend"><em>{{result.userInfo.attendNum}}</em>关注</span>
 				<span class="photo"><img :src="result.answerUserInfo.aboutHead" alt=""></span>
