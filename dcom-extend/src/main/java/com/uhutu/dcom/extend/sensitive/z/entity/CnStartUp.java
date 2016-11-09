@@ -55,6 +55,10 @@ public class CnStartUp extends BaseEntity {
 	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
 	private String remark;
 
+	@ZooData(name = "随机数", element = DefineWebElement.Input, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=1", DefineWebPage.Page_Grid + "=0" })
+	private String randomNum;
+
 	public String getCode() {
 		return code;
 	}
@@ -117,6 +121,14 @@ public class CnStartUp extends BaseEntity {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getRandomNum() {
+		return randomNum;
+	}
+
+	public void setRandomNum(String randomNum) {
+		this.randomNum = randomNum;
 	}
 
 }

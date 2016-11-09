@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.uhutu.dcom.extend.sensitive.z.entity.CnStartUp;
 import com.uhutu.zoocom.helper.DateHelper;
+import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.api.webpage.WebOperateInput;
@@ -45,6 +46,7 @@ public class CnStartUpPageFuncAdd extends RootFunc {
 			up.setShowStatus(input.getDataMap().get("show_status"));
 			up.setStayTime(Integer.valueOf(input.getDataMap().get("stay_time")));
 			up.setRemark(input.getDataMap().get("remark"));
+			up.setRandomNum(TopHelper.upUuid());
 			up.setZc(new Date());
 			JdbcHelper.insert(up);
 		}
