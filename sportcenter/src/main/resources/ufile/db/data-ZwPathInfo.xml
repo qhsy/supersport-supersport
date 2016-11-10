@@ -29,6 +29,8 @@
 		<item code="dzpi4514100200031001" nodeName="比赛成绩" parentCode="dzpi451410020003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForDrawPage" pageIcon="glyphicon-forward" />
 		<item code="dzpi4514100200031002" nodeName="奖品信息" parentCode="dzpi451410020003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnPrizesInfoPage" pageIcon="glyphicon-forward" />
 		<item code="dzpi4514100200031003" nodeName="中奖记录" parentCode="dzpi451410020003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnPrizesHistoryPage" pageIcon="glyphicon-forward" />
+		<item code="dzpi451410020004" nodeName="CrossFit" parentCode="dzpi45141002" />
+		<item code="dzpi4514100200041001" nodeName="参赛人员信息" parentCode="dzpi451410020004" pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UcSignInfoPage" pageIcon="glyphicon-forward" />
 		<item code="dzpi45141003" nodeName="内容管理" parentCode="" />
 		<item code="dzpi451410031003" nodeName="栏目管理" parentCode="dzpi45141003" />
 		<item code="dzpi4514100310031001" nodeName="内容栏目信息" parentCode="dzpi451410031003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemPage" pageIcon="glyphicon-heart-empty" />

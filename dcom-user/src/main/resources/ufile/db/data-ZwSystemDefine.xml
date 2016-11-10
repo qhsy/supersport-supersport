@@ -23,6 +23,10 @@
 		<item code="dzsd410710051001" defineName="用户类型" parentCode="" />
 		<item code="dzsd4107100510010001" defineName="女" parentCode="dzsd410710051001" />
 		<item code="dzsd4107100510010002" defineName="男" parentCode="dzsd410710051001" />
+		<item code="dzsd410710051002" defineName="参赛类型" parentCode="dzsd41131001" />
+		<item code="dzsd4107100510020001" defineName="个人标准组（Rx）" parentCode="dzsd410710051002" />
+		<item code="dzsd4107100510020002" defineName="个人业余组（Scale）" parentCode="dzsd410710051002" />
+		<item code="dzsd4107100510020003" defineName="团队标准组（Rx）" parentCode="dzsd410710051002" />
 	</data>
 
 </db>
