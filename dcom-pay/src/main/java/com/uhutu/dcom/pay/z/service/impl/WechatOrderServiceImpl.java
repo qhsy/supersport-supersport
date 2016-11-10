@@ -5,7 +5,9 @@ import java.math.BigDecimal;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.uhutu.dcom.component.z.util.WebClientComponent;
+import com.uhutu.dcom.pay.z.common.OrderType;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.common.WechatUnifyResultCodeEnum;
 import com.uhutu.dcom.pay.z.config.PayConfigFactory;
@@ -73,7 +75,7 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 		
 		orderRequest.setAppid(configFactory.getWechatConfig().getAppId(processEnum));
 		
-		orderRequest.setBody("果冻体育-"+"问答支付");
+		orderRequest.setBody(bizContentRequest.getBody());
 		
 		orderRequest.setMch_id(configFactory.getWechatConfig().getMchId(processEnum));
 		
@@ -121,6 +123,28 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 		
 		return orderRequest;
 		
+	}
+
+
+	@Override
+	public String initBody(String orderType) {
+		
+		OrderType orderTypeEnum = OrderType.prase(orderType);
+		
+		String body = "";
+		
+		switch (orderTypeEnum) {
+		
+		case CROSSFIT_TD:
+			body = OrderType.CROSSFIT_TD.getText();
+			break;
+
+		default:
+			body = OrderType.ANSWER_QUESTION.getText();
+			break;
+		}
+		
+		return body;
 	}
 
 }

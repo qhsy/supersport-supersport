@@ -18,5 +18,13 @@ public interface IWechatOrderService extends IPayService  {
 	 * @return 微信订单请求对象
 	 */
 	public WechatOrderRequest initOrderRequest(WechatBizContentRequest bizContentRequest,PayProcessEnum processEnum);
+	
+	/**
+	 * 初始化微信订单body字段
+	 * @param orderType
+	 * 		订单类型
+	 * @return body
+	 */
+	public String initBody(String orderType);
 
 }

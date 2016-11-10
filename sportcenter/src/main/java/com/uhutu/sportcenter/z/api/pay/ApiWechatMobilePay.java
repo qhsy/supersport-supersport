@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.order.z.entity.OcOrderInfo;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
 import com.uhutu.dcom.pay.z.request.WechatBizContentRequest;
@@ -16,6 +17,7 @@ import com.uhutu.sportcenter.z.input.ApiWechatMobilePayInput;
 import com.uhutu.sportcenter.z.result.ApiWechatMobilePayResult;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiToken;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 微信移动支付
@@ -45,6 +47,18 @@ public class ApiWechatMobilePay extends RootApiToken<ApiWechatMobilePayInput, Ap
 		bizContentRequest.setRomoteIp(input.getRomoteIP());
 		
 		bizContentRequest.setPayMoney(input.getPayMoney());
+		
+		OcOrderInfo ocOrderInfo = JdbcHelper.queryOne(OcOrderInfo.class, "code", input.getOrderCode());
+		
+		String body = "";
+		
+		if(ocOrderInfo != null){
+			
+			body = payServiceFactory.getWechatOrderService().initBody(ocOrderInfo.getOrderType());
+			
+		}
+		
+		bizContentRequest.setBody(body);
 		
 		WechatOrderRequest orderRequest = payServiceFactory.getWechatOrderService().initOrderRequest(bizContentRequest, PayProcessEnum.WECHAT);
 		
