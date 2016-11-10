@@ -7,6 +7,7 @@
 		<item code="dzsd4112100110010002" defineName="达人订单" parentCode="dzsd411210011001" />
 		<item code="dzsd4112100110010003" defineName="问达订单" parentCode="dzsd411210011001" />
 		<item code="dzsd4112100110010004" defineName="偷听订单" parentCode="dzsd411210011001" />
+		<item code="dzsd4112100110010005" defineName="ThrowDown" parentCode="dzsd411210011001" />
 		<item code="dzsd411210011002" defineName="订单来源" parentCode="dzsd41121001" />
 		<item code="dzsd4112100110020001" defineName="app订单" parentCode="dzsd411210011002" />
 		<item code="dzsd4112100110020002" defineName="wap订单" parentCode="dzsd411210011002" />
