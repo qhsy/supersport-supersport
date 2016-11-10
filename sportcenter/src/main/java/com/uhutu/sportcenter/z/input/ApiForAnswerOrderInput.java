@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class ApiForAnswerOrderInput extends RootApiInput {
 
-	@ApiModelProperty(value = "问题编号", notes = "问达问题编号", example = "WTBH0001", required = true)
+	@ApiModelProperty(value = "商品编号", notes = "商品编号", example = "dzsd4107100510020001:个人标准,dzsd4107100510020002:个人业余,dzsd4107100510020003:团体标准 或者问答编号", required = true)
 	private String answerCode = "";
 
 	@ApiModelProperty(value = "订单类型 dzsd4112100110010003:问达订单,dzsd4112100110010004:偷听订单,dzsd4112100110010005:ThrowDown", example = "dzsd4112100110010004", required = true)
