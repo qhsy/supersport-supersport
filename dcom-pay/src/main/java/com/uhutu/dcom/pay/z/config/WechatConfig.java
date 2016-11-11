@@ -84,6 +84,12 @@ public class WechatConfig {
 	
 	@Value("${wechat_service_notifyUrl}")
 	private String serviceNotifyUrl;
+	
+	@Value("${wechat_cf_notifyUrl}")
+	private String cfNotifyUrl;
+	
+	@Value("${wechat_cfH5_notifyUrl}")
+	private String cfH5NotifyUrl;
 
 	/**
 	 * 获取app编号
@@ -156,6 +162,13 @@ public class WechatConfig {
 		case WECHAT:
 			notifyUrl = getNotifyUrl();
 			break;
+		
+		case WECHAT_CF:
+			notifyUrl = getCfNotifyUrl();
+			break;
+		case WECHAT_H5_CF:
+			notifyUrl = getCfNotifyUrl();
+			break;
 
 		default:
 			break;
@@ -193,6 +206,12 @@ public class WechatConfig {
 			key = getServiceKey();
 			break;
 		case WECHAT_NOTIFY:
+			key = getSignKey();
+			break;
+		case WECHAT_H5_CF:
+			key = getServiceKey();
+			break;
+		case WECHAT_CF:
 			key = getSignKey();
 			break;
 
@@ -305,6 +324,12 @@ public class WechatConfig {
 		case WECHATH5_NOTIFY:
 			appid = getServiceAppId();
 			break;
+		case WECHAT_CF:
+			appid = getAppId();
+			break;
+		case WECHAT_H5_CF:
+			appid = getServiceAppId();
+			break;
 		default:
 			break;
 		}
@@ -339,6 +364,12 @@ public class WechatConfig {
 			mchid = getMchId();
 			break;
 		case WECHATH5_NOTIFY:
+			mchid = getServiceMchId();
+			break;
+		case WECHAT_CF:
+			mchid = getMchId();
+			break;
+		case WECHAT_H5_CF:
 			mchid = getServiceMchId();
 			break;
 		default:
@@ -398,6 +429,14 @@ public class WechatConfig {
 		
 		return appSecret;
 		
+	}
+
+	public String getCfNotifyUrl() {
+		return cfNotifyUrl;
+	}
+
+	public String getCfH5NotifyUrl() {
+		return cfH5NotifyUrl;
 	}
 	
 	

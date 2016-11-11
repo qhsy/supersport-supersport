@@ -50,15 +50,13 @@ public class ApiWechatMobilePay extends RootApiToken<ApiWechatMobilePayInput, Ap
 		
 		OcOrderInfo ocOrderInfo = JdbcHelper.queryOne(OcOrderInfo.class, "code", input.getOrderCode());
 		
-		String body = "";
-		
 		if(ocOrderInfo != null){
 			
-			body = payServiceFactory.getWechatOrderService().initBody(ocOrderInfo.getOrderType());
+			bizContentRequest.setOrderSource(ocOrderInfo.getOrderSource());
+			
+			bizContentRequest.setOrderType(ocOrderInfo.getOrderType());
 			
 		}
-		
-		bizContentRequest.setBody(body);
 		
 		WechatOrderRequest orderRequest = payServiceFactory.getWechatOrderService().initOrderRequest(bizContentRequest, PayProcessEnum.WECHAT);
 		

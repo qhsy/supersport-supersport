@@ -14,6 +14,12 @@ public class WechatBizContentRequest implements IPayRequest {
 	/*订单编号*/
 	private String orderCode;
 	
+	/*订单类型*/
+	private String orderType;
+	
+	/*订单来源*/
+	private String orderSource;
+	
 	/*商品描述*/
 	private String body;
 	
@@ -97,6 +103,22 @@ public class WechatBizContentRequest implements IPayRequest {
 
 	public void setOpenid(String openid) {
 		this.openid = openid;
+	}
+
+	public String getOrderType() {
+		return orderType;
+	}
+
+	public void setOrderType(String orderType) {
+		this.orderType = orderType;
+	}
+
+	public String getOrderSource() {
+		return orderSource;
+	}
+
+	public void setOrderSource(String orderSource) {
+		this.orderSource = orderSource;
 	}
 
 }

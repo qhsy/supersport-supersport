@@ -71,15 +71,13 @@ public class ApiWechatH5Pay extends RootApiToken<ApiWechatH5PayInput, ApiWechatH
 		
 		OcOrderInfo ocOrderInfo = JdbcHelper.queryOne(OcOrderInfo.class, "code", input.getOrderCode());
 		
-		String body = "";
-		
 		if(ocOrderInfo != null){
 			
-			body = payServiceFactory.getWechatOrderService().initBody(ocOrderInfo.getOrderType());
+			bizContentRequest.setOrderType(ocOrderInfo.getOrderType());
 			
-		}
-		
-		bizContentRequest.setBody(body);
+			bizContentRequest.setOrderSource(ocOrderInfo.getOrderSource());
+			
+		}		
 		
 		WechatOrderRequest orderRequest = payServiceFactory.getWechatOrderService().initOrderRequest(bizContentRequest, PayProcessEnum.WECHAT_SERVICE_CONFIG);
 		

@@ -75,11 +75,20 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 		
 		orderRequest.setAppid(configFactory.getWechatConfig().getAppId(processEnum));
 		
-		orderRequest.setBody(bizContentRequest.getBody());
+		orderRequest.setBody(initBody(bizContentRequest.getOrderType()));
 		
 		orderRequest.setMch_id(configFactory.getWechatConfig().getMchId(processEnum));
 		
 		orderRequest.setNonce_str(WechatUtil.getNonceStr());
+		
+		PayProcessEnum notifyProcess = initPayProcess(bizContentRequest.getOrderType(),bizContentRequest.getOrderSource());
+		
+		/*根据订单类型匹配，支付回调地址，若为空，则根据实际值处理*/
+		if(notifyProcess != null){
+			
+			processEnum = notifyProcess;
+			
+		}
 		
 		String notifyUrl = bizContentRequest.getRequestIP() + configFactory.getWechatConfig().getWechatNotifyUrl(processEnum);
 		
@@ -145,6 +154,32 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 		}
 		
 		return body;
+	}
+
+
+	@Override
+	public PayProcessEnum initPayProcess(String orderType,String orderSource) {
+		
+		String condition = orderSource+"_"+orderType;
+		
+		OrderType orderTypeEnum = OrderType.prase(condition);
+		
+		PayProcessEnum payProcess = null;
+		
+		switch (orderTypeEnum) {
+		
+		case CROSSFIT_APP:
+			payProcess = PayProcessEnum.WECHAT_CF;
+			break;
+		case CROSSFIT_H5:
+			payProcess = PayProcessEnum.WECHAT_H5_CF;
+			break;
+
+		default:
+			break;
+		}
+		
+		return payProcess;
 	}
 
 }

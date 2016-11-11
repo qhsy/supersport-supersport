@@ -42,6 +42,14 @@ public enum PayProcessEnum {
 	/**微信消息退款*/
 	WECHAT_MSG_REFUND,
 	/**金币支付*/
-	GOLD_COIN;
+	GOLD_COIN,
+	/**crossfit*/
+	WECHAT_CF,
+	/**crossfit h5*/
+	WECHAT_H5_CF,
+	/**crossfit*/
+	WECHAT_CF_NOTIFY,
+	/**crossfit h5*/
+	WECHAT_CFH5_NOTIFY;
 
 }

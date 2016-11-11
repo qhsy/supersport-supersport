@@ -26,5 +26,15 @@ public interface IWechatOrderService extends IPayService  {
 	 * @return body
 	 */
 	public String initBody(String orderType);
+	
+	/**
+	 * 根据订单类型初始化支付解析类
+	 * @param orderType
+	 * 		订单类型
+	 * @param orderSource
+	 * 		订单来源
+	 * @return 支付解析类
+	 */
+	public PayProcessEnum initPayProcess(String orderType,String orderSource);
 
 }

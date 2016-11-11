@@ -22,7 +22,15 @@ public enum OrderType {
 	ANSWER_QUESTION("dzsd4112100110010003","果冻体育-问答支付"),
 	
 	/**活动订单*/
-	ANSWER_ACTIVITY("dzsd4112100110010001","果冻体育-问答支付");
+	ANSWER_ACTIVITY("dzsd4112100110010001","果冻体育-问答支付"),
+	
+	SOURCE_H5("dzsd4112100110020002","H5订单"),
+	
+	SOURCE_APP("dzsd4112100110020001","app订单"),
+	
+	CROSSFIT_H5("dzsd4112100110020002-dzsd4112100110010005","crossfit H5 订单"),
+	
+	CROSSFIT_APP("dzsd4112100110020001-dzsd4112100110010005","crossfit app订单");
 	
 	
 	OrderType(String code, String text) {
