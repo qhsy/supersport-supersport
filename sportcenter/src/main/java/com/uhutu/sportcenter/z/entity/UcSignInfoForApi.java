@@ -12,13 +12,13 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class UcSignInfoForApi extends BaseEntity {
 
-	@ApiModelProperty(name = "参赛编号", notes = "参赛编号")
+	@ApiModelProperty(name = "参赛编号", value = "参赛编号")
 	private String code;
 
-	@ApiModelProperty(name = "参赛类型", notes = "参赛类型 dzsd4107100510020001:个人标准,dzsd4107100510020002:个人业余,dzsd4107100510020003:团体标准")
+	@ApiModelProperty(name = "参赛类型", value = "参赛类型 dzsd4107100510020001:个人标准,dzsd4107100510020002:个人业余,dzsd4107100510020003:团体标准")
 	private String type;
 
-	@ApiModelProperty(name = "姓名", notes = "姓名dzsd4107100510010001:女,dzsd4107100510010002:男")
+	@ApiModelProperty(name = "姓名", value = "姓名dzsd4107100510010001:女,dzsd4107100510010002:男")
 	private String name;
 
 	@ApiModelProperty(name = "性别", notes = "性别")
