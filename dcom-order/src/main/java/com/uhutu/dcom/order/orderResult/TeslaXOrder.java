@@ -8,6 +8,7 @@ import com.uhutu.dcom.order.z.entity.OcOrderActivity;
 import com.uhutu.dcom.order.z.entity.OcOrderDetail;
 import com.uhutu.dcom.order.z.entity.OcOrderInfo;
 import com.uhutu.dcom.order.z.entity.OcOrderPay;
+import com.uhutu.dcom.user.z.entity.UcSignInfo;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -27,6 +28,9 @@ public class TeslaXOrder {
 
 	@ApiModelProperty(name = "活动信息")
 	private List<OcOrderActivity> activitys = new ArrayList<OcOrderActivity>();
+
+	@ApiModelProperty(name = "报名信息")
+	private UcSignInfo sign = new UcSignInfo();
 
 	public TeslaModelStatus getStatus() {
 		return status;
@@ -66,6 +70,14 @@ public class TeslaXOrder {
 
 	public void setActivitys(List<OcOrderActivity> activitys) {
 		this.activitys = activitys;
+	}
+
+	public UcSignInfo getSign() {
+		return sign;
+	}
+
+	public void setSign(UcSignInfo sign) {
+		this.sign = sign;
 	}
 
 }

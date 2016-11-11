@@ -31,6 +31,12 @@ public class UcSignInfo extends BaseEntity {
 	@Column(length = 50)
 	private String type;
 
+	@ZooData(name = "状态", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd411210011003" }, sort = { DefineWebPage.Page_Add + "=0",
+					DefineWebPage.Page_Edit + "=0" })
+	@Column(length = 30)
+	private String status;
+
 	@ApiModelProperty(name = "姓名", notes = "姓名")
 	@ZooData(name = "姓名", require = "1")
 	@Column(length = 255)
@@ -116,6 +122,14 @@ public class UcSignInfo extends BaseEntity {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getName() {

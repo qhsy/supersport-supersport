@@ -2,6 +2,7 @@ package com.uhutu.sportcenter.z.api.answer;
 
 import java.math.BigDecimal;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import com.uhutu.dcom.pay.z.common.TradeType;
 import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
 import com.uhutu.dcom.pay.z.request.GoldCoinPayRequest;
 import com.uhutu.dcom.pay.z.response.GoldCoinPayResponse;
+import com.uhutu.dcom.user.z.entity.UcSignInfo;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiForAnswerOrderInput;
 import com.uhutu.sportcenter.z.input.ApiWechatH5PayInput;
@@ -34,13 +36,13 @@ import com.uhutu.zoocom.root.RootApiToken;
  */
 @Service
 public class ApiForAnswerOrder extends RootApiToken<ApiForAnswerOrderInput, ApiForAnswerOrderResult> {
-	
+
 	@Autowired
 	private ApiFactory apiFactory;
-	
+
 	@Autowired
 	private PayGateProcess payGateProcess;
-	
+
 	protected ApiForAnswerOrderResult process(ApiForAnswerOrderInput input) {
 		ApiForAnswerOrderResult result = new ApiForAnswerOrderResult();
 		TeslaXOrder teslaXOrder = new TeslaXOrder();
@@ -56,55 +58,62 @@ public class ApiForAnswerOrder extends RootApiToken<ApiForAnswerOrderInput, ApiF
 		teslaXOrder.setOrderInfo(info);
 		teslaXOrder.getDetail().add(detail);
 		teslaXOrder.getStatus().setExecStep(ETeslaExec.Create);
+		if (input.getSignInfoForApi() != null) {
+			UcSignInfo sign = new UcSignInfo();
+			BeanUtils.copyProperties(input.getSignInfoForApi(),sign )
+			teslaXOrder.setSign(sign);
+		}
 		TeslaXResult reTeslaXResult = new ApiConvertTeslaService().ConvertOrder(teslaXOrder);
 		if (!reTeslaXResult.upFlagTrue()) {
 			result.setStatus(reTeslaXResult.getStatus());
 			result.setError(reTeslaXResult.getError());
 		} else {
-			
+
 			initPayResponse(teslaXOrder, result, input);
-			
+
 		}
 		return result;
 	}
-	
-	
+
 	/**
 	 * 初始化支付信息
+	 * 
 	 * @param teslaXOrder
 	 * @param result
 	 * @param input
 	 */
-	public void initPayResponse(TeslaXOrder teslaXOrder,ApiForAnswerOrderResult result,ApiForAnswerOrderInput input){
-		
-		String payType = teslaXOrder.getOrderInfo().getOrderSource()+"_"+teslaXOrder.getOrderInfo().getPayType();
-		
+	public void initPayResponse(TeslaXOrder teslaXOrder, ApiForAnswerOrderResult result, ApiForAnswerOrderInput input) {
+
+		String payType = teslaXOrder.getOrderInfo().getOrderSource() + "_" + teslaXOrder.getOrderInfo().getPayType();
+
 		switch (payType) {
-		case "dzsd4112100110020001_dzsd4112100110040002"://app订单
+		case "dzsd4112100110020001_dzsd4112100110040002":// app订单
 			initMobilePayInfo(teslaXOrder, result, input);
 			break;
-		
-		case "dzsd4112100110020002_dzsd4112100110040002"://h5订单
+
+		case "dzsd4112100110020002_dzsd4112100110040002":// h5订单
 			initH5PayInfo(teslaXOrder, result, input);
 			break;
-		case "dzsd4112100110020001_dzsd4112100110040003"://h5订单
+		case "dzsd4112100110020001_dzsd4112100110040003":// h5订单
 			initGoldCoinPayInfo(teslaXOrder, result, input);
 			break;
 
 		default:
 			break;
-		}		
-		
+		}
+
 	}
-	
+
 	/**
 	 * 初始化移动支付信息
+	 * 
 	 * @param teslaXOrder
 	 * @param result
 	 * @param input
 	 */
-	public void initMobilePayInfo(TeslaXOrder teslaXOrder,ApiForAnswerOrderResult result,ApiForAnswerOrderInput input){
-		
+	public void initMobilePayInfo(TeslaXOrder teslaXOrder, ApiForAnswerOrderResult result,
+			ApiForAnswerOrderInput input) {
+
 		ApiWechatMobilePayInput mobilePayInput = new ApiWechatMobilePayInput();
 		mobilePayInput.setOrderCode(teslaXOrder.getOrderInfo().getCode());
 		mobilePayInput.setRomoteIP(input.getRomoteIP());
@@ -112,23 +121,24 @@ public class ApiForAnswerOrder extends RootApiToken<ApiForAnswerOrderInput, ApiF
 		mobilePayInput.setPayMoney(teslaXOrder.getOrderInfo().getOrderMoney());
 		mobilePayInput.setZoo(input.getZoo());
 		ApiWechatMobilePayResult payResult = apiFactory.getApiWechatMobilePay().api(mobilePayInput);
-		if(payResult.upFlagTrue()){
+		if (payResult.upFlagTrue()) {
 			result.setWechatMobilePayResponse(payResult.getMobilePayInfo());
-		}else {
+		} else {
 			result.setStatus(payResult.getStatus());
 			result.setError(payResult.getError());
 		}
-		
+
 	}
-	
+
 	/**
 	 * h5支付信息
+	 * 
 	 * @param teslaXOrder
 	 * @param result
 	 * @param input
 	 */
-	public void initH5PayInfo(TeslaXOrder teslaXOrder,ApiForAnswerOrderResult result,ApiForAnswerOrderInput input){
-		
+	public void initH5PayInfo(TeslaXOrder teslaXOrder, ApiForAnswerOrderResult result, ApiForAnswerOrderInput input) {
+
 		ApiWechatH5PayInput ai = new ApiWechatH5PayInput();
 		ai.setOrderCode(teslaXOrder.getOrderInfo().getCode());
 		ai.setRomoteIP(input.getRomoteIP());
@@ -136,17 +146,18 @@ public class ApiForAnswerOrder extends RootApiToken<ApiForAnswerOrderInput, ApiF
 		ai.setPayMoney(teslaXOrder.getOrderInfo().getOrderMoney());
 		ai.setZoo(input.getZoo());
 		ApiWechatH5PayResult payResult = apiFactory.getApiWechatH5Pay().api(ai);
-		if(payResult.upFlagTrue()){
+		if (payResult.upFlagTrue()) {
 			result.setWechatH5PayResponse(payResult.getWechatH5PayInfo());
-		}else {
+		} else {
 			result.setStatus(payResult.getStatus());
 			result.setError(payResult.getError());
-		}		
-		
+		}
+
 	}
-	
+
 	/**
 	 * 金币支付信息
+	 * 
 	 * @param teslaXOrder
 	 * @param result
 	 * @param input
@@ -155,26 +166,26 @@ public class ApiForAnswerOrder extends RootApiToken<ApiForAnswerOrderInput, ApiF
 			ApiForAnswerOrderInput input) {
 
 		GoldCoinPayRequest coinPayRequest = new GoldCoinPayRequest();
-		
+
 		coinPayRequest.setOperType(OperType.COIN_QUERY);
-		
+
 		coinPayRequest.setUserCode(upUserCode());
-		
+
 		coinPayRequest.setOutCode(teslaXOrder.getOrderInfo().getCode());
-		
+
 		coinPayRequest.setTradeType(TradeType.GOLDEN_COIN);
-		
+
 		long payCoinNum = teslaXOrder.getOrderInfo().getOrderMoney().multiply(new BigDecimal(100)).longValue();
-		
-		coinPayRequest.setCoinNum( 0 - payCoinNum );
+
+		coinPayRequest.setCoinNum(0 - payCoinNum);
 
 		GoldCoinPayResponse coinPayResponse = (GoldCoinPayResponse) payGateProcess.process(PayProcessEnum.GOLD_COIN,
-				coinPayRequest, new MDataMap());		
-		
+				coinPayRequest, new MDataMap());
+
 		coinPayResponse.setPayCoinNum(payCoinNum);
-		
+
 		coinPayResponse.setOrderCode(teslaXOrder.getOrderInfo().getCode());
-		
+
 		result.setGoldCoinPayResponse(coinPayResponse);
 
 	}
