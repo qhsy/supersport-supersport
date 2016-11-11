@@ -3,13 +3,20 @@ package com.uhutu.dcom.order.make;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.uhutu.dcom.component.z.util.WebClientComponent;
 import com.uhutu.dcom.order.orderResult.TeslaXOrder;
 import com.uhutu.dcom.order.orderResult.TeslaXResult;
 import com.uhutu.dcom.order.top.TeslaTopOrderMake;
+import com.uhutu.dcom.pay.z.common.PayProcessEnum;
+import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
+import com.uhutu.dcom.pay.z.response.WechatAccessTokenResponse;
 import com.uhutu.dcom.user.z.entity.UcSignInfo;
+import com.uhutu.dcom.user.z.entity.UcSignPrice;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
@@ -21,7 +28,11 @@ import com.uhutu.zooweb.helper.WebHelper;
  * @author xiegj
  *
  */
+// @Component
 public class TeslaThrowDownActivity extends TeslaTopOrderMake {
+
+	@Autowired
+	private PayGateProcess payGateProcess;
 
 	public final static String PER_PRO = "dzsd4107100510020001";// 个人标准
 	public final static String PER_SPA = "dzsd4107100510020002";// 个人业余
@@ -33,14 +44,12 @@ public class TeslaThrowDownActivity extends TeslaTopOrderMake {
 			String checkResult = checkSign(teslaOrder.getOrderInfo().getBuyerCode(), teslaOrder.getSigns(), teslaOrder);
 			if (StringUtils.isBlank(checkResult)) {
 
-				String productCode = teslaOrder.getDetail().get(0).getProductCode();
-				String productName = productCode.equals(PER_PRO) ? "个人标准组（Rx）"
-						: (productCode.equals(PER_SPA) ? "个人业余组（Scale）"
-								: (productCode.equals(GRO_PRO) ? "团队标准组（Rx）" : ""));// dzsd4107100510020001:个人标准,dzsd4107100510020002:个人业余,dzsd4107100510020003:团体标准
-				Double productPrice = productCode.equals(PER_PRO) ? 218.00
-						: (productCode.equals(PER_SPA) ? 218.00 : (productCode.equals(GRO_PRO) ? 328.00 : 328.00));
+				String type = teslaOrder.getSigns().get(0).getType();
+				String productName = type.equals(PER_PRO) ? "个人标准组（Rx）"
+						: (type.equals(PER_SPA) ? "个人业余组（Scale）"
+								: (type.equals(GRO_PRO) ? "团队标准组（Rx）" : ""));// dzsd4107100510020001:个人标准,dzsd4107100510020002:个人业余,dzsd4107100510020003:团体标准
 				teslaOrder.getDetail().get(0).setProductName(productName);
-				teslaOrder.getDetail().get(0).setProductPrice(BigDecimal.valueOf(productPrice));
+				teslaOrder.getDetail().get(0).setProductPrice(getPrice().get(type));
 				teslaOrder.getOrderInfo().setSellerCode("系统");
 			} else {
 				result.setStatus(0);
@@ -48,6 +57,20 @@ public class TeslaThrowDownActivity extends TeslaTopOrderMake {
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * 获取每种参赛类型的价格
+	 */
+	private Map<String, BigDecimal> getPrice() {
+		List<UcSignPrice> list = JdbcHelper.queryForList(UcSignPrice.class, "", "", "", new MDataMap());
+		Map<String, BigDecimal> map = new java.util.HashMap<>();
+		if (list != null && list.size() > 0) {
+			for (int i = 0; i < list.size(); i++) {
+				map.put(list.get(i).getType(), list.get(i).getPrice());
+			}
+		}
+		return map;
 	}
 
 	/**
@@ -86,12 +109,18 @@ public class TeslaThrowDownActivity extends TeslaTopOrderMake {
 					UcSignInfo signInfo = infos.get(j);
 					signInfo.setStatus("dzsd4112100110030001");
 					signInfo.setActivityName("2016 Beijing CrossFit ThrowDown");
+					WechatAccessTokenResponse tokenResponse = (WechatAccessTokenResponse) payGateProcess
+							.process(PayProcessEnum.WECHAT_TOKEN, null, new MDataMap());
+					signInfo.setPhoto(WebClientComponent
+							.wechatMediaDownLoad("crossfit", tokenResponse.getAccess_token(), signInfo.getPhoto())
+							.getFileUrl());
 					if (PER_PRO.equals(signInfo.getType()) || PER_SPA.equals(signInfo.getType())) {
 						signInfo.setCode(new DecimalFormat("0000").format(simpleNum));
 					} else {
 						signInfo.setCode(new DecimalFormat("000000").format(groupNum + j));
 						signInfo.setGroupCode(groupCode);
 					}
+					teslaOrder.getDetail().get(0).setProductCode(signInfo.getCode());
 					JdbcHelper.insert(signInfo);
 				}
 			}

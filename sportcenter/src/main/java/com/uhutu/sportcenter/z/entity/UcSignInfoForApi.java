@@ -18,10 +18,10 @@ public class UcSignInfoForApi extends BaseEntity {
 	@ApiModelProperty(name = "参赛类型", value = "参赛类型 dzsd4107100510020001:个人标准,dzsd4107100510020002:个人业余,dzsd4107100510020003:团体标准")
 	private String type;
 
-	@ApiModelProperty(name = "姓名", value = "姓名dzsd4107100510010001:女,dzsd4107100510010002:男")
+	@ApiModelProperty(name = "姓名", value = "姓名")
 	private String name;
 
-	@ApiModelProperty(name = "性别", notes = "性别")
+	@ApiModelProperty(name = "性别", value = "dzsd4107100510010001:女,dzsd4107100510010002:男", notes = "性别")
 	private String sex;
 
 	@ApiModelProperty(name = "照片", notes = "照片")
