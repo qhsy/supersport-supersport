@@ -153,7 +153,7 @@ public class WebClientComponent {
 				bos.write(bytes, 0, count);
 			}
 
-			webUploadResult = new WebUploadSupport().remoteUpload(sUploadType, fileName, bytes);
+			webUploadResult = new WebUploadSupport().remoteUpload(sUploadType, fileName, bos.toByteArray());
 
 		} catch (Exception e) {
 			e.printStackTrace();
