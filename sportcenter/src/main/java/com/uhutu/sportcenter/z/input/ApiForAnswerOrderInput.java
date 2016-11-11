@@ -1,5 +1,8 @@
 package com.uhutu.sportcenter.z.input;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.uhutu.sportcenter.z.entity.UcSignInfoForApi;
 import com.uhutu.zoocom.root.RootApiInput;
 
@@ -31,7 +34,7 @@ public class ApiForAnswerOrderInput extends RootApiInput {
 	private String romoteIP;
 
 	@ApiModelProperty(value = "报名信息")
-	private UcSignInfoForApi signInfoForApi = new UcSignInfoForApi();
+	private List<UcSignInfoForApi> signs = new ArrayList<UcSignInfoForApi>();
 
 	public String getAnswerCode() {
 		return answerCode;
@@ -89,12 +92,12 @@ public class ApiForAnswerOrderInput extends RootApiInput {
 		this.romoteIP = romoteIP;
 	}
 
-	public UcSignInfoForApi getSignInfoForApi() {
-		return signInfoForApi;
+	public List<UcSignInfoForApi> getSigns() {
+		return signs;
 	}
 
-	public void setSignInfoForApi(UcSignInfoForApi signInfoForApi) {
-		this.signInfoForApi = signInfoForApi;
+	public void setSigns(List<UcSignInfoForApi> signs) {
+		this.signs = signs;
 	}
 
 }

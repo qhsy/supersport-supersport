@@ -30,7 +30,7 @@ public class TeslaXOrder {
 	private List<OcOrderActivity> activitys = new ArrayList<OcOrderActivity>();
 
 	@ApiModelProperty(name = "报名信息")
-	private UcSignInfo sign = new UcSignInfo();
+	private List<UcSignInfo> signs = new ArrayList<UcSignInfo>();
 
 	public TeslaModelStatus getStatus() {
 		return status;
@@ -72,12 +72,12 @@ public class TeslaXOrder {
 		this.activitys = activitys;
 	}
 
-	public UcSignInfo getSign() {
-		return sign;
+	public List<UcSignInfo> getSigns() {
+		return signs;
 	}
 
-	public void setSign(UcSignInfo sign) {
-		this.sign = sign;
+	public void setSigns(List<UcSignInfo> signs) {
+		this.signs = signs;
 	}
 
 }

@@ -48,6 +48,9 @@ public class UcSignInfoForApi extends BaseEntity {
 	@ApiModelProperty(name = "所属Box", notes = "所属Box")
 	private String boxName;
 
+	@ApiModelProperty(name = "团体名称")
+	private String groupName;
+
 	public String getCode() {
 		return code;
 	}

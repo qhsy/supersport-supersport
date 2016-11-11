@@ -43,53 +43,52 @@ public class UcSignInfo extends BaseEntity {
 	private String name;
 
 	@ApiModelProperty(name = "性别", notes = "性别")
-	@ZooData(name = "性别", require = "1", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd410710051001" })
+	@ZooData(name = "性别", element = DefineWebElement.Select, inc = { DefineWebInc.System_Define + "=dzsd410710051001" })
 	@Column(length = 255)
 	private String sex;
 
 	@ApiModelProperty(name = "照片", notes = "照片")
-	@ZooData(name = "照片", require = "1", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
+	@ZooData(name = "照片", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
 			DefineWebPage.Page_Grid + "=0", DefineWebPage.Page_Query + "=0" })
 	@Column(length = 255)
 	private String photo;
 
 	@ApiModelProperty(name = "年龄", notes = "年龄")
-	@ZooData(name = "年龄", require = "1", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
+	@ZooData(name = "年龄", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
 			DefineWebPage.Page_Query + "=0" })
 	@Column(length = 255)
 	private int age;
 
 	@ApiModelProperty(name = "身高", notes = "身高")
-	@ZooData(name = "身高", require = "1", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
+	@ZooData(name = "身高", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
 			DefineWebPage.Page_Query + "=0" })
 	@Column(length = 255)
 	private int height;
 
 	@ApiModelProperty(name = "体重(KG)", notes = "体重(KG)")
-	@ZooData(name = "体重(KG)", require = "1", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
+	@ZooData(name = "体重(KG)", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
 			DefineWebPage.Page_Query + "=0" })
 	@Column(length = 255)
 	private int weight;
 
 	@ApiModelProperty(name = "电话", notes = "电话")
-	@ZooData(name = "电话", require = "1", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
+	@ZooData(name = "电话", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
 			DefineWebPage.Page_Query + "=0" })
 	@Column(length = 255)
 	private String phone;
 
 	@ApiModelProperty(name = "邮箱", notes = "邮箱")
-	@ZooData(name = "邮箱", require = "1", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
+	@ZooData(name = "邮箱", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
 			DefineWebPage.Page_Query + "=0" })
 	private String mail;
 
 	@ApiModelProperty(name = "训练CF时间(月)", notes = "训练CF时间(月)")
-	@ZooData(name = "训练CF时间(月)", require = "1", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
+	@ZooData(name = "训练CF时间(月)", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
 			DefineWebPage.Page_Query + "=0" })
 	private int time;
 
 	@ApiModelProperty(name = "所属Box", notes = "所属Box")
-	@ZooData(name = "所属Box", require = "1", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
+	@ZooData(name = "所属Box", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
 			DefineWebPage.Page_Grid + "=0", DefineWebPage.Page_Query + "=0" })
 	private String boxName;
 
@@ -99,9 +98,15 @@ public class UcSignInfo extends BaseEntity {
 	@Column(length = 50)
 	private String userCode;
 
-	@ZooData(name = "活动名称", require = "1", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
+	@ZooData(name = "活动名称", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
 			DefineWebPage.Page_Grid + "=0" })
 	private String activityName;
+
+	@ZooData(name = "团体编号", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
+	private String groupCode;
+
+	@ZooData(name = "团体名称", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
+	private String groupName;
 
 	@ZooData(name = "运营备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
@@ -226,6 +231,22 @@ public class UcSignInfo extends BaseEntity {
 
 	public void setActivityName(String activityName) {
 		this.activityName = activityName;
+	}
+
+	public String getGroupCode() {
+		return groupCode;
+	}
+
+	public void setGroupCode(String groupCode) {
+		this.groupCode = groupCode;
+	}
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
 	}
 
 	public String getRemark() {
