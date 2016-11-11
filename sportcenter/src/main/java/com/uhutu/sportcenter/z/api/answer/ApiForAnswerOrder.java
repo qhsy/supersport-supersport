@@ -60,7 +60,7 @@ public class ApiForAnswerOrder extends RootApiToken<ApiForAnswerOrderInput, ApiF
 		teslaXOrder.getStatus().setExecStep(ETeslaExec.Create);
 		if (input.getSignInfoForApi() != null) {
 			UcSignInfo sign = new UcSignInfo();
-			BeanUtils.copyProperties(input.getSignInfoForApi(),sign )
+			BeanUtils.copyProperties(input.getSignInfoForApi(),sign );
 			teslaXOrder.setSign(sign);
 		}
 		TeslaXResult reTeslaXResult = new ApiConvertTeslaService().ConvertOrder(teslaXOrder);
