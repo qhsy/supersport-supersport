@@ -85,9 +85,9 @@ public class ImageCfUtil {
 			
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			// 生成图片
-			ImageIO.write(buffImg, "PNG", bos);
+			ImageIO.write(buffImg, "JPG", bos);
 			
-			webUploadResult = new WebUploadSupport().remoteUpload("crossfit", "person.png", bos.toByteArray());
+			webUploadResult = new WebUploadSupport().remoteUpload("crossfit", "person.jpg", bos.toByteArray());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -118,7 +118,7 @@ public class ImageCfUtil {
 			String url = ClassLoader.getSystemResource("hole/crossfit").getPath();
 			
 			/*背景图*/
-			Image srcImg = ImageIO.read(new File(url+"/person/bg.png"));
+			Image srcImg = ImageIO.read(new File(url+"/group/bg.png"));
 			BufferedImage buffImg = new BufferedImage(srcImg.getWidth(null), srcImg.getHeight(null),
 					BufferedImage.TYPE_INT_RGB);
 			// 得到画笔对象
@@ -136,35 +136,30 @@ public class ImageCfUtil {
 			float alpha = 1.0f;
 			
 			/*活动icon*/
-			ImageUtil.drawImageCf("/person/corplogo.png", g, alpha, 202, 12, 102, 100);
+			ImageUtil.drawImageCf("/group/corplogo.png", g, alpha, 101, 6, 51, 50);
 			
 			/*果冻体育icon*/
-			ImageUtil.drawImageCf("/person/gdlogo.png", g, alpha, 320, 40, 204, 48);
+			ImageUtil.drawImageCf("/person/gdlogo.png", g, alpha, 160, 23, 102, 24);
 			
-			/*头像icon*/
-			ImageUtil.drawImageCf("/person/head.jpeg", g, alpha, 196, 150, 364, 364);
-			
-			/*throwdown 水印*/
-			ImageUtil.drawImageCf("/person/throwdown.png", g, alpha, 52, 120, 308, 264);			
+			/*group icon*/
+			ImageUtil.drawImageCf("/person/grouplogo.png", g, alpha, 50, 105, 276, 164);		
 	        
 			/*姓名*/
-	        ImageUtil.drawStrCf(name, g, 0, 48, 306, 576);
+	        ImageUtil.drawStrCf(name, g, 0, 48, 260, 606);
 	        /*所属box*/
-	        ImageUtil.drawStrCf(box, g, 0, 32, 286, 638);
+	        ImageUtil.drawStrCf(box, g, 0, 32, 286, 668);
 	        /*参赛码*/
-	        ImageUtil.drawStrCf(typeName+"参赛码："+code, g, 0, 36, 162, 690);
+	        ImageUtil.drawStrCf(typeName+"参赛码："+code, g, 0, 162, 260, 740);
 	        /*宣传语*/
-	        ImageUtil.drawImageCf("/person/kill.png", g, alpha, 70, 758, 594, 66);
-	        /*group icon*/
-	        ImageUtil.drawImageCf("/person/group.png", g, alpha, 50, 838, 424, 250);
+	        ImageUtil.drawImageCf("/person/kill.png", g, alpha, 86, 812, 594, 66);
 			
 			g.dispose();
 			
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			// 生成图片
-			ImageIO.write(buffImg, "PNG", bos);
+			ImageIO.write(buffImg, "JPG", bos);
 			
-			webUploadResult = new WebUploadSupport().remoteUpload("crossfit", "group.png", bos.toByteArray());
+			webUploadResult = new WebUploadSupport().remoteUpload("crossfit", "group.jpg", bos.toByteArray());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
