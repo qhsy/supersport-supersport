@@ -160,7 +160,7 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 	@Override
 	public PayProcessEnum initPayProcess(String orderType,String orderSource) {
 		
-		String condition = orderSource+"_"+orderType;
+		String condition = orderSource+"-"+orderType;
 		
 		OrderType orderTypeEnum = OrderType.prase(condition);
 		
