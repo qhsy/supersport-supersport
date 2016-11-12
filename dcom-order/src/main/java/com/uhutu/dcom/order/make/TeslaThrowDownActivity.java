@@ -41,7 +41,7 @@ public class TeslaThrowDownActivity extends TeslaTopOrderMake {
 	public TeslaXResult doRefresh(TeslaXOrder teslaOrder) {
 		TeslaXResult result = new TeslaXResult();
 		if ("dzsd4112100110010005".equals(teslaOrder.getOrderInfo().getOrderType())) {
-			String checkResult = checkSign(teslaOrder.getOrderInfo().getBuyerCode(), teslaOrder.getSigns(), teslaOrder);
+			String checkResult = checkSign(teslaOrder.getOrderInfo().getBuyerCode(), teslaOrder);
 			if (StringUtils.isBlank(checkResult)) {
 
 				String type = teslaOrder.getSigns().get(0).getType();
@@ -80,33 +80,38 @@ public class TeslaThrowDownActivity extends TeslaTopOrderMake {
 	 * @param signInfo
 	 *            参赛信息
 	 */
-	private String checkSign(String userCode, List<UcSignInfo> infos, TeslaXOrder teslaOrder) {
+	private String checkSign(String userCode, TeslaXOrder teslaOrder) {
 		String result = "";
 		List<String> li = new CrossFitSupport().getAlSignType();
 		for (int i = 0; i < li.size(); i++) {
-			if (infos.get(0).getType().equals("dzsd4107100510020001") && "single".equals(li.get(i))) {
+			if (teslaOrder.getSigns().get(0).getType().equals("dzsd4107100510020001") && "single".equals(li.get(i))) {
 				result = "个人标准组（Rx）已报满，请持续关注本报名状态！~";
-			} else if (infos.get(0).getType().equals("dzsd4107100510020002") && "single".equals(li.get(i))) {
+			} else if (teslaOrder.getSigns().get(0).getType().equals("dzsd4107100510020002")
+					&& "single".equals(li.get(i))) {
 				result = "个人业余组（Scale）已报满，请持续关注本报名状态！~";
-			} else if (infos.get(0).getType().equals("dzsd4107100510020003") && "group".equals(li.get(i))) {
+			} else if (teslaOrder.getSigns().get(0).getType().equals("dzsd4107100510020003")
+					&& "group".equals(li.get(i))) {
 				result = "团队标准组（Rx）已报满，请持续关注本报名状态！~";
 			}
 		}
 		if (StringUtils.isBlank(result)) {
-			if (infos != null && infos.size() > 0) {
+			if (teslaOrder.getSigns() != null && teslaOrder.getSigns().size() > 0) {
 				List<UcSignInfo> signs = JdbcHelper.queryForList(UcSignInfo.class, "", "",
-						" status='dzsd4112100110030002' and user_code=:userCode ", MapHelper.initMap("userCode",teslaOrder.getOrderInfo().getBuyerCode()));
+						" status='dzsd4112100110030002' and user_code=:userCode ",
+						MapHelper.initMap("userCode", teslaOrder.getOrderInfo().getBuyerCode()));
 				for (int i = 0; i < signs.size(); i++) {
 					if (GRO_PRO.equals(signs.get(i).getType())
-							&& infos.get(0).getType().equals(signs.get(i).getType())) {
+							&& teslaOrder.getSigns().get(0).getType().equals(signs.get(i).getType())) {
 						result = TopHelper.upInfo(81120006);
 						break;
 					} else if (PER_SPA.equals(signs.get(i).getType())
-							&& (PER_SPA.equals(infos.get(0).getType()) || PER_PRO.equals(infos.get(0).getType()))) {
+							&& (PER_SPA.equals(teslaOrder.getSigns().get(0).getType())
+									|| PER_PRO.equals(teslaOrder.getSigns().get(0).getType()))) {
 						result = TopHelper.upInfo(81120005);
 						break;
 					} else if (PER_PRO.equals(signs.get(i).getType())
-							&& (PER_SPA.equals(infos.get(0).getType()) || PER_PRO.equals(infos.get(0).getType()))) {
+							&& (PER_SPA.equals(teslaOrder.getSigns().get(0).getType())
+									|| PER_PRO.equals(teslaOrder.getSigns().get(0).getType()))) {
 						result = TopHelper.upInfo(81120004);
 						break;
 					}
@@ -115,26 +120,26 @@ public class TeslaThrowDownActivity extends TeslaTopOrderMake {
 					String groupCode = WebHelper.upCode("CFSDBH");
 					int simpleNum = JdbcHelper.count(UcSignInfo.class,
 							" type in ('dzsd4107100510020001','dzsd4107100510020002') ", new MDataMap()) + 1;
-					int groupNum = JdbcHelper.count(UcSignInfo.class, " type ='dzsd4107100510020003' ", new MDataMap()) + 1;
-					for (int j = 0; j < infos.size(); j++) {
-						UcSignInfo signInfo = infos.get(j);
-						signInfo.setStatus("dzsd4112100110030001");
-						signInfo.setActivityName("2016 Beijing CrossFit ThrowDown");
+					int groupNum = JdbcHelper.count(UcSignInfo.class, " type ='dzsd4107100510020003' ", new MDataMap())
+							+ 1;
+					for (int j = 0; j < teslaOrder.getSigns().size(); j++) {
+						UcSignInfo signInfo = teslaOrder.getSigns().get(j);
+						teslaOrder.getSigns().get(j).setStatus("dzsd4112100110030001");
+						teslaOrder.getSigns().get(j).setActivityName("2016 Beijing CrossFit ThrowDown");
 						if (!"dzsd4112100110020001".equals(teslaOrder.getOrderInfo().getOrderSource())) {
 							WechatAccessTokenResponse tokenResponse = (WechatAccessTokenResponse) ((PayGateProcess) ApplicationSupport
 									.getBean("payGateProcess")).process(PayProcessEnum.WECHAT_TOKEN, null,
 											new MDataMap());
-							signInfo.setPhoto(WebClientComponent.wechatMediaDownLoad("crossfit",
+							teslaOrder.getSigns().get(j).setPhoto(WebClientComponent.wechatMediaDownLoad("crossfit",
 									tokenResponse.getAccess_token(), signInfo.getPhoto()).getFileUrl());
 						}
 						if (PER_PRO.equals(signInfo.getType()) || PER_SPA.equals(signInfo.getType())) {
-							signInfo.setCode(new DecimalFormat("0000").format(simpleNum));
+							teslaOrder.getSigns().get(j).setCode(new DecimalFormat("0000").format(simpleNum));
 						} else {
-							signInfo.setCode(new DecimalFormat("000000").format(groupNum + j));
-							signInfo.setGroupCode(groupCode);
+							teslaOrder.getSigns().get(j).setCode(new DecimalFormat("000000").format(groupNum + j));
+							teslaOrder.getSigns().get(j).setGroupCode(groupCode);
 						}
 						teslaOrder.getDetail().get(0).setProductCode(signInfo.getCode());
-						JdbcHelper.insert(signInfo);
 					}
 				}
 			} else {

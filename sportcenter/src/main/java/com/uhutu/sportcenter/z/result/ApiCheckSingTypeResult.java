@@ -16,7 +16,7 @@ public class ApiCheckSingTypeResult extends RootApiResult {
 	@ApiModelProperty(value = "可报名类型及价格 ")
 	private List<UcSignPrice> yesList = new ArrayList<UcSignPrice>();
 
-	@ApiModelProperty(value = "不可报名类型及价格 ")
+	@ApiModelProperty(value = "已报名类型及价格 ")
 	private List<UcSignPrice> noList = new ArrayList<UcSignPrice>();
 
 	public List<UcSignPrice> getAlList() {
