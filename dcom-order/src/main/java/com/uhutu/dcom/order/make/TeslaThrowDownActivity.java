@@ -106,11 +106,13 @@ public class TeslaThrowDownActivity extends TeslaTopOrderMake {
 					UcSignInfo signInfo = infos.get(j);
 					signInfo.setStatus("dzsd4112100110030001");
 					signInfo.setActivityName("2016 Beijing CrossFit ThrowDown");
-					WechatAccessTokenResponse tokenResponse = (WechatAccessTokenResponse) ((PayGateProcess) ApplicationSupport
-							.getBean("payGateProcess")).process(PayProcessEnum.WECHAT_TOKEN, null, new MDataMap());
-					signInfo.setPhoto(WebClientComponent
-							.wechatMediaDownLoad("crossfit", tokenResponse.getAccess_token(), signInfo.getPhoto())
-							.getFileUrl());
+					if(!"dzsd4112100110020001".equals(teslaOrder.getOrderInfo().getOrderSource())){
+						WechatAccessTokenResponse tokenResponse = (WechatAccessTokenResponse) ((PayGateProcess) ApplicationSupport
+								.getBean("payGateProcess")).process(PayProcessEnum.WECHAT_TOKEN, null, new MDataMap());
+						signInfo.setPhoto(WebClientComponent
+								.wechatMediaDownLoad("crossfit", tokenResponse.getAccess_token(), signInfo.getPhoto())
+								.getFileUrl());
+					}
 					if (PER_PRO.equals(signInfo.getType()) || PER_SPA.equals(signInfo.getType())) {
 						signInfo.setCode(new DecimalFormat("0000").format(simpleNum));
 					} else {
