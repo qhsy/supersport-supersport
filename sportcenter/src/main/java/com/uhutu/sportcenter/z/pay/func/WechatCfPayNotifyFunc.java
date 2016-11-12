@@ -9,6 +9,7 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import com.uhutu.dcom.order.enumer.OrderEnum;
+import com.uhutu.dcom.order.support.CrossFitSupport;
 import com.uhutu.dcom.order.z.entity.OcOrderDetail;
 import com.uhutu.dcom.order.z.entity.OcOrderInfo;
 import com.uhutu.dcom.order.z.entity.OcOrderPay;
@@ -60,6 +61,13 @@ public class WechatCfPayNotifyFunc implements IWechatNotifyFunc {
 						if(mResult.upFlagTrue()){
 							
 							updateOrderPayInfo(ocOrderInfo.getOrderType(), notifyRequest, notifyRequest.getProcessType(), mResult);
+							
+						}
+						
+						/*更新 crossfit 相关信息*/
+						if(mResult.upFlagTrue()){
+							
+							new CrossFitSupport().crossFitData(ocOrderInfo.getCode());
 							
 						}
 						
