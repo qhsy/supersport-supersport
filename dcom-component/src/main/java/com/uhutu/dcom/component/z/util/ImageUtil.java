@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.font.TextAttribute;
+import java.net.URL;
 import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
 
@@ -45,9 +46,11 @@ public class ImageUtil {
 	 */
 	public static void drawImageCf(String abPath,Graphics2D g,float alpha,int x,int y,int width,int height){
 		
-		String realPath = ClassLoader.getSystemResource("hole/crossfit").getPath();
+		String realPath = "/hole/crossfit";
 		
-		ImageIcon imageIcon2 = new ImageIcon(realPath + abPath);
+		URL url = ImageUtil.class.getResource(realPath+abPath);
+		
+		ImageIcon imageIcon2 = new ImageIcon(url);
 		
 		// 得到Image对象。
 		Image img2 = imageIcon2.getImage();

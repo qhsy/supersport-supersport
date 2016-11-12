@@ -5,7 +5,7 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 
@@ -38,10 +38,10 @@ public class ImageCfUtil {
 		
 		try {
 			
-			String url = ClassLoader.getSystemResource("hole/crossfit").getPath();
+			URL url = ImageCfUtil.class.getResource("/hole/crossfit/person/bg.png");
 			
 			/*背景图*/
-			Image srcImg = ImageIO.read(new File(url+"/person/bg.png"));
+			Image srcImg = ImageIO.read(url);
 			BufferedImage buffImg = new BufferedImage(srcImg.getWidth(null), srcImg.getHeight(null),
 					BufferedImage.TYPE_INT_RGB);
 			// 得到画笔对象
@@ -115,10 +115,11 @@ public class ImageCfUtil {
 		
 		try {
 			
-			String url = ClassLoader.getSystemResource("hole/crossfit").getPath();
+			URL url = ImageCfUtil.class.getResource("/hole/crossfit/group/bg.png");
 			
 			/*背景图*/
-			Image srcImg = ImageIO.read(new File(url+"/group/bg.png"));
+			Image srcImg = ImageIO.read(url);
+			
 			BufferedImage buffImg = new BufferedImage(srcImg.getWidth(null), srcImg.getHeight(null),
 					BufferedImage.TYPE_INT_RGB);
 			// 得到画笔对象
