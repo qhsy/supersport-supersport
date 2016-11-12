@@ -40,16 +40,24 @@ public class ApiCheckSingType extends RootApiToken<ApiCheckSingTypeInput, ApiChe
 		for (int i = 0; i < list.size(); i++) {
 			if ("single".equals(list.get(i))) {
 				UcSignPrice pp = new UcSignPrice();
-				pp.setType("dzsd4107100510020001");
+				if (map.containsKey("dzsd4107100510020001")) {
+					pp.setType("dzsd4107100510020001");
+					pp.setPrice(map.get(pp.getType()));
+					result.getAlList().add(pp);// 已报满
+					map.remove(pp.getType());
+				}
+				if (map.containsKey("dzsd4107100510020002")) {
+					pp.setType("dzsd4107100510020002");
+					pp.setPrice(map.get(pp.getType()));
+					result.getAlList().add(pp);// 已报满
+					map.remove(pp.getType());
+				}
+			} else if ("group".equals(list.get(i))&&map.containsKey("dzsd4107100510020003")) {
+				UcSignPrice pp = new UcSignPrice();
+				pp.setType("dzsd4107100510020003");
 				pp.setPrice(map.get(pp.getType()));
 				result.getAlList().add(pp);// 已报满
 				map.remove(pp.getType());
-				pp.setType("dzsd4107100510020002");
-				pp.setPrice(map.get(pp.getType()));
-				result.getAlList().add(pp);// 已报满
-				map.remove(pp.getType());
-			} else if ("group".equals(list.get(i))) {
-
 			}
 		}
 		Iterator<String> iterator = map.keySet().iterator();
