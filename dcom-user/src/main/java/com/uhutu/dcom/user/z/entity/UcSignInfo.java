@@ -85,7 +85,7 @@ public class UcSignInfo extends BaseEntity {
 	@ApiModelProperty(name = "训练CF时间(月)", notes = "训练CF时间(月)")
 	@ZooData(name = "训练CF时间(月)", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
 			DefineWebPage.Page_Query + "=0" })
-	private int time;
+	private long time;
 
 	@ApiModelProperty(name = "所属Box", notes = "所属Box")
 	@ZooData(name = "所属Box", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
@@ -201,11 +201,11 @@ public class UcSignInfo extends BaseEntity {
 		this.mail = mail;
 	}
 
-	public int getTime() {
+	public long getTime() {
 		return time;
 	}
 
-	public void setTime(int time) {
+	public void setTime(long time) {
 		this.time = time;
 	}
 
