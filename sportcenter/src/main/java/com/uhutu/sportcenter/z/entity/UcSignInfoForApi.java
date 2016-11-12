@@ -12,9 +12,6 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class UcSignInfoForApi extends BaseEntity {
 
-	@ApiModelProperty(name = "参赛编号", value = "参赛编号")
-	private String code;
-
 	@ApiModelProperty(name = "参赛类型", value = "参赛类型 dzsd4107100510020001:个人标准,dzsd4107100510020002:个人业余,dzsd4107100510020003:团体标准")
 	private String type;
 
@@ -50,14 +47,6 @@ public class UcSignInfoForApi extends BaseEntity {
 
 	@ApiModelProperty(name = "团体名称")
 	private String groupName;
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
 
 	public String getType() {
 		return type;

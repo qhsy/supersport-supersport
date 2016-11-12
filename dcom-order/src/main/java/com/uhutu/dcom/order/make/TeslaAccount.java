@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import com.uhutu.dcom.order.orderResult.TeslaXOrder;
 import com.uhutu.dcom.order.orderResult.TeslaXResult;
 import com.uhutu.dcom.order.top.TeslaTopOrderMake;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.helper.WebHelper;
 
 public class TeslaAccount extends TeslaTopOrderMake {
@@ -29,6 +30,11 @@ public class TeslaAccount extends TeslaTopOrderMake {
 					.get(i).getProductPrice().multiply(BigDecimal.valueOf(teslaOrder.getDetail().get(i).getNum()))));
 			if (teslaOrder.getOrderInfo().getOrderMoney().compareTo(BigDecimal.ZERO) == 0) {
 				teslaOrder.getOrderInfo().setStatus("dzsd4112100110030002");// 0元订单直接付款完成状态
+			}
+		}
+		if ("dzsd4112100110010005".equals(teslaOrder.getOrderInfo().getOrderType())) {
+			for (int i = 0; i < teslaOrder.getSigns().size(); i++) {
+				JdbcHelper.insert(teslaOrder.getSigns().get(i));
 			}
 		}
 		return result;

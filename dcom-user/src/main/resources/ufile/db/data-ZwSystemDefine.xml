@@ -27,6 +27,9 @@
 		<item code="dzsd4107100510020001" defineName="个人标准组（Rx）" parentCode="dzsd410710051002" />
 		<item code="dzsd4107100510020002" defineName="个人业余组（Scale）" parentCode="dzsd410710051002" />
 		<item code="dzsd4107100510020003" defineName="团队标准组（Rx）" parentCode="dzsd410710051002" />
+		<item code="dzsd410710051003" defineName="参赛类型" parentCode="dzsd41131001" />
+		<item code="dzsd4107100510030001" defineName="个人" parentCode="dzsd410710051003" />
+		<item code="dzsd4107100510030002" defineName="团体" parentCode="dzsd410710051003" />
 	</data>
 
 </db>
