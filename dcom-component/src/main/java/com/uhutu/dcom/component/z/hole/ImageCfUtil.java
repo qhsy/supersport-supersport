@@ -75,7 +75,7 @@ public class ImageCfUtil {
 	        /*所属box*/
 	        ImageUtil.drawStrCf(box, g, 0, 32, 286, 638);
 	        /*参赛码*/
-	        ImageUtil.drawStrCf(typeName+"参赛码："+code, g, 0, 36, 162, 690);
+	        ImageUtil.drawStrCf(typeName+" 参赛码："+code, g, 0, 36, 162, 690);
 	        /*宣传语*/
 	        ImageUtil.drawImageCf("/person/kill.png", g, alpha, 70, 758, 594, 66);
 	        /*group icon*/
@@ -139,19 +139,20 @@ public class ImageCfUtil {
 			ImageUtil.drawImageCf("/group/corplogo.png", g, alpha, 101, 6, 51, 50);
 			
 			/*果冻体育icon*/
-			ImageUtil.drawImageCf("/person/gdlogo.png", g, alpha, 160, 23, 102, 24);
+			ImageUtil.drawImageCf("/group/gdlogo.png", g, alpha, 160, 23, 102, 24);
 			
 			/*group icon*/
-			ImageUtil.drawImageCf("/person/grouplogo.png", g, alpha, 50, 105, 276, 164);		
+			ImageUtil.drawImageCf("/group/grouplogo.png", g, alpha, 50, 105, 276, 164);		
 	        
 			/*姓名*/
-	        ImageUtil.drawStrCf(name, g, 0, 48, 260, 606);
+	        ImageUtil.drawStrCf(name, g, 0, 24, 130, 303);
 	        /*所属box*/
-	        ImageUtil.drawStrCf(box, g, 0, 32, 286, 668);
+	        ImageUtil.drawStrCf(box, g, 0, 16, 143, 334);
 	        /*参赛码*/
-	        ImageUtil.drawStrCf(typeName+"参赛码："+code, g, 0, 162, 260, 740);
+	        ImageUtil.drawStrCf(typeName+"  参赛码："+code, g, 0, 18, 81, 367);
+	        
 	        /*宣传语*/
-	        ImageUtil.drawImageCf("/person/kill.png", g, alpha, 86, 812, 594, 66);
+	        ImageUtil.drawImageCf("/group/kill.png", g, alpha, 43, 406, 297, 33);
 			
 			g.dispose();
 			
