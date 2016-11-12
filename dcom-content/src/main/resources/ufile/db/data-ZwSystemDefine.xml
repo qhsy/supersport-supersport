@@ -25,6 +25,7 @@
 		<item code="dzsd4107100110050007" defineName="标签详情" parentCode="dzsd410710011005" />
 		<item code="dzsd4107100110050008" defineName="时刻列表" parentCode="dzsd410710011005" />
 		<item code="dzsd4107100110050009" defineName="问达列表" parentCode="dzsd410710011005" />
+		<item code="dzsd4107100110050010" defineName="活动报名" parentCode="dzsd410710011005" />
 		<item code="dzsd410710011006" defineName="栏目类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110060001" defineName="轮播广告栏目" parentCode="dzsd410710011006" />
 		<item code="dzsd4107100110060002" defineName="单图广告栏目" parentCode="dzsd410710011006" />
