@@ -23,7 +23,6 @@ import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
-import com.uhutu.zooweb.helper.WebHelper;
 
 /**
  * 校验问答活动
@@ -117,9 +116,7 @@ public class TeslaThrowDownActivity extends TeslaTopOrderMake {
 					}
 				}
 				if (StringUtils.isBlank(result)) {
-					String groupCode = WebHelper.upCode("CFSDBH");
-					int simpleNum = JdbcHelper.count(UcSignInfo.class,
-							" type in ('dzsd4107100510020001','dzsd4107100510020002') ", new MDataMap()) + 1;
+					int simpleNum = JdbcHelper.count(UcSignInfo.class, "", new MDataMap()) + 1;
 					int groupNum = JdbcHelper.count(UcSignInfo.class, " type ='dzsd4107100510020003' ", new MDataMap())
 							+ 1;
 					for (int j = 0; j < teslaOrder.getSigns().size(); j++) {
@@ -136,8 +133,8 @@ public class TeslaThrowDownActivity extends TeslaTopOrderMake {
 						if (PER_PRO.equals(signInfo.getType()) || PER_SPA.equals(signInfo.getType())) {
 							teslaOrder.getSigns().get(j).setCode(new DecimalFormat("0000").format(simpleNum));
 						} else {
-							teslaOrder.getSigns().get(j).setCode(new DecimalFormat("000000").format(groupNum + j));
-							teslaOrder.getSigns().get(j).setGroupCode(groupCode);
+							teslaOrder.getSigns().get(j).setCode(new DecimalFormat("0000").format(simpleNum + j));
+							teslaOrder.getSigns().get(j).setGroupCode(new DecimalFormat("000000").format(groupNum));
 						}
 						teslaOrder.getDetail().get(0).setProductCode(signInfo.getCode());
 					}

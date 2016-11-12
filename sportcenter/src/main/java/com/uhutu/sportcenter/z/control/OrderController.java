@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiCheckSingTypeInput;
 import com.uhutu.sportcenter.z.input.ApiForAnswerOrderInput;
+import com.uhutu.sportcenter.z.input.ApiSignPhotoInput;
 import com.uhutu.sportcenter.z.result.ApiCheckSingTypeResult;
 import com.uhutu.sportcenter.z.result.ApiForAnswerOrderResult;
+import com.uhutu.sportcenter.z.result.ApiSignPhotoResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -48,6 +50,13 @@ public class OrderController {
 	@ApiOperation(value = "校验可报名组别", notes = "校验可报名组别")
 	public ApiCheckSingTypeResult checkSingType(@RequestBody ApiCheckSingTypeInput input, HttpServletRequest request) {
 		return apiFactory.getApiCheckSingType().api(input);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/signPhoto", method = RequestMethod.POST)
+	@ApiOperation(value = "报名证件", notes = "报名证件")
+	public ApiSignPhotoResult signPhoto(@RequestBody ApiSignPhotoInput input, HttpServletRequest request) {
+		return apiFactory.getApiSignPhoto().api(input);
 	}
 
 }

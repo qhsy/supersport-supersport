@@ -108,6 +108,10 @@ public class UcSignInfo extends BaseEntity {
 	@ZooData(name = "团体名称", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
 	private String groupName;
 
+	@ZooData(name = "参赛证", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
+			DefineWebPage.Page_Grid + "=0", DefineWebPage.Page_Query + "=0" })
+	private String picUrl;
+
 	@ZooData(name = "运营备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 255)
@@ -255,6 +259,14 @@ public class UcSignInfo extends BaseEntity {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getPicUrl() {
+		return picUrl;
+	}
+
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
 	}
 
 }

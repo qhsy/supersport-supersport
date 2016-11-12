@@ -59,6 +59,7 @@ import com.uhutu.sportcenter.z.api.donate.ApiUserShareInfo;
 import com.uhutu.sportcenter.z.api.extend.ApiCheckSingType;
 import com.uhutu.sportcenter.z.api.extend.ApiIosRenovate;
 import com.uhutu.sportcenter.z.api.extend.ApiSendSms;
+import com.uhutu.sportcenter.z.api.extend.ApiSignPhoto;
 import com.uhutu.sportcenter.z.api.extend.ApiStartUp;
 import com.uhutu.sportcenter.z.api.home.APiStartPage;
 import com.uhutu.sportcenter.z.api.home.ApiExpertChat;
@@ -460,7 +461,13 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiCheckSingType apiCheckSingType;
+
+	@Autowired
+	private ApiSignPhoto apiSignPhoto;
 	
+	public ApiSignPhoto getApiSignPhoto() {
+		return apiSignPhoto;
+	}
 
 	public ApiCheckSingType getApiCheckSingType() {
 		return apiCheckSingType;

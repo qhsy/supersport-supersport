@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.uhutu.dcom.component.z.hole.ImageCfUtil;
 import com.uhutu.dcom.order.enumer.OrderEnum;
 import com.uhutu.dcom.order.z.entity.OcOrderDetail;
 import com.uhutu.dcom.user.z.entity.UcSignCount;
 import com.uhutu.dcom.user.z.entity.UcSignInfo;
+import com.uhutu.zoocom.file.FileUploadResult;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 
@@ -18,15 +20,22 @@ public class CrossFitSupport {
 		if (StringUtils.isNotBlank(orderCode)) {
 			OcOrderDetail detail = JdbcHelper.queryOne(OcOrderDetail.class, "code", orderCode);
 			if (detail != null) {
+
 				UcSignInfo si = JdbcHelper.queryOne(UcSignInfo.class, "code", detail.getProductCode());
 				if ("dzsd4107100510020001".equals(si.getType()) || "dzsd4107100510020002".equals(si.getType())) {
+					FileUploadResult ul = ImageCfUtil.makeImagePerson(si.getName(), si.getBoxName(),
+							"dzsd4107100510020001".equals(si.getType()) ? "个人标准组" : "个人业余组", si.getCode());
+					si.setPicUrl(ul.getFileUrl());
 					si.setStatus(OrderEnum.STATUS_PAYED.getCode());
-					JdbcHelper.update(si, "status", "za");
+					JdbcHelper.update(si, "status,pic_url", "za");
 				} else if ("dzsd4107100510020003".equals(si.getType())) {
+					FileUploadResult ul = ImageCfUtil.makeImageGroup(si.getGroupName(), si.getBoxName(), "团队标准组",
+							si.getGroupCode());
 					MDataMap dataMap = new MDataMap();
 					dataMap.put("group_code", si.getGroupCode());
 					dataMap.put("status", OrderEnum.STATUS_PAYED.getCode());
-					JdbcHelper.dataUpdate("uc_sign_info", dataMap, "status", "group_code");
+					dataMap.put("pic_url", ul.getFileUrl());
+					JdbcHelper.dataUpdate("uc_sign_info", dataMap, "status,pic_url", "group_code");
 				}
 			}
 		}
