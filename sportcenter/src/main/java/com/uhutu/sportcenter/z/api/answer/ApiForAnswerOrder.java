@@ -62,6 +62,7 @@ public class ApiForAnswerOrder extends RootApiToken<ApiForAnswerOrderInput, ApiF
 			for (int i = 0; i < input.getSigns().size(); i++) {
 				UcSignInfo sign = new UcSignInfo();
 				BeanUtils.copyProperties(input.getSigns().get(i), sign);
+				sign.setUserCode(upUserCode());
 				teslaXOrder.getSigns().add(sign);
 			}
 		}
