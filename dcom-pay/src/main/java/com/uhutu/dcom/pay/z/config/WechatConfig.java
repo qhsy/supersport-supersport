@@ -336,6 +336,11 @@ public class WechatConfig {
 		case WECHAT_H5_CF:
 			appid = getServiceAppId();
 			break;
+		case WECHAT_CF_NOTIFY:
+			appid = getAppId();
+			break;
+		case WECHAT_CFH5_NOTIFY:
+			appid = getServiceAppId();
 		default:
 			break;
 		}
@@ -378,6 +383,11 @@ public class WechatConfig {
 		case WECHAT_H5_CF:
 			mchid = getServiceMchId();
 			break;
+		case WECHAT_CF_NOTIFY:
+			mchid = getMchId();
+			break;
+		case WECHAT_CFH5_NOTIFY:
+			mchid = getServiceMchId();
 		default:
 			break;
 		}
