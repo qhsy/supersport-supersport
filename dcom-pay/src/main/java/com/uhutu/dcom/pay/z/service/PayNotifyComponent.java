@@ -35,6 +35,12 @@ public class PayNotifyComponent {
 		case WECHATH5_NOTIFY:
 			praseStr = praseWechatNotify(payResponse);
 			break;
+		case WECHAT_CF_NOTIFY:
+			praseStr = praseWechatNotify(payResponse);
+			break;
+		case WECHAT_CFH5_NOTIFY:
+			praseStr = praseWechatNotify(payResponse);
+			break;
 		case ALIPAY_NOTIFY:
 			praseStr = praseAlipayNotify(payResponse);
 			break;
