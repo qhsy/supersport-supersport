@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>2016 Beijing Throwdown</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<section class="succeed"></section>
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script>
+function tost(mess){
+	var ele = $('<div class="mask"><span class="tost">' + mess + '</span></div>').appendTo('body');
+	var timer = setTimeout(function(){
+		ele.remove();
+		clearTimeout(timer);
+	}, 1500);
+}
+function queryUrl(name){
+	var url = location.search;
+	var request = '';
+
+	if (url.indexOf("?") != -1) {
+		var str = url.substr(1);
+		var result = str.split("&");
+		for (var i = 0; i < result.length; i++) {
+			var arr = result[i].split("=");
+			if(arr[0] == name){
+				request = unescape(arr[1]);
+			}
+		}
+	}
+	return request;
+}
+$(function(){
+	$.ajax({
+		'url':'/api/orderController/signPhoto',
+		type:'POST',
+		contentType:'application/json',
+		dataType: 'json',
+		data:'{"zoo": {"key": "tesetkey","token": "' + queryUrl('token') + '"}}',
+		success:function(resp){
+			if(resp.status == 1){
+				var ulEle = $('<ul/>');
+				for(var i=0; i<resp.li.length; i++){
+					var liEle = $('<li/>');
+					liEle.html('<img src="' + li[i] + '" />');
+					ulEle.append(liEle);
+				}
+				$('.succeed').append(ulEle);
+			}else{
+				tost(resp.error);
+			}
+		}
+	});
+});
+</script>
+</body>
+</html>
