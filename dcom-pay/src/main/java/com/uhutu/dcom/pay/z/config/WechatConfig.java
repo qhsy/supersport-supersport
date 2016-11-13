@@ -120,7 +120,12 @@ public class WechatConfig {
 		case WECHAT:
 			tradeType = "APP";
 			break;
-
+		case WECHAT_CF:
+			tradeType = "APP";
+			break;
+		case WECHAT_H5_CF:
+			tradeType = "JSAPI";
+			break;
 		default:
 			break;
 		}
