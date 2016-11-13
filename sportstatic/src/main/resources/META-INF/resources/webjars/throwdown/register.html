@@ -394,7 +394,6 @@ $(function(){
     $('.container').on('click','.submit',function(){
     	var mobile = /^(13[0-9]|17[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/ig;
     	var email = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/g;
-    	var num = /^\+?[1-9][0-9]*$/g;
 		if($('input').is('#name')){
     		if($('#name').val() == ''){
 	    		tost('请填写姓名');
@@ -414,7 +413,7 @@ $(function(){
 	    		tost('请填写年龄');
 	    		return false;
 	    	}
-	    	if(!num.test($('#age').val())){
+	    	if(isNaN($('#age').val())){
 	    		tost('请正确填写年龄');
 	    		return false;
 	    	}
@@ -424,7 +423,7 @@ $(function(){
 	    		tost('请填写身高');
 	    		return false;
 	    	}
-	    	if(!num.test($('#height').val())){
+	    	if(isNaN($('#height').val())){
 	    		tost('请正确填写身高');
 	    		return false;
 	    	}
@@ -434,7 +433,7 @@ $(function(){
 	    		tost('请填写体重');
 	    		return false;
 	    	}
-	    	if(!num.test($('#weight').val())){
+	    	if(isNaN($('#weight').val())){
 	    		tost('请正确填写体重');
 	    		return false;
 	    	}
@@ -479,7 +478,7 @@ $(function(){
 	    		tost('请填写队员一年龄');
 	    		return false;
 	    	}
-	    	if(!num.test($('#age1').val())){
+	    	if(isNaN($('#age1').val())){
 	    		tost('请正确填写队员一年龄');
 	    		return false;
 	    	}
@@ -489,7 +488,7 @@ $(function(){
 	    		tost('请填写队员一身高');
 	    		return false;
 	    	}
-	    	if(!num.test($('#height1').val())){
+	    	if(isNaN($('#height1').val())){
 	    		tost('请正确填写队员一身高');
 	    		return false;
 	    	}
@@ -499,7 +498,7 @@ $(function(){
 	    		tost('请填写队员一体重');
 	    		return false;
 	    	}
-	    	if(!num.test($('#weight1').val())){
+	    	if(isNaN($('#weight1').val())){
 	    		tost('请正确填写队员一体重');
 	    		return false;
 	    	}
@@ -545,7 +544,7 @@ $(function(){
 	    		tost('请填写队员二年龄');
 	    		return false;
 	    	}
-	    	if(!num.test($('#age2').val())){
+	    	if(isNaN($('#age2').val())){
 	    		tost('请正确填写队员二年龄');
 	    		return false;
 	    	}
@@ -555,7 +554,7 @@ $(function(){
 	    		tost('请填写队员二身高');
 	    		return false;
 	    	}
-	    	if(!num.test($('#height2').val())){
+	    	if(isNaN($('#height2').val())){
 	    		tost('请正确填写队员二身高');
 	    		return false;
 	    	}
@@ -565,7 +564,7 @@ $(function(){
 	    		tost('请填写队员二体重');
 	    		return false;
 	    	}
-	    	if(!num.test($('#weight2').val())){
+	    	if(isNaN($('#weight2').val())){
 	    		tost('请正确填写队员二体重');
 	    		return false;
 	    	}
@@ -611,7 +610,7 @@ $(function(){
 	    		tost('请填写队员三年龄');
 	    		return false;
 	    	}
-	    	if(!num.test($('#age3').val())){
+	    	if(isNaN($('#age3').val())){
 	    		tost('请正确填写队员三年龄');
 	    		return false;
 	    	}
@@ -621,7 +620,7 @@ $(function(){
 	    		tost('请填写队员三身高');
 	    		return false;
 	    	}
-	    	if(!num.test($('#height3').val())){
+	    	if(isNaN($('#height3').val())){
 	    		tost('请正确填写队员三身高');
 	    		return false;
 	    	}
@@ -631,7 +630,7 @@ $(function(){
 	    		tost('请填写队员三体重');
 	    		return false;
 	    	}
-	    	if(!num.test($('#weight3').val())){
+	    	if(isNaN($('#weight3').val())){
 	    		tost('请正确填写队员三体重');
 	    		return false;
 	    	}
@@ -677,7 +676,7 @@ $(function(){
 	    		tost('请填写队员四年龄');
 	    		return false;
 	    	}
-	    	if(!num.test($('#age4').val())){
+	    	if(isNaN($('#age4').val())){
 	    		tost('请正确填写队员四年龄');
 	    		return false;
 	    	}
@@ -687,7 +686,7 @@ $(function(){
 	    		tost('请填写队员四身高');
 	    		return false;
 	    	}
-	    	if(!num.test($('#height4').val())){
+	    	if(isNaN($('#height4').val())){
 	    		tost('请正确填写队员四身高');
 	    		return false;
 	    	}
@@ -697,7 +696,7 @@ $(function(){
 	    		tost('请填写队员四体重');
 	    		return false;
 	    	}
-	    	if(!num.test($('#weight4').val())){
+	    	if(isNaN($('#weight4').val())){
 	    		tost('请正确填写队员四体重');
 	    		return false;
 	    	}
