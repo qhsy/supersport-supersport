@@ -32,7 +32,7 @@ public class ImageUtil {
 			
 			AttributedString ats = new AttributedString(content);
 			
-		    Font f = new Font("Serif",fontStyle, fontSize);
+		    Font f = new Font("微软雅黑",fontStyle, fontSize);
 
 		    ats.addAttribute(TextAttribute.FONT, f, 0,content.length() );
 		    

@@ -1,6 +1,5 @@
 package com.uhutu.dcom.component.z.hole;
 
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -72,11 +71,11 @@ public class ImageCfUtil {
 			ImageUtil.drawImageCf("/person/throwdown.png", g, alpha, 52, 120, 308, 264);			
 	        
 			/*姓名*/
-	        ImageUtil.drawStrCf(name, g, Font.BOLD, 48, 306, 576);
+	        ImageUtil.drawStrCf(name, g, 0, 48, 306, 576);
 	        /*所属box*/
-	        ImageUtil.drawStrCf(box, g, Font.BOLD, 32, 286, 638);
+	        ImageUtil.drawStrCf(box, g, 0, 32, 286, 638);
 	        /*参赛码*/
-	        ImageUtil.drawStrCf(typeName+"  参赛码："+code, g, Font.BOLD, 36, 162, 690);
+	        ImageUtil.drawStrCf(typeName+"  参赛码："+code, g, 0, 36, 162, 690);
 	        /*宣传语*/
 	        ImageUtil.drawImageCf("/person/kill.png", g, alpha, 70, 758, 594, 66);
 	        /*group icon*/
@@ -86,10 +85,10 @@ public class ImageCfUtil {
 	        ImageUtil.drawImageCf("/person/qrcode.png", g, alpha, 536, 892, 160, 160);
 	        
 	        /*扫码标注*/
-	        ImageUtil.drawStrCf("扫描二维码参与报名", g, Font.BOLD, 24, 510, 1094);
+	        ImageUtil.drawStrCf("扫描二维码参与报名", g, 0, 24, 510, 1094);
 	        
 	        /*buttom 底部*/
-	        ImageUtil.drawStrCf("注：本活动报名最终解释权归果冻体育官方所有。", g, Font.BOLD, 18, 160, 1126);
+	        ImageUtil.drawStrCf("注：本活动报名最终解释权归果冻体育官方所有。", g, 0, 18, 160, 1126);
 			
 			g.dispose();
 			
@@ -156,11 +155,11 @@ public class ImageCfUtil {
 			ImageUtil.drawImageCf("/group/grouplogo.png", g, alpha, 100, 210, 552, 328);		
 	        
 			/*姓名*/
-	        ImageUtil.drawStrCf(name, g, Font.BOLD, 48, 260, 606);
+	        ImageUtil.drawStrCf(name, g, 0, 48, 260, 606);
 	        /*所属box*/
-	        ImageUtil.drawStrCf(box, g, Font.BOLD, 32, 286, 668);
+	        ImageUtil.drawStrCf(box, g, 0, 32, 286, 668);
 	        /*参赛码*/
-	        ImageUtil.drawStrCf(typeName+"  参赛码："+code, g, Font.BOLD, 36, 162, 740);
+	        ImageUtil.drawStrCf(typeName+"  参赛码："+code, g, 0, 36, 162, 740);
 	        
 	        /*宣传语*/
 	        ImageUtil.drawImageCf("/group/kill.png", g, alpha, 86, 812, 594, 66);
@@ -169,10 +168,10 @@ public class ImageCfUtil {
 	        ImageUtil.drawImageCf("/group/qrcode.png", g, alpha, 294, 908, 160, 160);
 	        
 	        /*扫码标注*/
-	        ImageUtil.drawStrCf("扫描二维码参与报名", g, Font.BOLD, 24, 272, 1106);
+	        ImageUtil.drawStrCf("扫描二维码参与报名", g, 0, 24, 272, 1106);
 	        
 	        /*buttom 底部*/
-	        ImageUtil.drawStrCf("注：本活动报名最终解释权归果冻体育官方所有。", g, Font.BOLD, 18, 160, 1160);
+	        ImageUtil.drawStrCf("注：本活动报名最终解释权归果冻体育官方所有。", g, 0, 18, 160, 1160);
 			
 			g.dispose();
 			
