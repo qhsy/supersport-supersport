@@ -25,17 +25,21 @@ public class ImageUtil {
 	
 	public static void drawStrCf(String content,Graphics2D g,int fontStyle,int fontSize,int x,int y){
 		
-		content = StringUtils.defaultIfEmpty(content, "");
-		
-		AttributedString ats = new AttributedString(content);
-		
-	    Font f = new Font("微软雅黑",fontStyle, fontSize);
+		if(StringUtils.isNotEmpty(content)){
+			
+			AttributedString ats = new AttributedString(content);
+			
+		    Font f = new Font("微软雅黑",fontStyle, fontSize);
 
-	    ats.addAttribute(TextAttribute.FONT, f, 0,content.length() );
-	    
-	    AttributedCharacterIterator iter = ats.getIterator();
-	    
-	    g.drawString(iter, x, y);
+		    ats.addAttribute(TextAttribute.FONT, f, 0,content.length() );
+		    
+		    AttributedCharacterIterator iter = ats.getIterator();
+		    
+		    g.drawString(iter, x, y);
+			
+		}
+		
+		
 		
 	}
 	
