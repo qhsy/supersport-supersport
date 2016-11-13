@@ -80,6 +80,15 @@ public class ImageCfUtil {
 	        ImageUtil.drawImageCf("/person/kill.png", g, alpha, 70, 758, 594, 66);
 	        /*group icon*/
 	        ImageUtil.drawImageCf("/person/group.png", g, alpha, 50, 838, 424, 250);
+	        
+	        /*二维码 icon*/
+	        ImageUtil.drawImageCf("/person/qrcode.png", g, alpha, 536, 892, 160, 160);
+	        
+	        /*扫码标注*/
+	        ImageUtil.drawStrCf("扫描二维码参与报名", g, 0, 24, 510, 1094);
+	        
+	        /*buttom 底部*/
+	        ImageUtil.drawStrCf("注：本活动报名最终解释权归果冻体育官方所有。", g, 0, 18, 160, 1126);
 			
 			g.dispose();
 			
@@ -137,23 +146,32 @@ public class ImageCfUtil {
 			float alpha = 1.0f;
 			
 			/*活动icon*/
-			ImageUtil.drawImageCf("/group/corplogo.png", g, alpha, 101, 9, 51, 50);
+			ImageUtil.drawImageCf("/group/corplogo.png", g, alpha, 202, 18, 102, 100);
 			
 			/*果冻体育icon*/
-			ImageUtil.drawImageCf("/group/gdlogo.png", g, alpha, 160, 23, 102, 24);
+			ImageUtil.drawImageCf("/group/gdlogo.png", g, alpha, 320, 46, 204, 48);
 			
 			/*group icon*/
-			ImageUtil.drawImageCf("/group/grouplogo.png", g, alpha, 50, 105, 276, 164);		
+			ImageUtil.drawImageCf("/group/grouplogo.png", g, alpha, 100, 210, 552, 328);		
 	        
 			/*姓名*/
-	        ImageUtil.drawStrCf(name, g, 0, 24, 130, 303);
+	        ImageUtil.drawStrCf(name, g, 0, 48, 260, 606);
 	        /*所属box*/
-	        ImageUtil.drawStrCf(box, g, 0, 16, 143, 334);
+	        ImageUtil.drawStrCf(box, g, 0, 32, 286, 668);
 	        /*参赛码*/
-	        ImageUtil.drawStrCf(typeName+"  参赛码："+code, g, 0, 18, 81, 370);
+	        ImageUtil.drawStrCf(typeName+"  参赛码："+code, g, 0, 36, 162, 740);
 	        
 	        /*宣传语*/
-	        ImageUtil.drawImageCf("/group/kill.png", g, alpha, 43, 406, 297, 33);
+	        ImageUtil.drawImageCf("/group/kill.png", g, alpha, 86, 812, 594, 66);
+	        
+	        /*二维码 icon*/
+	        ImageUtil.drawImageCf("/group/qrcode.png", g, alpha, 294, 908, 160, 160);
+	        
+	        /*扫码标注*/
+	        ImageUtil.drawStrCf("扫描二维码参与报名", g, 0, 24, 272, 1106);
+	        
+	        /*buttom 底部*/
+	        ImageUtil.drawStrCf("注：本活动报名最终解释权归果冻体育官方所有。", g, 0, 18, 160, 1160);
 			
 			g.dispose();
 			
