@@ -46,14 +46,15 @@ public class ApiCheckSingType extends RootApiToken<ApiCheckSingTypeInput, ApiChe
 		List<String> list = new CrossFitSupport().getAlSignType();
 		for (int i = 0; i < list.size(); i++) {
 			if ("single".equals(list.get(i))) {
-				UcSignPrice pp = new UcSignPrice();
 				if (map.containsKey("dzsd4107100510020001")) {
+					UcSignPrice pp = new UcSignPrice();
 					pp.setType("dzsd4107100510020001");
 					pp.setPrice(map.get(pp.getType()));
 					result.getAlList().add(pp);// 已报满
 					map.remove(pp.getType());
 				}
 				if (map.containsKey("dzsd4107100510020002")) {
+					UcSignPrice pp = new UcSignPrice();
 					pp.setType("dzsd4107100510020002");
 					pp.setPrice(map.get(pp.getType()));
 					result.getAlList().add(pp);// 已报满
