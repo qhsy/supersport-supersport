@@ -11,6 +11,8 @@ import java.text.AttributedString;
 
 import javax.swing.ImageIcon;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * 图片处理工具类
  * @author 逄小帅
@@ -21,7 +23,9 @@ public class ImageUtil {
 	
 	
 	
-	public static void drawStrCf(String content,Graphics2D g,int fontStyle,int fontSize,int x,int y){		
+	public static void drawStrCf(String content,Graphics2D g,int fontStyle,int fontSize,int x,int y){
+		
+		content = StringUtils.defaultIfEmpty(content, "");
 		
 		AttributedString ats = new AttributedString(content);
 		
