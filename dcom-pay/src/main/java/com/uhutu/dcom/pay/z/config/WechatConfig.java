@@ -172,7 +172,7 @@ public class WechatConfig {
 			notifyUrl = getCfNotifyUrl();
 			break;
 		case WECHAT_H5_CF:
-			notifyUrl = getCfNotifyUrl();
+			notifyUrl = getCfH5NotifyUrl();
 			break;
 
 		default:
