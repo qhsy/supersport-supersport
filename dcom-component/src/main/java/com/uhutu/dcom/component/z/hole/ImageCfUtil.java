@@ -32,7 +32,7 @@ public class ImageCfUtil {
 	 * 		参赛码
 	 * @return 文件上传结果
 	 */
-	public static FileUploadResult makeImagePerson(String name,String box,String typeName,String code) {	
+	public static FileUploadResult makeImagePerson(String name,String box,String typeName,String code,String headUrl) {	
 		
 		FileUploadResult webUploadResult = new FileUploadResult();
 		
@@ -65,7 +65,7 @@ public class ImageCfUtil {
 			ImageUtil.drawImageCf("/person/gdlogo.png", g, alpha, 320, 40, 204, 48);
 			
 			/*头像icon*/
-			ImageUtil.drawImageCf("/person/head.jpeg", g, alpha, 196, 150, 364, 364);
+			ImageUtil.drawImageHead(headUrl, g, alpha, 196, 150, 364, 364);
 			
 			/*throwdown 水印*/
 			ImageUtil.drawImageCf("/person/throwdown.png", g, alpha, 52, 120, 308, 264);			

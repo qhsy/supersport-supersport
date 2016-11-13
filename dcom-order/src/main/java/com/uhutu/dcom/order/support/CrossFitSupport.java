@@ -24,7 +24,7 @@ public class CrossFitSupport {
 				UcSignInfo si = JdbcHelper.queryOne(UcSignInfo.class, "code", detail.getProductCode());
 				if ("dzsd4107100510020001".equals(si.getType()) || "dzsd4107100510020002".equals(si.getType())) {
 					FileUploadResult ul = ImageCfUtil.makeImagePerson(si.getName(), si.getBoxName(),
-							"dzsd4107100510020001".equals(si.getType()) ? "个人标准组" : "个人业余组", si.getCode());
+							"dzsd4107100510020001".equals(si.getType()) ? "个人标准组" : "个人业余组", si.getCode(),si.getPhoto());
 					si.setPicUrl(ul.getFileUrl());
 					si.setStatus(OrderEnum.STATUS_PAYED.getCode());
 					JdbcHelper.update(si, "status,pic_url", "za");
