@@ -10,8 +10,11 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.uhutu.dcom.component.z.util.ImageUtil;
 import com.uhutu.zoocom.file.FileUploadResult;
+import com.uhutu.zooweb.io.ImageThumb;
 import com.uhutu.zooweb.support.WebUploadSupport;
 
 /**
@@ -65,16 +68,44 @@ public class ImageCfUtil {
 			/*果冻体育icon*/
 			ImageUtil.drawImageCf("/person/gdlogo.png", g, alpha, 320, 40, 204, 48);
 			
-			/*头像icon*/
-			ImageUtil.drawImageHead(headUrl, g, alpha, 196, 150, 364, 364);
+			if(StringUtils.isNotEmpty(headUrl)){
+				
+				ImageThumb imageThumb = ImageUtil.upThumbWithHeight(headUrl, 364);
+				
+				int x = ImageUtil.calx(imageThumb.getThumbWidth());
+				
+				/*头像icon*/
+				ImageUtil.drawImageHead(headUrl, g, alpha, x, 150, imageThumb.getThumbWidth(), 364);
+				
+			}else{
+				
+				/*头像icon*/
+				ImageUtil.drawImageHead(headUrl, g, alpha, 196, 150, 364, 364);
+				
+			}			
 			
 			/*throwdown 水印*/
 			ImageUtil.drawImageCf("/person/throwdown.png", g, alpha, 52, 120, 308, 264);			
 	        
+			int namex = 48 * name.length();
+			
+			namex = ImageUtil.calx(namex);
+			
 			/*姓名*/
-	        ImageUtil.drawStrCf(name, g, Font.BOLD, 48, 306, 576);
+	        ImageUtil.drawStrCf(name, g, Font.BOLD, 48, namex, 576);
+	        
+	        int boxx = 286;
+	        
+	        if(StringUtils.isNotEmpty(box)){
+	        	
+	        	boxx = 16 * box.length();
+	        	
+	        	 boxx = ImageUtil.calx(boxx);
+	        	
+	        }	       
+	        
 	        /*所属box*/
-	        ImageUtil.drawStrCf(box, g, Font.BOLD, 32, 286, 638);
+	        ImageUtil.drawStrCf(box, g, Font.BOLD, 32, boxx, 638);
 	        /*参赛码*/
 	        ImageUtil.drawStrCf(typeName+"  参赛码："+code, g, Font.BOLD, 36, 162, 690);
 	        /*宣传语*/
@@ -155,10 +186,23 @@ public class ImageCfUtil {
 			/*group icon*/
 			ImageUtil.drawImageCf("/group/grouplogo.png", g, alpha, 100, 210, 552, 328);		
 	        
+			int namex = 48 * name.length();
+			
+			namex = ImageUtil.calx(namex);
 			/*姓名*/
-	        ImageUtil.drawStrCf(name, g, Font.BOLD, 48, 260, 606);
+	        ImageUtil.drawStrCf(name, g, Font.BOLD, 48, namex, 606);
+	        
+	        int boxx = 286;
+	        
+	        if(StringUtils.isNotEmpty(box)){
+	        	
+	        	boxx = 16 * box.length();
+	        	
+	        	 boxx = ImageUtil.calx(boxx);
+	        	
+	        }
 	        /*所属box*/
-	        ImageUtil.drawStrCf(box, g, Font.BOLD, 32, 286, 668);
+	        ImageUtil.drawStrCf(box, g, Font.BOLD, 32, boxx, 668);
 	        /*参赛码*/
 	        ImageUtil.drawStrCf(typeName+"  参赛码："+code, g, Font.BOLD, 36, 162, 740);
 	        

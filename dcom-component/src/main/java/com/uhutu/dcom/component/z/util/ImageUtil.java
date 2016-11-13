@@ -9,12 +9,17 @@ import java.io.ByteArrayOutputStream;
 import java.net.URL;
 import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+
+import com.uhutu.zoocom.helper.ComHelper;
+import com.uhutu.zooweb.io.ImageThumb;
 
 /**
  * 图片处理工具类
@@ -23,7 +28,7 @@ import org.apache.http.HttpResponse;
  */
 public class ImageUtil {
 	
-	
+	private final static String addPath = "_g_t1_w{0}_h{1}.{2}";
 	
 	
 	public static void drawStrCf(String content,Graphics2D g,int fontStyle,int fontSize,int x,int y){
@@ -142,5 +147,90 @@ public class ImageUtil {
 
 		
 	}
+	
+	/**
+	 * 获取缩略图并同时返回缩略图的宽高 注意此方法只是根据固定规则处理原始图片的宽高 不需要将压缩后的图片路径存入数据库
+	 * 
+	 * @param sSource
+	 * @param iHeight
+	 * @return
+	 */
+	public static ImageThumb upThumbWithHeight(String sSource, int iHeight) {
+
+		ImageThumb imageThumb = new ImageThumb();
+
+		if (iHeight <= 0) {
+			iHeight = 364;
+		}
+
+		String[] sSplit = sSource.split("/");
+
+		for (int i = 0, j = sSplit.length; i < j; i++) {
+			if (sSplit[i].indexOf(".") > 0) {
+				sSplit[i] = sSplit[i] + "/gm";
+				break;
+			}
+		}
+
+		// 拿到后缀名
+		String sFix = StringUtils.substringAfterLast(sSource, ".");
+
+		int iWidth = 364;
+
+		int iSourceWidth = 0;
+		int iSourceHeight = 0;
+
+		if (sSource.contains("/s-")) {
+
+			Pattern p = Pattern.compile("/s-(\\d+)-(\\d+)/");
+			Matcher m = p.matcher(sSource);
+
+			if (m.find()) {
+
+				iSourceWidth = Integer.valueOf(m.group(1));
+				iSourceHeight = Integer.valueOf(m.group(2));
+
+				iWidth = (int) Math.rint(Double.valueOf(iHeight) / Double.valueOf(iSourceHeight) * iSourceWidth);
+				// 拼接新文件路径
+				String sReturn = StringUtils.join(sSplit, "/")
+						+ ComHelper.formatString(addPath, String.valueOf(iWidth),String.valueOf(iHeight), sFix);
+				imageThumb.setThumbUrl(sReturn);
+			}
+
+		}
+
+		imageThumb.setSourceUrl(sSource);
+
+		// 判断如果是空 则认为是不是系统能压缩的图片 将压缩后的图片设置为源图片
+		if (StringUtils.isBlank(imageThumb.getThumbUrl())) {
+			imageThumb.setThumbUrl(imageThumb.getSourceUrl());
+		}
+
+		imageThumb.setSourceHeight(iSourceHeight);
+		imageThumb.setSourceWidth(iSourceWidth);
+
+		imageThumb.setThumbHeight(iHeight);
+		imageThumb.setThumbWidth(iWidth);
+
+		return imageThumb;
+
+	}
+	
+	public static int calx(int width){
+		
+		int x = 750 - width;
+		
+		x = (int) Math.rint(x/2);
+		
+		if(x<0){
+			
+			x = 0;
+			
+		}
+		
+		return x;
+		
+	}
+	
 	
 }
