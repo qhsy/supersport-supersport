@@ -33,9 +33,7 @@ public class ApiSignPhoto extends RootApiToken<ApiSignPhotoInput, ApiSignPhotoRe
 				" status=:status and userCode=:userCode and type ='dzsd4107100510020003'",
 				MapHelper.initMap("userCode", upUserCode(), "status", "dzsd4112100110030002"));
 		if (li2 != null && li2.size() > 0) {
-			for (int i = 0; i < li2.size(); i++) {
-				result.getLi().add(li2.get(i).getPicUrl());// 已报名
-			}
+			result.getLi().add(li2.get(0).getPicUrl());// 已报名
 		}
 		return result;
 	}
