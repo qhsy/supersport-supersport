@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -94,6 +96,9 @@ public class TeslaThrowDownActivity extends TeslaTopOrderMake {
 			}
 		}
 		if (StringUtils.isBlank(result)) {
+			result = checkEmail(teslaOrder);
+		}
+		if (StringUtils.isBlank(result)) {
 			if (teslaOrder.getSigns() != null && teslaOrder.getSigns().size() > 0) {
 				List<UcSignInfo> signs = JdbcHelper.queryForList(UcSignInfo.class, "", "",
 						" status='dzsd4112100110030002' and user_code=:userCode ",
@@ -146,4 +151,34 @@ public class TeslaThrowDownActivity extends TeslaTopOrderMake {
 		return result;
 	}
 
+	/**
+	 * 验证邮箱
+	 * 
+	 * @param email
+	 * @return
+	 */
+	public String checkEmail(TeslaXOrder teslaOrder) {
+		String result = "";
+		boolean flag = false;
+		try {
+			if (teslaOrder.getSigns() != null && teslaOrder.getSigns().size() > 0) {
+				for (int i = 0; i < teslaOrder.getSigns().size(); i++) {
+
+					String check = "^([a-z0-9A-Z]+[-|_|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+					Pattern regex = Pattern.compile(check);
+					Matcher matcher = regex.matcher(teslaOrder.getSigns().get(i).getMail());
+					flag = matcher.matches();
+					if (!flag) {
+						break;
+					}
+				}
+			}
+		} catch (Exception e) {
+			flag = false;
+		}
+		if (!flag) {
+			result = "邮箱格式不正确，请重新填写！";
+		}
+		return result;
+	}
 }
