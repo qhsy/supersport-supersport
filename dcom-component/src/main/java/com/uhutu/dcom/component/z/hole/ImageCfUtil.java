@@ -87,9 +87,17 @@ public class ImageCfUtil {
 			/*throwdown 水印*/
 			ImageUtil.drawImageCf("/person/throwdown.png", g, alpha, 52, 120, 308, 264);			
 	        
-			int namex = 48 * name.length();
+			int namex = ImageUtil.fontWidth(name, Font.BOLD, 48);
 			
-			namex = ImageUtil.calx(namex);
+			if(namex == 0){
+				
+				namex = 316;
+				
+			}else{
+				
+				namex = ImageUtil.calx(namex);
+				
+			}
 			
 			/*姓名*/
 	        ImageUtil.drawStrCf(name, g, Font.BOLD, 48, namex, 576);
@@ -98,7 +106,7 @@ public class ImageCfUtil {
 	        
 	        if(StringUtils.isNotEmpty(box)){
 	        	
-	        	boxx = 16 * box.length();
+	        	boxx = ImageUtil.fontWidth(box, Font.BOLD, 32);
 	        	
 	        	 boxx = ImageUtil.calx(boxx);
 	        	
@@ -185,10 +193,19 @@ public class ImageCfUtil {
 			
 			/*group icon*/
 			ImageUtil.drawImageCf("/group/grouplogo.png", g, alpha, 100, 210, 552, 328);		
-	        
-			int namex = 48 * name.length();
 			
-			namex = ImageUtil.calx(namex);
+			int namex = ImageUtil.fontWidth(name, Font.BOLD, 48);
+			
+			if(namex == 0){
+				
+				namex = 260;
+				
+			}else{
+				
+				namex = ImageUtil.calx(namex);
+				
+			}
+			
 			/*姓名*/
 	        ImageUtil.drawStrCf(name, g, Font.BOLD, 48, namex, 606);
 	        
@@ -196,11 +213,11 @@ public class ImageCfUtil {
 	        
 	        if(StringUtils.isNotEmpty(box)){
 	        	
-	        	boxx = 16 * box.length();
+	        	boxx = ImageUtil.fontWidth(box, Font.BOLD, 32);
 	        	
 	        	 boxx = ImageUtil.calx(boxx);
 	        	
-	        }
+	        }	
 	        /*所属box*/
 	        ImageUtil.drawStrCf(box, g, Font.BOLD, 32, boxx, 668);
 	        /*参赛码*/

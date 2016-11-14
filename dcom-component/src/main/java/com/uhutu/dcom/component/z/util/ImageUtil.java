@@ -4,7 +4,10 @@ import java.awt.AlphaComposite;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.font.FontRenderContext;
 import java.awt.font.TextAttribute;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
 import java.io.ByteArrayOutputStream;
 import java.net.URL;
 import java.text.AttributedCharacterIterator;
@@ -229,6 +232,24 @@ public class ImageUtil {
 		}
 		
 		return x;
+		
+	}
+	
+	public static int fontWidth(String str,int fontStyle,int fontSize){
+		
+		int width = 0;
+		
+		if(StringUtils.isNotEmpty(str)){
+			
+			Font f = new Font("Serif",fontStyle, fontSize);
+			
+			Rectangle2D rect = f.getStringBounds(str, new FontRenderContext(AffineTransform.getScaleInstance(1, 1), false, false));
+			
+			width =(int) Math.rint(rect.getWidth());
+			
+		}
+		
+		return width;
 		
 	}
 	

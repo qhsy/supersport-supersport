@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiCheckSingTypeInput;
 import com.uhutu.sportcenter.z.input.ApiForAnswerOrderInput;
+import com.uhutu.sportcenter.z.input.ApiRefreshCrossfitInput;
 import com.uhutu.sportcenter.z.input.ApiSignPhotoInput;
 import com.uhutu.sportcenter.z.result.ApiCheckSingTypeResult;
 import com.uhutu.sportcenter.z.result.ApiForAnswerOrderResult;
+import com.uhutu.sportcenter.z.result.ApiRefreshCrossfitResult;
 import com.uhutu.sportcenter.z.result.ApiSignPhotoResult;
 
 import io.swagger.annotations.Api;
@@ -57,6 +59,13 @@ public class OrderController {
 	@ApiOperation(value = "报名证件", notes = "报名证件")
 	public ApiSignPhotoResult signPhoto(@RequestBody ApiSignPhotoInput input, HttpServletRequest request) {
 		return apiFactory.getApiSignPhoto().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/refreshCrossFit", method = RequestMethod.POST)
+	@ApiOperation(value = "刷新证书", notes = "刷新证书")
+	public ApiRefreshCrossfitResult refreshCrossFit(@RequestBody ApiRefreshCrossfitInput input, HttpServletRequest request) {
+		return apiFactory.getApiRefreshCrossfit().api(input);
 	}
 
 }

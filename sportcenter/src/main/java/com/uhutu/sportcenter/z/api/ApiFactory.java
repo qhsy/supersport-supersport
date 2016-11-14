@@ -32,6 +32,7 @@ import com.uhutu.sportcenter.z.api.buttock.ApiButtockInfo;
 import com.uhutu.sportcenter.z.api.buttock.ApiButtockLapList;
 import com.uhutu.sportcenter.z.api.buttock.ApiButtockNotes;
 import com.uhutu.sportcenter.z.api.buttock.ApiButtockPowerList;
+import com.uhutu.sportcenter.z.api.buttock.ApiRefreshCrossfit;
 import com.uhutu.sportcenter.z.api.category.ApiForSports;
 import com.uhutu.sportcenter.z.api.content.ApiComplainInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentDetailInfo;
@@ -464,6 +465,9 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiSignPhoto apiSignPhoto;
+	
+	@Autowired
+	private ApiRefreshCrossfit apiRefreshCrossfit;
 	
 	public ApiSignPhoto getApiSignPhoto() {
 		return apiSignPhoto;
@@ -915,6 +919,10 @@ public class ApiFactory {
 
 	public ApiStartUp getApiStartUp() {
 		return apiStartUp;
+	}
+
+	public ApiRefreshCrossfit getApiRefreshCrossfit() {
+		return apiRefreshCrossfit;
 	}
 
 }
