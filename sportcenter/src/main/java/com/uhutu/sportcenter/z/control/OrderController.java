@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiCheckSingTypeInput;
 import com.uhutu.sportcenter.z.input.ApiForAnswerOrderInput;
+import com.uhutu.sportcenter.z.input.ApiForWatchCardInput;
 import com.uhutu.sportcenter.z.input.ApiRefreshCrossfitInput;
 import com.uhutu.sportcenter.z.input.ApiSignPhotoInput;
 import com.uhutu.sportcenter.z.result.ApiCheckSingTypeResult;
 import com.uhutu.sportcenter.z.result.ApiForAnswerOrderResult;
+import com.uhutu.sportcenter.z.result.ApiForWatchCardResult;
 import com.uhutu.sportcenter.z.result.ApiRefreshCrossfitResult;
 import com.uhutu.sportcenter.z.result.ApiSignPhotoResult;
 
@@ -48,6 +50,13 @@ public class OrderController {
 	}
 
 	@ResponseBody
+	@RequestMapping(value = "/watchCard", method = RequestMethod.POST)
+	@ApiOperation(value = "观赛证接口", notes = "观赛证接口")
+	public ApiForWatchCardResult versionInfo(@RequestBody ApiForWatchCardInput input, HttpServletRequest request) {
+		return apiFactory.getApiForWatchCard().api(input);
+	}
+
+	@ResponseBody
 	@RequestMapping(value = "/checkSingType", method = RequestMethod.POST)
 	@ApiOperation(value = "校验可报名组别", notes = "校验可报名组别")
 	public ApiCheckSingTypeResult checkSingType(@RequestBody ApiCheckSingTypeInput input, HttpServletRequest request) {
@@ -60,11 +69,12 @@ public class OrderController {
 	public ApiSignPhotoResult signPhoto(@RequestBody ApiSignPhotoInput input, HttpServletRequest request) {
 		return apiFactory.getApiSignPhoto().api(input);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/refreshCrossFit", method = RequestMethod.POST)
 	@ApiOperation(value = "刷新证书", notes = "刷新证书")
-	public ApiRefreshCrossfitResult refreshCrossFit(@RequestBody ApiRefreshCrossfitInput input, HttpServletRequest request) {
+	public ApiRefreshCrossfitResult refreshCrossFit(@RequestBody ApiRefreshCrossfitInput input,
+			HttpServletRequest request) {
 		return apiFactory.getApiRefreshCrossfit().api(input);
 	}
 
