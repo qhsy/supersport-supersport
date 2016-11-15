@@ -1,5 +1,6 @@
 package com.uhutu.dcom.component.z.hole;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -299,10 +300,10 @@ public class ImageCfUtil {
 			}
 			
 			 /*所属box*/
-	        ImageUtil.drawStrCf(box, g, Font.BOLD, 56, boxx, 592);
+	        ImageUtil.drawColorStr(box, g, Font.BOLD, 56,new Color(255, 0, 31), boxx, 592);
 			
 			/*活动icon*/
-			ImageUtil.drawImageCf("/watch/qrcode.png", g, alpha, 160, 160, 294, 902);
+			ImageUtil.drawImageCf("/watch/qrcode.png", g, alpha, 294, 902,160, 160);
 			
 			g.dispose();
 			

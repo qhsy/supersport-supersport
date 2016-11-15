@@ -1,6 +1,7 @@
 package com.uhutu.dcom.component.z.util;
 
 import java.awt.AlphaComposite;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -250,6 +251,27 @@ public class ImageUtil {
 		}
 		
 		return width;
+		
+	}
+	
+	
+	public static void drawColorStr(String content,Graphics2D g,int fontStyle,int fontSize,Color color,int x,int y){
+		
+		if(StringUtils.isNotEmpty(content)){
+			
+			AttributedString ats = new AttributedString(content);
+			
+		    Font f = new Font("Serif",fontStyle, fontSize);
+
+		    ats.addAttribute(TextAttribute.FONT, f, 0,content.length() );
+		    
+		    AttributedCharacterIterator iter = ats.getIterator();
+		    
+		    g.setColor(color);
+		    
+		    g.drawString(iter, x, y);
+			
+		}
 		
 	}
 	
