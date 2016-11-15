@@ -25,7 +25,7 @@ public class ApiForWatchCard extends RootApiToken<ApiForWatchCardInput, ApiForWa
 		UcSignInfo info = JdbcHelper.queryOne(UcSignInfo.class, "user_code", upUserCode(), "type",
 				"dzsd4107100510020004");
 		if (info != null) {
-			result.inError(81100020);
+			result.setPic(info.getPicUrl());
 		} else {
 			int simpleNum = JdbcHelper.count(UcSignInfo.class, "", MapHelper.initMap("type", "dzsd4107100510020004"))
 					+ 1;
