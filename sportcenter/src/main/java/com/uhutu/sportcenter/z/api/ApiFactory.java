@@ -16,6 +16,7 @@ import com.uhutu.sportcenter.z.api.answer.ApiBindSettleAccount;
 import com.uhutu.sportcenter.z.api.answer.ApiForAnswerOrder;
 import com.uhutu.sportcenter.z.api.answer.ApiForAnswerQuestion;
 import com.uhutu.sportcenter.z.api.answer.ApiForAskQuestion;
+import com.uhutu.sportcenter.z.api.answer.ApiForWatchCard;
 import com.uhutu.sportcenter.z.api.answer.ApiHotQuestions;
 import com.uhutu.sportcenter.z.api.answer.ApiNewQuestions;
 import com.uhutu.sportcenter.z.api.answer.ApiOpenAskQuestion;
@@ -469,6 +470,14 @@ public class ApiFactory {
 	@Autowired
 	private ApiRefreshCrossfit apiRefreshCrossfit;
 	
+	@Autowired
+	private ApiForWatchCard apiForWatchCard;
+	
+	
+	public ApiForWatchCard getApiForWatchCard() {
+		return apiForWatchCard;
+	}
+
 	public ApiSignPhoto getApiSignPhoto() {
 		return apiSignPhoto;
 	}
