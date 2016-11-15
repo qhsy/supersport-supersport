@@ -42,7 +42,11 @@ public class ApiSignPhoto extends RootApiToken<ApiSignPhotoInput, ApiSignPhotoRe
 		if (li2 != null && li2.size() > 0) {
 			signInfos.add(li2.get(0));// 已报名
 		}
-		
+		List<UcSignInfo> li3 = JdbcHelper.queryForList(UcSignInfo.class, "", "",
+				"  userCode=:userCode and type ='dzsd4107100510020004'", MapHelper.initMap("userCode", upUserCode()));
+		if (li3 != null && li3.size() > 0) {
+			signInfos.add(li3.get(0));// 已报名
+		}
 		sort(signInfos);
 		
 		for (UcSignInfo ucSignInfo : signInfos) {
