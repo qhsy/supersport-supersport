@@ -35,6 +35,13 @@ public class ApiRefreshCrossfit extends RootApiBase<ApiRefreshCrossfitInput, Api
 			
 			if(ucSignInfo != null){
 				
+				if(StringUtils.equals(ucSignInfo.getType(), "dzsd4107100510020004")){
+					
+					FileUploadResult ft = ImageCfUtil.makeImageWatch(ucSignInfo.getCode());
+					
+					ucSignInfo.setPicUrl(ft.getFileUrl());
+				}
+				
 				if(StringUtils.equals(ucSignInfo.getType(), "dzsd4107100510020003")){
 					
 					FileUploadResult ft = ImageCfUtil.makeImageGroup(ucSignInfo.getGroupName(), ucSignInfo.getBoxName(), "团队标准组",ucSignInfo.getGroupCode());
