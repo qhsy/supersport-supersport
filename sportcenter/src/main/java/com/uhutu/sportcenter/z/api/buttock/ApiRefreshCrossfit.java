@@ -29,6 +29,18 @@ public class ApiRefreshCrossfit extends RootApiBase<ApiRefreshCrossfitInput, Api
 		
 		mDataMap.put("status", "dzsd4112100110030002");
 		
+		if(StringUtils.isNotEmpty(input.getType())){
+			
+			mDataMap.put("type", input.getType());
+			
+			if(StringUtils.equals("dzsd4107100510020004", input.getType())){
+				
+				mDataMap.remove("status");
+				
+			}
+			
+		}
+		
 		List<UcSignInfo> signInfos = JdbcHelper.queryForList(UcSignInfo.class, "", "", "", mDataMap);
 		
 		for (UcSignInfo ucSignInfo : signInfos) {
