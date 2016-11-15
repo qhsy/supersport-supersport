@@ -250,5 +250,74 @@ public class ImageCfUtil {
 		return webUploadResult;
 		
 	}   
+	
+	/**
+	 * 合成观赛图片
+	 * @param code
+	 * 		观赛码
+	 * @return 文件上传结果
+	 */
+	public static FileUploadResult makeImageWatch(String code) {	
+		
+		FileUploadResult webUploadResult = new FileUploadResult();
+		
+		try {
+			
+			URL url = ImageCfUtil.class.getResource("/hole/crossfit/watch/bg.jpg");
+			
+			/*背景图*/
+			Image srcImg = ImageIO.read(url);
+			
+			BufferedImage buffImg = new BufferedImage(srcImg.getWidth(null), srcImg.getHeight(null),
+					BufferedImage.TYPE_INT_RGB);
+			// 得到画笔对象
+			// Graphics g= buffImg.getGraphics();
+			Graphics2D g = buffImg.createGraphics();
+
+			// 设置对线段的锯齿状边缘处理
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
+			g.drawImage(srcImg.getScaledInstance(srcImg.getWidth(null), srcImg.getHeight(null), Image.SCALE_SMOOTH), 0,
+					0, null);
+			/*设置旋转*/
+			g.rotate(0);
+			
+			float alpha = 1.0f;
+			
+			String box = "观赛码："+code;
+			
+			int boxx = ImageUtil.fontWidth(box, Font.BOLD, 56);
+			
+			if(boxx == 0){
+				
+				boxx = 166;
+				
+			}else{
+				
+				boxx = ImageUtil.calx(boxx);
+				
+			}
+			
+			 /*所属box*/
+	        ImageUtil.drawStrCf(box, g, Font.BOLD, 56, boxx, 592);
+			
+			/*活动icon*/
+			ImageUtil.drawImageCf("/watch/qrcode.png", g, alpha, 160, 160, 294, 902);
+			
+			g.dispose();
+			
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			// 生成图片
+			ImageIO.write(buffImg, "JPG", bos);
+			
+			webUploadResult = new WebUploadSupport().remoteUpload("crossfit", "watch.jpg", bos.toByteArray());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		
+		return webUploadResult;
+		
+	}
 
 }
