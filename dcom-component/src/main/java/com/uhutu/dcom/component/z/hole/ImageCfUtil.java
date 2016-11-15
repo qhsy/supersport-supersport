@@ -7,7 +7,6 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -308,9 +307,11 @@ public class ImageCfUtil {
 			
 			g.dispose();
 			
-			File file = new File("C:/Users/逄小帅/Desktop/watch/watch.jpg");
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			// 生成图片
+			ImageIO.write(buffImg, "JPG", bos);
 			
-			ImageIO.write(buffImg, "JPG", file);
+			webUploadResult = new WebUploadSupport().remoteUpload("crossfit", "watch.jpg", bos.toByteArray());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
