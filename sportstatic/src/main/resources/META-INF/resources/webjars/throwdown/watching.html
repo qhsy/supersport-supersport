@@ -17,6 +17,7 @@ html{background: #161616;}
 </head>
 <body>
 <section class="succeed"></section>
+<div class="tips" style="display: none;"><header class="share"></header><footer class="save"></footer></div>
 <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
 <script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
@@ -53,35 +54,26 @@ function callbackSavePic(href){
 		window.webkit.messageHandlers.callbackSavePic.postMessage(href);
 	}
 }
-function token(){
-	if(sessionStorage.getItem('token')){
-		return sessionStorage.getItem('token');
-	}else{
-		return '';
-	}
-}
 $(function(){
 	$.ajax({
-		url:'/api/orderController/signPhoto',
+		url:'/api/orderController/watchCard',
 		type:'POST',
 		contentType:'application/json',
 		dataType: 'json',
 		data:'{"zoo": {"key": "tesetkey","token": "' + queryUrl('token') + '"}}',
 		success:function(resp){
 			if(resp.status == 1){
-				if(!resp.li.length){
-					var createEle = $('<div class="no-data">暂无报名信息</div>');
-					$('.succeed').append(createEle)
-					return false;
-				}
-
 				var ulEle = $('<ul class="result"/>');
-				for(var i=0; i<resp.li.length; i++){
-					var liEle = $('<li/>');
-					liEle.html('<img src="' + resp.li[i] + '" />');
+				var liEle = $('<li/>');
+					liEle.html('<img src="' + resp.pic + '" />');
 					ulEle.append(liEle);
-				}
 				$('.succeed').append(ulEle);
+				$('.tips').css('display','block');
+				if($('.tips').is(':visible')){
+					setTimeout(function(){
+						$('.tips').css('display','none');
+					},5000);
+				}
 				if(!queryUrl('app')){
 					callbackShare('GGTBH161114110001');
 				}
@@ -110,10 +102,14 @@ $(function(){
 		}
 	});
 
+	touch.on('body', 'tap', '.tips', function(){
+		var _this = $(this);
+		_this.css('display','none');
+	})
 	touch.on('.succeed', 'hold', 'li', function(){
 		var src = $(this).attr('src');
 		callbackSavePic(src);
-	})
+	});
 
 });
 </script>

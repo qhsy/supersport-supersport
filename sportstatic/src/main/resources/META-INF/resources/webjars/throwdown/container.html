@@ -68,8 +68,7 @@
 		</p>
 		<p class="about">This is not only a competition, but also a great party for all Crossfit lovers and fitness enthusiasts all over China, a wonderful stage for all athletes of all skill levels to show performance . </p>
 		<div class="submit-btn">
-			<a href="javascript:;" class="btn">我要参赛<span>I want to compete</span></a>
-			<a href="javascript:;" class="watching-btn">我要观赛<span>I want to compete</span></a>
+			<a href="javascript:;" class="btn">我要参赛<span>I want to compete</span></a><a href="javascript:;" class="watching-btn">我要观赛<span>I want to watch</span></a>
 		</div>
 		
 	</section>
@@ -145,10 +144,35 @@ function callbackFunc(code){
 		window.webkit.messageHandlers.callbackMySignInfo.postMessage(code);
 	}
 }
+
+/**
+ * @获取TOKEN
+ * @param  [string] code
+ * @return [Function]
+ * @author [wangxh]
+ */
+function callbackGetToken(){
+	var userAgent = navigator.userAgent;
+	if(userAgent.indexOf('Android') != -1){
+		javascript:android.callbackGetToken();
+	} else {
+		window.webkit.messageHandlers.callbackGetToken.postMessage();
+	}
+}
+
+/**
+ * @IOS回调
+ * @param  [string] code
+ * @return [Function]
+ * @author [wangxh]
+ */
+function callbackIosToken(val){
+	str = val;
+}
 //wxec842da73ebe11a4
 //wxfd44c999a0475e56
 $(function(){
-	var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
+	var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;	
 	if(queryUrl('app')){
 		callbackShare('GGTBH161114110001');
 	}
@@ -191,12 +215,25 @@ $(function(){
 		if(queryUrl('app')){
 			callbackActSignUp()
 		}else{
-			window.location.href = 'http://api-001.sport.bigtiyu.com/webcdn/throwdown/register.html';
+			window.location.href = 'register.html';
 		}
 	});
+	$('.watching-btn').on('click',function(){
+		if(queryUrl('app')){
+			var ua = navigator.userAgent;
+			if(ua.indexOf('Mac OS') != -1){
+				callbackPublish('12306','','');
+			}else{
+				callbackGetToken();
+			}
+		}else{
+			window.location.href = 'watching.html?app=1&token=' + token();
+		}
+		
+	})
 	$('.success').on('click',function(){
 		if(queryUrl('app')){
-			callbackMySignInfo()
+			callbackMySignInfo();
 		}else{
 			window.location.href = 'http://api-001.sport.bigtiyu.com/webcdn/throwdown/reg_succ.html?app=1&token=' + token();
 		}
