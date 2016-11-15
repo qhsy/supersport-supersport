@@ -19,13 +19,13 @@
 	<article class="type">
 		<h1 class="title">参赛项目<em>Entry project</em></h1>
 		<ul class="type-list">
-			<li>
+			<li data-type="dzsd4107100510020001">
 				<a href="javascript:;">个人标准组<br>（Rx）</a>
 			</li>
-			<li>
+			<li data-type="dzsd4107100510020002">
 				<a href="javascript:;">个人业余组<br>（Scale）</a>
 			</li>
-			<li>
+			<li data-type="dzsd4107100510020003">
 				<a href="javascript:;">团队标准组<br>（Team Event）</a>
 			</li>
 		</ul>
@@ -41,7 +41,7 @@
 	<!-- 模板部分 -->  
 		<ul class="personal formArr">
 			<li><span class="attr"><em>*</em>姓名</span><input name="name" id="name" class="ipt" type="text" placeholder="Name"></li>
-			<li><span class="photo"><em>*</em>照片</span><div id="photo-result" class="photo-result" data="a"><em>Add<br>photos</em></div></li>
+			<li><span class="photo"><em>*</em>照片</span><div id="photo-result" class="photo-result" data=""><em>Add<br>photos</em></div></li>
 			<li><span class="attr"><em>*</em>性别</span>
 				<div id="sex" class="sex" data="">
 					<a href="javascript:;" class="male">Male</a>
@@ -66,9 +66,17 @@
 		<a href="javascript:;" class="btn">查看报名信息<em>Check the registration information</em></a>
 	</div>
 </template>
+<template id="all">
+	<div class="status">
+		<div class="text"></div>
+	</div>
+</template>
 <template id="team">  
 	<!-- 模板部分 -->
-	<p class="team-note">团体组标准组  (2男2女)</p>
+	<p class="team-note">including two men &amp; two women</p>
+		<dl class="teamname">
+			<dd><span class="attr"><em>*</em>团队名称</span><input name="teamname" id="teamname" class="ipt w196" type="text" placeholder="Name"></dd>
+		</dl>
 		<dl class="team formArr">
 			<dt>队员一</dt>
 			<dd><span class="attr"><em>*</em>姓名</span><input name="name" id="name1" class="ipt" type="text" placeholder="Name"></dd>
@@ -146,25 +154,6 @@
 <script type="text/javascript" src="js/weixin.js"></script>
 <script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
 <script>
-/**
- * 获取URL字符
- */
-function queryUrl(name){
-	var url = location.search;
-	var request = '';
-
-	if (url.indexOf("?") != -1) {
-		var str = url.substr(1);
-		var result = str.split("&");
-		for (var i = 0; i < result.length; i++) {
-			var arr = result[i].split("=");
-			if(arr[0] == name){
-				request = unescape(arr[1]);
-			}
-		}
-	}
-	return request;
-}
 function tost(mess){
 	var ele = $('<div class="mask"><span class="tost">' + mess + '</span></div>').appendTo('body');
 	var timer = setTimeout(function(){
@@ -180,13 +169,15 @@ function token(){
 	if(sessionStorage.getItem('token')){
 		return sessionStorage.getItem('token');
 	}else{
-		return '250ce394bdf44e66a6fd9c834e064569a089655f0b68451f8b3009331930eec6a75ccbf1';
+		return '';
 	}
 }
 $(function(){
 	var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
-	var team = $('#team').html()
+	var team = $('#team').html();
+	var isSubmit = true;
 	var personal = $('#personal').html();
+	var all = $('#all').html()
 	var status = $('#status').html();
 	var images = {
 			localId: [],
@@ -195,25 +186,6 @@ $(function(){
 	/**
 	 * 获取微信CODE
 	 */
-	if(isWeix){
-		var wxCode = queryUrl('code');
-		$.ajax({
-			url:'/api/wechatController/authLogin2',
-			type:'POST',
-			contentType:'application/json',
-			dataType: 'json',
-			async: false,
-			data:'{"code": "' + wxCode + '","zoo": {"key": "tesetkey","token": " "}}',
-			success:function(res){
-				if(res.status == 1){
-					sessionStorage.setItem('code',res.userCode);
-					sessionStorage.setItem('token',res.userToken);
-				}else{
-					alert(res.error);
-				}
-			}
-		});
-	}
 
 	/**
 	 * 获取微信授权CONFIG
@@ -221,12 +193,12 @@ $(function(){
 	weiXin({
 		'url': '/api/wechatController/configInfo'
 	});
-
 	/**
 	 * 微信上传图片
 	 */
+	wx.hideOptionMenu();
 	wx.ready(function(){
-		$('.photo-result').on('click',function(){
+		$('.container').on('click','.photo-result',function(){
 			var _this = $(this);
 			var img = $('<img/>');
 			wx.chooseImage({
@@ -261,69 +233,51 @@ $(function(){
 		data:'{"zoo": {"key": "tesetkey","token": "' + token() + '"}}',
 		success:function(resp){
 			if(resp.status == 1){
-				var yesList = resp.yesList;
-				var alList = resp.alList;
-				var noList = resp.noList;
-				if(noList.length){
-					for(var i=0; i<noList.length; i++){
-						if(noList[i].type == 'dzsd4107100510020001'){
-							$('.type-list li').eq(0).attr('data-status','no');
-						}
-						if(noList[i].type == 'dzsd4107100510020002'){
-							$('.type-list li').eq(1).attr('data-status','no');
-						}
-						if(noList[i].type == 'dzsd4107100510020003'){
-							$('.type-list li').eq(2).attr('data-status','no');
-						}
-					}
-				}
-				if(alList.length){
-					for(var i=0; i<alList.length; i++){
-						if(alList[i].type == 'dzsd4107100510020001'){
-							$('.type-list li').eq(0).attr('data-status','al');
-						}
-						if(alList[i].type == 'dzsd4107100510020002'){
-							$('.type-list li').eq(1).attr('data-status','al');
-						}
-						if(alList[i].type == 'dzsd4107100510020003'){
-							$('.type-list li').eq(2).attr('data-status','al');
-						}
-					}
-				}
-
-				if(yesList.length){
-					for(var i=0; i<yesList.length; i++){
-						if(yesList[i].type == 'dzsd4107100510020001'){
-							$('.type-list li').eq(0).attr({
-								'data-status':'yes',
-								'data-price':yesList[i].price
+				var list = resp.xhList;
+				for(var i = 0; i<list.length; i++){
+					$('.type-list li').each(function(){
+						var statu = $(this).attr('data-type');
+						if(statu == list[i].type){
+							$(this).attr({
+								'data-ty':list[i].ty,
+								'data-price':list[i].price
 							});
 						}
-						if(yesList[i].type == 'dzsd4107100510020002'){
-							$('.type-list li').eq(1).attr({
-								'data-status':'yes',
-								'data-price':yesList[i].price
-							});
-						}
-						if(yesList[i].type == 'dzsd4107100510020003'){
-							$('.type-list li').eq(2).attr({
-								'data-status':'yes',
-								'data-price':yesList[i].price
-							});
-						}
-					}
+					});
 				}
-				var firstChild = $('.type-list li[data-status=yes]').first();
-				var price = firstChild.attr('data-price');
-				var indexEle = firstChild.index();
-				$('.type-list li').eq(indexEle).addClass('curr');
-				if(indexEle == 0 || indexEle == 1){
-					$('.container').html(personal);
-					$('.container').find('.price span').text(price);
-				} else {
-					$('.container').html(team);
-					$('.container').find('.price span').text(price);
-				}		
+				if($('.type-list li[data-ty=yes]').length){
+					var index = $('.type-list li[data-ty=yes]').first().index();
+					var price = $('.type-list li[data-ty=yes]').first().attr('data-price');
+					if(index == 0){
+						$('.container').html(personal);
+						$('.container').find('.price span').text(price);
+					} else if(index == 1){
+						$('.container').html(personal);
+						$('.container').find('.price span').text(price);
+					} else if(index == 2){
+						$('.container').html(team);
+						$('.container').find('.price span').text(price);
+					}
+					$('.type-list li[data-ty=yes]').first().addClass('curr');
+					return false;
+				}
+				if($('.type-list li[data-ty=no]').length){
+					var index = $('.type-list li[data-ty=no]').first().index();
+					if(index == 0){
+						$('.container').html(status).find('.text').html('已报名<span>Already registered</span>');
+					} else if(index == 1){
+						$('.container').html(status).find('.text').html('已报名<span>Already registered</span>');
+					} else if(index == 2){
+						$('.container').html(status).find('.text').html('已报名<span>Already registered</span>');
+					}
+					$('.type-list li[data-ty=no]').first().addClass('curr');
+					return false;
+				}
+				if($('.type-list li[data-ty=al]').length){
+					$('.container').html(all).find('.text').html('已报满<span>Full registration </span>');
+					$('.type-list li[data-ty=al]').first().addClass('curr');
+					return false;
+				}
 			}
 		}
 	});
@@ -332,35 +286,46 @@ $(function(){
 	$('.type-list li').on('click',function(){
 		var _this = $(this);
 		var index = _this.index();
+		var statu = _this.attr('data-ty');
 		var price = _this.attr('data-price');
-		var stat = _this.attr('data-status');
-		if((index == 0 && stat == 'yes') || (index == 1 && stat == 'yes')){
-			$('.container').html(personal).find('.price span').text(price);
-		} else {
-			$('.container').html(team).find('.price span').text(price);
+		if(statu == 'yes' && index == 0){
+			$('.container').html(personal);
+			$('.container').find('.price span').text(price);
+		} else if(statu == 'yes' && index == 1){
+			$('.container').html(personal);
+			$('.container').find('.price span').text(price);
+		} else if(statu == 'yes' && index == 2){
+			$('.container').html(team);
+			$('.container').find('.price span').text(price);
+		} else if(statu == 'al' && index == 0){
+			$('.container').html(all).find('.text').html('已报满<span>Full registration </span>');
+		} else if(statu == 'al' && index == 1){
+			$('.container').html(all).find('.text').html('已报满<span>Full registration </span>');
+		} else if(statu == 'al' && index == 2){
+			$('.container').html(all).find('.text').html('已报满<span>Full registration </span>');
+		} else if(statu == 'no' && index == 0){
+			$('.container').html(status).find('.text').html('已报名<span>Already registered</span>');
+		} else if(statu == 'no' && index == 1){
+			$('.container').html(status).find('.text').html('已报名<span>Already registered</span>');
+		} else if(statu == 'no' && index == 2){
+			$('.container').html(status).find('.text').html('已报名<span>Already registered</span>');
 		}
 
-		if(stat == 'no' && index == 0){
-			$('.container').html(status).find('.text').html('已报名标准组<span>no</span>');
-		} else if(stat == 'no' && index == 1){
-			$('.container').html(status).find('.text').html('已报名业余组<span>no</span>');
-		} else if(stat == 'no' && index == 2){
-			$('.container').html(status).find('.text').html('已报名团队组<span>no</span>');
+		if(!_this.attr('data-ty') && index == 1 && $('.type-list li').eq(0).attr('data-ty') == 'no'){
+			$('.container').html(all).find('.text').html('个人标准组已报名<span>Rx’d already registered</span>');
+		} else if(!_this.attr('data-ty') && index == 0 && $('.type-list li').eq(1).attr('data-ty') == 'no'){
+			$('.container').html(all).find('.text').html('个人业余组已报名<span>Scale already registered</span>');
 		}
 
-		if((stat == 'al' && index == 0) || (stat == 'al' && index == 1) || (stat == 'al' && index == 2)){
-			$('.container').html(status);
-			$('.container').find('.text').html('已报满<span>no</span>');
-		}
 
-		$('.type-list li').removeClass('curr').eq(index).addClass('curr');
+		$(this).addClass('curr').siblings().removeClass('curr');
 
 	});
 
 	$('.container').on('click', '.sex a', function(){
 		var _this = $(this);
 		var index = _this.index();
-		$('.sex a').removeClass('curr').eq(index).addClass('curr');
+		_this.parent().find('a').removeClass('curr').eq(index).addClass('curr');
 		if(_this.is('.male')){
 			$('.sex').attr('data','男');
 		}
@@ -373,30 +338,24 @@ $(function(){
     /**
      * 定点支付
      */
-    function orderPay(resp){
-    	WeixinJSBridge.invoke('getBrandWCPayRequest', {
-			"appId":resp.wechatH5PayResponse.appId,
-			"timeStamp":resp.wechatH5PayResponse.timeStamp,
-			"nonceStr":resp.wechatH5PayResponse.nonceStr,
-			"package":"prepay_id=" + resp.wechatH5PayResponse.prepay_id,
-			"signType":resp.wechatH5PayResponse.signType,
-			"paySign":resp.wechatH5PayResponse.paySign
-		}, function(result) {
-			if (result.err_msg == "get_brand_wcpay_request:ok") {
-				window.location.href = 'reg_succ.html?token' + token;
-			}else{
-				comm.tost('支付失败，请重新支付！');
-			}
-		});
-    }
-
-
+   
+    $('.container').on('click','.btn', function(){
+    	window.location.href = 'reg_succ.html?app=1&token=' + token();
+    });
     $('.container').on('click','.submit',function(){
     	var mobile = /^(13[0-9]|17[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/ig;
-    	var email = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/g;
+    	//var email = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/g;
+    	var email = /.*/;
+    	var order = $('.curr').attr('data-type');
 		if($('input').is('#name')){
     		if($('#name').val() == ''){
 	    		tost('请填写姓名');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#teamname')){
+    		if($('#teamname').val() == ''){
+	    		tost('请填写团队名称');
 	    		return false;
 	    	}
     	}
@@ -413,7 +372,7 @@ $(function(){
 	    		tost('请填写年龄');
 	    		return false;
 	    	}
-	    	if(isNaN($('#age').val())){
+	    	if(isNaN($('#age').val()) || parseFloat($.trim($('#age').val())) <= 0){
 	    		tost('请正确填写年龄');
 	    		return false;
 	    	}
@@ -423,7 +382,7 @@ $(function(){
 	    		tost('请填写身高');
 	    		return false;
 	    	}
-	    	if(isNaN($('#height').val())){
+	    	if(isNaN($('#height').val()) || parseFloat($.trim($('#height').val())) <= 0){
 	    		tost('请正确填写身高');
 	    		return false;
 	    	}
@@ -433,18 +392,14 @@ $(function(){
 	    		tost('请填写体重');
 	    		return false;
 	    	}
-	    	if(isNaN($('#weight').val())){
+	    	if(isNaN($('#weight').val()) || parseFloat($.trim($('#weight').val())) <= 0){
 	    		tost('请正确填写体重');
 	    		return false;
 	    	}
     	}
     	if($('input').is('#mobile')){
     		if($('#mobile').val() == ''){
-	    		alert('请填写手机号码');
-	    		return false;
-	    	}
-	    	if(!mobile.test($('#mobile').val())){
-	    		tost('请正确填写手机号码');
+	    		tost('请填写手机号码');
 	    		return false;
 	    	}
     	}
@@ -478,7 +433,7 @@ $(function(){
 	    		tost('请填写队员一年龄');
 	    		return false;
 	    	}
-	    	if(isNaN($('#age1').val())){
+	    	if(isNaN($('#age1').val()) || parseFloat($.trim($('#age1').val())) <= 0){
 	    		tost('请正确填写队员一年龄');
 	    		return false;
 	    	}
@@ -488,7 +443,7 @@ $(function(){
 	    		tost('请填写队员一身高');
 	    		return false;
 	    	}
-	    	if(isNaN($('#height1').val())){
+	    	if(isNaN($('#height1').val()) || parseFloat($.trim($('#height1').val())) <= 0){
 	    		tost('请正确填写队员一身高');
 	    		return false;
 	    	}
@@ -498,18 +453,14 @@ $(function(){
 	    		tost('请填写队员一体重');
 	    		return false;
 	    	}
-	    	if(isNaN($('#weight1').val())){
+	    	if(isNaN($('#weight1').val()) || parseFloat($.trim($('#weight1').val())) <= 0){
 	    		tost('请正确填写队员一体重');
 	    		return false;
 	    	}
     	}
     	if($('input').is('#mobile1')){
     		if($('#mobile1').val() == ''){
-	    		alert('请填写队员一手机号码');
-	    		return false;
-	    	}
-	    	if(!mobile.test($('#mobile1').val())){
-	    		tost('请正确填写队员一手机号码');
+	    		tost('请填写队员一手机号码');
 	    		return false;
 	    	}
     	}
@@ -544,7 +495,7 @@ $(function(){
 	    		tost('请填写队员二年龄');
 	    		return false;
 	    	}
-	    	if(isNaN($('#age2').val())){
+	    	if(isNaN($('#age2').val()) || parseFloat($.trim($('#age2').val())) <= 0){
 	    		tost('请正确填写队员二年龄');
 	    		return false;
 	    	}
@@ -554,7 +505,7 @@ $(function(){
 	    		tost('请填写队员二身高');
 	    		return false;
 	    	}
-	    	if(isNaN($('#height2').val())){
+	    	if(isNaN($('#height2').val()) || parseFloat($.trim($('#height2').val())) <= 0){
 	    		tost('请正确填写队员二身高');
 	    		return false;
 	    	}
@@ -564,18 +515,14 @@ $(function(){
 	    		tost('请填写队员二体重');
 	    		return false;
 	    	}
-	    	if(isNaN($('#weight2').val())){
+	    	if(isNaN($('#weight2').val()) || parseFloat($.trim($('#weight2').val())) <= 0){
 	    		tost('请正确填写队员二体重');
 	    		return false;
 	    	}
     	}
     	if($('input').is('#mobile2')){
     		if($('#mobile2').val() == ''){
-	    		alert('请填写队员二手机号码');
-	    		return false;
-	    	}
-	    	if(!mobile.test($('#mobile2').val())){
-	    		tost('请正确填写队员二手机号码');
+	    		tost('请填写队员二手机号码');
 	    		return false;
 	    	}
     	}
@@ -610,7 +557,7 @@ $(function(){
 	    		tost('请填写队员三年龄');
 	    		return false;
 	    	}
-	    	if(isNaN($('#age3').val())){
+	    	if(isNaN($('#age3').val()) || parseFloat($.trim($('#age3').val())) <= 0){
 	    		tost('请正确填写队员三年龄');
 	    		return false;
 	    	}
@@ -620,7 +567,7 @@ $(function(){
 	    		tost('请填写队员三身高');
 	    		return false;
 	    	}
-	    	if(isNaN($('#height3').val())){
+	    	if(isNaN($('#height3').val()) || parseFloat($.trim($('#height3').val())) <= 0){
 	    		tost('请正确填写队员三身高');
 	    		return false;
 	    	}
@@ -630,18 +577,14 @@ $(function(){
 	    		tost('请填写队员三体重');
 	    		return false;
 	    	}
-	    	if(isNaN($('#weight3').val())){
+	    	if(isNaN($('#weight3').val()) || parseFloat($.trim($('#weight3').val())) <= 0){
 	    		tost('请正确填写队员三体重');
 	    		return false;
 	    	}
     	}
     	if($('input').is('#mobile3')){
     		if($('#mobile3').val() == ''){
-	    		alert('请填写队员三手机号码');
-	    		return false;
-	    	}
-	    	if(!mobile.test($('#mobile3').val())){
-	    		tost('请正确填写队员三手机号码');
+	    		tost('请填写队员三手机号码');
 	    		return false;
 	    	}
     	}
@@ -676,7 +619,7 @@ $(function(){
 	    		tost('请填写队员四年龄');
 	    		return false;
 	    	}
-	    	if(isNaN($('#age4').val())){
+	    	if(isNaN($('#age4').val()) || parseFloat($.trim($('#age4').val())) <= 0){
 	    		tost('请正确填写队员四年龄');
 	    		return false;
 	    	}
@@ -686,7 +629,7 @@ $(function(){
 	    		tost('请填写队员四身高');
 	    		return false;
 	    	}
-	    	if(isNaN($('#height4').val())){
+	    	if(isNaN($('#height4').val()) || parseFloat($.trim($('#height4').val())) <= 0){
 	    		tost('请正确填写队员四身高');
 	    		return false;
 	    	}
@@ -696,18 +639,14 @@ $(function(){
 	    		tost('请填写队员四体重');
 	    		return false;
 	    	}
-	    	if(isNaN($('#weight4').val())){
+	    	if(isNaN($('#weight4').val()) || parseFloat($.trim($('#weight4').val())) <= 0){
 	    		tost('请正确填写队员四体重');
 	    		return false;
 	    	}
     	}
     	if($('input').is('#mobile4')){
     		if($('#mobile4').val() == ''){
-	    		alert('请填写队员四手机号码');
-	    		return false;
-	    	}
-	    	if(!mobile.test($('#mobile4').val())){
-	    		tost('请正确填写队员四手机号码');
+	    		tost('请填写队员四手机号码');
 	    		return false;
 	    	}
     	}
@@ -728,49 +667,69 @@ $(function(){
 			var json = {
 				'age': parseFloat(formLength.eq(i).find('input[name=age]').val()),
 				'boxName': formLength.eq(i).find('input[name=box]').val(),
-				'code':'',
-				'groupName':'123',
+				'groupName':$('input').is('#teamname')?$('#teamname').val():'',
 				'height': parseFloat(formLength.eq(i).find('input[name=height]').val()),
 				'mail': formLength.eq(i).find('input[name=email]').val(),
 				'name': formLength.eq(i).find('input[name=name]').val(),
 				'phone': formLength.eq(i).find('input[name=mobile]').val(),
-				'photo': formLength.eq(i).find('.photo').attr('data'),
+				'photo': formLength.eq(i).find('.photo-result').attr('data'),
 				'sex': formLength.eq(i).find('.sex').attr('data'),
 				'time': parseFloat(formLength.eq(i).find('input[name=time]').val()) || '',
-				'type': '',
+				'type': $('.curr').attr('data-type'),
 				'weight': parseFloat(formLength.eq(i).find('input[name=weight]').val())  || '',
 			}
 			formArr.push(JSON.stringify(json));
 		}
-    	$.ajax({
-			'url':'/api/orderController/answerOrder',
-			type:'POST',
-			contentType:'application/json',
-			dataType: 'json',
-			data:'{"answerCode": "dzsd4107100510020001","appVersion": "string","orderSource": "dzsd4112100110020002", "orderType": "dzsd4112100110010004","payType": "dzsd4112100110040002","romoteIP": "string","serveIP": "string","signs": [' + formArr.join(",") + '],"zoo": {"key": "tesetkey","token": "' + token() + '" }}',
-			success:function(resp){
-				if(resp.status == 1){
-					if (typeof WeixinJSBridge == "undefined") {
-						if (document.addEventListener) {
-							document.addEventListener('WeixinJSBridgeReady', function(){
-								orderPay(resp.wechatH5PayResponse)
-							}, false);
-						} else if (document.attachEvent) {
-							document.attachEvent('WeixinJSBridgeReady', function(){
-								orderPay(resp.wechatH5PayResponse)
-							});
-							document.attachEvent('onWeixinJSBridgeReady', function(){
-								orderPay(resp.wechatH5PayResponse)
-							});
+		if(isSubmit){
+			isSubmit = false;
+	    	$.ajax({
+				'url':'/api/orderController/answerOrder',
+				type:'POST',
+				contentType:'application/json',
+				dataType: 'json',
+				data:'{"answerCode": "' + order + '", "appVersion": "", "orderSource": "dzsd4112100110020002", "orderType": "dzsd4112100110010005", "payType":"dzsd4112100110040002", "romoteIP": "", "serveIP": "", "signs": [' + formArr.join(",") + '],"zoo": {"key": "tesetkey","token": "' + token() + '"}}',
+				success:function(resp){
+					if(resp.status == 1){
+						if (typeof WeixinJSBridge == "undefined") {
+							if (document.addEventListener) {
+								document.addEventListener('WeixinJSBridgeReady', function(){
+									orderPay(resp.wechatH5PayResponse)
+								}, false);
+							} else if (document.attachEvent) {
+								document.attachEvent('WeixinJSBridgeReady', function(){
+									orderPay(resp.wechatH5PayResponse)
+								});
+								document.attachEvent('onWeixinJSBridgeReady', function(){
+									orderPay(resp.wechatH5PayResponse)
+								});
+							}
+						} else {
+							orderPay(resp.wechatH5PayResponse);
 						}
-					} else {
-						onBridgeReady(resp.wechatH5PayResponse);
 					}
 				}
-			}
-		});
+			});
+		}
     	
     });
+ 	function orderPay(resp){
+    	WeixinJSBridge.invoke('getBrandWCPayRequest', {
+			"appId":resp.appId,
+			"timeStamp":resp.timeStamp,
+			"nonceStr":resp.nonceStr,
+			"package":"prepay_id=" + resp.prepay_id,
+			"signType":resp.signType,
+			"paySign":resp.paySign
+		}, function(result) {
+			if (result.err_msg == "get_brand_wcpay_request:ok") {
+				isSubmit = true;
+				window.location.href = 'reg_succ.html?app=1&token=' + token();
+			}else{
+				isSubmit = true;
+				tost('支付失败，请重新支付！');
+			}
+		});
+    }
 });
 </script>
 </body>

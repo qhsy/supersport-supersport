@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>2016 Beijing Throwdown</title>
+<title></title>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta name="format-detection" content="telephone=no">
 <meta name="format-detection" content="email=no" >
@@ -13,102 +13,8 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<header class="header">
-		<div class="logo"><img src="css/img/LOGO@2x.png" alt=""></div>
-		<div class="time">地点：北京市昌平区体育馆<br>时间：2016年12月18日</div>
-		<div class="title"><img src="css/img/kill@2x.png" alt=""></div>
-	</header>
-	<section class="section">
-		<dl class="con">
-			<dt>
-				参赛资格
-			</dt>
-			<dd>
-				限制名额：200名参赛运动员包含团队赛运动员
-			</dd>
-		</dl>
-		<dl class="con">
-			<dt>
-				比赛规则<em>比赛时间为一天，设置3个组 。</em>
-			</dt>
-			<dd>
-				第1组：男女个人标准组（Rx）<br>
-				第2组：男女个人业余组（Scale）<br>
-				第3组：团体组标准组（Rx）(2男2女,最多10组)
-			</dd>
-			<dd class="small">
-				采用积分制，决出各组前三名。（个人和团体可以同时参与）
-			</dd>
-		</dl>
-		<dl class="con">
-			<dt>
-				比赛项目标准视频
-			</dt>
-			<dd>
-				请下载果冻体育APP查看
-			</dd>
-		</dl>
-		<ul class="invited">
-			<li>
-				<em>主办方：</em>Great Wall CrossFit、北京昌平体育总局
-
-			</li>
-			<li>
-				<em>战略合作伙伴：</em>果冻体育APP
-			</li>
-		</ul>
-		<p class="about">
-			这次不仅仅是一场比赛，更像一个体现CrossFit 精神的嘉年华，一个属于中国CrossFit爱好者，运动健身爱好者的盛会，一个可以让不同级别、不同年龄、不同地区的选手来到一起展现自我的舞台。
-		</p>
-		<a href="javascript:;" class="btn">我要参赛<span>I want to compete</span></a>
-	</section>
-<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 <script>
-function queryUrl(name){
-	var url = location.search;
-	var request = '';
-
-	if (url.indexOf("?") != -1) {
-		var str = url.substr(1);
-		var result = str.split("&");
-		for (var i = 0; i < result.length; i++) {
-			var arr = result[i].split("=");
-			if(arr[0] == name){
-				request = unescape(arr[1]);
-			}
-		}
-	}
-	return request;
-}
-function callbackActSignUp(){
-	var userAgent = navigator.userAgent;
-	if(userAgent.indexOf('Android') != -1){
-		javascript:android.callbackActSignUp();
-	} else {
-		callWebTitle('11');
-	}
-	
-}
-function callWebTitle(val){
-	var userAgent = navigator.userAgent;
-	if(userAgent.indexOf('Android') != -1){
-		javascript:android.callWebTitle(val);
-	} else {
-		window.webkit.messageHandlers.callbackActSignUp.postMessage(val);
-	}
-	
-}
-//wxec842da73ebe11a4
-//wxfd44c999a0475e56
-$(function(){
-	$('.btn').on('click',function(){
-		if(queryUrl('app')){
-			callbackActSignUp()
-		}else{
-			window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=http://beta-sportcloud.ntw.srnpr.com/webjars/throwdown/register.html&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect'
-		}
-	});
-});
+	window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd44c999a0475e56&redirect_uri=http://api-001.sport.bigtiyu.com/webcdn/throwdown/container.html&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect'
 </script>
 </body>
 </html>

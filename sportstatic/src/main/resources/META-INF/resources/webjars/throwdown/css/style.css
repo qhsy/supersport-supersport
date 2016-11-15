@@ -21,7 +21,7 @@ a:hover {text-decoration:none;}
 .header{width: 100%; height: 3.93rem; overflow: auto; background: url(img/BG2.jpg) no-repeat left top; background-size: cover; position: relative;}
 .header .logo{width: 2.9rem; height: 1.58rem; margin: 0.55rem auto 0;}
 .header .passport{width: 0.9rem; height: 0.3rem; line-height: 0.3rem; position: absolute; right: 0; top: 0;}
-.header .time{width: 2.2rem; margin: auto; padding: 0.16rem 0 0.45rem; font-size: 0.18rem; color: #fff; line-height: 0.28rem;}
+.header .time{width: 2.2rem; margin: auto; padding: 0.16rem 0 0rem; font-size: 0.18rem; color: #fff; line-height: 0.28rem;}
 .header .title{width: 2.9rem; margin: auto;}
 .section{width: 100%; overflow: auto; background: url(img/BG1.jpg) no-repeat left top; background-size: cover;}
 .section .con{padding: 0 0 0.2rem 0.21rem;}
@@ -34,7 +34,9 @@ a:hover {text-decoration:none;}
 .section .about{padding: 0.23rem 0.2rem 0 0.21rem; color: #BDBDBD; text-align: justify;}
 .section .btn{width: 1.6rem; height: 0.5rem; padding: 0.05rem 0 0; display: block; box-sizing: border-box; margin: 0.36rem auto; background: rgba(255,0,0,0.56); border-radius: 0.04rem; text-align: center; line-height: 0.24rem; color: #fff; font-size: 0.2rem;}
 .section .btn span{font-size: 0.12rem; display: block; text-align: center; line-height: 0.16rem;}
-
+.success{width: 0.85rem; height: 0.3rem; display: block; margin: 0.15rem auto; background: rgba(255,255,255,0.8); line-height: 0.3rem; text-align: center; font-size: 0.12rem; color: #3E3E3E; border-radius: 0.04rem;}
+.result li{margin-bottom: 0.1rem;}
+.no-data{width: 100%; height: 100%; padding: 2rem 0; font-size: 0.20rem; text-align: center; color: #fff;}
 /* Register Style */
 .register{}
 .register .h1{padding-top: 0.3rem; font-size: 0.17rem; color: #212121; line-height: 0.2rem; text-align: center; font-family: "PingFangSC-Medium";}
@@ -49,6 +51,7 @@ a:hover {text-decoration:none;}
 .register .ipt.w100{width: 0.68rem;}
 .register .ipt.w203{width: 1.74rem;}
 .register .ipt.w208{width: 1.74rem; margin-left: 0.04rem;}
+.register .ipt.w196{width: 1.96rem;}
 .register .ipt::-webkit-input-placeholder{color: #889399;}
 .register .attr, .register .photo{padding-right: 0.1rem; float: left; font-size: 0.17rem; color: #212121;}
 .register .attr em, .register .photo em{width: 10px; height: 0.4rem; float: left; margin-left: 0.28rem; text-align: center; color: #F8800A; font-size: 14px;}
@@ -81,7 +84,8 @@ a:hover {text-decoration:none;}
 .register .status .text span{display: block; font-size: 0.14rem; line-height: 0.2rem;}
 .register .status .btn{width: 1.9rem; height: 0.58rem; padding: 0.08rem 0 ; box-sizing: border-box; margin: auto; display: block; border-radius: 0.04rem; background: #F8800A; line-height: 0.24rem; color: #fff; text-align: center; font-size: 0.2rem;}
 .register .status .btn em{display: block; font-size: 9px; font-family: Arial; line-height: 0.14rem; white-space: nowrap;}
-.copy{width: 100%; padding: 0.35rem 0 0; font-size: 0.12rem; line-height: 0.17rem; color: #BDBDBD; text-align: center;}
+.register .teamname{padding: 0.1rem 0; border-top: #F4F4F4 10px solid;}
+.copy{width: 100%; padding: 0.35rem 0 0.1rem; font-size: 0.12rem; line-height: 0.17rem; color: #BDBDBD; text-align: center;}
 
 /* Succeed Style */
 .succeed{}
