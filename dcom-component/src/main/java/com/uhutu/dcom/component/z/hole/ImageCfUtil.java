@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -300,18 +301,16 @@ public class ImageCfUtil {
 			}
 			
 			 /*所属box*/
-	        ImageUtil.drawColorStr(box, g, Font.BOLD, 56,new Color(255, 0, 31), boxx, 592);
+	        ImageUtil.drawColorStr(box, g, Font.BOLD, 56,new Color(255, 0, 31), boxx, 612);
 			
 			/*活动icon*/
 			ImageUtil.drawImageCf("/watch/qrcode.png", g, alpha, 294, 902,160, 160);
 			
 			g.dispose();
 			
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-			// 生成图片
-			ImageIO.write(buffImg, "JPG", bos);
+			File file = new File("C:/Users/逄小帅/Desktop/watch/watch.jpg");
 			
-			webUploadResult = new WebUploadSupport().remoteUpload("crossfit", "watch.jpg", bos.toByteArray());
+			ImageIO.write(buffImg, "JPG", file);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
