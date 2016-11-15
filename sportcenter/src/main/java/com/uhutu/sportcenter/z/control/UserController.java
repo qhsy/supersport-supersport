@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.uhutu.dcom.component.z.hole.ImageCfUtil;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.APiStartPageInput;
 import com.uhutu.sportcenter.z.input.ApiAttendListInput;
@@ -59,7 +58,6 @@ import com.uhutu.sportcenter.z.result.ApiUserRegSignResult;
 import com.uhutu.sportcenter.z.result.ApiUserResetPwdResult;
 import com.uhutu.sportcenter.z.result.ApiVerifyNickNameResult;
 import com.uhutu.sportcenter.z.result.ApiVersionInfoResult;
-import com.uhutu.zoocom.file.FileUploadResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -83,13 +81,7 @@ public class UserController {
 	@ApiOperation(value = "app版本升级提示接口", notes = "版本升级")
 	public ApiVersionInfoResult versionInfo(@RequestBody ApiVersionInfoInput input) {
 		
-		FileUploadResult result =ImageCfUtil.makeImagePerson("于朋廷（Pino）", "Greatwall CrossFit", "个人标准组", "0001", "http://img-cdn.bigtiyu.com/wsc/sport/2755a/s-960-1280/a115df77ffc64c8595106a33535b4326.jpg");
-
-		ApiVersionInfoResult versionResult = new ApiVersionInfoResult();
-		
-		versionResult.setError(result.getFileUrl());
-		
-		return versionResult;
+		return apiFactory.getApiVersionInfo().api(input);
 
 	}
 
