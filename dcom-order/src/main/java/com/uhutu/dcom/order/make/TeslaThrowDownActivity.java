@@ -82,73 +82,80 @@ public class TeslaThrowDownActivity extends TeslaTopOrderMake {
 	 *            参赛信息
 	 */
 	private String checkSign(String userCode, TeslaXOrder teslaOrder) {
-		String result = "";
-		List<String> li = new CrossFitSupport().getAlSignType();
-		for (int i = 0; i < li.size(); i++) {
-			if (teslaOrder.getSigns().get(0).getType().equals("dzsd4107100510020001") && "single".equals(li.get(i))) {
-				result = "个人标准组（Rx）已报满，请持续关注本报名状态！~";
-			} else if (teslaOrder.getSigns().get(0).getType().equals("dzsd4107100510020002")
-					&& "single".equals(li.get(i))) {
-				result = "个人业余组（Scale）已报满，请持续关注本报名状态！~";
-			} else if (teslaOrder.getSigns().get(0).getType().equals("dzsd4107100510020003")
-					&& "group".equals(li.get(i))) {
-				result = "团队标准组（Rx）已报满，请持续关注本报名状态！~";
-			}
-		}
-		if (StringUtils.isBlank(result)) {
-			result = checkEmail(teslaOrder);
-		}
-		if (StringUtils.isBlank(result)) {
-			if (teslaOrder.getSigns() != null && teslaOrder.getSigns().size() > 0) {
-				List<UcSignInfo> signs = JdbcHelper.queryForList(UcSignInfo.class, "", "",
-						" status='dzsd4112100110030002' and user_code=:userCode ",
-						MapHelper.initMap("userCode", teslaOrder.getOrderInfo().getBuyerCode()));
-				for (int i = 0; i < signs.size(); i++) {
-					if (GRO_PRO.equals(signs.get(i).getType())
-							&& teslaOrder.getSigns().get(0).getType().equals(signs.get(i).getType())) {
-						result = TopHelper.upInfo(81120006);
-						break;
-					} else if (PER_SPA.equals(signs.get(i).getType())
-							&& (PER_SPA.equals(teslaOrder.getSigns().get(0).getType())
-									|| PER_PRO.equals(teslaOrder.getSigns().get(0).getType()))) {
-						result = TopHelper.upInfo(81120005);
-						break;
-					} else if (PER_PRO.equals(signs.get(i).getType())
-							&& (PER_SPA.equals(teslaOrder.getSigns().get(0).getType())
-									|| PER_PRO.equals(teslaOrder.getSigns().get(0).getType()))) {
-						result = TopHelper.upInfo(81120004);
-						break;
-					}
+		
+		synchronized (TeslaThrowDownActivity.class) {			
+
+			String result = "";
+			List<String> li = new CrossFitSupport().getAlSignType();
+			for (int i = 0; i < li.size(); i++) {
+				if (teslaOrder.getSigns().get(0).getType().equals("dzsd4107100510020001") && "single".equals(li.get(i))) {
+					result = "个人标准组（Rx）已报满，请持续关注本报名状态！~";
+				} else if (teslaOrder.getSigns().get(0).getType().equals("dzsd4107100510020002")
+						&& "single".equals(li.get(i))) {
+					result = "个人业余组（Scale）已报满，请持续关注本报名状态！~";
+				} else if (teslaOrder.getSigns().get(0).getType().equals("dzsd4107100510020003")
+						&& "group".equals(li.get(i))) {
+					result = "团队标准组（Rx）已报满，请持续关注本报名状态！~";
 				}
-				if (StringUtils.isBlank(result)) {
-					int simpleNum = JdbcHelper.count(UcSignInfo.class, "", new MDataMap()) + 1;
-					int groupNum = JdbcHelper.count(UcSignInfo.class, " type ='dzsd4107100510020003' ", new MDataMap())
-							+ 1;
-					for (int j = 0; j < teslaOrder.getSigns().size(); j++) {
-						UcSignInfo signInfo = teslaOrder.getSigns().get(j);
-						teslaOrder.getSigns().get(j).setStatus("dzsd4112100110030001");
-						teslaOrder.getSigns().get(j).setActivityName("2016 Beijing CrossFit ThrowDown");
-						if (!"dzsd4112100110020001".equals(teslaOrder.getOrderInfo().getOrderSource())) {
-							WechatAccessTokenResponse tokenResponse = (WechatAccessTokenResponse) ((PayGateProcess) ApplicationSupport
-									.getBean("payGateProcess")).process(PayProcessEnum.WECHAT_TOKEN, null,
-											new MDataMap());
-							teslaOrder.getSigns().get(j).setPhoto(WebClientComponent.wechatMediaDownLoad("crossfit",
-									tokenResponse.getAccess_token(), signInfo.getPhoto()).getFileUrl());
-						}
-						if (PER_PRO.equals(signInfo.getType()) || PER_SPA.equals(signInfo.getType())) {
-							teslaOrder.getSigns().get(j).setCode(new DecimalFormat("0000").format(simpleNum));
-						} else {
-							teslaOrder.getSigns().get(j).setCode(new DecimalFormat("0000").format(simpleNum + j));
-							teslaOrder.getSigns().get(j).setGroupCode(new DecimalFormat("000000").format(groupNum));
-						}
-						teslaOrder.getDetail().get(0).setProductCode(signInfo.getCode());
-					}
-				}
-			} else {
-				result = TopHelper.upInfo(81120003);
 			}
+			if (StringUtils.isBlank(result)) {
+				result = checkEmail(teslaOrder);
+			}
+			if (StringUtils.isBlank(result)) {
+				if (teslaOrder.getSigns() != null && teslaOrder.getSigns().size() > 0) {
+					List<UcSignInfo> signs = JdbcHelper.queryForList(UcSignInfo.class, "", "",
+							" status='dzsd4112100110030002' and user_code=:userCode ",
+							MapHelper.initMap("userCode", teslaOrder.getOrderInfo().getBuyerCode()));
+					for (int i = 0; i < signs.size(); i++) {
+						if (GRO_PRO.equals(signs.get(i).getType())
+								&& teslaOrder.getSigns().get(0).getType().equals(signs.get(i).getType())) {
+							result = TopHelper.upInfo(81120006);
+							break;
+						} else if (PER_SPA.equals(signs.get(i).getType())
+								&& (PER_SPA.equals(teslaOrder.getSigns().get(0).getType())
+										|| PER_PRO.equals(teslaOrder.getSigns().get(0).getType()))) {
+							result = TopHelper.upInfo(81120005);
+							break;
+						} else if (PER_PRO.equals(signs.get(i).getType())
+								&& (PER_SPA.equals(teslaOrder.getSigns().get(0).getType())
+										|| PER_PRO.equals(teslaOrder.getSigns().get(0).getType()))) {
+							result = TopHelper.upInfo(81120004);
+							break;
+						}
+					}
+					if (StringUtils.isBlank(result)) {
+						int simpleNum = JdbcHelper.count(UcSignInfo.class, "", new MDataMap()) + 1;
+						int groupNum = JdbcHelper.count(UcSignInfo.class, " type ='dzsd4107100510020003' ", new MDataMap())
+								+ 1;
+						for (int j = 0; j < teslaOrder.getSigns().size(); j++) {
+							UcSignInfo signInfo = teslaOrder.getSigns().get(j);
+							teslaOrder.getSigns().get(j).setStatus("dzsd4112100110030001");
+							teslaOrder.getSigns().get(j).setActivityName("2016 Beijing CrossFit ThrowDown");
+							if (!"dzsd4112100110020001".equals(teslaOrder.getOrderInfo().getOrderSource())) {
+								WechatAccessTokenResponse tokenResponse = (WechatAccessTokenResponse) ((PayGateProcess) ApplicationSupport
+										.getBean("payGateProcess")).process(PayProcessEnum.WECHAT_TOKEN, null,
+												new MDataMap());
+								teslaOrder.getSigns().get(j).setPhoto(WebClientComponent.wechatMediaDownLoad("crossfit",
+										tokenResponse.getAccess_token(), signInfo.getPhoto()).getFileUrl());
+							}
+							if (PER_PRO.equals(signInfo.getType()) || PER_SPA.equals(signInfo.getType())) {
+								teslaOrder.getSigns().get(j).setCode(new DecimalFormat("0000").format(simpleNum));
+							} else {
+								teslaOrder.getSigns().get(j).setCode(new DecimalFormat("0000").format(simpleNum + j));
+								teslaOrder.getSigns().get(j).setGroupCode(new DecimalFormat("000000").format(groupNum));
+							}
+							teslaOrder.getDetail().get(0).setProductCode(signInfo.getCode());
+						}
+					}
+				} else {
+					result = TopHelper.upInfo(81120003);
+				}
+			}
+			
+			return result;
+			
 		}
-		return result;
+		
 	}
 
 	/**
