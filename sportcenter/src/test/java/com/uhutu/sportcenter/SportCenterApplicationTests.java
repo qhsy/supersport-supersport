@@ -7,11 +7,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.uhutu.sportcenter.SportCenterApplication;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SportCenterApplication.class)
 public class SportCenterApplicationTests {
 
-	@Test
+	
 	public void contextLoads() {
 	}
 
