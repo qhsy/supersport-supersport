@@ -60,6 +60,7 @@ public class CnContentBasicinfoFuncAdd extends RootFunc {
 				input.getDataMap().put("coverwh", thumb.getSourceWidth() + "*" + thumb.getSourceHeight());
 			}
 		}
+		input.getDataMap().put("mark", "0");
 		JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), input.getDataMap());
 		if ("dzsd4107100110030001".equals(map.get("content_type"))
 				|| "dzsd4107100110030002".equals(map.get("content_type"))
