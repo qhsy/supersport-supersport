@@ -368,6 +368,10 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pe/com_uhutu_dcom_content_z_page_ContentDetailForProductTitlePage?u_za=[[data:za]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071082" operateName="详情" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_ContentHrefDetailPage?u_code=[[data:code]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
