@@ -24,11 +24,11 @@ public class CnContentDetail extends BaseEntity {
 	private String code;
 
 	@ZooData(name = "商品标题", verify = { DefineWebVerify.Max_Length + "=20" }, sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Add + "=0" })
+			DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Grid + "=0" })
 	@Column(length = 100)
 	private String title;
 
-	@ZooData(name = "第三方链接", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "第三方链接", require = "1", sort = { DefineWebPage.Page_Query + "=0" })
 	private String videoUrl;
 
 	@ZooData(name = "视频封面(1080*810)", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
