@@ -67,6 +67,7 @@
 		<item code="dzpi4514100410011003" nodeName="专题达人栏目" parentCode="dzpi451410041001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnThemeDetailRecommPage" pageIcon="glyphicon-thumbs-up" />
 		<item code="dzpi451410041002" nodeName="值得看管理" parentCode="dzpi45141004" />
 		<item code="dzpi4514100410021001" nodeName="分类管理" parentCode="dzpi451410041002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnContentTypePage" pageIcon="glyphicon-asterisk" />
+		<item code="dzpi4514100410021002" nodeName="值得看管理" parentCode="dzpi451410041002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnContentWorthPage" pageIcon="glyphicon-asterisk" />
 		<item code="dzpi45141005" nodeName="用户相关" parentCode="" />
 		<item code="dzpi451410050001" nodeName="用户管理" parentCode="dzpi45141005" />
 		<item code="dzpi4514100500010001" nodeName="注册用户信息" parentCode="dzpi451410050001" pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UserInfoOperPage" pageIcon="glyphicon-th" />
