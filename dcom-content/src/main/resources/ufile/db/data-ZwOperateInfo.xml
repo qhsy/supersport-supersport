@@ -372,6 +372,15 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_ContentHrefDetailPage?u_code=[[data:code]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071083" operateName="内容列表" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_contentBasicTypePage?u_type=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071084" operateName="删除"
+			operateFunc="com.uhutu.dcom.content.func.contentBasicTypePageFuncDelete"
+			operateType="js"
+			operateLink="zstatic_operate.ope_pd('[[struct:pageUnique]]','[[data:za]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>

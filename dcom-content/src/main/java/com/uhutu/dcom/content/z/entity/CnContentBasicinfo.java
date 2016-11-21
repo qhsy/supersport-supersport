@@ -74,6 +74,10 @@ public class CnContentBasicinfo extends BaseEntity {
 
 	@ZooData(name = "业务类型编号：运动时刻 文章")
 	private String busiType;
+	
+	@ZooData(name = "内容分类")
+	@Column(columnDefinition = "longtext")
+	private String type;
 
 	@ApiModelProperty(name = "展示类型", notes = " 01:展示图文", example = "01")
 	@ZooData(name = "内容类型：感想、视频、图片")
@@ -191,6 +195,14 @@ public class CnContentBasicinfo extends BaseEntity {
 
 	public void setLocaltionName(String localtionName) {
 		this.localtionName = localtionName;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getBusiType() {
