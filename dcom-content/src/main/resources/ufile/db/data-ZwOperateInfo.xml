@@ -381,6 +381,15 @@
 			operateType="js"
 			operateLink="zstatic_operate.ope_pd('[[struct:pageUnique]]','[[data:za]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071085" operateName="关联内容" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_CnContentBasiTypePage?u_code=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071086" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.CnContentBasiTypePageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
