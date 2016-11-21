@@ -1,13 +1,10 @@
 package com.uhutu.dcom.content.z.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
-import com.uhutu.zoocom.define.DefineWebPage;
-import com.uhutu.zoocom.define.DefineWebSort;
 import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
@@ -20,48 +17,26 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class CnContentWorth extends BaseEntity {
 
-	@ZooData(name = "栏目名称", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process,
-			DefineWebPage.Page_Edit + "=" + DefineWebSort.Sort_Process }, inc = DefineWebInc.Url_Param + "=itemCode")
-	private String itemCode;
-
-	@ZooData(value = "栏目类型", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Add + "=0",
-			DefineWebPage.Page_Edit + "=0" }, element = DefineWebElement.Select, inc = {
-					DefineWebInc.System_Define + "=dzsd410710011006" })
-	private String itemType;
+	@ZooData(name = "内容分类", inc = {
+			DefineWebInc.Web_Component + "=dzcw410710010016" }, element = DefineWebElement.Model)
+	private String type;
 
 	@ZooData(name = "内容", require = "1", element = DefineWebElement.Model, inc = {
-			DefineWebInc.Web_Component + "=dzcw410710010002" })
+			DefineWebInc.Web_Component + "=dzcw410710010010" })
 	private String contentCode;
-
-	@ZooData(name = "自定义标题", verify = { DefineWebVerify.Max_Length + "=50" })
-	@Column(length = 255)
-	private String title;
-
-	@ZooData(name = "自定义封面", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" }, comment = "两栏1:1:不低于540*540,两栏4:3:不低于540*405,三栏:不低于540*540")
-	private String cover;
 
 	@ZooData(name = "展示顺序(倒序)", require = "1", verify = { DefineWebVerify.Base_Number })
 	private int sort;
 
-	@ZooData(name = "开始时间", element = DefineWebElement.Datehms, require = "1", sort = {
-			DefineWebPage.Page_Query + "=0" })
-	private String startTime;
+	@ZooData(name = "标志", element = DefineWebElement.Select, inc = { DefineWebInc.System_Define + "=dzsd410710011010" })
+	private String mark;
 
-	@ZooData(name = "结束时间", element = DefineWebElement.Datehms, require = "1", sort = {
-			DefineWebPage.Page_Query + "=0" })
-	private String endTime;
-
-	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
-	private String remark;
-
-	public String getItemCode() {
-		return itemCode;
+	public String getType() {
+		return type;
 	}
 
-	public void setItemCode(String itemCode) {
-		this.itemCode = itemCode;
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getContentCode() {
@@ -76,56 +51,16 @@ public class CnContentWorth extends BaseEntity {
 		return sort;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public void setSort(int sort) {
 		this.sort = sort;
 	}
 
-	public String getItemType() {
-		return itemType;
+	public String getMark() {
+		return mark;
 	}
 
-	public void setItemType(String itemType) {
-		this.itemType = itemType;
-	}
-
-	public String getStartTime() {
-		return startTime;
-	}
-
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
-
-	public String getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
-	}
-
-	public String getRemark() {
-		return remark;
-	}
-
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-
-	public String getCover() {
-		return cover;
-	}
-
-	public void setCover(String cover) {
-		this.cover = cover;
+	public void setMark(String mark) {
+		this.mark = mark;
 	}
 
 }
