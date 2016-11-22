@@ -3,7 +3,6 @@ package com.uhutu.sportcenter.z.result;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.uhutu.dcom.content.z.entity.CnContentType;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForTypeApi;
 import com.uhutu.zoocom.root.RootApiResult;
 
@@ -17,24 +16,16 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 @ApiModel
-public class ApiContentTypeResult extends RootApiResult {
+public class ApiContentWorthResult extends RootApiResult {
 
-	@ApiModelProperty(value = "分类信息", notes = "分类信息")
-	List<CnContentType> types = new ArrayList<CnContentType>();
+	@ApiModelProperty(value = "分类名称", notes = "分类名称")
+	private String name;
 
 	@ApiModelProperty(name = "运动时刻列表", value = "运动时刻列表", example = "")
 	private List<ContentBasicinfoForTypeApi> moments = new ArrayList<ContentBasicinfoForTypeApi>();
 
 	@ApiModelProperty(value = "是否存在下一页", notes = "是否存在下一页")
 	private boolean nextFlag = false;
-
-	public List<CnContentType> getTypes() {
-		return types;
-	}
-
-	public void setTypes(List<CnContentType> types) {
-		this.types = types;
-	}
 
 	public List<ContentBasicinfoForTypeApi> getMoments() {
 		return moments;
@@ -50,6 +41,14 @@ public class ApiContentTypeResult extends RootApiResult {
 
 	public void setNextFlag(boolean nextFlag) {
 		this.nextFlag = nextFlag;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

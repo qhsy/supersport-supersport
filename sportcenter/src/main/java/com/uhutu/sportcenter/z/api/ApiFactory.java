@@ -42,6 +42,7 @@ import com.uhutu.sportcenter.z.api.content.ApiContentPhotosDetailInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentReadCount;
 import com.uhutu.sportcenter.z.api.content.ApiContentRecommInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentType;
+import com.uhutu.sportcenter.z.api.content.ApiContentWorth;
 import com.uhutu.sportcenter.z.api.content.ApiOperContent;
 import com.uhutu.sportcenter.z.api.content.ApiOwnSportMoment;
 import com.uhutu.sportcenter.z.api.content.ApiPicPasterList;
@@ -476,7 +477,15 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiContentType apiContentType;
+
+	@Autowired
+	private ApiContentWorth apiContentWorth;
 	
+
+	public ApiContentWorth getApiContentWorth() {
+		return apiContentWorth;
+	}
+
 	public ApiContentType getApiContentType() {
 		return apiContentType;
 	}

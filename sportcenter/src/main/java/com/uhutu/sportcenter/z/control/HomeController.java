@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiContentTypeInput;
+import com.uhutu.sportcenter.z.input.ApiContentWorthInput;
 import com.uhutu.sportcenter.z.input.ApiExpertChatInput;
 import com.uhutu.sportcenter.z.input.ApiHomePageSecondInput;
 import com.uhutu.sportcenter.z.input.ApiHotTopicInput;
@@ -16,6 +17,7 @@ import com.uhutu.sportcenter.z.input.ApiIosRenovateInput;
 import com.uhutu.sportcenter.z.input.ApiStartUpInput;
 import com.uhutu.sportcenter.z.input.ApiWonderfulVideoInput;
 import com.uhutu.sportcenter.z.result.ApiContentTypeResult;
+import com.uhutu.sportcenter.z.result.ApiContentWorthResult;
 import com.uhutu.sportcenter.z.result.ApiExpertChatResult;
 import com.uhutu.sportcenter.z.result.ApiHomePageSecondResult;
 import com.uhutu.sportcenter.z.result.ApiHotTopicResult;
@@ -98,6 +100,15 @@ public class HomeController {
 	public ApiContentTypeResult contentType(@RequestBody ApiContentTypeInput input) {
 
 		return apiFactory.getApiContentType().api(input);
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/contentWorth", method = RequestMethod.POST)
+	@ApiOperation(value = "分类详情页", notes = "分类详情页")
+	public ApiContentWorthResult contentWorth(@RequestBody ApiContentWorthInput input) {
+
+		return apiFactory.getApiContentWorth().api(input);
 
 	}
 
