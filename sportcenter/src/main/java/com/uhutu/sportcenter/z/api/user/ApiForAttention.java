@@ -37,18 +37,29 @@ public class ApiForAttention extends RootApiToken<ApiForAttentionInput, ApiForAt
 		UcAttentionInfo info = userServiceFactory.getAttentionInfoService()
 				.queryByBothCode(upUserCode(), inputParam.getUserCode());
 		if(info==null&&"1".equals(inputParam.getFlag())){
-			UcAttentionInfo attentionInfo = new UcAttentionInfo();
-			attentionInfo.setAttention(upUserCode());
-			attentionInfo.setBeAttention(inputParam.getUserCode());
-			attentionInfo.setStatus(inputParam.getFlag());
-			attentionInfo.setZc(new Date());
-			userServiceFactory.getAttentionInfoService().save(attentionInfo);
-			saveMsgAttend(attentionInfo);
-			sendPushMsg(attentionInfo.getAttention(), attentionInfo.getBeAttention());
-		}else if(info!=null&&!info.getStatus().equals(inputParam.getFlag())) {
+			info = new UcAttentionInfo();
+			info.setAttention(upUserCode());
+			info.setBeAttention(inputParam.getUserCode());
 			info.setStatus(inputParam.getFlag());
+			info.setZc(new Date());
+			userServiceFactory.getAttentionInfoService().save(info);
+		}else if(info!=null&&!info.getStatus().equals(inputParam.getFlag())) {
+			
+			info.setStatus(inputParam.getFlag());
+			
 			JdbcHelper.update(info, "status", "attention,be_attention");
+			
 		}
+		
+		/*关注用户*/
+		if("1".equals(inputParam.getFlag())){
+			
+			saveMsgAttend(info);
+			
+			sendPushMsg(info.getAttention(), info.getBeAttention());
+			
+		}
+		
 		return new ApiForAttentionResult();
 	}
 	
