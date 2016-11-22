@@ -41,6 +41,7 @@ import com.uhutu.sportcenter.z.api.content.ApiContentDetailProducts;
 import com.uhutu.sportcenter.z.api.content.ApiContentPhotosDetailInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentReadCount;
 import com.uhutu.sportcenter.z.api.content.ApiContentRecommInfo;
+import com.uhutu.sportcenter.z.api.content.ApiContentType;
 import com.uhutu.sportcenter.z.api.content.ApiOperContent;
 import com.uhutu.sportcenter.z.api.content.ApiOwnSportMoment;
 import com.uhutu.sportcenter.z.api.content.ApiPicPasterList;
@@ -466,14 +467,20 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiSignPhoto apiSignPhoto;
-	
+
 	@Autowired
 	private ApiRefreshCrossfit apiRefreshCrossfit;
-	
+
 	@Autowired
 	private ApiForWatchCard apiForWatchCard;
+
+	@Autowired
+	private ApiContentType apiContentType;
 	
-	
+	public ApiContentType getApiContentType() {
+		return apiContentType;
+	}
+
 	public ApiForWatchCard getApiForWatchCard() {
 		return apiForWatchCard;
 	}

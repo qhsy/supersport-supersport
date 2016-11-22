@@ -22,6 +22,10 @@ public class CnContentType extends BaseEntity {
 	@ZooData(name = "分类名称", require = "1", verify = { DefineWebVerify.Max_Length + "=20" })
 	private String name;
 
+	@ZooData(name = "图标", element = DefineWebElement.Upload, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	private String cover;
+	
 	@ZooData(name = "顺序(倒序)", require = "1", verify = { DefineWebVerify.Base_Number })
 	private int sort;
 
@@ -58,6 +62,14 @@ public class CnContentType extends BaseEntity {
 
 	public void setSort(int sort) {
 		this.sort = sort;
+	}
+
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 
 }
