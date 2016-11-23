@@ -44,6 +44,9 @@ public class LiveDetailInfo{
 	
 	@ApiModelProperty(value = "时长")
 	private int length;
+	
+	@ApiModelProperty(value = "标签名称")
+	private String tagName;
 
 	public UserBasicInfo getUserBasicInfo() {
 		return userBasicInfo;
@@ -139,6 +142,14 @@ public class LiveDetailInfo{
 
 	public void setChatCode(String chatCode) {
 		this.chatCode = chatCode;
+	}
+
+	public String getTagName() {
+		return tagName;
+	}
+
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
 	}
 	
 	

@@ -31,6 +31,9 @@ public class ApiStartLiveInput extends RootApiInput {
 
 	@ApiModelProperty(value = "维度")
 	private String latitude;
+	
+	@ApiModelProperty(value = "标签编码")
+	private String tagCode;
 
 	public String getCode() {
 		return code;
@@ -86,6 +89,14 @@ public class ApiStartLiveInput extends RootApiInput {
 
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
+	}
+
+	public String getTagCode() {
+		return tagCode;
+	}
+
+	public void setTagCode(String tagCode) {
+		this.tagCode = tagCode;
 	}
 
 }

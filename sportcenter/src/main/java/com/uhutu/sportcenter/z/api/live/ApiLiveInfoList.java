@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
+import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
@@ -33,6 +34,9 @@ public class ApiLiveInfoList extends RootApiBase<ApiLiveInfoListInput, ApiLiveIn
 	
 	@Autowired
 	private UserInfoSupport userInfoSupport;
+	
+	@Autowired
+	private ContentLabelServiceFactory labelServiceFactory;
 
 	@Override
 	protected ApiLiveInfoListResult process(ApiLiveInfoListInput input) {
@@ -66,6 +70,8 @@ public class ApiLiveInfoList extends RootApiBase<ApiLiveInfoListInput, ApiLiveIn
 				liveDetailInfo.setUserBasicInfo(initUserInfo(videoDetail.getUserCode()));
 				
 			}
+			
+			liveDetailInfo.setTagName(labelServiceFactory.getContentLabelService().initTagName(videoDetail.getTagCode()));
 			
 			result.getLiveDetailInfos().add(liveDetailInfo);
 			

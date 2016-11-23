@@ -1,5 +1,6 @@
 package com.uhutu.dcom.content.z.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
@@ -55,6 +56,10 @@ public class CnLiveVideoDetail extends BaseEntity {
 
 	@ZooData(name = "结束时间")
 	private String endTime;
+	
+	@ZooData(name = "标签编码")
+	@Column(columnDefinition = "longtext")
+	private String tagCode;
 
 	public String getCode() {
 		return code;
@@ -166,6 +171,14 @@ public class CnLiveVideoDetail extends BaseEntity {
 
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+
+	public String getTagCode() {
+		return tagCode;
+	}
+
+	public void setTagCode(String tagCode) {
+		this.tagCode = tagCode;
 	}
 
 }
