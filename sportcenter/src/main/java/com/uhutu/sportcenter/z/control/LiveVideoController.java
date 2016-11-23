@@ -11,9 +11,11 @@ import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiFinishLiveVideoInput;
 import com.uhutu.sportcenter.z.input.ApiLiveCreateRoomInput;
 import com.uhutu.sportcenter.z.input.ApiLiveInfoListInput;
+import com.uhutu.sportcenter.z.input.ApiLiveVideoHeartInput;
 import com.uhutu.sportcenter.z.result.ApiFinishLiveVideoResult;
 import com.uhutu.sportcenter.z.result.ApiLiveCreateRoomResult;
 import com.uhutu.sportcenter.z.result.ApiLiveInfoListResult;
+import com.uhutu.sportcenter.z.result.ApiLiveVideoHeartResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,6 +40,15 @@ public class LiveVideoController {
 	public ApiLiveCreateRoomResult liveCreateRoom(@RequestBody ApiLiveCreateRoomInput input) {
 
 		return apiFactory.getApiLiveCreateRoom().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/liveVideoHeart", method = RequestMethod.POST)
+	@ApiOperation(value = "直播心跳", notes = "直播心跳")
+	public ApiLiveVideoHeartResult liveVideoHeart(@RequestBody ApiLiveVideoHeartInput input) {
+
+		return apiFactory.getApiLiveVideoHeart().api(input);
 
 	}
 	
