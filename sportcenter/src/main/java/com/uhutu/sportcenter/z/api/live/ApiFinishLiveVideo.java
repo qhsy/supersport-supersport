@@ -28,7 +28,8 @@ public class ApiFinishLiveVideo extends RootApiToken<ApiFinishLiveVideoInput, Ap
 			detail.setLength(input.getLength());
 			detail.setWatch(input.getWatch());
 			detail.setPraise(input.getPraise());
-			JdbcHelper.update(detail, "length,watch,praise", "za");
+			detail.setStatus("0");
+			JdbcHelper.update(detail, "length,watch,praise,status", "za");
 		}
 		return result;
 
