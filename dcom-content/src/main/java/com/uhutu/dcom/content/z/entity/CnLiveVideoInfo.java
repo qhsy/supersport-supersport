@@ -1,7 +1,5 @@
 package com.uhutu.dcom.content.z.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -32,7 +30,7 @@ public class CnLiveVideoInfo extends BaseEntity {
 	private String status;
 
 	@ZooData(name = "创建时间")
-	private Date createTime;
+	private String createTime;
 
 	public String getCode() {
 		return code;
@@ -66,11 +64,11 @@ public class CnLiveVideoInfo extends BaseEntity {
 		this.status = status;
 	}
 
-	public Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
 

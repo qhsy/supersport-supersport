@@ -1,7 +1,5 @@
 package com.uhutu.dcom.content.z.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
@@ -53,10 +51,10 @@ public class CnLiveVideoDetail extends BaseEntity {
 	private int length;
 
 	@ZooData(name = "创建时间")
-	private Date createTime;
+	private String createTime;
 
 	@ZooData(name = "结束时间")
-	private Date endTime;
+	private String endTime;
 
 	public String getCode() {
 		return code;
@@ -154,19 +152,19 @@ public class CnLiveVideoDetail extends BaseEntity {
 		this.length = length;
 	}
 
-	public Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
 
-	public Date getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Date endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 
