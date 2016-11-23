@@ -11,6 +11,12 @@ public class LiveDetailInfo{
 	
 	@ApiModelProperty(value = "用户基本信息")
 	private UserBasicInfo userBasicInfo = new UserBasicInfo();
+	
+	@ApiModelProperty(value = "房间号")
+	private String code;
+	
+	@ApiModelProperty(value = "聊天室编号")
+	private String chatCode;
 
 	@ApiModelProperty(value = "直播封面")
 	private String cover;
