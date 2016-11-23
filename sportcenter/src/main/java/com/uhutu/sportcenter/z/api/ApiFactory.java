@@ -77,6 +77,7 @@ import com.uhutu.sportcenter.z.api.label.ApiForSearchLabels;
 import com.uhutu.sportcenter.z.api.label.ApiLabelRelList;
 import com.uhutu.sportcenter.z.api.label.ApiRecommLabelList;
 import com.uhutu.sportcenter.z.api.live.ApiLiveCreateRoom;
+import com.uhutu.sportcenter.z.api.live.ApiLiveInfoList;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinAccInfo;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinCharge;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinFlowInfo;
@@ -484,6 +485,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiLiveCreateRoom apiLiveCreateRoom;
+	
+	@Autowired
+	private ApiLiveInfoList apiLiveInfoList;
 	
 	public ApiLiveCreateRoom getApiLiveCreateRoom() {
 		return apiLiveCreateRoom;
@@ -955,6 +959,10 @@ public class ApiFactory {
 
 	public ApiRefreshCrossfit getApiRefreshCrossfit() {
 		return apiRefreshCrossfit;
+	}
+
+	public ApiLiveInfoList getApiLiveInfoList() {
+		return apiLiveInfoList;
 	}
 
 }

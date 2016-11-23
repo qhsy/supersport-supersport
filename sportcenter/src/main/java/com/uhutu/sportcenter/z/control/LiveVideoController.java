@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiLiveCreateRoomInput;
+import com.uhutu.sportcenter.z.input.ApiLiveInfoListInput;
 import com.uhutu.sportcenter.z.result.ApiLiveCreateRoomResult;
+import com.uhutu.sportcenter.z.result.ApiLiveInfoListResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,6 +36,15 @@ public class LiveVideoController {
 	public ApiLiveCreateRoomResult liveCreateRoom(@RequestBody ApiLiveCreateRoomInput input) {
 
 		return apiFactory.getApiLiveCreateRoom().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/liveViedos", method = RequestMethod.POST)
+	@ApiOperation(value = "直播视频列表", notes = "直播视频列表")
+	public ApiLiveInfoListResult liveViedos(@RequestBody ApiLiveInfoListInput input) {
+
+		return apiFactory.getApiLiveInfoList().api(input);
 
 	}
 
