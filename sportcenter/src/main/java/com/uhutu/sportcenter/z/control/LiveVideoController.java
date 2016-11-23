@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
+import com.uhutu.sportcenter.z.input.ApiFinishLiveVideoInput;
 import com.uhutu.sportcenter.z.input.ApiLiveCreateRoomInput;
 import com.uhutu.sportcenter.z.input.ApiLiveInfoListInput;
+import com.uhutu.sportcenter.z.result.ApiFinishLiveVideoResult;
 import com.uhutu.sportcenter.z.result.ApiLiveCreateRoomResult;
 import com.uhutu.sportcenter.z.result.ApiLiveInfoListResult;
 
@@ -36,6 +38,15 @@ public class LiveVideoController {
 	public ApiLiveCreateRoomResult liveCreateRoom(@RequestBody ApiLiveCreateRoomInput input) {
 
 		return apiFactory.getApiLiveCreateRoom().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/finishLiveVideo", method = RequestMethod.POST)
+	@ApiOperation(value = "结束直播", notes = "结束直播")
+	public ApiFinishLiveVideoResult finishLiveVideo(@RequestBody ApiFinishLiveVideoInput input) {
+
+		return apiFactory.getApiFinishLiveVideo().api(input);
 
 	}
 	

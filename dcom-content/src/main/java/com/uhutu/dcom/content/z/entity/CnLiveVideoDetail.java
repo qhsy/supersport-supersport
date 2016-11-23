@@ -29,7 +29,7 @@ public class CnLiveVideoDetail extends BaseEntity {
 	@ZooData(name = "标题")
 	private String title;
 
-	@ZooData(name = "状态 ")
+	@ZooData(name = "状态  1:正在直播,0:结束 ")
 	private String status;
 
 	@ZooData(name = "经度")
