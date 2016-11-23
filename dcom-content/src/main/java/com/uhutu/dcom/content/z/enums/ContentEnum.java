@@ -22,7 +22,11 @@ public enum ContentEnum {
 	
 	FAVOR_STATUS_YES("喜欢","1"),
 	
-	FAVOR_STATUS_NO("不喜欢","0");
+	FAVOR_STATUS_NO("不喜欢","0"),
+	
+	LIVEING("直播中","1"),
+	
+	LIVEEND("直播结束","0");
 
 	private String name = "";
 

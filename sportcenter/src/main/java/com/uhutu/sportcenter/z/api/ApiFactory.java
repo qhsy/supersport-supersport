@@ -80,6 +80,7 @@ import com.uhutu.sportcenter.z.api.live.ApiFinishLiveVideo;
 import com.uhutu.sportcenter.z.api.live.ApiLiveCreateRoom;
 import com.uhutu.sportcenter.z.api.live.ApiLiveInfoList;
 import com.uhutu.sportcenter.z.api.live.ApiLiveVideoHeart;
+import com.uhutu.sportcenter.z.api.live.ApiStartLive;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinAccInfo;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinCharge;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinFlowInfo;
@@ -495,7 +496,10 @@ public class ApiFactory {
 	private ApiFinishLiveVideo apiFinishLiveVideo;
 	
 	@Autowired
-	ApiLiveVideoHeart apiLiveVideoHeart;
+	private ApiLiveVideoHeart apiLiveVideoHeart;
+	
+	@Autowired
+	private ApiStartLive apiStartLive;
 	
 	public ApiLiveVideoHeart getApiLiveVideoHeart() {
 		return apiLiveVideoHeart;
@@ -979,6 +983,10 @@ public class ApiFactory {
 
 	public ApiLiveInfoList getApiLiveInfoList() {
 		return apiLiveInfoList;
+	}
+
+	public ApiStartLive getApiStartLive() {
+		return apiStartLive;
 	}
 
 }
