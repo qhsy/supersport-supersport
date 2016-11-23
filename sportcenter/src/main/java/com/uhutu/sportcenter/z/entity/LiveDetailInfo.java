@@ -124,6 +124,22 @@ public class LiveDetailInfo{
 	public void setLength(int length) {
 		this.length = length;
 	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getChatCode() {
+		return chatCode;
+	}
+
+	public void setChatCode(String chatCode) {
+		this.chatCode = chatCode;
+	}
 	
 	
 	
