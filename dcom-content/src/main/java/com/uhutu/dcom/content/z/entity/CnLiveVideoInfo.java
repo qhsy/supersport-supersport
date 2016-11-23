@@ -32,7 +32,7 @@ public class CnLiveVideoInfo extends BaseEntity {
 	private String status;
 
 	@ZooData(name = "创建时间")
-	private Date zu;
+	private Date createTime;
 
 	public String getCode() {
 		return code;
@@ -66,12 +66,12 @@ public class CnLiveVideoInfo extends BaseEntity {
 		this.status = status;
 	}
 
-	public Date getZu() {
-		return zu;
+	public Date getCreateTime() {
+		return createTime;
 	}
 
-	public void setZu(Date zu) {
-		this.zu = zu;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 }

@@ -1,11 +1,11 @@
 package com.uhutu.dcom.content.z.entity;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
-
-import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 直播副表
@@ -51,6 +51,12 @@ public class CnLiveVideoDetail extends BaseEntity {
 
 	@ZooData(name = "时长")
 	private int length;
+
+	@ZooData(name = "创建时间")
+	private Date createTime;
+
+	@ZooData(name = "结束时间")
+	private Date endTime;
 
 	public String getCode() {
 		return code;
@@ -146,6 +152,22 @@ public class CnLiveVideoDetail extends BaseEntity {
 
 	public void setLength(int length) {
 		this.length = length;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
 	}
 
 }
