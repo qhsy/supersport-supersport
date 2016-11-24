@@ -42,7 +42,9 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 		
 		if(count > 0){
 			
-			startLiveResult.inError(-1, "此房间正在直播中");
+			startLiveResult.setError("此房间正在直播中");
+			
+			startLiveResult.setStatus(-1);
 			
 		}else{
 			
