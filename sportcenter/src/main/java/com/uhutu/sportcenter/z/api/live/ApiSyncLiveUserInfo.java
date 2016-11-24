@@ -64,7 +64,7 @@ public class ApiSyncLiveUserInfo extends RootApiBase<ApiSyncLiveUserInfoInput, A
 					
 					String userSig = tecentSigSupport.upSigCodeByUserCode(userInfoExt.getUserCode());
 					
-					String url = "https://console.tim.qq.com/v4/profile/portrait_set?usersig="+userSig+"&identifier="+settingsDcomUser.getTlsTecentAdmin()+"&sdkappid="+settingsDcomUser.getTlsSkdAppid()+"&random=99999999&contenttype=json";
+					String url = "https://console.tim.qq.com/v4/profile/portrait_set?usersig="+userSig+"&identifier="+userInfoExt.getUserCode()+"&sdkappid="+settingsDcomUser.getTlsSkdAppid()+"&random=99999999&contenttype=json";
 					
 					SyncLiveUserInfo syncLiveUserInfo = new SyncLiveUserInfo();
 					
@@ -76,7 +76,10 @@ public class ApiSyncLiveUserInfo extends RootApiBase<ApiSyncLiveUserInfoInput, A
 					
 					try {
 						
-						WebClientComponent.upRequest(url, jsonStr);
+						String returnStr =  WebClientComponent.upRequest(url, jsonStr);
+						
+						result.setError(returnStr);
+						
 						
 					} catch (Exception e) {
 						
