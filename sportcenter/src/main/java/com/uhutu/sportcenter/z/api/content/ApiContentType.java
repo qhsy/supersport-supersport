@@ -126,6 +126,13 @@ public class ApiContentType extends RootApiBase<ApiContentTypeInput, ApiContentT
 						title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
 						sportingMoment.setTitle(title);
 						sportingMoment.setMark(map.get(sportingMoment.getCode()));
+						if (StringUtils.isNotBlank(sportingMoment.getCode())) {
+							CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+									sportingMoment.getCode());
+							if (detail != null) {
+								sportingMoment.setDetail(detail);
+							}
+						}
 						result.add(sportingMoment);
 					}
 				}
