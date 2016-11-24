@@ -13,11 +13,13 @@ import com.uhutu.sportcenter.z.input.ApiLiveCreateRoomInput;
 import com.uhutu.sportcenter.z.input.ApiLiveInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiLiveVideoHeartInput;
 import com.uhutu.sportcenter.z.input.ApiStartLiveInput;
+import com.uhutu.sportcenter.z.input.ApiSyncLiveUserInfoInput;
 import com.uhutu.sportcenter.z.result.ApiFinishLiveVideoResult;
 import com.uhutu.sportcenter.z.result.ApiLiveCreateRoomResult;
 import com.uhutu.sportcenter.z.result.ApiLiveInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiLiveVideoHeartResult;
 import com.uhutu.sportcenter.z.result.ApiStartLiveResult;
+import com.uhutu.sportcenter.z.result.ApiSyncLiveUserInfoResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -78,6 +80,15 @@ public class LiveVideoController {
 	public ApiStartLiveResult startLive(@RequestBody ApiStartLiveInput input) {
 
 		return apiFactory.getApiStartLive().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/syncLiveUserInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "同步直播用户信息", notes = "同步直播用户信息")
+	public ApiSyncLiveUserInfoResult syncLiveUserInfo(@RequestBody ApiSyncLiveUserInfoInput input) {
+
+		return apiFactory.getApiSyncLiveUserInfo().api(input);
 
 	}
 
