@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.util.WebClientComponent;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.properties.SettingsDcomUser;
+import com.uhutu.dcom.user.z.support.TecentSigSupport;
 import com.uhutu.sportcenter.z.entity.SyncLiveProfileItem;
 import com.uhutu.sportcenter.z.entity.SyncLiveUserBody;
 import com.uhutu.sportcenter.z.input.ApiSyncLiveUserInfoInput;
@@ -56,11 +57,15 @@ public class ApiSyncLiveUserInfo extends RootApiBase<ApiSyncLiveUserInfoInput, A
 		
 		if(userInfoExts != null){
 			
+			TecentSigSupport tecentSigSupport = new TecentSigSupport();
+			
 			userInfoExts.forEach(userInfoExt ->{
 				
 				if(userInfoExt != null){
 					
-					String url = "https://console.tim.qq.com/v4/profile/portrait_set?usersig="+settingsDcomUser.getTlsPrivateKey()+"&identifier="+settingsDcomUser.getTlsTecentAdmin()+"&sdkappid="+settingsDcomUser.getTlsSkdAppid()+"&random=99999999&contenttype=json";
+					String userSig = tecentSigSupport.upSigCodeByUserCode("godoadmin");
+					
+					String url = "https://console.tim.qq.com/v4/profile/portrait_set?usersig="+userSig+"&identifier="+settingsDcomUser.getTlsTecentAdmin()+"&sdkappid="+settingsDcomUser.getTlsSkdAppid()+"&random=99999999&contenttype=json";
 					
 					SyncLiveProfileItem nickNameItem = new SyncLiveProfileItem();
 					
