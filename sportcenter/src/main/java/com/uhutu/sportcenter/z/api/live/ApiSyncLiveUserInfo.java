@@ -70,9 +70,9 @@ public class ApiSyncLiveUserInfo extends RootApiBase<ApiSyncLiveUserInfoInput, A
 					
 					SyncLiveProfileItem headItem = new SyncLiveProfileItem();
 					
-					nickNameItem.setTag("Tag_Profile_IM_Image");
+					headItem.setTag("Tag_Profile_IM_Image");
 					
-					nickNameItem.setValue(userInfoExt.getAboutHead());
+					headItem.setValue(userInfoExt.getAboutHead());
 					
 					SyncLiveUserBody liveUserBody = new SyncLiveUserBody();
 					
