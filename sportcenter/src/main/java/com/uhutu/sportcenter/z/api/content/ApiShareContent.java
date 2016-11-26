@@ -84,7 +84,7 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 		if(StringUtils.isNotBlank(shareResult.getContent())){
 			shareResult.setAboutDesc(shareResult.getContent());
 		}
-		if(StringUtils.isNoneBlank(shareResult.getIconUrl())){
+		if(StringUtils.isNotBlank(shareResult.getIconUrl())){
 			shareResult.setCover(shareResult.getIconUrl());
 		}
 		return shareResult;
