@@ -29,6 +29,12 @@ public class ApiShareContentResult extends RootApiResult {
 	@ApiModelProperty(name = "分享链接")
 	private String url;
 
+	@ApiModelProperty(name = "分享图片(兼容安卓)")
+	private String cover;
+
+	@ApiModelProperty(name = "分享内容(兼容安卓)")
+	private String aboutDesc;
+	
 	public String getIconUrl() {
 		return iconUrl;
 	}
@@ -68,5 +74,22 @@ public class ApiShareContentResult extends RootApiResult {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+
+	public String getAboutDesc() {
+		return aboutDesc;
+	}
+
+	public void setAboutDesc(String aboutDesc) {
+		this.aboutDesc = aboutDesc;
+	}
+	
 
 }
