@@ -12,6 +12,7 @@
 		<item code="dzsd4107100110030004" defineName="单图" parentCode="dzsd410710011003" />
 		<item code="dzsd4107100110030005" defineName="单视频" parentCode="dzsd410710011003" />
 		<item code="dzsd4107100110030006" defineName="第三方链接" parentCode="dzsd410710011003" />
+		<item code="dzsd4107100110030007" defineName="直播" parentCode="dzsd410710011003" />
 		<item code="dzsd410710011004" defineName="广告类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110040001" defineName="单图广告" parentCode="dzsd410710011004" />
 		<item code="dzsd4107100110040002" defineName="轮播广告" parentCode="dzsd410710011004" />
