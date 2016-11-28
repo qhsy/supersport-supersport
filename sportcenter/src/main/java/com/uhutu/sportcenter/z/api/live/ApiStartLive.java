@@ -2,11 +2,16 @@ package com.uhutu.sportcenter.z.api.live;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
+import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiStartLiveInput;
 import com.uhutu.sportcenter.z.result.ApiStartLiveResult;
 import com.uhutu.zoocom.helper.DateHelper;
@@ -24,6 +29,9 @@ import io.swagger.annotations.ApiModel;
 @ApiModel
 @Component
 public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveResult> {
+	
+	@Autowired
+	private ContentServiceFactory contentServiceFactory;
 
 	@Override
 	protected ApiStartLiveResult process(ApiStartLiveInput input) {
@@ -60,9 +68,62 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 			
 			JdbcHelper.insert(liveVideoDetail);
 			
+			/*根据产品需求添加*/
+			updateContent(liveVideoDetail);
+			
 		}
 		
 		return startLiveResult;
+	}
+	
+	/**
+	 * 直播详情
+	 * @param liveVideoDetail
+	 */
+	public void updateContent(CnLiveVideoDetail liveVideoDetail){
+		
+		CnContentBasicinfo basicinfo = new CnContentBasicinfo();
+		
+		basicinfo.setAuthor(upUserCode());
+		
+		basicinfo.setBusiType(ContentEnum.article.getCode());
+		
+		basicinfo.setContentType(ContentEnum.TYPE_LIVE.getCode());
+		
+		basicinfo.setCover(liveVideoDetail.getCover());
+		
+		if(StringUtils.isNotBlank(liveVideoDetail.getAddressName())){
+			
+			basicinfo.setLocaltionName(liveVideoDetail.getAddressName());
+			
+		}
+		
+		if(StringUtils.isNotBlank(liveVideoDetail.getLatitude()) && StringUtils.isNotBlank(liveVideoDetail.getLongitude())){
+			
+			String location = liveVideoDetail.getLatitude()+","+liveVideoDetail.getLongitude();
+			
+			basicinfo.setLocation(location);
+			
+		}
+		
+		basicinfo.setPublishTime(new Date());
+		
+		basicinfo.setStatus(ContentEnum.normal.getCode());
+		
+		basicinfo.setTagCode(liveVideoDetail.getTagCode());
+		
+		basicinfo.setTitle(liveVideoDetail.getTitle());
+		
+		CnContentDetail cnContentDetail = new CnContentDetail();
+		
+		cnContentDetail.setContent(liveVideoDetail.getCode());
+		
+		contentServiceFactory.getContentBasicinfoService().save(basicinfo);
+		
+		cnContentDetail.setCode(basicinfo.getCode());
+		
+		contentServiceFactory.getContentDetailService().save(cnContentDetail);		
+		
 	}
 
 }

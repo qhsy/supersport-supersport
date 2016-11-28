@@ -26,7 +26,9 @@ public enum ContentEnum {
 	
 	LIVEING("直播中","1"),
 	
-	LIVEEND("直播结束","0");
+	LIVEEND("直播结束","0"),
+	
+	TYPE_LIVE("直播","dzsd4107100110030002");
 
 	private String name = "";
 
