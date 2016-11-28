@@ -66,7 +66,8 @@ public class CnContentBasicinfoFuncAdd extends RootFunc {
 				|| "dzsd4107100110030002".equals(map.get("content_type"))
 				|| "dzsd4107100110030004".equals(map.get("content_type"))
 				|| "dzsd4107100110030005".equals(map.get("content_type"))
-				|| "dzsd4107100110030006".equals(map.get("content_type"))) {
+				|| "dzsd4107100110030006".equals(map.get("content_type"))
+				|| "dzsd4107100110030007".equals(map.get("content_type"))) {
 			MDataMap detail = new MDataMap();
 			detail.put("code", input.getDataMap().get("code"));
 			detail.put("zz", "1");
