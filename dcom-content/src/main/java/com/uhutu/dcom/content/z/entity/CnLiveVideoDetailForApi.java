@@ -1,8 +1,5 @@
 package com.uhutu.dcom.content.z.entity;
 
-import javax.persistence.Column;
-
-import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -15,56 +12,55 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class CnLiveVideoDetailForApi extends BaseEntity {
 
-	@ZooData(name = "房间编号")
+	@ApiModelProperty(name = "房间编号", notes = "房间编号")
 	private String code;
 
-	@ZooData(name = "聊天室编号")
+	@ApiModelProperty(name = "聊天室编号", notes = "聊天室编号")
 	private String chatCode;
 
-	@ZooData(name = "用户编号")
+	@ApiModelProperty(name = "用户编号", notes = "用户编号")
 	private String userCode;
 
-	@ZooData(name = "用户昵称")
+	@ApiModelProperty(name = "用户昵称", notes = "用户昵称")
 	private String nickName;
 
 	@ApiModelProperty(name = "头像图片链接", notes = "头像图片链接", example = "http://www.ichsy.com")
 	private String aboutHead;
 
-	@ZooData(name = "直播封面")
+	@ApiModelProperty(name = "直播封面", notes = "直播封面")
 	private String cover;
 
-	@ZooData(name = "标题")
+	@ApiModelProperty(name = "标题", notes = "标题")
 	private String title;
 
-	@ZooData(name = "状态  1:正在直播,0:结束 ")
+	@ApiModelProperty(name = "状态  1:正在直播,0:结束 ", notes = "状态  1:正在直播,0:结束 ")
 	private String status;
 
-	@ZooData(name = "经度")
+	@ApiModelProperty(name = "经度", notes = "经度")
 	private String longitude;
 
-	@ZooData(name = "维度")
+	@ApiModelProperty(name = "维度", notes = "维度")
 	private String latitude;
 
-	@ZooData(name = "定位位置名称")
+	@ApiModelProperty(name = "定位位置名称", notes = "定位位置名称")
 	private String addressName;
 
-	@ZooData(name = "点赞数")
+	@ApiModelProperty(name = "点赞数", notes = "点赞数")
 	private long praise;
 
-	@ZooData(name = "观看人次")
+	@ApiModelProperty(name = "观看人次", notes = "观看人次")
 	private long watch;
 
-	@ZooData(name = "时长")
+	@ApiModelProperty(name = "时长", notes = "时长")
 	private int length;
 
-	@ZooData(name = "创建时间")
+	@ApiModelProperty(name = "创建时间", notes = "创建时间")
 	private String createTime;
 
-	@ZooData(name = "结束时间")
+	@ApiModelProperty(name = "结束时间", notes = "结束时间")
 	private String endTime;
 
-	@ZooData(name = "标签编码")
-	@Column(columnDefinition = "longtext")
+	@ApiModelProperty(name = "标签编码", notes = "标签编码")
 	private String tagCode;
 
 	public String getCode() {
