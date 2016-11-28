@@ -41,7 +41,7 @@ public class CnContentDetail extends BaseEntity {
 	private String description;
 
 	@ZooData(name = "直播房间号", element = DefineWebElement.Input, require = "1", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0", DefineWebPage.Page_Add + "=0" })
+			 DefineWebPage.Page_Add + "=0" })
 	private String content;
 
 	public String getCode() {
