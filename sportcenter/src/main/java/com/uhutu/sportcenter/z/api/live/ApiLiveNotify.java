@@ -58,11 +58,11 @@ public class ApiLiveNotify extends RootApiBase<ApiLiveNotifyInput, ApiLiveNotify
 		return result;
 	}
 	
-	public void updateLiveStatus(long streamId){
+	public void updateLiveStatus(String streamId){
 		
 		MDataMap mWhereMap = new MDataMap();
 		
-		mWhereMap.put("streamId", Long.toString(streamId));
+		mWhereMap.put("streamId", streamId);
 		
 		CnLiveVideoDetail videoDetail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "", "", mWhereMap);
 		

@@ -62,7 +62,7 @@ public class CnLiveVideoDetail extends BaseEntity {
 	private String tagCode;
 	
 	@ZooData(name = "直播流标识")
-	private long streamId;
+	private String streamId;
 
 	public String getCode() {
 		return code;
@@ -184,11 +184,11 @@ public class CnLiveVideoDetail extends BaseEntity {
 		this.tagCode = tagCode;
 	}
 
-	public long getStreamId() {
+	public String getStreamId() {
 		return streamId;
 	}
 
-	public void setStreamId(long streamId) {
+	public void setStreamId(String streamId) {
 		this.streamId = streamId;
 	}
 
