@@ -159,6 +159,21 @@ function callbackTaobao(ios,and){
 }
 
 /**
+ * @直播跳转
+ * @param  url
+ * @return [Function]
+ * @author [wangxh]
+ */
+function callbackEnterRoom(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address){
+	var userAgent = navigator.userAgent;
+	if(userAgent.indexOf('Android') != -1){
+		javascript:android.callbackEnterRoom(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address);
+	} else {
+		window.webkit.messageHandlers.callbackEnterRoom.postMessage([uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address]);
+	}
+}
+
+/**
  * @微信分享
  * @param  config
  * @return [Function]
