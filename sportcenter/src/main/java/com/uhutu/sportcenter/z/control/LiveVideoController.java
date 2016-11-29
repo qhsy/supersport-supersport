@@ -11,12 +11,14 @@ import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiFinishLiveVideoInput;
 import com.uhutu.sportcenter.z.input.ApiLiveCreateRoomInput;
 import com.uhutu.sportcenter.z.input.ApiLiveInfoListInput;
+import com.uhutu.sportcenter.z.input.ApiLiveNotifyInput;
 import com.uhutu.sportcenter.z.input.ApiLiveVideoHeartInput;
 import com.uhutu.sportcenter.z.input.ApiStartLiveInput;
 import com.uhutu.sportcenter.z.input.ApiSyncLiveUserInfoInput;
 import com.uhutu.sportcenter.z.result.ApiFinishLiveVideoResult;
 import com.uhutu.sportcenter.z.result.ApiLiveCreateRoomResult;
 import com.uhutu.sportcenter.z.result.ApiLiveInfoListResult;
+import com.uhutu.sportcenter.z.result.ApiLiveNotifyResult;
 import com.uhutu.sportcenter.z.result.ApiLiveVideoHeartResult;
 import com.uhutu.sportcenter.z.result.ApiStartLiveResult;
 import com.uhutu.sportcenter.z.result.ApiSyncLiveUserInfoResult;
@@ -89,6 +91,15 @@ public class LiveVideoController {
 	public ApiSyncLiveUserInfoResult syncLiveUserInfo(@RequestBody ApiSyncLiveUserInfoInput input) {
 
 		return apiFactory.getApiSyncLiveUserInfo().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/updateLiveStatus", method = RequestMethod.POST)
+	@ApiOperation(value = "更新直播状态", notes = "更新直播状态")
+	public ApiLiveNotifyResult updateLiveStatus(@RequestBody ApiLiveNotifyInput input) {
+
+		return apiFactory.getApiLiveNotify().api(input);
 
 	}
 

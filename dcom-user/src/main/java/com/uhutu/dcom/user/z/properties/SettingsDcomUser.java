@@ -37,7 +37,13 @@ public class SettingsDcomUser {
 
 	@Value("${dcom-user.login_sdk_sendmsg}")
 	private String loginSdkSendmsg;
+	
+	@Value("${dcom-user.live.key}")
+	private String liveKey;
 
+	@Value("${dcom-user.live.appid}")
+	private String liveAppId;
+	
 	public String getTlsPrivateKey() {
 		return tlsPrivateKey;
 	}
@@ -80,6 +86,14 @@ public class SettingsDcomUser {
 
 	public String getLoginSdkSendmsg() {
 		return loginSdkSendmsg;
+	}
+
+	public String getLiveKey() {
+		return liveKey;
+	}
+
+	public String getLiveAppId() {
+		return liveAppId;
 	}
 
 }
