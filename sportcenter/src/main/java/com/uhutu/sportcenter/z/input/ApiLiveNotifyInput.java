@@ -21,10 +21,10 @@ public class ApiLiveNotifyInput extends RootApiInput {
 	private int event_type;
 	
 	@ApiModelProperty(value="直播码",notes="标示事件源于哪一条直播流")
-	private int stream_id;
+	private String stream_id;
 	
 	@ApiModelProperty(value="同stream_id")
-	private int channel_id;
+	private String channel_id;
 
 	public String getT() {
 		return t;
@@ -50,19 +50,19 @@ public class ApiLiveNotifyInput extends RootApiInput {
 		this.event_type = event_type;
 	}
 
-	public int getStream_id() {
+	public String getStream_id() {
 		return stream_id;
 	}
 
-	public void setStream_id(int stream_id) {
+	public void setStream_id(String stream_id) {
 		this.stream_id = stream_id;
 	}
 
-	public int getChannel_id() {
+	public String getChannel_id() {
 		return channel_id;
 	}
 
-	public void setChannel_id(int channel_id) {
+	public void setChannel_id(String channel_id) {
 		this.channel_id = channel_id;
 	}
 
