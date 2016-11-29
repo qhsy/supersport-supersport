@@ -14,14 +14,14 @@
 <link rel="stylesheet" type="text/css" href="../static/css/base.css">
 <style type="text/css">
 .worth{overflow: auto;}
-.warp{width: 100%; min-width: 0.75rem; padding-top: 0.16rem; overflow: hidden; font-size: 14px; line-height: 20px;}
+.warp{width: 100%; padding: 0.16rem 0; overflow: hidden; font-size: 14px; line-height: 20px;}
 .types{overflow: auto;}
 .types li{width: 1rem; height: 0.75rem; float: left; overflow: hidden; margin: 0 0 0 0.08rem; position: relative;}
 .types li img{width: 1rem; min-height: 0.75rem;}
 .types .title{width: 100%; height: 100%; position: absolute; left: 0; top: 0; color: #fff; text-align: center; display: -webkit-box; -webkit-box-align: center;}
 .types .title span{width: 100%; display: block; text-align: center;}
-
-.moments{padding: 0.16rem 0.04rem 0; margin: 0.16rem 0 0; overflow: auto; border-top: #F8F8F8 0.06rem solid;}
+.space{height: 0.06rem; background: #F8F8F8; overflow: hidden;}
+.moments{padding: 0 0.04rem 0; margin: 0.16rem 0 0; overflow: auto;}
 .moment{width: 50%; padding: 0 0.04rem 0.1rem; box-sizing: border-box; -webkit-box-sizing: border-box; float: left; overflow: hidden;}
 .moment img{width: 100%; min-height: 1.76rem;}
 .moment .info{width: 100%; height: 1.76rem; overflow: hidden; position: relative;}
@@ -36,6 +36,7 @@
 </head>
 <body>
 <section class="worth" v-cloak>
+	<aside class="load" v-if="load"><img src="../static/img/godo.gif" alt=""></aside>
 	<article class="warp">
 		<ul class="types" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend">
 			<li v-for="type in types">
@@ -46,6 +47,7 @@
 			</li>
 		</ul>
 	</article>
+	<div class="space" v-if="!load"></div>
 	<ul class="moments">
 		<li class="moment" v-for="moment in moments">
 			<template v-if="moment.contentType == 'dzsd4107100110030006'">
@@ -53,15 +55,17 @@
 					<moment :moment="moment"></moment>
 				</a>
 			</template>
-			<template v-if="moment.contentType == 'dzsd4107100110030007'">
-				<a href="javascript:;" @click="live(moment.liveVideoDetailForApi.userCode,moment.liveVideoDetailForApi.nickName,moment.liveVideoDetailForApi.aboutHead,moment.liveVideoDetailForApi.code,moment.liveVideoDetailForApi.chatCode,moment.liveVideoDetailForApi.watch,moment.liveVideoDetailForApi.praise,moment.liveVideoDetailForApi.addressName)">
-					<moment :moment="moment"></moment>
-				</a>
-			</template>
-			<template v-if="moment.contentType != 'dzsd4107100110030006' || moment.contentType != 'dzsd4107100110030007'">
-				<a href="javascript:;" @click="backSportTime(moment.code,moment.contentType)">
-					<moment :moment="moment"></moment>
-				</a>
+			<template v-else>
+				<template v-if="moment.contentType == 'dzsd4107100110030007'">
+					<a href="javascript:;" @click="live(moment.liveVideoDetailForApi.userCode,moment.liveVideoDetailForApi.nickName,moment.liveVideoDetailForApi.aboutHead,moment.liveVideoDetailForApi.code,moment.liveVideoDetailForApi.chatCode,moment.liveVideoDetailForApi.watch,moment.liveVideoDetailForApi.praise,moment.liveVideoDetailForApi.addressName)">
+						<moment :moment="moment"></moment>
+					</a>
+				</template>
+				<template v-else>
+					<a href="javascript:;" @click="backSportTime(moment.code,moment.contentType)">
+						<moment :moment="moment"></moment>
+					</a>
+				</template>
 			</template>
 		</li>
 	</ul>
@@ -75,7 +79,7 @@
 		<em class="reading">{{moment.readNum}}</em>
 		<div class="user">
 			<em class="photo"></em>
-			{{moment.nickName}}
+			{{moment.userBasicInfo.nickName}}
 		</div>
 	</div>
 	<h1 class="title">{{moment.title}}</h1>
@@ -99,7 +103,8 @@ var vm = new Vue({
 		moments: [],
 		initPage: 1,
 		initWidth: 200,
-		nextPage: true
+		nextPage: false,
+		load: true,
 	},
 	watch: {
 		initPage: 'getData'
@@ -123,6 +128,7 @@ var vm = new Vue({
 						_this.types = _this.types.concat(resp.types);
 						_this.moments = _this.moments.concat(resp.moments);
 						_this.nextPage = resp.nextFlag;
+						_this.load = false;
 					}else{
 						alert(resp.error)
 					}

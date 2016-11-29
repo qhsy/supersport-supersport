@@ -27,6 +27,7 @@
 <input type="button" id="btn10" value="时刻发布-文章">
 <input type="button" id="btn11" value="时刻发布-视频">
 <input type="button" id="btn12" value="图片下载">
+<input type="button" id="btn13" value="直播">
 <script type="text/javascript" src="../static/js/tools.js"></script>
 <script type="text/javascript">
 	window.onload = function(){
@@ -65,6 +66,9 @@
 		}, false);
 		document.querySelector('#btn12').addEventListener('click', function(){
 			callbackSavePic('http://ali-cfile.ichsy.com/cfiles/staticfiles/zoofile/2735f/s-1080-811/2a8010727e73446f852f5e85443ca267.jpeg');
+		}, false);
+		document.querySelector('#btn13').addEventListener('click', function(){
+			callbackEnterRoom('UC160802110001','123456','http://wx.qlogo.cn/mmopen/0wRpPfN90ibCtyNG8NianghaJ1GQs9mP0xAQm9CeKzeRBRve6ObCWzoR7Y7oqOmlju5xQ0EibXiaB1E01UvS06RicJA/0',3,3,1,0,'')
 		}, false);
 	}
 </script>
