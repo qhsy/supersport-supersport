@@ -29,6 +29,7 @@
 </head>
 <body>
 <section class="worth" v-cloak>
+	<aside class="load" v-if="load"><img src="../static/img/godo.gif" alt=""></aside>
 	<ul class="moments">
 		<li class="moment" v-for="moment in moments">
 			<template v-if="moment.contentType == 'dzsd4107100110030006'">
@@ -36,10 +37,17 @@
 					<moment :moment="moment"></moment>
 				</a>
 			</template>
-			<template v-if="moment.contentType != 'dzsd4107100110030006'">
-				<a href="javascript:;" @click="backSportTime(moment.code,moment.contentType)">
-					<moment :moment="moment"></moment>
-				</a>
+			<template v-else>
+				<template v-if="moment.contentType == 'dzsd4107100110030007'">
+					<a href="javascript:;" @click="live(moment.liveVideoDetailForApi.userCode,moment.liveVideoDetailForApi.nickName,moment.liveVideoDetailForApi.aboutHead,moment.liveVideoDetailForApi.code,moment.liveVideoDetailForApi.chatCode,moment.liveVideoDetailForApi.watch,moment.liveVideoDetailForApi.praise,moment.liveVideoDetailForApi.addressName)">
+						<moment :moment="moment"></moment>
+					</a>
+				</template>
+				<template v-else>
+					<a href="javascript:;" @click="backSportTime(moment.code,moment.contentType)">
+						<moment :moment="moment"></moment>
+					</a>
+				</template>
 			</template>
 		</li>
 	</ul>
@@ -53,7 +61,7 @@
 		<em class="reading">{{moment.readNum}}</em>
 		<div class="user">
 			<em class="photo"></em>
-			{{moment.nickName}}
+			{{moment.userBasicInfo.nickName}}
 		</div>
 	</div>
 	<h1 class="title">{{moment.title}}</h1>
@@ -75,7 +83,8 @@ new Vue({
 		moments: [],
 		initPage: 1,
 		initWidth: 200,
-		nextPage: true
+		nextPage: false,
+		load: true
 	},
 	watch: {
 		initPage: 'getData'
@@ -98,6 +107,7 @@ new Vue({
 					if(resp.status == 1){
 						_this.moments = _this.moments.concat(resp.moments);
 						_this.nextPage = resp.nextFlag;
+						_this.load = false;
 					}else{
 						alert(resp.error)
 					}
@@ -111,6 +121,12 @@ new Vue({
 			if(this.nextPage && (winHeight + scrollTop) >= bodyHeight){
 				this.initPage++;
 			}
+		},
+		live:function(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address) {
+			callbackEnterRoom(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address);
+		},
+		backSportTime:function(code,type) {
+			callbackSportTime(code,type);
 		}
 	}
 

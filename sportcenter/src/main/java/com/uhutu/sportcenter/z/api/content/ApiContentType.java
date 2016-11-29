@@ -16,6 +16,8 @@ import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.entity.CnContentType;
 import com.uhutu.dcom.content.z.entity.CnContentWorth;
+import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
+import com.uhutu.dcom.content.z.entity.CnLiveVideoDetailForApi;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.remark.z.enums.RemarkEnum;
@@ -26,6 +28,7 @@ import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForTypeApi;
 import com.uhutu.sportcenter.z.input.ApiContentTypeInput;
 import com.uhutu.sportcenter.z.result.ApiContentTypeResult;
+import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
@@ -131,6 +134,18 @@ public class ApiContentType extends RootApiBase<ApiContentTypeInput, ApiContentT
 									sportingMoment.getCode());
 							if (detail != null) {
 								sportingMoment.setDetail(detail);
+							}
+						}
+						if ("dzsd4107100110030007".equals(sportingMoment.getContentType())) {
+							CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", " zc desc ",
+									" user_code=:user_code",
+									MapHelper.initMap("user_code", sportingMoment.getAuthor()));
+							if (detail != null) {
+								CnLiveVideoDetailForApi videoDetailForApi = new CnLiveVideoDetailForApi();
+								BeanUtils.copyProperties(detail, videoDetailForApi);
+								videoDetailForApi.setNickName(sportingMoment.getUserBasicInfo().getNickName());
+								videoDetailForApi.setAboutHead(sportingMoment.getUserBasicInfo().getAboutHead());
+								sportingMoment.setLiveVideoDetailForApi(videoDetailForApi);
 							}
 						}
 						result.add(sportingMoment);
