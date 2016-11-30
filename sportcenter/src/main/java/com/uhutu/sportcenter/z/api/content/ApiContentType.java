@@ -72,7 +72,7 @@ public class ApiContentType extends RootApiBase<ApiContentTypeInput, ApiContentT
 	private List<ContentBasicinfoForTypeApi> getInfos(int width, int num) {
 		List<ContentBasicinfoForTypeApi> result = new ArrayList<ContentBasicinfoForTypeApi>();
 		StringBuffer str = new StringBuffer();
-		List<CnContentWorth> ws = JdbcHelper.queryForList(CnContentWorth.class, "", "sort desc", "", null,
+		List<CnContentWorth> ws = JdbcHelper.queryForList(CnContentWorth.class, "", "sort desc,zc desc", "", null,
 				(num - 1) * 10, 10);
 		Map<String, String> map = new HashMap<String, String>();
 		if (ws != null && !ws.isEmpty() && ws.size() > 0) {
