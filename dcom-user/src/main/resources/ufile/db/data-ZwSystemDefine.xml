@@ -16,6 +16,7 @@
 		<item code="dzsd410710031001" defineName="用户类型" parentCode="dzsd41071003" />
 		<item code="dzsd4107100310010001" defineName="普通用户" parentCode="dzsd410710031001" />
 		<item code="dzsd4107100310010002" defineName="体育达人" parentCode="dzsd410710031001" />
+		<item code="dzsd4107100310010003" defineName="企业认证" parentCode="dzsd410710031001" />
 		<item code="dzsd410710041001" defineName="用户状态" parentCode="" />
 		<item code="dzsd4107100410010001" defineName="无效" parentCode="dzsd410710041001" />
 		<item code="dzsd4107100410010002" defineName="有效" parentCode="dzsd410710041001" />
