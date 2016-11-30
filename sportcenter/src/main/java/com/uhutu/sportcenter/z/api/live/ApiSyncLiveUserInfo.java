@@ -1,5 +1,6 @@
 package com.uhutu.sportcenter.z.api.live;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.util.WebClientComponent;
+import com.uhutu.dcom.pay.z.entity.PaInclogInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.properties.SettingsDcomUser;
 import com.uhutu.dcom.user.z.support.TecentSigSupport;
@@ -43,7 +45,7 @@ public class ApiSyncLiveUserInfo extends RootApiBase<ApiSyncLiveUserInfoInput, A
 			
 		}else{
 			
-			List<UcUserinfoExt> userInfoExts = JdbcHelper.queryForList(UcUserinfoExt.class, "userCode,nickName,aboutHead", "", " exists (select 1 from uc_userinfo where mj_flag = 'dzsd4699100110010002' and code = user_code)", new MDataMap());
+			List<UcUserinfoExt> userInfoExts = JdbcHelper.queryForList(UcUserinfoExt.class, "userCode,nickName,aboutHead", "zc ASC", " exists (select 1 from uc_userinfo where mj_flag = 'dzsd4699100110010002' and code = user_code)", new MDataMap());
 		
 			syncLiveUserInfo(userInfoExts, result);
 		
@@ -89,11 +91,15 @@ public class ApiSyncLiveUserInfo extends RootApiBase<ApiSyncLiveUserInfoInput, A
 					
 					String jsonStr = GsonHelper.toJson(liveUserBody);
 					
+					PaInclogInfo paInclogInfo = new PaInclogInfo();
+					
 					try {
 						
 						String returnStr =  WebClientComponent.upRequest(url, jsonStr);
 						
 						result.setError(returnStr);
+						
+						paInclogInfo.setRequestData(returnStr);
 						
 						
 					} catch (Exception e) {
@@ -102,7 +108,20 @@ public class ApiSyncLiveUserInfo extends RootApiBase<ApiSyncLiveUserInfoInput, A
 						
 						result.setError(error);
 						
+						paInclogInfo.setRequestData(error);
+						
 					}
+					
+					
+					
+					paInclogInfo.setBusiCode(userInfoExt.getUserCode());
+					
+					paInclogInfo.setIncType("SYNC_LIVE_USER");
+					
+					paInclogInfo.setZc(new Date());
+					
+					JdbcHelper.insert(paInclogInfo);
+					
 					
 				}
 				
