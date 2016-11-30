@@ -90,7 +90,9 @@ public class ApiForTecentSig extends RootApiToken<ApiForTecentSigInput, ApiForTe
 
 				result.setError(returnStr);
 
-				paInclogInfo.setRequestData(returnStr);
+				paInclogInfo.setResponseData(returnStr);
+				
+				paInclogInfo.setRequestData(jsonStr);
 
 			} catch (Exception e) {
 
@@ -100,7 +102,7 @@ public class ApiForTecentSig extends RootApiToken<ApiForTecentSigInput, ApiForTe
 				
 				result.setStatus(0);
 
-				paInclogInfo.setRequestData(error);
+				paInclogInfo.setResponseData(error);
 
 			}
 
