@@ -29,7 +29,7 @@ public class QuestionForShow extends RootClass {
 	@ApiModelProperty(value = "回答者头像")
 	private String headUrl;
 
-	@ApiModelProperty(value = "回答者用户类型",notes="dzsd4107100310010001:普通用户，dzsd4107100310010002：体育达人")
+	@ApiModelProperty(value = "回答者用户类型",notes="dzsd4107100310010001:普通用户，dzsd4107100310010002：体育达人,dzsd4107100310010003:企业认证")
 	private String userType;
 	
 	@ApiModelProperty(value = "回答者头衔")
