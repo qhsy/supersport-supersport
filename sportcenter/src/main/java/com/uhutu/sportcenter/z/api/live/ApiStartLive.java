@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
+import com.uhutu.dcom.content.z.entity.CnContentWorth;
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
@@ -69,7 +70,9 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 			JdbcHelper.insert(liveVideoDetail);
 			
 			/*根据产品需求添加*/
-			updateContent(liveVideoDetail);
+			String contentCode = updateContent(liveVideoDetail);
+			
+			updateContentWorth(contentCode);
 			
 		}
 		
@@ -80,7 +83,7 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 	 * 直播详情
 	 * @param liveVideoDetail
 	 */
-	public void updateContent(CnLiveVideoDetail liveVideoDetail){
+	public String updateContent(CnLiveVideoDetail liveVideoDetail){
 		
 		CnContentBasicinfo basicinfo = new CnContentBasicinfo();
 		
@@ -123,6 +126,27 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 		cnContentDetail.setCode(basicinfo.getCode());
 		
 		contentServiceFactory.getContentDetailService().save(cnContentDetail);		
+		
+		return basicinfo.getCode();
+		
+	}
+	
+	public void updateContentWorth(String contentCode){
+		
+		CnContentWorth contentWorth = new CnContentWorth();
+		
+		contentWorth.setContentCode(contentCode);
+		
+		contentWorth.setMark("dzsd4107100110100001");
+		
+		contentWorth.setSort(0);
+		
+		contentWorth.setType("");
+		
+		contentWorth.setZc(new Date());
+		
+		JdbcHelper.insert(contentWorth);
+		
 		
 	}
 
