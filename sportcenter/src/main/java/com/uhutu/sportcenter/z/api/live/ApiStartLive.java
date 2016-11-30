@@ -67,10 +67,12 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 			
 			liveVideoDetail.setCreateTime(DateHelper.upDate(new Date()));
 			
-			JdbcHelper.insert(liveVideoDetail);
-			
 			/*根据产品需求添加*/
 			String contentCode = updateContent(liveVideoDetail);
+			
+			liveVideoDetail.setContentCode(contentCode);
+			
+			JdbcHelper.insert(liveVideoDetail);			
 			
 			updateContentWorth(contentCode);
 			
