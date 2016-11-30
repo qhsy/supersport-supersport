@@ -57,7 +57,7 @@
 </section>
 <script type="text/x-template" id="template">
 	<div class="info">
-		<img src="../static/img/lazyload.jpg" v-lazyload="moment.cover" alt="">
+		<img src="../static/img/lazyload.jpg" v-lazyload="moment.liveVideoDetailForApi.cover" alt="">
 		<span v-if="moment.mark == 'dzsd4107100110100001'" class="state">直播中</span>
 		<span v-if="moment.mark == 'dzsd4107100110100002'" class="state end">回放</span>
 		<em class="reading">{{moment.readNum}}</em>
@@ -95,6 +95,7 @@ new Vue({
 	created: function(){
 		var _this = this;
 		_this.getData();
+		callbackShare('');
 		window.addEventListener('scroll', _this.refresh, false);
 	},
 	methods: {
