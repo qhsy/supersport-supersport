@@ -34,10 +34,13 @@ public class ApiForTecentSig extends RootApiToken<ApiForTecentSigInput, ApiForTe
 		
 		ApiForTecentSigResult result = new ApiForTecentSigResult();
 		
-		result.setSig(new TecentSigSupport().upSigCodeByUserCode(upUserCode()));
-		
 		syncLiveUserInfo(upUserCode(), result);
 		
+		if(result.upFlagTrue()){
+			
+			result.setSig(new TecentSigSupport().upSigCodeByUserCode(upUserCode()));
+			
+		}		
 		
 		return result;
 
