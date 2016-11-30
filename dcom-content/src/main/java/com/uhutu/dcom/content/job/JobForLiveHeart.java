@@ -2,6 +2,9 @@ package com.uhutu.dcom.content.job;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.model.MJobConfig;
@@ -36,6 +39,11 @@ public class JobForLiveHeart extends RootJob {
 				CnLiveVideoDetail cd = ds.get(i);
 				cd.setStatus("0");
 				JdbcHelper.update(cd, "status", "za");
+				if (StringUtils.isNotBlank(cd.getContentCode())) {
+					CnContentBasicinfo cn = JdbcHelper.queryOne(CnContentBasicinfo.class, "code", cd.getContentCode());
+					cn.setStatus("dzsd4699100110010002");
+					JdbcHelper.update(cn, "status", "za");
+				}
 			}
 		}
 		return new MResult();
