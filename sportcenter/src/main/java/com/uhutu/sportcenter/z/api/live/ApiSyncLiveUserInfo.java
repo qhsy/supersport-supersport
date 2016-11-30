@@ -99,7 +99,9 @@ public class ApiSyncLiveUserInfo extends RootApiBase<ApiSyncLiveUserInfoInput, A
 						
 						result.setError(returnStr);
 						
-						paInclogInfo.setRequestData(returnStr);
+						paInclogInfo.setResponseData(returnStr);
+						
+						paInclogInfo.setRequestData(jsonStr);
 						
 						
 					} catch (Exception e) {
@@ -108,7 +110,7 @@ public class ApiSyncLiveUserInfo extends RootApiBase<ApiSyncLiveUserInfoInput, A
 						
 						result.setError(error);
 						
-						paInclogInfo.setRequestData(error);
+						paInclogInfo.setResponseData(error);
 						
 					}
 					
