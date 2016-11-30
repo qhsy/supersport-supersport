@@ -157,7 +157,7 @@ public class ApiContentType extends RootApiBase<ApiContentTypeInput, ApiContentT
 	}
 
 	private List<CnContentType> getTypes(int width) {
-		List<CnContentType> types = JdbcHelper.queryForList(CnContentType.class, "", "sort desc", "status = '1'", null);
+		List<CnContentType> types = JdbcHelper.queryForList(CnContentType.class, "", "sort desc,zc desc", "status = '1'", null);
 		if (types != null) {
 			for (int i = 0; i < types.size(); i++) {
 				types.get(i).setCover(ImageHelper.upImageThumbnail(types.get(i).getCover(), width));
