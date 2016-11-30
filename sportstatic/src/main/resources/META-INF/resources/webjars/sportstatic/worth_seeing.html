@@ -37,7 +37,7 @@
 <body>
 <section class="worth" v-cloak>
 	<aside class="load" v-if="load"><img src="../static/img/godo.gif" alt=""></aside>
-	<article class="warp">
+	<article class="warp" v-if="types.length">
 		<ul class="types" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend">
 			<li v-for="type in types">
 				<a href="worth_list.html?code={{type.code}}">

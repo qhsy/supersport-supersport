@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="../static/css/base.css">
 <style type="text/css">
 .worth{overflow: auto;}
+.nodata{padding: 40% 0; text-align: center; font-size: 14px;}
 .moments{padding: 0.08rem 0.04rem 0; overflow: auto;}
 .moment{width: 50%; padding: 0 0.04rem 0.1rem; box-sizing: border-box; -webkit-box-sizing: border-box; float: left;}
 .moment img{width: 100%; min-height: 1.76rem;}
@@ -30,7 +31,7 @@
 <body>
 <section class="worth" v-cloak>
 	<aside class="load" v-if="load"><img src="../static/img/godo.gif" alt=""></aside>
-	<ul class="moments">
+	<ul class="moments" v-if="moments.length">
 		<li class="moment" v-for="moment in moments">
 			<template v-if="moment.contentType == 'dzsd4107100110030006'">
 				<a :href="moment.detail.videoUrl">
@@ -51,6 +52,7 @@
 			</template>
 		</li>
 	</ul>
+	<div class="nodata" v-if="isData">暂无数据！</div>
 	<aside class="load" v-if="nextPage"><img src="../static/img/godo.gif" alt=""></aside>
 </section>
 <script type="text/x-template" id="template">
@@ -84,7 +86,8 @@ new Vue({
 		initPage: 1,
 		initWidth: 200,
 		nextPage: false,
-		load: true
+		load: true,
+		isData: false
 	},
 	watch: {
 		initPage: 'getData'
@@ -108,6 +111,7 @@ new Vue({
 						_this.moments = _this.moments.concat(resp.moments);
 						_this.nextPage = resp.nextFlag;
 						_this.load = false;
+						_this.isData = !resp.moments.length;
 					}else{
 						alert(resp.error)
 					}
