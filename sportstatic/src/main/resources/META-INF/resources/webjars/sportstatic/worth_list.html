@@ -95,6 +95,7 @@ new Vue({
 	created: function(){
 		var _this = this;
 		_this.getData();
+		callbackShare('');
 		window.addEventListener('scroll', _this.refresh, false);
 	},
 	methods: {
