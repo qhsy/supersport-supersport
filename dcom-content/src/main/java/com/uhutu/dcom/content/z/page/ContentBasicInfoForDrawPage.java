@@ -13,7 +13,9 @@ import com.uhutu.zooweb.define.DefineZooWeb;
 				DefineWebDeploy.Grid_Where
 						+ "=shareScope='dzsd4699100110010001' and  status='dzsd4699100110010001' and busi_type='dzsd4107100110020001' "
 						+ " and (tag_code like '%GGBH161020210003%' or tag_code like '%GGBH161020210002%'"
-						+ " or tag_code like '%GGBH161020210001%' or tag_code like '%GGBH161020110001%')",
+						+ " or tag_code like '%GGBH161020210001%' or tag_code like '%GGBH161020110001%' "
+						+ " or tag_code like '%GGBH161125110012%' or tag_code like '%GGBH161125110011%' "
+						+ " or tag_code like '%GGBH161125110010%' or tag_code like '%GGBH161125110009%')",
 				DefineWebDeploy.Url_Query + "=code" })
 public class ContentBasicInfoForDrawPage extends RootPageSimple<CnContentBasicinfo> {
 
