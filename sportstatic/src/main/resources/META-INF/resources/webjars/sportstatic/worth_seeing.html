@@ -47,7 +47,7 @@
 			</li>
 		</ul>
 	</article>
-	<div class="space" v-if="!load"></div>
+	<div class="space" v-if="!load && types.length"></div>
 	<ul class="moments">
 		<li class="moment" v-for="moment in moments">
 			<template v-if="moment.contentType == 'dzsd4107100110030006'">
