@@ -31,7 +31,7 @@ public class ApiLiveCreateRoom extends RootApiToken<ApiLiveCreateRoomInput, ApiL
 		} else {
 			int simpleNum = JdbcHelper.count(CnLiveVideoInfo.class, "", new MDataMap()) + 1;
 			CnLiveVideoInfo videoInfo = new CnLiveVideoInfo();
-			videoInfo.setCode(new DecimalFormat("0000000").format(simpleNum));
+			videoInfo.setCode(new DecimalFormat("10000000").format(simpleNum));
 			videoInfo.setChatCode(videoInfo.getCode());
 			videoInfo.setStatus("1");
 			videoInfo.setCreateTime(DateHelper.upNow());
