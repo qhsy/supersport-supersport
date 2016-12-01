@@ -1,7 +1,9 @@
 package com.uhutu.sportcenter.z.api.live;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
 import com.uhutu.sportcenter.z.input.ApiFinishLiveVideoInput;
 import com.uhutu.sportcenter.z.result.ApiFinishLiveVideoResult;
@@ -30,6 +32,11 @@ public class ApiFinishLiveVideo extends RootApiToken<ApiFinishLiveVideoInput, Ap
 			detail.setPraise(input.getPraise());
 			detail.setStatus("0");
 			JdbcHelper.update(detail, "length,watch,praise,status", "za");
+			if (StringUtils.isNotBlank(detail.getContentCode())) {
+				CnContentBasicinfo cn = JdbcHelper.queryOne(CnContentBasicinfo.class, "code", detail.getContentCode());
+				cn.setStatus("dzsd4699100110010002");
+				JdbcHelper.update(cn, "status", "za");
+			}
 		}
 		return result;
 
