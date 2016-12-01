@@ -37,32 +37,34 @@ var require = {
 </script>
 <style>
 .isData{text-align:center; padding: 0.2rem 0;}
+.personal .photo{position: relative;}
+.personal .photo .mark{width: 0.15rem; height: 0.15rem; background: url(../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0.05rem; bottom: 0.05rem;}
+.personal .photo .qiye{width: 0.15rem; height: 0.15rem; background: url(../static/img/icon_qiyeSmall@3x.png) left top; background-size: cover; position: absolute; right: 0.05rem; bottom: 0.05rem;}
+.personal-sports .qiye{width: 0.12rem; height: 0.12rem; background: url(../static/img/icon_qiyeSmall@3x.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
+/*分享*/
+.share{width: 100%; padding: 0.13rem 0; background: rgba(217,217,217,0.7); position: fixed; left: 0; bottom: 0; z-index: 99;}
+.share .logo{width: 1.07rem; margin-left: 0.16rem; float: left;}
+.share .btn{width: 0.74rem; height: 0.26rem; margin-right: 0.5rem; background: #F8800A; float: right; border-radius: 4px; text-align: center; color: #fff; font-size: 0.12rem; line-height: 0.26rem;}
+.share .close{width: 0.22rem; height: 0.22rem; border-radius: 50%; background: #D8D8D8; color: #fff; position: absolute; right: 0.1rem; top: 0.15rem; text-align: center; line-height: 0.22rem; font-size: 0.12rem;}
 </style>
 </head>
 <body>
-<header class="open-app">
+<!-- <header class="open-app">
 	<span class="app-logo"><img src="style/img/about.png"></span>
 	<a href="javascript:;" class="app-btn" @click="open">打开App</a>
-</header>
-<section class="wrap" v-cloak style="padding: 0.6rem 0 0;">
+</header> -->
+<section class="wrap" v-cloak style="padding: 0 0 0.6rem;">
 	<article class="personal">
-		<header class="head" style="background-image: url('{{result.userInfo.aboutCover}}');">
-			<div class="user">
-				<span class="attend"><em>{{result.userInfo.attendNum}}</em>关注</span>
-				<span class="photo"><img :src="result.answerUserInfo.aboutHead" alt=""></span>
-				<span class="fans"><em>{{result.userInfo.fansNum}}</em>粉丝</span>
-			</div>
-			<h1 class="name">{{result.answerUserInfo.nickName}}</h1>
-			<h2 class="tag">{{result.answerUserInfo.title}}</h2>
-			<template v-if="!result.ownFlag">
-				<template v-if="result.answerUserInfo.attendFlag == '0'">
-					<a href="javascript:;" class="follow" @click="attendFlag">+ 关注</a>
-				</template>
-				<template v-else>
-					<a href="javascript:;" class="follow un" @click="unAttendFlag">已关注</a>
-				</template>
-			</template>
-		</header>
+		<template v-if="result.userInfo.aboutCover">
+			<header class="head" style="background-image: url('{{result.userInfo.aboutCover}}');">
+				<hduser :result="result"></hduser>
+			</header>
+		</template>
+		<template v-else>
+			<header class="head">
+				<hduser :result="result"></hduser>
+			</header>
+		</template>
 		<div class="info">
 			<p class="about" v-if="result.answerUserInfo.ability">
 				{{result.answerUserInfo.ability}}
@@ -111,6 +113,27 @@ var require = {
 		<i>微信扫一扫</i>
 	</span>
 </div>
+<template id="header">
+	<div class="user">
+		<span class="attend"><em>{{result.userInfo.attendNum}}</em>关注</span>
+		<span class="photo">
+			<img :src="result.answerUserInfo.aboutHead" alt="">
+			<em class="mark" v-if="result.userInfo.type == 'dzsd4107100310010002'"></em>
+			<em class="qiye" v-if="result.userInfo.type == 'dzsd4107100310010003'"></em>
+		</span>
+		<span class="fans"><em>{{result.userInfo.fansNum}}</em>粉丝</span>
+	</div>
+	<h1 class="name">{{result.answerUserInfo.nickName}}</h1>
+	<h2 class="tag">{{result.answerUserInfo.title}}</h2>
+	<template v-if="!result.ownFlag">
+		<template v-if="result.answerUserInfo.attendFlag == '0'">
+			<a href="javascript:;" class="follow" @click="attendFlag">+ 关注</a>
+		</template>
+		<template v-else>
+			<a href="javascript:;" class="follow un" @click="unAttendFlag">已关注</a>
+		</template>
+	</template>
+</template>
 <!-- component sports -->
 <template id="sports">
 	<div class="canvas"><img :src="item.cover" alt=""></div>
@@ -121,6 +144,7 @@ var require = {
 		<span class="photo">
 			<img :src="item.userBasicInfo.aboutHead" :alt="item.userBasicInfo.nickName">
 			<i class="sign" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></i>
+			<i class="qiye" v-if="item.userBasicInfo.type == 'dzsd4107100310010003'"></i>
 		</span>
 		<em class="name">{{item.userBasicInfo.nickName}}</em>
 	</div>
@@ -140,6 +164,9 @@ var require = {
 <!--  -->
 <script type="text/javascript" src="js/require.min.js"></script>
 <script type="text/javascript" src="js/app/personal_app.js"></script>
-<script type="text/javascript" src="../common/share.js"></script>
+<script type="text/javascript" src="../static/js/share.js"></script>
+<script>
+share()
+</script>
 </body>
 </html>

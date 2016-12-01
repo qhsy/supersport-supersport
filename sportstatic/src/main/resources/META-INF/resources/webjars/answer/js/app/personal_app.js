@@ -18,6 +18,12 @@ require(['zepto','vue','common','jssdk','qrcode','extend'],function($,Vue,comm,w
 			item: null,
 			head: null
 		}
+	});
+	Vue.component('hduser',{
+		template:'#header',
+		props:{
+			result: null
+		}
 	})
 	var personal = new Vue({
 		el: '#personal',
