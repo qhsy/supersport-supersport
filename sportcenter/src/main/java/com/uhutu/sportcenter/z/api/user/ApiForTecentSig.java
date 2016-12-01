@@ -10,8 +10,7 @@ import com.uhutu.dcom.pay.z.entity.PaInclogInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.properties.SettingsDcomUser;
 import com.uhutu.dcom.user.z.support.TecentSigSupport;
-import com.uhutu.sportcenter.z.entity.SyncLiveProfileItem;
-import com.uhutu.sportcenter.z.entity.SyncLiveUserBody;
+import com.uhutu.sportcenter.z.entity.TecentUserInfo;
 import com.uhutu.sportcenter.z.input.ApiForTecentSigInput;
 import com.uhutu.sportcenter.z.result.ApiForTecentSigResult;
 import com.uhutu.zoocom.helper.GsonHelper;
@@ -56,31 +55,19 @@ public class ApiForTecentSig extends RootApiToken<ApiForTecentSigInput, ApiForTe
 
 			String userSig = tecentSigSupport.upSigCodeByUserCode("godoadmin");
 
-			String url = "https://console.tim.qq.com/v4/profile/portrait_set?usersig=" + userSig + "&identifier="
+			String url = "https://console.tim.qq.com/v4/im_open_login_svc/account_import?usersig=" + userSig + "&identifier="
 					+ settingsDcomUser.getTlsTecentAdmin() + "&sdkappid=" + settingsDcomUser.getTlsSkdAppid()
 					+ "&random=99999999&contenttype=json";
 
-			SyncLiveProfileItem nickNameItem = new SyncLiveProfileItem();
+			TecentUserInfo tecentUserInfo = new TecentUserInfo();
+			
+			tecentUserInfo.setFaceUrl(userInfoExt.getAboutHead());
+			
+			tecentUserInfo.setIdentifier(userInfoExt.getUserCode());
+			
+			tecentUserInfo.setNick(userInfoExt.getNickName());
 
-			nickNameItem.setTag("Tag_Profile_IM_Nick");
-
-			nickNameItem.setValue(userInfoExt.getNickName());
-
-			SyncLiveProfileItem headItem = new SyncLiveProfileItem();
-
-			headItem.setTag("Tag_Profile_IM_Image");
-
-			headItem.setValue(userInfoExt.getAboutHead());
-
-			SyncLiveUserBody liveUserBody = new SyncLiveUserBody();
-
-			liveUserBody.setFrom_Account(userInfoExt.getUserCode());
-
-			liveUserBody.getProfileItem().add(nickNameItem);
-
-			liveUserBody.getProfileItem().add(headItem);
-
-			String jsonStr = GsonHelper.toJson(liveUserBody);
+			String jsonStr = GsonHelper.toJson(tecentUserInfo);
 
 			PaInclogInfo paInclogInfo = new PaInclogInfo();
 

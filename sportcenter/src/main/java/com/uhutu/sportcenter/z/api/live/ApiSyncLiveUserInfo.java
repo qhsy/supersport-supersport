@@ -12,8 +12,7 @@ import com.uhutu.dcom.pay.z.entity.PaInclogInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.properties.SettingsDcomUser;
 import com.uhutu.dcom.user.z.support.TecentSigSupport;
-import com.uhutu.sportcenter.z.entity.SyncLiveProfileItem;
-import com.uhutu.sportcenter.z.entity.SyncLiveUserBody;
+import com.uhutu.sportcenter.z.entity.TecentUserInfo;
 import com.uhutu.sportcenter.z.input.ApiSyncLiveUserInfoInput;
 import com.uhutu.sportcenter.z.result.ApiSyncLiveUserInfoResult;
 import com.uhutu.zoocom.helper.GsonHelper;
@@ -67,29 +66,17 @@ public class ApiSyncLiveUserInfo extends RootApiBase<ApiSyncLiveUserInfoInput, A
 					
 					String userSig = tecentSigSupport.upSigCodeByUserCode("godoadmin");
 					
-					String url = "https://console.tim.qq.com/v4/profile/portrait_set?usersig="+userSig+"&identifier="+settingsDcomUser.getTlsTecentAdmin()+"&sdkappid="+settingsDcomUser.getTlsSkdAppid()+"&random=99999999&contenttype=json";
+					String url = "https://console.tim.qq.com/v4/im_open_login_svc/account_import?usersig="+userSig+"&identifier="+settingsDcomUser.getTlsTecentAdmin()+"&sdkappid="+settingsDcomUser.getTlsSkdAppid()+"&random=99999999&contenttype=json";
 					
-					SyncLiveProfileItem nickNameItem = new SyncLiveProfileItem();
+					TecentUserInfo tecentUserInfo = new TecentUserInfo();
 					
-					nickNameItem.setTag("Tag_Profile_IM_Nick");
+					tecentUserInfo.setFaceUrl(userInfoExt.getAboutHead());
 					
-					nickNameItem.setValue(userInfoExt.getNickName());
+					tecentUserInfo.setIdentifier(userInfoExt.getUserCode());
 					
-					SyncLiveProfileItem headItem = new SyncLiveProfileItem();
-					
-					headItem.setTag("Tag_Profile_IM_Image");
-					
-					headItem.setValue(userInfoExt.getAboutHead());
-					
-					SyncLiveUserBody liveUserBody = new SyncLiveUserBody();
-					
-					liveUserBody.setFrom_Account(userInfoExt.getUserCode());
-					
-					liveUserBody.getProfileItem().add(nickNameItem);
-					
-					liveUserBody.getProfileItem().add(headItem);
-					
-					String jsonStr = GsonHelper.toJson(liveUserBody);
+					tecentUserInfo.setNick(userInfoExt.getNickName());
+
+					String jsonStr = GsonHelper.toJson(tecentUserInfo);
 					
 					PaInclogInfo paInclogInfo = new PaInclogInfo();
 					
