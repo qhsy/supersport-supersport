@@ -89,7 +89,7 @@
 Vue.use(Vue.lazyimg,{
 	nohori: true
 });
-var initX = 0, moveX = 0, offsetX = 0;
+var initX = 0, moveX = 0, offsetX = 0, ismove = false;
 Vue.component('moment',{
 	template:'#template',
 	props:{
@@ -153,26 +153,33 @@ var vm = new Vue({
 		touchstart: function(event){
 			var target = event.targetTouches[0];
 			var _this = event.currentTarget;
+			var windowWidth = window.innerWidth;
+			var objWidth = parseFloat(_this.style.width);
+			objWidth <= windowWidth?ismove=false:ismove=true;
 			initX = target.pageX;
 		},
 		touchmove: function(event){
 			var target = event.targetTouches[0];
 			var _this = event.currentTarget;
-			moveX = target.pageX - initX + offsetX;
-			_this.style.marginLeft = moveX + 'px';
-			event.preventDefault();
+			if(ismove){
+				moveX = target.pageX - initX + offsetX;
+				_this.style.marginLeft = moveX + 'px';
+				event.preventDefault();
+			}
 		},
 		touchend: function(event){
 			var target = event.targetTouches[0];
 			var _this = event.currentTarget;
 			var marLeft = window.innerWidth - _this.offsetWidth;
-			offsetX = moveX;
-			if(offsetX > 0){
-				offsetX = 0;
-			} else if(offsetX < marLeft){
-				offsetX = marLeft;
+			if(ismove){
+				offsetX = moveX;
+				if(offsetX > 0){
+					offsetX = 0;
+				} else if(offsetX < marLeft){
+					offsetX = marLeft;
+				}
+				_this.style.marginLeft = offsetX + 'px';
 			}
-			_this.style.marginLeft = offsetX + 'px';
 		}
 	}
 
