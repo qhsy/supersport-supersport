@@ -25,6 +25,8 @@ public class ApiLiveVideoHeart extends RootApiToken<ApiLiveVideoHeartInput, ApiL
 		CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "zc desc limit 0,1",
 				"user_code=:user_code", MapHelper.initMap("user_code", upUserCode()));
 		if (detail != null) {
+			detail.setChannelId(input.getChannelId());
+			detail.setStreamUrl(input.getStreamUrl());
 			detail.setLength(input.getLength());
 			detail.setWatch(input.getWatch());
 			detail.setPraise(input.getPraise());
