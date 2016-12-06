@@ -91,6 +91,7 @@ import com.uhutu.sportcenter.z.api.pay.ApiCoinPay;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatConfigInfo;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatH5Pay;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatMobilePay;
+import com.uhutu.sportcenter.z.api.remark.ApiOperRemark;
 import com.uhutu.sportcenter.z.api.remark.ApiPublishRemark;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkCount;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkList;
@@ -512,6 +513,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiOperLiveInfo apiOperLiveInfo;
+	
+	@Autowired
+	private ApiOperRemark apiOperRemark;
 	
 	public ApiLiveVideoHeart getApiLiveVideoHeart() {
 		return apiLiveVideoHeart;
@@ -1011,6 +1015,10 @@ public class ApiFactory {
 
 	public ApiOperLiveInfo getApiOperLiveInfo() {
 		return apiOperLiveInfo;
+	}
+
+	public ApiOperRemark getApiOperRemark() {
+		return apiOperRemark;
 	}
 
 }

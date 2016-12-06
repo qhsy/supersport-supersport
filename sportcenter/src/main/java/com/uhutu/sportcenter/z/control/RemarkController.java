@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
+import com.uhutu.sportcenter.z.input.ApiOperRemarkInput;
 import com.uhutu.sportcenter.z.input.ApiPublishRemarkInput;
 import com.uhutu.sportcenter.z.input.ApiRemarkCountInput;
 import com.uhutu.sportcenter.z.input.ApiRemarkListInput;
+import com.uhutu.sportcenter.z.result.ApiOperRemarkResult;
 import com.uhutu.sportcenter.z.result.ApiPublishRemarkResult;
 import com.uhutu.sportcenter.z.result.ApiRemarkCountResult;
 import com.uhutu.sportcenter.z.result.ApiRemarkListResult;
@@ -53,6 +55,14 @@ public class RemarkController {
 	public ApiRemarkCountResult remarkCount(@RequestBody ApiRemarkCountInput input) {
 
 		return apiFactory.getApiRemarkCount().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/operRemark", method = RequestMethod.POST)
+	@ApiOperation(value = "评论相关操作", notes = "评论相关操作")
+	public ApiOperRemarkResult operRemark(@RequestBody ApiOperRemarkInput input) {
+
+		return apiFactory.getApiOperRemark().api(input);
 	}
 
 }
