@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no,email=no"> 
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes"> 
+<meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes"/>
+<meta name="author" content="">
+<link rel="stylesheet" type="text/css" href="../static/css/base.css">
+<style type="text/css">
+.live{width: 100%; height: auto;}
+</style>
+</head>
+<body>
+<section id="live-container" class="live">
+	
+</section>
+<script type="text/javascript" src="script/common.min.js"></script>
+<script type="text/javascript" src="../static/js/live_connect.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var  init = {
+		'width': window.innerWidth,
+		'height': window.innerHeight
+	}
+	new qcVideo.Player("live-container", {
+        "channel_id": "16093104850682282611",
+        "app_id": "1251783441",
+        "width" : 480,
+        "height" : 320
+    });
+}
+</script>
+</body>
+</html>
