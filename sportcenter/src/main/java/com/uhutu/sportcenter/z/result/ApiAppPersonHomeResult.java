@@ -26,6 +26,9 @@ public class ApiAppPersonHomeResult extends RootApiResult {
 	@ApiModelProperty(value="是否本人")
 	private boolean ownFlag = false;
 	
+	@ApiModelProperty(value="是否正在直播")
+	private boolean liveing = false;
+	
 	@ApiModelProperty(value="问题信息tab")
 	private UserQuestionTabInfo userQuestionTabInfo = new UserQuestionTabInfo();
 	
@@ -70,6 +73,14 @@ public class ApiAppPersonHomeResult extends RootApiResult {
 
 	public void setUserInfo(UserInfo userInfo) {
 		this.userInfo = userInfo;
+	}
+
+	public boolean isLiveing() {
+		return liveing;
+	}
+
+	public void setLiveing(boolean liveing) {
+		this.liveing = liveing;
 	}
 	
 

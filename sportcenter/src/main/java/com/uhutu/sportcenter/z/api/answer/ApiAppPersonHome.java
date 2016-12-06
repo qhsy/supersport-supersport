@@ -21,6 +21,7 @@ import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
@@ -39,6 +40,7 @@ import com.uhutu.sportcenter.z.input.ApiAppPersonHomeInput;
 import com.uhutu.sportcenter.z.result.ApiAppPersonHomeResult;
 import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.helper.MapHelper;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.helper.ImageHelper;
@@ -175,6 +177,8 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 			result.setAnswerUserInfo(answerUserInfo);
 			
 			result.setUserInfo(initUserInfo(input.getUserCode()));
+			
+			result.setLiveing(isLiveing(input.getUserCode()));
 
 		}
 		
@@ -382,6 +386,29 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 		userInfo.setAttendNum(attendNum);
 		
 		userInfo.setFavorNum(favorNum);
+		
+	}
+	
+	public boolean isLiveing(String userCode){
+		
+		boolean liveing = false;
+		
+		MDataMap mWhereMap = new MDataMap();
+		
+		mWhereMap.put("userCode", userCode);
+		
+		mWhereMap.put("status", ContentEnum.LIVEING.getCode());
+		
+		int count = JdbcHelper.count(CnLiveVideoDetail.class, "", mWhereMap);
+		
+		if(count > 0){
+			
+			liveing = true;
+			
+		}
+		
+		return liveing;
+		
 		
 	}
 
