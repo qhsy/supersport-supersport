@@ -12,10 +12,12 @@ import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.sportcenter.z.input.ApiShareContentInput;
 import com.uhutu.sportcenter.z.result.ApiShareContentResult;
+import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.helper.ImageHelper;
+import com.uhutu.zooweb.user.UserCallFactory;
 
 /**
  * 分享内容
@@ -34,7 +36,7 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 
 		ApiShareContentResult shareResult = new ApiShareContentResult();
 
-		if (StringUtils.isNotBlank(input.getContentCode())) {
+		if (StringUtils.isNotBlank(input.getContentCode())) {// 分享信息主表
 			CnShareInfo shareInfo = JdbcHelper.queryOne(CnShareInfo.class, "code", input.getContentCode(), "status",
 					"1");
 			if (shareInfo != null) {
@@ -45,7 +47,8 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 				shareResult.setUrl(shareInfo.getUrl());
 			}
 		}
-		if (StringUtils.isNotBlank(input.getContentCode()) && input.getContentCode().startsWith("CNBH")) {
+		if (StringUtils.isNotBlank(input.getContentCode()) && input.getContentCode().startsWith("CNBH")) {// 文章的分享特殊逻辑
+																											// 原因：小编推荐
 
 			CnContentBasicinfo basicInfo = contentServiceFactory.getContentBasicinfoService()
 					.queryByCode(input.getContentCode());
@@ -57,11 +60,11 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 				UcUserinfoExt ue = JdbcHelper.queryOne(UcUserinfoExt.class, "userCode", basicInfo.getAuthor());
 				authorName = StringUtils.isNotBlank(ue.getNickName()) ? ue.getNickName() : "";
 			}
-			
+
 			String title = basicInfo.getTitle();
-			
+
 			title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
-			
+
 			if (basicInfo != null) {
 
 				shareResult.setTitle(title);
@@ -77,14 +80,26 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 				} else if (recomm != null && StringUtils.isNotBlank(recomm.getContent())) {
 					shareResult.setContent(recomm.getContent());
 				} else {
-					shareResult.setContent(TopHelper.upInfo(810710011, authorName));
+					if (StringUtils.isNotBlank(basicInfo.getContentType())
+							&& "dzsd4107100110030007".equals(basicInfo.getContentType())
+							&& StringUtils.isNotBlank(authorName)) {// 直播分享信息
+						if (StringUtils.isNotEmpty(input.getZoo().getToken())) {
+							String userCode = new UserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(),
+									DefineUser.Login_System_Default);
+							UcUserinfoExt ucext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", userCode);
+							shareResult.setTitle(TopHelper.upInfo(810710022, ucext.getNickName()));
+						}
+ 						shareResult.setContent(TopHelper.upInfo(810710023, authorName, basicInfo.getTitle()));
+					} else {
+						shareResult.setContent(TopHelper.upInfo(810710011, authorName));
+					}
 				}
-			} 
+			}
 		}
-		if(StringUtils.isNotBlank(shareResult.getContent())){
+		if (StringUtils.isNotBlank(shareResult.getContent())) {
 			shareResult.setAboutDesc(shareResult.getContent());
 		}
-		if(StringUtils.isNotBlank(shareResult.getIconUrl())){
+		if (StringUtils.isNotBlank(shareResult.getIconUrl())) {
 			shareResult.setCover(shareResult.getIconUrl());
 		}
 		return shareResult;

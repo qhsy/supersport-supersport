@@ -17,16 +17,17 @@
 		<item code="dzsd4107100110040001" defineName="单图广告" parentCode="dzsd410710011004" />
 		<item code="dzsd4107100110040002" defineName="轮播广告" parentCode="dzsd410710011004" />
 		<item code="dzsd410710011005" defineName="跳转类型" parentCode="dzsd41071001" />
-		<item code="dzsd4107100110050001" defineName="个人中心" parentCode="dzsd410710011005" />
-		<item code="dzsd4107100110050002" defineName="内容详情页" parentCode="dzsd410710011005" />
-		<item code="dzsd4107100110050003" defineName="超链接" parentCode="dzsd410710011005" />
+		<item code="dzsd4107100110050001" defineName="个人中心(跳转参数：用户编号)" parentCode="dzsd410710011005" />
+		<item code="dzsd4107100110050002" defineName="内容详情页(跳转参数：内容编号)" parentCode="dzsd410710011005" />
+		<item code="dzsd4107100110050003" defineName="超链接(跳转参数：超链接)" parentCode="dzsd410710011005" />
 		<item code="dzsd4107100110050004" defineName="十全十美" parentCode="dzsd410710011005" />
 		<item code="dzsd4107100110050005" defineName="翘臀大赛" parentCode="dzsd410710011005" />
-		<item code="dzsd4107100110050006" defineName="专题" parentCode="dzsd410710011005" />
-		<item code="dzsd4107100110050007" defineName="标签详情" parentCode="dzsd410710011005" />
+		<item code="dzsd4107100110050006" defineName="专题(跳转参数：专题编号)" parentCode="dzsd410710011005" />
+		<item code="dzsd4107100110050007" defineName="标签详情(跳转参数：标签编号)" parentCode="dzsd410710011005" />
 		<item code="dzsd4107100110050008" defineName="时刻列表" parentCode="dzsd410710011005" />
 		<item code="dzsd4107100110050009" defineName="问达列表" parentCode="dzsd410710011005" />
 		<item code="dzsd4107100110050010" defineName="活动报名" parentCode="dzsd410710011005" />
+		<item code="dzsd4107100110050011" defineName="直播(跳转参数：直播的内容编号)" parentCode="dzsd410710011005" />
 		<item code="dzsd410710011006" defineName="栏目类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110060001" defineName="轮播广告栏目" parentCode="dzsd410710011006" />
 		<item code="dzsd4107100110060002" defineName="单图广告栏目" parentCode="dzsd410710011006" />
