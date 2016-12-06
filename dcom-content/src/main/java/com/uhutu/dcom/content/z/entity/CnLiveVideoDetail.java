@@ -68,10 +68,10 @@ public class CnLiveVideoDetail extends BaseEntity {
 	private String contentCode;
 
 	@ZooData(name = "直播流地址")
-	private int streamUrl;
+	private String streamUrl;
 
 	@ZooData(name = "channelId")
-	private int channelId;
+	private String channelId;
 
 	public String getCode() {
 		return code;
@@ -209,19 +209,19 @@ public class CnLiveVideoDetail extends BaseEntity {
 		this.contentCode = contentCode;
 	}
 
-	public int getStreamUrl() {
+	public String getStreamUrl() {
 		return streamUrl;
 	}
 
-	public void setStreamUrl(int streamUrl) {
+	public void setStreamUrl(String streamUrl) {
 		this.streamUrl = streamUrl;
 	}
 
-	public int getChannelId() {
+	public String getChannelId() {
 		return channelId;
 	}
 
-	public void setChannelId(int channelId) {
+	public void setChannelId(String channelId) {
 		this.channelId = channelId;
 	}
 

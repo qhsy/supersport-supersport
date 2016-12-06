@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiFinishLiveVideoInput;
 import com.uhutu.sportcenter.z.input.ApiLiveCreateRoomInput;
+import com.uhutu.sportcenter.z.input.ApiLiveInfoInput;
 import com.uhutu.sportcenter.z.input.ApiLiveInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiLiveNotifyInput;
 import com.uhutu.sportcenter.z.input.ApiLiveVideoHeartInput;
@@ -19,6 +20,7 @@ import com.uhutu.sportcenter.z.input.ApiSyncLiveUserInfoInput;
 import com.uhutu.sportcenter.z.result.ApiFinishLiveVideoResult;
 import com.uhutu.sportcenter.z.result.ApiLiveCreateRoomResult;
 import com.uhutu.sportcenter.z.result.ApiLiveInfoListResult;
+import com.uhutu.sportcenter.z.result.ApiLiveInfoResult;
 import com.uhutu.sportcenter.z.result.ApiLiveNotifyResult;
 import com.uhutu.sportcenter.z.result.ApiLiveVideoHeartResult;
 import com.uhutu.sportcenter.z.result.ApiOperLiveInfoResult;
@@ -50,7 +52,7 @@ public class LiveVideoController {
 		return apiFactory.getApiLiveCreateRoom().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/liveVideoHeart", method = RequestMethod.POST)
 	@ApiOperation(value = "直播心跳", notes = "直播心跳")
@@ -59,7 +61,7 @@ public class LiveVideoController {
 		return apiFactory.getApiLiveVideoHeart().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/finishLiveVideo", method = RequestMethod.POST)
 	@ApiOperation(value = "结束直播", notes = "结束直播")
@@ -68,7 +70,7 @@ public class LiveVideoController {
 		return apiFactory.getApiFinishLiveVideo().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/liveViedos", method = RequestMethod.POST)
 	@ApiOperation(value = "直播视频列表", notes = "直播视频列表")
@@ -77,7 +79,7 @@ public class LiveVideoController {
 		return apiFactory.getApiLiveInfoList().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/startLive", method = RequestMethod.POST)
 	@ApiOperation(value = "开始直播", notes = "开始直播")
@@ -86,7 +88,7 @@ public class LiveVideoController {
 		return apiFactory.getApiStartLive().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/syncLiveUserInfo", method = RequestMethod.POST)
 	@ApiOperation(value = "同步直播用户信息", notes = "同步直播用户信息")
@@ -95,7 +97,7 @@ public class LiveVideoController {
 		return apiFactory.getApiSyncLiveUserInfo().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/updateLiveStatus", method = RequestMethod.POST)
 	@ApiOperation(value = "更新直播状态", notes = "更新直播状态")
@@ -104,13 +106,22 @@ public class LiveVideoController {
 		return apiFactory.getApiLiveNotify().api(input);
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/operLiveInfo", method = RequestMethod.POST)
 	@ApiOperation(value = "更新直播信息", notes = "更新直播信息")
 	public ApiOperLiveInfoResult operLiveInfo(@RequestBody ApiOperLiveInfoInput input) {
 
 		return apiFactory.getApiOperLiveInfo().api(input);
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/liveInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "直播详细信息", notes = "直播详细信息")
+	public ApiLiveInfoResult liveInfo(@RequestBody ApiLiveInfoInput input) {
+
+		return apiFactory.getApiLiveInfo().api(input);
 
 	}
 
