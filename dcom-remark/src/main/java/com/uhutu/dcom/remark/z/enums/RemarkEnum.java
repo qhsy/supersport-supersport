@@ -13,6 +13,9 @@ public enum RemarkEnum {
 	/**评论状态：无效*/
 	FLAG_DISENABLE("评论无效","dzsd4699100110010002"),
 	
+	/**评论状态：删除*/
+	FLAG_DEL("评论删除","del"),
+	
 	/**喜欢类型：么么哒*/
 	PRAISE_FAVOR("么么哒","01"),
 	

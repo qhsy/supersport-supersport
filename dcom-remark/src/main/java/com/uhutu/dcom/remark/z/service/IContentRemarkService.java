@@ -2,9 +2,7 @@ package com.uhutu.dcom.remark.z.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-
-import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
 
 /**
@@ -30,7 +28,7 @@ public interface IContentRemarkService {
 	 * 		每页展示数量
 	 * @return 返回分页信息
 	 */
-	public Page<CnContentRemark> queryPage(int pageNum,int limit,QueryConditions conditions);
+	public List<CnContentRemark> queryPage(String contentCode,PageInfo pageInfo);
 
 	/**
 	 * 根据评论编号查询评论基本信息对象

@@ -7,9 +7,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
@@ -56,19 +56,15 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 		
 		conditions.setConditionEqual("status", RemarkEnum.FLAG_ENABLE.getCode());
 		
-		Page<CnContentRemark> remarkPage = serviceFactory.getContentRemarkService().queryPage(input.getPagination(), 10, conditions);
+		PageInfo pageInfo = new PageInfo(0, input.getPagination(), 10);
 		
-		if(remarkPage.hasNext()){
-			
-			remarkListResult.setNextflag(true);
-			
-		}
+		List<CnContentRemark> remarkPage = serviceFactory.getContentRemarkService().queryPage(input.getContentCode(), pageInfo);
 		
-		remarkListResult.setTotal(remarkPage.getTotalElements());
+		remarkListResult.setTotal(pageInfo.getTotal());
 		
 		List<ContentReplyInfo> remarkInfos = new ArrayList<ContentReplyInfo>();		
 		
-		remarkPage.getContent().forEach(remark -> {
+		remarkPage.forEach(remark -> {
 			
 			ContentReplyInfo replyInfo = new ContentReplyInfo();
 			

@@ -5,20 +5,16 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-
-import com.uhutu.dcom.component.z.page.QueryConditionUtil;
-import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.config.enums.PrexEnum;
 import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.remark.z.dao.ContentRemarkDaoFactory;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
+import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.IContentRemarkService;
+import com.uhutu.zoocom.model.MDataMap;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.helper.WebHelper;
 
 /**
@@ -54,23 +50,25 @@ public class ContentRemarkServiceImpl implements IContentRemarkService {
 	}
 
 	@Override
-	public Page<CnContentRemark> queryPage(int pageNum, int limit,QueryConditions conditions) {
+	public List<CnContentRemark> queryPage(String contentCode, PageInfo pageInfo) {
 		
-		if(pageNum >= 1){
-			
-			pageNum--;
-			
-		}
+		StringBuffer statusBuffer = new StringBuffer("status in (");
 		
-		Sort sort = new Sort(Direction.DESC,"zc");
+		statusBuffer.append("'").append(RemarkEnum.FLAG_DEL).append("',");
 		
-		PageRequest page = new PageRequest(pageNum, limit,sort);
+		statusBuffer.append("'").append(RemarkEnum.FLAG_ENABLE.getCode()).append("') and ");
 		
-		Specification<CnContentRemark> spec = QueryConditionUtil.buildSpecification(conditions);
+		statusBuffer.append("content_code = '").append(contentCode).append("'");
 		
-		Page<CnContentRemark> contentInfoPage = daoFactory.getContentRemarkDao().findAll(spec, page);
+		int iStart = (pageInfo.getPagination() -1) * pageInfo.getPageNum();
 		
-		return contentInfoPage;
+		int count = JdbcHelper.count(CnContentRemark.class, statusBuffer.toString(), new MDataMap());
+		
+		pageInfo.setTotal(count);
+		
+		List<CnContentRemark> cnContentRemarks = JdbcHelper.queryForList(CnContentRemark.class, "", "-zc", statusBuffer.toString(), new MDataMap(), iStart, pageInfo.getPageNum());
+		
+		return cnContentRemarks;
 	}
 	
 	@Override
