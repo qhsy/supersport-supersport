@@ -62,6 +62,8 @@ import com.uhutu.sportcenter.z.api.donate.ApiUserPowerShare;
 import com.uhutu.sportcenter.z.api.donate.ApiUserShareInfo;
 import com.uhutu.sportcenter.z.api.extend.ApiCheckSingType;
 import com.uhutu.sportcenter.z.api.extend.ApiIosRenovate;
+import com.uhutu.sportcenter.z.api.extend.ApiReportFields;
+import com.uhutu.sportcenter.z.api.extend.ApiReportSave;
 import com.uhutu.sportcenter.z.api.extend.ApiSendSms;
 import com.uhutu.sportcenter.z.api.extend.ApiSignPhoto;
 import com.uhutu.sportcenter.z.api.extend.ApiStartUp;
@@ -521,6 +523,20 @@ public class ApiFactory {
 	@Autowired
 	private ApiLiveInfo apiLiveInfo;
 	
+	@Autowired
+	private ApiReportFields  apiReportFields;
+	
+	@Autowired
+	private ApiReportSave apiReportSave;
+	
+	public ApiReportSave getApiReportSave() {
+		return apiReportSave;
+	}
+
+	public ApiReportFields getApiReportFields() {
+		return apiReportFields;
+	}
+
 	public ApiLiveInfo getApiLiveInfo() {
 		return apiLiveInfo;
 	}

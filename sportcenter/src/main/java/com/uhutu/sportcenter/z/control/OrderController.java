@@ -14,11 +14,15 @@ import com.uhutu.sportcenter.z.input.ApiCheckSingTypeInput;
 import com.uhutu.sportcenter.z.input.ApiForAnswerOrderInput;
 import com.uhutu.sportcenter.z.input.ApiForWatchCardInput;
 import com.uhutu.sportcenter.z.input.ApiRefreshCrossfitInput;
+import com.uhutu.sportcenter.z.input.ApiReportFieldsInput;
+import com.uhutu.sportcenter.z.input.ApiReportSaveInput;
 import com.uhutu.sportcenter.z.input.ApiSignPhotoInput;
 import com.uhutu.sportcenter.z.result.ApiCheckSingTypeResult;
 import com.uhutu.sportcenter.z.result.ApiForAnswerOrderResult;
 import com.uhutu.sportcenter.z.result.ApiForWatchCardResult;
 import com.uhutu.sportcenter.z.result.ApiRefreshCrossfitResult;
+import com.uhutu.sportcenter.z.result.ApiReportFieldsResult;
+import com.uhutu.sportcenter.z.result.ApiReportSaveResult;
 import com.uhutu.sportcenter.z.result.ApiSignPhotoResult;
 
 import io.swagger.annotations.Api;
@@ -76,6 +80,20 @@ public class OrderController {
 	public ApiRefreshCrossfitResult refreshCrossFit(@RequestBody ApiRefreshCrossfitInput input,
 			HttpServletRequest request) {
 		return apiFactory.getApiRefreshCrossfit().api(input);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/reportFields", method = RequestMethod.POST)
+	@ApiOperation(value = "报表字段参数信息", notes = "报表字段参数信息")
+	public ApiReportFieldsResult reportFields(@RequestBody ApiReportFieldsInput input, HttpServletRequest request) {
+		return apiFactory.getApiReportFields().api(input);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/saveReport", method = RequestMethod.POST)
+	@ApiOperation(value = "报表字段参数信息", notes = "报表字段参数信息")
+	public ApiReportSaveResult reportFields(@RequestBody ApiReportSaveInput input, HttpServletRequest request) {
+		return apiFactory.getApiReportSave().api(input);
 	}
 
 }
