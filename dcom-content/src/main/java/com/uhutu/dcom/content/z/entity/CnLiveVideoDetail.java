@@ -56,16 +56,22 @@ public class CnLiveVideoDetail extends BaseEntity {
 
 	@ZooData(name = "结束时间")
 	private String endTime;
-	
+
 	@ZooData(name = "标签编码")
 	@Column(columnDefinition = "longtext")
 	private String tagCode;
-	
+
 	@ZooData(name = "直播流标识")
 	private String streamId;
-	
+
 	@ZooData(name = "文章编号")
 	private String contentCode;
+
+	@ZooData(name = "直播流地址")
+	private String streamUrl;
+
+	@ZooData(name = "channelId")
+	private String channelId;
 
 	public String getCode() {
 		return code;
@@ -201,6 +207,22 @@ public class CnLiveVideoDetail extends BaseEntity {
 
 	public void setContentCode(String contentCode) {
 		this.contentCode = contentCode;
+	}
+
+	public String getStreamUrl() {
+		return streamUrl;
+	}
+
+	public void setStreamUrl(String streamUrl) {
+		this.streamUrl = streamUrl;
+	}
+
+	public String getChannelId() {
+		return channelId;
+	}
+
+	public void setChannelId(String channelId) {
+		this.channelId = channelId;
 	}
 
 }

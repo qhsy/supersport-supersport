@@ -14,6 +14,12 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class ApiLiveVideoHeartInput extends RootApiInput {
 
+	@ApiModelProperty(value = "直播流地址")
+	private String streamUrl;
+
+	@ApiModelProperty(value = "channelId")
+	private String channelId;
+
 	@ApiModelProperty(value = "时长")
 	private int length;
 
@@ -45,6 +51,22 @@ public class ApiLiveVideoHeartInput extends RootApiInput {
 
 	public void setWatch(long watch) {
 		this.watch = watch;
+	}
+
+	public String getStreamUrl() {
+		return streamUrl;
+	}
+
+	public void setStreamUrl(String streamUrl) {
+		this.streamUrl = streamUrl;
+	}
+
+	public String getChannelId() {
+		return channelId;
+	}
+
+	public void setChannelId(String channelId) {
+		this.channelId = channelId;
 	}
 
 }
