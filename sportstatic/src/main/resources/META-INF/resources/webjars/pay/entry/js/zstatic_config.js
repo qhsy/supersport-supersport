@@ -1,33 +1,24 @@
 var zstatic_config = {
-	cookie : {
-		login : 'zstatic_login'
-	},
+		
 	css : {
-		label : 'col-md-2 control-label',
-		field : 'form-control',
-		box : 'col-md-10',
-		group : 'form-group',
-		help : 'zs_page_help',
-		require : 'zs_page_require'
+		label : 'weui-label',
+		input : 'weui-input',
+		select : 'weui-select',
+		cell : 'weui-cell',
+		cell-hd : 'weui-cell__hd',
+		cell-bd : 'weui-cell__bd',
+		btn-area : 'weui-btn-area',
+		btn-primary : 'weui-btn weui-btn_primary'
+		
 	},
-
-	define : {
-
-		// 上传文件路径
-		uploadurl : '/webupload/zooupload',
-		uploadckfile : '/webckfile/zoockfile'
-
-	},
+	
 	html : {
 		div : 'div',
 		label : 'label',
-		form : 'form'
+		form : 'form',
+		a : 'a'
 	},
-	id : {
-		main : 'zoo_content',
-		header : 'zoo_header',
-		dialog : 'zoo_dialog'
-	},
+	
 	// 快捷对应行
 	element : {
 		'input' : 'Zstatic_Form_Input',
@@ -44,35 +35,15 @@ var zstatic_config = {
 		'model' : 'Zstatic_Form_Model'
 
 	},
-	// 扩展相关定义
-	ext : {
-		// 客户端扩展对象
-		client : 'client_ext'
-	},
 
 	button : {
 		loading : '正在处理……',
 		timequick : '操作太过频繁，请放慢脚步，享受生活。'
 	},
 
-	model : {
-		button : '_dialog',
-		text : '选择',
-		box : '_box',
-		body : '_body'
-	},
-
 	select : {
 		query : 'pq-',
 		text : '请选择'
 	},
-	tree : {
-		text : '全部'
-	},
-	upload : {
-		button : '_upload',
-		list : '_list',
-		text : '选择'
-	}
 
 };

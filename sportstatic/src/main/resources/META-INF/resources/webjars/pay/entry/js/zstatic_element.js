@@ -6,8 +6,9 @@ var Zstatic_Form_Input = React.createClass({
 	displayName : 'Zstatic_Form_Input',
 
 	render : function() {
+		
 		return React.createElement(zstatic_config.html.div, {
-			className : zstatic_config.css.group
+			className : zstatic_config.css.cell
 		}, React.createElement(Zstatic_Form.Label, this.props), React
 				.createElement(Zstatic_Form.Input, this.props));
 	}
@@ -159,7 +160,7 @@ var Zstatic_Element_Operate_Button = React.createClass({
 	},
 	render : function() {
 		return React.createElement('button', {
-			className : 'btn btn-raised btn-primary',
+			className : zstatic_config.btn-primary,
 			type : 'button',
 			id : this.props.pageUnique + '-' + this.props.operateCode,
 			// 'data-loading-text' : zstatic_config.button.loading,
@@ -179,7 +180,7 @@ var Zstatic_Element_Operate_Link = React.createClass({
 	},
 	render : function() {
 		return React.createElement('a', {
-			className : 'btn btn-primary',
+			className : zstatic_config.css.btn-primary,
 
 			onClick : this.onClick,
 		}, this.props.operateName);
@@ -197,7 +198,7 @@ var Zstatic_Element_Operate_Js = React.createClass({
 	},
 	render : function() {
 		return React.createElement('a', {
-			className : 'btn btn-primary',
+			className : zstatic_config.css.btn-primary,
 
 			onClick : this.onClick,
 		}, this.props.operateName);
@@ -227,7 +228,7 @@ var Zstatic_Element_Operate = React.createClass({
 		}
 
 		return React.createElement(zstatic_config.html.div, {
-			className : 'col-md-10 col-md-offset-2'
+			className : zstatic_config.css.btn-area
 		}, aOperate);
 	}
 });
