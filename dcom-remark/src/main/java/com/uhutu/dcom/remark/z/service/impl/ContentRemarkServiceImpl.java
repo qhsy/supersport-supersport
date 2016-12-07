@@ -54,7 +54,7 @@ public class ContentRemarkServiceImpl implements IContentRemarkService {
 		
 		StringBuffer statusBuffer = new StringBuffer("status in (");
 		
-		statusBuffer.append("'").append(RemarkEnum.FLAG_DEL).append("',");
+		statusBuffer.append("'").append(RemarkEnum.FLAG_DEL.getCode()).append("',");
 		
 		statusBuffer.append("'").append(RemarkEnum.FLAG_ENABLE.getCode()).append("') and ");
 		
