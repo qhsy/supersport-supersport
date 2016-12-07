@@ -29,6 +29,9 @@ public class ApiAppPersonHomeResult extends RootApiResult {
 	@ApiModelProperty(value="是否正在直播")
 	private boolean liveing = false;
 	
+	@ApiModelProperty(value="直播内容编号")
+	private String liveCode;
+	
 	@ApiModelProperty(value="问题信息tab")
 	private UserQuestionTabInfo userQuestionTabInfo = new UserQuestionTabInfo();
 	
@@ -81,6 +84,14 @@ public class ApiAppPersonHomeResult extends RootApiResult {
 
 	public void setLiveing(boolean liveing) {
 		this.liveing = liveing;
+	}
+
+	public String getLiveCode() {
+		return liveCode;
+	}
+
+	public void setLiveCode(String liveCode) {
+		this.liveCode = liveCode;
 	}
 	
 

@@ -3,11 +3,13 @@ package com.uhutu.sportcenter.z.api.answer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
+
 import com.uhutu.dcom.activity.z.entity.AcActivityAnswerInfo;
 import com.uhutu.dcom.activity.z.support.AnswerActivitySupport;
 import com.uhutu.dcom.answer.z.common.AnswerEnum;
@@ -178,7 +180,11 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 			
 			result.setUserInfo(initUserInfo(input.getUserCode()));
 			
-			result.setLiveing(isLiveing(input.getUserCode()));
+			String contentCode = liveDetail(input.getUserCode());
+			
+			result.setLiveing(StringUtils.isNotEmpty(contentCode)?true:false);
+			
+			result.setLiveCode(contentCode);
 
 		}
 		
@@ -389,9 +395,9 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 		
 	}
 	
-	public boolean isLiveing(String userCode){
+	public String liveDetail(String userCode){
 		
-		boolean liveing = false;
+		String contentCode  = "";
 		
 		MDataMap mWhereMap = new MDataMap();
 		
@@ -399,15 +405,16 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 		
 		mWhereMap.put("status", ContentEnum.LIVEING.getCode());
 		
-		int count = JdbcHelper.count(CnLiveVideoDetail.class, "", mWhereMap);
+		CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "contentCode", "-zc", "", mWhereMap);
 		
-		if(count > 0){
+		if(detail != null){
 			
-			liveing = true;
+			contentCode = detail.getContentCode();
 			
 		}
 		
-		return liveing;
+		
+		return contentCode;
 		
 		
 	}
