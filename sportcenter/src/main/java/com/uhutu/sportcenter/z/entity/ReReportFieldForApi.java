@@ -1,6 +1,7 @@
 package com.uhutu.sportcenter.z.entity;
 
 import com.uhutu.dcom.extend.z.entity.ReFieldType;
+import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -19,11 +20,17 @@ public class ReReportFieldForApi extends BaseEntity {
 	@ApiModelProperty(name = "字段编号")
 	private String fieldCode;
 
-	@ApiModelProperty(name = "字段名称")
-	private String fieldName;
+	@ZooData(name = "字段标识")
+	private String fieldId;
 
-	@ApiModelProperty(name = "字段类型编号")
+	@ZooData(name = "字段名称")
+	private String fieldLabel;
+
+	@ZooData(name = "字段类型编号")
 	private String fieldType;
+
+	@ZooData(name = "字段是否必填 1:必填    0:不必填")
+	private String require;
 
 	@ApiModelProperty(name = "可重复使用次数")
 	private int num;
@@ -51,14 +58,6 @@ public class ReReportFieldForApi extends BaseEntity {
 
 	public void setFieldCode(String fieldCode) {
 		this.fieldCode = fieldCode;
-	}
-
-	public String getFieldName() {
-		return fieldName;
-	}
-
-	public void setFieldName(String fieldName) {
-		this.fieldName = fieldName;
 	}
 
 	public String getFieldType() {
@@ -99,6 +98,30 @@ public class ReReportFieldForApi extends BaseEntity {
 
 	public void setType(ReFieldType type) {
 		this.type = type;
+	}
+
+	public String getFieldId() {
+		return fieldId;
+	}
+
+	public void setFieldId(String fieldId) {
+		this.fieldId = fieldId;
+	}
+
+	public String getFieldLabel() {
+		return fieldLabel;
+	}
+
+	public void setFieldLabel(String fieldLabel) {
+		this.fieldLabel = fieldLabel;
+	}
+
+	public String getRequire() {
+		return require;
+	}
+
+	public void setRequire(String require) {
+		this.require = require;
 	}
 
 }

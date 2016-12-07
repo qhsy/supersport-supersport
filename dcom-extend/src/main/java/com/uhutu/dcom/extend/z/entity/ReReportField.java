@@ -20,11 +20,17 @@ public class ReReportField extends BaseEntity {
 	@ZooData(name = "字段编号")
 	private String fieldCode;
 
+	@ZooData(name = "字段标识")
+	private String fieldId;
+
 	@ZooData(name = "字段名称")
-	private String fieldName;
+	private String fieldLabel;
 
 	@ZooData(name = "字段类型编号")
 	private String fieldType;
+
+	@ZooData(name = "字段是否必填 1:必填    0:不必填")
+	private String require;
 
 	@ZooData(name = "可重复使用次数")
 	private int num;
@@ -34,7 +40,7 @@ public class ReReportField extends BaseEntity {
 
 	@ZooData(name = "展示顺序")
 	private int showSort;
-	
+
 	public String getCode() {
 		return code;
 	}
@@ -49,14 +55,6 @@ public class ReReportField extends BaseEntity {
 
 	public void setFieldCode(String fieldCode) {
 		this.fieldCode = fieldCode;
-	}
-
-	public String getFieldName() {
-		return fieldName;
-	}
-
-	public void setFieldName(String fieldName) {
-		this.fieldName = fieldName;
 	}
 
 	public String getFieldType() {
@@ -89,6 +87,30 @@ public class ReReportField extends BaseEntity {
 
 	public void setShowSort(int showSort) {
 		this.showSort = showSort;
+	}
+
+	public String getFieldId() {
+		return fieldId;
+	}
+
+	public void setFieldId(String fieldId) {
+		this.fieldId = fieldId;
+	}
+
+	public String getFieldLabel() {
+		return fieldLabel;
+	}
+
+	public void setFieldLabel(String fieldLabel) {
+		this.fieldLabel = fieldLabel;
+	}
+
+	public String getRequire() {
+		return require;
+	}
+
+	public void setRequire(String require) {
+		this.require = require;
 	}
 
 }
