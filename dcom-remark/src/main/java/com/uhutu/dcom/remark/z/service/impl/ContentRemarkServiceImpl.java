@@ -6,9 +6,9 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.config.enums.PrexEnum;
-import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.remark.z.dao.ContentRemarkDaoFactory;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
 import com.uhutu.dcom.remark.z.enums.RemarkEnum;
@@ -73,7 +73,7 @@ public class ContentRemarkServiceImpl implements IContentRemarkService {
 	
 	@Override
 	public CnContentRemark queryByCode(String code) {
-		return daoFactory.getContentRemarkDao().queryByCode(code,SystemEnum.YES.getCode());
+		return daoFactory.getContentRemarkDao().queryByCode(code);
 	}
 
 	@Override

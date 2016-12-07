@@ -10,13 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.PageInfo;
-import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
-import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
@@ -49,12 +47,6 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 	protected ApiRemarkListResult process(ApiRemarkListInput input) {
 		
 		ApiRemarkListResult remarkListResult = new ApiRemarkListResult();
-		
-		QueryConditions conditions = new QueryConditions();
-		
-		conditions.setConditionEqual("contentCode", input.getContentCode());
-		
-		conditions.setConditionEqual("status", RemarkEnum.FLAG_ENABLE.getCode());
 		
 		PageInfo pageInfo = new PageInfo(0, input.getPagination(), 10);
 		
