@@ -57,7 +57,7 @@
 			</template>
 			<template v-else>
 				<template v-if="moment.contentType == 'dzsd4107100110030007'">
-					<a href="javascript:;" @click="live(moment.liveVideoDetailForApi.userCode,moment.liveVideoDetailForApi.nickName,moment.liveVideoDetailForApi.aboutHead,moment.liveVideoDetailForApi.code,moment.liveVideoDetailForApi.chatCode,moment.liveVideoDetailForApi.watch,moment.liveVideoDetailForApi.praise,moment.liveVideoDetailForApi.addressName)">
+					<a href="javascript:;" @click="live(moment.liveVideoDetailForApi.userCode,moment.liveVideoDetailForApi.nickName,moment.liveVideoDetailForApi.aboutHead,moment.liveVideoDetailForApi.code,moment.liveVideoDetailForApi.chatCode,moment.liveVideoDetailForApi.watch,moment.liveVideoDetailForApi.praise,moment.liveVideoDetailForApi.addressName,moment.liveVideoDetailForApi.title,moment.code)">
 						<moment :moment="moment"></moment>
 					</a>
 				</template>
@@ -147,8 +147,8 @@ var vm = new Vue({
 		backSportTime:function(code,type) {
 			callbackSportTime(code,type);
 		},
-		live:function(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address) {
-			callbackEnterRoom(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address);
+		live:function(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address,title,code) {
+			callbackEnterRoom(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address,title,code);
 		},
 		touchstart: function(event){
 			var target = event.targetTouches[0];

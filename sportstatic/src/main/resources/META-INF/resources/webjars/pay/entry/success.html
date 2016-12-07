@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>订单支付</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no,email=no"> 
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes"> 
+<meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes"/>
+<meta name="author" content="">
+<link rel="stylesheet" type="text/css" href="../../static/css/base.css">
+<style type="text/css">
+body{background: #f8f8f8;}
+.order li{padding: 0.22rem 0.24rem 0.16rem; box-shadow: 0 2px 3px rgba(0,0,0,0.12); background: #fff; color: #BDBDBD;}
+.order .title{font-size: 0.24rem; color: #656570; line-height: 0.24rem; word-wrap: break-word; word-break: break-all;}
+.order .price, .order .number{height: 0.22rem; text-align: right; font-size: 0.18rem; color: #BDBDBD; line-height: 0.22rem;}
+.order .price{margin: 0.45rem 0 0.15rem;}
+.order .price em{padding-right: 5px; font-size: 12px;}
+.order .price i{font-size: 0.22rem;}
+.order .price span, .order .number span{float: left;}
+.order .result{padding-top: 0.3rem;}
+.order .result span{height: 0.37rem; width: 0.37rem; display: block; margin: auto; background: url('../../static/img/end@2x.png') no-repeat center center; background-size: cover;}
+.order .result h1{padding: 0.12rem 0 0.19rem; text-align: center; font-size: 0.18rem; color: #F8800A; font-weight: 700; line-height: 0.22rem;}
+.submit, .back{width: 100%; height: 0.55rem; background: #F8800A; position: fixed; left: 0; bottom: 0; font-weight: 700; text-align: center; color: #fff; line-height: 0.55rem; font-size: 0.18rem;}
+</style>
+</head>
+<body>
+<section class="container">
+	<ul class="order">
+		<li>
+			<h1 class="title">体育大讲堂</h1>
+			<!-- <div class="info">
+				<div class="price"><span>应付款</span><em>￥</em><i>288</i></div>
+				<div class="number"><span>订单号</span>41223512515</div>
+			</div> -->
+			<div class="result">
+				<span></span>
+				<h1>报名支付成功</h1>
+			</div>
+		</li>
+	</ul>
+	<!-- <button type="button" class="submit">去支付</button> -->
+	<a href="" class="back">返回活动</a>	
+</section>
+<script type="text/javascript" src="../../sportstatic/script/common.min.js"></script>
+<script>
+new Vue({
+	el:'.container',
+	data:{
+
+	},
+	created:function(){
+
+	},
+	methods:{
+		apiGetData:function(){
+			reqwest({
+				url: '',
+				method: 'post',
+				data: '',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {
+					if(resp.status == 1){
+						
+					}else{
+						
+					}
+				}
+			});
+		}
+	}
+});
+</script>
+</body>
+</html>

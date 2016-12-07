@@ -164,12 +164,12 @@ function callbackTaobao(ios,and){
  * @return [Function]
  * @author [wangxh]
  */
-function callbackEnterRoom(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address){
+function callbackEnterRoom(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address,title,code){
 	var userAgent = navigator.userAgent;
 	if(userAgent.indexOf('Android') != -1){
-		javascript:android.callbackEnterRoom(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address);
+		javascript:android.callbackEnterRoom(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address,title,code);
 	} else {
-		window.webkit.messageHandlers.callbackEnterRoom.postMessage([uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address]);
+		window.webkit.messageHandlers.callbackEnterRoom.postMessage([uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address,title,code]);
 	}
 }
 
