@@ -31,7 +31,7 @@ public class ApiLiveVideoHeart extends RootApiToken<ApiLiveVideoHeartInput, ApiL
 			detail.setWatch(input.getWatch());
 			detail.setPraise(input.getPraise());
 			detail.setStatus("1");
-			JdbcHelper.update(detail, "length,watch,praise,status", "za");
+			JdbcHelper.update(detail, "length,watch,praise,status,channelId,streamUrl", "za");
 		}
 		return result;
 
