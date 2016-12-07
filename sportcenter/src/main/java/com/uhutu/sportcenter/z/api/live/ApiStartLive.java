@@ -71,7 +71,7 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 			String contentCode = updateContent(liveVideoDetail);
 			
 			liveVideoDetail.setContentCode(contentCode);
-			
+			startLiveResult.setContentCode(contentCode);
 			JdbcHelper.insert(liveVideoDetail);			
 			
 			updateContentWorth(contentCode);
