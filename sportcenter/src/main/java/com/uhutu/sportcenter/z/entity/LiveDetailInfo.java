@@ -4,17 +4,18 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 直播信息vo
+ * 
  * @author 逄小帅
  *
  */
-public class LiveDetailInfo{
-	
+public class LiveDetailInfo {
+
 	@ApiModelProperty(value = "用户基本信息")
 	private UserBasicInfo userBasicInfo = new UserBasicInfo();
-	
+
 	@ApiModelProperty(value = "房间号")
 	private String code;
-	
+
 	@ApiModelProperty(value = "聊天室编号")
 	private String chatCode;
 
@@ -29,10 +30,10 @@ public class LiveDetailInfo{
 
 	@ApiModelProperty(value = "经度")
 	private String longitude;
-	
+
 	@ApiModelProperty(value = "维度")
 	private String latitude;
-	
+
 	@ApiModelProperty(value = "定位位置名称")
 	private String addressName;
 
@@ -41,12 +42,15 @@ public class LiveDetailInfo{
 
 	@ApiModelProperty(value = "观看人次")
 	private long watch;
-	
+
 	@ApiModelProperty(value = "时长")
 	private int length;
-	
+
 	@ApiModelProperty(value = "标签名称")
 	private String tagName;
+
+	@ApiModelProperty(name = "文章编号")
+	private String contentCode;
 
 	public UserBasicInfo getUserBasicInfo() {
 		return userBasicInfo;
@@ -151,8 +155,13 @@ public class LiveDetailInfo{
 	public void setTagName(String tagName) {
 		this.tagName = tagName;
 	}
-	
-	
-	
+
+	public String getContentCode() {
+		return contentCode;
+	}
+
+	public void setContentCode(String contentCode) {
+		this.contentCode = contentCode;
+	}
 
 }
