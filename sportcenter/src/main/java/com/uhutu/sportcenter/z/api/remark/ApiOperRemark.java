@@ -29,7 +29,7 @@ public class ApiOperRemark extends RootApiToken<ApiOperRemarkInput, ApiOperRemar
 			break;
 		}
 		
-		return null;
+		return new ApiOperRemarkResult();
 	}
 	
 	public void delRemark(String remarkCode){
