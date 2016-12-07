@@ -405,7 +405,7 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 		
 		mWhereMap.put("status", ContentEnum.LIVEING.getCode());
 		
-		CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "contentCode", "-zc", "", mWhereMap);
+		CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "-zc", "", mWhereMap);
 		
 		if(detail != null){
 			
