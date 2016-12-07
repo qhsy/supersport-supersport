@@ -36,7 +36,7 @@ public class ApiLiveInfo extends RootApiBase<ApiLiveInfoInput, ApiLiveInfoResult
 					input.getContentCode());
 			if (basicinfo != null && StringUtils.isNotBlank(basicinfo.getAuthor())) {
 				CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "zc desc",
-						" user_code=:userCode and status = '1' ", MapHelper.initMap("userCode", basicinfo.getAuthor()));
+						" user_code=:userCode", MapHelper.initMap("userCode", basicinfo.getAuthor()));
 				result.setDetail(detail);
 				if (detail != null) {
 					SettingsDcomContent dcomContent = ConfigDcomContent.upConfig();
