@@ -6,99 +6,74 @@
 <meta name="viewport"
 	content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
 <title>报名</title>
-<link type="text/css" href="/webjars/static/css/weui.min.css"
-	rel="stylesheet">
-<link type="text/css" href="/webjars/pay/entry/css/entry.css"
-	rel="stylesheet">
-<script type="text/javascript"
-	src="/webjars/static/js/lib/jquery/jquery-last.min.js"></script>
-<script type="text/javascript"
-	src="/webjars/static/js/lib/jquery/jquery-plus.js"></script>
-<script type="text/javascript"
-	src="/webjars/static/js/lib/react/react.min.js"></script>
-<script type="text/javascript"
-	src="/webjars/static/js/lib/react/react-dom.min.js"></script>
-<script type="text/javascript"
-	src="/webjars/pay/entry/js/zutil_string.js"></script>
-<script type="text/javascript"
-	src="/webjars/pay/entry/js/zstatic_api.js"></script>
-<script type="text/javascript"
-	src="/webjars/pay/entry/js/zstatic_config.js"></script>
-<script type="text/javascript"
-	src="/webjars/pay/entry/js/zstatic_func.js"></script>
-<script type="text/javascript"
-	src="/webjars/pay/entry/js/zstatic_element.js"></script>
-<script type="text/javascript"
-	src="/webjars/pay/entry/js/zstatic_page.js"></script>
+<link type="text/css" href="/webjars/static/css/weui.min.css" rel="stylesheet">
+<link type="text/css" href="/webjars/pay/entry/css/entry.css" rel="stylesheet">
+<script type="text/javascript" src="/webjars/static/js/lib/jquery/jquery-last.min.js"></script>
+<script type="text/javascript" src="/webjars/static/js/lib/jquery/jquery-plus.js"></script>
+<script type="text/javascript" src="/webjars/static/js/lib/react/react.min.js"></script>
+<script type="text/javascript" src="/webjars/static/js/lib/react/react-dom.min.js"></script>
+<script type="text/javascript" src="/webjars/pay/entry/js/zstatic_api.js"></script>
+<script type="text/javascript" src="/webjars/pay/entry/js/zstatic_config.js"></script>
+<script type="text/javascript" src="/webjars/pay/entry/js/zstatic_func.js"></script>
+<script type="text/javascript" src="/webjars/pay/entry/js/zstatic_element.js"></script>
+<script type="text/javascript" src="/webjars/pay/entry/js/zstatic_operate.js"></script>
+<script type="text/javascript" src="/webjars/pay/entry/js/zstatic_react.js"></script>
+<script type="text/javascript" src="/webjars/pay/entry/js/zstatic_page.js"></script>
+<script type="text/javascript" src="/webjars/pay/entry/js/home.js"></script>
 <body>
+	<div id="topTip" class="weui-toptips weui-toptips_warn js_tooltips" style="display: none;"></div>
 	<div class="page">
-		<div class="page__hd">
-			<h1 class="page__title">微信报名</h1>
+		<div class="page__hd" id="pageHD">
+			
 		</div>
-		<div class="page__bd">
-
-			<div class="weui-cells weui-cells_form">
-				<div class="weui-cell">
-					<div class="weui-cell__hd">
-						<label class="weui-label">姓名</label>
-					</div>
-					<div class="weui-cell__bd">
-						<input class="weui-input" type="text" 	placeholder="请输入姓名" />
-					</div>
-				</div>
-				<div class="weui-cell weui-cell_select weui-cell_select-after">
-					<div class="weui-cell__hd">
-						<label for="" class="weui-label">性别</label>
-					</div>
-					<div class="weui-cell__bd">
-						<select class="weui-select" name="select2">
-							<option value="1">请选择</option>
-							<option value="2">男</option>
-							<option value="3">女</option>
-						</select>
-					</div>
-				</div>
-				<div class="weui-cell">
-					<div class="weui-cell__hd">
-						<label class="weui-label">年龄</label>
-					</div>
-					<div class="weui-cell__bd">
-						<input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入年龄">
-					</div>
-				</div>
-				<div class="weui-cell">
-					<div class="weui-cell__hd">
-						<label class="weui-label">手机号</label>
-					</div>
-					<div class="weui-cell__bd">
-						<input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入手机号">
-					</div>
-				</div>
-				<div class="weui-cell">
-					<div class="weui-cell__hd">
-						<label class="weui-label">体重</label>
-					</div>
-					<div class="weui-cell__bd">
-						<input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入体重">
-					</div>
-				</div>
-				<div class="weui-cell">
-					<div class="weui-cell__hd">
-						<label class="weui-label">身高</label>
-					</div>
-					<div class="weui-cell__bd">
-						<input class="weui-input" type="number" pattern="[0-9]*" placeholder="请输入身高">
-					</div>
-				</div>
-				
-			</div>
-
+		<div class="page__bd" id="pageBD">
 
 		</div>
 
-		<div class="weui-btn-area">
-			<input type="button" name="'" class="weui-btn weui-btn_primary" value="确定" >
+		<div class="weui-btn-area" id="pageBtn">
+			
 		</div>
 	</div>
+	
+	<!--BEGIN toast-->
+    <div id="toast" style="display: none;">
+        <div class="weui-mask_transparent"></div>
+        <div class="weui-toast">
+            <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+            <p class="weui-toast__content">已报名</p>
+        </div>
+    </div>
+    <!--end toast-->
+
+    <!-- loading toast -->
+    <div id="loadingToast" style="display:none;">
+        <div class="weui-mask_transparent"></div>
+        <div class="weui-toast">
+            <i class="weui-loading weui-icon_toast"></i>
+            <p class="weui-toast__content">数据加载中</p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    	
+    	function queryUrl(name){
+			var url = location.search;
+			var request = '';
+			if (url.indexOf("?") != -1) {
+				var str = url.substr(1);
+				var result = str.split("&");
+				for (var i = 0; i < result.length; i++) {
+					var arr = result[i].split("=");
+					if(arr[0] == name){
+						request = unescape(arr[1]);
+					}
+				}
+			}
+			return request;
+		}
+
+    	manage_home.index(queryUrl('code'));
+
+    </script>
 </body>
 </html>

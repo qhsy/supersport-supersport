@@ -5,10 +5,14 @@ var zstatic_config = {
 		input : 'weui-input',
 		select : 'weui-select',
 		cell : 'weui-cell',
-		cell-hd : 'weui-cell__hd',
-		cell-bd : 'weui-cell__bd',
-		btn-area : 'weui-btn-area',
-		btn-primary : 'weui-btn weui-btn_primary'
+		cell_hd : 'weui-cell__hd',
+		cell_bd : 'weui-cell__bd',
+		cell_form : 'weui-cells weui-cells_form',
+		cell_select : 'weui-cell weui-cell_select weui-cell_select-after',
+		btn_area : 'weui-btn-area',
+		btn_primary : 'weui-btn weui-btn_primary',
+		page_title : 'page__title',
+		page_bd : 'page__bd'
 		
 	},
 	
@@ -17,6 +21,14 @@ var zstatic_config = {
 		label : 'label',
 		form : 'form',
 		a : 'a'
+	},
+
+	id : {
+
+		hd : 'pageHD',
+		bd : 'pageBD',
+		btnArae : 'pageBtn'
+
 	},
 	
 	// 快捷对应行
@@ -44,6 +56,6 @@ var zstatic_config = {
 	select : {
 		query : 'pq-',
 		text : '请选择'
-	},
+	}
 
 };
