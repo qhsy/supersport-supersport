@@ -14,10 +14,10 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class ReReportFieldForApi extends BaseEntity {
 
-	@ApiModelProperty(name = "报表编号")
+	@ZooData(name = "报表编号")
 	private String code;
 
-	@ApiModelProperty(name = "字段编号")
+	@ZooData(name = "字段编号")
 	private String fieldCode;
 
 	@ZooData(name = "字段标识")
@@ -30,15 +30,15 @@ public class ReReportFieldForApi extends BaseEntity {
 	private String fieldType;
 
 	@ZooData(name = "字段是否必填 1:必填    0:不必填")
-	private String require;
+	private String requireAble;
 
-	@ApiModelProperty(name = "可重复使用次数")
+	@ZooData(name = "可重复使用次数")
 	private int num;
 
-	@ApiModelProperty(name = "字段取值范围")
+	@ZooData(name = "字段取值范围")
 	private String scope;
 
-	@ApiModelProperty(name = "展示顺序")
+	@ZooData(name = "展示顺序")
 	private int showSort;
 
 	@ApiModelProperty(name = "字段类型相关")
@@ -116,12 +116,12 @@ public class ReReportFieldForApi extends BaseEntity {
 		this.fieldLabel = fieldLabel;
 	}
 
-	public String getRequire() {
-		return require;
+	public String getRequireAble() {
+		return requireAble;
 	}
 
-	public void setRequire(String require) {
-		this.require = require;
+	public void setRequireAble(String requireAble) {
+		this.requireAble = requireAble;
 	}
 
 }
