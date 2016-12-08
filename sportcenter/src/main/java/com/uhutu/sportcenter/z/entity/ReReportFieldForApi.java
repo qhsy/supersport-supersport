@@ -38,6 +38,9 @@ public class ReReportFieldForApi extends BaseEntity {
 	@ZooData(name = "字段取值范围")
 	private String scope;
 
+	@ZooData(name=" 校验规则")
+	private String checkVerify;
+	
 	@ZooData(name = "展示顺序")
 	private int showSort;
 
@@ -122,6 +125,14 @@ public class ReReportFieldForApi extends BaseEntity {
 
 	public void setRequireAble(String requireAble) {
 		this.requireAble = requireAble;
+	}
+
+	public String getCheckVerify() {
+		return checkVerify;
+	}
+
+	public void setCheckVerify(String checkVerify) {
+		this.checkVerify = checkVerify;
 	}
 
 }
