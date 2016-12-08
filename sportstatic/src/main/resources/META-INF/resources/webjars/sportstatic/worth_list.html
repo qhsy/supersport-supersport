@@ -116,8 +116,10 @@ new Vue({
 					if(resp.status == 1){
 						_this.moments = _this.moments.concat(resp.moments);
 						_this.nextPage = resp.nextFlag;
-						_this.load = false;
 						_this.isData = !resp.moments.length;
+						_this.$nextTick(function(){
+							_this.load = false;
+						});
 					}else{
 						alert(resp.error)
 					}

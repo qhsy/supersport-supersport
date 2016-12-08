@@ -41,7 +41,7 @@
 		<ul class="types" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend">
 			<li v-for="type in types">
 				<a href="worth_list.html?code={{type.code}}">
-					<img src="../static/img/lazyload.jpg" v-lazyload:opts.fadein="type.cover" alt="">
+					<img src="../static/img/lazyload.jpg" v-lazyload="type.cover" alt="">
 					<h1 class="title"><span>{{type.name}}</span></h1>
 				</a>
 			</li>
@@ -134,7 +134,9 @@ var vm = new Vue({
 						_this.types = _this.types.concat(resp.types);
 						_this.moments = _this.moments.concat(resp.moments);
 						_this.nextPage = resp.nextFlag;
-						_this.load = false;
+						_this.$nextTick(function(){
+							_this.load = false;
+						});
 					}else{
 						alert(resp.error)
 					}
@@ -195,7 +197,7 @@ vm.$watch('types', function () {
 		liWidth = childrenLi.querySelector('li').clientWidth,
 		offsetLeft = childrenLi.querySelector('li').offsetLeft;
 		document.querySelector('.types').style.width = liLength*(liWidth+offsetLeft) + offsetLeft + 'px';
-})
+});
 </script>
 </body>
 </html>
