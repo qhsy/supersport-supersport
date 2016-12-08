@@ -141,7 +141,6 @@ var vm = new Vue({
 				contentType: 'application/json',
 				success: function(resp) {
 					if(resp.status == 1){
-						console.log(resp)
 						shareWeiXin({
 							'url':'/api/wechatController/configInfo',
 							'imgUrl':resp.iconUrl,
