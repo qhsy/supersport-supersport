@@ -26,7 +26,7 @@ import com.uhutu.zoodata.z.helper.JdbcHelper;
 @Service
 public class ApiReportFields extends RootApiBase<ApiReportFieldsInput, ApiReportFieldsResult> {
 
-	public static final String FORMOUT = "input,date,select,upload,checkbox";
+	public static final String FORMOUT = "input,date,select,upload,checkbox,show,datehms,textarea,editor,hidden,tree,model";
 
 	protected ApiReportFieldsResult process(ApiReportFieldsInput input) {
 		ApiReportFieldsResult result = new ApiReportFieldsResult();
