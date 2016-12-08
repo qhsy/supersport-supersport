@@ -44,12 +44,16 @@
 .content .caption{padding: 0.16rem 0.22rem 0; line-height: 0.27rem; font-size: 0.16rem; color: #535252; text-align: justify; word-break: break-all; word-wrap: break-word;}
 .content .cover{text-align: center;}
 .content .video{background: #000;}
+.content .end{position: relative;}
+.content .end-info{width: 100%; height: 100%; position: absolute; left: 0; top: 0;}
+.content .end-info h1{padding: 1.3rem 0 0.1rem; text-align: center; color: #fff;  font: bold 0.28rem/0.4rem "PingFangSC-Medium";}
+.content .end-info span{width: 1rem; margin: auto; padding: 0 0.1rem; border-radius: 5px; display: block; background: #F8800A; color: #fff; text-align: center; font-size: 0.16rem; line-height: 0.3rem; }
 </style>
 </head>
 <body>
 <section class="container" v-cloak>
 	<header class="user">
-		<div class="head">
+		<div class="head" @click="appDown">
 			<div class="photo">
 				<img :src="response.userBasicInfo.aboutHead?response.userBasicInfo.aboutHead:'../static/img/default_photo.png'" alt="">
 				<em class="mark" v-if="response.userBasicInfo.type == 'dzsd4107100310010002'"></em>
@@ -60,11 +64,22 @@
 				<h3 class="title" v-if="!!response.userBasicInfo.title">{{response.userBasicInfo.title}}</h3>
 			</div>
 		</div>
-		<a href="javascript:;" class="index">Ta的主页</a>
+		<a href="javascript:;" class="index" @click="appDown">Ta的主页</a>
 	</header>
 	<!-- content -->
 	<article class="content">
-		<div class="media" id="media"></div>
+		<template v-if="response.detail.status == '1'">
+			<div class="media" id="media"></div>
+		</template>
+		<template v-else>
+			<div class="end" @click="appDown">
+				<img :src="response.detail.cover" alt="">
+				<div class="end-info">
+					<h1>直播已结束</h1>
+					<span>查看热门直播</span>
+				</div>
+			</div>
+		</template>
 		<h1 class="video-title">{{response.detail.title}}</h1>
 	</article>
 	<!-- end -->
@@ -80,7 +95,8 @@ var initWidth =  window.innerWidth;
 var vm = new Vue({
 	el:'.container',
 	data:{
-		response: null
+		response: null,
+		loading: true
 	},
 	created:function(){
 		this.apiGetData();
@@ -98,16 +114,19 @@ var vm = new Vue({
 				success: function(resp) {
 					if(resp.status == 1){
 						_this.response = resp;
-						new qcVideo.Player("media",{
-							'channel_id': resp.detail.channelId,
-							'app_id': resp.appId,
-							'width' :initWidth,
-							'height' : initWidth,
-							'h5_start_patch': {
-								'url': resp.detail.cover,
-								'stretch': true
-							}
-						});
+						if(resp.detail.status == '1'){
+							new qcVideo.Player("media",{
+								'channel_id': resp.detail.channelId,
+								'app_id': resp.appId,
+								'width' :initWidth,
+								'height' : initWidth,
+								'h5_start_patch': {
+									'url': resp.detail.cover,
+									'stretch': true
+								}
+							});
+						}
+						_this.loading = false;
 					}else{
 						
 					}
@@ -151,6 +170,9 @@ var vm = new Vue({
 				contentType: 'application/json',
 				success: function(resp) {}
 			});
+		},
+		appDown:function(){
+			open();
 		}
 	}
 });
