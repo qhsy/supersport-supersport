@@ -48,13 +48,13 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 		mWhereMap.put("status", ContentEnum.LIVEING.getCode());
 		
 		int count = JdbcHelper.count(CnLiveVideoDetail.class, "", mWhereMap);
-		
-		if(count > 0){
+		CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "zc desc ", "code=:code and chat_code=:chatCode and status=:status", mWhereMap);
+		if (count > 0){
 			
 			startLiveResult.setError("此房间正在直播中");
 			
 			startLiveResult.setStatus(-1);
-			
+			startLiveResult.setContentCode(detail.getContentCode());
 		}else{
 			
 			CnLiveVideoDetail liveVideoDetail = new CnLiveVideoDetail();
