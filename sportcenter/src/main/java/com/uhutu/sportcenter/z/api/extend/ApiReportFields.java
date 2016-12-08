@@ -42,11 +42,11 @@ public class ApiReportFields extends RootApiBase<ApiReportFieldsInput, ApiReport
 						ReReportFieldForApi fieldForApi = new ReReportFieldForApi();
 						ReReportField field = fields.get(i);
 						BeanUtils.copyProperties(field, fieldForApi);
+						fieldForApi.setFieldType(typeMap.get(fieldForApi.getFieldType()).getName());
+						fieldForApi.setType(typeMap.get(fieldForApi.getFieldType()));
 						if (FORMOUT.contains(typeMap.get(fieldForApi.getFieldType()).getName())) {
-							fieldForApi.setType(typeMap.get(fieldForApi.getFieldType()));
 							result.getFields().add(fieldForApi);
 						} else {
-							fieldForApi.setType(typeMap.get(fieldForApi.getFieldType()));
 							result.getButtons().add(fieldForApi);
 						}
 					}
