@@ -63,8 +63,8 @@
 		<template v-else>
 			<img src="../static/img/lazyload.jpg" v-lazyload="moment.cover" alt="">
 		</template>
-		<span v-if="moment.mark == 'dzsd4107100110100001'" class="state">直播中</span>
-		<span v-if="moment.mark == 'dzsd4107100110100002'" class="state end">回放</span>
+		<span v-if="moment.mark == 'dzsd4107100110100001' && moment.contentType == 'dzsd4107100110030007'" class="state">直播中</span>
+		<span v-if="moment.mark == 'dzsd4107100110100002' && moment.contentType == 'dzsd4107100110030006'" class="state end">回放</span>
 		<em class="reading">{{moment.readNum}}</em>
 		<div class="user">
 			<em class="photo"></em>
