@@ -4,7 +4,7 @@
  * 
  */
 
-var zstatic_api = {
+var entry_api = {
 
 	c : {
 
@@ -24,13 +24,13 @@ var zstatic_api = {
 		var defaults = oData;
 
 		defaults.zoo = {
-			'key' : zstatic_api.c.api_key,
-			'token' : zstatic_api.c.api_token
+			'key' : entry_api.c.api_key,
+			'token' : entry_api.c.api_token
 		};
 
 		// oData = $.extend({}, defaults, oData || {});
 
-		zstatic_api.f.ajaxjson(zstatic_api.c.api_url + sTarget, defaults,
+		entry_api.f.ajaxjson(entry_api.c.api_url + sTarget, defaults,
 				function(data) {
 
 					if (data.status == "1") {
@@ -38,10 +38,10 @@ var zstatic_api = {
 						fCallBack(data);
 
 					} else if (data.status == "801") {
-						eval(zstatic_api.c.login_exec);
+						eval(entry_api.c.login_exec);
 					} else {
 
-						zstatic_api.f.message(data.error);
+						entry_api.f.message(data.error);
 
 					}
 
@@ -60,12 +60,12 @@ var zstatic_api = {
 				url : sTarget,
 				type : "POST",
 				contentType : "application/json",
-				data : zstatic_api.f.tojson(data),
+				data : entry_api.f.tojson(data),
 				success : fCallBack,
 				error : function(msg) {
 
 					console.log(msg);
-					zstatic_api.f.message('error');
+					entry_api.f.message('error');
 				}
 			};
 

@@ -1,4 +1,4 @@
-var zstatic_config = {
+var entry_config = {
 		
 	css : {
 		label : 'weui-label',
@@ -33,18 +33,18 @@ var zstatic_config = {
 	
 	// 快捷对应行
 	element : {
-		'input' : 'Zstatic_Form_Input',
-		'checkbox' : 'Zstatic_Form_Checkbox',
-		'date' : 'Zstatic_Form_Date',
-		'show' : 'Zstatic_Form_Show',
-		'datehms' : 'Zstatic_Form_Datehms',
-		'textarea' : 'Zstatic_Form_Textarea',
-		'editor' : 'Zstatic_Form_Ckeditor',
-		'upload' : 'Zstatic_Form_Upload',
-		'select' : 'Zstatic_Form_Select',
-		'hidden' : 'Zstatic_Form_Hidden',
-		'tree' : 'Zstatic_Form_Tree',
-		'model' : 'Zstatic_Form_Model'
+		'input' : 'entry_Form_Input',
+		'checkbox' : 'entry_Form_Checkbox',
+		'date' : 'entry_Form_Date',
+		'show' : 'entry_Form_Show',
+		'datehms' : 'entry_Form_Datehms',
+		'textarea' : 'entry_Form_Textarea',
+		'editor' : 'entry_Form_Ckeditor',
+		'upload' : 'entry_Form_Upload',
+		'select' : 'entry_Form_Select',
+		'hidden' : 'entry_Form_Hidden',
+		'tree' : 'entry_Form_Tree',
+		'model' : 'entry_Form_Model'
 
 	},
 

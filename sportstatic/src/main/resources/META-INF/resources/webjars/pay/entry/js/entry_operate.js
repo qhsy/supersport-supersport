@@ -4,7 +4,7 @@
  * 
  */
 
-var zstatic_operate = {
+var entry_operate = {
 
 	temp : {
 		// 最近一次点击的元素id
@@ -18,24 +18,24 @@ var zstatic_operate = {
 		// 定义是否正常操作
 		var bFlagEnable = true;
 
-		if (zstatic_operate.temp.time_id == sId) {
+		if (entry_operate.temp.time_id == sId) {
 			var sNow = new Date().getTime();
-			if (sNow - zstatic_operate.temp.time_last < sTimeSpan) {
+			if (sNow - entry_operate.temp.time_last < sTimeSpan) {
 				bFlagEnable = false;
 			}
 		}
 
 		if (bFlagEnable) {
-			zstatic_operate.temp.time_id = sId;
-			zstatic_operate.temp.time_last = new Date().getTime();
+			entry_operate.temp.time_id = sId;
+			entry_operate.temp.time_last = new Date().getTime();
 		} else {
-			alert(zstatic_config.button.timequick);
+			alert(entry_config.button.timequick);
 		}
 
 		return bFlagEnable;
 	},
 	clear_time : function() {
-		zstatic_operate.temp.time_id = '';
+		entry_operate.temp.time_id = '';
 	},
 
 	/**
@@ -43,10 +43,10 @@ var zstatic_operate = {
 	 */
 	operate_submit : function(code) {
 
-		zstatic_api.api_call('orderController/saveReport', {
-			map : zstatic_page.temp.datacache[code],
+		entry_api.api_call('orderController/saveReport', {
+			map : entry_page.temp.datacache[code],
 			reportCode : code
-		}, zstatic_operate.operate_success
+		}, entry_operate.operate_success
 
 		);
 		

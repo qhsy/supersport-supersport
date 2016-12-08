@@ -4,7 +4,7 @@
  * 
  */
 
-var zstatic_func = {
+var entry_func = {
 
 	format_replace : function(sInput, oReplace) {
 
@@ -132,7 +132,7 @@ var zstatic_func = {
 		var sSplit = sSource.split("/");
 
 		// 定义是否启用https
-		var bFlagHttps = zstatic_func.check_https();
+		var bFlagHttps = entry_func.check_https();
 		if (bFlagHttps) {
 			if (sSource.indexOf('https://') > -1) {
 				bFlagHttps = false;

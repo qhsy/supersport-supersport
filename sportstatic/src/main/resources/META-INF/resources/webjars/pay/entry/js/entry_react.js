@@ -1,11 +1,11 @@
-var Zstatic_Form = {
+var entry_Form = {
 
 	Input: React.createClass({
-		displayName: 'Zstatic_Form.Input',
+		displayName: 'entry_Form.Input',
 
 		getInitialState: function() {
 			return {
-				value: zstatic_page.data_up_value(this.props.code, this.props.fieldId)
+				value: entry_page.data_up_value(this.props.code, this.props.fieldId)
 			};
 		},
 
@@ -13,16 +13,16 @@ var Zstatic_Form = {
 			this.setState({
 				value: e.target.value
 			});
-			zstatic_page.data_in_value(this.props.code,
+			entry_page.data_in_value(this.props.code,
 				this.props.fieldId, e.target.value);
 		},
 
 		render: function() {
-			return React.createElement(zstatic_config.html.div, {
-				className: zstatic_config.css.cell_bd
+			return React.createElement(entry_config.html.div, {
+				className: entry_config.css.cell_bd
 			}, React.createElement("input", {
 				'type': 'text',
-				className: zstatic_config.css.input,
+				className: entry_config.css.input,
 				'id': this.props.fieldId,
 				'placeholder': '请输入' + this.props.fieldLabel,
 				'name': this.props.fieldId,
@@ -36,10 +36,10 @@ var Zstatic_Form = {
 		displayName: 'Label',
 		render: function() {
 
-			return React.createElement(zstatic_config.html.div, {
-				className: zstatic_config.css.cell_hd
+			return React.createElement(entry_config.html.div, {
+				className: entry_config.css.cell_hd
 			}, React.createElement("label", {
-				'className': zstatic_config.css.label
+				'className': entry_config.css.label
 			}, this.props.fieldLabel));
 
 		}
@@ -50,12 +50,12 @@ var Zstatic_Form = {
 			displayName: 'Select',
 			onChange: function onChange(e) {
 				// console.log(e.target.value);
-				zstatic_page.data_in_value(this.props.code,
+				entry_page.data_in_value(this.props.code,
 					this.props.fieldId, e.target.value);
 			},
 			render: function() {
 
-				var codes = zstatic_func.string_split(this.props.scope, ',');
+				var codes = entry_func.string_split(this.props.scope, ',');
 
 				var aOption = [];
 
@@ -65,13 +65,13 @@ var Zstatic_Form = {
 
 					selected: 'selected'
 
-				}, zstatic_config.select.text);
+				}, entry_config.select.text);
 
 				aOption.push(dOption);
 
 				for (var i in codes) {
 
-					var values = zstatic_func.string_split(codes[i], '&');
+					var values = entry_func.string_split(codes[i], '&');
 
 					var oInput = React.createElement('option', {
 
@@ -83,10 +83,10 @@ var Zstatic_Form = {
 
 				}
 
-				return React.createElement(zstatic_config.html.div, {
-					className: zstatic_config.css.cell_bd
+				return React.createElement(entry_config.html.div, {
+					className: entry_config.css.cell_bd
 				}, React.createElement("select", {
-					className: zstatic_config.css.select,
+					className: entry_config.css.select,
 					'id': this.props.fieldId,
 					'name': this.props.fieldId,
 					onChange: this.onChange,

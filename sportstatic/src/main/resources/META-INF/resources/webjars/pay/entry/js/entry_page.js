@@ -1,4 +1,4 @@
-var zstatic_page = {
+var entry_page = {
 
 	temp : {
 
@@ -20,7 +20,7 @@ var zstatic_page = {
 
 	data_up_value : function(sPageUnique, sFieldId) {
 
-		var sReturn = zstatic_page.temp.datacache[sPageUnique][sFieldId];
+		var sReturn = entry_page.temp.datacache[sPageUnique][sFieldId];
 
 		return sReturn != undefined ? sReturn : '';
 
@@ -28,71 +28,71 @@ var zstatic_page = {
 
 	data_in_value : function(sPageUnique, sFieldId, sValue) {
 
-		zstatic_page.temp.datacache[sPageUnique][sFieldId] = sValue;
+		entry_page.temp.datacache[sPageUnique][sFieldId] = sValue;
 	},
 
 	page : function(code) {
-		zstatic_page.temp.code = code;
+		entry_page.temp.code = code;
 
-		zstatic_page.temp.pagearray.push(code);
+		entry_page.temp.pagearray.push(code);
 
-		zstatic_api.api_call('orderController/reportFields', {
+		entry_api.api_call('orderController/reportFields', {
 			code : code
-		}, zstatic_page.page_success
+		}, entry_page.page_success
 
 		);
 
 	},
 
 	page_clean : function() {
-		zstatic_page.temp.datacache = {};
-		zstatic_page.temp.querycache = {};
-		zstatic_page.temp.gridnavcache = {};
+		entry_page.temp.datacache = {};
+		entry_page.temp.querycache = {};
+		entry_page.temp.gridnavcache = {};
 	},
 
 
 	// 获取页面的实体描述
 	page_model : function(sUqCode) {
-		return zstatic_page.temp.pall[sUqCode];
+		return entry_page.temp.pall[sUqCode];
 	},
 
 	page_header : function(sText) {
 		ReactDOM.render(React.createElement('h1', {
-			className : zstatic_config.css.cell_hd
-		}, sText), document.getElementById(zstatic_config.id.hd));
+			className : entry_config.css.cell_hd
+		}, sText), document.getElementById(entry_config.id.hd));
 
 	},
 
 	page_success : function(oData) {
 
-		zstatic_page.page_clean();
+		entry_page.page_clean();
 
-		zstatic_page.page_header(oData.fs.title);
+		entry_page.page_header(oData.fs.title);
 
 		var sUqCode = oData.fs.code;
 
-		zstatic_page.temp.pall[sUqCode] = oData.fields;
+		entry_page.temp.pall[sUqCode] = oData.fields;
 
-		zstatic_page.page_body(sUqCode);
+		entry_page.page_body(sUqCode);
 			
-		zstatic_page.page_btn(oData);
+		entry_page.page_btn(oData);
 		
 
 	},
 
 	page_body : function(sUqCode) {
 
-		var oPageModel = zstatic_page.page_model(sUqCode);
-		zstatic_page.temp.datacache[sUqCode] = {};
-		ReactDOM.render(React.createElement(Zstatic_Elelemt_Form, oPageModel),
-			document.getElementById(zstatic_config.id.bd));
+		var oPageModel = entry_page.page_model(sUqCode);
+		entry_page.temp.datacache[sUqCode] = {};
+		ReactDOM.render(React.createElement(entry_Elelemt_Form, oPageModel),
+			document.getElementById(entry_config.id.bd));
 	},
 
 	page_btn : function(sUqCode){
 
-		Zstatic_Element_Operate_Button
-		ReactDOM.render(React.createElement(Zstatic_Element_Operate_Button, sUqCode),
-			document.getElementById(zstatic_config.id.btnArae));
+		entry_Element_Operate_Button
+		ReactDOM.render(React.createElement(entry_Element_Operate_Button, sUqCode),
+			document.getElementById(entry_config.id.btnArae));
 
 	}
 
