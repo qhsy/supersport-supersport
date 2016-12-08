@@ -30,7 +30,7 @@ public class ReReportField extends BaseEntity {
 	private String fieldType;
 
 	@ZooData(name = "字段是否必填 1:必填    0:不必填")
-	private String require;
+	private String requireAble;
 
 	@ZooData(name = "可重复使用次数")
 	private int num;
@@ -105,12 +105,12 @@ public class ReReportField extends BaseEntity {
 		this.fieldLabel = fieldLabel;
 	}
 
-	public String getRequire() {
-		return require;
+	public String getRequireAble() {
+		return requireAble;
 	}
 
-	public void setRequire(String require) {
-		this.require = require;
+	public void setRequireAble(String requireAble) {
+		this.requireAble = requireAble;
 	}
 
 }
