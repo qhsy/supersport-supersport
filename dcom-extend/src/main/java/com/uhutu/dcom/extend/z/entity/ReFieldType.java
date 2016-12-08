@@ -25,7 +25,7 @@ public class ReFieldType extends BaseEntity {
 
 	@ApiModelProperty(name = "字段值校验公式")
 	@ZooData(name = "字段值校验公式")
-	private String check;
+	private String checkRole;
 
 	public String getCode() {
 		return code;
@@ -43,12 +43,12 @@ public class ReFieldType extends BaseEntity {
 		this.name = name;
 	}
 
-	public String getCheck() {
-		return check;
+	public String getCheckRole() {
+		return checkRole;
 	}
 
-	public void setCheck(String check) {
-		this.check = check;
+	public void setCheckRole(String checkRole) {
+		this.checkRole = checkRole;
 	}
 
 }
