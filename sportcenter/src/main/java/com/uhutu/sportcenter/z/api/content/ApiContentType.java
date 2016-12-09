@@ -86,7 +86,8 @@ public class ApiContentType extends RootApiBase<ApiContentTypeInput, ApiContentT
 			}
 
 			if (StringUtils.isNotBlank(str)) {
-				List<CnContentBasicinfo> basics = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "",
+				List<CnContentBasicinfo> basics = JdbcHelper.queryForList(CnContentBasicinfo.class, "",
+						" field(code," + str.toString() + ")",
 						"status='dzsd4699100110010001' and shareScope='dzsd4699100110010001' and code in("
 								+ str.toString() + ")",
 						new MDataMap());
@@ -162,7 +163,8 @@ public class ApiContentType extends RootApiBase<ApiContentTypeInput, ApiContentT
 	}
 
 	private List<CnContentType> getTypes(int width) {
-		List<CnContentType> types = JdbcHelper.queryForList(CnContentType.class, "", "sort desc,zc desc", "status = '1'", null);
+		List<CnContentType> types = JdbcHelper.queryForList(CnContentType.class, "", "sort desc,zc desc",
+				"status = '1'", null);
 		if (types != null) {
 			for (int i = 0; i < types.size(); i++) {
 				types.get(i).setCover(ImageHelper.upImageThumbnail(types.get(i).getCover(), width));
