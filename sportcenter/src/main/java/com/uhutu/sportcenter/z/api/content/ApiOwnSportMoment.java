@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
@@ -95,6 +96,11 @@ public class ApiOwnSportMoment extends RootApiToken<ApiOwnSportMomentInput, ApiO
 
 				sportingMoment.getUserBasicInfo().setUserCode(upUserCode());
 
+			}
+			CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+					sportingMoment.getCode());
+			if (contentDetail != null) {
+				sportingMoment.setContentDetail(contentDetail);
 			}
 			sportingMoment.setPublishTimeStr("MM-dd HH:mm");
 			CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",

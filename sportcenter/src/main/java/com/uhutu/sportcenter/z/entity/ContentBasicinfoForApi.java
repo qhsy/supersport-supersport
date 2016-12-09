@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.uhutu.dcom.component.z.util.CalendarUtil;
+import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.tag.z.entity.CnContentLabel;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -91,6 +92,9 @@ public class ContentBasicinfoForApi {
 
 	@ApiModelProperty(value = "是否本文作者", notes = "是否本文作者")
 	private boolean authorFlag = false;
+
+	@ApiModelProperty(value = "内容详情", notes = "内容详情")
+	private CnContentDetail contentDetail = new CnContentDetail();
 
 	@ApiModelProperty(value = "用户基本信息")
 	private UserBasicInfo userBasicInfo = new UserBasicInfo();
@@ -224,17 +228,17 @@ public class ContentBasicinfoForApi {
 	}
 
 	public String getPublishTimeStr() {
-		
+
 		String tempStr = "";
-		
-		if(getPublishTime() != null){
-			
+
+		if (getPublishTime() != null) {
+
 			tempStr = CalendarUtil.formateTip(getPublishTime());
-			
+
 		}
-		
+
 		return tempStr;
-		
+
 	}
 
 	public void setPublishTimeStr(String pattern) {
@@ -317,6 +321,14 @@ public class ContentBasicinfoForApi {
 
 	public void setAuthorFlag(boolean authorFlag) {
 		this.authorFlag = authorFlag;
+	}
+
+	public CnContentDetail getContentDetail() {
+		return contentDetail;
+	}
+
+	public void setContentDetail(CnContentDetail contentDetail) {
+		this.contentDetail = contentDetail;
 	}
 
 }

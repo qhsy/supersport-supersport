@@ -120,6 +120,11 @@ public class ApiContentWorth extends RootApiBase<ApiContentWorthInput, ApiConten
 								sportingMoment.setTitle(detail.getContent());
 							}
 						}
+						CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+								sportingMoment.getCode());
+						if (contentDetail != null) {
+							sportingMoment.setContentDetail(contentDetail);
+						}
 						int remarkNum = remarkServiceFactory.getContentRemarkService()
 								.queryCount(sportingMoment.getCode(), RemarkEnum.FLAG_ENABLE.getCode());
 						sportingMoment.setRemarkNum(remarkNum);

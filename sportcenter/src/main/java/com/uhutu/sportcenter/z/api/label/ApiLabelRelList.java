@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.tag.z.entity.CnContentLabel;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
@@ -236,13 +237,17 @@ public class ApiLabelRelList extends RootApiBase<ApiLabelRelListInput, ApiLabelR
 
 				CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
 						sportingMoment.getCode());
-
+				
 				if (contentReadCount != null) {
 
 					sportingMoment.setReadNum(contentReadCount.getCount());
 
 				}
-				
+				CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+						sportingMoment.getCode());
+				if (contentDetail != null) {
+					sportingMoment.setContentDetail(contentDetail);
+				}
 				String title = sportingMoment.getTitle();
 				
 				title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);

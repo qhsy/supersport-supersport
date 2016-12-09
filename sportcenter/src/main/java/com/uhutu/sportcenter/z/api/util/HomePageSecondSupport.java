@@ -176,6 +176,11 @@ public class HomePageSecondSupport {
 							info.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(wid)));
 						}
 						BeanUtils.copyProperties(info, infoApi);
+						CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+								info.getCode());
+						if (contentDetail != null) {
+							infoApi.setContentDetail(contentDetail);
+						}
 						int praiseNum = JdbcHelper.count(CnSupportPraise.class, "",
 								MapHelper.initMap("content_code", infoApi.getCode(), "type", "01", "status", "1"));
 						infoApi.setPraiseNum(praiseNum);
@@ -189,13 +194,13 @@ public class HomePageSecondSupport {
 						infoApi.getUserBasicInfo().setNickName(userInfoApi.getNickName());
 						infoApi.getUserBasicInfo().setAboutHead(userInfoApi.getAboutHead());
 						infoApi.getUserBasicInfo().setType(userInfoApi.getType());
-						
+
 						String title = infoApi.getTitle();
-						
+
 						title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
-						
+
 						infoApi.setTitle(title);
-						
+
 						hmp.getInfos().add(getSingleTitle(infoApi));
 					}
 				} else {

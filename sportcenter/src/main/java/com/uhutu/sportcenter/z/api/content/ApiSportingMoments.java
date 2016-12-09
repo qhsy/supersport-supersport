@@ -13,6 +13,7 @@ import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
@@ -192,7 +193,11 @@ public class ApiSportingMoments extends RootApiForMember<ApiSportingMomentsInput
 					sportingMoment.setReadNum(contentReadCount.getCount());
 
 				}
-
+				CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+						sportingMoment.getCode());
+				if (contentDetail != null) {
+					sportingMoment.setContentDetail(contentDetail);
+				}
 				sportingMoment = new HomePageSupport(userInfoSupport).getSingleTitle(sportingMoment);
 				int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(sportingMoment.getCode(),
 						RemarkEnum.FLAG_ENABLE.getCode());

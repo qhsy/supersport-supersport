@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
@@ -133,7 +134,11 @@ public class ApiFavorContentList extends RootApiBase<ApiFavorContentListInput, A
 				basicinfoForApi.setPraiseNum(praiseNum);
 				
 				basicinfoForApi = new HomePageSupport(userInfoSupport).getSingleTitle(basicinfoForApi);
-				
+				CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+						basicinfoForApi.getCode());
+				if (contentDetail != null) {
+					basicinfoForApi.setContentDetail(contentDetail);
+				}
 				String title = basicinfoForApi.getTitle();
 				
 				title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);

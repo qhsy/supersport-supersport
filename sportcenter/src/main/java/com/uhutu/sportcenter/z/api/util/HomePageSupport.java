@@ -164,6 +164,11 @@ public class HomePageSupport {
 							info.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(width)));
 						}
 						BeanUtils.copyProperties(info, infoApi);
+						CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+								infoApi.getCode());
+						if (contentDetail != null) {
+							infoApi.setContentDetail(contentDetail);
+						}
 						int praiseNum = JdbcHelper.count(CnSupportPraise.class, "",
 								MapHelper.initMap("content_code", infoApi.getCode(), "type", "01", "status", "1"));
 						infoApi.setPraiseNum(praiseNum);
