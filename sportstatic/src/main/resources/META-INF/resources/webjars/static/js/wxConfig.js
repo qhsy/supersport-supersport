@@ -1,5 +1,5 @@
 function wxConfigFun(config){
-	var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
+	var weix = navigator.userAgent.indexOf('MicroMessenger') > -1;
 	var con = {
 		'url':config && config.url || '/api/wechatController/configInfo',
 		'imgUrl':config && config.imgUrl || '',
@@ -11,7 +11,7 @@ function wxConfigFun(config){
 		'success':config && config.success || function(){},
 		'cancel':config && config.cancel || function(){}
 	}
-	!isWeix return false;
+	if(!weix) return ;
 	reqwest({
 		url: con.url,
 		method: 'post',
