@@ -31,6 +31,7 @@ public class TeslaAccount extends TeslaTopOrderMake {
 			if (teslaOrder.getOrderInfo().getOrderMoney().compareTo(BigDecimal.ZERO) == 0) {
 				teslaOrder.getOrderInfo().setStatus("dzsd4112100110030002");// 0元订单直接付款完成状态
 			}
+			teslaOrder.getOrderInfo().setPayedMoney(BigDecimal.ZERO);
 		}
 		if ("dzsd4112100110010005".equals(teslaOrder.getOrderInfo().getOrderType())) {
 			for (int i = 0; i < teslaOrder.getSigns().size(); i++) {
