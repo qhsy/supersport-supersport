@@ -32,6 +32,9 @@ jar {
 	version = zooInitVersion
 }
 
+bootRun {
+    jvmArgs "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
+}
 
 dependencies {
 	compile('org.mariadb.jdbc:mariadb-java-client:1.4.6')
