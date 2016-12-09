@@ -48,7 +48,7 @@ var entry_Element_Operate_Button = React.createClass({
 			type : 'button',
 			id : this.props.fs.code,
 			onClick : this.onClick,
-		}, "确认报名");
+		}, "报名");
 
 	}
 });
