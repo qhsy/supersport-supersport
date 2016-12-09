@@ -55,6 +55,17 @@
     </div>
 
     <script type="text/javascript">
+
+    	function callBackOrder(code){
+
+			var userAgent = navigator.userAgent;
+			if(userAgent.indexOf('Android') != -1){
+				javascript:android.callBackOrder(code);
+			} else {
+				window.webkit.messageHandlers.callBackOrder.postMessage(code);
+			}
+		}
+
     	
     	function queryUrl(name){
 			var url = location.search;
@@ -72,7 +83,11 @@
 			return request;
 		}
 
-    	manage_home.index(queryUrl('code'));
+		entry.dataCache.source = queryUrl('source');
+
+		entry_api.c.api_token = queryUrl('entryToken');
+
+    	entry.index(queryUrl('code'));
 
     </script>
 </body>
