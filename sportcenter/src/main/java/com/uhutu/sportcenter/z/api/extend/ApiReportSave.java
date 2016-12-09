@@ -18,6 +18,7 @@ import com.uhutu.dcom.order.orderResult.TeslaXResult;
 import com.uhutu.dcom.order.service.ApiConvertTeslaService;
 import com.uhutu.dcom.order.z.entity.OcOrderDetail;
 import com.uhutu.dcom.order.z.entity.OcOrderInfo;
+import com.uhutu.dcom.pay.z.entity.PaPayInfo;
 import com.uhutu.dcom.user.z.tecent.helper.JsonHelper;
 import com.uhutu.sportcenter.z.input.ApiReportSaveInput;
 import com.uhutu.sportcenter.z.result.ApiReportSaveResult;
@@ -158,6 +159,11 @@ public class ApiReportSave extends RootApiToken<ApiReportSaveInput, ApiReportSav
 		TeslaXResult reTeslaXResult = new ApiConvertTeslaService().ConvertOrder(teslaXOrder);
 		if (reTeslaXResult.upFlagTrue()) {
 			reTeslaXResult.setError(teslaXOrder.getOrderInfo().getCode());
+			PaPayInfo payInfo = new PaPayInfo();
+			payInfo.setBusiCode(teslaXOrder.getOrderInfo().getCode());
+			payInfo.setPayType("dzsd4112100110040002");
+			payInfo.setMoney(teslaXOrder.getOrderInfo().getOrderMoney());
+			JdbcHelper.insert(payInfo);
 		}
 		return reTeslaXResult;
 	}
