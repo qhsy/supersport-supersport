@@ -83,6 +83,7 @@ import com.uhutu.sportcenter.z.api.live.ApiFinishLiveVideo;
 import com.uhutu.sportcenter.z.api.live.ApiLiveCreateRoom;
 import com.uhutu.sportcenter.z.api.live.ApiLiveInfo;
 import com.uhutu.sportcenter.z.api.live.ApiLiveInfoList;
+import com.uhutu.sportcenter.z.api.live.ApiLiveMsg;
 import com.uhutu.sportcenter.z.api.live.ApiLiveNotify;
 import com.uhutu.sportcenter.z.api.live.ApiLiveVideoHeart;
 import com.uhutu.sportcenter.z.api.live.ApiOperLiveInfo;
@@ -533,6 +534,13 @@ public class ApiFactory {
 	@Autowired
 	private ApiReportShow apiReportShow;
 	
+	@Autowired
+	private ApiLiveMsg apiLiveMsg;
+	
+	public ApiLiveMsg getApiLiveMsg() {
+		return apiLiveMsg;
+	}
+
 	public ApiReportShow getApiReportShow() {
 		return apiReportShow;
 	}
