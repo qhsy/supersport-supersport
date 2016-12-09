@@ -9,6 +9,9 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class ApiReportSaveInput extends RootApiInput {
 
+	@ApiModelProperty(value = "信息来源来源 dzsd4112100110020001:app,dzsd4112100110020002:H5", example = "dzsd4112100110020002", required = true)
+	private String orderSource;
+	
 	@ApiModelProperty(name = "活动编号", value = "活动编号", example = "活动编号", required = true)
 	private String reportCode = "";
 
@@ -29,6 +32,14 @@ public class ApiReportSaveInput extends RootApiInput {
 
 	public void setMap(MDataMap map) {
 		this.map = map;
+	}
+
+	public String getOrderSource() {
+		return orderSource;
+	}
+
+	public void setOrderSource(String orderSource) {
+		this.orderSource = orderSource;
 	}
 
 }

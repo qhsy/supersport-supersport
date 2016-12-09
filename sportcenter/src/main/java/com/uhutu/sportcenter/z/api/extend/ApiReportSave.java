@@ -42,7 +42,8 @@ public class ApiReportSave extends RootApiToken<ApiReportSaveInput, ApiReportSav
 		if (StringUtils.isNotBlank(input.getReportCode())) {
 			RootApiResult sr = saveReport(input.getReportCode(), input.getMap());
 			if (sr.upFlagTrue()) {
-				TeslaXResult so = saveOrder(sr.getError().split("&")[0], sr.getError().split("&")[1]);
+				TeslaXResult so = saveOrder(sr.getError().split("&")[0], sr.getError().split("&")[1],
+						input.getOrderSource());
 				if (so.upFlagTrue()) {
 					result.setOrderCode(so.getError());
 				} else {
@@ -122,11 +123,11 @@ public class ApiReportSave extends RootApiToken<ApiReportSaveInput, ApiReportSav
 	 *            商品单价
 	 * @return
 	 */
-	private TeslaXResult saveOrder(String productCode, String productPrice) {
+	private TeslaXResult saveOrder(String productCode, String productPrice, String orderSource) {
 		TeslaXOrder teslaXOrder = new TeslaXOrder();
 		OcOrderInfo info = new OcOrderInfo();
 		info.setBuyerCode(upUserCode());
-		info.setOrderSource("dzsd4112100110020002");
+		info.setOrderSource(orderSource);
 		info.setOrderType("dzsd4112100110010006");
 		info.setPayType("dzsd4112100110040002");
 		String[] pcs = productCode.split(",");
