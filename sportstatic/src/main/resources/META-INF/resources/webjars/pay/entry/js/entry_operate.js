@@ -60,9 +60,23 @@ var entry_operate = {
 		$("#loadingToast").css('display','none');
 		$("#topTip").css('display','none');
 
-		if(eval(oData.status)){
+		if(eval(oData.status) == 1){
 
 			$("#toast").css('display','block');
+
+			if(entry.dataCache.source == 'app'){
+
+				callBackOrder(oData.orderCode);
+
+			}
+
+			if(entry.dataCache.source == 'wechat'){
+
+				window.location.href = 'success.hmtl?id='+oData.orderCode;
+
+			}
+
+
 
 		}else {
 

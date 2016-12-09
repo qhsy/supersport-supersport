@@ -1,4 +1,9 @@
-var manage_home = {
+var entry = {
+
+	dataCache : {
+
+		source : ''
+	},
 
 	index : function(code) {
 
