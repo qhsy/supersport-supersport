@@ -174,7 +174,12 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 		case CROSSFIT_H5:
 			payProcess = PayProcessEnum.WECHAT_H5_CF;
 			break;
-
+		case ENTRY_APP:
+			payProcess = PayProcessEnum.ENTRY;
+			break;
+		case ENTRY_H5:
+			payProcess = PayProcessEnum.ENTRY_H5;
+			break;
 		default:
 			break;
 		}

@@ -50,6 +50,14 @@ public enum PayProcessEnum {
 	/**crossfit*/
 	WECHAT_CF_NOTIFY,
 	/**crossfit h5*/
-	WECHAT_CFH5_NOTIFY;
+	WECHAT_CFH5_NOTIFY,
+	/**entry*/
+	ENTRY,
+	/**entry h5*/
+	ENTRY_H5,
+	/**entry*/
+	ENTRY_NOTIFY,
+	/**entry h5*/
+	ENTRY_H5_NOTIFY;
 
 }

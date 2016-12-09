@@ -9,6 +9,8 @@ import org.apache.commons.lang3.StringUtils;
  */
 public enum OrderType {
 	
+	ENTRY("dzsd4112100110010006","报名费用"),
+	
 	/**crossfit*/
 	CROSSFIT_TD("dzsd4112100110010005","2016 Beijing ThrowDown报名"),
 	
@@ -30,7 +32,11 @@ public enum OrderType {
 	
 	CROSSFIT_H5("dzsd4112100110020002-dzsd4112100110010005","crossfit H5 订单"),
 	
-	CROSSFIT_APP("dzsd4112100110020001-dzsd4112100110010005","crossfit app订单");
+	CROSSFIT_APP("dzsd4112100110020001-dzsd4112100110010005","crossfit app订单"),
+	
+	ENTRY_H5("dzsd4112100110020002-dzsd4112100110010006","crossfit H5 订单"),
+	
+	ENTRY_APP("dzsd4112100110020001-dzsd4112100110010006","crossfit app订单");
 	
 	
 	OrderType(String code, String text) {

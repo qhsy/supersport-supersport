@@ -87,6 +87,18 @@ public class PayGateProcess implements IPayGateProcess {
 		case WECHAT_CFH5_NOTIFY:
 			payService = payServiceFactory.getWechatNotifyService();
 			break;
+		case ENTRY:
+			payService = payServiceFactory.getWechatService();
+			break;
+		case ENTRY_H5:
+			payService = payServiceFactory.getWechatH5PayService();
+			break;
+		case ENTRY_NOTIFY:
+			payService = payServiceFactory.getWechatNotifyService();
+			break;
+		case ENTRY_H5_NOTIFY:
+			payService = payServiceFactory.getWechatNotifyService();
+			break;
 		default:
 			break;
 		}
