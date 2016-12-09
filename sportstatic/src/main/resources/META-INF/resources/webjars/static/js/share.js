@@ -6,7 +6,8 @@
 function share(){
 	var _body = document.body;
 	var _createEle = document.createElement('aside');
-	var _innerHTML = '<span class="logo"><img src="../static/img/logo.png" alt=""></span><em class="btn">立即打开</em><em class="close">x</em>';
+	// var _innerHTML = '<span class="logo"><img src="../static/img/logo.png" alt=""></span><em class="btn">立即打开</em><em class="close">x</em>';
+	var _innerHTML = '<span class="logo"><img src="../static/img/share@2x.png" alt=""></span><em class="btn">立即打开</em>';
 		_createEle.className = 'share';
 		_createEle.innerHTML = _innerHTML;
 		_body.appendChild(_createEle);
