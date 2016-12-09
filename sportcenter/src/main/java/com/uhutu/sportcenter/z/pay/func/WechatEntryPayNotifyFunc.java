@@ -63,7 +63,7 @@ public class WechatEntryPayNotifyFunc implements IWechatNotifyFunc {
 							
 						}
 						
-						/*更新 crossfit 相关信息*/
+						/*更新 entry 报名 相关信息*/
 						if(mResult.upFlagTrue()){
 							
 							//相关操作
