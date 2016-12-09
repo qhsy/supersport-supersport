@@ -43,8 +43,8 @@ public class ApiReportSave extends RootApiToken<ApiReportSaveInput, ApiReportSav
 		if (StringUtils.isNotBlank(input.getReportCode())) {
 			RootApiResult sr = saveReport(input.getReportCode(), input.getMap());
 			if (sr.upFlagTrue()) {
-				TeslaXResult so = saveOrder(sr.getError().split("&")[0], sr.getError().split("&")[1],
-						input.getOrderSource());
+				TeslaXResult so = saveOrder(sr.getError().split("&")[0], sr.getError().split("&")[2],
+						sr.getError().split("&")[1], input.getOrderSource());
 				if (so.upFlagTrue()) {
 					result.setOrderCode(so.getError());
 				} else {
@@ -118,7 +118,7 @@ public class ApiReportSave extends RootApiToken<ApiReportSaveInput, ApiReportSav
 				reJson.setSignCode(WebHelper.upCode("REJGBH"));
 				reJson.setStatus("0");
 				reJson.setJson(new JsonHelper<MDataMap>().ObjToString(map));
-				result.setError(reJson.getSignCode() + "&" + info.getOrderMoney().toString());
+				result.setError(reJson.getSignCode() + "&" + info.getOrderMoney().toString() + "&" + info.getTitle());
 				JdbcHelper.insert(reJson);
 			}
 		} else {
@@ -136,7 +136,7 @@ public class ApiReportSave extends RootApiToken<ApiReportSaveInput, ApiReportSav
 	 *            商品单价
 	 * @return
 	 */
-	private TeslaXResult saveOrder(String productCode, String productPrice, String orderSource) {
+	private TeslaXResult saveOrder(String productCode, String productName, String productPrice, String orderSource) {
 		TeslaXOrder teslaXOrder = new TeslaXOrder();
 		OcOrderInfo info = new OcOrderInfo();
 		info.setBuyerCode(upUserCode());
@@ -149,6 +149,7 @@ public class ApiReportSave extends RootApiToken<ApiReportSaveInput, ApiReportSav
 			detail.setNum(1);
 			detail.setProductCode(pcs[i]);
 			detail.setProductPrice(BigDecimal.valueOf(Double.valueOf(productPrice)));
+			detail.setProductName(productName);
 			teslaXOrder.getDetail().add(detail);
 		}
 		info.setSellerCode("系统");
