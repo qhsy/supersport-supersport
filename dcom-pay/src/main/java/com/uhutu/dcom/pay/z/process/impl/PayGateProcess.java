@@ -45,6 +45,7 @@ public class PayGateProcess implements IPayGateProcess {
 			break;
 		case ALIPAY_NOTIFY:
 			payService = payServiceFactory.getAlipayNotifyService();
+			break;
 		case WECHATH5_NOTIFY:
 			payService = payServiceFactory.getWechatNotifyService();
 			break;
