@@ -48,7 +48,7 @@
 		<item code="dzpi4514100310051006" nodeName="单图信息" parentCode="dzpi451410031005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForSinglePicPage" pageIcon="glyphicon-adjust" />
 		<item code="dzpi4514100310051007" nodeName="单视频信息" parentCode="dzpi451410031005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForSingleVideoPage" pageIcon="glyphicon-adjust" />
 		<item code="dzpi4514100310051008" nodeName="第三方链接" parentCode="dzpi451410031005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForHrefPage" pageIcon="glyphicon-adjust" />
-		<item code="dzpi4514100310051008" nodeName="直播信息" parentCode="dzpi451410031005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForLivePage" pageIcon="glyphicon-adjust" />
+		<item code="dzpi4514100310051009" nodeName="直播信息" parentCode="dzpi451410031005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForLivePage" pageIcon="glyphicon-adjust" />
 		<item code="dzpi451410031006" nodeName="编辑推荐" parentCode="dzpi45141003" />
 		<item code="dzpi4514100310061002" nodeName="编辑推荐列表" parentCode="dzpi451410031006" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentRecommPage" pageIcon="glyphicon-list-alt" />
 		<item code="dzpi4514100310061003" nodeName="阅读量设置" parentCode="dzpi451410031006" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnContentReadCountPage" pageIcon="glyphicon-list-alt" />
