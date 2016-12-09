@@ -17,7 +17,6 @@ function wxConfigFun(config){
 		method: 'post',
 		data: '{"url": "' + window.location.href + '","zoo": {"key": "tesetkey", "token": ""}}',
 		type: 'json',
-		async: false,
 		contentType: 'application/json',
 		success: function(res) {
 			if(res.status == 1){
