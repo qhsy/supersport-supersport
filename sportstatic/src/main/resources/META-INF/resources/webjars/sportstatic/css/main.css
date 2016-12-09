@@ -67,13 +67,6 @@ a:hover {text-decoration: none; }
 .agreement p{margin-bottom: 0.2rem; text-align:justify;}
 .agreement span{display: block; padding-bottom: 0.05rem; color: #fd8528;}
 
-/*鐗堟湰鍙�*/
-.version{width: 100%; position: fixed; top: 0; left: 0; bottom: 0.73rem; z-index: 5; overflow: hidden; background:url(img/about.png) no-repeat center center; background-size: 50%;}
-.version-ft{width: 100%; position: fixed; left: 0; bottom: 0; font-size: 0.12rem; text-align: center; z-index: 9;}
-.version-ft h3{color: #3c3c3c; font-weight: 700; line-height: 0.2rem; }
-.version-ft h4,.version-t{color: #aaaaaa; line-height: 0.2rem; font-size: 0.12rem;}
-.version-t{padding: 0.08rem 0 0.05rem;}
-
 /*@media*/
 @media screen and (max-width: 320px){
 	html{font-size: 85.7px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
