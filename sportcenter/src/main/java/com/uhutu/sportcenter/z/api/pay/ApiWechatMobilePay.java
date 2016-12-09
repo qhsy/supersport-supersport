@@ -1,11 +1,14 @@
 package com.uhutu.sportcenter.z.api.pay;
 
+import java.math.BigDecimal;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.order.z.entity.OcOrderInfo;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
+import com.uhutu.dcom.pay.z.entity.PaPayInfo;
 import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
 import com.uhutu.dcom.pay.z.request.WechatBizContentRequest;
 import com.uhutu.dcom.pay.z.request.WechatOrderRequest;
@@ -46,7 +49,21 @@ public class ApiWechatMobilePay extends RootApiToken<ApiWechatMobilePayInput, Ap
 
 		bizContentRequest.setRomoteIp(input.getRomoteIP());
 		
-		bizContentRequest.setPayMoney(input.getPayMoney());
+		BigDecimal payMoney = BigDecimal.ZERO;
+		
+		PaPayInfo paPayInfo = JdbcHelper.queryOne(PaPayInfo.class, "busiCode",input.getOrderCode());
+		
+		if(paPayInfo == null){
+			
+			payMoney = input.getPayMoney();
+			
+		}else{
+			
+			payMoney = paPayInfo.getMoney();
+			
+		}
+		
+		bizContentRequest.setPayMoney(payMoney);
 		
 		OcOrderInfo ocOrderInfo = JdbcHelper.queryOne(OcOrderInfo.class, "code", input.getOrderCode());
 		

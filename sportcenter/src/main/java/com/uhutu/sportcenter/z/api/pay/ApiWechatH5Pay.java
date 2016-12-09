@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.api.pay;
 
+import java.math.BigDecimal;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.config.enums.SocialEnum;
 import com.uhutu.dcom.order.z.entity.OcOrderInfo;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
+import com.uhutu.dcom.pay.z.entity.PaPayInfo;
 import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
 import com.uhutu.dcom.pay.z.request.WechatBizContentRequest;
 import com.uhutu.dcom.pay.z.request.WechatH5PayRequest;
@@ -63,7 +66,21 @@ public class ApiWechatH5Pay extends RootApiToken<ApiWechatH5PayInput, ApiWechatH
 
 		bizContentRequest.setRomoteIp(input.getRomoteIP());
 		
-		bizContentRequest.setPayMoney(input.getPayMoney());
+		BigDecimal payMoney = BigDecimal.ZERO;
+		
+		PaPayInfo paPayInfo = JdbcHelper.queryOne(PaPayInfo.class, "busiCode",input.getOrderCode());
+		
+		if(paPayInfo == null){
+			
+			payMoney = input.getPayMoney();
+			
+		}else{
+			
+			payMoney = paPayInfo.getMoney();
+			
+		}
+		
+		bizContentRequest.setPayMoney(payMoney);
 		
 		UcSocialLogin socialLogin = JdbcHelper.queryOne(UcSocialLogin.class, "unionid",ucUserinfoSocial.getAccountId(),"type",SocialEnum.wechat_h5.name());
 		
