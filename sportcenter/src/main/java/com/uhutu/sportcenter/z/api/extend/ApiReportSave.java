@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.uhutu.dcom.extend.z.entity.ReReportField;
 import com.uhutu.dcom.extend.z.entity.ReReportInfo;
 import com.uhutu.dcom.extend.z.entity.ReReportJson;
+import com.uhutu.dcom.extend.z.entity.ReReportLimit;
 import com.uhutu.dcom.order.enumer.ETeslaExec;
 import com.uhutu.dcom.order.orderResult.TeslaXOrder;
 import com.uhutu.dcom.order.orderResult.TeslaXResult;
@@ -94,6 +95,18 @@ public class ApiReportSave extends RootApiToken<ApiReportSaveInput, ApiReportSav
 							&& !RegexHelper.checkRegexField(map.get(fd.getFieldId()), fd.getCheckVerify())) {
 						result.inError(86991103, fd.getFieldLabel());
 						break;
+					}
+				}
+			}
+			// 校验限制规则
+			if (result.upFlagTrue()) {
+				ReReportLimit limit = JdbcHelper.queryOne(ReReportLimit.class, "code", reportCode);
+				if (limit != null) {
+					int count = JdbcHelper.count(ReReportJson.class, "code=:code and status=:status",
+							MapHelper.initMap("code", reportCode, "status", "1"));
+					if (count >= Integer.valueOf(limit.getFieldLimit())) {
+						result.setStatus(0);
+						result.setError("已报满");
 					}
 				}
 			}
