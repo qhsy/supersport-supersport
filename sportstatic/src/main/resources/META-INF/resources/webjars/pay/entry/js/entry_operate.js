@@ -72,7 +72,7 @@ var entry_operate = {
 
 			if(entry.dataCache.source == 'wechat'){
 
-				window.location.href = 'success.hmtl?id='+oData.orderCode;
+				window.location.href = 'success.html?id='+oData.orderCode;
 
 			}
 
