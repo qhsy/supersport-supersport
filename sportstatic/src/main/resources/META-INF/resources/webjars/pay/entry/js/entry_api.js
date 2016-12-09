@@ -33,17 +33,11 @@ var entry_api = {
 		entry_api.f.ajaxjson(entry_api.c.api_url + sTarget, defaults,
 				function(data) {
 
-					if (data.status == "1") {
+					
 
 						fCallBack(data);
 
-					} else if (data.status == "801") {
-						eval(entry_api.c.login_exec);
-					} else {
-
-						entry_api.f.message(data.error);
-
-					}
+					
 
 				});
 
