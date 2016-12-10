@@ -118,7 +118,7 @@ new Vue({
 						console.log(resp);
 						_this.getData = resp;
 					}else{
-						//alert(resp.error);
+						alert(resp.error);
 					}
 				}
 			});
@@ -145,6 +145,7 @@ new Vue({
 							    	if (result.err_msg == "get_brand_wcpay_request:ok") {
 										window.location.href = 'result.html?id=' + queryUrl('id') + '&entryToken=' + queryUrl('entryToken');
 									}else{
+										_this.payStatus = true;
 										alert('支付失败，请重新支付！');
 									}
 					
