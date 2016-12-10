@@ -12,6 +12,7 @@ import com.uhutu.sportcenter.z.input.ApiFinishLiveVideoInput;
 import com.uhutu.sportcenter.z.input.ApiLiveCreateRoomInput;
 import com.uhutu.sportcenter.z.input.ApiLiveInfoInput;
 import com.uhutu.sportcenter.z.input.ApiLiveInfoListInput;
+import com.uhutu.sportcenter.z.input.ApiLiveMsgInput;
 import com.uhutu.sportcenter.z.input.ApiLiveNotifyInput;
 import com.uhutu.sportcenter.z.input.ApiLiveVideoHeartInput;
 import com.uhutu.sportcenter.z.input.ApiOperLiveInfoInput;
@@ -21,6 +22,7 @@ import com.uhutu.sportcenter.z.result.ApiFinishLiveVideoResult;
 import com.uhutu.sportcenter.z.result.ApiLiveCreateRoomResult;
 import com.uhutu.sportcenter.z.result.ApiLiveInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiLiveInfoResult;
+import com.uhutu.sportcenter.z.result.ApiLiveMsgResult;
 import com.uhutu.sportcenter.z.result.ApiLiveNotifyResult;
 import com.uhutu.sportcenter.z.result.ApiLiveVideoHeartResult;
 import com.uhutu.sportcenter.z.result.ApiOperLiveInfoResult;
@@ -122,6 +124,15 @@ public class LiveVideoController {
 	public ApiLiveInfoResult liveInfo(@RequestBody ApiLiveInfoInput input) {
 
 		return apiFactory.getApiLiveInfo().api(input);
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/liveMsg", method = RequestMethod.POST)
+	@ApiOperation(value = "直播所需信息", notes = "直播所需信息")
+	public ApiLiveMsgResult liveMsg(@RequestBody ApiLiveMsgInput input) {
+
+		return apiFactory.getApiLiveMsg().api(input);
 
 	}
 

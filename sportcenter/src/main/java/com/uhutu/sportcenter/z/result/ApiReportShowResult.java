@@ -1,6 +1,7 @@
 package com.uhutu.sportcenter.z.result;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.uhutu.zoocom.root.RootApiResult;
@@ -13,7 +14,7 @@ public class ApiReportShowResult extends RootApiResult {
 	private String title = "";
 
 	@ApiModelProperty(name = "活动信息", notes = "活动信息")
-	private Map<String, String> map = new HashMap<String, String>();
+	private List<Map<String, String>> list = new ArrayList<Map<String, String>>();
 
 	public String getTitle() {
 		return title;
@@ -23,12 +24,12 @@ public class ApiReportShowResult extends RootApiResult {
 		this.title = title;
 	}
 
-	public Map<String, String> getMap() {
-		return map;
+	public List<Map<String, String>> getList() {
+		return list;
 	}
 
-	public void setMap(Map<String, String> map) {
-		this.map = map;
-	};
+	public void setList(List<Map<String, String>> list) {
+		this.list = list;
+	}
 
 }
