@@ -147,6 +147,9 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 		case CROSSFIT_TD:
 			body = OrderType.CROSSFIT_TD.getText();
 			break;
+		case ENTRY:
+			body = OrderType.ENTRY.getText();
+			break;
 
 		default:
 			body = OrderType.ANSWER_QUESTION.getText();

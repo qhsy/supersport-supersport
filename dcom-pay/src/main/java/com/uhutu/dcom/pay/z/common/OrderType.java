@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public enum OrderType {
 	
-	ENTRY("dzsd4112100110010006","报名费用"),
+	ENTRY("dzsd4112100110010006","果冻体育-报名费用"),
 	
 	/**crossfit*/
 	CROSSFIT_TD("dzsd4112100110010005","2016 Beijing ThrowDown报名"),
