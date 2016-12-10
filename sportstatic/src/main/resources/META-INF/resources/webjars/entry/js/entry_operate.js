@@ -81,7 +81,6 @@ var entry_operate = {
 
 				callBackOrder(oData.orderCode);
 
-				$("#toast").css('display','block');
 
 			}
 
