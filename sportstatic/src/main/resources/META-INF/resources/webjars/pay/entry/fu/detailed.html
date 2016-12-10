@@ -88,7 +88,7 @@ a:hover {text-decoration: none; }
 <script>
 
 var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
-var token = '27ce5271ff254213a3f9850616e210e1eaf6910e5fbb46f197f3189678d8ef1d7a0aa8f6';
+var token = '';
 if(isWeix){
 	$.ajax({
 		url:'/api/wechatController/authLogin2',
@@ -100,6 +100,7 @@ if(isWeix){
 		success:function(res){
 			if(res.status == 1){
 				token = res.userToken;
+				console.log(token)
 			}else{
 				alert(res.error);
 			}
