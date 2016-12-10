@@ -92,6 +92,14 @@ function callBackReload(){
 	if(userAgent.indexOf('Android') != -1){
 		javascript:android.callBackReload();
 	} else {
+		callbackSavePic();
+	}
+}
+function callbackSavePic(){
+	var userAgent = navigator.userAgent;
+	if(userAgent.indexOf('Android') != -1){
+		javascript:android.callbackSavePic();
+	} else {
 		window.webkit.messageHandlers.callBackReload.postMessage();
 	}
 }
@@ -177,13 +185,12 @@ new Vue({
 			if(isWeix && sessionStorage.getItem('token')){
 				window.location.href = '../entry.html?code=' + queryUrl('id') + '&source=wechat&entryToken=' + sessionStorage.getItem('token');
 			} else {
-				if(queryUrl('code') == ''){
+				if(queryUrl('token') == ''){
 					callBackReload()
 				}else{
 					window.location.href = '../entry.html?code=' + queryUrl('id') + '&source=wechat&entryToken=' + queryUrl('token');
 				}
 			}
-			
 		}
 	}
 });
