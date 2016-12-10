@@ -142,7 +142,7 @@ new Vue({
 							    signType: resp.wechatH5PayInfo.signType, 
 							    paySign: resp.wechatH5PayInfo.paySign,
 							    success: function (res) {
-							    	if (result.err_msg == "get_brand_wcpay_request:ok") {
+							    	if (res.err_msg == "get_brand_wcpay_request:ok") {
 										window.location.href = 'result.html?id=' + queryUrl('id') + '&entryToken=' + queryUrl('entryToken');
 									}else{
 										_this.payStatus = true;
@@ -151,22 +151,6 @@ new Vue({
 					
 							    }
 							});
-							// if (typeof WeixinJSBridge == "undefined") {
-							// 	if (document.addEventListener) {
-							// 		document.addEventListener('WeixinJSBridgeReady', function(){
-							// 			_this.bridge(resp.wechatH5PayInfo)
-							// 		}, false);
-							// 	} else if (document.attachEvent) {
-							// 		document.attachEvent('WeixinJSBridgeReady', function(){
-							// 			_this.bridge(resp.wechatH5PayInfo)
-							// 		});
-							// 		document.attachEvent('onWeixinJSBridgeReady', function(){
-							// 			_this.bridge(resp.wechatH5PayInfo)
-							// 		});
-							// 	}
-							// } else {
-							// 	_this.bridge(resp.wechatH5PayInfo);
-							// }
 						}else{
 							_this.payStatus = true;
 							alert(resp.error)
