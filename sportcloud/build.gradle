@@ -33,7 +33,7 @@ jar {
 }
 
 dependencies {
-	compile('org.mariadb.jdbc:mariadb-java-client:1.5.5')
+	compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '1.4.6'
 	compile project(':sportcenter'){version=zooInitVersion;group=zooInitGroupId}
 	compile project(':sportstatic'){version=zooInitVersion;group=zooInitGroupId}
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: zooVersionSpringFox
