@@ -243,6 +243,18 @@ public class WechatConfig {
 		case WECHAT_CF_NOTIFY:
 			key = getSignKey();
 			break;
+		case ENTRY_H5:
+			key = getServiceKey();
+			break;
+		case ENTRY:
+			key = getSignKey();
+			break;
+		case ENTRY_H5_NOTIFY:
+			key = getServiceKey();
+			break;
+		case ENTRY_NOTIFY:
+			key = getSignKey();
+			break;
 
 		default:
 			break;
