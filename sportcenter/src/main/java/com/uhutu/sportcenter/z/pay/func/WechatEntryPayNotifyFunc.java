@@ -71,7 +71,7 @@ public class WechatEntryPayNotifyFunc implements IWechatNotifyFunc {
 							
 							reportJsonInfo.setStatus("1");
 							
-							JdbcHelper.update(reportJsonInfo, "status", "za");
+							JdbcHelper.update(reportJsonInfo, "status", "signCode");
 
 						}
 					}
