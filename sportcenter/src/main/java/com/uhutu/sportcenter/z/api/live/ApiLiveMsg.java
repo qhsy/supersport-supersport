@@ -31,8 +31,9 @@ public class ApiLiveMsg extends RootApiBase<ApiLiveMsgInput, ApiLiveMsgResult> {
 		if (StringUtils.isNotBlank(input.getCode())) {
 			CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "",
 					"status='1' and code=:code ", MapHelper.initMap("code", input.getCode()));
-			result.setSeconds((new Date().getTime()-detail.getZc().getTime())/1000);
+			result.setSeconds((new Date().getTime() - detail.getZc().getTime()) / 1000);
 			result.setWatch(detail.getWatch());
+			result.setPraise(detail.getPraise());
 		}
 		return result;
 	}
