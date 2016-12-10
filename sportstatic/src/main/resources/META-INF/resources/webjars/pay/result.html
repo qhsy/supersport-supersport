@@ -93,7 +93,6 @@ a:hover {text-decoration: none; }
 <script type="text/javascript" src="/webjars/static/js/wxConfig.js"></script>
 <script>
 wxConfigFun();
-wx.hideOptionMenu();
 new Vue({
 	el:'.container',
 	data:{
@@ -102,6 +101,7 @@ new Vue({
 		getData: null
 	},
 	created:function(){
+		wx.hideOptionMenu();
 		this.apiGetData();
 	},
 	methods:{
