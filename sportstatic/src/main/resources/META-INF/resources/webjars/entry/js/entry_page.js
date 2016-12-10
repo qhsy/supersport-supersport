@@ -57,7 +57,7 @@ var entry_page = {
 	},
 
 	page_header : function(sText) {
-		ReactDOM.render(React.createElement('h1', {
+		ReactDOM.render(React.createElement('h3', {
 			className : entry_config.css.cell_hd
 		}, sText), document.getElementById(entry_config.id.hd));
 
