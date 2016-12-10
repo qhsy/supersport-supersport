@@ -10,7 +10,7 @@ import com.uhutu.dcom.content.z.properties.ConfigDcomContent;
 import com.uhutu.dcom.content.z.properties.SettingsDcomContent;
 import com.uhutu.sportcenter.z.input.ApiLiveMsgInput;
 import com.uhutu.sportcenter.z.result.ApiLiveMsgResult;
-import com.uhutu.zoocom.helper.MapHelper;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 
@@ -31,11 +31,25 @@ public class ApiLiveMsg extends RootApiBase<ApiLiveMsgInput, ApiLiveMsgResult> {
 
 		ApiLiveMsgResult result = new ApiLiveMsgResult();
 		if (StringUtils.isNotBlank(input.getCode())) {
+			
+			MDataMap mWhereMap = new MDataMap();
+			
+			mWhereMap.put("code", input.getCode());
+			
+			mWhereMap.put("status", "1");
+			
 			CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "",
-					"status='1' and code=:code ", MapHelper.initMap("code", input.getCode()));
+					"", mWhereMap);
 			if (detail == null) {
-				detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "zc desc ", " code=:code ",
-						MapHelper.initMap("code", input.getCode()));
+				
+				if(mWhereMap.containsKey("status")){
+					
+					mWhereMap.remove("status");
+					
+				}
+				
+				detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "zc desc ", "",mWhereMap);
+				
 			}
 			if (detail != null) {
 
