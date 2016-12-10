@@ -188,7 +188,7 @@ new Vue({
 				if(queryUrl('token') == ''){
 					callBackReload()
 				}else{
-					window.location.href = '../entry.html?code=' + queryUrl('id') + '&source=wechat&entryToken=' + queryUrl('token');
+					window.location.href = '../entry.html?code=' + queryUrl('id') + '&source=app&entryToken=' + queryUrl('token');
 				}
 			}
 		}
