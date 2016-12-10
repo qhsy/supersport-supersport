@@ -73,6 +73,28 @@ public class CnLiveVideoDetail extends BaseEntity {
 	@ZooData(name = "channelId")
 	private String channelId;
 
+	@ZooData(name = "直播参数常量")
+	private long watchConstant;
+
+	@ZooData(name = "直播参数常量")
+	private long praiseConstant;
+
+	public long getWatchConstant() {
+		return watchConstant;
+	}
+
+	public void setWatchConstant(long watchConstant) {
+		this.watchConstant = watchConstant;
+	}
+
+	public long getPraiseConstant() {
+		return praiseConstant;
+	}
+
+	public void setPraiseConstant(long praiseConstant) {
+		this.praiseConstant = praiseConstant;
+	}
+
 	public String getCode() {
 		return code;
 	}

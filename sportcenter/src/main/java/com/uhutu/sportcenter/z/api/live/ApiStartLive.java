@@ -12,6 +12,8 @@ import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentWorth;
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
+import com.uhutu.dcom.content.z.properties.ConfigDcomContent;
+import com.uhutu.dcom.content.z.properties.SettingsDcomContent;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.sportcenter.z.input.ApiStartLiveInput;
 import com.uhutu.sportcenter.z.result.ApiStartLiveResult;
@@ -24,134 +26,140 @@ import io.swagger.annotations.ApiModel;
 
 /**
  * 开始直播
+ * 
  * @author 逄小帅
  *
  */
 @ApiModel
 @Component
 public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveResult> {
-	
+
 	@Autowired
 	private ContentServiceFactory contentServiceFactory;
 
 	@Override
 	protected ApiStartLiveResult process(ApiStartLiveInput input) {
-		
+
 		ApiStartLiveResult startLiveResult = new ApiStartLiveResult();
-		
+
 		MDataMap mWhereMap = new MDataMap();
-		
+
 		mWhereMap.put("code", input.getCode());
-		
+
 		mWhereMap.put("chatCode", input.getChatCode());
-		
+
 		mWhereMap.put("status", ContentEnum.LIVEING.getCode());
-		
+
 		int count = JdbcHelper.count(CnLiveVideoDetail.class, "", mWhereMap);
-		CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "zc desc ", "code=:code and chat_code=:chatCode and status=:status", mWhereMap);
-		if (count > 0){
-			
+		CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "zc desc ",
+				"code=:code and chat_code=:chatCode and status=:status", mWhereMap);
+		if (count > 0) {
+
 			startLiveResult.setError("此房间正在直播中");
-			
+
 			startLiveResult.setStatus(-1);
 			startLiveResult.setContentCode(detail.getContentCode());
-		}else{
-			
+		} else {
+
 			CnLiveVideoDetail liveVideoDetail = new CnLiveVideoDetail();
-			
+
 			BeanUtils.copyProperties(input, liveVideoDetail);
-			
+
 			liveVideoDetail.setUserCode(upUserCode());
-			
+
 			liveVideoDetail.setStatus(ContentEnum.LIVEING.getCode());
-			
+
 			liveVideoDetail.setCreateTime(DateHelper.upDate(new Date()));
-			
-			/*根据产品需求添加*/
+
+			/* 根据产品需求添加 */
 			String contentCode = updateContent(liveVideoDetail);
-			
+
 			liveVideoDetail.setContentCode(contentCode);
 			startLiveResult.setContentCode(contentCode);
-			JdbcHelper.insert(liveVideoDetail);			
-			
+			SettingsDcomContent dcomContent = ConfigDcomContent.upConfig();
+			liveVideoDetail.setWatchConstant(Integer.valueOf(dcomContent.getLiveAppWatchConstant()));
+			liveVideoDetail.setPraiseConstant(Integer.valueOf(dcomContent.getLiveAppPraiseConstant()));
+			JdbcHelper.insert(liveVideoDetail);
+
 			updateContentWorth(contentCode);
-			
+
 		}
-		
+
 		return startLiveResult;
 	}
-	
+
 	/**
 	 * 直播详情
+	 * 
 	 * @param liveVideoDetail
 	 */
-	public String updateContent(CnLiveVideoDetail liveVideoDetail){
-		
+	public String updateContent(CnLiveVideoDetail liveVideoDetail) {
+
 		CnContentBasicinfo basicinfo = new CnContentBasicinfo();
-		
+
 		basicinfo.setAuthor(upUserCode());
-		
+
 		basicinfo.setBusiType(ContentEnum.article.getCode());
-		
+
 		basicinfo.setContentType(ContentEnum.TYPE_LIVE.getCode());
-		
+
 		basicinfo.setCover(liveVideoDetail.getCover());
-		
-		if(StringUtils.isNotBlank(liveVideoDetail.getAddressName())){
-			
+
+		if (StringUtils.isNotBlank(liveVideoDetail.getAddressName())) {
+
 			basicinfo.setLocaltionName(liveVideoDetail.getAddressName());
-			
+
 		}
-		
-		if(StringUtils.isNotBlank(liveVideoDetail.getLatitude()) && StringUtils.isNotBlank(liveVideoDetail.getLongitude())){
-			
-			String location = liveVideoDetail.getLatitude()+","+liveVideoDetail.getLongitude();
-			
+
+		if (StringUtils.isNotBlank(liveVideoDetail.getLatitude())
+				&& StringUtils.isNotBlank(liveVideoDetail.getLongitude())) {
+
+			String location = liveVideoDetail.getLatitude() + "," + liveVideoDetail.getLongitude();
+
 			basicinfo.setLocation(location);
-			
+
 		}
-		
+
 		basicinfo.setPublishTime(new Date());
-		
+
 		basicinfo.setStatus(ContentEnum.normal.getCode());
-		
+
 		basicinfo.setTagCode(liveVideoDetail.getTagCode());
-		
+
 		basicinfo.setTitle(liveVideoDetail.getTitle());
-		
+
 		CnContentDetail cnContentDetail = new CnContentDetail();
-		
+
 		cnContentDetail.setContent(liveVideoDetail.getCode());
-		
+
 		basicinfo.setShareScope("dzsd4699100110010001");
-		
+
 		contentServiceFactory.getContentBasicinfoService().save(basicinfo);
-		
+
 		cnContentDetail.setCode(basicinfo.getCode());
-		
-		contentServiceFactory.getContentDetailService().save(cnContentDetail);		
-		
+
+		contentServiceFactory.getContentDetailService().save(cnContentDetail);
+
 		return basicinfo.getCode();
-		
+
 	}
-	
-	public void updateContentWorth(String contentCode){
-		
+
+	public void updateContentWorth(String contentCode) {
+
 		CnContentWorth contentWorth = new CnContentWorth();
-		
+
 		contentWorth.setContentCode(contentCode);
-		
+
 		contentWorth.setMark("dzsd4107100110100001");
-		
+
 		contentWorth.setSort(0);
-		
+
 		contentWorth.setType("");
-		
+
 		contentWorth.setZc(new Date());
-		
+
 		JdbcHelper.insert(contentWorth);
-		
-		
+
 	}
 
 }
