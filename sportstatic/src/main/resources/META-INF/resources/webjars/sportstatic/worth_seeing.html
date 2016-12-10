@@ -117,7 +117,7 @@ var vm = new Vue({
 	created: function(){
 		var _this = this;
 		_this.getData();
-		//callbackShare('');
+		callbackShare('');
 		window.addEventListener('scroll', _this.refresh, false);
 	},
 	methods: {
@@ -192,11 +192,13 @@ var vm = new Vue({
 
 })
 vm.$watch('types', function () {  
-    var childrenLi = document.querySelector('.types'),
-    	liLength = childrenLi.querySelectorAll('li').length,
+    var childrenLi = document.querySelector('.types');
+    if(childrenLi){
+    	var	liLength = childrenLi.querySelectorAll('li').length,
 		liWidth = childrenLi.querySelector('li').clientWidth,
 		offsetLeft = childrenLi.querySelector('li').offsetLeft;
 		document.querySelector('.types').style.width = liLength*(liWidth+offsetLeft) + offsetLeft + 'px';
+    }
 });
 </script>
 </body>

@@ -119,6 +119,7 @@ public class ApiReportSave extends RootApiToken<ApiReportSaveInput, ApiReportSav
 				reJson.setSignCode(WebHelper.upCode("REJGBH"));
 				reJson.setStatus("0");
 				reJson.setJson(new JsonHelper<MDataMap>().ObjToString(map));
+				reJson.setUserCode(upUserCode());
 				result.setError(reJson.getSignCode() + "&" + info.getOrderMoney().toString() + "&" + info.getTitle());
 				JdbcHelper.insert(reJson);
 			}
