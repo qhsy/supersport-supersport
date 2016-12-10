@@ -43,9 +43,24 @@ var entry_operate = {
 	 */
 	operate_submit : function(code) {
 
+		var oSource = '';
+
+		if(entry.dataCache.source == 'app'){
+
+			oSource = 'dzsd4112100110020001';
+
+		}
+
+		if(entry.dataCache.source == 'wechat'){
+
+			oSource = 'dzsd4112100110020002';
+
+		}
+
 		entry_api.api_call('orderController/saveReport', {
 			map : entry_page.temp.datacache[code],
-			reportCode : code
+			reportCode : code,
+			orderSource : oSource
 		}, entry_operate.operate_success
 
 		);
