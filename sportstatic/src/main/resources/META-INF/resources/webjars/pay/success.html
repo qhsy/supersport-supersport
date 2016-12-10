@@ -143,6 +143,13 @@ new Vue({
 							    paySign: resp.wechatH5PayInfo.paySign,
 							    success: function (res) {
 									window.location.href = 'result.html?id=' + queryUrl('id') + '&entryToken=' + queryUrl('entryToken');
+							    },
+							    fail: function(res){
+							    	_this.payStatus = true;
+							    	alert(res);
+							    },
+							    cancel: function(res){
+							    	_this.payStatus = true;
 							    }
 							});
 						}else{
