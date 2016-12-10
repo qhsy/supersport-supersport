@@ -75,11 +75,11 @@ a:hover {text-decoration: none; }
 			<p>60元/人，前三百名报名赠送价值100元大礼包</p>
 		</div>
 	</section>
-	<template v-if="sign">
-		<a href="javascript:;" class="submit">我已报名</a>
+	<template v-if="!sign">
+		<a href="javascript:;" class="submit" @click="callBack">我要报名</a>
 	</template>
 	<template v-else>
-		<a href="javascript:;" class="submit" @click="callBack">我要报名</a>
+		<a href="javascript:;" class="submit" style="background: #7c7c7c;">我已报名</a>
 	</template>
 	<p class="copyright">本活动最终解释权归赛普健身学院所有</p>
 </section>
@@ -97,6 +97,7 @@ function callBackReload(){
 }
 var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
 var token;
+
 if(isWeix){
 	if(!sessionStorage.getItem('token')){
 		$.ajax({
@@ -142,7 +143,7 @@ if(isWeix){
 new Vue({
 	el:'.con',
 	data:{
-		sign: true
+		sign: false
 	},
 	created:function(){
 		this.apiGetData();
@@ -155,20 +156,22 @@ new Vue({
 			}else{
 				token = queryUrl('token')
 			}
-			$.ajax({
-				url:'/api/orderController/reportCheck',
-				type:'POST',
-				contentType:'application/json',
-				dataType: 'json',
-				data:'{"reportCode": "' + queryUrl('id') + '","zoo": {"key": "tesetkey","token": "' + token + '"}}',
-				success:function(res){
-					if(res.status == 1){
-						_this.sign = res.flag;
-					}else{
-						alert(res.error);
+			if(token){
+				$.ajax({
+					url:'/api/orderController/reportCheck',
+					type:'POST',
+					contentType:'application/json',
+					dataType: 'json',
+					data:'{"reportCode": "' + queryUrl('id') + '","zoo": {"key": "tesetkey","token": "' + token + '"}}',
+					success:function(res){
+						if(res.status == 1){
+							_this.sign = res.flag;
+						}else{
+							alert(res.error);
+						}
 					}
-				}
-			});
+				});
+			}
 		},
 		callBack:function(){
 			if(isWeix && sessionStorage.getItem('token')){
