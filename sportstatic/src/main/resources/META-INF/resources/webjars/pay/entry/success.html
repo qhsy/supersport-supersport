@@ -15,7 +15,9 @@
 <style type="text/css">
 body{background: #f8f8f8;}
 .order li{padding: 0.22rem 0.24rem 0.16rem; box-shadow: 0 2px 3px rgba(0,0,0,0.12); background: #fff; color: #BDBDBD;}
-.order .title{font-size: 0.24rem; color: #656570; line-height: 0.24rem; word-wrap: break-word; word-break: break-all;}
+.order .title{padding-bottom: 0.45rem; font-size: 0.24rem; color: #656570; line-height: 0.24rem; word-wrap: break-word; word-break: break-all;}
+.order .data{height: 0.22rem; padding: 0 0 0.15rem; text-align: right; font-size: 0.18rem; color: #BDBDBD; line-height: 0.22rem;}
+.order .data span{float: left;}
 .order .price, .order .number{height: 0.22rem; text-align: right; font-size: 0.18rem; color: #BDBDBD; line-height: 0.22rem;}
 .order .price{margin: 0.45rem 0 0.15rem;}
 .order .price em{padding-right: 5px; font-size: 12px;}
@@ -33,11 +35,10 @@ body{background: #f8f8f8;}
 <section class="container">
 	<ul class="order">
 		<li>
-			<h1 class="title">体育大讲堂</h1>
+			<h1 class="title">{{getData.title}}</h1>
 			<template v-if="!sucStatus">
-				<div class="info">
-					<div class="price"><span>应付款</span><em>￥</em><i>288</i></div>
-					<div class="number"><span>订单号</span>41223512515</div>
+				<div class="info" v-for="item in getData.list">
+					<div class="data"><span>{{item.key}}</span>{{item.value}}</div>
 				</div>
 			</template>
 			<template v-else>
@@ -61,7 +62,7 @@ body{background: #f8f8f8;}
 	</template>
 	
 </section>
-<script type="text/javascript" src="../../sportstatic/script/common.min.js"></script>
+<script type="text/javascript" src="js/common.min.js"></script>
 <script type="text/javascript" src="../../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="../../static/js/wxConfig.js"></script>
 <script>
@@ -70,24 +71,27 @@ new Vue({
 	el:'.container',
 	data:{
 		payStatus: true,
-		sucStatus: false
+		sucStatus: false,
+		getData: null
 	},
 	created:function(){
-
+		this.apiGetData();
 	},
 	methods:{
 		apiGetData:function(){
+			var _this = this;
 			reqwest({
-				url: '',
+				url: '/api/orderController/reportShow',
 				method: 'post',
-				data: '',
+				data: '{"code": "' + queryUrl('id') + '","zoo": {"key": "tesetkey","token": "' + queryUrl('entryToken') + '"}}',
 				type: 'json',
 				contentType: 'application/json',
 				success: function(resp) {
 					if(resp.status == 1){
-						
+						console.log(resp);
+						_this.getData = resp;
 					}else{
-						
+						alert(resp.error);
 					}
 				}
 			});
@@ -99,7 +103,7 @@ new Vue({
 				reqwest({
 					url: '/api/payController/wechatH5Pay',
 					method: 'post',
-					data: '{"orderCode": "string","payMoney": 0,"romoteIP": "","serveIP": "","zoo": {"key": "tesetkey","token": " "}}',
+					data: '{"orderCode": "' + queryUrl('id') + '","payMoney": 0,"romoteIP": "","serveIP": "","zoo": {"key": "tesetkey","token": "' + queryUrl('entryToken') + '"}}',
 					type: 'json',
 					contentType: 'application/json',
 					success: function(resp) {
