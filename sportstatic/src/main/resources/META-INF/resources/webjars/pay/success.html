@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>订单支付</title>
+<title>“我是首腹”炫腹达人秀</title>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta name="format-detection" content="telephone=no,email=no"> 
 <meta name="keywords" content="">
@@ -63,10 +63,11 @@ body{background: #f8f8f8;}
 	
 </section>
 <script type="text/javascript" src="js/common.min.js"></script>
-<script type="text/javascript" src="../../static/js/jweixin-1.0.0.js"></script>
-<script type="text/javascript" src="../../static/js/wxConfig.js"></script>
+<script type="text/javascript" src="/webjars/static/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="/webjars/static/js/wxConfig.js"></script>
 <script>
 wxConfigFun();
+wx.hideOptionMenu();
 new Vue({
 	el:'.container',
 	data:{
@@ -108,22 +109,37 @@ new Vue({
 					contentType: 'application/json',
 					success: function(resp) {
 						if(resp.status == 1){
-							if (typeof WeixinJSBridge == "undefined") {
-								if (document.addEventListener) {
-									document.addEventListener('WeixinJSBridgeReady', function(){
-										bridge(resp.wechatH5PayResponse)
-									}, false);
-								} else if (document.attachEvent) {
-									document.attachEvent('WeixinJSBridgeReady', function(){
-										bridge(resp.wechatH5PayResponse)
-									});
-									document.attachEvent('onWeixinJSBridgeReady', function(){
-										bridge(resp.wechatH5PayResponse)
-									});
-								}
-							} else {
-								bridge(resp.wechatH5PayResponse);
-							}
+							wx.chooseWXPay({
+							    timestamp: resp.wechatH5PayInfo.timeStamp, 
+							    nonceStr: resp.wechatH5PayInfo.nonceStr,
+							    package: "prepay_id=" + resp.wechatH5PayInfo.prepay_id,
+							    signType: resp.wechatH5PayInfo.signType, 
+							    paySign: resp.wechatH5PayInfo.paySign,
+							    success: function (res) {
+							    	if (res.err_msg == "get_brand_wcpay_request:ok") {
+											_this.sucStatus = true;
+										}else{
+											_this.payStatus = true;
+											alert('支付失败，请重新支付！');
+										}
+							    }
+							});
+							// if (typeof WeixinJSBridge == "undefined") {
+							// 	if (document.addEventListener) {
+							// 		document.addEventListener('WeixinJSBridgeReady', function(){
+							// 			_this.bridge(resp.wechatH5PayInfo)
+							// 		}, false);
+							// 	} else if (document.attachEvent) {
+							// 		document.attachEvent('WeixinJSBridgeReady', function(){
+							// 			_this.bridge(resp.wechatH5PayInfo)
+							// 		});
+							// 		document.attachEvent('onWeixinJSBridgeReady', function(){
+							// 			_this.bridge(resp.wechatH5PayInfo)
+							// 		});
+							// 	}
+							// } else {
+							// 	_this.bridge(resp.wechatH5PayInfo);
+							// }
 						}else{
 							_this.payStatus = true;
 							alert(resp.error)

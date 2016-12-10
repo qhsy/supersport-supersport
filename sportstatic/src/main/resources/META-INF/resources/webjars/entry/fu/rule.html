@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>“我是首腹”炫腹达人秀</title>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta name="format-detection" content="telephone=no,email=no"> 
 <meta name="keywords" content="">
@@ -74,5 +74,27 @@ a:hover {text-decoration: none; }
 	</dd>
 </dl>
 <p class="copyright">本活动最终解释权归赛普健身学院所有</p>
+<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" src="/webjars/static/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+$.ajax({
+	'url':'/api/userController/shareContent',
+	type:'POST',
+	contentType:'application/json',
+	dataType: 'json',
+	data:'{"contentCode": "GGBH161210110001","zoo": {"key": "tesetkey","token": " "}}',
+	success:function(resp){
+		if(resp.status == 1){
+			shareWeiXin({
+				'url':'/api/wechatController/configInfo',
+				'imgUrl':resp.iconUrl,
+				'title':resp.title,
+				'link':resp.url,
+				'desc':resp.content
+			});
+		}
+	}
+});
+</script>
 </body>
 </html>
