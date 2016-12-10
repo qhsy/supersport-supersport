@@ -7,7 +7,7 @@ function wxConfigFun(config){
 		'link':config && config.link || '',
 		'desc':config && config.desc || '',
 		'type':config && config.type || '',
-		'share':config && config.share || false;
+		'share':config && config.share || false,
 		'dataUrl':config && config.dataUrl || '',
 		'success':config && config.success || function(){},
 		'cancel':config && config.cancel || function(){}
