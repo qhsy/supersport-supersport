@@ -90,8 +90,46 @@ var entry_Form = {
 					'id': this.props.fieldId,
 					'name': this.props.fieldId,
 					onChange: this.onChange,
-				},aOption));
+				}, aOption));
 			}
 		}),
+
+	Textarea: React.createClass({
+		displayName: 'entry_Form.Textarea',
+
+		getInitialState: function() {
+
+			return {
+
+				value: entry_page.data_up_value(this.props.code,
+					this.props.fieldId)
+			};
+		},
+
+		onChange: function onChange(e) {
+			this.setState({
+				value: e.target.value
+			});
+			entry_page.data_in_value(this.props.code,
+				this.props.fieldId, e.target.value);
+		},
+
+		render: function() {
+
+			return React.createElement(entry_config.html.div, {
+				className: entry_config.css.cell_bd
+			}, React.createElement("textarea", {
+
+				className: entry_config.css.textarea,
+				'id': this.props.fieldId,
+				'name': this.props.fieldId,
+				'rows': '3',
+				'placeholder' : '请输入' + this.props.fieldLabel,
+				onChange: this.onChange,
+				value: this.state.value
+
+			}));
+		}
+	}),
 
 };

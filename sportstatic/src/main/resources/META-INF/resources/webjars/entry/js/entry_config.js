@@ -12,7 +12,8 @@ var entry_config = {
 		btn_area : 'weui-btn-area',
 		btn_primary : 'weui-btn weui-btn_primary',
 		page_title : 'page__title',
-		page_bd : 'page__bd'
+		page_bd : 'page__bd',
+		textarea : 'weui-textarea'
 		
 	},
 	

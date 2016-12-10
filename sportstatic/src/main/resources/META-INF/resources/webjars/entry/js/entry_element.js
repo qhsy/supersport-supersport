@@ -26,6 +26,17 @@ var entry_Form_Select = React.createClass({
 	}
 });
 
+var entry_Form_Textarea = React.createClass({
+	displayName : 'entry_Form_Textarea',
+
+	render : function() {
+		return React.createElement(entry_config.html.div, {
+			className : entry_config.css.cell
+		}, React.createElement(entry_Form.Label, this.props), React
+				.createElement(entry_Form.Textarea, this.props));
+	}
+});
+
 var entry_Element_Operate_Button = React.createClass({
 
 	displayName : 'entry_Element_Operate_Button',
