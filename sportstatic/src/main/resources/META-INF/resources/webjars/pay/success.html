@@ -142,14 +142,11 @@ new Vue({
 							    signType: resp.wechatH5PayInfo.signType, 
 							    paySign: resp.wechatH5PayInfo.paySign,
 							    success: function (res) {
-							    	if (res.err_msg == "get_brand_wcpay_request:ok") {
-										window.location.href = 'result.html?id=' + queryUrl('id') + '&entryToken=' + queryUrl('entryToken');
-									}else{
-										_this.payStatus = true;
-										alert('支付失败，请重新支付！');
-									}
-					
+							    	
+									window.location.href = 'result.html?id=' + queryUrl('id') + '&entryToken=' + queryUrl('entryToken');
+									
 							    }
+							
 							});
 						}else{
 							_this.payStatus = true;
