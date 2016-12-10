@@ -98,7 +98,7 @@ new Vue({
 	el:'.container',
 	data:{
 		payStatus: true,
-		sucStatus: false,
+		sucStatus: true,
 		getData: null
 	},
 	created:function(){
@@ -115,7 +115,6 @@ new Vue({
 				contentType: 'application/json',
 				success: function(resp) {
 					if(resp.status == 1){
-						console.log(resp);
 						_this.getData = resp;
 					}else{
 						alert(resp.error);
@@ -123,70 +122,6 @@ new Vue({
 				}
 			});
 		},
-		payOrder:function(){
-			var _this = this;
-			if(_this.payStatus){
-				_this.payStatus = false;
-				reqwest({
-					url: '/api/payController/wechatH5Pay',
-					method: 'post',
-					data: '{"orderCode": "' + queryUrl('id') + '","payMoney": 0,"romoteIP": "","serveIP": "","zoo": {"key": "tesetkey","token": "' + queryUrl('entryToken') + '"}}',
-					type: 'json',
-					contentType: 'application/json',
-					success: function(resp) {
-						if(resp.status == 1){
-							wx.chooseWXPay({
-							    timestamp: resp.wechatH5PayInfo.timeStamp, 
-							    nonceStr: resp.wechatH5PayInfo.nonceStr,
-							    package: "prepay_id=" + resp.wechatH5PayInfo.prepay_id,
-							    signType: resp.wechatH5PayInfo.signType, 
-							    paySign: resp.wechatH5PayInfo.paySign,
-							    success: function (res) {
-							    	window.location.href = 'result.html?id' + queryUrl('id') + '&entryToken=' + queryUrl('entryToken');
-							    }
-							});
-							// if (typeof WeixinJSBridge == "undefined") {
-							// 	if (document.addEventListener) {
-							// 		document.addEventListener('WeixinJSBridgeReady', function(){
-							// 			_this.bridge(resp.wechatH5PayInfo)
-							// 		}, false);
-							// 	} else if (document.attachEvent) {
-							// 		document.attachEvent('WeixinJSBridgeReady', function(){
-							// 			_this.bridge(resp.wechatH5PayInfo)
-							// 		});
-							// 		document.attachEvent('onWeixinJSBridgeReady', function(){
-							// 			_this.bridge(resp.wechatH5PayInfo)
-							// 		});
-							// 	}
-							// } else {
-							// 	_this.bridge(resp.wechatH5PayInfo);
-							// }
-						}else{
-							_this.payStatus = true;
-							alert(resp.error)
-						}
-					}
-				});
-			}
-		},
-		bridge:function(response){
-			var _this = this;
-	    	WeixinJSBridge.invoke('getBrandWCPayRequest', {
-				"appId":response.appId,
-				"timeStamp":response.timeStamp,
-				"nonceStr":response.nonceStr,
-				"package":"prepay_id=" + response.prepay_id,
-				"signType":response.signType,
-				"paySign":response.paySign
-			}, function(result) {
-				if (result.err_msg == "get_brand_wcpay_request:ok") {
-					_this.sucStatus = true;
-				}else{
-					_this.payStatus = true;
-					alert('支付失败，请重新支付！');
-				}
-			});
-	    },
 	    downApp:function(){
 	    	open();
 	    }

@@ -87,13 +87,18 @@ a:hover {text-decoration: none; }
 <script type="text/javascript" src="/webjars/static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
 <script>
-
+function callBackReload(){
+	var userAgent = navigator.userAgent;
+	if(userAgent.indexOf('Android') != -1){
+		javascript:android.callBackReload();
+	} else {
+		window.webkit.messageHandlers.callBackReload.postMessage();
+	}
+}
 var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
-var token = '';
-if(queryUrl('token') != ''){
-	token = queryUrl('token');
-} else {
-	if(isWeix && !sessionStorage.getItem('token')){
+var token;
+if(isWeix){
+	if(!sessionStorage.getItem('token')){
 		$.ajax({
 			url:'/api/wechatController/authLogin2',
 			type:'POST',
@@ -112,24 +117,28 @@ if(queryUrl('token') != ''){
 		});
 	}
 }
-$.ajax({
-	'url':'/api/userController/shareContent',
-	type:'POST',
-	contentType:'application/json',
-	dataType: 'json',
-	data:'{"contentCode": "GGBH161210110001","zoo": {"key": "tesetkey","token": " "}}',
-	success:function(resp){
-		if(resp.status == 1){
-			shareWeiXin({
-				'url':'/api/wechatController/configInfo',
-				'imgUrl':resp.iconUrl,
-				'title':resp.title,
-				'link':resp.url,
-				'desc':resp.content
-			});
+
+if(isWeix){
+	$.ajax({
+		'url':'/api/userController/shareContent',
+		type:'POST',
+		contentType:'application/json',
+		dataType: 'json',
+		data:'{"contentCode": "GGBH161210110001","zoo": {"key": "tesetkey","token": " "}}',
+		success:function(resp){
+			if(resp.status == 1){
+				shareWeiXin({
+					'url':'/api/wechatController/configInfo',
+					'imgUrl':resp.iconUrl,
+					'title':resp.title,
+					'link':resp.url,
+					'desc':resp.content
+				});
+			}
 		}
-	}
-});
+	});
+}
+
 new Vue({
 	el:'.con',
 	data:{
@@ -141,12 +150,17 @@ new Vue({
 	methods:{
 		apiGetData:function(){
 			var _this = this;
+			if(isWeix){
+				token = sessionStorage.getItem('token');
+			}else{
+				token = queryUrl('token')
+			}
 			$.ajax({
 				url:'/api/orderController/reportCheck',
 				type:'POST',
 				contentType:'application/json',
 				dataType: 'json',
-				data:'{"reportCode": "' + queryUrl('id') + '","zoo": {"key": "tesetkey","token": "' + sessionStorage.getItem('token') + '"}}',
+				data:'{"reportCode": "' + queryUrl('id') + '","zoo": {"key": "tesetkey","token": "' + token + '"}}',
 				success:function(res){
 					if(res.status == 1){
 						_this.sign = res.flag;
@@ -157,7 +171,16 @@ new Vue({
 			});
 		},
 		callBack:function(){
-			window.location.href = '../entry.html?code=' + queryUrl('id') + '&source=wechat&entryToken=' + sessionStorage.getItem('token');
+			if(isWeix && sessionStorage.getItem('token')){
+				window.location.href = '../entry.html?code=' + queryUrl('id') + '&source=wechat&entryToken=' + sessionStorage.getItem('token');
+			} else {
+				if(queryUrl('code') == ''){
+					callBackReload()
+				}else{
+					window.location.href = '../entry.html?code=' + queryUrl('id') + '&source=wechat&entryToken=' + queryUrl('token');
+				}
+			}
+			
 		}
 	}
 });
