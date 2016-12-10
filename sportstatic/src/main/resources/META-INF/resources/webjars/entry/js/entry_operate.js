@@ -77,11 +77,11 @@ var entry_operate = {
 
 		if(eval(oData.status) == 1){
 
-			$("#toast").css('display','block');
-
 			if(entry.dataCache.source == 'app'){
 
 				callBackOrder(oData.orderCode);
+
+				$("#toast").css('display','block');
 
 			}
 
