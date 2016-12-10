@@ -1,7 +1,5 @@
 package com.uhutu.dcom.extend.z.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
@@ -22,6 +20,9 @@ public class ReReportJson extends BaseEntity {
 	@ZooData(name = "报名编号")
 	private String signCode;
 
+	@ZooData(name = "报名用户")
+	private String userCode;
+
 	@ZooData(name = "报表值")
 	private String json;
 
@@ -30,6 +31,14 @@ public class ReReportJson extends BaseEntity {
 
 	@ZooData(name = "状态 1:已支付，0:未支付")
 	private String status;
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
 
 	public String getCode() {
 		return code;

@@ -14,6 +14,7 @@ import com.uhutu.sportcenter.z.input.ApiCheckSingTypeInput;
 import com.uhutu.sportcenter.z.input.ApiForAnswerOrderInput;
 import com.uhutu.sportcenter.z.input.ApiForWatchCardInput;
 import com.uhutu.sportcenter.z.input.ApiRefreshCrossfitInput;
+import com.uhutu.sportcenter.z.input.ApiReportCheckInput;
 import com.uhutu.sportcenter.z.input.ApiReportFieldsInput;
 import com.uhutu.sportcenter.z.input.ApiReportSaveInput;
 import com.uhutu.sportcenter.z.input.ApiReportShowInput;
@@ -22,6 +23,7 @@ import com.uhutu.sportcenter.z.result.ApiCheckSingTypeResult;
 import com.uhutu.sportcenter.z.result.ApiForAnswerOrderResult;
 import com.uhutu.sportcenter.z.result.ApiForWatchCardResult;
 import com.uhutu.sportcenter.z.result.ApiRefreshCrossfitResult;
+import com.uhutu.sportcenter.z.result.ApiReportCheckResult;
 import com.uhutu.sportcenter.z.result.ApiReportFieldsResult;
 import com.uhutu.sportcenter.z.result.ApiReportSaveResult;
 import com.uhutu.sportcenter.z.result.ApiReportShowResult;
@@ -103,6 +105,13 @@ public class OrderController {
 	@ApiOperation(value = "报表展示信息", notes = "报表展示信息")
 	public ApiReportShowResult reportFields(@RequestBody ApiReportShowInput input, HttpServletRequest request) {
 		return apiFactory.getApiReportShow().api(input);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/reportCheck", method = RequestMethod.POST)
+	@ApiOperation(value = "活动是否已报名", notes = "活动是否已报名")
+	public ApiReportCheckResult reportCheck(@RequestBody ApiReportCheckInput input, HttpServletRequest request) {
+		return apiFactory.getApiReportCheck().api(input);
 	}
 
 }
