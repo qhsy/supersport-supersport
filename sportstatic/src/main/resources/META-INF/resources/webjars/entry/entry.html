@@ -20,6 +20,7 @@
 <script type="text/javascript" src="/webjars/entry/js/entry_react.js"></script>
 <script type="text/javascript" src="/webjars/entry/js/entry_page.js"></script>
 <script type="text/javascript" src="/webjars/entry/js/entry.js"></script>
+<script type="text/javascript" src="/webjars/static/js/wxConfig.js"></script>
 <body>
 	<div id="topTip" class="weui-toptips weui-toptips_warn js_tooltips" style="display: none;"></div>
 	<div class="page">
@@ -55,7 +56,15 @@
     </div>
 
     <script type="text/javascript">
-
+    	var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
+    	function callbackShare(id){
+			var userAgent = navigator.userAgent;
+			if(userAgent.indexOf('Android') != -1){
+				javascript:android.callbackShare(id);
+			} else {
+				window.webkit.messageHandlers.callbackShare.postMessage(id);
+			}
+		}
     	function callBackOrder(code){
 
 			var userAgent = navigator.userAgent;
@@ -82,7 +91,13 @@
 			}
 			return request;
 		}
-
+		if(isWeix){
+			wxConfigFun({
+				'share':true
+			});
+		}else{
+			callbackShare('');
+		}
 		entry.dataCache.source = queryUrl('source');
 
 		entry_api.c.api_token = queryUrl('entryToken');

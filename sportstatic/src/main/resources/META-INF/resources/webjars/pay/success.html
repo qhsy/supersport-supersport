@@ -92,7 +92,9 @@ a:hover {text-decoration: none; }
 <script type="text/javascript" src="/webjars/static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="/webjars/static/js/wxConfig.js"></script>
 <script>
-wxConfigFun();
+wxConfigFun({
+	'share':true
+});
 new Vue({
 	el:'.container',
 	data:{
@@ -102,7 +104,6 @@ new Vue({
 	},
 	created:function(){
 		this.apiGetData();
-		wx.hideOptionMenu();
 	},
 	methods:{
 		apiGetData:function(){
@@ -115,7 +116,6 @@ new Vue({
 				contentType: 'application/json',
 				success: function(resp) {
 					if(resp.status == 1){
-						console.log(resp);
 						_this.getData = resp;
 					}else{
 						alert(resp.error);

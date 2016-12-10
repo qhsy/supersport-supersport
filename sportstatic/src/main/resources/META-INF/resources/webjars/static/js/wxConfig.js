@@ -7,6 +7,7 @@ function wxConfigFun(config){
 		'link':config && config.link || '',
 		'desc':config && config.desc || '',
 		'type':config && config.type || '',
+		'share':config && config.share || false;
 		'dataUrl':config && config.dataUrl || '',
 		'success':config && config.success || function(){},
 		'cancel':config && config.cancel || function(){}
@@ -69,6 +70,9 @@ function wxConfigFun(config){
 		}
 	});
 	wx.ready(function(){
+		if(con.share){
+			wx.hideOptionMenu();
+		}
 		//分享到朋友圈
 		wx.onMenuShareTimeline({
 		    title: con.title,
