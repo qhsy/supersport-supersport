@@ -3,7 +3,6 @@ package com.uhutu.sportcenter.z.pay.func;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -17,7 +16,6 @@ import com.uhutu.dcom.order.z.entity.OcOrderPay;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.request.WechatNotifyRequest;
 import com.uhutu.dcom.pay.z.service.IWechatNotifyFunc;
-import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.model.MResult;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 
@@ -67,15 +65,14 @@ public class WechatEntryPayNotifyFunc implements IWechatNotifyFunc {
 						}
 						
 						/*更新 entry 报名 相关信息*/
-						if(mResult.upFlagTrue()){
-							List<OcOrderDetail> details = JdbcHelper.queryForList(OcOrderDetail.class, "", "", "code=:code", MapHelper.initMap("code",ocOrderInfo.getCode()));
-							if(details!=null&&details.size()>0){
-								for (int i = 0; i < details.size(); i++) {
-									ReReportJson json = JdbcHelper.queryOne(ReReportJson.class, "sign_code",details.get(i).getProductCode());
-									json.setStatus("1");
-									JdbcHelper.update(json, "status", "za");
-								}
-							}
+						if (mResult.upFlagTrue()) {
+
+							ReReportJson reportJsonInfo = JdbcHelper.queryOne(ReReportJson.class, "signCode",orderDetail.getProductCode());
+							
+							reportJsonInfo.setStatus("1");
+							
+							JdbcHelper.update(reportJsonInfo, "status", "za");
+
 						}
 					}
 					
