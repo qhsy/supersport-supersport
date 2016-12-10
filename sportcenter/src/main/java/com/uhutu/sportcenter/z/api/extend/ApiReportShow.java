@@ -37,7 +37,7 @@ public class ApiReportShow extends RootApiToken<ApiReportShowInput, ApiReportSho
 					map.put("value", detail.getCode());
 					Map<String, String> map2 = new HashMap<String, String>();
 					map2.put("key", "支付金额");
-					map2.put("value", info.getOrderMoney().toString());
+					map2.put("value", "￥"+info.getOrderMoney().toString());
 					result.getList().add(map);
 					result.getList().add(map2);
 				}
