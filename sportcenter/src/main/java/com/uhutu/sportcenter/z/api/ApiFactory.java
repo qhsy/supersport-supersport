@@ -52,6 +52,7 @@ import com.uhutu.sportcenter.z.api.content.ApiShareContent;
 import com.uhutu.sportcenter.z.api.content.ApiShareInfo;
 import com.uhutu.sportcenter.z.api.content.ApiSportChickenSoup;
 import com.uhutu.sportcenter.z.api.content.ApiSportingMoments;
+import com.uhutu.sportcenter.z.api.content.ApiSportingMomentsSecond;
 import com.uhutu.sportcenter.z.api.content.ApiSupportPraise;
 import com.uhutu.sportcenter.z.api.content.ApiThemePage;
 import com.uhutu.sportcenter.z.api.donate.ApiUpdateUserPower;
@@ -541,7 +542,13 @@ public class ApiFactory {
 	@Autowired
 	private ApiReportCheck apiReportCheck;
 	
+	@Autowired
+	private ApiSportingMomentsSecond apiSportingMomentsSecond;
 	
+	public ApiSportingMomentsSecond getApiSportingMomentsSecond() {
+		return apiSportingMomentsSecond;
+	}
+
 	public ApiReportCheck getApiReportCheck() {
 		return apiReportCheck;
 	}

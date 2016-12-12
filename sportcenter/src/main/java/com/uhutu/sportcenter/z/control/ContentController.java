@@ -28,6 +28,7 @@ import com.uhutu.sportcenter.z.input.ApiRecommLabelListInput;
 import com.uhutu.sportcenter.z.input.ApiShareInfoInput;
 import com.uhutu.sportcenter.z.input.ApiSportChickenSoupInput;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
+import com.uhutu.sportcenter.z.input.ApiSportingMomentsSecondInput;
 import com.uhutu.sportcenter.z.input.ApiSupportPraiseInput;
 import com.uhutu.sportcenter.z.input.ApiThemePageInput;
 import com.uhutu.sportcenter.z.result.ApiComplainInfoResult;
@@ -50,6 +51,7 @@ import com.uhutu.sportcenter.z.result.ApiRecommLableListResult;
 import com.uhutu.sportcenter.z.result.ApiShareInfoResult;
 import com.uhutu.sportcenter.z.result.ApiSportChickenSoupResult;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
+import com.uhutu.sportcenter.z.result.ApiSportingMomentsSecondResult;
 import com.uhutu.sportcenter.z.result.ApiSupportPraiseResult;
 import com.uhutu.sportcenter.z.result.ApiThemePageResult;
 
@@ -84,6 +86,14 @@ public class ContentController {
 	public ApiSportingMomentsResult versionInfo(@RequestBody ApiSportingMomentsInput input) {
 
 		return apiFactory.getApiSportingMoments().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/sportingMomentsSecond", method = RequestMethod.POST)
+	@ApiOperation(value = "运动时刻接口2", notes = "运动时刻展示2")
+	public ApiSportingMomentsSecondResult versionInfo(@RequestBody ApiSportingMomentsSecondInput input) {
+
+		return apiFactory.getApiSportingMomentsSecond().api(input);
 	}
 
 	@ResponseBody
