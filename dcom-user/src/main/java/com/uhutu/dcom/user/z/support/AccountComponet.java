@@ -10,31 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class AccountComponet {
 	
-	/*实体bean处理处理实例*/
-	private volatile static AccountComponet INSTANCE = null;
 	
-	/**
-	 * 获取实体bean处理实例
-	 * @return AccountComponet
-	 */
-	public static AccountComponet getInstance(){
-		
-		if(INSTANCE == null){
-			
-			synchronized (AccountComponet.class) {
-				
-				if(INSTANCE == null){
-					
-					INSTANCE = new AccountComponet();
-					
-				}
-				
-			}
-			
-		}
-		
-		return INSTANCE;
-		
-	}
 
 }
