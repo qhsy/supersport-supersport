@@ -2,6 +2,7 @@ package com.uhutu.dcom.content.z.entity;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
@@ -15,18 +16,22 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 public class CnRedPackFlow extends BaseEntity {
 	
 	@ZooData(value = "接收用户编号")
+	@Column(length = 50)
 	private String reciveUserCode;
 	
 	@ZooData(value = "业务编号")
+	@Column(length = 50)
 	private String busiCode;
 	
 	@ZooData(value = "打赏金额")
 	private BigDecimal money;
 	
 	@ZooData(value = "红包编号")
+	@Column(length = 50)
 	private String redPackCode;
 	
 	@ZooData(value = "打赏人员")
+	@Column(length = 50)
 	private String sendUserCode;
 
 	public String getReciveUserCode() {

@@ -19,6 +19,13 @@ public class CnRedPackInfo extends BaseEntity {
 	
 	@ZooData(value="金额")
 	private int money;
+	
+	@ZooData(value="排序")
+	private int sort;
+	
+	@ZooData(value="状态")
+	@Column(length = 50)
+	private String status;
 
 	public String getCode() {
 		return code;
