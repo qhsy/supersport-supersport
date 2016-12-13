@@ -2,6 +2,9 @@ package com.uhutu.dcom.user.z.entity;
 
 import java.math.BigDecimal;
 import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
@@ -11,6 +14,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  *
  */
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "userCode" }))
 public class UcAccountInfo extends BaseEntity {
 	
 	@ZooData(value = "用户编号")
