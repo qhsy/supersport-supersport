@@ -10,46 +10,56 @@ import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
- * 打赏人员列表
+ * 人员打赏金额
  * @author 逄小帅
  *
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "userCode" }))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "userCode","busiCode" }))
 public class CnRedPackUser extends BaseEntity {
 	
-	@ZooData(value = "用户编号")
-	private String userCode;
+	@ZooData(value = "接收用户编号")
+	private String reciveUserCode;
 	
-	@ZooData(value = "分成比例")
-	private BigDecimal scale;
+	@ZooData(value = "业务编号")
+	private String busiCode;
 	
-	@ZooData(value = "排序")
-	private int sort;
-
-	public String getUserCode() {
-		return userCode;
-	}
-
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
-	}
-
-	public BigDecimal getScale() {
-		return scale;
-	}
-
-	public void setScale(BigDecimal scale) {
-		this.scale = scale;
-	}
-
-	public int getSort() {
-		return sort;
-	}
-
-	public void setSort(int sort) {
-		this.sort = sort;
-	}
+	@ZooData(value = "打赏金额")
+	private BigDecimal money;
 	
+	@ZooData(value = "打赏人员")
+	private String sendUserCode;
+
+	public String getReciveUserCode() {
+		return reciveUserCode;
+	}
+
+	public void setReciveUserCode(String reciveUserCode) {
+		this.reciveUserCode = reciveUserCode;
+	}
+
+	public String getBusiCode() {
+		return busiCode;
+	}
+
+	public void setBusiCode(String busiCode) {
+		this.busiCode = busiCode;
+	}
+
+	public BigDecimal getMoney() {
+		return money;
+	}
+
+	public void setMoney(BigDecimal money) {
+		this.money = money;
+	}
+
+	public String getSendUserCode() {
+		return sendUserCode;
+	}
+
+	public void setSendUserCode(String sendUserCode) {
+		this.sendUserCode = sendUserCode;
+	}
 
 }
