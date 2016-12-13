@@ -11,8 +11,14 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="author" content="">
 <link rel="stylesheet" type="text/css" href="../static/css/base.css">
+<script type="text/javascript">
+var weix = navigator.userAgent.indexOf('MicroMessenger') > -1;
+if(weix){
+	window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=' + location.href + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect'
+}
+</script>
 <style type="text/css">
-.container{padding-bottom: 0.6rem;}
+.container{padding-bottom: 0.8rem;}
 /* Header Style */
 .user{height: 0.58rem; padding: 0 0.16rem 0 0.22rem; }
 .user .head{height: 0.32rem; margin: 0.13rem 0 0; display: -webkit-flex; display: flex; float: left;}
@@ -25,7 +31,13 @@
 .user .name.ct{height: 0.32rem; line-height: 0.32rem;}
 .user .title{height: 0.16rem; overflow: hidden; font-size: 0.12rem; color: #757575; white-space: nowrap; text-overflow: ellipsis;}
 .user .index{width: 0.7rem; height: 0.26rem; margin: 0.16rem 0 0; border: #F8800A 1px solid; font-size: 0.12rem; display: block; float: right; text-align: center; line-height: 0.27rem; color: #F8800A;}
-.readRate{padding: 0.16rem 0.22rem 0.1rem; display: flex; display: -webkit-flex; justify-content: space-between; -webkit-justify-content: space-between; line-height: 0.18rem; color: #BDBDBD; font-size: 0.13rem;}
+.read{padding: 0.16rem 0.22rem 0.1rem; height: 0.18rem; line-height: 0.18rem; color: #BDBDBD; font-size: 0.13rem;}
+.read .assist .assNum{float: right;   color: #F8800A;}
+.read .assist .assNum.like:before{content: ""; width: 0.22rem; height: 0.18rem; float: left; margin-right: 6px; background: url('../static/img/like@2x.png') no-repeat center center; background-size: cover;}
+.read .assist .assNum.nolike:before{content: ""; width: 0.22rem; height: 0.18rem; float: left; margin-right: 6px; background: url('../static/img/nolike@2x.png') no-repeat center center; background-size: cover;}
+.read .assist .readnum{padding-left: 0.15rem;}
+.read .related .assNum{display: none;}
+.read .related .readnum{float: right;}
 /* Content Style */
 .content .title{padding: 0.25rem 0.22rem 0.04rem; line-height: 0.24rem; font-size: 0.2rem; color: #212121; word-wrap: break-word; word-break: break-all;}
 .content .video-title{padding: 0.13rem 0.22rem 0.04rem; line-height: 0.24rem; font-size: 0.2rem; color: #212121; font-weight: 700;}
@@ -54,6 +66,7 @@
 .shop .price{float: left; padding-top: 0.3rem; color: #FF7E00; font-size: 0.12rem;}
 .shop .price em{font-size: 0.2rem; line-height: 0.3rem;}
 .shop .btn{width: 0.66rem; height: 0.26rem; margin: 0.33rem 0 0; background: #FF7E00; color: #fff; text-align: center; line-height: 0.26rem; float: right; font-size: 0.12rem;}
+/*  */
 </style>
 </head>
 <body>
@@ -80,9 +93,12 @@
 		<child-video :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030005'"></child-video>
 	</article>
 	<!-- end -->
-	<article class="readRate">
-		<em>{{res.sportingMoment.publishTimeStr}}</em>
-		<em>{{res.sportingMoment.readNum}}次浏览</em>
+	<article class="read">
+		<div :class="[share?'assist':'related']">
+			<em class="time">{{res.sportingMoment.publishTimeStr}}</em>
+			<em class="readnum">{{res.sportingMoment.readNum}}次浏览</em>
+			<span :class="['assNum',res.sportingMoment.favorFlag?'like':'nolike']" @click="callFavor">{{res.sportingMoment.praiseNum}}</span>
+		</div>
 	</article>
 	<!-- shop module -->
 	<article class="shop" v-if="shop.productInfos.length">
@@ -101,6 +117,12 @@
 		</ul>
 	</article>
 	<!-- end -->
+	<!--
+	<article class="comment">
+		<h1 class="title">最新评论</h1>
+
+	</article>
+	-->
 	<!-- data loading -->
 	<aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
 </section>
@@ -154,6 +176,27 @@
 <script type="text/javascript" src="script/common.min.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
+var weix = navigator.userAgent.indexOf('MicroMessenger') > -1;
+if(weix){
+	if(!sessionStorage.getItem('token')){
+		$.ajax({
+			url:'/api/wechatController/authLogin2',
+			type:'POST',
+			contentType:'application/json',
+			dataType: 'json',
+			async: false,
+			data:'{"code": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": " "}}',
+			success:function(res){
+				if(res.status == 1){
+					sessionStorage.setItem('code',res.userCode);
+					sessionStorage.setItem('token',res.userToken);
+				}else{
+					alert(res.error);
+				}
+			}
+		});
+	}
+}
 Vue.use(Vue.lazyimg,{
 	nohori: true
 });
@@ -274,9 +317,10 @@ var vm = new Vue({
 				success: function(resp) {
 					if(resp.status == 1){
 						_this.res = resp;
-						setTimeout(function(){
-							_this.loading = false;
-						}, 1700);
+						_this.loading = false;
+						// setTimeout(function(){
+						// 	_this.loading = false;
+						// }, 1700);
 					}else{
 						_this.loading = false;
 						alert('数据请求失败');
@@ -344,6 +388,25 @@ var vm = new Vue({
 			} else {
 				window.location.href = ios;
 			}
+		},
+		callFavor:function(){
+			if(weix){
+				this.res.sportingMoment.favorFlag = !this.res.sportingMoment.favorFlag;
+				var type = this.res.sportingMoment.favorFlag?1:0;
+				reqwest({
+					url: '/api/contentController/contentReadCount',
+					method: 'post',
+					data: '{"contentCode": "' + queryUrl('code') + '","isLike": "' + type + '","type": "01","zoo": {"key": "tesetkey","token": "' + sessionStorage.getItem('token') + '"}}',
+					type: 'json',
+					contentType: 'application/json',
+					success: function(resp) {
+						console.log(resp)
+					}
+				});
+			} else {
+				open();
+			}
+			
 		}
 	}
 });

@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebElement;
+import com.uhutu.zoocom.define.DefineWebInc;
+import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -15,71 +18,82 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class CnLiveVideoDetail extends BaseEntity {
 
-	@ZooData(name = "房间编号")
+	@ZooData(name = "房间编号", sort = { DefineWebPage.Page_Edit + "=0" })
 	private String code;
 
-	@ZooData(name = "本次直播唯一编号")
+	@ZooData(name = "业务编号", sort = { DefineWebPage.Page_Edit + "=0" })
 	private String busiCode;
 
-	@ZooData(name = "聊天室编号")
+	@ZooData(name = "聊天室编号", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
+			DefineWebPage.Page_Edit + "=0" })
 	private String chatCode;
 
-	@ZooData(name = "用户编号")
+	@ZooData(name = "主播昵称", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw451010010001" }, sort = { DefineWebPage.Page_Edit + "=0" })
 	private String userCode;
 
-	@ZooData(name = "直播封面")
+	@ZooData(name = "直播封面", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
+			DefineWebPage.Page_Edit + "=0" })
 	private String cover;
 
-	@ZooData(name = "标题")
+	@ZooData(name = "标题", sort = { DefineWebPage.Page_Edit + "=0" })
 	private String title;
 
-	@ZooData(name = "状态  1:正在直播,0:结束 ")
+	@ZooData(name = "状态  1:正在直播,0:结束 ", sort = { DefineWebPage.Page_Edit + "=0" })
 	private String status;
 
-	@ZooData(name = "经度")
+	@ZooData(name = "经度", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
+			DefineWebPage.Page_Edit + "=0" })
 	private String longitude;
 
-	@ZooData(name = "维度")
+	@ZooData(name = "维度", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
+			DefineWebPage.Page_Edit + "=0" })
 	private String latitude;
 
-	@ZooData(name = "定位位置名称")
+	@ZooData(name = "定位位置名称", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
+			DefineWebPage.Page_Edit + "=0" })
 	private String addressName;
 
-	@ZooData(name = "点赞数")
+	@ZooData(name = "点赞数", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0" })
 	private long praise;
 
-	@ZooData(name = "观看人次")
+	@ZooData(name = "观看人次", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0" })
 	private long watch;
 
-	@ZooData(name = "时长")
+	@ZooData(name = "时长", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0" })
 	private int length;
 
-	@ZooData(name = "创建时间")
+	@ZooData(name = "创建时间", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0" })
 	private String createTime;
 
-	@ZooData(name = "结束时间")
+	@ZooData(name = "结束时间", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0" })
 	private String endTime;
 
-	@ZooData(name = "标签编码")
+	@ZooData(name = "标签编码", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw412410010002" }, sort = { DefineWebPage.Page_Query + "=0",
+					DefineWebPage.Page_Edit + "=0" })
 	@Column(columnDefinition = "longtext")
 	private String tagCode;
 
-	@ZooData(name = "直播流标识")
+	@ZooData(name = "直播流标识", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",
+			DefineWebPage.Page_Edit + "=0" })
 	private String streamId;
 
-	@ZooData(name = "文章编号")
+	@ZooData(name = "文章编号", sort = { DefineWebPage.Page_Edit + "=0" })
 	private String contentCode;
 
-	@ZooData(name = "直播流地址")
+	@ZooData(name = "直播流地址", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0",
+			DefineWebPage.Page_Grid + "=0" })
 	private String streamUrl;
 
-	@ZooData(name = "channelId")
+	@ZooData(name = "channelId", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0",
+			DefineWebPage.Page_Grid + "=0" })
 	private String channelId;
 
-	@ZooData(name = "直播参数常量")
+	@ZooData(name = "直播参数常量", sort = { DefineWebPage.Page_Query + "=0" })
 	private long watchConstant;
 
-	@ZooData(name = "直播参数常量")
+	@ZooData(name = "直播参数常量", sort = { DefineWebPage.Page_Query + "=0" })
 	private long praiseConstant;
 
 	public long getWatchConstant() {

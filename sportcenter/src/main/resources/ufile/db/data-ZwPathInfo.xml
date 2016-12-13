@@ -106,7 +106,13 @@
 		<item code="dzpi45141008" nodeName="商品相关" parentCode="" />
 		<item code="dzpi451410080001" nodeName="商品管理" parentCode="dzpi45141008" />
 		<item code="dzpi4514100800010001" nodeName="商品信息" parentCode="dzpi451410080001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ProductInfoPage" pageIcon="glyphicon-bullhorn" />
-		
+		<item code="dzpi45141009" nodeName="直播相关" parentCode="" />
+		<item code="dzpi451410090001" nodeName="直播管理" parentCode="dzpi45141009" />
+		<item code="dzpi4514100900010001" nodeName="红包类型管理" parentCode="dzpi451410090001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnRedPackInfoPage" pageIcon="glyphicon-bullhorn" />
+		<item code="dzpi4514100900010002" nodeName="直播间管理" parentCode="dzpi451410090001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnLiveVideoDetailPage" pageIcon="glyphicon-bullhorn" />
+		<item code="dzpi4514100900010003" nodeName="接受打赏人员" parentCode="dzpi451410090001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnRedPackUserPage" pageIcon="glyphicon-bullhorn" />
+		<item code="dzpi4514100900010004" nodeName="打赏流水" parentCode="dzpi451410090001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnRedPackFlowPage" pageIcon="glyphicon-bullhorn" />
+		<item code="dzpi4514100900010005" nodeName="主播收益管理" parentCode="dzpi451410090001" pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UcAccountInfoPage" pageIcon="glyphicon-bullhorn" />
 	</data>
 
 </db>
