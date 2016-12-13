@@ -16,5 +16,19 @@ public interface IAccountInfoService {
 	 * @return 账户信息
 	 */
 	public UcAccountInfo getAccountInfo(String userCode);
+	
+	/**
+	 * 注册账户信息
+	 * @param userCode
+	 * 		用户信息
+	 */
+	public void regAccInfo(String userCode);
+	
+	/**
+	 * 更新账户信息
+	 * @param accInfo
+	 * 		账户信息
+	 */
+	public void updateAccInfo(UcAccountInfo accInfo);
 
 }

@@ -22,4 +22,22 @@ public class AccountInfoServiceImpl implements IAccountInfoService {
 		return accountInfo;
 	}
 
+	@Override
+	public void regAccInfo(String userCode) {
+		
+		UcAccountInfo accountInfo = new UcAccountInfo();
+		
+		accountInfo.setUserCode(userCode);
+		
+		JdbcHelper.insert(accountInfo);
+		
+	}
+
+	@Override
+	public void updateAccInfo(UcAccountInfo accInfo) {
+		
+		JdbcHelper.update(accInfo, "profit,totalProfit,balance,charge,freeze", "za");
+		
+	}
+
 }
