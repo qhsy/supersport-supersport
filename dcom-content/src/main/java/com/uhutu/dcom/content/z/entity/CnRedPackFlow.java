@@ -4,33 +4,39 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebElement;
+import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
  * 人员打赏金额流水
+ * 
  * @author 逄小帅
  *
  */
 @Entity
 public class CnRedPackFlow extends BaseEntity {
-	
-	@ZooData(value = "接收用户编号")
+
+	@ZooData(value = "接受打赏者", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw451010010001" })
 	@Column(length = 50)
 	private String reciveUserCode;
-	
+
 	@ZooData(value = "业务编号")
 	@Column(length = 50)
 	private String busiCode;
-	
+
 	@ZooData(value = "打赏金额")
 	private BigDecimal money;
-	
+
 	@ZooData(value = "红包编号")
 	@Column(length = 50)
 	private String redPackCode;
-	
-	@ZooData(value = "打赏人员")
+
+	@ZooData(value = "打赏者", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw451010010001" })
 	@Column(length = 50)
 	private String sendUserCode;
 
