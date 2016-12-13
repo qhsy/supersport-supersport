@@ -3,23 +3,19 @@ package com.uhutu.dcom.content.z.entity;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
- * 人员打赏金额信息
+ * 人员打赏金额流水
  * @author 逄小帅
  *
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "userCode","busiCode" }))
-public class CnRedPackUser extends BaseEntity {
+public class CnRedPackFlow extends BaseEntity {
 	
-	@ZooData(value = "用户编号")
-	private String userCode;
+	@ZooData(value = "接收用户编号")
+	private String reciveUserCode;
 	
 	@ZooData(value = "业务编号")
 	private String busiCode;
@@ -27,15 +23,15 @@ public class CnRedPackUser extends BaseEntity {
 	@ZooData(value = "打赏金额")
 	private BigDecimal money;
 	
-	@ZooData(value = "分成状态")
-	private String status;
+	@ZooData(value = "打赏人员")
+	private String sendUserCode;
 
-	public String getUserCode() {
-		return userCode;
+	public String getReciveUserCode() {
+		return reciveUserCode;
 	}
 
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
+	public void setReciveUserCode(String reciveUserCode) {
+		this.reciveUserCode = reciveUserCode;
 	}
 
 	public String getBusiCode() {
@@ -54,14 +50,12 @@ public class CnRedPackUser extends BaseEntity {
 		this.money = money;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getSendUserCode() {
+		return sendUserCode;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setSendUserCode(String sendUserCode) {
+		this.sendUserCode = sendUserCode;
 	}
-
-	
 
 }
