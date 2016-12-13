@@ -1,6 +1,7 @@
 package com.uhutu.sportcenter.z.api.live;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -11,10 +12,12 @@ import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentWorth;
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
+import com.uhutu.dcom.content.z.entity.CnRedPackUser;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.properties.ConfigDcomContent;
 import com.uhutu.dcom.content.z.properties.SettingsDcomContent;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
+import com.uhutu.sportcenter.z.entity.RedPackUserForApi;
 import com.uhutu.sportcenter.z.input.ApiStartLiveInput;
 import com.uhutu.sportcenter.z.result.ApiStartLiveResult;
 import com.uhutu.zoocom.helper.DateHelper;
@@ -82,12 +85,29 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 			liveVideoDetail.setPraiseConstant(Integer.valueOf(dcomContent.getLiveAppPraiseConstant()));
 			liveVideoDetail.setBusiCode(WebHelper.upCode("LVEY"));
 			JdbcHelper.insert(liveVideoDetail);
-
+			savePackUser(liveVideoDetail.getBusiCode(), input.getUsers());
 			updateContentWorth(contentCode);
 
 		}
 
 		return startLiveResult;
+	}
+
+	/**
+	 * 接受打赏人
+	 */
+	private void savePackUser(String busiCode, List<RedPackUserForApi> users) {
+		if (users != null && users.size() > 0) {
+			for (int i = 0; i < users.size(); i++) {
+				CnRedPackUser user = new CnRedPackUser();
+				RedPackUserForApi packUserForApi = users.get(i);
+				BeanUtils.copyProperties(packUserForApi, user);
+				user.setBusiCode(busiCode);
+				user.setStatus("0");
+				JdbcHelper.insert(user);
+			}
+		}
+
 	}
 
 	/**
