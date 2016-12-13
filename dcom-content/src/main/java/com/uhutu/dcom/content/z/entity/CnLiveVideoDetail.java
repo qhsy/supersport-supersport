@@ -18,6 +18,9 @@ public class CnLiveVideoDetail extends BaseEntity {
 	@ZooData(name = "房间编号")
 	private String code;
 
+	@ZooData(name = "本次直播唯一编号")
+	private String busiCode;
+
 	@ZooData(name = "聊天室编号")
 	private String chatCode;
 
@@ -245,6 +248,14 @@ public class CnLiveVideoDetail extends BaseEntity {
 
 	public void setChannelId(String channelId) {
 		this.channelId = channelId;
+	}
+
+	public String getBusiCode() {
+		return busiCode;
+	}
+
+	public void setBusiCode(String busiCode) {
+		this.busiCode = busiCode;
 	}
 
 }
