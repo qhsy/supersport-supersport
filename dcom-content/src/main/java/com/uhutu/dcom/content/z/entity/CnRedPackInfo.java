@@ -1,11 +1,14 @@
 package com.uhutu.dcom.content.z.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
+import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
@@ -22,8 +25,12 @@ public class CnRedPackInfo extends BaseEntity {
 	@Column(length = 50)
 	private String code;
 
+	@ZooData(name = "内容封面(宽45*高45)", element = DefineWebElement.Upload, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	private String pic;
+
 	@ZooData(value = "金额", require = "1")
-	private int money;
+	private BigDecimal money;
 
 	@ZooData(value = "排序", require = "1", verify = { DefineWebVerify.Base_Number })
 	private int sort;
@@ -41,11 +48,19 @@ public class CnRedPackInfo extends BaseEntity {
 		this.code = code;
 	}
 
-	public int getMoney() {
+	public String getPic() {
+		return pic;
+	}
+
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+
+	public BigDecimal getMoney() {
 		return money;
 	}
 
-	public void setMoney(int money) {
+	public void setMoney(BigDecimal money) {
 		this.money = money;
 	}
 
