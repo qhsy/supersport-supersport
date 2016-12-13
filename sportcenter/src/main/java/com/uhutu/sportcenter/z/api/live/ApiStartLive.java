@@ -21,6 +21,7 @@ import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
+import com.uhutu.zooweb.helper.WebHelper;
 
 import io.swagger.annotations.ApiModel;
 
@@ -79,6 +80,7 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 			SettingsDcomContent dcomContent = ConfigDcomContent.upConfig();
 			liveVideoDetail.setWatchConstant(Integer.valueOf(dcomContent.getLiveAppWatchConstant()));
 			liveVideoDetail.setPraiseConstant(Integer.valueOf(dcomContent.getLiveAppPraiseConstant()));
+			liveVideoDetail.setBusiCode(WebHelper.upCode("LVEY"));
 			JdbcHelper.insert(liveVideoDetail);
 
 			updateContentWorth(contentCode);
@@ -99,7 +101,7 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 
 		basicinfo.setAuthor(upUserCode());
 
-		basicinfo.setBusiType(ContentEnum.article.getCode());
+		basicinfo.setBusiType(ContentEnum.sportmoment.getCode());
 
 		basicinfo.setContentType(ContentEnum.TYPE_LIVE.getCode());
 

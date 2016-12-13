@@ -15,6 +15,9 @@ public class CnLiveVideoDetailForApi extends BaseEntity {
 	@ApiModelProperty(name = "房间编号", notes = "房间编号")
 	private String code;
 
+	@ApiModelProperty(name = "本次直播唯一编号")
+	private String busiCode;
+
 	@ApiModelProperty(name = "聊天室编号", notes = "聊天室编号")
 	private String chatCode;
 
@@ -197,6 +200,14 @@ public class CnLiveVideoDetailForApi extends BaseEntity {
 
 	public void setTagCode(String tagCode) {
 		this.tagCode = tagCode;
+	}
+
+	public String getBusiCode() {
+		return busiCode;
+	}
+
+	public void setBusiCode(String busiCode) {
+		this.busiCode = busiCode;
 	}
 
 }

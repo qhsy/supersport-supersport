@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
+import com.uhutu.dcom.content.z.entity.CnRedPackUser;
 import com.uhutu.sportcenter.z.input.ApiLiveVideoHeartInput;
 import com.uhutu.sportcenter.z.result.ApiLiveVideoHeartResult;
 import com.uhutu.zoocom.helper.MapHelper;
@@ -41,6 +42,11 @@ public class ApiLiveVideoHeart extends RootApiToken<ApiLiveVideoHeartInput, ApiL
 					basicinfo.setStatus("dzsd4699100110010001");
 					JdbcHelper.update(basicinfo, "status", "za");
 				}
+			}
+			CnRedPackUser packUser = JdbcHelper.queryOne(CnRedPackUser.class, "sum(money) as money ", "",
+					"busi_code=:busiCode", MapHelper.initMap("busiCode", detail.getBusiCode()));
+			if (packUser != null&&packUser.getMoney()!=null) {
+				result.setMoney(packUser.getMoney());
 			}
 		}
 		return result;

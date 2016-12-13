@@ -12,6 +12,7 @@ import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
+import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
@@ -112,6 +113,9 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 				contentBasicinfoForApi.setPublishTimeStr("MM-dd HH:mm");
 				CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
 						contentBasicinfoForApi.getCode());
+				int praiseNum = contentServiceFactory.getSupportPraiseService()
+						.queryCountByCode(contentBasicinfoForApi.getCode(), ContentEnum.FAVOR_STATUS_YES.getCode());
+				contentBasicinfoForApi.setPraiseNum(praiseNum);
 				contentBasicinfoForApi.setReadNum(contentReadCount != null ? contentReadCount.getCount() : 0);
 				ContentRecommInfo recommInfo = new ContentRecommInfo();
 
