@@ -68,7 +68,7 @@ public class ApiFavorContentList extends RootApiBase<ApiFavorContentListInput, A
 
 		sqlBuffer.append(" and content_code like '").append("CNBH%").append("'");
 
-		sqlBuffer.append(" and exists(select 1 from cn_content_basicinfo where code = content_code and status = 'dzsd4699100110010001')");
+		sqlBuffer.append(" and exists(select 1 from cn_content_basicinfo where code = content_code and status = 'dzsd4699100110010001' and content_type!='dzsd4107100110030007' )");
 
 		List<CnSupportPraise> praiseList = JdbcHelper.queryForList(CnSupportPraise.class, "", "-zc",
 				sqlBuffer.toString(), new MDataMap(), iStart, iNumber);

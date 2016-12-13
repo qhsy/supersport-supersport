@@ -260,7 +260,7 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 		queryConditions.setConditionEqual("author", userCode);
 		
 		queryConditions.setConditionEqual("shareScope", "dzsd4699100110010001");
-
+		queryConditions.setConditionNotEqual("contentType", "dzsd4107100110030007");
 		Page<CnContentBasicinfo> page = contentServiceFactory.getContentBasicinfoService()
 				.queryPage(pagination, 10, queryConditions);
 

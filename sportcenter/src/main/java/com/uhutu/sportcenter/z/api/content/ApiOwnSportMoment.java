@@ -66,7 +66,7 @@ public class ApiOwnSportMoment extends RootApiToken<ApiOwnSportMomentInput, ApiO
 		queryConditions.setConditionEqual("status", "dzsd4699100110010001");
 
 		queryConditions.setConditionEqual("author", upUserCode());
-
+		queryConditions.setConditionNotEqual("contentType", "dzsd4107100110030007");
 		Page<CnContentBasicinfo> page = serviceFactory.getContentBasicinfoService().queryPage(input.getPagination(), 10,
 				queryConditions);
 
