@@ -27,6 +27,12 @@ public class CnRedPackUser extends BaseEntity {
 	@ZooData(value = "打赏金额")
 	private BigDecimal money;
 	
+	@ZooData(value = "分成比例")
+	private BigDecimal scale;
+	
+	@ZooData(value = "排序")
+	private int sort;
+	
 	@ZooData(value = "分成状态")
 	private String status;
 
@@ -60,6 +66,22 @@ public class CnRedPackUser extends BaseEntity {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public BigDecimal getScale() {
+		return scale;
+	}
+
+	public void setScale(BigDecimal scale) {
+		this.scale = scale;
+	}
+
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
 	}
 
 	
