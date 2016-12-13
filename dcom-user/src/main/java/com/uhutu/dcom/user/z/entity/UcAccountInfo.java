@@ -1,9 +1,7 @@
 package com.uhutu.dcom.user.z.entity;
 
 import java.math.BigDecimal;
-
 import javax.persistence.Entity;
-
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
@@ -18,8 +16,20 @@ public class UcAccountInfo extends BaseEntity {
 	@ZooData(value = "用户编号")
 	private String userCode;
 	
-	@ZooData(value="收益")
+	@ZooData(value="可用收益")
 	private BigDecimal profit;
+	
+	@ZooData(value="累计收益")
+	private BigDecimal totalProfit;
+	
+	@ZooData(value="可用余额")
+	private BigDecimal balance;
+	
+	@ZooData(value="充值金额")
+	private BigDecimal charge;
+	
+	@ZooData(value="冻结金额")
+	private BigDecimal freeze;
 
 	public String getUserCode() {
 		return userCode;
@@ -35,6 +45,22 @@ public class UcAccountInfo extends BaseEntity {
 
 	public void setProfit(BigDecimal profit) {
 		this.profit = profit;
+	}
+
+	public BigDecimal getBalance() {
+		return balance;
+	}
+
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
+	}
+
+	public BigDecimal getFreeze() {
+		return freeze;
+	}
+
+	public void setFreeze(BigDecimal freeze) {
+		this.freeze = freeze;
 	}
 
 }
