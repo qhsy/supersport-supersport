@@ -16,8 +16,12 @@ public class PaPayInfo extends BaseEntity {
 	private String busiCode;
 	
 	@ZooData(name="支付类型")
-	@Column(length=30)
+	@Column(length=50)
 	private String payType;
+	
+	@ZooData(name="支付来源",comment="app,h5")
+	@Column(length=50)
+	private String paySource;
 	
 	@ZooData(name="支付金额")
 	private BigDecimal money = BigDecimal.ZERO;
@@ -56,6 +60,14 @@ public class PaPayInfo extends BaseEntity {
 
 	public void setTradeNo(String tradeNo) {
 		this.tradeNo = tradeNo;
+	}
+
+	public String getPaySource() {
+		return paySource;
+	}
+
+	public void setPaySource(String paySource) {
+		this.paySource = paySource;
 	}
 
 }
