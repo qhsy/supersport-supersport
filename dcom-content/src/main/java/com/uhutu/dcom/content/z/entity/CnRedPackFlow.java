@@ -23,6 +23,9 @@ public class CnRedPackFlow extends BaseEntity {
 	@ZooData(value = "打赏金额")
 	private BigDecimal money;
 	
+	@ZooData(value = "红包编号")
+	private String redPackCode;
+	
 	@ZooData(value = "打赏人员")
 	private String sendUserCode;
 
@@ -56,6 +59,14 @@ public class CnRedPackFlow extends BaseEntity {
 
 	public void setSendUserCode(String sendUserCode) {
 		this.sendUserCode = sendUserCode;
+	}
+
+	public String getRedPackCode() {
+		return redPackCode;
+	}
+
+	public void setRedPackCode(String redPackCode) {
+		this.redPackCode = redPackCode;
 	}
 
 }
