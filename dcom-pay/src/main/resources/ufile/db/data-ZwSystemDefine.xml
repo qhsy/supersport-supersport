@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
+	<data table="ZwSystemDefine">
+		<item code="dzsd81121001" defineName="支付相关" parentCode="" />
+		<item code="dzsd811210011001" defineName="支付业务类型" parentCode="dzsd81121001" />
+		<item code="dzsd8112100110010001" defineName="红包打赏支付" parentCode="dzsd811210011001" />
+	</data>
+
+</db>
