@@ -31,6 +31,7 @@ import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsSecondInput;
 import com.uhutu.sportcenter.z.input.ApiSupportPraiseInput;
 import com.uhutu.sportcenter.z.input.ApiThemePageInput;
+import com.uhutu.sportcenter.z.input.ApiTummyMomentsInput;
 import com.uhutu.sportcenter.z.result.ApiComplainInfoResult;
 import com.uhutu.sportcenter.z.result.ApiContentDetailProductsResult;
 import com.uhutu.sportcenter.z.result.ApiContentDetailResult;
@@ -54,6 +55,7 @@ import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsSecondResult;
 import com.uhutu.sportcenter.z.result.ApiSupportPraiseResult;
 import com.uhutu.sportcenter.z.result.ApiThemePageResult;
+import com.uhutu.sportcenter.z.result.ApiTummyMomentsResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -87,7 +89,7 @@ public class ContentController {
 
 		return apiFactory.getApiSportingMoments().api(input);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/sportingMomentsSecond", method = RequestMethod.POST)
 	@ApiOperation(value = "运动时刻接口2", notes = "运动时刻展示2")
@@ -266,6 +268,15 @@ public class ContentController {
 	public ApiContentDetailProductsResult contentDetailProducts(@RequestBody ApiContentDetailProductsInput input) {
 
 		return apiFactory.getApiContentDetailProducts().api(input);
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/tummyMoments", method = RequestMethod.POST)
+	@ApiOperation(value = "炫腹大赛文章列表", notes = "炫腹大赛文章列表")
+	public ApiTummyMomentsResult tummyMoments(@RequestBody ApiTummyMomentsInput input) {
+
+		return apiFactory.getApiTummyMoments().api(input);
 
 	}
 }
