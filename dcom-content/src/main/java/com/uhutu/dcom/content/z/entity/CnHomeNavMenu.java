@@ -34,7 +34,7 @@ public class CnHomeNavMenu extends BaseEntity {
 
 	@ZooData(name = "跳转类型", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd410710011005" })
-	@ApiModelProperty(name = "图片超链接跳转类型", notes = "轮播图链接跳转类型dzsd4107100110050003:超链接,dzsd4107100110050002:内容详情页,dzsd4107100110050001:个人中心,dzsd4107100110050006:专题,dzsd4107100110050007:标签详情,dzsd4107100110050008:时刻列表,dzsd4107100110050009:问答列表,dzsd4107100110050010:活动报名")
+	@ApiModelProperty(name = "图片超链接跳转类型", notes = "轮播图链接跳转类型dzsd4107100110050003:超链接,dzsd4107100110050002:内容详情页,dzsd4107100110050001:个人中心,dzsd4107100110050006:专题,dzsd4107100110050007:标签详情,dzsd4107100110050008:时刻列表,dzsd4107100110050009:问答列表,dzsd4107100110050010:活动报名,dzsd4107100110050011:直播")
 	private String piclinkType;
 
 	@ZooData(name = "跳转参数")
