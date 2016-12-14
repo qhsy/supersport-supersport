@@ -1,7 +1,5 @@
 package com.uhutu.sportcenter.z.entity;
 
-import java.util.Date;
-
 import io.swagger.annotations.ApiModelProperty;
 
 /**

@@ -2,8 +2,9 @@ package com.uhutu.sportcenter.z.result;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.uhutu.dcom.content.z.entity.CnRedPackInfo;
-import com.uhutu.dcom.content.z.entity.CnRedPackUser;
+
+import com.uhutu.sportcenter.z.entity.RedPackInfo;
+import com.uhutu.sportcenter.z.entity.RedPackUserInfo;
 import com.uhutu.zoocom.root.RootApiResult;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -16,24 +17,24 @@ import io.swagger.annotations.ApiModelProperty;
 public class ApiRedPackInfoListResult extends RootApiResult {
 	
 	@ApiModelProperty(value = "打赏人员列表")
-	private List<CnRedPackUser> redPackUsers = new ArrayList<CnRedPackUser>();
+	private List<RedPackUserInfo> redPackUsers = new ArrayList<RedPackUserInfo>();
 	
 	@ApiModelProperty(value = "红包列表")
-	private List<CnRedPackInfo> redPackInfos = new ArrayList<CnRedPackInfo>();
+	private List<RedPackInfo> redPackInfos = new ArrayList<RedPackInfo>();
 
-	public List<CnRedPackUser> getRedPackUsers() {
+	public List<RedPackUserInfo> getRedPackUsers() {
 		return redPackUsers;
 	}
 
-	public void setRedPackUsers(List<CnRedPackUser> redPackUsers) {
+	public void setRedPackUsers(List<RedPackUserInfo> redPackUsers) {
 		this.redPackUsers = redPackUsers;
 	}
 
-	public List<CnRedPackInfo> getRedPackInfos() {
+	public List<RedPackInfo> getRedPackInfos() {
 		return redPackInfos;
 	}
 
-	public void setRedPackInfos(List<CnRedPackInfo> redPackInfos) {
+	public void setRedPackInfos(List<RedPackInfo> redPackInfos) {
 		this.redPackInfos = redPackInfos;
 	}
 	
