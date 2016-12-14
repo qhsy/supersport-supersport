@@ -27,19 +27,19 @@ public class UcAccountInfo extends BaseEntity {
 	private String userCode;
 
 	@ZooData(value = "可用收益", sort = { DefineWebPage.Page_Query + "=0" })
-	private BigDecimal profit;
+	private BigDecimal profit = BigDecimal.ZERO;
 
 	@ZooData(value = "累计收益", sort = { DefineWebPage.Page_Query + "=0" })
-	private BigDecimal totalProfit;
+	private BigDecimal totalProfit = BigDecimal.ZERO;
 
 	@ZooData(value = "可用余额", sort = { DefineWebPage.Page_Query + "=0" })
-	private BigDecimal balance;
+	private BigDecimal balance = BigDecimal.ZERO;
 
 	@ZooData(value = "充值金额", sort = { DefineWebPage.Page_Query + "=0" })
-	private BigDecimal charge;
+	private BigDecimal charge = BigDecimal.ZERO;
 
 	@ZooData(value = "冻结金额", sort = { DefineWebPage.Page_Query + "=0" })
-	private BigDecimal freeze;
+	private BigDecimal freeze = BigDecimal.ZERO;
 
 	public String getUserCode() {
 		return userCode;
