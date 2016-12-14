@@ -15,7 +15,6 @@ import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
-import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
@@ -42,9 +41,6 @@ import com.uhutu.zooweb.helper.ImageHelper;
  */
 @Service
 public class ApiTummyMoments extends RootApiForMember<ApiTummyMomentsInput, ApiTummyMomentsResult> {
-
-	@Autowired
-	private ContentServiceFactory serviceFactory;
 
 	@Autowired
 	private UserInfoSupport userInfoSupport;
