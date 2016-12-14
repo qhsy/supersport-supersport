@@ -73,4 +73,20 @@ public class UcAccountInfo extends BaseEntity {
 		this.freeze = freeze;
 	}
 
+	public BigDecimal getTotalProfit() {
+		return totalProfit;
+	}
+
+	public void setTotalProfit(BigDecimal totalProfit) {
+		this.totalProfit = totalProfit;
+	}
+
+	public BigDecimal getCharge() {
+		return charge;
+	}
+
+	public void setCharge(BigDecimal charge) {
+		this.charge = charge;
+	}
+
 }
