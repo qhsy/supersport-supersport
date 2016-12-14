@@ -135,6 +135,7 @@ import com.uhutu.sportcenter.z.api.user.ApiUserRegister;
 import com.uhutu.sportcenter.z.api.user.ApiUserResetPwd;
 import com.uhutu.sportcenter.z.api.user.ApiVerifyNickName;
 import com.uhutu.sportcenter.z.api.user.ApiVersionInfo;
+import com.uhutu.sportcenter.z.api.user.ApiWalletInfo;
 import com.uhutu.sportcenter.z.api.user.ApiWechatUserLogin;
 import com.uhutu.sportcenter.z.api.user.ApiWechatUserLogin2;
 import com.uhutu.sportcenter.z.api.user.ApiWechatUserLogin3;
@@ -552,6 +553,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiTummyMoments apiTummyMoments;
+	
+	@Autowired
+	private ApiWalletInfo apiWalletInfo;
 	
 	public ApiTummyMoments getApiTummyMoments() {
 		return apiTummyMoments;
@@ -1091,6 +1095,10 @@ public class ApiFactory {
 
 	public ApiRedPackInfoList getApiRedPackInfoList() {
 		return apiRedPackInfoList;
+	}
+
+	public ApiWalletInfo getApiWalletInfo() {
+		return apiWalletInfo;
 	}
 
 }

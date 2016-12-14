@@ -81,5 +81,16 @@ public class AccountComponet {
 		
 	}
 	
+	/**
+	 * 获取账户信息
+	 * @param userCode
+	 * 		用户编号
+	 * @return 账户信息
+	 */
+	public UcAccountInfo getAccountInfo(String userCode){
+		
+		return accountInfoService.getAccountInfo(userCode);
+		
+	}
 
 }
