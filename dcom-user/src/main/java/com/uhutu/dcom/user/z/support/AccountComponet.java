@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.uhutu.dcom.component.z.util.ApplicationSupport;
 import com.uhutu.dcom.user.z.entity.UcAccountInfo;
 import com.uhutu.dcom.user.z.service.IAccountInfoService;
