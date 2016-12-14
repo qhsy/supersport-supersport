@@ -179,7 +179,7 @@ if(weix){
 			contentType:'application/json',
 			dataType: 'json',
 			async: false,
-			data:'{"code": "' + queryUrl('id') + '","zoo": {"key": "tesetkey","token": " "}}',
+			data:'{"code": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": " "}}',
 			success:function(res){
 				if(res.status == 1){
 					sessionStorage.setItem('code',res.userCode);
