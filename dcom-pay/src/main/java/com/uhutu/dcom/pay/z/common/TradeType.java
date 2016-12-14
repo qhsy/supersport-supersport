@@ -8,6 +8,9 @@ package com.uhutu.dcom.pay.z.common;
 public enum TradeType {
 
 	/**金币*/
-	GOLDEN_COIN;
+	GOLDEN_COIN,
+	
+	/**红包收益*/
+	REDPACK_PROFIT;
 	
 }

@@ -1,6 +1,7 @@
 package com.uhutu.dcom.user.z.service;
 
 import com.uhutu.dcom.user.z.entity.UcAccountInfo;
+import com.uhutu.dcom.user.z.entity.UcTradeFlow;
 
 /**
  * 账户信息业务接口
@@ -30,5 +31,11 @@ public interface IAccountInfoService {
 	 * 		账户信息
 	 */
 	public void updateAccInfo(UcAccountInfo accInfo);
+	
+	/**
+	 * 更新用户交易流水
+	 * @param tradeFlow
+	 */
+	public void saveTradeFlow(UcTradeFlow tradeFlow);
 
 }

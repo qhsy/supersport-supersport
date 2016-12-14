@@ -14,7 +14,9 @@ public enum OperType {
 	PAY_LISTEN("问达偷听金币支付"),
 	
 	/**金币查询*/
-	COIN_QUERY("金币查询");
+	COIN_QUERY("金币查询"),
+	
+	RED_PACK("红包打赏");
 	
 	private String remark;
 	

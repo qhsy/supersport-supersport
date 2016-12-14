@@ -3,6 +3,7 @@ package com.uhutu.dcom.content.z.support;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,9 @@ import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
 import com.uhutu.dcom.content.z.entity.CnRedPackUser;
 import com.uhutu.dcom.content.z.service.IRedPackInfoService;
+import com.uhutu.dcom.pay.z.common.OperType;
+import com.uhutu.dcom.pay.z.common.TradeType;
+import com.uhutu.dcom.user.z.entity.UcTradeFlow;
 import com.uhutu.dcom.user.z.support.AccountComponet;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 
@@ -77,12 +81,20 @@ public class RedPackComponet {
 						
 						BigDecimal liveProfit = redPackUser.getMoney().subtract(packUserProfit);
 						
+						/*记录打赏人员流水*/
+						liveProfitFlow(StringUtils.join(liveNO,"-",redPackUser.getUserCode()), packUserProfit, "");
 						/*更新打赏人员收益*/
 						AccountComponet.getInstance().updateProfit(redPackUser.getUserCode(), packUserProfit);
 						
+						/*记录主播人员流水*/
+						liveProfitFlow(StringUtils.join(liveNO,"-",cnLiveVideoDetail.getUserCode()), liveProfit, "");
 						/*更新主播收益*/
 						AccountComponet.getInstance().updateProfit(cnLiveVideoDetail.getUserCode(), liveProfit);
 						
+						/*更新主播分成状态*/
+						redPackUser.setStatus(SystemEnum.YES.getCode());
+						
+						JdbcHelper.update(redPackUser, "status", "za");
 						
 					}
 					
@@ -92,6 +104,35 @@ public class RedPackComponet {
 			
 			
 		}
+		
+	}
+	
+	/**
+	 * 保存红包交易流水
+	 * @param outCode
+	 * 		外部编号
+	 * @param tradeMoney
+	 * 		交易金额
+	 * @param remark
+	 * 		备注信息
+	 */
+	public void liveProfitFlow(String outCode,BigDecimal tradeMoney,String remark){
+		
+		UcTradeFlow ucTradeFlow = new UcTradeFlow();
+		
+		ucTradeFlow.setOperType(OperType.RED_PACK.name());
+		
+		ucTradeFlow.setOutCode(outCode);
+		
+		remark = StringUtils.isEmpty(remark)?OperType.RED_PACK.getRemark() : remark;
+		
+		ucTradeFlow.setRemark(remark);
+		
+		ucTradeFlow.setTradeMoney(tradeMoney);
+		
+		ucTradeFlow.setTradeType(TradeType.REDPACK_PROFIT.name());
+		
+		AccountComponet.getInstance().saveTradeFlow(ucTradeFlow);
 		
 	}
 

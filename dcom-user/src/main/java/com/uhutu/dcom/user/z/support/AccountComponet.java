@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.util.ApplicationSupport;
 import com.uhutu.dcom.user.z.entity.UcAccountInfo;
+import com.uhutu.dcom.user.z.entity.UcTradeFlow;
 import com.uhutu.dcom.user.z.service.IAccountInfoService;
 
 /**
@@ -90,6 +91,12 @@ public class AccountComponet {
 	public UcAccountInfo getAccountInfo(String userCode){
 		
 		return accountInfoService.getAccountInfo(userCode);
+		
+	}
+	
+	public void saveTradeFlow(UcTradeFlow tradeFlow){
+		
+		accountInfoService.saveTradeFlow(tradeFlow);
 		
 	}
 
