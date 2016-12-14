@@ -34,11 +34,11 @@ public class CnRedPackUser extends BaseEntity {
 	private String userCode;
 
 	@ZooData(value = "打赏金额")
-	private BigDecimal money;
+	private BigDecimal money = BigDecimal.ZERO;
 
 	@ZooData(value = "分成比例1~100", verify = { DefineWebVerify.Base_Number, DefineWebVerify.Max_Length + "=1",
 			DefineWebVerify.Min_Length + "=100" })
-	private BigDecimal scale;
+	private BigDecimal scale = BigDecimal.ZERO;
 
 	@ZooData(value = "排序", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private int sort;

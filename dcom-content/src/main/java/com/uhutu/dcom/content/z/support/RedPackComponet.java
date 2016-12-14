@@ -1,7 +1,18 @@
 package com.uhutu.dcom.content.z.support;
 
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import com.uhutu.dcom.component.z.util.ApplicationSupport;
+import com.uhutu.dcom.config.enums.SystemEnum;
+import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
+import com.uhutu.dcom.content.z.entity.CnRedPackUser;
+import com.uhutu.dcom.content.z.service.IRedPackInfoService;
+import com.uhutu.dcom.user.z.support.AccountComponet;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 打赏相关操作support
@@ -13,6 +24,9 @@ public class RedPackComponet {
 	
 	/*实体bean处理处理实例*/
 	private volatile static RedPackComponet INSTANCE = null;
+	
+	@Autowired
+	private IRedPackInfoService redPackInfoService;
 	
 	/**
 	 * 获取实体bean处理实例
@@ -44,7 +58,40 @@ public class RedPackComponet {
 	 */
 	public void doLiveProfit(String liveNO){
 		
-		
+		synchronized (RedPackComponet.class) {
+			
+			List<CnRedPackUser> redPackUsers = redPackInfoService.getRedPackUsers(liveNO, SystemEnum.NO.getCode());
+			
+			//获取直播信息
+			CnLiveVideoDetail cnLiveVideoDetail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "busiCode",liveNO);
+			
+			if(cnLiveVideoDetail != null){
+				
+				redPackUsers.forEach(redPackUser ->{
+					
+					if(redPackUser != null){
+						
+						BigDecimal profitRate = redPackUser.getScale().divide(BigDecimal.valueOf(100)).setScale(2);
+						
+						BigDecimal packUserProfit = redPackUser.getMoney().multiply(profitRate).setScale(2, BigDecimal.ROUND_DOWN); 
+						
+						BigDecimal liveProfit = redPackUser.getMoney().subtract(packUserProfit);
+						
+						/*更新打赏人员收益*/
+						AccountComponet.getInstance().updateProfit(redPackUser.getUserCode(), packUserProfit);
+						
+						/*更新主播收益*/
+						AccountComponet.getInstance().updateProfit(cnLiveVideoDetail.getUserCode(), liveProfit);
+						
+						
+					}
+					
+				});
+				
+			}
+			
+			
+		}
 		
 	}
 
