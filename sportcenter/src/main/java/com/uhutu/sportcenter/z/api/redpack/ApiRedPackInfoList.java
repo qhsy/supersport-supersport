@@ -45,7 +45,7 @@ public class ApiRedPackInfoList extends RootApiToken<ApiRedPackInfoListInput, Ap
 		
 		MDataMap mWhereMap = new MDataMap();
 		
-		mWhereMap.put("status", SystemEnum.YES.getCode());
+		mWhereMap.put("status", SystemEnum.NORMAL.getCode());
 		
 		List<CnRedPackInfo> redPackInfos = JdbcHelper.queryForList(CnRedPackInfo.class, "", "-sort", "", mWhereMap);
 		

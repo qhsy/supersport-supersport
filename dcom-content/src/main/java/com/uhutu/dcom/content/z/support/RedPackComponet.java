@@ -64,7 +64,7 @@ public class RedPackComponet {
 		
 		synchronized (RedPackComponet.class) {
 			
-			List<CnRedPackUser> redPackUsers = redPackInfoService.getRedPackUsers(liveNO, SystemEnum.NO.getCode());
+			List<CnRedPackUser> redPackUsers = redPackInfoService.getRedPackUsers(liveNO, SystemEnum.INVALID.getCode());
 			
 			//获取直播信息
 			CnLiveVideoDetail cnLiveVideoDetail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "busiCode",liveNO);

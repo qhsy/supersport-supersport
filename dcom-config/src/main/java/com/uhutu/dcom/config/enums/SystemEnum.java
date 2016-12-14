@@ -9,7 +9,11 @@ public enum SystemEnum {
 	
 	YES("dzsd4699100110010001","是"),
 	
-	NO("dzsd4699100110010002","否");
+	NO("dzsd4699100110010002","否"),
+	
+	NORMAL("1","正常"),
+	
+	INVALID("0","失效");
 	
 	private String code;
 	
