@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import com.uhutu.dcom.component.z.util.ApplicationSupport;
 import com.uhutu.dcom.user.z.entity.UcAccountInfo;
 import com.uhutu.dcom.user.z.service.IAccountInfoService;
@@ -59,6 +60,19 @@ public class AccountComponet {
 			
 			if(ucAccountInfo != null){
 				
+				BigDecimal totalProfit = ucAccountInfo.getTotalProfit().add(amount).setScale(2);
+				
+				BigDecimal profit = ucAccountInfo.getProfit().add(amount).setScale(2);
+				
+				BigDecimal balance = ucAccountInfo.getBalance().add(amount).setScale(2);
+				
+				ucAccountInfo.setTotalProfit(totalProfit);
+				
+				ucAccountInfo.setProfit(profit);
+				
+				ucAccountInfo.setBalance(balance);
+				
+				accountInfoService.updateAccInfo(ucAccountInfo);
 				
 				
 			}
