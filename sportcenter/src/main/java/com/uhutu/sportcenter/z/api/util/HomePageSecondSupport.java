@@ -132,6 +132,13 @@ public class HomePageSecondSupport {
 					if (cbi != null) {
 						hmp.getItem().setType(cbi.getContentType());
 					}
+					if ("dzsd4107100110030006".equals(cbi.getContentType())) {
+						CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+								item.getPiclinkContent());
+						if (contentDetail != null) {
+							item.setPiclinkContent(contentDetail.getVideoUrl());
+						}
+					}
 				}
 				hmp.setItem(item);
 				List<CnContentBasicinfo> basics = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "",
@@ -242,6 +249,21 @@ public class HomePageSecondSupport {
 						if (StringUtils.isNotBlank(dfa.getPicUrl()) && width > 0) {
 							dfa.setPicUrl(ImageHelper.upImageThumbnail(dfa.getPicUrl(), Integer.valueOf(width)));
 						}
+						if ("dzsd4107100110050002".equals(details.get(j).getPiclinkType())
+								&& StringUtils.isNotBlank(details.get(j).getPiclinkContent())) {
+							CnContentBasicinfo cbi = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
+									details.get(j).getPiclinkContent());
+							if (cbi != null) {
+								dfa.setType(cbi.getContentType());
+							}
+							if ("dzsd4107100110030006".equals(cbi.getContentType())) {
+								CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+										details.get(j).getPiclinkContent());
+								if (contentDetail != null) {
+									dfa.setPiclinkContent(contentDetail.getVideoUrl());
+								}
+							}
+						}
 						hmp.getAdv().getDetails().add(dfa);
 					}
 				}
@@ -258,6 +280,13 @@ public class HomePageSecondSupport {
 									navMenuForApi.getPiclinkContent());
 							if (cbi != null) {
 								navMenuForApi.setType(cbi.getContentType());
+							}
+							if ("dzsd4107100110030006".equals(cbi.getContentType())) {
+								CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+										navMenuForApi.getPiclinkContent());
+								if (contentDetail != null) {
+									navMenuForApi.setPiclinkContent(contentDetail.getVideoUrl());
+								}
 							}
 						}
 						hmp.getNavs().add(navMenuForApi);
