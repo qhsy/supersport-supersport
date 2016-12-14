@@ -25,7 +25,7 @@ var queryString = function(name){
 console.log(queryString('code'))
 
 if(wechat){
-	window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=http://godo-beta-manage.srnpr.com/webjars/sportstatic/content_details.html?id=' + queryString('code')  + '&share=1&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect'
+	window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=http://godo-beta-manage.srnpr.com/webjars/sportstatic/content_details.html?share=1&id=' + queryString('code')  + '&response_type=code&scope=snsapi_base&state=512457895#wechat_redirect'
 } else {
 	window.location.href = 'content_details.html?id=' + queryString('code')  + '&share=1'
 }
