@@ -53,7 +53,8 @@ public class LiveVideoController {
 	@ResponseBody
 	@RequestMapping(value = "/liveCreateRoom", method = RequestMethod.POST)
 	@ApiOperation(value = "创建房间", notes = "创建房间")
-	public ApiLiveCreateRoomResult liveCreateRoom(@RequestBody ApiLiveCreateRoomInput input) {
+	public ApiLiveCreateRoomResult liveCreateRoom(@RequestBody ApiLiveCreateRoomInput input,
+			HttpServletRequest request) {
 
 		return apiFactory.getApiLiveCreateRoom().api(input);
 
@@ -62,7 +63,8 @@ public class LiveVideoController {
 	@ResponseBody
 	@RequestMapping(value = "/liveVideoHeart", method = RequestMethod.POST)
 	@ApiOperation(value = "直播心跳", notes = "直播心跳")
-	public ApiLiveVideoHeartResult liveVideoHeart(@RequestBody ApiLiveVideoHeartInput input) {
+	public ApiLiveVideoHeartResult liveVideoHeart(@RequestBody ApiLiveVideoHeartInput input,
+			HttpServletRequest request) {
 
 		return apiFactory.getApiLiveVideoHeart().api(input);
 
@@ -71,7 +73,8 @@ public class LiveVideoController {
 	@ResponseBody
 	@RequestMapping(value = "/finishLiveVideo", method = RequestMethod.POST)
 	@ApiOperation(value = "结束直播", notes = "结束直播")
-	public ApiFinishLiveVideoResult finishLiveVideo(@RequestBody ApiFinishLiveVideoInput input) {
+	public ApiFinishLiveVideoResult finishLiveVideo(@RequestBody ApiFinishLiveVideoInput input,
+			HttpServletRequest request) {
 
 		return apiFactory.getApiFinishLiveVideo().api(input);
 
@@ -80,7 +83,7 @@ public class LiveVideoController {
 	@ResponseBody
 	@RequestMapping(value = "/liveViedos", method = RequestMethod.POST)
 	@ApiOperation(value = "直播视频列表", notes = "直播视频列表")
-	public ApiLiveInfoListResult liveViedos(@RequestBody ApiLiveInfoListInput input) {
+	public ApiLiveInfoListResult liveViedos(@RequestBody ApiLiveInfoListInput input, HttpServletRequest request) {
 
 		return apiFactory.getApiLiveInfoList().api(input);
 
@@ -89,7 +92,7 @@ public class LiveVideoController {
 	@ResponseBody
 	@RequestMapping(value = "/startLive", method = RequestMethod.POST)
 	@ApiOperation(value = "开始直播", notes = "开始直播")
-	public ApiStartLiveResult startLive(@RequestBody ApiStartLiveInput input) {
+	public ApiStartLiveResult startLive(@RequestBody ApiStartLiveInput input, HttpServletRequest request) {
 
 		return apiFactory.getApiStartLive().api(input);
 
@@ -98,7 +101,8 @@ public class LiveVideoController {
 	@ResponseBody
 	@RequestMapping(value = "/syncLiveUserInfo", method = RequestMethod.POST)
 	@ApiOperation(value = "同步直播用户信息", notes = "同步直播用户信息")
-	public ApiSyncLiveUserInfoResult syncLiveUserInfo(@RequestBody ApiSyncLiveUserInfoInput input) {
+	public ApiSyncLiveUserInfoResult syncLiveUserInfo(@RequestBody ApiSyncLiveUserInfoInput input,
+			HttpServletRequest request) {
 
 		return apiFactory.getApiSyncLiveUserInfo().api(input);
 
@@ -107,7 +111,7 @@ public class LiveVideoController {
 	@ResponseBody
 	@RequestMapping(value = "/updateLiveStatus", method = RequestMethod.POST)
 	@ApiOperation(value = "更新直播状态", notes = "更新直播状态")
-	public ApiLiveNotifyResult updateLiveStatus(@RequestBody ApiLiveNotifyInput input) {
+	public ApiLiveNotifyResult updateLiveStatus(@RequestBody ApiLiveNotifyInput input, HttpServletRequest request) {
 
 		return apiFactory.getApiLiveNotify().api(input);
 
@@ -116,7 +120,7 @@ public class LiveVideoController {
 	@ResponseBody
 	@RequestMapping(value = "/operLiveInfo", method = RequestMethod.POST)
 	@ApiOperation(value = "更新直播信息", notes = "更新直播信息")
-	public ApiOperLiveInfoResult operLiveInfo(@RequestBody ApiOperLiveInfoInput input) {
+	public ApiOperLiveInfoResult operLiveInfo(@RequestBody ApiOperLiveInfoInput input, HttpServletRequest request) {
 
 		return apiFactory.getApiOperLiveInfo().api(input);
 
@@ -125,7 +129,7 @@ public class LiveVideoController {
 	@ResponseBody
 	@RequestMapping(value = "/liveInfo", method = RequestMethod.POST)
 	@ApiOperation(value = "直播详细信息", notes = "直播详细信息")
-	public ApiLiveInfoResult liveInfo(@RequestBody ApiLiveInfoInput input) {
+	public ApiLiveInfoResult liveInfo(@RequestBody ApiLiveInfoInput input, HttpServletRequest request) {
 
 		return apiFactory.getApiLiveInfo().api(input);
 
@@ -134,7 +138,7 @@ public class LiveVideoController {
 	@ResponseBody
 	@RequestMapping(value = "/liveMsg", method = RequestMethod.POST)
 	@ApiOperation(value = "直播所需信息", notes = "直播所需信息")
-	public ApiLiveMsgResult liveMsg(@RequestBody ApiLiveMsgInput input) {
+	public ApiLiveMsgResult liveMsg(@RequestBody ApiLiveMsgInput input, HttpServletRequest request) {
 
 		return apiFactory.getApiLiveMsg().api(input);
 
