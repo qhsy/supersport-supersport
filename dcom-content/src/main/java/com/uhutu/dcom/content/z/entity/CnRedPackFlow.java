@@ -18,6 +18,10 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  */
 @Entity
 public class CnRedPackFlow extends BaseEntity {
+	
+	@ZooData(value = "打赏流水号")
+	@Column(length = 50)
+	private String code;
 
 	@ZooData(value = "接受打赏者", element = DefineWebElement.Model, inc = {
 			DefineWebInc.Web_Component + "=dzcw451010010001" })
@@ -39,6 +43,10 @@ public class CnRedPackFlow extends BaseEntity {
 			DefineWebInc.Web_Component + "=dzcw451010010001" })
 	@Column(length = 50)
 	private String sendUserCode;
+	
+	@ZooData(value = "交易状态")
+	@Column(length = 50)
+	private String status;
 
 	public String getReciveUserCode() {
 		return reciveUserCode;
@@ -78,6 +86,22 @@ public class CnRedPackFlow extends BaseEntity {
 
 	public void setRedPackCode(String redPackCode) {
 		this.redPackCode = redPackCode;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }
