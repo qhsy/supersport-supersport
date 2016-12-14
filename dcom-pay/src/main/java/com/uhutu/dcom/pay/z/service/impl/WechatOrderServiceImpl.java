@@ -150,6 +150,9 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 		case ENTRY:
 			body = OrderType.ENTRY.getText();
 			break;
+		case RED_PACK:
+			body = OrderType.RED_PACK.getText();
+			break;
 
 		default:
 			body = OrderType.ANSWER_QUESTION.getText();
@@ -182,6 +185,12 @@ public class WechatOrderServiceImpl implements IWechatOrderService {
 			break;
 		case ENTRY_H5:
 			payProcess = PayProcessEnum.ENTRY_H5;
+			break;
+		case REDPACK_APP:
+			payProcess = PayProcessEnum.REDPACK_APP;
+			break;
+		case REDPACK_H5:
+			payProcess = PayProcessEnum.REDPACK_H5;
 			break;
 		default:
 			break;

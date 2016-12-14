@@ -96,6 +96,12 @@ public class WechatConfig {
 
 	@Value("${entry_H5_notifyUrl}")
 	private String entryH5NotifyUrl;
+	
+	@Value("${redpack_app_notifyUrl}")
+	private String redPackAppNotifyUrl;
+
+	@Value("${redpack_H5_notifyUrl}")
+	private String redPackH5NotifyUrl;
 
 	/**
 	 * 获取app编号
@@ -136,6 +142,12 @@ public class WechatConfig {
 			tradeType = "APP";
 			break;
 		case ENTRY_H5:
+			tradeType = "JSAPI";
+			break;
+		case REDPACK_APP:
+			tradeType = "APP";
+			break;
+		case REDPACK_H5:
 			tradeType = "JSAPI";
 			break;
 		default:
@@ -191,6 +203,12 @@ public class WechatConfig {
 			break;
 		case ENTRY_H5:
 			notifyUrl = getEntryH5NotifyUrl();
+			break;
+		case REDPACK_APP:
+			notifyUrl = getRedPackAppNotifyUrl();
+			break;
+		case REDPACK_H5:
+			notifyUrl = getRedPackH5NotifyUrl();
 			break;
 
 		default:
@@ -253,6 +271,18 @@ public class WechatConfig {
 			key = getServiceKey();
 			break;
 		case ENTRY_NOTIFY:
+			key = getSignKey();
+			break;
+		case REDPACK_H5:
+			key = getServiceKey();
+			break;
+		case REDPACK_APP:
+			key = getSignKey();
+			break;
+		case REDPACK_H5_NOTIFY:
+			key = getServiceKey();
+			break;
+		case REDPACK_APP_NOTIFY:
 			key = getSignKey();
 			break;
 
@@ -389,6 +419,18 @@ public class WechatConfig {
 		case ENTRY_H5:
 			appid = getServiceAppId();
 			break;
+		case REDPACK_APP_NOTIFY:
+			appid = getAppId();
+			break;
+		case REDPACK_H5_NOTIFY:
+			appid = getServiceAppId();
+			break;
+		case REDPACK_APP:
+			appid = getAppId();
+			break;
+		case REDPACK_H5:
+			appid = getServiceAppId();
+			break;
 		default:
 			break;
 		}
@@ -447,6 +489,18 @@ public class WechatConfig {
 			mchid = getMchId();
 			break;
 		case ENTRY_H5_NOTIFY:
+			mchid = getServiceMchId();
+			break;
+		case REDPACK_APP:
+			mchid = getMchId();
+			break;
+		case REDPACK_H5:
+			mchid = getServiceMchId();
+			break;
+		case REDPACK_APP_NOTIFY:
+			mchid = getMchId();
+			break;
+		case REDPACK_H5_NOTIFY:
 			mchid = getServiceMchId();
 			break;
 		default:
@@ -522,6 +576,14 @@ public class WechatConfig {
 
 	public String getEntryH5NotifyUrl() {
 		return entryH5NotifyUrl;
+	}
+
+	public String getRedPackAppNotifyUrl() {
+		return redPackAppNotifyUrl;
+	}
+
+	public String getRedPackH5NotifyUrl() {
+		return redPackH5NotifyUrl;
 	}
 	
 	

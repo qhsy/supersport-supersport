@@ -58,6 +58,14 @@ public enum PayProcessEnum {
 	/**entry*/
 	ENTRY_NOTIFY,
 	/**entry h5*/
-	ENTRY_H5_NOTIFY;
+	ENTRY_H5_NOTIFY,
+	/**REDPACK_*/
+	REDPACK_APP,
+	/**REDPACK_ h5*/
+	REDPACK_H5,
+	/**REDPACK_*/
+	REDPACK_APP_NOTIFY,
+	/**REDPACK_ h5*/
+	REDPACK_H5_NOTIFY;
 
 }
