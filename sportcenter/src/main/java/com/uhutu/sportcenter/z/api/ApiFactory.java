@@ -84,6 +84,7 @@ import com.uhutu.sportcenter.z.api.label.ApiLabelRelList;
 import com.uhutu.sportcenter.z.api.label.ApiRecommLabelList;
 import com.uhutu.sportcenter.z.api.live.ApiFinishLiveVideo;
 import com.uhutu.sportcenter.z.api.live.ApiLiveCreateRoom;
+import com.uhutu.sportcenter.z.api.live.ApiLiveGift;
 import com.uhutu.sportcenter.z.api.live.ApiLiveInfo;
 import com.uhutu.sportcenter.z.api.live.ApiLiveInfoList;
 import com.uhutu.sportcenter.z.api.live.ApiLiveMsg;
@@ -499,64 +500,71 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiContentWorth apiContentWorth;
-	
+
 	@Autowired
 	private ApiLiveCreateRoom apiLiveCreateRoom;
-	
+
 	@Autowired
 	private ApiLiveInfoList apiLiveInfoList;
-	
+
 	@Autowired
 	private ApiFinishLiveVideo apiFinishLiveVideo;
-	
+
 	@Autowired
 	private ApiLiveVideoHeart apiLiveVideoHeart;
-	
+
 	@Autowired
 	private ApiStartLive apiStartLive;
-	
+
 	@Autowired
 	private ApiLiveNotify apiLiveNotify;
-	
+
 	@Autowired
 	private ApiSyncLiveUserInfo apiSyncLiveUserInfo;
-	
+
 	@Autowired
 	private ApiOperLiveInfo apiOperLiveInfo;
-	
+
 	@Autowired
 	private ApiOperRemark apiOperRemark;
-	
+
 	@Autowired
 	private ApiLiveInfo apiLiveInfo;
-	
+
 	@Autowired
-	private ApiReportFields  apiReportFields;
-	
+	private ApiReportFields apiReportFields;
+
 	@Autowired
 	private ApiReportSave apiReportSave;
-	
+
 	@Autowired
 	private ApiReportShow apiReportShow;
-	
+
 	@Autowired
 	private ApiLiveMsg apiLiveMsg;
-	
+
 	@Autowired
 	private ApiReportCheck apiReportCheck;
-	
+
 	@Autowired
 	private ApiRedPackInfoList apiRedPackInfoList;
-	
+
 	@Autowired
 	private ApiSportingMomentsSecond apiSportingMomentsSecond;
-	
+
 	@Autowired
 	private ApiTummyMoments apiTummyMoments;
-	
+
 	@Autowired
 	private ApiWalletInfo apiWalletInfo;
-	
+
+	@Autowired
+	private ApiLiveGift apiLiveGift;
+
+	public ApiLiveGift getApiLiveGift() {
+		return apiLiveGift;
+	}
+
 	public ApiTummyMoments getApiTummyMoments() {
 		return apiTummyMoments;
 	}

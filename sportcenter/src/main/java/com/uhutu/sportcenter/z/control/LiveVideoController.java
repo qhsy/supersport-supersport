@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.control;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiFinishLiveVideoInput;
 import com.uhutu.sportcenter.z.input.ApiLiveCreateRoomInput;
+import com.uhutu.sportcenter.z.input.ApiLiveGiftInput;
 import com.uhutu.sportcenter.z.input.ApiLiveInfoInput;
 import com.uhutu.sportcenter.z.input.ApiLiveInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiLiveMsgInput;
@@ -20,6 +23,7 @@ import com.uhutu.sportcenter.z.input.ApiStartLiveInput;
 import com.uhutu.sportcenter.z.input.ApiSyncLiveUserInfoInput;
 import com.uhutu.sportcenter.z.result.ApiFinishLiveVideoResult;
 import com.uhutu.sportcenter.z.result.ApiLiveCreateRoomResult;
+import com.uhutu.sportcenter.z.result.ApiLiveGiftResult;
 import com.uhutu.sportcenter.z.result.ApiLiveInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiLiveInfoResult;
 import com.uhutu.sportcenter.z.result.ApiLiveMsgResult;
@@ -133,6 +137,18 @@ public class LiveVideoController {
 	public ApiLiveMsgResult liveMsg(@RequestBody ApiLiveMsgInput input) {
 
 		return apiFactory.getApiLiveMsg().api(input);
+
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/liveGift", method = RequestMethod.POST)
+	@ApiOperation(value = "直播打赏", notes = "直播所需信息")
+	public ApiLiveGiftResult liveGift(@RequestBody ApiLiveGiftInput input, HttpServletRequest request) {
+		String[] paths = request.getRequestURL().toString().split("/");
+		String path = paths[0] + "//" + paths[2];
+		input.setServeIP(path);
+		input.setRomoteIP(request.getRemoteAddr());
+		return apiFactory.getApiLiveGift().api(input);
 
 	}
 
