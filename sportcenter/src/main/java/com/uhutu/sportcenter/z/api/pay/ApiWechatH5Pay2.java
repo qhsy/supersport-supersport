@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.config.enums.SocialEnum;
-import com.uhutu.dcom.order.z.entity.OcOrderInfo;
 import com.uhutu.dcom.pay.z.common.PayProcessEnum;
 import com.uhutu.dcom.pay.z.entity.PaPayInfo;
 import com.uhutu.dcom.pay.z.process.impl.PayGateProcess;
@@ -78,6 +77,10 @@ public class ApiWechatH5Pay2 extends RootApiToken<ApiWechatH5PayInput, ApiWechat
 			
 			payMoney = paPayInfo.getMoney();
 			
+			bizContentRequest.setOrderType(paPayInfo.getBusiType());
+			
+			bizContentRequest.setOrderSource(paPayInfo.getPaySource());
+			
 		}
 		
 		bizContentRequest.setPayMoney(payMoney);
@@ -85,16 +88,6 @@ public class ApiWechatH5Pay2 extends RootApiToken<ApiWechatH5PayInput, ApiWechat
 		UcSocialLogin socialLogin = JdbcHelper.queryOne(UcSocialLogin.class, "unionid",ucUserinfoSocial.getAccountId(),"type",SocialEnum.wechat_h5.name());
 		
 		bizContentRequest.setOpenid(socialLogin.getOpenid());
-		
-		OcOrderInfo ocOrderInfo = JdbcHelper.queryOne(OcOrderInfo.class, "code", input.getOrderCode());
-		
-		if(ocOrderInfo != null){
-			
-			bizContentRequest.setOrderType(ocOrderInfo.getOrderType());
-			
-			bizContentRequest.setOrderSource(ocOrderInfo.getOrderSource());
-			
-		}		
 		
 		WechatOrderRequest orderRequest = payServiceFactory.getWechatOrderService().initOrderRequest(bizContentRequest, PayProcessEnum.WECHAT_SERVICE_CONFIG);
 		
