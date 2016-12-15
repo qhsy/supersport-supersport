@@ -1,6 +1,5 @@
 package com.uhutu.sportcenter.z.result;
 
-import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.root.RootApiResult;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -15,11 +14,22 @@ public class ApiLiveMsgResult extends RootApiResult {
 	@ApiModelProperty(value = "点赞数", notes = "点赞数")
 	private long praise;
 
-	@ZooData(name = "观看数参数")
+	@ApiModelProperty(name = "观看数参数")
 	private long watchConstant;
 
-	@ZooData(name = "点赞数参数")
+	@ApiModelProperty(name = "点赞数参数")
 	private long praiseConstant;
+
+	@ApiModelProperty(name = "每次直播的唯一业务编号")
+	private String busiCode;
+
+	public String getBusiCode() {
+		return busiCode;
+	}
+
+	public void setBusiCode(String busiCode) {
+		this.busiCode = busiCode;
+	}
 
 	public long getWatchConstant() {
 		return watchConstant;

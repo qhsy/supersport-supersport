@@ -31,25 +31,24 @@ public class ApiLiveMsg extends RootApiBase<ApiLiveMsgInput, ApiLiveMsgResult> {
 
 		ApiLiveMsgResult result = new ApiLiveMsgResult();
 		if (StringUtils.isNotBlank(input.getCode())) {
-			
+
 			MDataMap mWhereMap = new MDataMap();
-			
+
 			mWhereMap.put("code", input.getCode());
-			
+
 			mWhereMap.put("status", "1");
-			
-			CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "",
-					"", mWhereMap);
+
+			CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "", "", mWhereMap);
 			if (detail == null) {
-				
-				if(mWhereMap.containsKey("status")){
-					
+
+				if (mWhereMap.containsKey("status")) {
+
 					mWhereMap.remove("status");
-					
+
 				}
-				
-				detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "zc desc ", "",mWhereMap);
-				
+
+				detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "zc desc ", "", mWhereMap);
+
 			}
 			if (detail != null) {
 
@@ -61,6 +60,7 @@ public class ApiLiveMsg extends RootApiBase<ApiLiveMsgInput, ApiLiveMsgResult> {
 						? Integer.valueOf(dcomContent.getLiveAppWatchConstant()) : detail.getWatchConstant());
 				result.setPraiseConstant(detail.getPraiseConstant() == 0
 						? Integer.valueOf(dcomContent.getLiveAppPraiseConstant()) : detail.getPraiseConstant());
+				result.setBusiCode(detail.getBusiCode());
 			}
 		}
 		return result;
