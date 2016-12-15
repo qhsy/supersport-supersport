@@ -11,6 +11,9 @@ public enum TradeType {
 	GOLDEN_COIN,
 	
 	/**红包收益*/
-	REDPACK_PROFIT;
+	REDPACK_PROFIT,
+	
+	/**红包提成*/
+	REDPACK_CASH;
 	
 }

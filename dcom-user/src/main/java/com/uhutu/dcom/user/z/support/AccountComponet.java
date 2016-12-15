@@ -83,6 +83,52 @@ public class AccountComponet {
 	}
 	
 	/**
+	 * 根据用户编号更新账户提现
+	 * @param amount
+	 * 		是否提现成功
+	 */
+	public boolean cash(String userCode, BigDecimal amount){
+		
+		synchronized (AccountComponet.class) {
+			
+			boolean flag  = true;
+			
+			UcAccountInfo ucAccountInfo = accountInfoService.getAccountInfo(userCode);
+			
+			if(ucAccountInfo != null){
+				
+				BigDecimal profit = ucAccountInfo.getProfit().subtract(amount).setScale(2);
+				
+				BigDecimal balance = ucAccountInfo.getBalance().subtract(amount).setScale(2);
+				
+				if(profit.compareTo(BigDecimal.ZERO) >= 0){
+					
+					ucAccountInfo.setProfit(profit);
+					
+					ucAccountInfo.setBalance(balance);
+					
+					accountInfoService.updateAccInfo(ucAccountInfo);
+					
+				}else{
+					
+					flag = false;
+					
+				}
+				
+				
+			}else{
+				
+				flag = false;
+				
+			}
+		
+			return flag;
+			
+		}		
+		
+	}
+	
+	/**
 	 * 获取账户信息
 	 * @param userCode
 	 * 		用户编号
