@@ -38,7 +38,7 @@ public class ApiLiveGift extends RootApiToken<ApiLiveGiftInput, ApiLiveGiftResul
 		ApiLiveGiftResult result = new ApiLiveGiftResult();
 		CnRedPackInfo packInfo = JdbcHelper.queryOne(CnRedPackInfo.class, "code", input.getGiftCode());
 		if (packInfo != null) {
-			CnLiveVideoDetail videoDetail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "code", input.getLiveCode());
+			CnLiveVideoDetail videoDetail = JdbcHelper.queryOne(CnLiveVideoDetail.class,"status","1", "code", input.getLiveCode());
 			if (videoDetail != null) {
 				CnRedPackUser packUser = JdbcHelper.queryOne(CnRedPackUser.class, "busi_code",
 						videoDetail.getBusiCode(), "user_code", input.getReciveUserCode());
