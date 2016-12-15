@@ -11,7 +11,7 @@ import com.uhutu.zooweb.define.DefineZooWeb;
 		DefineWebPage.Page_Add + "=dzoi41101018",
 		DefineWebPage.Page_Query + "=dzoi4699100110171001",
 		DefineWebPage.Page_Grid + "=dzoi4699100110190003", }, deploy = {
-				DefineWebDeploy.Grid_Order + "= zc desc " })
+				DefineWebDeploy.Grid_Order + "= zc desc ", DefineWebDeploy.Url_Query + "=outCode" })
 public class UcTradeFlowPage extends RootPageSimple<UcTradeFlow> {
 
 }

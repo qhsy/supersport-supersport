@@ -9,8 +9,8 @@ import com.uhutu.zooweb.define.DefineZooWeb;
 
 @ZooPage(value = "主播收益管理", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = { DefineZooWeb.PAGE_DEFAULT_OPERATE,
 		DefineWebPage.Page_Query + "=dzoi4699100110171001",
-		DefineWebPage.Page_Grid + "=dzoi4699100110190003","dzoi41101017" }, deploy = {
-				DefineWebDeploy.Grid_Order + "= total_profit desc " })
+		DefineWebPage.Page_Grid + "=dzoi4699100110190003,dzoi41101017" }, deploy = {
+				DefineWebDeploy.Grid_Order + "= total_profit desc "  })
 public class UcAccountInfoPage extends RootPageSimple<UcAccountInfo> {
 
 }

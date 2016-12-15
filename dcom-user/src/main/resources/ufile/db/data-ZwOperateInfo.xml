@@ -76,9 +76,9 @@
 			operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
-		<item code="dzoi41101017" operateName="提现"
-			operateType="button"
-			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_user_z_page_UcTradeFlowPage?u_outCode=[[data:userCode]]')"
+		<item code="dzoi41101017" operateName="提现" operateFunc=""
+			operateType="link"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_user_z_page_UcTradeFlowPage?u_outCode=[[data:user_code]]')"
 			parentCode="" noteRemark="" />
 		<item code="dzoi41101018" operateName="提现"
 			operateFunc="com.uhutu.dcom.user.z.page.func.UcAccountCashFunc"
