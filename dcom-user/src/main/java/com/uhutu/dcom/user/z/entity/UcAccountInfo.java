@@ -7,8 +7,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
-import com.uhutu.zoocom.define.DefineWebElement;
-import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
@@ -22,8 +20,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "userCode" }))
 public class UcAccountInfo extends BaseEntity {
 
-	@ZooData(value = "用户昵称", element = DefineWebElement.Model, inc = {
-			DefineWebInc.Web_Component + "=dzcw451010010001" })
+	@ZooData(value = "用户编号")
 	private String userCode;
 
 	@ZooData(value = "可用收益", sort = { DefineWebPage.Page_Query + "=0" })

@@ -68,8 +68,6 @@ public class ApiRedPackInfoList extends RootApiToken<ApiRedPackInfoListInput, Ap
 		
 		mWhereMap.put("busiCode", liveCode);
 		
-		mWhereMap.put("userCode", upUserCode());
-		
 		List<CnRedPackUser> redPackUsers = JdbcHelper.queryForList(CnRedPackUser.class, "", "-sort", "", mWhereMap);
 		
 		redPackUsers.forEach(redPackUser -> {
