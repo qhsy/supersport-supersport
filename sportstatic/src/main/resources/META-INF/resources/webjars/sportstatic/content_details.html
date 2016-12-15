@@ -111,12 +111,6 @@
 		</ul>
 	</article>
 	<!-- end -->
-	<!--
-	<article class="comment">
-		<h1 class="title">最新评论</h1>
-
-	</article>
-	-->
 	<!-- data loading -->
 	<aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
 </section>
@@ -170,8 +164,8 @@
 <script type="text/javascript" src="script/common.min.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript">
-var weix = navigator.userAgent.indexOf('MicroMessenger') > -1;
-if(weix){
+var wechat = navigator.userAgent.indexOf('MicroMessenger') > -1;
+if(wechat){
 	if(!sessionStorage.getItem('token')){
 		$.ajax({
 			url:'/api/wechatController/authLogin2',
@@ -302,10 +296,11 @@ var vm = new Vue({
 	methods:{
 		reqwest:function(){
 			var _this = this;
+			var token = sessionStorage.getItem('token')?sessionStorage.getItem('token'):'';
 			reqwest({
 				url: '/api/contentController/contentDetail',
 				method: 'post',
-				data: '{"content_code": "' + queryUrl('id') + '", "width": "' + window.innerWidth + '","zoo": {"key": "tesetkey","token": "' + sessionStorage.getItem('token') + '"}}',
+				data: '{"content_code": "' + queryUrl('id') + '", "width": "' + window.innerWidth + '","zoo": {"key": "tesetkey","token": "' + token + '"}}',
 				type: 'json',
 				contentType: 'application/json',
 				success: function(resp) {

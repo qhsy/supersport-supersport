@@ -23,16 +23,17 @@
 .list{padding: 0 0.04rem; background: #f8f8f8; overflow: auto;}
 .list .video{width: 50%; padding: 0 0.04rem; margin-bottom: 0.08rem; box-sizing: border-box; float: left;}
 .list .video a{background: #fff; display: block;}
-.list .user{padding: 7px 0; height: 0.22rem;}
+.list .user{padding: 7px 9px 7px 7px; height: 0.22rem;}
 .list .cover{width: 1.75rem; height: 1.75rem;}
 .list .cover img{width: 100%; height: 1.75rem;}
 .list .photo{width: 0.22rem; height: 0.22rem; float: left; position: relative;}
 .list .photo img{width: 100%; height: 100%; border-radius: 50%;}
-.list .name{width: 1.05rem; padding-left: 5px; display: inline-block; overflow: hidden; font-size: 12px; color: #757575; line-height: 0.22rem; text-overflow: ellipsis;}
+.list .name{width: 1.05rem; padding-left: 5px; display: inline-block; overflow: hidden; white-space: nowrap; font-size: 12px; color: #757575; line-height: 0.22rem; text-overflow: ellipsis;}
 .list .praise{float: right; color: #F8800A; font-size: 12px; line-height: 0.22rem;}
 .list .mark{width: 0.1rem; height: 0.1rem; background: url(../../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
 .list .qiye{width: 0.1rem; height: 0.1rem; background: url(../../static/img/icon_qiyeSmall@3x.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
-.recording{width: 70px; height: 70px; position: fixed; bottom: 0; right: 0; background: url(../../static/img/recording@2x.png) left top; background-size: cover;}
+.recording{width: 70px; height: 70px; position: fixed; bottom: 10px; right: 10px; background: url(../../static/img/recording@2x.png) left top; background-size: cover;}
+.space{height: 70px; overflow: hidden;}
 </style>
 </head>
 <body>
@@ -61,9 +62,9 @@
 	<!-- list -->
 	<ul class="list">
 		<li class="video" v-for="item in forData">
-			<a href="javascript:;" title="">
+			<a href="javascript:;" @click="callBackSport(item.code,item.contentType)">
 				<div class="cover">
-					<img <img src="../../static/img/lazyload.jpg" v-lazyload="item.cover" >
+					<img src="../../static/img/lazyload.jpg" v-lazyload="item.cover" >
 				</div>
 				<div class="user">
 					<span class="photo">
@@ -79,7 +80,8 @@
 	</ul>
 	<aside class="load" v-if="nextPage"><img src="../../static/img/godo.gif" alt=""></aside>
 	<!-- end -->
-	<div class="recording"></div>
+	<div class="space" v-if="!nextPage"></div>
+	<div class="recording" @click="callBackVideo"></div>
 </section>
 <script type="text/javascript" src="../js/common.min.js"></script>
 <script type="text/javascript" src="/webjars/static/js/jweixin-1.0.0.js"></script>
@@ -209,7 +211,7 @@ new Vue({
 
 		},
 		callBack:function(){
-			if(wechat && sessionStorage.getItem('token')){
+			if(wechat){
 				window.location.href = '../entry.html?code=' + queryUrl('id') + '&source=wechat&entryToken=' + sessionStorage.getItem('token');
 			} else {
 				if(queryUrl('token') == ''){
@@ -226,7 +228,14 @@ new Vue({
 				callbackPublish(4,'','');
 			}
 		},
-		refresh: function(){
+		callBackSport:function(code,type){
+			if(wechat){
+				window.location.href = '/webjars/sportstatic/content_detail.html?share=1&code=' + code;
+			} else {
+				callbackSportTime(code,type);
+			}
+		},
+		refresh:function(){
 			var winHeight = window.innerHeight;
 			var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
 			var bodyHeight = document.body.clientHeight;
