@@ -108,6 +108,13 @@ if(wechat){
 }else{
 	callbackShare('GGBH161210110001');
 }
+document.querySelector('.recording').addEventListener('click', function(){
+	if(wechat){
+		open();
+	} else {
+		callbackPublish(4,'','我是首腹');
+	}
+}, false);
 </script>
 </body>
 </html>
