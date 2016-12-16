@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class ApiLiveVideoHeartResult extends RootApiResult {
 
 	@ApiModelProperty(name = "本次直播打赏总金额")
-	private BigDecimal money;
+	private BigDecimal money = BigDecimal.ZERO;
 
 	public BigDecimal getMoney() {
 		return money;
