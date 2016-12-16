@@ -67,9 +67,9 @@ public class WechatTicketServiceImpl implements IWechatTicketService {
 				
 				ticketResponse = GsonHelper.fromJson(returnMsg, ticketResponse);
 				
-				apiTicket.expire(key, ticketResponse.getExpires_in().intValue());
-				
 				apiTicket.set(key, ticketResponse.getTicket());
+				
+				apiTicket.expire(key, ticketResponse.getExpires_in().intValue());
 				
 				
 			}else{

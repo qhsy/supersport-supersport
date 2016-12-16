@@ -29,7 +29,7 @@ public class UcTradeFlow extends BaseEntity {
 	@Column(length = 50)
 	private String tradeType;
 	
-	@ZooData(name = "交易金额" ,sort = { DefineWebPage.Page_Query + "=0"})
+	@ZooData(name = "交易金额" , require = "1", sort = { DefineWebPage.Page_Query + "=0"})
 	private BigDecimal tradeMoney;
 	
 	@ZooData(name = "外部编号",sort = { DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process,
@@ -37,7 +37,7 @@ public class UcTradeFlow extends BaseEntity {
 	@Column(length = 50)
 	private String outCode;
 	
-	@ZooData(name = "备注信息",sort = { DefineWebPage.Page_Query + "=0"})
+	@ZooData(name = "备注信息",require = "1",sort = { DefineWebPage.Page_Query + "=0"})
 	private String remark;
 	
 	@ZooData(name="操作类型",comment="打赏、充值、提现",sort = { DefineWebPage.Page_Add + "=0",
