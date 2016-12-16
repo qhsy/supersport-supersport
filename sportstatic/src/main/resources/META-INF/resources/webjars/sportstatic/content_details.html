@@ -157,7 +157,7 @@
 <!-- end -->
 <!-- 标签类型 -->
 <script type="text/x-template" id="template-tag">
-	<div class="ad" v-if="ad"></div>
+	<div class="ad" v-if="ad"><img src="http://api-001.sport.bigtiyu.com/webcdn/entry/fu/img/Bitmap Copy.jpg"></div>
 	<ul class="tag" v-if="res.sportingMoment.tags.length">
 		<li v-for="tag in res.sportingMoment.tags" @click="tagCallback(tag.code,tag.name)">{{tag.name}}</li>
 	</ul>
