@@ -60,7 +60,8 @@
 .shop .price{float: left; padding-top: 0.3rem; color: #FF7E00; font-size: 0.12rem;}
 .shop .price em{font-size: 0.2rem; line-height: 0.3rem;}
 .shop .btn{width: 0.66rem; height: 0.26rem; margin: 0.33rem 0 0; background: #FF7E00; color: #fff; text-align: center; line-height: 0.26rem; float: right; font-size: 0.12rem;}
-/*  */
+
+.ad{padding: 0 0.22rem;}
 </style>
 </head>
 <body>
@@ -156,6 +157,7 @@
 <!-- end -->
 <!-- 标签类型 -->
 <script type="text/x-template" id="template-tag">
+	<div class="ad" v-if="ad"></div>
 	<ul class="tag" v-if="res.sportingMoment.tags.length">
 		<li v-for="tag in res.sportingMoment.tags" @click="tagCallback(tag.code,tag.name)">{{tag.name}}</li>
 	</ul>
@@ -255,9 +257,14 @@ Vue.component('child-tag',{
 		}
 	},
 	props:{
-		res:null
+		res: null
 	},
 	template:'#template-tag',
+	computed:{
+		ad:function(){
+			return this.res.sportingMoment.tagName.indexOf('我是首腹') > -1?true:false;
+		}
+	},
 	methods:{
 		tagCallback:function(code,name){
 			if(!this.share){
@@ -389,7 +396,6 @@ var vm = new Vue({
 					type: 'json',
 					contentType: 'application/json',
 					success: function(resp) {
-						console.log(resp)
 					}
 				});
 			} else {
