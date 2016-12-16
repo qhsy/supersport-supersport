@@ -29,11 +29,11 @@
 .list .cover:after{content: ""; width: 0.44rem; height: 0.44rem; margin: -0.22rem 0 0 -0.22rem; display: block; position: absolute; left: 50%; top: 50%; background: url('img/play.png') no-repeat center center; background-size: cover;}
 .list .photo{width: 0.22rem; height: 0.22rem; float: left; position: relative;}
 .list .photo img{width: 100%; height: 100%; border-radius: 50%;}
-.list .name{width: 1.05rem; padding-left: 5px; display: inline-block; overflow: hidden; white-space: nowrap; font-size: 12px; color: #757575; line-height: 0.22rem; text-overflow: ellipsis;}
+.list .name{width: 0.95rem; padding-left: 5px; display: inline-block; overflow: hidden; white-space: nowrap; font-size: 12px; color: #757575; line-height: 0.22rem; text-overflow: ellipsis;}
 .list .praise{float: right; color: #F8800A; font-size: 12px; line-height: 0.22rem;}
 .list .mark{width: 0.1rem; height: 0.1rem; background: url(../../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
 .list .qiye{width: 0.1rem; height: 0.1rem; background: url(../../static/img/icon_qiyeSmall@3x.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
-.recording{width: 70px; height: 70px; position: fixed; bottom: 10px; right: 10px; background: url(../../static/img/recording@2x.png) left top; background-size: cover;}
+.recording{width: 70px; height: 70px; position: fixed; bottom: 10px; right: 10px; background: url(img/recording@2x.png) left top; background-size: cover;}
 .space{height: 70px; overflow: hidden;}
 </style>
 </head>
@@ -61,24 +61,32 @@
 	<!-- end -->
 	<aside class="load" v-if="initload"><img src="../../static/img/godo.gif" alt=""></aside>
 	<!-- list -->
-	<ul class="list">
-		<li class="video" v-for="item in forData">
-			<a href="javascript:;" @click="callBackSport(item.code,item.contentType)">
-				<div class="cover">
-					<img src="../../static/img/lazyload.jpg" v-lazyload="item.cover">
-				</div>
-				<div class="user">
-					<span class="photo">
-						<img src="../../static/img/lazyload.jpg" v-lazyload="item.userBasicInfo.aboutHead?item.userBasicInfo.aboutHead:'../../static/img/default_photo.png'">
-						<em class="mark" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></em>
-						<em class="qiye" v-if="item.userBasicInfo.type == 'dzsd4107100310010003'"></em>
-					</span>
-					<i class="name">{{item.userBasicInfo.nickName}}</i>
-					<span class="praise">{{item.praiseNum}}赞</span>
-				</div>
-			</a>
-		</li>
-	</ul>
+	<template v-if="!forData.length && !initload">
+		<div class="no-data">
+			暂无数据
+		</div>
+	</template>
+	<template v-else>
+		<ul class="list">
+			<li class="video" v-for="item in forData">
+				<a href="javascript:;" @click="callBackSport(item.code,item.contentType)">
+					<div class="cover">
+						<img src="../../static/img/lazyload.jpg" v-lazyload="item.cover">
+					</div>
+					<div class="user">
+						<span class="photo">
+							<img src="../../static/img/lazyload.jpg" v-lazyload="item.userBasicInfo.aboutHead?item.userBasicInfo.aboutHead:'../../static/img/default_photo.png'">
+							<em class="mark" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></em>
+							<em class="qiye" v-if="item.userBasicInfo.type == 'dzsd4107100310010003'"></em>
+						</span>
+						<i class="name">{{item.userBasicInfo.nickName}}</i>
+						<span class="praise">{{item.praiseNum}}赞</span>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</template>
+	
 	<aside class="load" v-if="nextPage"><img src="../../static/img/godo.gif" alt=""></aside>
 	<!-- end -->
 	<div class="space" v-if="!nextPage"></div>
@@ -146,7 +154,7 @@ if(wechat){
 	}
 
 } else {
-	//callbackShare('GGBH161210110001');
+	callbackShare('GGBH161210110001');
 }
 Vue.use(Vue.lazyimg,{
 	nohori: true
@@ -231,7 +239,12 @@ new Vue({
 		},
 		callBackSport:function(code,type){
 			if(wechat){
-				window.location.href = '/webjars/sportstatic/content_detail.html?share=1&code=' + code;
+				if(type == 'dzsd4107100110030003'){
+					window.location.href = '/webjars/sportstatic/content_photos.html?share=1&code=' + code;
+				} else {
+					window.location.href = '/webjars/sportstatic/content_details.html?share=1&code=' + code;
+				}
+				
 			} else {
 				callbackSportTime(code,type);
 			}
