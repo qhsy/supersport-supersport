@@ -313,10 +313,10 @@ var vm = new Vue({
 				success: function(resp) {
 					if(resp.status == 1){
 						_this.res = resp;
-						_this.loading = false;
-						// setTimeout(function(){
-						// 	_this.loading = false;
-						// }, 1700);
+						//_this.loading = false;
+						setTimeout(function(){
+							_this.loading = false;
+						}, 1700);
 					}else{
 						_this.loading = false;
 						alert('数据请求失败');
