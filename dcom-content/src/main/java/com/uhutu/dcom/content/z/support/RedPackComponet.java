@@ -92,7 +92,7 @@ public class RedPackComponet {
 						AccountComponet.getInstance().updateProfit(cnLiveVideoDetail.getUserCode(), liveProfit);
 						
 						/*更新主播分成状态*/
-						redPackUser.setStatus(SystemEnum.YES.getCode());
+						redPackUser.setStatus(SystemEnum.NORMAL.getCode());
 						
 						JdbcHelper.update(redPackUser, "status", "za");
 						
