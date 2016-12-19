@@ -60,9 +60,8 @@ public class ApiContentType extends RootApiBase<ApiContentTypeInput, ApiContentT
 			result.setTypes(getTypes(input.getWidth()));
 		}
 		result.setMoments(getInfos(input.getWidth() * 2, input.getNum()));
-		List<CnContentWorth> ws = JdbcHelper.queryForList(CnContentWorth.class, "", "sort desc", "", null,
-				input.getNum() * 10, 10);
-		if (ws != null && ws.size() > 0) {
+		
+		if (result.getMoments() != null && result.getMoments().size() > 0) {
 			result.setNextFlag(true);
 		}
 		return result;
