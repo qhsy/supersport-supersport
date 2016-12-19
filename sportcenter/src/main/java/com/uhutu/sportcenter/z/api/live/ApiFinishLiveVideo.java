@@ -39,6 +39,13 @@ public class ApiFinishLiveVideo extends RootApiToken<ApiFinishLiveVideoInput, Ap
 				cn.setStatus("dzsd4699100110010002");
 				JdbcHelper.update(cn, "status", "za");
 			}
+			
+			if(StringUtils.isNotBlank(detail.getBusiCode())){
+				
+				RedPackComponet.getInstance().doLiveProfit(detail.getBusiCode());
+				
+			}
+			
 		}
 		return result;
 
