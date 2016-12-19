@@ -61,7 +61,7 @@
 .shop .price em{font-size: 0.2rem; line-height: 0.3rem;}
 .shop .btn{width: 0.66rem; height: 0.26rem; margin: 0.33rem 0 0; background: #FF7E00; color: #fff; text-align: center; line-height: 0.26rem; float: right; font-size: 0.12rem;}
 
-.ad{padding: 0 0.22rem;}
+.ad{}
 </style>
 </head>
 <body>
@@ -150,6 +150,7 @@
 	        您的浏览器不支持HTML5视频
 	    </video>
 	</div>
+	<div class="ad" v-if="ad"><img src="http://api-001.sport.bigtiyu.com/webcdn/entry/fu/img/Bitmap Copy.jpg"></div>
 	<h1 class="video-title">{{res.sportingMoment.title}}</h1>
 	<h2 class="address" v-if="res.sportingMoment.localtionName">{{res.sportingMoment.localtionName}}</h2>
 	<child-tag :res="res"></child-tag>
@@ -157,7 +158,6 @@
 <!-- end -->
 <!-- 标签类型 -->
 <script type="text/x-template" id="template-tag">
-	<div class="ad" v-if="ad"><img src="http://api-001.sport.bigtiyu.com/webcdn/entry/fu/img/Bitmap Copy.jpg"></div>
 	<ul class="tag" v-if="res.sportingMoment.tags.length">
 		<li v-for="tag in res.sportingMoment.tags" @click="tagCallback(tag.code,tag.name)">{{tag.name}}</li>
 	</ul>
@@ -237,6 +237,11 @@ Vue.component('child-video',{
 	ready:function(){
 		this.video();
 	},
+	computed:{
+		ad:function(){
+			return this.res.sportingMoment.tagName.indexOf('我是首腹') > -1?true:false;
+		}
+	},
 	methods:{
 		video:function(){
 			var _this = this;
@@ -260,11 +265,6 @@ Vue.component('child-tag',{
 		res: null
 	},
 	template:'#template-tag',
-	computed:{
-		ad:function(){
-			return this.res.sportingMoment.tagName.indexOf('我是首腹') > -1?true:false;
-		}
-	},
 	methods:{
 		tagCallback:function(code,name){
 			if(!this.share){
