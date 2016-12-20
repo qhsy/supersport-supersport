@@ -8,6 +8,7 @@ import com.uhutu.dcom.component.z.util.ApplicationSupport;
 import com.uhutu.dcom.user.z.entity.UcAccountInfo;
 import com.uhutu.dcom.user.z.entity.UcTradeFlow;
 import com.uhutu.dcom.user.z.service.IAccountInfoService;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 账户操作support
@@ -58,22 +59,37 @@ public class AccountComponet {
 			
 			UcAccountInfo ucAccountInfo = accountInfoService.getAccountInfo(userCode);
 			
-			if(ucAccountInfo != null){
+			boolean updateFlag = true;
+			
+			if(ucAccountInfo == null){
 				
-				BigDecimal totalProfit = ucAccountInfo.getTotalProfit().add(amount).setScale(2);
+				ucAccountInfo = new UcAccountInfo();
 				
-				BigDecimal profit = ucAccountInfo.getProfit().add(amount).setScale(2);
+				ucAccountInfo.setUserCode(userCode);
 				
-				BigDecimal balance = ucAccountInfo.getBalance().add(amount).setScale(2);
+				updateFlag = false;
 				
-				ucAccountInfo.setTotalProfit(totalProfit);
-				
-				ucAccountInfo.setProfit(profit);
-				
-				ucAccountInfo.setBalance(balance);
+			}
+			
+			BigDecimal totalProfit = ucAccountInfo.getTotalProfit().add(amount).setScale(2);
+			
+			BigDecimal profit = ucAccountInfo.getProfit().add(amount).setScale(2);
+			
+			BigDecimal balance = ucAccountInfo.getBalance().add(amount).setScale(2);
+			
+			ucAccountInfo.setTotalProfit(totalProfit);
+			
+			ucAccountInfo.setProfit(profit);
+			
+			ucAccountInfo.setBalance(balance);
+			
+			if(updateFlag){
 				
 				accountInfoService.updateAccInfo(ucAccountInfo);
 				
+			}else{
+				
+				JdbcHelper.insert(ucAccountInfo);
 				
 			}
 			

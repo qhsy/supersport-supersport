@@ -73,13 +73,15 @@ public class RedPackComponet {
 				
 				redPackUsers.forEach(redPackUser ->{
 					
-					if(redPackUser != null){
+					if(redPackUser != null && redPackUser.getMoney().compareTo(BigDecimal.ZERO) > 0){
 						
 						BigDecimal profitRate = redPackUser.getScale().divide(BigDecimal.valueOf(100)).setScale(2);
 						
+						BigDecimal liveRate = BigDecimal.ONE.subtract(profitRate).setScale(2);
+						
 						BigDecimal packUserProfit = redPackUser.getMoney().multiply(profitRate).setScale(2, BigDecimal.ROUND_DOWN); 
 						
-						BigDecimal liveProfit = redPackUser.getMoney().subtract(packUserProfit);
+						BigDecimal liveProfit = redPackUser.getMoney().multiply(liveRate).setScale(2, BigDecimal.ROUND_DOWN);
 						
 						/*记录打赏人员流水*/
 						liveProfitFlow(StringUtils.join(liveNO,"-",redPackUser.getUserCode()), packUserProfit, "");
