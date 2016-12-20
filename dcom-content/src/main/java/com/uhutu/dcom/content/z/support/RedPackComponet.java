@@ -126,7 +126,6 @@ public class RedPackComponet {
 						JdbcHelper.update(redPackUser, "status", "za");
 
 						/* 跟分成人员发送消息通知 */
-
 						String content = TopHelper.upInfo(810710024, cnLiveVideoDetail.getTitle(),
 								packUserProfit.toString());
 
