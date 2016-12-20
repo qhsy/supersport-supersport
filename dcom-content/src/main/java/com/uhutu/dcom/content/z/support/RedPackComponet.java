@@ -137,8 +137,11 @@ public class RedPackComponet {
 						/* 跟分成人员发送消息通知 */
 						String content = TopHelper.upInfo(810710024, title,
 								packUserProfit.toString());
+						
+						String msgContent = TopHelper.upInfo(810710024, cnLiveVideoDetail.getTitle(),
+								packUserProfit.toString());
 
-						msgNotice(content, redPackUser.getUserCode());
+						msgNotice(msgContent, redPackUser.getUserCode());
 
 						baiduPush(redPackUser.getUserCode(), "直播结算", content, "7", "");
 
@@ -148,11 +151,17 @@ public class RedPackComponet {
 				
 				/*跟直播人员发送消息通知*/
 				
-				String content = TopHelper.upInfo(810710025, title,cnLiveVideoDetail.getIncome().setScale(2).toString(), totalProfit.toString());
-				
-				msgNotice(content, cnLiveVideoDetail.getUserCode());
-				
-				baiduPush(cnLiveVideoDetail.getUserCode(), "直播结算", content, "7", "");
+				if(redPackUsers.size() > 0){
+					
+					String content = TopHelper.upInfo(810710025, title,cnLiveVideoDetail.getIncome().setScale(2).toString(), totalProfit.toString());
+					
+					String msgContent = TopHelper.upInfo(810710025, cnLiveVideoDetail.getTitle(),cnLiveVideoDetail.getIncome().setScale(2).toString(), totalProfit.toString());
+					
+					msgNotice(msgContent, cnLiveVideoDetail.getUserCode());
+					
+					baiduPush(cnLiveVideoDetail.getUserCode(), "直播结算", content, "7", "");
+					
+				}
 				
 			}
 			
