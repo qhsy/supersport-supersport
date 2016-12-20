@@ -49,7 +49,7 @@ public class WechatRedPackNotifyFunc implements IWechatNotifyFunc {
 
 						if(mResult.upFlagTrue()){
 							
-							updatePayInfo(notifyRequest.getTransaction_id(), redPackFlow.getBusiCode(), mResult);
+							updatePayInfo(notifyRequest.getTransaction_id(), notifyRequest.getOut_trade_no(), mResult);
 							
 						}
 						
