@@ -61,13 +61,11 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 				authorName = StringUtils.isNotBlank(ue.getNickName()) ? ue.getNickName() : "";
 			}
 
-			String title = basicInfo.getTitle();
-
-			title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+			
 
 			if (basicInfo != null) {
 
-				shareResult.setTitle(title);
+				shareResult.setTitle(basicInfo.getTitle());
 				if (StringUtils.isNotBlank(basicInfo.getCover())) {
 					shareResult.setIconUrl(ImageHelper.upImageThumbnail(basicInfo.getCover(), 120));
 				}
@@ -102,6 +100,11 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 		if (StringUtils.isNotBlank(shareResult.getIconUrl())) {
 			shareResult.setCover(shareResult.getIconUrl());
 		}
+		
+		String title = StringUtils.isEmpty(shareResult.getTitle()) ? "" : EmojiUtil.emojiRecovery(shareResult.getTitle());
+		
+		shareResult.setTitle(title);
+		
 		return shareResult;
 	}
 

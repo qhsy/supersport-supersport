@@ -3,6 +3,7 @@ package com.uhutu.sportcenter.z.api.live;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
 import com.uhutu.dcom.content.z.properties.ConfigDcomContent;
@@ -37,6 +38,14 @@ public class ApiLiveInfo extends RootApiBase<ApiLiveInfoInput, ApiLiveInfoResult
 			if (basicinfo != null && StringUtils.isNotBlank(basicinfo.getAuthor())) {
 				CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "zc desc",
 						" user_code=:userCode", MapHelper.initMap("userCode", basicinfo.getAuthor()));
+				if(detail != null && StringUtils.isNotEmpty(detail.getTitle())){
+					
+					String title = EmojiUtil.emojiRecovery(detail.getTitle());
+					
+					detail.setTitle(title);
+					
+				}
+				
 				result.setDetail(detail);
 				if (detail != null) {
 					SettingsDcomContent dcomContent = ConfigDcomContent.upConfig();

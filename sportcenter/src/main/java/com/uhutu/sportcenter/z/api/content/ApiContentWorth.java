@@ -142,6 +142,16 @@ public class ApiContentWorth extends RootApiBase<ApiContentWorthInput, ApiConten
 							if (detail != null) {
 								CnLiveVideoDetailForApi videoDetailForApi = new CnLiveVideoDetailForApi();
 								BeanUtils.copyProperties(detail, videoDetailForApi);
+								
+
+								if(StringUtils.isNotEmpty(videoDetailForApi.getTitle())){
+									
+									String title2 = EmojiUtil.emojiRecovery(videoDetailForApi.getTitle());
+									
+									videoDetailForApi.setTitle(title2);
+									
+								}
+								
 								videoDetailForApi.setNickName(sportingMoment.getUserBasicInfo().getNickName());
 								videoDetailForApi.setAboutHead(sportingMoment.getUserBasicInfo().getAboutHead());
 								sportingMoment.setLiveVideoDetailForApi(videoDetailForApi);
