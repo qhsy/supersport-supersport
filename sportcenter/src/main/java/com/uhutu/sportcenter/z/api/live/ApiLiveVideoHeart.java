@@ -46,7 +46,7 @@ public class ApiLiveVideoHeart extends RootApiToken<ApiLiveVideoHeartInput, ApiL
 			CnRedPackUser packUser = JdbcHelper.queryOne(CnRedPackUser.class, "sum(money) as money ", "",
 					"busi_code=:busiCode", MapHelper.initMap("busiCode", detail.getBusiCode()));
 			if (packUser != null&&packUser.getMoney()!=null) {
-				result.setMoney(packUser.getMoney());
+				result.setMoney(packUser.getMoney().setScale(2));
 			}
 		}
 		return result;
