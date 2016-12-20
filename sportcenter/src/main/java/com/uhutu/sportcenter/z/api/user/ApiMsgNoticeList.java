@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.page.QueryConditions;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.user.z.entity.UcMsgNotice;
 import com.uhutu.dcom.user.z.entity.UcMsgNoticeUser;
 import com.uhutu.dcom.user.z.enums.MsgEnum;
@@ -52,7 +54,11 @@ public class ApiMsgNoticeList extends RootApiToken<ApiMsgNoticeListInput, ApiMsg
 			
 			msgNoticeInfo.setContent(ucMsgNotice.getContent());
 			
-			msgNoticeInfo.setNotifyTime(ucMsgNotice.getNotifyTime());			
+			msgNoticeInfo.setNotifyTime(ucMsgNotice.getNotifyTime());	
+			
+			String content =  StringUtils.isEmpty(ucMsgNotice.getContent()) ? "" : EmojiUtil.emojiRecovery(ucMsgNotice.getContent());
+			
+			msgNoticeInfo.setContent(content);
 			
 			result.getMsgNoticeInfos().add(msgNoticeInfo);
 			

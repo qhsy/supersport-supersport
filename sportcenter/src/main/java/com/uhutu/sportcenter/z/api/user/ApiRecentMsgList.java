@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.user.z.entity.UcMsgAnswer;
 import com.uhutu.dcom.user.z.entity.UcMsgFocus;
 import com.uhutu.dcom.user.z.entity.UcMsgNotice;
@@ -71,6 +72,10 @@ public class ApiRecentMsgList extends RootApiToken<ApiRecentMsgListInput, ApiRec
 					msgNoticeInfo.setContent(ucMsgNotice.getContent());
 					
 					msgNoticeInfo.setNotifyTime(ucMsgNotice.getNotifyTime());
+					
+					String content =  StringUtils.isEmpty(ucMsgNotice.getContent()) ? "" : EmojiUtil.emojiRecovery(ucMsgNotice.getContent());
+					
+					msgNoticeInfo.setContent(content);
 					
 					msgNoticeInfo.setBusiCode(ucMsgNotice.getCode());
 					
