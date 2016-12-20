@@ -37,38 +37,45 @@ public class WechatRedPackNotifyFunc implements IWechatNotifyFunc {
 				
 				if(StringUtils.equals(redPackFlow.getStatus(), SystemEnum.INVALID.getCode())){
 					
-					CnRedPackUser redPackUser = getRedPackUserInfo(redPackFlow.getBusiCode(), redPackFlow.getReciveUserCode());
-					
-					if (redPackUser != null) {
+					if(StringUtils.equals(redPackFlow.getStatus(), SystemEnum.INVALID.getCode())){
+						
+						CnRedPackUser redPackUser = getRedPackUserInfo(redPackFlow.getBusiCode(), redPackFlow.getReciveUserCode());
+						
+						if (redPackUser != null) {
 
-						/* 更新打赏金额 */
-						BigDecimal payedMoney = new BigDecimal(notifyRequest.getTotal_fee()).divide(new BigDecimal(100))
-								.setScale(2);
+							/* 更新打赏金额 */
+							BigDecimal payedMoney = new BigDecimal(notifyRequest.getTotal_fee()).divide(new BigDecimal(100))
+									.setScale(2);
 
-						updateRedPackUser(redPackUser, payedMoney, mResult);
+							updateRedPackUser(redPackUser, payedMoney, mResult);
 
-						if(mResult.upFlagTrue()){
+							if(mResult.upFlagTrue()){
+								
+								updatePayInfo(notifyRequest.getTransaction_id(), notifyRequest.getOut_trade_no(), mResult);
+								
+							}
 							
-							updatePayInfo(notifyRequest.getTransaction_id(), notifyRequest.getOut_trade_no(), mResult);
+							if(mResult.upFlagTrue()){
+								
+								updateRedPackFlow(redPackFlow, mResult);
+								
+							}
+							
+
+
+						}else{
+							
+							mResult.inError(81110016);
 							
 						}
-						
-						if(mResult.upFlagTrue()){
-							
-							updateRedPackFlow(redPackFlow, mResult);
-							
-						}
-						
-
-
-					}else{
-						
-						mResult.inError(81110016);
 						
 					}
 					
+				}else{
+					
+					mResult.inError(81110020);
+					
 				}
-				
 				
 			}else{
 				
