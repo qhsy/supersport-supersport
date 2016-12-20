@@ -121,7 +121,7 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 
 		basicinfo.setAuthor(upUserCode());
 
-		basicinfo.setBusiType(ContentEnum.article.getCode());
+		basicinfo.setBusiType(ContentEnum.sportmoment.getCode());
 
 		basicinfo.setContentType(ContentEnum.TYPE_LIVE.getCode());
 
