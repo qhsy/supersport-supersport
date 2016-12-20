@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentWorth;
@@ -70,6 +71,16 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 			BeanUtils.copyProperties(input, liveVideoDetail);
 
 			liveVideoDetail.setUserCode(upUserCode());
+			
+			String title = "";
+			
+			if(StringUtils.isNotEmpty(liveVideoDetail.getTitle())){
+				
+				title = EmojiUtil.emojiFilter(liveVideoDetail.getTitle());
+				
+			}
+			
+			liveVideoDetail.setTitle(title);
 
 			liveVideoDetail.setStatus(ContentEnum.LIVEING.getCode());
 
@@ -147,8 +158,16 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 		basicinfo.setStatus(ContentEnum.normal.getCode());
 
 		basicinfo.setTagCode(liveVideoDetail.getTagCode());
+		
+		String title = "";
+		
+		if(StringUtils.isNotEmpty(liveVideoDetail.getTitle())){
+			
+			title = EmojiUtil.emojiFilter(liveVideoDetail.getTitle());
+			
+		}
 
-		basicinfo.setTitle(liveVideoDetail.getTitle());
+		basicinfo.setTitle(title);
 
 		CnContentDetail cnContentDetail = new CnContentDetail();
 
