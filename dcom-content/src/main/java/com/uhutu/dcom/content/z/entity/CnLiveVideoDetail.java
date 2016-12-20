@@ -5,6 +5,9 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
@@ -39,6 +42,7 @@ public class CnLiveVideoDetail extends BaseEntity {
 	private String cover;
 
 	@ZooData(name = "标题", sort = { DefineWebPage.Page_Edit + "=0" })
+	@Column(columnDefinition = "longtext")
 	private String title;
 
 	@ZooData(name = "状态  1:正在直播,0:结束 ", sort = { DefineWebPage.Page_Edit + "=0" })
@@ -150,6 +154,13 @@ public class CnLiveVideoDetail extends BaseEntity {
 	}
 
 	public String getTitle() {
+		
+		if(StringUtils.isNotEmpty(title)){
+			
+			title = EmojiUtil.emojiRecovery(title);
+			
+		}
+		
 		return title;
 	}
 
