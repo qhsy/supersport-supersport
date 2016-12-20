@@ -88,29 +88,37 @@ public class RedPackComponet {
 				
 				for (CnRedPackUser redPackUser : redPackUsers) {
 
-					if (redPackUser != null && redPackUser.getMoney().compareTo(BigDecimal.ZERO) > 0) {
+					if (redPackUser != null) {
+						
+						BigDecimal packUserProfit = BigDecimal.ZERO;
 
-						BigDecimal profitRate = redPackUser.getScale().divide(BigDecimal.valueOf(100)).setScale(2);
+						if (redPackUser.getMoney().compareTo(BigDecimal.ZERO) > 0) {
 
-						BigDecimal liveRate = BigDecimal.ONE.subtract(profitRate).setScale(2);
+							BigDecimal profitRate = redPackUser.getScale().divide(BigDecimal.valueOf(100)).setScale(2);
 
-						BigDecimal packUserProfit = redPackUser.getMoney().multiply(profitRate).setScale(2,
-								BigDecimal.ROUND_DOWN);
+							BigDecimal liveRate = BigDecimal.ONE.subtract(profitRate).setScale(2);
 
-						BigDecimal liveProfit = redPackUser.getMoney().multiply(liveRate).setScale(2,
-								BigDecimal.ROUND_DOWN);
+							packUserProfit = redPackUser.getMoney().multiply(profitRate).setScale(2,
+									BigDecimal.ROUND_DOWN);
 
-						totalProfit = totalProfit.add(liveProfit).setScale(2);
+							BigDecimal liveProfit = redPackUser.getMoney().multiply(liveRate).setScale(2,
+									BigDecimal.ROUND_DOWN);
 
-						/* 记录打赏人员流水 */
-						liveProfitFlow(StringUtils.join(liveNO, "-", redPackUser.getUserCode()), packUserProfit, "");
-						/* 更新打赏人员收益 */
-						AccountComponet.getInstance().updateProfit(redPackUser.getUserCode(), packUserProfit);
+							totalProfit = totalProfit.add(liveProfit).setScale(2);
 
-						/* 记录主播人员流水 */
-						liveProfitFlow(StringUtils.join(liveNO, "-", cnLiveVideoDetail.getUserCode()), liveProfit, "");
-						/* 更新主播收益 */
-						AccountComponet.getInstance().updateProfit(cnLiveVideoDetail.getUserCode(), liveProfit);
+							/* 记录打赏人员流水 */
+							liveProfitFlow(StringUtils.join(liveNO, "-", redPackUser.getUserCode()), packUserProfit,
+									"");
+							/* 更新打赏人员收益 */
+							AccountComponet.getInstance().updateProfit(redPackUser.getUserCode(), packUserProfit);
+
+							/* 记录主播人员流水 */
+							liveProfitFlow(StringUtils.join(liveNO, "-", cnLiveVideoDetail.getUserCode()), liveProfit,
+									"");
+							/* 更新主播收益 */
+							AccountComponet.getInstance().updateProfit(cnLiveVideoDetail.getUserCode(), liveProfit);
+
+						}
 
 						/* 更新主播分成状态 */
 						redPackUser.setStatus(SystemEnum.NORMAL.getCode());
