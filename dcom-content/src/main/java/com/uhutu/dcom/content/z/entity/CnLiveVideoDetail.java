@@ -1,5 +1,7 @@
 package com.uhutu.dcom.content.z.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -95,6 +97,9 @@ public class CnLiveVideoDetail extends BaseEntity {
 
 	@ZooData(name = "直播参数常量", sort = { DefineWebPage.Page_Query + "=0" })
 	private long praiseConstant;
+	
+	@ZooData(name="本次直播的总收入")
+	private BigDecimal income = BigDecimal.ZERO;
 
 	public long getWatchConstant() {
 		return watchConstant;
@@ -270,6 +275,14 @@ public class CnLiveVideoDetail extends BaseEntity {
 
 	public void setBusiCode(String busiCode) {
 		this.busiCode = busiCode;
+	}
+
+	public BigDecimal getIncome() {
+		return income;
+	}
+
+	public void setIncome(BigDecimal income) {
+		this.income = income;
 	}
 
 }

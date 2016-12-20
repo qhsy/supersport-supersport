@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.uhutu.dcom.component.z.util.WebClientComponent;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.APiStartPageInput;
 import com.uhutu.sportcenter.z.input.ApiAttendListInput;
@@ -80,6 +81,15 @@ public class UserController {
 	@RequestMapping(value = "/versionInfo", method = RequestMethod.POST)
 	@ApiOperation(value = "app版本升级提示接口", notes = "版本升级")
 	public ApiVersionInfoResult versionInfo(@RequestBody ApiVersionInfoInput input) {
+		
+		String temp = "<xml><appid><![CDATA[wxcb2a277985a7be8e]]></appid><bank_type><![CDATA[CFT]]></bank_type><cash_fee><![CDATA[1]]></cash_fee><fee_type><![CDATA[CNY]]></fee_type><is_subscribe><![CDATA[N]]></is_subscribe><mch_id><![CDATA[1356409102]]></mch_id><nonce_str><![CDATA[a6e8ad49045f0bef72fb92d7c4a97fed]]></nonce_str><openid><![CDATA[oTtz2wAewiGqgYJCULVmgZWGI7uU]]></openid><out_trade_no><![CDATA[DSDDBH161220410002]]></out_trade_no><result_code><![CDATA[SUCCESS]]></result_code><return_code><![CDATA[SUCCESS]]></return_code><sign><![CDATA[CB6EF86781795226BD866A10B30C4892]]></sign><time_end><![CDATA[20161220155549]]></time_end><total_fee>1</total_fee><trade_type><![CDATA[APP]]></trade_type><transaction_id><![CDATA[4008042001201612203391413717]]></transaction_id></xml>";
+		
+		try {
+			WebClientComponent.doXmpRequest("http://127.0.0.1:2497/payGate/wechatNotify/REDPACK_APP_NOTIFY", temp);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return apiFactory.getApiVersionInfo().api(input);
 

@@ -34,7 +34,16 @@ public class ApiLiveVideoHeart extends RootApiToken<ApiLiveVideoHeartInput, ApiL
 			detail.setWatch(input.getWatch());
 			detail.setPraise(input.getPraise());
 			detail.setStatus("1");
-			JdbcHelper.update(detail, "length,watch,praise,status,channelId,streamUrl", "za");
+			
+			CnRedPackUser packUser = JdbcHelper.queryOne(CnRedPackUser.class, "sum(money) as money ", "",
+					"busi_code=:busiCode", MapHelper.initMap("busiCode", detail.getBusiCode()));
+			if (packUser != null&&packUser.getMoney()!=null) {
+				result.setMoney(packUser.getMoney().setScale(2));
+			}
+			
+			/*设置总收入*/
+			detail.setIncome(result.getMoney());
+			
 			if (StringUtils.isNotBlank(detail.getContentCode())) {
 				CnContentBasicinfo basicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
 						detail.getContentCode());
@@ -43,11 +52,9 @@ public class ApiLiveVideoHeart extends RootApiToken<ApiLiveVideoHeartInput, ApiL
 					JdbcHelper.update(basicinfo, "status", "za");
 				}
 			}
-			CnRedPackUser packUser = JdbcHelper.queryOne(CnRedPackUser.class, "sum(money) as money ", "",
-					"busi_code=:busiCode", MapHelper.initMap("busiCode", detail.getBusiCode()));
-			if (packUser != null&&packUser.getMoney()!=null) {
-				result.setMoney(packUser.getMoney().setScale(2));
-			}
+			
+			JdbcHelper.update(detail, "length,watch,praise,status,channelId,streamUrl,income", "za");
+			
 		}
 		return result;
 
