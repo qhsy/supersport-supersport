@@ -41,9 +41,9 @@ public enum OrderType {
 	
 	ENTRY_APP("dzsd4112100110020001-dzsd4112100110010006","crossfit app订单"),
 	
-	REDPACK_H5("dzsd4112100110020002-dzsd4112100110010001","redpack H5 订单"),
+	REDPACK_H5("dzsd4112100110020002-dzsd8112100110010001","redpack H5 订单"),
 	
-	REDPACK_APP("dzsd4112100110020001-dzsd4112100110010001","redpack app订单");
+	REDPACK_APP("dzsd4112100110020001-dzsd8112100110010001","redpack app订单");
 	
 	
 	OrderType(String code, String text) {

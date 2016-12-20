@@ -14,11 +14,10 @@ import com.uhutu.zoocom.model.MResult;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
- * 微信H5支付回调通知业务处理
- * 更新问题状态
- * 更新偷听记录
- * 更新订单信息
- * 更新订单支付信息
+ * 微信红包支付
+ * 更新红包流水支付状态
+ * 更新红包接收人金额信息
+ * 更新支付信息交易流水号
  * @author 逄小帅
  *
  */
