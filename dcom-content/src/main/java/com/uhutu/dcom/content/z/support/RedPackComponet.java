@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.util.ApplicationSupport;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
 import com.uhutu.dcom.content.z.entity.CnRedPackUser;
@@ -82,6 +83,14 @@ public class RedPackComponet {
 			//获取直播信息
 			CnLiveVideoDetail cnLiveVideoDetail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "busiCode",liveNO);
 			
+			String title = "";
+			
+			if(StringUtils.isNotEmpty(cnLiveVideoDetail.getTitle())){
+				
+				title = EmojiUtil.emojiRecovery(cnLiveVideoDetail.getTitle());
+				
+			}
+			
 			if(cnLiveVideoDetail != null){
 				
 				BigDecimal totalProfit = BigDecimal.ZERO;
@@ -126,7 +135,7 @@ public class RedPackComponet {
 						JdbcHelper.update(redPackUser, "status", "za");
 
 						/* 跟分成人员发送消息通知 */
-						String content = TopHelper.upInfo(810710024, cnLiveVideoDetail.getTitle(),
+						String content = TopHelper.upInfo(810710024, title,
 								packUserProfit.toString());
 
 						msgNotice(content, redPackUser.getUserCode());
@@ -139,7 +148,7 @@ public class RedPackComponet {
 				
 				/*跟直播人员发送消息通知*/
 				
-				String content = TopHelper.upInfo(810710025, cnLiveVideoDetail.getTitle(),cnLiveVideoDetail.getIncome().setScale(2).toString(), totalProfit.toString());
+				String content = TopHelper.upInfo(810710025, title,cnLiveVideoDetail.getIncome().setScale(2).toString(), totalProfit.toString());
 				
 				msgNotice(content, cnLiveVideoDetail.getUserCode());
 				

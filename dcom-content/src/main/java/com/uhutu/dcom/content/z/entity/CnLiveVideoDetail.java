@@ -5,9 +5,6 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
@@ -155,13 +152,8 @@ public class CnLiveVideoDetail extends BaseEntity {
 
 	public String getTitle() {
 		
-		if(StringUtils.isNotEmpty(title)){
-			
-			title = EmojiUtil.emojiRecovery(title);
-			
-		}
-		
 		return title;
+	
 	}
 
 	public void setTitle(String title) {

@@ -158,16 +158,8 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 		basicinfo.setStatus(ContentEnum.normal.getCode());
 
 		basicinfo.setTagCode(liveVideoDetail.getTagCode());
-		
-		String title = "";
-		
-		if(StringUtils.isNotEmpty(liveVideoDetail.getTitle())){
-			
-			title = EmojiUtil.emojiFilter(liveVideoDetail.getTitle());
-			
-		}
 
-		basicinfo.setTitle(title);
+		basicinfo.setTitle(liveVideoDetail.getTitle());
 
 		CnContentDetail cnContentDetail = new CnContentDetail();
 
