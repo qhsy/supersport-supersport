@@ -62,7 +62,7 @@ public class ApiWechatMobilePay2 extends RootApiToken<ApiWechatMobilePayInput, A
 			
 			bizContentRequest.setOrderSource(paPayInfo.getPaySource());
 			
-			bizContentRequest.setOrderType(paPayInfo.getPayType());
+			bizContentRequest.setOrderType(paPayInfo.getBusiType());
 			
 			
 		}
