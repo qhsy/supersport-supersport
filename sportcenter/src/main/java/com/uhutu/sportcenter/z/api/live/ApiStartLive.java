@@ -67,20 +67,20 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 		} else {
 
 			CnLiveVideoDetail liveVideoDetail = new CnLiveVideoDetail();
-
-			BeanUtils.copyProperties(input, liveVideoDetail);
-
-			liveVideoDetail.setUserCode(upUserCode());
 			
 			String title = "";
 			
-			if(StringUtils.isNotEmpty(liveVideoDetail.getTitle())){
+			if(StringUtils.isNotEmpty(input.getTitle())){
 				
-				title = EmojiUtil.emojiFilter(liveVideoDetail.getTitle());
+				title = EmojiUtil.emojiFilter(input.getTitle());
 				
-			}
+			}	
 			
-			liveVideoDetail.setTitle(title);
+			input.setTitle(title);
+
+			BeanUtils.copyProperties(input, liveVideoDetail);
+
+			liveVideoDetail.setUserCode(upUserCode());		
 
 			liveVideoDetail.setStatus(ContentEnum.LIVEING.getCode());
 
