@@ -103,7 +103,15 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 		
 		String title = StringUtils.isEmpty(shareResult.getTitle()) ? "" : EmojiUtil.emojiRecovery(shareResult.getTitle());
 		
+		String shareContent =  StringUtils.isEmpty(shareResult.getContent()) ? "" : EmojiUtil.emojiRecovery(shareResult.getContent());
+		
+		String aboutDesc = StringUtils.isEmpty(shareResult.getAboutDesc()) ? "" : EmojiUtil.emojiRecovery(shareResult.getAboutDesc());
+		
 		shareResult.setTitle(title);
+		
+		shareResult.setContent(shareContent);
+		
+		shareResult.setAboutDesc(aboutDesc);
 		
 		return shareResult;
 	}
