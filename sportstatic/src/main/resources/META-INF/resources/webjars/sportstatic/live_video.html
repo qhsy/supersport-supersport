@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>详情</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<link rel="stylesheet" type="text/css" href="../static/css/base.css">
+<style type="text/css">
+.container{padding-bottom: 0.6rem;}
+/* Header Style */
+.user{height: 0.58rem; padding: 0 0.16rem 0 0.22rem; }
+.user .head{height: 0.32rem; margin: 0.13rem 0 0; display: -webkit-flex; display: flex; float: left;}
+.user .photo{width: 0.32rem; height: 0.32rem; margin-right: 0.1rem; position: relative; border-radius: 50%; float: left;}
+.user .photo img{width: 0.32rem; height: 0.32rem; border-radius: 50%;}
+.user .mark{width: 0.1rem; height: 0.1rem; background: url(../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
+.user .qiye{width: 0.1rem; height: 0.1rem; background: url(../static/img/icon_qiyeSmall@3x.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
+.user .info{max-width: 2rem; height: 0.32rem; line-height: 0.16rem; overflow: hidden;}
+.user .name{max-width: 1.95rem; height: 0.16rem; white-space: nowrap; font-size: 0.13rem; overflow: hidden; line-height: 0.16rem; font-weight: 700; color: #212121;}
+.user .name.ct{height: 0.32rem; line-height: 0.32rem;}
+.user .title{height: 0.16rem; overflow: hidden; font-size: 0.12rem; color: #757575; white-space: nowrap; text-overflow: ellipsis;}
+.user .index{width: 0.7rem; height: 0.26rem; margin: 0.16rem 0 0; border: #F8800A 1px solid; font-size: 0.12rem; display: block; float: right; text-align: center; line-height: 0.27rem; color: #F8800A;}
+.readRate{padding: 0.16rem 0.22rem 0.1rem; display: flex; display: -webkit-flex; justify-content: space-between; -webkit-justify-content: space-between; line-height: 0.18rem; color: #BDBDBD; font-size: 0.13rem;}
+
+/* Content Style */
+.content .title{padding: 0.25rem 0.22rem 0.04rem; line-height: 0.24rem; font-size: 0.2rem; color: #212121; word-wrap: break-word; word-break: break-all;}
+.content .video-title{padding: 0.13rem 0.22rem 0.04rem; line-height: 0.24rem; font-size: 0.2rem; color: #212121; font-weight: 700;}
+.content .address{margin-top: 0.05rem; padding: 0 0.22rem; font-size: 0.13rem; line-height: 0.18rem; color: #BDBDBD;}
+.content .address:after{content: ""; float: left; width: 13px; height: 13px; margin: 0.02rem 0.05rem 0 1px; background: url(css/img/zuobiao@3x.png) no-repeat; background-size: 13px;}
+.content .referral{margin: 0.24rem 0.22rem 0; border-bottom: #E6E6E6 solid 1px;}
+.content .referral h3{font-size: 0.16rem; line-height: 0.22rem; color: #212121;}
+.content .referral p{padding: 0.1rem 0 0.11rem; font-size: 0.15rem; color: #BDBDBD; line-height: 0.22rem; text-indent: 0.30rem; text-align: justify;}
+.content .detail{padding: 0 0.22rem; margin-top: 0.1rem; line-height: 0.27rem; word-wrap: break-word; word-break: break-all; font-size: 0.16rem; color: #535252;}
+.content .detail p{margin-bottom: 0.1rem; text-align: justify; font-size: 0.16rem;}
+.content .detail img{display: block; margin: 0 auto 0.1rem;}
+.content .detail p img{margin: 0;}
+.content .tag{padding: 0.16rem 0.22rem 0;}
+.content .tag li{border: #e6e6e6 1px solid; display: inline-block; border-radius: 4px; margin: 0 0.08rem 0.1rem 0; padding: 0 0.1rem; font-size: 0.14rem; color: #757575; line-height: 0.27rem;}
+.content .caption{padding: 0.16rem 0.22rem 0; line-height: 0.27rem; font-size: 0.16rem; color: #535252; text-align: justify; word-break: break-all; word-wrap: break-word;}
+.content .cover{text-align: center;}
+.content .video{background: #000;}
+.content .end{position: relative;}
+.content .end-info{width: 100%; height: 100%; position: absolute; left: 0; top: 0;}
+.content .end-info h1{padding: 1.4rem 0 0.1rem; text-align: center; color: #fff;  font: bold 0.28rem/0.4rem "PingFangSC-Medium";}
+.content .end-info span{width: 1rem; margin: auto; padding: 0 0.05rem; border-radius: 5px; display: block; background: #F8800A; color: #fff; text-align: center; font-size: 0.14rem; line-height: 0.3rem; }
+</style>
+</head>
+<body>
+<section class="container" v-cloak>
+	<header class="user">
+		<div class="head" @click="appDown">
+			<div class="photo">
+				<img :src="response.userBasicInfo.aboutHead?response.userBasicInfo.aboutHead:'../static/img/default_photo.png'" alt="">
+				<em class="mark" v-if="response.userBasicInfo.type == 'dzsd4107100310010002'"></em>
+				<em class="qiye" v-if="response.userBasicInfo.type == 'dzsd4107100310010003'"></em>
+			</div>
+			<div class="info">
+				<h1 class="name" :class="{ct:!response.userBasicInfo.title}">{{response.userBasicInfo.nickName}}</h1>
+				<h3 class="title" v-if="!!response.userBasicInfo.title">{{response.userBasicInfo.title}}</h3>
+			</div>
+		</div>
+		<a href="javascript:;" class="index" @click="appDown">Ta的主页</a>
+	</header>
+	<!-- content -->
+	<article class="content">
+		<!-- <template v-if="response.detail.status == '1'">
+			<div class="media" id="media"></div>
+		</template> -->
+		<div class="media" id="media"></div>
+		<!-- <template v-if="response.detail.status == '0'">
+			<div class="end" @click="appDown">
+				<img :src="response.detail.cover" alt="">
+				<div class="end-info">
+					<h1>直播已结束</h1>
+					<span>查看热门直播</span>
+				</div>
+			</div>
+		</template> -->
+		<h1 class="video-title">{{response.detail.title}}</h1>
+	</article>
+	<!-- end -->
+	<!-- data loading -->
+	<aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
+</section>
+<!-- end -->
+<script type="text/javascript" src="script/common.min.js"></script>
+<script type="text/javascript" src="../static/js/live_connect.js"></script>
+<script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+var initWidth =  window.innerWidth;
+var vm = new Vue({
+	el:'.container',
+	data:{
+		response: null,
+		loading: true
+	},
+	created:function(){
+		this.apiGetData();
+		share();
+	},
+	methods:{
+		apiGetData:function(){
+			var _this = this;
+			reqwest({
+				url: '/api/liveVideoController/liveInfo',
+				method: 'post',
+				data: '{"contentCode": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": ""}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {
+					if(resp.status == 1){
+						_this.response = resp;
+						new qcVideo.Player("media",{
+							"live_url" : "http://play.bcelive.com/live/lss-gi5k0edwuqk99byv.m3u8",
+							"live_url2" : "http://2000.liveplay.myqcloud.com/live/2000_2a1.flv",
+							'width' :initWidth,
+							'height' : initWidth,
+							'h5_start_patch': {
+								//'url': resp.detail.cover,
+								'stretch': true
+							}
+						});
+						_this.loading = false;
+					}else{
+						
+					}
+				}
+			});
+			reqwest({
+				url: '/api/userController/shareContent',
+				method: 'post',
+				data: '{"contentCode": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": " "}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {
+					if(resp.status == 1){
+						shareWeiXin({
+							'url':'/api/wechatController/configInfo',
+							'imgUrl':resp.iconUrl,
+							'title':resp.title,
+							'link':window.location.href,
+							'desc':resp.content
+						});
+					}
+				}
+			});
+			reqwest({
+				url: '/api/contentController/contentDetailProducts',
+				method: 'post',
+				data: '{"code": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": " "}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {
+					if(resp.status == 1){
+						_this.shop = resp;
+					}
+				}
+			});
+			reqwest({
+				url: '/api/contentController/contentReadCount',
+				method: 'post',
+				data: '{"code": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": " "}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {}
+			});
+		},
+		appDown:function(){
+			open();
+		}
+	}
+});
+</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>
+</html>
