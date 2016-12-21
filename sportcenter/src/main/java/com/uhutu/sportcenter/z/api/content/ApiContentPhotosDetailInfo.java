@@ -51,7 +51,9 @@ public class ApiContentPhotosDetailInfo extends RootApiBase<ApiContentPhotosInpu
 	protected ApiContentPhotosResult process(ApiContentPhotosInput input) {
 
 		ApiContentPhotosResult result = new ApiContentPhotosResult();
-
+		if (input.getWidth() == 0) {
+			input.setWidth(800);
+		}
 		CnContentBasicinfo cnContentBasicinfo = serviceFactory.getContentBasicinfoService()
 				.queryByCode(input.getContent_code());
 
@@ -95,12 +97,12 @@ public class ApiContentPhotosDetailInfo extends RootApiBase<ApiContentPhotosInpu
 			result.getContentBasicInfo().setRemarkNum(remarkNum);
 
 			result.getContentBasicInfo().setPraiseNum(ContentComponent.praiseNum(cnContentBasicinfo.getCode()));
-			
-			/*标题emoji表情处理*/
+
+			/* 标题emoji表情处理 */
 			String title = result.getContentBasicInfo().getTitle();
-			
+
 			title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
-			
+
 			result.getContentBasicInfo().setTitle(title);
 
 			List<ContentPhotosDetail> cnContentPhotosDetails = new ArrayList<ContentPhotosDetail>();
@@ -126,11 +128,11 @@ public class ApiContentPhotosDetailInfo extends RootApiBase<ApiContentPhotosInpu
 						}
 
 					}
-					
+
 					String content = contentPhotosDetail.getContent();
-					
-					content =  StringUtils.isEmpty(content) ? "" : EmojiUtil.emojiRecovery(content);
-					
+
+					content = StringUtils.isEmpty(content) ? "" : EmojiUtil.emojiRecovery(content);
+
 					contentPhotosDetail.setContent(content);
 
 					cnContentPhotosDetails.add(contentPhotosDetail);
