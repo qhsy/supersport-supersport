@@ -55,13 +55,13 @@
 	<header class="user">
 		<div class="head" @click="appDown">
 			<div class="photo">
-				<img :src="response.userBasicInfo.aboutHead?response.userBasicInfo.aboutHead:'../static/img/default_photo.png'" alt="">
-				<em class="mark" v-if="response.userBasicInfo.type == 'dzsd4107100310010002'"></em>
-				<em class="qiye" v-if="response.userBasicInfo.type == 'dzsd4107100310010003'"></em>
+				<img :src="response.sportingMoment.userBasicInfo.aboutHead?response.sportingMoment.userBasicInfo.aboutHead:'../static/img/default_photo.png'" alt="">
+				<em class="mark" v-if="response.sportingMoment.userBasicInfo.type == 'dzsd4107100310010002'"></em>
+				<em class="qiye" v-if="response.sportingMoment.userBasicInfo.type == 'dzsd4107100310010003'"></em>
 			</div>
 			<div class="info">
-				<h1 class="name" :class="{ct:!response.userBasicInfo.title}">{{response.userBasicInfo.nickName}}</h1>
-				<h3 class="title" v-if="!!response.userBasicInfo.title">{{response.userBasicInfo.title}}</h3>
+				<h1 class="name" :class="{ct:!response.sportingMoment.userBasicInfo.title}">{{response.sportingMoment.userBasicInfo.nickName}}</h1>
+				<h3 class="title" v-if="!!response.sportingMoment.userBasicInfo.title">{{response.sportingMoment.userBasicInfo.title}}</h3>
 			</div>
 		</div>
 		<a href="javascript:;" class="index" @click="appDown">Ta的主页</a>
@@ -81,7 +81,7 @@
 				</div>
 			</div>
 		</template> -->
-		<h1 class="video-title">{{response.detail.title}}</h1>
+		<h1 class="video-title">{{response.sportingMoment.title}}</h1>
 	</article>
 	<!-- end -->
 	<!-- data loading -->
@@ -107,9 +107,9 @@ var vm = new Vue({
 		apiGetData:function(){
 			var _this = this;
 			reqwest({
-				url: '/api/liveVideoController/liveInfo',
+				url: '/api/contentController/contentDetail',
 				method: 'post',
-				data: '{"contentCode": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": ""}}',
+				data: '{"content_code": "' + queryUrl('code') + '", "width": "' + window.innerWidth + '","zoo": {"key": "tesetkey","token": ""}}',
 				type: 'json',
 				contentType: 'application/json',
 				success: function(resp) {
@@ -117,17 +117,16 @@ var vm = new Vue({
 						_this.response = resp;
 						new qcVideo.Player("media",{
 							"live_url" : "http://play.bcelive.com/live/lss-gi5k0edwuqk99byv.m3u8",
-							"live_url2" : "http://2000.liveplay.myqcloud.com/live/2000_2a1.flv",
+							"live_url2" : "http://play.bcelive.com/live/lss-gi5k0edwuqk99byv.m3u8",
 							'width' :initWidth,
 							'height' : initWidth,
 							'h5_start_patch': {
-								'url': resp.detail.cover,
+								'url': resp.sportingMoment.cover,
 								'stretch': true
 							}
 						});
 						_this.loading = false;
 					}else{
-						
 					}
 				}
 			});
