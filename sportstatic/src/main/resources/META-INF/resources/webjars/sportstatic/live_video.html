@@ -101,7 +101,9 @@ var vm = new Vue({
 	},
 	created:function(){
 		this.apiGetData();
-		share();
+		if(queryUrl('share')){
+			share();
+		}
 	},
 	methods:{
 		apiGetData:function(){
