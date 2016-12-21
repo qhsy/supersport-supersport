@@ -387,22 +387,17 @@ var vm = new Vue({
 		},
 		callFavor:function(){
 			var _this = this;
-			if(wechat){
+			if(wechat && !res.sportingMoment.favorFlag){
 				this.res.sportingMoment.favorFlag = !this.res.sportingMoment.favorFlag;
 				var token = sessionStorage.getItem('token')?sessionStorage.getItem('token'):'';
-				var type = this.res.sportingMoment.favorFlag?1:0;
 				reqwest({
 					url: '/api/contentController/supportPraise',
 					method: 'post',
-					data: '{"contentCode": "' + queryUrl('id') + '","isLike": "' + type + '","type": "01","zoo": {"key": "tesetkey","token": "' + token + '"}}',
+					data: '{"contentCode": "' + queryUrl('id') + '","isLike": "1","type": "01","zoo": {"key": "tesetkey","token": "' + token + '"}}',
 					type: 'json',
 					contentType: 'application/json',
 					success: function(resp) {
-						if(type){
-							_this.res.sportingMoment.praiseNum = _this.res.sportingMoment.praiseNum+1;
-						}else{
-							_this.res.sportingMoment.praiseNum = _this.res.sportingMoment.praiseNum-1;
-						}
+						_this.res.sportingMoment.praiseNum = _this.res.sportingMoment.praiseNum+1;
 					}
 				});
 			} else {
