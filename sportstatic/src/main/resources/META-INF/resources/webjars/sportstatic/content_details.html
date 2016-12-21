@@ -336,7 +336,7 @@ var vm = new Vue({
 							'url':'/api/wechatController/configInfo',
 							'imgUrl':resp.iconUrl,
 							'title':resp.title,
-							'link':window.location.href,
+							'link':'https://api-001.sport.bigtiyu.com/webjars/sportstatic/content_detail.html?share=1&code=' + queryUrl('id'),
 							'desc':resp.content
 						});
 					}
