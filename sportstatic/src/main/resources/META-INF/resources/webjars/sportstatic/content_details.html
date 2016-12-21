@@ -387,7 +387,7 @@ var vm = new Vue({
 		},
 		callFavor:function(){
 			var _this = this;
-			if(wechat && !res.sportingMoment.favorFlag){
+			if(wechat && !_this.res.sportingMoment.favorFlag){
 				this.res.sportingMoment.favorFlag = !this.res.sportingMoment.favorFlag;
 				var token = sessionStorage.getItem('token')?sessionStorage.getItem('token'):'';
 				reqwest({
