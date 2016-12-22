@@ -70,9 +70,23 @@ public class ApiRemarkList extends RootApiBase<ApiRemarkListInput, ApiRemarkList
 				
 			}
 			
-			replyInfo.setRefReplyInfo(initRemarkInfo(sourceRef,input.getZoo().getToken()));
+			ContentRemarkInfo refReplyInfo = initRemarkInfo(sourceRef,input.getZoo().getToken());
 			
-			replyInfo.setReplyInfo(initRemarkInfo(remark,input.getZoo().getToken()));
+			ContentRemarkInfo subReplyInfo = initRemarkInfo(remark,input.getZoo().getToken());
+			
+			replyInfo.setRefReplyInfo(refReplyInfo);
+			
+			replyInfo.setReplyInfo(subReplyInfo);
+			
+			if(refReplyInfo == null){
+				
+				if(subReplyInfo != null && StringUtils.isNotEmpty(subReplyInfo.getParentCode())){
+					
+					replyInfo.setParentFlag(true);
+					
+				}
+				
+			}
 			
 			remarkInfos.add(replyInfo);
 			

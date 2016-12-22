@@ -109,6 +109,16 @@ public class ApiMsgRemarkList extends RootApiToken<ApiMsgRemarkListInput, ApiMsg
 				contentReplyInfo.setRefReplyInfo(initRemarkInfo(parentRemarkInfo));
 
 			}
+			
+			if(contentReplyInfo.getRefReplyInfo() == null){
+				
+				if(contentReplyInfo.getReplyInfo() != null && StringUtils.isNotEmpty(contentReplyInfo.getReplyInfo().getParentCode())){
+					
+					contentReplyInfo.setParentFlag(true);
+					
+				}
+				
+			}
 
 			msgRemarkResult.getContentRemarkInfo().add(contentReplyInfo);
 

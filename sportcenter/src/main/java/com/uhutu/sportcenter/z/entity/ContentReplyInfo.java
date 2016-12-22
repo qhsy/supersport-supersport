@@ -26,6 +26,9 @@ public class ContentReplyInfo {
 	
 	@ApiModelProperty(value="内容作者昵称")
 	private String authorName;
+	
+	@ApiModelProperty(value="引用评论是否已经删除")
+	private boolean parentFlag = false;
 
 	public ContentRemarkInfo getReplyInfo() {
 		return replyInfo;
@@ -73,6 +76,14 @@ public class ContentReplyInfo {
 
 	public void setContentCover(String contentCover) {
 		this.contentCover = contentCover;
+	}
+
+	public boolean isParentFlag() {
+		return parentFlag;
+	}
+
+	public void setParentFlag(boolean parentFlag) {
+		this.parentFlag = parentFlag;
 	}
 
 }
