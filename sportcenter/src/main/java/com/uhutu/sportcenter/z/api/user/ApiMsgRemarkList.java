@@ -52,7 +52,7 @@ public class ApiMsgRemarkList extends RootApiToken<ApiMsgRemarkListInput, ApiMsg
 		
 		int iStart = (input.getPagination() - 1) * iNumber;
 		
-		String sqlWhere = "EXISTS (select 1 from cn_content_remark where remark_code = code and status in ('dzsd4699100110010001','del')) and user_code='"+userCode+"'";
+		String sqlWhere = "EXISTS (select 1 from cn_content_remark where remark_code = code and status ='dzsd4699100110010001') and user_code='"+userCode+"'";
 		
 		List<UcMsgRemark> msgRemarkList = JdbcHelper.queryForList(UcMsgRemark.class, "", "msg_time desc", sqlWhere, new MDataMap(), iStart, iNumber);
 		
