@@ -61,8 +61,6 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 				authorName = StringUtils.isNotBlank(ue.getNickName()) ? ue.getNickName() : "";
 			}
 
-			
-
 			if (basicInfo != null) {
 
 				shareResult.setTitle(basicInfo.getTitle());
@@ -81,13 +79,14 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 					if (StringUtils.isNotBlank(basicInfo.getContentType())
 							&& "dzsd4107100110030007".equals(basicInfo.getContentType())
 							&& StringUtils.isNotBlank(authorName)) {// 直播分享信息
-						if (StringUtils.isNotEmpty(input.getZoo().getToken())) {
+						if (StringUtils.isNotBlank(input.getZoo().getToken())) {
 							String userCode = new UserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(),
 									DefineUser.Login_System_Default);
 							UcUserinfoExt ucext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", userCode);
-							shareResult.setTitle(TopHelper.upInfo(810710022, ucext.getNickName()));
+							shareResult
+									.setTitle(TopHelper.upInfo(810710022, ucext.getNickName(), basicInfo.getTitle()));
 						}
- 						shareResult.setContent(TopHelper.upInfo(810710023, authorName, basicInfo.getTitle()));
+						shareResult.setContent(TopHelper.upInfo(810710023, authorName, basicInfo.getTitle()));
 					} else {
 						shareResult.setContent(TopHelper.upInfo(810710011, authorName));
 					}
@@ -100,19 +99,22 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 		if (StringUtils.isNotBlank(shareResult.getIconUrl())) {
 			shareResult.setCover(shareResult.getIconUrl());
 		}
-		
-		String title = StringUtils.isEmpty(shareResult.getTitle()) ? "" : EmojiUtil.emojiRecovery(shareResult.getTitle());
-		
-		String shareContent =  StringUtils.isEmpty(shareResult.getContent()) ? "" : EmojiUtil.emojiRecovery(shareResult.getContent());
-		
-		String aboutDesc = StringUtils.isEmpty(shareResult.getAboutDesc()) ? "" : EmojiUtil.emojiRecovery(shareResult.getAboutDesc());
-		
+
+		String title = StringUtils.isEmpty(shareResult.getTitle()) ? ""
+				: EmojiUtil.emojiRecovery(shareResult.getTitle());
+
+		String shareContent = StringUtils.isEmpty(shareResult.getContent()) ? ""
+				: EmojiUtil.emojiRecovery(shareResult.getContent());
+
+		String aboutDesc = StringUtils.isEmpty(shareResult.getAboutDesc()) ? ""
+				: EmojiUtil.emojiRecovery(shareResult.getAboutDesc());
+
 		shareResult.setTitle(title);
-		
+
 		shareResult.setContent(shareContent);
-		
+
 		shareResult.setAboutDesc(aboutDesc);
-		
+
 		return shareResult;
 	}
 
