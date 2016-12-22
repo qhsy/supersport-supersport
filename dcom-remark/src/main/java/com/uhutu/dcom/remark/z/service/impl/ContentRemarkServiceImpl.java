@@ -52,21 +52,19 @@ public class ContentRemarkServiceImpl implements IContentRemarkService {
 	@Override
 	public List<CnContentRemark> queryPage(String contentCode, PageInfo pageInfo) {
 		
-		StringBuffer statusBuffer = new StringBuffer("status in (");
-		
-		statusBuffer.append("'").append(RemarkEnum.FLAG_DEL.getCode()).append("',");
-		
-		statusBuffer.append("'").append(RemarkEnum.FLAG_ENABLE.getCode()).append("') and ");
-		
-		statusBuffer.append("content_code = '").append(contentCode).append("'");
-		
 		int iStart = (pageInfo.getPagination() -1) * pageInfo.getPageNum();
 		
-		int count = JdbcHelper.count(CnContentRemark.class, statusBuffer.toString(), new MDataMap());
+		MDataMap paramMap = new MDataMap();
+		
+		paramMap.put("contentCode", contentCode);
+		
+		paramMap.put("status", RemarkEnum.FLAG_ENABLE.getCode());
+		
+		int count = JdbcHelper.count(CnContentRemark.class, "", paramMap);
 		
 		pageInfo.setTotal(count);
 		
-		List<CnContentRemark> cnContentRemarks = JdbcHelper.queryForList(CnContentRemark.class, "", "-zc", statusBuffer.toString(), new MDataMap(), iStart, pageInfo.getPageNum());
+		List<CnContentRemark> cnContentRemarks = JdbcHelper.queryForList(CnContentRemark.class, "", "-zc", "", paramMap, iStart, pageInfo.getPageNum());
 		
 		return cnContentRemarks;
 	}
