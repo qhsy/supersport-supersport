@@ -79,13 +79,14 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 					if (StringUtils.isNotBlank(basicInfo.getContentType())
 							&& "dzsd4107100110030007".equals(basicInfo.getContentType())
 							&& StringUtils.isNotBlank(authorName)) {// 直播分享信息
+						String tokenName = "";
 						if (StringUtils.isNotBlank(input.getZoo().getToken())) {
 							String userCode = new UserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(),
 									DefineUser.Login_System_Default);
 							UcUserinfoExt ucext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", userCode);
-							shareResult
-									.setTitle(TopHelper.upInfo(810710022, ucext.getNickName(), basicInfo.getTitle()));
+							tokenName = ucext.getNickName();
 						}
+						shareResult.setTitle(TopHelper.upInfo(810710022, tokenName, basicInfo.getTitle()));
 						shareResult.setContent(TopHelper.upInfo(810710023, authorName, basicInfo.getTitle()));
 					} else {
 						shareResult.setContent(TopHelper.upInfo(810710011, authorName));
