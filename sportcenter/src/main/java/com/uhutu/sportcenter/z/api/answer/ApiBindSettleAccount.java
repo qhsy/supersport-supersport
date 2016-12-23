@@ -1,10 +1,12 @@
 package com.uhutu.sportcenter.z.api.answer;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.answer.z.entity.AwSettleAccount;
 import com.uhutu.dcom.answer.z.service.AnswerServiceFactory;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.sportcenter.z.input.ApiBindSettleAccountInput;
 import com.uhutu.sportcenter.z.result.ApiBindSettleAccountResult;
@@ -48,7 +50,15 @@ public class ApiBindSettleAccount extends RootApiToken<ApiBindSettleAccountInput
 			
 			settleAccount.setUserCode(upUserCode());
 			
-			settleAccount.setAccountName(input.getAccountName());
+			String accountName = "";
+			
+			if(StringUtils.isNotBlank(input.getAccountName())){
+				
+				accountName = EmojiUtil.emojiFilter(input.getAccountName());
+				
+			}
+			
+			settleAccount.setAccountName(accountName);
 			
 			answerServiceFactory.getSettleAccountService().save(settleAccount);
 			
