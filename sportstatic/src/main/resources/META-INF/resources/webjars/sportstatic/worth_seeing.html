@@ -110,6 +110,7 @@ var vm = new Vue({
 		initWidth: 200,
 		nextPage: false,
 		load: true,
+		stopBool: false
 	},
 	watch: {
 		initPage: 'getData'
@@ -134,6 +135,7 @@ var vm = new Vue({
 						_this.types = _this.types.concat(resp.types);
 						_this.moments = _this.moments.concat(resp.moments);
 						_this.nextPage = resp.nextFlag;
+						_this.stopBool = true;
 						_this.$nextTick(function(){
 							_this.load = false;
 						});
@@ -147,8 +149,9 @@ var vm = new Vue({
 			var winHeight = window.innerHeight;
 			var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
 			var bodyHeight = document.body.clientHeight;
-			if(this.nextPage && (winHeight + scrollTop) >= bodyHeight){
+			if(this.stopBool && this.nextPage && (winHeight + scrollTop) >= bodyHeight){
 				this.initPage++;
+				this.stopBool = false;
 			}
 		},
 		backSportTime:function(code,type) {

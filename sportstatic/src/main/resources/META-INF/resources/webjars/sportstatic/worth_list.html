@@ -92,7 +92,8 @@ new Vue({
 		initWidth: 200,
 		nextPage: false,
 		load: true,
-		isData: false
+		isData: false,
+		stopBool: false
 	},
 	watch: {
 		initPage: 'getData'
@@ -116,6 +117,7 @@ new Vue({
 					if(resp.status == 1){
 						_this.moments = _this.moments.concat(resp.moments);
 						_this.nextPage = resp.nextFlag;
+						_this.stopBool = true;
 						_this.isData = !resp.moments.length;
 						_this.$nextTick(function(){
 							_this.load = false;
@@ -130,8 +132,9 @@ new Vue({
 			var winHeight = window.innerHeight;
 			var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
 			var bodyHeight = document.body.clientHeight;
-			if(this.nextPage && (winHeight + scrollTop) >= bodyHeight){
+			if(this.stopBool && this.nextPage && (winHeight + scrollTop) >= bodyHeight){
 				this.initPage++;
+				this.stopBool = false;
 			}
 		},
 		live:function(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address,title,code) {
