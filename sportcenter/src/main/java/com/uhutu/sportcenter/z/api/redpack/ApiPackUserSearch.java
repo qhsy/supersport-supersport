@@ -36,6 +36,8 @@ public class ApiPackUserSearch extends RootApiToken<ApiPackUserSearchInput, ApiP
 		int total = JdbcHelper.count(UcUserinfoExt.class, sqlBuffer.toString(), new MDataMap());
 
 		PageInfo pageInfo = new PageInfo(total, input.getPagination(), 10);
+		
+		userSearchResult.setNextPageFlag(pageInfo.hasNext());
 
 		int iStart = (pageInfo.getPagination() - 1) * pageInfo.getPageNum();
 
