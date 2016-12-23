@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.component.z.util.WebClientComponent;
 import com.uhutu.dcom.pay.z.entity.PaInclogInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
@@ -74,7 +75,15 @@ public class ApiSyncLiveUserInfo extends RootApiBase<ApiSyncLiveUserInfoInput, A
 					
 					tecentUserInfo.setIdentifier(userInfoExt.getUserCode());
 					
-					tecentUserInfo.setNick(userInfoExt.getNickName());
+					String nickName = userInfoExt.getNickName();
+					
+					if(StringUtils.isNotEmpty(nickName)){
+						
+						nickName = EmojiUtil.emojiRecovery(nickName);
+						
+					}
+					
+					tecentUserInfo.setNick(nickName);
 
 					String jsonStr = GsonHelper.toJson(tecentUserInfo);
 					

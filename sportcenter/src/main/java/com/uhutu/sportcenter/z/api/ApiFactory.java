@@ -100,6 +100,7 @@ import com.uhutu.sportcenter.z.api.pay.ApiCoinPay;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatConfigInfo;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatH5Pay;
 import com.uhutu.sportcenter.z.api.pay.ApiWechatMobilePay;
+import com.uhutu.sportcenter.z.api.redpack.ApiPackUserSearch;
 import com.uhutu.sportcenter.z.api.redpack.ApiRedPackInfoList;
 import com.uhutu.sportcenter.z.api.remark.ApiOperRemark;
 import com.uhutu.sportcenter.z.api.remark.ApiPublishRemark;
@@ -560,6 +561,9 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiLiveGift apiLiveGift;
+	
+	@Autowired
+	private ApiPackUserSearch apiPackUserSearch;
 
 	public ApiLiveGift getApiLiveGift() {
 		return apiLiveGift;
@@ -1107,6 +1111,10 @@ public class ApiFactory {
 
 	public ApiWalletInfo getApiWalletInfo() {
 		return apiWalletInfo;
+	}
+
+	public ApiPackUserSearch getApiPackUserSearch() {
+		return apiPackUserSearch;
 	}
 
 }

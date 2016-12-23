@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
+import com.uhutu.sportcenter.z.input.ApiPackUserSearchInput;
 import com.uhutu.sportcenter.z.input.ApiRedPackInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiWalletInfoInput;
+import com.uhutu.sportcenter.z.result.ApiPackUserSearchResult;
 import com.uhutu.sportcenter.z.result.ApiRedPackInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiWalletInfoResult;
 
@@ -44,6 +46,14 @@ public class RedPackController {
 	public ApiWalletInfoResult walletInfo(@RequestBody ApiWalletInfoInput input) {
 
 		return apiFactory.getApiWalletInfo().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/searchUserInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "搜索用户信息列表", notes = "搜索用户信息列表")
+	public ApiPackUserSearchResult searchUserInfo(@RequestBody ApiPackUserSearchInput input) {
+
+		return apiFactory.getApiPackUserSearch().api(input);
 	}
 
 	
