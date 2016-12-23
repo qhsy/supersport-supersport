@@ -349,6 +349,12 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 
 			settleAccount.setType("wechat");
 			
+			if(StringUtils.isNotBlank(accountName)){
+				
+				accountName = EmojiUtil.emojiFilter(accountName);
+				
+			}
+			
 			settleAccount.setAccountName(accountName);
 
 			settleAccount.setUnionid(unionid);
