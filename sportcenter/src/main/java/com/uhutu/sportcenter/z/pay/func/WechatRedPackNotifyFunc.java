@@ -1,15 +1,17 @@
 package com.uhutu.sportcenter.z.pay.func;
 
 import java.math.BigDecimal;
-
+import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
-
 import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.content.z.entity.CnRedPackFlow;
 import com.uhutu.dcom.content.z.entity.CnRedPackUser;
 import com.uhutu.dcom.pay.z.entity.PaPayInfo;
 import com.uhutu.dcom.pay.z.request.WechatNotifyRequest;
 import com.uhutu.dcom.pay.z.service.IWechatNotifyFunc;
+import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
+import com.uhutu.dcom.user.z.entity.UcMsgAttention;
+import com.uhutu.dcom.user.z.enums.MsgEnum;
 import com.uhutu.zoocom.model.MResult;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 
@@ -178,6 +180,9 @@ public class WechatRedPackNotifyFunc implements IWechatNotifyFunc {
 		
 		redPackFlow.setStatus(SystemEnum.NORMAL.getCode());
 		
+		/*关注受打赏人员*/
+		attend(redPackFlow.getSendUserCode(), redPackFlow.getReciveUserCode());
+		
 		int result = JdbcHelper.update(redPackFlow, "status", "za");
 		
 		if(result < 1){
@@ -188,6 +193,63 @@ public class WechatRedPackNotifyFunc implements IWechatNotifyFunc {
 		
 	}
 	
+	/**
+	 * 根据领导们要求 打赏成功后关注人员信息
+	 */
+	public void attend(String sendUserCode, String reciveUserCode){
+		
+		UcAttentionInfo attentionInfo = JdbcHelper.queryOne(UcAttentionInfo.class, "attention",sendUserCode,"beAttention",reciveUserCode);
+		
+		if(attentionInfo == null){
+			
+			attentionInfo = new UcAttentionInfo();
+			
+			attentionInfo.setAttention(sendUserCode);
+			
+			attentionInfo.setBeAttention(reciveUserCode);
+			
+			attentionInfo.setStatus(SystemEnum.NORMAL.getCode());
+			
+			JdbcHelper.insert(attentionInfo);
+			
+		}else{
+			
+			attentionInfo.setStatus(SystemEnum.NORMAL.getCode());
+			
+			JdbcHelper.update(attentionInfo, "status", "attention,beAttention");
+			
+		}
+		
+		/*关注用户*/
+		if(StringUtils.equals(attentionInfo.getStatus(), SystemEnum.NORMAL.getCode())){
+			
+			saveMsgAttend(attentionInfo);
+			
+		}
+		
+		
+	}
 	
+	/**
+	 * 保存关注信息
+	 * @param attentionInfo
+	 */
+	public void saveMsgAttend(UcAttentionInfo attentionInfo){
+		
+		UcMsgAttention msgAttention = new UcMsgAttention();
+		
+		msgAttention.setAttnUserCode(attentionInfo.getBeAttention());
+		
+		msgAttention.setFansUserCode(attentionInfo.getAttention());
+		
+		msgAttention.setMsgTime(new Date());
+		
+		msgAttention.setMsgTitle("关注了您");
+		
+		msgAttention.setStatus(MsgEnum.FLAG_UNREAD.getCode());
+		
+		JdbcHelper.insert(msgAttention);
+		
+	}
 
 }
