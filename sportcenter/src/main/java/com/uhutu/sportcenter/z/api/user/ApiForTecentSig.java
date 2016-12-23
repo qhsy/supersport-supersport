@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.component.z.util.WebClientComponent;
 import com.uhutu.dcom.pay.z.entity.PaInclogInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
@@ -79,7 +80,9 @@ public class ApiForTecentSig extends RootApiToken<ApiForTecentSigInput, ApiForTe
 
 				paInclogInfo.setResponseData(returnStr);
 				
-				paInclogInfo.setRequestData(jsonStr);
+				String temp = EmojiUtil.emojiFilter(jsonStr);
+				
+				paInclogInfo.setRequestData(temp);
 
 			} catch (Exception e) {
 
