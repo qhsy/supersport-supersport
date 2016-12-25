@@ -47,7 +47,7 @@ public class ApiUpdateUserInfo extends RootApiToken<ApiUpdateUserInfoInput, ApiU
 				
 				String headUrl = input.getUserInfo().getAboutHead();
 				
-				if(!StringUtils.equals(headUrl, ucUserinfoExt.getAboutHead())){
+				if(!StringUtils.equals(headUrl, ucUserinfoExt.getAboutHead()) && !StringUtils.contains(headUrl, "gm")){
 					
 					headUrl = ImageHelper.upImageThumbnail(headUrl, 180);
 					
