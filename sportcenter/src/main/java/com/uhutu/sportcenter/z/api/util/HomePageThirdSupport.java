@@ -209,7 +209,8 @@ public class HomePageThirdSupport {
 					for (int j = 0; j < details.size(); j++) {
 						AdvertiseDetailForThirdHomePageApi dfa = new AdvertiseDetailForThirdHomePageApi();
 						BeanUtils.copyProperties(details.get(j), dfa);
-						if (StringUtils.isNotBlank(dfa.getPicUrl()) && width > 0) {
+						if (StringUtils.isNotBlank(dfa.getPicUrl()) && width > 0
+								&& !"gif".equals(StringUtils.substringAfterLast(dfa.getPicUrl(), "."))) {
 							dfa.setPicUrl(ImageHelper.upImageThumbnail(dfa.getPicUrl(), Integer.valueOf(width)));
 						}
 						if (StringUtils.isNotBlank(""))
