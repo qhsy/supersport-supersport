@@ -19,6 +19,8 @@ public class ApiMatchInfoList extends RootApiBase<ApiMatchInfoListInput, ApiMact
 		
 		ApiMacthInfoListResult macthInfoListResult = new ApiMacthInfoListResult();
 		
+		
+		
 		return macthInfoListResult;
 	}
 
