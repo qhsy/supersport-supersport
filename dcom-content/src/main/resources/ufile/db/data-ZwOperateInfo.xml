@@ -394,6 +394,52 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_ContentLiveDetailPage?u_code=[[data:code]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071088" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.HomeItemPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071089" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.HomeItemPageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071090" operateName="已关联图片" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_HomeItemRelForRecommPage?u_itemCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071091" operateName="关联" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_HomeItemRelForRecommPage?u_itemCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071092" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.CnHomeItemRelFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071093" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.CnHomeItemRelFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071094" operateName="已关联内容" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_HomeItemRelForContentPage?u_itemCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071095" operateName="关联" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_HomeItemRelForContentPage?u_itemCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071096" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.HomeTypePageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071097" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.HomeTypePageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>

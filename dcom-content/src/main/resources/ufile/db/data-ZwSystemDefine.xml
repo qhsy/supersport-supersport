@@ -52,6 +52,10 @@
 		<item code="dzsd4107100110100001" defineName="直播中" parentCode="dzsd410710011010" />
 		<item code="dzsd4107100110100002" defineName="回放" parentCode="dzsd410710011010" />
 		<item code="dzsd4107100110100003" defineName="请选择" parentCode="dzsd410710011010" />
+		<item code="dzsd410710011011" defineName="栏目类型" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110110001" defineName="推荐栏" parentCode="dzsd410710011011" />
+		<item code="dzsd4107100110110002" defineName="两栏内容4:3" parentCode="dzsd410710011011" />
+		<item code="dzsd4107100110110003" defineName="一栏内容16:9" parentCode="dzsd410710011011" />
 	</data>
 
 </db>

@@ -12,6 +12,7 @@ import com.uhutu.sportcenter.z.input.ApiContentTypeInput;
 import com.uhutu.sportcenter.z.input.ApiContentWorthInput;
 import com.uhutu.sportcenter.z.input.ApiExpertChatInput;
 import com.uhutu.sportcenter.z.input.ApiHomePageSecondInput;
+import com.uhutu.sportcenter.z.input.ApiHomePageThirdInput;
 import com.uhutu.sportcenter.z.input.ApiHotTopicInput;
 import com.uhutu.sportcenter.z.input.ApiIosRenovateInput;
 import com.uhutu.sportcenter.z.input.ApiStartUpInput;
@@ -20,6 +21,7 @@ import com.uhutu.sportcenter.z.result.ApiContentTypeResult;
 import com.uhutu.sportcenter.z.result.ApiContentWorthResult;
 import com.uhutu.sportcenter.z.result.ApiExpertChatResult;
 import com.uhutu.sportcenter.z.result.ApiHomePageSecondResult;
+import com.uhutu.sportcenter.z.result.ApiHomePageThirdResult;
 import com.uhutu.sportcenter.z.result.ApiHotTopicResult;
 import com.uhutu.sportcenter.z.result.ApiIosRenovateResult;
 import com.uhutu.sportcenter.z.result.ApiStartUpResult;
@@ -42,9 +44,19 @@ public class HomeController {
 	@Autowired
 	private ApiFactory apiFactory;
 
+
+	@ResponseBody
+	@RequestMapping(value = "/homePageThird", method = RequestMethod.POST)
+	@ApiOperation(value = "新首页三", notes = "新首页三")
+	public ApiHomePageThirdResult homePageThird(@RequestBody ApiHomePageThirdInput input) {
+
+		return apiFactory.getApiHomePageThird().api(input);
+
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/homePageSecond", method = RequestMethod.POST)
-	@ApiOperation(value = "新首页", notes = "新首页")
+	@ApiOperation(value = "新首页二", notes = "新首页二")
 	public ApiHomePageSecondResult homePageSecond(@RequestBody ApiHomePageSecondInput input) {
 
 		return apiFactory.getApiHomePageSecond().api(input);
