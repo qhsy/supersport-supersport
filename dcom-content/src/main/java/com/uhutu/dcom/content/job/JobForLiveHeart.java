@@ -40,12 +40,12 @@ public class JobForLiveHeart extends RootJob {
 				CnLiveVideoDetail cd = ds.get(i);
 				cd.setStatus("0");
 				JdbcHelper.update(cd, "status", "za");
-				RedPackComponet.getInstance().doLiveProfit(cd.getBusiCode());
 				if (StringUtils.isNotBlank(cd.getContentCode())) {
 					CnContentBasicinfo cn = JdbcHelper.queryOne(CnContentBasicinfo.class, "code", cd.getContentCode());
 					cn.setStatus("dzsd4699100110010002");
 					JdbcHelper.update(cn, "status", "za");
 				}
+				RedPackComponet.getInstance().doLiveProfit(cd.getBusiCode());
 			}
 		}
 		return new MResult();
