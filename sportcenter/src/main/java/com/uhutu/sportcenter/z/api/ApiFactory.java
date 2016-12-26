@@ -75,6 +75,7 @@ import com.uhutu.sportcenter.z.api.home.APiStartPage;
 import com.uhutu.sportcenter.z.api.home.ApiExpertChat;
 import com.uhutu.sportcenter.z.api.home.ApiHomePage;
 import com.uhutu.sportcenter.z.api.home.ApiHomePageSecond;
+import com.uhutu.sportcenter.z.api.home.ApiHomePageThird;
 import com.uhutu.sportcenter.z.api.home.ApiHotTopic;
 import com.uhutu.sportcenter.z.api.home.ApiWonderfulVideo;
 import com.uhutu.sportcenter.z.api.label.ApiForCreateLabel;
@@ -563,15 +564,22 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiLiveGift apiLiveGift;
-	
+
 	@Autowired
 	private ApiPackUserSearch apiPackUserSearch;
-	
+
 	@Autowired
 	private ApiMatchInfoList apiMatchInfoList;
-	
+
 	@Autowired
 	private ApiMatchInfo apiMatchInfo;
+
+	@Autowired
+	private ApiHomePageThird apiHomePageThird;
+
+	public ApiHomePageThird getApiHomePageThird() {
+		return apiHomePageThird;
+	}
 
 	public ApiLiveGift getApiLiveGift() {
 		return apiLiveGift;
