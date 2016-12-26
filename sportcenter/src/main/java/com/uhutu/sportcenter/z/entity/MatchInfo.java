@@ -29,6 +29,9 @@ public class MatchInfo {
 	
 	@ApiModelProperty(value="赛事名称")
 	private String name;
+	
+	@ApiModelProperty(value="赛事详情",example="多张图片以逗号分割")
+	private String content;
 
 	public UserBasicInfo getUserBasicInfo() {
 		return userBasicInfo;
@@ -84,6 +87,14 @@ public class MatchInfo {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 }

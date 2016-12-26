@@ -1,6 +1,14 @@
 package com.uhutu.sportcenter.z.result;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.uhutu.sportcenter.z.entity.MatchInfo;
+import com.uhutu.sportcenter.z.entity.MatchLiveInfo;
+import com.uhutu.sportcenter.z.entity.MatchVidoInfo;
 import com.uhutu.zoocom.root.RootApiResult;
+
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 赛事结果
@@ -8,5 +16,50 @@ import com.uhutu.zoocom.root.RootApiResult;
  *
  */
 public class ApiMatchInfoResult extends RootApiResult {
+	
+	@ApiModelProperty(value="赛事信息")
+	private MatchInfo matchInfo = new MatchInfo();
+	
+	@ApiModelProperty(value="赛事直播信息")
+	private List<MatchLiveInfo> matchLiveInfos = new ArrayList<MatchLiveInfo>();
+	
+	@ApiModelProperty(value="赛事视频信息")
+	private List<MatchVidoInfo> matchVidoInfos = new ArrayList<MatchVidoInfo>(); 
+	
+	@ApiModelProperty(value="报名链接")
+	private String signUrl = "";
+
+	public MatchInfo getMatchInfo() {
+		return matchInfo;
+	}
+
+	public void setMatchInfo(MatchInfo matchInfo) {
+		this.matchInfo = matchInfo;
+	}
+
+	public List<MatchLiveInfo> getMatchLiveInfos() {
+		return matchLiveInfos;
+	}
+
+	public void setMatchLiveInfos(List<MatchLiveInfo> matchLiveInfos) {
+		this.matchLiveInfos = matchLiveInfos;
+	}
+
+	public List<MatchVidoInfo> getMatchVidoInfos() {
+		return matchVidoInfos;
+	}
+
+	public void setMatchVidoInfos(List<MatchVidoInfo> matchVidoInfos) {
+		this.matchVidoInfos = matchVidoInfos;
+	}
+
+	public String getSignUrl() {
+		return signUrl;
+	}
+
+	public void setSignUrl(String signUrl) {
+		this.signUrl = signUrl;
+	}
+	
 
 }
