@@ -53,6 +53,9 @@
 		<item code="dzcw410710010017" componentClass="com.uhutu.zooweb.component.DialogComponent"
 			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_ext_ContentBasicInfoPageForTheme&amp;max=20"
 			serverDefine="table=CnContentBasicinfo&amp;text=title&amp;value=code" />
+		<item code="dzcw410710010018" componentClass="com.uhutu.zooweb.component.DialogComponent"
+			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_HomeItemAllPage&amp;max=1"
+			serverDefine="table=CnHomeItem&amp;text=name&amp;value=code" />
 	</data>
 
 </db>
