@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.entity;
 
+import com.uhutu.zoocom.baseannotation.ZooData;
+
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -11,6 +13,9 @@ public class MatchInfo {
 	
 	@ApiModelProperty(value="举办者信息")
 	private UserBasicInfo userBasicInfo = new UserBasicInfo();
+	
+	@ZooData(name = "赛事编号")
+	private String code;
 	
 	@ApiModelProperty(value="举办地点")
 	private String place;
@@ -95,6 +100,14 @@ public class MatchInfo {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 }
