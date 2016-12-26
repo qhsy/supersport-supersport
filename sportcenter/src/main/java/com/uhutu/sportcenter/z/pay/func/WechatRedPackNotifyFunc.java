@@ -181,7 +181,7 @@ public class WechatRedPackNotifyFunc implements IWechatNotifyFunc {
 		redPackFlow.setStatus(SystemEnum.NORMAL.getCode());
 		
 		/*关注受打赏人员*/
-		//attend(redPackFlow.getSendUserCode(), redPackFlow.getReciveUserCode());
+		attend(redPackFlow.getSendUserCode(), redPackFlow.getReciveUserCode());
 		
 		int result = JdbcHelper.update(redPackFlow, "status", "za");
 		
