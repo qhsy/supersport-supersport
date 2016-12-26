@@ -93,6 +93,7 @@ import com.uhutu.sportcenter.z.api.live.ApiLiveVideoHeart;
 import com.uhutu.sportcenter.z.api.live.ApiOperLiveInfo;
 import com.uhutu.sportcenter.z.api.live.ApiStartLive;
 import com.uhutu.sportcenter.z.api.live.ApiSyncLiveUserInfo;
+import com.uhutu.sportcenter.z.api.match.ApiMatchInfoList;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinAccInfo;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinCharge;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinFlowInfo;
@@ -564,6 +565,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiPackUserSearch apiPackUserSearch;
+	
+	@Autowired
+	private ApiMatchInfoList apiMatchInfoList;
 
 	public ApiLiveGift getApiLiveGift() {
 		return apiLiveGift;
@@ -1115,6 +1119,10 @@ public class ApiFactory {
 
 	public ApiPackUserSearch getApiPackUserSearch() {
 		return apiPackUserSearch;
+	}
+
+	public ApiMatchInfoList getApiMatchInfoList() {
+		return apiMatchInfoList;
 	}
 
 }

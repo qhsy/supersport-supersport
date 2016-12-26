@@ -1,0 +1,40 @@
+package com.uhutu.sportcenter.z.control;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.uhutu.sportcenter.z.api.ApiFactory;
+import com.uhutu.sportcenter.z.input.ApiMatchInfoListInput;
+import com.uhutu.sportcenter.z.result.ApiMacthInfoListResult;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+/**
+ * 赛事相关
+ * 
+ * @author 逄小帅
+ *
+ */
+@RestController
+@RequestMapping(value = "/api/matchController")
+@Api(tags = "赛事相关接口")
+public class MatchController {
+
+	@Autowired
+	private ApiFactory apiFactory;
+
+	@ResponseBody
+	@RequestMapping(value = "/matchInfoList", method = RequestMethod.POST)
+	@ApiOperation(value = "赛事信息列表", notes = "赛事信息列表")
+	public ApiMacthInfoListResult matchInfoList(@RequestBody ApiMatchInfoListInput input) {
+		
+		return apiFactory.getApiMatchInfoList().api(input);
+		
+	}
+
+}
