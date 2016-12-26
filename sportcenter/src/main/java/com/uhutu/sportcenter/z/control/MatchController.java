@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiMatchInfoInput;
 import com.uhutu.sportcenter.z.input.ApiMatchInfoListInput;
+import com.uhutu.sportcenter.z.input.ApiMatchSignListInput;
+import com.uhutu.sportcenter.z.input.ApiShareMatchInfoInput;
 import com.uhutu.sportcenter.z.result.ApiMacthInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiMatchInfoResult;
+import com.uhutu.sportcenter.z.result.ApiMatchSignListResult;
+import com.uhutu.sportcenter.z.result.ApiShareMatchInfoResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -45,6 +49,24 @@ public class MatchController {
 	public ApiMatchInfoResult matchInfo(@RequestBody ApiMatchInfoInput input) {
 		
 		return apiFactory.getApiMatchInfo().api(input);
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/matchSignInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "赛事报名信息", notes = "赛事报名信息")
+	public ApiMatchSignListResult matchSignInfo(@RequestBody ApiMatchSignListInput input) {
+		
+		return apiFactory.getApiMatchSignList().api(input);
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/shareMatchInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "赛事分享信息", notes = "赛事分享信息")
+	public ApiShareMatchInfoResult shareMatchInfo(@RequestBody ApiShareMatchInfoInput input) {
+		
+		return apiFactory.getApiShareMatchInfo().api(input);
 		
 	}
 
