@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
+import com.uhutu.sportcenter.z.input.ApiMatchInfoInput;
 import com.uhutu.sportcenter.z.input.ApiMatchInfoListInput;
 import com.uhutu.sportcenter.z.result.ApiMacthInfoListResult;
+import com.uhutu.sportcenter.z.result.ApiMatchInfoResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,6 +36,15 @@ public class MatchController {
 	public ApiMacthInfoListResult matchInfoList(@RequestBody ApiMatchInfoListInput input) {
 		
 		return apiFactory.getApiMatchInfoList().api(input);
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/matchInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "赛事信息", notes = "赛事信息")
+	public ApiMatchInfoResult matchInfo(@RequestBody ApiMatchInfoInput input) {
+		
+		return apiFactory.getApiMatchInfo().api(input);
 		
 	}
 
