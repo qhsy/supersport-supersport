@@ -3,8 +3,6 @@ package com.uhutu.sportcenter.z.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.uhutu.dcom.content.z.entity.CnContentItemForApi;
-
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -19,7 +17,7 @@ public class HomePageThird {
 	private String showType = "";
 
 	@ApiModelProperty(name = "栏目信息", notes = "栏目信息", example = "栏目信息")
-	private CnContentItemForApi item = new CnContentItemForApi();
+	private CnHomeItemForApi item = new CnHomeItemForApi();
 
 	@ApiModelProperty(name = "内容信息", notes = "内容信息", example = "张嘉译拍摄《营盘镇警事》杀青新闻")
 	List<ContentBasicinfoForApi> infos = new ArrayList<ContentBasicinfoForApi>();
@@ -43,11 +41,11 @@ public class HomePageThird {
 		this.infos = infos;
 	}
 
-	public CnContentItemForApi getItem() {
+	public CnHomeItemForApi getItem() {
 		return item;
 	}
 
-	public void setItem(CnContentItemForApi item) {
+	public void setItem(CnHomeItemForApi item) {
 		this.item = item;
 	}
 

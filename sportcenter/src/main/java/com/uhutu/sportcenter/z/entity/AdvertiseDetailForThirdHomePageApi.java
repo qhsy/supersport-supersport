@@ -18,11 +18,8 @@ public class AdvertiseDetailForThirdHomePageApi {
 	@ApiModelProperty(name = "图片内容", notes = "图片内容")
 	private String name;
 
-	@ApiModelProperty(name = "图片超链接跳转类型", notes = "轮播图链接跳转类型dzsd4107100110050003:超链接,dzsd4107100110050002:内容详情页,dzsd4107100110050001:个人中心,dzsd4107100110050006:专题,dzsd4107100110050007:标签详情,dzsd4107100110050008:时刻列表,dzsd4107100110050009:问答列表,dzsd4107100110050010:活动报名,dzsd4107100110050011:直播", example = "01")
+	@ApiModelProperty(name = "图片超链接跳转类型", notes = "dzsd4107100110150001:内容详情,dzsd4107100110150002:个人主页,dzsd4107100110150003:URL,dzsd4107100110150004:标签详情,dzsd4107100110150005:赛事详情", example = "01")
 	private String piclinkType;
-
-	@ApiModelProperty(name = "文章类型(piclinkType为dzsd4107100110050002时此参数有效)", notes = "dzsd4107100110030001:文章 ,dzsd4107100110030002:文章(含视频),dzsd4107100110030003:图集(piclinkType为dzsd4107100110050002时此参数有效),dzsd4107100110030004:单图,dzsd4107100110030005:单视频", example = "dzsd4107100110030001")
-	private String type;
 
 	@ApiModelProperty(name = "图片超链接跳转内容", notes = "轮播图链接跳转内容", example = "http://www.ichsy.com")
 	private String piclinkContent;
@@ -38,6 +35,17 @@ public class AdvertiseDetailForThirdHomePageApi {
 
 	@ApiModelProperty(name = "标题", notes = "标题")
 	private String title;
+
+	@ApiModelProperty(name = "跳转类")
+	private JumpTypeData jump;
+
+	public JumpTypeData getJump() {
+		return jump;
+	}
+
+	public void setJump(JumpTypeData jump) {
+		this.jump = jump;
+	}
 
 	public UserBasicInfo getUserBasicInfo() {
 		return userBasicInfo;
@@ -109,14 +117,6 @@ public class AdvertiseDetailForThirdHomePageApi {
 
 	public void setPiclinkContent(String piclinkContent) {
 		this.piclinkContent = piclinkContent;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 }

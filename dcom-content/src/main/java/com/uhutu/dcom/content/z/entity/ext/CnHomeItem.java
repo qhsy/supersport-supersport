@@ -43,9 +43,9 @@ public class CnHomeItem extends BaseEntity {
 	private String contentTitle;
 
 	@ZooData(name = "<更多>跳转类型", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd410710011005" }, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebInc.System_Define + "=dzsd410710011015" }, sort = { DefineWebPage.Page_Query + "=0",
 					DefineWebPage.Page_Grid + "=0" })
-	@ApiModelProperty(name = "更多跳转类型", notes = "轮播图链接跳转类型dzsd4107100110050003:超链接,dzsd4107100110050002:内容详情页,dzsd4107100110050001:个人中心,dzsd4107100110050006:专题,dzsd4107100110050007:标签详情,dzsd4107100110050008:时刻列表,dzsd4107100110050009:问答列表,dzsd4107100110050010:活动报名,dzsd4107100110050011:直播")
+	@ApiModelProperty(name = "更多跳转类型", notes = "dzsd4107100110150001:内容详情,dzsd4107100110150002:个人主页,dzsd4107100110150003:URL,dzsd4107100110150004:标签详情,dzsd4107100110150005:赛事详情")
 	private String piclinkType;
 
 	@ZooData(name = "<更多>跳转参数", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
