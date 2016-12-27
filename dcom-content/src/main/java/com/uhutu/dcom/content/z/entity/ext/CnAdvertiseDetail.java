@@ -31,7 +31,7 @@ public class CnAdvertiseDetail extends BaseEntity {
 	private String picUrl;
 
 	@ZooData(name = "跳转类型", require = "1", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd410710011015" }, comment = "选择‘超链接’时,可设置分享,其它跳转类型不可分享")
+			DefineWebInc.System_Define + "=dzsd410710011015" }, comment = "选择‘URL’时,可设置分享,其它跳转类型不可分享")
 	private String piclinkType;
 
 	@ZooData(name = "跳转内容", require = "1")
