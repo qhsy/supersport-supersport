@@ -118,7 +118,7 @@
 		<item code="dzpi4514100900010006" nodeName="账户流水" parentCode="dzpi451410090001" pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UcTradeFlowPage" pageIcon="glyphicon-bullhorn" />
 		<item code="dzpi45141010" nodeName="新首页相关" parentCode="" />
 		<item code="dzpi451410100001" nodeName="首页图库" parentCode="dzpi45141010" />
-		<item code="dzpi4514101000010001" nodeName="图库" parentCode="dzpi451410100001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_AdvertiseDetailPage" pageIcon="glyphicon-picture" />
+		<item code="dzpi4514101000010001" nodeName="图库" parentCode="dzpi451410100001" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_AdvertiseDetailThirdPage" pageIcon="glyphicon-picture" />
 		<item code="dzpi451410100002" nodeName="首页内容" parentCode="dzpi45141010" />
 		<item code="dzpi4514101000020001" nodeName="推荐栏" parentCode="dzpi451410100002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_HomeItemForRecommPage" pageIcon="glyphicon-picture" />
 		<item code="dzpi4514101000020002" nodeName="两栏内容4:3" parentCode="dzpi451410100002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_HomeItemForSecond" pageIcon="glyphicon-pause" />
