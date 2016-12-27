@@ -56,6 +56,20 @@
 		<item code="dzsd4107100110110001" defineName="推荐栏" parentCode="dzsd410710011011" />
 		<item code="dzsd4107100110110002" defineName="两栏内容4:3" parentCode="dzsd410710011011" />
 		<item code="dzsd4107100110110003" defineName="一栏内容16:9" parentCode="dzsd410710011011" />
+		<item code="dzsd410710011012" defineName="赛事标签" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110120001" defineName="未开始" parentCode="dzsd410710011012" />
+		<item code="dzsd4107100110120002" defineName="报名中" parentCode="dzsd410710011012" />
+		<item code="dzsd4107100110120003" defineName="截止报名" parentCode="dzsd410710011012" />
+		<item code="dzsd4107100110120004" defineName="进行中" parentCode="dzsd410710011012" />
+		<item code="dzsd4107100110120005" defineName="正在直播" parentCode="dzsd410710011012" />
+		<item code="dzsd4107100110120006" defineName="已结束" parentCode="dzsd410710011012" />
+		<item code="dzsd410710011013" defineName="赛事状态" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110130001" defineName="未发布" parentCode="dzsd410710011013" />
+		<item code="dzsd4107100110130002" defineName="已发布" parentCode="dzsd410710011013" />
+		<item code="dzsd410710011014" defineName="赛事直播状态" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110140001" defineName="未开始" parentCode="dzsd410710011014" />
+		<item code="dzsd4107100110140002" defineName="正在直播" parentCode="dzsd410710011014" />
+		<item code="dzsd4107100110140003" defineName="直播结束" parentCode="dzsd410710011014" />
 	</data>
 
 </db>
