@@ -6,6 +6,10 @@ import javax.persistence.Index;
 import javax.persistence.Table;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebElement;
+import com.uhutu.zoocom.define.DefineWebInc;
+import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebSort;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -17,29 +21,30 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Table(indexes = { @Index(columnList = "matchCode") })
 public class CnMatchSign extends BaseEntity {
 	
-	@ZooData(name = "赛事编号")
+	@ZooData(name = "赛事编号",sort = {DefineWebPage.Page_Query + "=0",DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process })
 	@Column(length=50)
 	private String matchCode;
 	
-	@ZooData(name = "报名项目")
+	@ZooData(name = "报名项目",require = "1",sort = {DefineWebPage.Page_Query + "=0" })
 	@Column(length=50)
 	private String signCode;
 	
-	@ZooData(name = "开始时间")
+	@ZooData(name = "开始时间",require = "1", element = DefineWebElement.Datehms,sort = {DefineWebPage.Page_Query + "=0" })
 	@Column(length=30)
 	private String startTime;
 	
-	@ZooData(name = "结束时间")
+	@ZooData(name = "结束时间",require = "1", element = DefineWebElement.Datehms,sort = {DefineWebPage.Page_Query + "=0" })
 	@Column(length=30)
 	private String endTime;
 	
-	@ZooData(name = "报名链接")
+	@ZooData(name = "报名链接",sort = {DefineWebPage.Page_Query + "=0" })
 	private String signUrl;
 	
-	@ZooData(name = "位置")
+	@ZooData(name = "位置",require = "1",sort = {DefineWebPage.Page_Query + "=0" })
 	private int sort;
 	
-	@ZooData(name = "状态")
+	@ZooData(name = "状态",require = "1",sort = {DefineWebPage.Page_Query + "=0" },element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd410710011013" })
 	@Column(length=50)
 	private String status;
 

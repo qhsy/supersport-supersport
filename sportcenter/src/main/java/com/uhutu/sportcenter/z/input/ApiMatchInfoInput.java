@@ -13,6 +13,9 @@ public class ApiMatchInfoInput extends RootApiInput {
 	
 	@ApiModelProperty(value="赛事编号")
 	private String matchCode;
+	
+	@ApiModelProperty(value="宽度")
+	private int width;
 
 	public String getMatchCode() {
 		return matchCode;
@@ -20,6 +23,14 @@ public class ApiMatchInfoInput extends RootApiInput {
 
 	public void setMatchCode(String matchCode) {
 		this.matchCode = matchCode;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
 	}
 
 }

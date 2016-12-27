@@ -6,6 +6,9 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebElement;
+import com.uhutu.zoocom.define.DefineWebInc;
+import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -17,41 +20,47 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "code" }))
 public class CnMatchInfo extends BaseEntity {
 	
-	@ZooData(name = "赛事编号")
+	@ZooData(name = "赛事编号",sort={DefineWebPage.Page_Add + "=1",
+			DefineWebPage.Page_Edit + "=0" })
 	@Column(length=50)
 	private String code;
 	
-	@ZooData(name = "赛事名称")
+	@ZooData(name = "赛事名称",require = "1")
 	private String name;
 	
-	@ZooData(name = "赛事封面图")
+	@ZooData(name = "赛事封面图", element = DefineWebElement.Upload, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String cover;
 	
-	@ZooData(name = "赛事举办者")
+	@ZooData(name = "赛事举办者", require = "1", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw451010010001" })
 	@Column(length=50)
 	private String userCode;
 	
-	@ZooData(name = "开始时间")
+	@ZooData(name = "开始时间", element = DefineWebElement.Datehms, require = "1")
 	@Column(length=30)
 	private String startTime;
 	
-	@ZooData(name = "结束时间")
+	@ZooData(name = "结束时间", element = DefineWebElement.Datehms, require = "1")
 	@Column(length=30)
 	private String endTime;	
 	
-	@ZooData(name = "地点")
+	@ZooData(name = "地点",require = "1")
 	private String place;
 	
-	@ZooData(name="标签")
+	@ZooData(name = "标签", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd410710011012" })
 	private String flag;
 	
-	@ZooData(name="排序")
+	@ZooData(name="排序", require="1",sort = {DefineWebPage.Page_Query + "=0"})
 	private int sort;
 	
-	@ZooData(name="状态")
+	@ZooData(name = "状态", require = "1",sort = {DefineWebPage.Page_Query + "=0"}, element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd410710011013" })
 	private String status;
 	
-	@ZooData(name="赛事详情")
+	@ZooData(name="赛事详情",element = DefineWebElement.Upload,sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" },inc = {
+			DefineWebInc.Client_Extend + "=5" })
 	@Column(columnDefinition = "longtext")
 	private String content;
 

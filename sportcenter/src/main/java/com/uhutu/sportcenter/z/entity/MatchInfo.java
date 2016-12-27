@@ -37,7 +37,7 @@ public class MatchInfo {
 	private String name;
 	
 	@ApiModelProperty(value="赛事详情")
-	private List<String> details = new ArrayList<String>();
+	private List<String> content = new ArrayList<String>();
 
 	public UserBasicInfo getUserBasicInfo() {
 		return userBasicInfo;
@@ -101,6 +101,14 @@ public class MatchInfo {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public List<String> getContent() {
+		return content;
+	}
+
+	public void setContent(List<String> content) {
+		this.content = content;
 	}
 
 }

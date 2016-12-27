@@ -6,6 +6,10 @@ import javax.persistence.Index;
 import javax.persistence.Table;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebElement;
+import com.uhutu.zoocom.define.DefineWebInc;
+import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebSort;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
@@ -17,18 +21,19 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Table(indexes = { @Index(columnList = "matchCode") })
 public class CnMatchVideo extends BaseEntity {
 	
-	@ZooData(name = "内容编号")
+	@ZooData(name = "内容编号",sort = {DefineWebPage.Page_Query + "=0",DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process })
 	@Column(length=50)
 	private String matchCode;
 	
-	@ZooData(name = "内容")
+	@ZooData(name = "内容",element = DefineWebElement.Model, sort ={DefineWebPage.Page_Query + "=0"}, inc = {DefineWebInc.Web_Component + "=dzcw410710010002" })
 	@Column(length=50)
 	private String contentCode;
 	
-	@ZooData(name = "自定义封面")
+	@ZooData(name = "自定义封面", element = DefineWebElement.Upload, sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String cover;
 	
-	@ZooData(name = "位置")
+	@ZooData(name = "位置",require = "1",sort ={DefineWebPage.Page_Query + "=0"})
 	private int sort;
 
 	public String getMatchCode() {

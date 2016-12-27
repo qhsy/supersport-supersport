@@ -15,6 +15,12 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class ApiMatchSignListResult extends RootApiResult {
 	
+	@ApiModelProperty(value="赛事编号")
+	private String matchCode;
+	
+	@ApiModelProperty(value="赛事名称")
+	private String matchName;
+	
 	@ApiModelProperty(value="赛事报名信息列表")
 	private List<MatchSignInfo> matchSignInfos = new ArrayList<MatchSignInfo>();
 	
@@ -35,6 +41,22 @@ public class ApiMatchSignListResult extends RootApiResult {
 
 	public void setRedirectFlag(boolean redirectFlag) {
 		this.redirectFlag = redirectFlag;
+	}
+
+	public String getMatchCode() {
+		return matchCode;
+	}
+
+	public void setMatchCode(String matchCode) {
+		this.matchCode = matchCode;
+	}
+
+	public String getMatchName() {
+		return matchName;
+	}
+
+	public void setMatchName(String matchName) {
+		this.matchName = matchName;
 	}
 
 }

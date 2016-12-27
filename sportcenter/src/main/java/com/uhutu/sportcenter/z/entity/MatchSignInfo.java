@@ -9,12 +9,6 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class MatchSignInfo {
 	
-	@ApiModelProperty(value="赛事编号")
-	private String matchCode;
-	
-	@ApiModelProperty(value="赛事名称")
-	private String matchName;
-	
 	@ApiModelProperty(value="报名编号")
 	private String signCode;
 	
@@ -23,22 +17,6 @@ public class MatchSignInfo {
 	
 	@ApiModelProperty(value="报名价格")
 	private String signPrice;
-
-	public String getMatchCode() {
-		return matchCode;
-	}
-
-	public void setMatchCode(String matchCode) {
-		this.matchCode = matchCode;
-	}
-
-	public String getMatchName() {
-		return matchName;
-	}
-
-	public void setMatchName(String matchName) {
-		this.matchName = matchName;
-	}
 
 	public String getSignCode() {
 		return signCode;

@@ -34,5 +34,7 @@ public enum PrexEnum {
     /**金币操作流水*/
     GCOF,
     /**账户操作流水*/
-    ACCF;
+    ACCF,
+    /**赛事编号*/
+    MH;
 }
