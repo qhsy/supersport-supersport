@@ -70,7 +70,7 @@ public class AdvertiseDetailPageFuncAdd extends RootFunc {
 		}
 
 		JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), mInsertMap);
-		if ("dzsd4107100110050003".equals(input.getDataMap().get("piclink_type"))) {
+		if ("dzsd4107100110050003".equals(input.getDataMap().get("piclink_type"))||"dzsd4107100110150003".equals(input.getDataMap().get("piclink_type"))) {
 			CnShareInfo shareInfo = new CnShareInfo();
 			shareInfo.setCode(mInsertMap.get("code"));
 			shareInfo.setStatus("0");

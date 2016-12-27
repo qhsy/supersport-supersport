@@ -59,6 +59,20 @@ public class AdvertiseDetailPageFuncEdit extends RootFunc {
 			shareInfo.setCode(input.getDataMap().get("code"));
 			shareInfo.setStatus("0");
 			JdbcHelper.insert(shareInfo);
+		}else if ((!"dzsd4107100110150003".equals(input.getDataMap().get("piclink_type"))
+				&& "dzsd4107100110150003".equals(detail.getPiclinkType()))
+				|| (!"dzsd4107100110150003".equals(input.getDataMap().get("piclink_type")) && share != null)) {
+			MDataMap delMap = new MDataMap();
+			delMap.put("code", input.getDataMap().get("code"));
+			JdbcHelper.dataDelete("CnShareInfo", delMap);
+		} else if (("dzsd4107100110150003".equals(input.getDataMap().get("piclink_type"))
+				&& !"dzsd4107100110150003".equals(detail.getPiclinkType()))
+				|| ("dzsd4107100110150003".equals(input.getDataMap().get("piclink_type"))
+						&& "dzsd4107100110150003".equals(detail.getPiclinkType()) && share == null)) {
+			CnShareInfo shareInfo = new CnShareInfo();
+			shareInfo.setCode(input.getDataMap().get("code"));
+			shareInfo.setStatus("0");
+			JdbcHelper.insert(shareInfo);
 		}
 		return result;
 	}
