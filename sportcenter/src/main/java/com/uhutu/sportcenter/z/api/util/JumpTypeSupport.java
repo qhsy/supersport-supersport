@@ -47,11 +47,10 @@ public class JumpTypeSupport {
 					}
 				}
 			}
-		} else {
-			result.setJumpType(jumpType != null ? jumpType : "");
-			result.setJumpContent(jumpContent != null ? jumpContent : "");
-			result.setJumpTitle(jumpTitle != null ? jumpTitle : "");
 		}
+		result.setJumpType(jumpType != null ? jumpType : "");
+		result.setJumpContent(jumpContent != null ? jumpContent : "");
+		result.setJumpTitle(jumpTitle != null ? jumpTitle : "");
 
 		return result;
 	}
