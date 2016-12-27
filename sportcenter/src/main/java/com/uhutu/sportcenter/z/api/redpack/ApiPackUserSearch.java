@@ -54,7 +54,7 @@ public class ApiPackUserSearch extends RootApiToken<ApiPackUserSearchInput, ApiP
 			
 			if(StringUtils.isNotBlank(userInfoExt.getNickName())){
 				
-				nickName = EmojiUtil.emojiRecovery(nickName);
+				nickName = EmojiUtil.emojiRecovery(userInfoExt.getNickName());
 				
 			}
 			
