@@ -1,5 +1,5 @@
 #org.springsource.ide.eclipse.gradle.core.preferences.GradleProjectPreferences
-#Thu May 12 09:31:53 CST 2016
-build.family.org.gradle.tooling.model.eclipse.HierarchicalEclipseProject=;../dcom-component;../dcom-config;../dcom-content;../dcom-extend;../dcom-remark;../dcom-tag;../dcom-user;../sportcenter;../sportstatic;
+#Fri Dec 09 15:52:43 CST 2016
+build.family.org.gradle.tooling.model.eclipse.HierarchicalEclipseProject=;../dcom-activity;../dcom-answer;../dcom-component;../dcom-config;../dcom-content;../dcom-course;../dcom-evaluate;../dcom-extend;../dcom-order;../dcom-pay;../dcom-remark;../dcom-tag;../dcom-user;../sportcenter;../sportstatic;
 org.springsource.ide.eclipse.gradle.linkedresources=
 org.springsource.ide.eclipse.gradle.rootprojectloc=
