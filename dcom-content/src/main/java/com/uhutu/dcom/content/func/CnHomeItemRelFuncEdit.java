@@ -8,7 +8,7 @@ import com.uhutu.dcom.content.z.entity.CnAdvertiseDetail;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnHomeItem;
 import com.uhutu.dcom.content.z.entity.CnHomeItemRel;
-import com.uhutu.dcom.content.z.entity.CnHomeNavMenu;
+import com.uhutu.dcom.content.z.entity.CnMatchInfo;
 import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
@@ -30,48 +30,60 @@ public class CnHomeItemRelFuncEdit extends RootFunc {
 						.after(DateHelper.parseDate(input.getDataMap().get("end_time")))) {
 			result.inError(810710004);
 		}
-		if (result.upFlagTrue()) {
-			CnHomeItem item = JdbcHelper.queryOne(CnHomeItem.class, "code", input.getDataMap().get("item_code"));
-			CnContentBasicinfo binfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
-					input.getDataMap().get("content_code"));
-			CnAdvertiseDetail ainfo = JdbcHelper.queryOne(CnAdvertiseDetail.class, "code",
-					input.getDataMap().get("content_code"));
-			CnHomeNavMenu cnavinfo = JdbcHelper.queryOne(CnHomeNavMenu.class, "code",
-					input.getDataMap().get("content_code"));
-			if ((item != null && ainfo != null) || (item != null && binfo != null)
-					|| (item != null && cnavinfo != null)) {
-				// 根据栏目类型做校验
-				result = check(item.getType(), input.getDataMap().get("item_code"),
-						input.getDataMap().get("content_code"), input.getDataMap().get("start_time"),
-						input.getDataMap().get("end_time"), input.getDataMap().get("za"));
-				if (result.upFlagTrue()) {
-					CnHomeItemRel relInfo = new CnHomeItemRel();
-					relInfo.setContentCode(input.getDataMap().get("content_code"));
-					relInfo.setItemCode(input.getDataMap().get("item_code"));
-					relInfo.setItemType(item.getType());
-					relInfo.setCover(input.getDataMap().get("cover"));
-					relInfo.setSort(Integer.valueOf(input.getDataMap().get("sort")));
-					relInfo.setZa(input.getDataMap().get("za"));
-					relInfo.setLabelName(input.getDataMap().get("label_name"));
-					relInfo.setTitle(input.getDataMap().get("title"));
-					relInfo.setAuthor(input.getDataMap().get("author"));
-					relInfo.setStartTime(input.getDataMap().get("start_time"));
-					relInfo.setEndTime(input.getDataMap().get("end_time"));
-					relInfo.setRemark(input.getDataMap().get("remark"));
-					JdbcHelper.update(relInfo,
-							"itemCode,contentCode,itemType,cover,sort,title,start_time,end_time,remark", "za");
-				}
+		if ((StringUtils.isBlank(input.getDataMap().get("content_code"))
+				&& StringUtils.isNotBlank(input.getDataMap().get("match_code")))
+				|| (StringUtils.isBlank(input.getDataMap().get("match_code"))
+						&& StringUtils.isNotBlank(input.getDataMap().get("content_code")))) {
+			if (result.upFlagTrue()) {
+				CnHomeItem item = JdbcHelper.queryOne(CnHomeItem.class, "", "",
+						"code='" + input.getDataMap().get("item_code") + "'", null);
+				CnContentBasicinfo binfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "", "",
+						"code='" + input.getDataMap().get("content_code") + "'", null);
+				CnAdvertiseDetail ainfo = JdbcHelper.queryOne(CnAdvertiseDetail.class, "", "",
+						"code='" + input.getDataMap().get("content_code") + "'", null);
+				CnMatchInfo minfo = JdbcHelper.queryOne(CnMatchInfo.class, "", "",
+						"code='" + input.getDataMap().get("match_code") + "'", null);
+				if ((item != null && ainfo != null) || (item != null && binfo != null)
+						|| (item != null && minfo != null)) {
+					// 根据栏目类型做校验
+					result = check(item.getType(), input.getDataMap().get("item_code"),
+							input.getDataMap().get("content_code"), input.getDataMap().get("match_code"),
+							input.getDataMap().get("start_time"), input.getDataMap().get("end_time"),
+							input.getDataMap().get("za"));
+					if (result.upFlagTrue()) {
+						CnHomeItemRel relInfo = new CnHomeItemRel();
+						relInfo.setContentCode(input.getDataMap().get("content_code"));
+						relInfo.setMatchCode(input.getDataMap().get("match_code"));
+						relInfo.setItemCode(input.getDataMap().get("item_code"));
+						relInfo.setItemType(item.getType());
+						relInfo.setCover(input.getDataMap().get("cover"));
+						relInfo.setSort(Integer.valueOf(input.getDataMap().get("sort")));
+						relInfo.setZa(input.getDataMap().get("za"));
+						relInfo.setLabelName(input.getDataMap().get("label_name"));
+						relInfo.setTitle(input.getDataMap().get("title"));
+						relInfo.setAuthor(input.getDataMap().get("author"));
+						relInfo.setStartTime(input.getDataMap().get("start_time"));
+						relInfo.setEndTime(input.getDataMap().get("end_time"));
+						relInfo.setRemark(input.getDataMap().get("remark"));
+						JdbcHelper.update(relInfo,
+								"itemCode,contentCode,matchCode,itemType,cover,sort,title,start_time,end_time,remark",
+								"za");
+					}
 
-			} else if (item == null || binfo == null || ainfo == null) {
-				result.setStatus(810710001);
-				result.setError(TopHelper.upInfo(810710001));
+				} else if (item == null || binfo == null || ainfo == null || minfo == null) {
+					result.setStatus(810710001);
+					result.setError(TopHelper.upInfo(810710001));
+				}
 			}
+		} else {
+			result.setStatus(0);
+			result.setError("赛事 or 内容 只能选一个！");
 		}
 		return result;
 	}
 
-	private WebOperateResult check(String itemType, String itemCode, String contentCode, String startTime,
-			String endTime, String za) {
+	private WebOperateResult check(String itemType, String itemCode, String contentCode, String matchCode,
+			String startTime, String endTime, String za) {
 		WebOperateResult result = new WebOperateResult();
 		// 一个栏目下同一轮播图时间不可重叠
 		if ("dzsd4107100110110001".equals(itemType)) {
@@ -92,10 +104,11 @@ public class CnHomeItemRelFuncEdit extends RootFunc {
 		} else if (StringUtils.isNotBlank(itemType)) {// 同一栏目下，内容只可关联一次
 			MDataMap relMap = new MDataMap();
 			relMap.put("itemCode", itemCode);
-			relMap.put("contentCode", contentCode);
 			relMap.put("za", za);
+			String sql = (StringUtils.isNoneBlank(contentCode) ? "and contentCode='" + contentCode + "'" : "")
+					+ (StringUtils.isNoneBlank(matchCode) ? "and matchCode='" + matchCode + "'" : "");
 			List<CnHomeItemRel> rel = JdbcHelper.queryForList(CnHomeItemRel.class, "", "",
-					" itemCode=:itemCode and contentCode=:contentCode and za!=:za ", relMap);
+					" itemCode=:itemCode " + sql + " and za!=:za ", relMap);
 			if (rel != null && rel.size() > 0) {
 				result.inError(810710002);
 			}

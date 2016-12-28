@@ -8,6 +8,7 @@ import com.uhutu.dcom.content.z.entity.CnAdvertiseDetail;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnHomeItem;
 import com.uhutu.dcom.content.z.entity.CnHomeItemRel;
+import com.uhutu.dcom.content.z.entity.CnMatchInfo;
 import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
@@ -29,43 +30,56 @@ public class CnHomeItemRelFuncAdd extends RootFunc {
 						.after(DateHelper.parseDate(input.getDataMap().get("end_time")))) {
 			result.inError(810710004);
 		}
-		if (result.upFlagTrue()) {
-			// 取基本信息
-			CnHomeItem item = JdbcHelper.queryOne(CnHomeItem.class, "code", input.getDataMap().get("item_code"));
-			CnContentBasicinfo binfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
-					input.getDataMap().get("content_code"));
-			CnAdvertiseDetail ainfo = JdbcHelper.queryOne(CnAdvertiseDetail.class, "code",
-					input.getDataMap().get("content_code"));
-			if ((item != null && ainfo != null) || (item != null && binfo != null)) {
-				// 根据栏目类型做校验
-				result = check(item.getType(), input.getDataMap().get("item_code"),
-						input.getDataMap().get("content_code"), input.getDataMap().get("start_time"),
-						input.getDataMap().get("end_time"));
-				if (result.upFlagTrue()) {
-					CnHomeItemRel relInfo = new CnHomeItemRel();
-					relInfo.setContentCode(input.getDataMap().get("content_code"));
-					relInfo.setItemCode(input.getDataMap().get("item_code"));
-					relInfo.setItemType(item.getType());
-					relInfo.setCover(input.getDataMap().get("cover"));
-					relInfo.setLabelName(input.getDataMap().get("label_name"));
-					relInfo.setTitle(input.getDataMap().get("title"));
-					relInfo.setAuthor(input.getDataMap().get("author"));
-					relInfo.setSort(Integer.valueOf(input.getDataMap().get("sort")));
-					relInfo.setStartTime(input.getDataMap().get("start_time"));
-					relInfo.setEndTime(input.getDataMap().get("end_time"));
-					relInfo.setRemark(input.getDataMap().get("remark"));
-					JdbcHelper.insert(relInfo);
+		if ((StringUtils.isBlank(input.getDataMap().get("content_code"))
+				&& StringUtils.isNotBlank(input.getDataMap().get("match_code")))
+				|| (StringUtils.isBlank(input.getDataMap().get("match_code"))
+						&& StringUtils.isNotBlank(input.getDataMap().get("content_code")))) {
+			if (result.upFlagTrue()) {
+				// 取基本信息
+				CnHomeItem item = JdbcHelper.queryOne(CnHomeItem.class, "", "",
+						"code='" + input.getDataMap().get("item_code") + "'", null);
+				CnContentBasicinfo binfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "", "",
+						"code='" + input.getDataMap().get("content_code") + "'", null);
+				CnAdvertiseDetail ainfo = JdbcHelper.queryOne(CnAdvertiseDetail.class, "", "",
+						"code='" + input.getDataMap().get("content_code") + "'", null);
+				CnMatchInfo minfo = JdbcHelper.queryOne(CnMatchInfo.class, "", "",
+						"code='" + input.getDataMap().get("match_code") + "'", null);
+				if ((item != null && ainfo != null) || (item != null && binfo != null)
+						|| (item != null && minfo != null)) {
+					// 根据栏目类型做校验
+					result = check(item.getType(), input.getDataMap().get("item_code"),
+							input.getDataMap().get("content_code"), input.getDataMap().get("match_code"),
+							input.getDataMap().get("start_time"), input.getDataMap().get("end_time"));
+					if (result.upFlagTrue()) {
+						CnHomeItemRel relInfo = new CnHomeItemRel();
+						relInfo.setContentCode(input.getDataMap().get("content_code"));
+						relInfo.setMatchCode(input.getDataMap().get("match_code"));
+						relInfo.setItemCode(input.getDataMap().get("item_code"));
+						relInfo.setItemType(item.getType());
+						relInfo.setCover(input.getDataMap().get("cover"));
+						relInfo.setLabelName(input.getDataMap().get("label_name"));
+						relInfo.setTitle(input.getDataMap().get("title"));
+						relInfo.setAuthor(input.getDataMap().get("author"));
+						relInfo.setSort(Integer.valueOf(input.getDataMap().get("sort")));
+						relInfo.setStartTime(input.getDataMap().get("start_time"));
+						relInfo.setEndTime(input.getDataMap().get("end_time"));
+						relInfo.setRemark(input.getDataMap().get("remark"));
+						JdbcHelper.insert(relInfo);
+					}
+				} else {
+					result.setStatus(810710001);
+					result.setError(TopHelper.upInfo(810710001));
 				}
-			} else {
-				result.setStatus(810710001);
-				result.setError(TopHelper.upInfo(810710001));
 			}
+		} else {
+			result.setStatus(0);
+			result.setError("赛事 or 内容 只能选一个！");
 		}
 		return result;
 	}
 
-	private WebOperateResult check(String itemType, String itemCode, String contentCode, String startTime,
-			String endTime) {
+	private WebOperateResult check(String itemType, String itemCode, String contentCode, String matchCode,
+			String startTime, String endTime) {
 		WebOperateResult result = new WebOperateResult();
 		// 一个栏目下同一轮播图时间不可重叠
 		if ("dzsd4107100110110001".equals(itemType)) {
@@ -85,9 +99,10 @@ public class CnHomeItemRelFuncAdd extends RootFunc {
 		} else if (StringUtils.isNotBlank(itemType)) {// 同一栏目下，内容只可关联一次
 			MDataMap relMap = new MDataMap();
 			relMap.put("itemCode", itemCode);
-			relMap.put("contentCode", contentCode);
-			List<CnHomeItemRel> rel = JdbcHelper.queryForList(CnHomeItemRel.class, "", "",
-					" itemCode=:itemCode and contentCode=:contentCode ", relMap);
+			String sql = (StringUtils.isNoneBlank(contentCode) ? "and contentCode='" + contentCode + "'" : "")
+					+ (StringUtils.isNoneBlank(matchCode) ? "and matchCode='" + matchCode + "'" : "");
+			List<CnHomeItemRel> rel = JdbcHelper.queryForList(CnHomeItemRel.class, "", "", " itemCode=:itemCode " + sql,
+					relMap);
 			if (rel != null && rel.size() > 0) {
 				result.inError(810710002);
 			}

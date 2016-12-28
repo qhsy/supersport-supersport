@@ -20,7 +20,7 @@ public class HomePageThird {
 	private CnHomeItemForApi item = new CnHomeItemForApi();
 
 	@ApiModelProperty(name = "内容信息", notes = "内容信息", example = "张嘉译拍摄《营盘镇警事》杀青新闻")
-	List<ContentBasicinfoForApi> infos = new ArrayList<ContentBasicinfoForApi>();
+	List<HomeContent> infos = new ArrayList<HomeContent>();
 
 	@ApiModelProperty(name = "推荐信息", notes = "推荐信息")
 	List<AdvertiseDetailForThirdHomePageApi> recommens = new ArrayList<AdvertiseDetailForThirdHomePageApi>();
@@ -33,11 +33,11 @@ public class HomePageThird {
 		this.showType = showType;
 	}
 
-	public List<ContentBasicinfoForApi> getInfos() {
+	public List<HomeContent> getInfos() {
 		return infos;
 	}
 
-	public void setInfos(List<ContentBasicinfoForApi> infos) {
+	public void setInfos(List<HomeContent> infos) {
 		this.infos = infos;
 	}
 

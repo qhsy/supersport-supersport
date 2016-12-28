@@ -7,7 +7,7 @@ import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoocom.root.RootPageSimple;
 import com.uhutu.zooweb.define.DefineZooWeb;
 
-@ZooPage(name = "两栏内容4:3", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = { DefineZooWeb.PAGE_DEFAULT_OPERATE,
+@ZooPage(name = "一栏16:9", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = { DefineZooWeb.PAGE_DEFAULT_OPERATE,
 		DefineWebPage.Page_Add + "=dzoi41071088", DefineWebPage.Page_Edit + "=dzoi41071089",
 		DefineWebPage.Page_Grid + "=dzoi469910011009,dzoi41071094,dzoi41071095" }, deploy = {
 				DefineWebDeploy.Grid_Order + "= DATE_FORMAT(start_time,'%Y-%m-%d') desc,sort desc,zc desc",
