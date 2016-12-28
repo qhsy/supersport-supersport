@@ -26,6 +26,9 @@ public class MatchLiveInfo {
 	
 	@ApiModelProperty(value="赛事编号")
 	private String matchCode;
+	
+	@ApiModelProperty(value="跳转数据")
+	private JumpTypeData jumpTypeData;
 
 	public String getLiveCode() {
 		return liveCode;
@@ -73,6 +76,14 @@ public class MatchLiveInfo {
 
 	public void setStatusName(String statusName) {
 		this.statusName = statusName;
+	}
+
+	public JumpTypeData getJumpTypeData() {
+		return jumpTypeData;
+	}
+
+	public void setJumpTypeData(JumpTypeData jumpTypeData) {
+		this.jumpTypeData = jumpTypeData;
 	}
 
 }

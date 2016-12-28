@@ -25,17 +25,9 @@ public class CnMatchSign extends BaseEntity {
 	@Column(length=50)
 	private String matchCode;
 	
-	@ZooData(name = "报名项目",require = "1",sort = {DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "报名项目",element = DefineWebElement.Model,inc = {DefineWebInc.Web_Component + "=dzcw410710010021" },require = "1",sort = {DefineWebPage.Page_Query + "=0" })
 	@Column(length=50)
 	private String signCode;
-	
-	@ZooData(name = "开始时间",require = "1", element = DefineWebElement.Datehms,sort = {DefineWebPage.Page_Query + "=0" })
-	@Column(length=30)
-	private String startTime;
-	
-	@ZooData(name = "结束时间",require = "1", element = DefineWebElement.Datehms,sort = {DefineWebPage.Page_Query + "=0" })
-	@Column(length=30)
-	private String endTime;
 	
 	@ZooData(name = "报名链接",sort = {DefineWebPage.Page_Query + "=0" })
 	private String signUrl;
@@ -62,22 +54,6 @@ public class CnMatchSign extends BaseEntity {
 
 	public void setSignCode(String signCode) {
 		this.signCode = signCode;
-	}
-
-	public String getStartTime() {
-		return startTime;
-	}
-
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
-
-	public String getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
 	}
 
 	public String getSignUrl() {

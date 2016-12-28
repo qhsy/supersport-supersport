@@ -11,9 +11,13 @@ import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnMatchInfo;
 import com.uhutu.dcom.content.z.entity.CnMatchLive;
+import com.uhutu.dcom.content.z.entity.CnMatchSign;
 import com.uhutu.dcom.content.z.entity.CnMatchVideo;
+import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
+import com.uhutu.sportcenter.z.api.util.JumpTypeSupport;
 import com.uhutu.sportcenter.z.api.util.MatchComponent;
+import com.uhutu.sportcenter.z.entity.JumpTypeData;
 import com.uhutu.sportcenter.z.entity.MatchInfo;
 import com.uhutu.sportcenter.z.entity.MatchLiveInfo;
 import com.uhutu.sportcenter.z.entity.MatchVidoInfo;
@@ -121,6 +125,10 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 			
 			matchLiveInfo.setStatusName(MatchComponent.getInstance().initFlagName(cnMatchLive.getStatus()));
 			
+			JumpTypeData jumpTypeData = new JumpTypeSupport().getData("dzsd4107100110150001", cnMatchLive.getLiveCode(), "");
+			
+			matchLiveInfo.setJumpTypeData(jumpTypeData);
+			
 			matchLiveInfos.add(matchLiveInfo);
 			
 			
@@ -166,6 +174,9 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 				
 			}
 			
+			JumpTypeData jumpTypeData = new JumpTypeSupport().getData("dzsd4107100110150001", matchVideoInfo.getContentCode(), "");
+			
+			matchVideoInfo.setJumpTypeData(jumpTypeData);
 			
 			matchVideoInfo.setCover(cover);
 
@@ -175,6 +186,37 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 
 		return matchVidoInfos;
 
+	}
+	
+	public void initMatchSign(String matchCode,ApiMatchInfoResult result){
+		
+		MDataMap mWhereMap = new MDataMap();
+		
+		mWhereMap.put("matchCode", matchCode);
+		
+		mWhereMap.put("status", ContentEnum.MATCH_PUB.getCode());
+		
+		List<CnMatchSign> matchSigns = JdbcHelper.queryForList(CnMatchSign.class, "", "zc desc,sort desc", "", mWhereMap);
+		
+		if(matchSigns.size() == 0){
+			
+			result.setSignUrl("");
+			
+		}
+		
+		if(matchSigns.size() == 1){
+			
+			
+			
+		}
+		
+		if(matchSigns.size() >= 1){
+			
+			
+			
+		}
+		
+		
 	}
 
 }

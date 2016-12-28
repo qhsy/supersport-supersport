@@ -23,6 +23,9 @@ public class MatchVidoInfo {
 	
 	@ApiModelProperty(value="作者")
 	private UserBasicInfo userBasicInfo = new UserBasicInfo();
+	
+	@ApiModelProperty(value="跳转数据")
+	private JumpTypeData jumpTypeData;
 
 	public String getContentCode() {
 		return contentCode;
@@ -62,6 +65,14 @@ public class MatchVidoInfo {
 
 	public void setUserBasicInfo(UserBasicInfo userBasicInfo) {
 		this.userBasicInfo = userBasicInfo;
+	}
+
+	public JumpTypeData getJumpTypeData() {
+		return jumpTypeData;
+	}
+
+	public void setJumpTypeData(JumpTypeData jumpTypeData) {
+		this.jumpTypeData = jumpTypeData;
 	}
 	
 	

@@ -28,6 +28,9 @@ public class ApiMatchInfoResult extends RootApiResult {
 	
 	@ApiModelProperty(value="报名链接")
 	private String signUrl = "";
+	
+	@ApiModelProperty(value="是否直接报名")
+	private boolean redirectFlag = false;
 
 	public MatchInfo getMatchInfo() {
 		return matchInfo;
@@ -59,6 +62,14 @@ public class ApiMatchInfoResult extends RootApiResult {
 
 	public void setSignUrl(String signUrl) {
 		this.signUrl = signUrl;
+	}
+
+	public boolean isRedirectFlag() {
+		return redirectFlag;
+	}
+
+	public void setRedirectFlag(boolean redirectFlag) {
+		this.redirectFlag = redirectFlag;
 	}
 	
 
