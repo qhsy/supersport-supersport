@@ -22,10 +22,7 @@ public class ApiMatchSignListResult extends RootApiResult {
 	private String matchName;
 	
 	@ApiModelProperty(value="赛事报名信息列表")
-	private List<MatchSignInfo> matchSignInfos = new ArrayList<MatchSignInfo>();
-	
-	@ApiModelProperty(value="跳转标识")
-	private boolean redirectFlag = false;
+	private List<MatchSignInfo> matchSignInfos = new ArrayList<MatchSignInfo>();	
 
 	public List<MatchSignInfo> getMatchSignInfos() {
 		return matchSignInfos;
@@ -33,14 +30,6 @@ public class ApiMatchSignListResult extends RootApiResult {
 
 	public void setMatchSignInfos(List<MatchSignInfo> matchSignInfos) {
 		this.matchSignInfos = matchSignInfos;
-	}
-
-	public boolean isRedirectFlag() {
-		return redirectFlag;
-	}
-
-	public void setRedirectFlag(boolean redirectFlag) {
-		this.redirectFlag = redirectFlag;
 	}
 
 	public String getMatchCode() {

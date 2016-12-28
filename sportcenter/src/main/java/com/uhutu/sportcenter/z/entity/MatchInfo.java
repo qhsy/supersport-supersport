@@ -3,8 +3,6 @@ package com.uhutu.sportcenter.z.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.uhutu.zooweb.io.ImageThumb;
-
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -45,7 +43,7 @@ public class MatchInfo {
 	private String content;
 	
 	@ApiModelProperty(value="赛事详情列表")
-	private List<ImageThumb> details = new ArrayList<ImageThumb>();
+	private List<MatchDetailInfo> details = new ArrayList<MatchDetailInfo>();
 	
 	@ApiModelProperty(value="关注标识")
 	private boolean attendFlag = false;
@@ -122,11 +120,11 @@ public class MatchInfo {
 		this.attendFlag = attendFlag;
 	}
 
-	public List<ImageThumb> getDetails() {
+	public List<MatchDetailInfo> getDetails() {
 		return details;
 	}
 
-	public void setDetails(List<ImageThumb> details) {
+	public void setDetails(List<MatchDetailInfo> details) {
 		this.details = details;
 	}
 

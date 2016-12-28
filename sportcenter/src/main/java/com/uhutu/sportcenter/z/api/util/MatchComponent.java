@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
+import com.uhutu.sportcenter.z.entity.MatchDetailInfo;
 import com.uhutu.sportcenter.z.entity.UserBasicInfo;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.helper.ImageHelper;
@@ -77,9 +78,9 @@ public class MatchComponent {
 
 	}
 
-	public List<ImageThumb> initDetails(String content, int iWidth) {
+	public List<MatchDetailInfo> initDetails(String content, int iWidth) {
 
-		List<ImageThumb> thumbs = new ArrayList<ImageThumb>();
+		List<MatchDetailInfo> thumbs = new ArrayList<MatchDetailInfo>();
 
 		if (StringUtils.isNotEmpty(content)) {
 
@@ -88,8 +89,16 @@ public class MatchComponent {
 			for (String arg : args) {
 
 				if (StringUtils.isNotEmpty(arg)) {
+					
+					ImageThumb imageThumb = ImageHelper.upThumbWithHeight(arg, iWidth);
+					
+					MatchDetailInfo detailInfo = new MatchDetailInfo();
+					
+					detailInfo.setImageUrl(imageThumb.getThumbUrl());
+					
+					detailInfo.setImageWh(imageThumb.getThumbWidth()+"*"+imageThumb.getThumbHeight());
 
-					thumbs.add(ImageHelper.upThumbWithHeight(arg, iWidth));
+					thumbs.add(detailInfo);
 
 				}
 
