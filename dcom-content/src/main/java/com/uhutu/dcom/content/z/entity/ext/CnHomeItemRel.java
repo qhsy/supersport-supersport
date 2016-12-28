@@ -28,15 +28,17 @@ public class CnHomeItemRel extends BaseEntity {
 					DefineWebInc.System_Define + "=dzsd410710011011" })
 	private String itemType;
 
-	@ZooData(name = "内容", require = "1", element = DefineWebElement.Model, inc = {
-			DefineWebInc.Web_Component + "=dzcw410710010002" })
+	@ZooData(name = "内容", element = DefineWebElement.Model, inc = { DefineWebInc.Web_Component + "=dzcw410710010002" })
 	private String contentCode;
+
+	@ZooData(name = "赛事", element = DefineWebElement.Model, inc = { DefineWebInc.Web_Component + "=dzcw410710010020" })
+	private String matchCode;
 
 	@ZooData(name = "标签", verify = { DefineWebVerify.Max_Length + "=10" }, sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String labelName;
 
-	@ZooData(name = "自定义标题", require = "1", verify = { DefineWebVerify.Max_Length + "=50" })
+	@ZooData(name = "自定义标题", verify = { DefineWebVerify.Max_Length + "=50" })
 	@ApiModelProperty(name = "标题", notes = "标题")
 	private String title;
 
@@ -44,7 +46,7 @@ public class CnHomeItemRel extends BaseEntity {
 			DefineWebPage.Page_Grid + "=0" })
 	private String cover;
 
-	@ZooData(name = "内容作者", require = "1", element = DefineWebElement.Model, inc = {
+	@ZooData(name = "内容作者", element = DefineWebElement.Model, inc = {
 			DefineWebInc.Web_Component + "=dzcw451010010001" })
 	private String author;
 
@@ -148,6 +150,14 @@ public class CnHomeItemRel extends BaseEntity {
 
 	public void setCover(String cover) {
 		this.cover = cover;
+	}
+
+	public String getMatchCode() {
+		return matchCode;
+	}
+
+	public void setMatchCode(String matchCode) {
+		this.matchCode = matchCode;
 	}
 
 }

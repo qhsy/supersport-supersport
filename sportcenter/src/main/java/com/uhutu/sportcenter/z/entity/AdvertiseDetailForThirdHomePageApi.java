@@ -27,8 +27,8 @@ public class AdvertiseDetailForThirdHomePageApi {
 	@ApiModelProperty(name = "跳转后标题", notes = "跳转后标题", example = "http://www.ichsy.com")
 	private String contentTitle;
 
-	@ApiModelProperty(value = "作者基本信息")
-	private UserBasicInfo userBasicInfo = new UserBasicInfo();
+	@ApiModelProperty(value = "昵称")
+	private String nick_name;
 
 	@ApiModelProperty(name = "标签", notes = "标签")
 	private String labelName;
@@ -47,12 +47,12 @@ public class AdvertiseDetailForThirdHomePageApi {
 		this.jump = jump;
 	}
 
-	public UserBasicInfo getUserBasicInfo() {
-		return userBasicInfo;
+	public String getNick_name() {
+		return nick_name;
 	}
 
-	public void setUserBasicInfo(UserBasicInfo userBasicInfo) {
-		this.userBasicInfo = userBasicInfo;
+	public void setNick_name(String nick_name) {
+		this.nick_name = nick_name;
 	}
 
 	public String getLabelName() {
