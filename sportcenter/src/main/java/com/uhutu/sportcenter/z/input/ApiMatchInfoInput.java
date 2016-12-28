@@ -11,11 +11,14 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class ApiMatchInfoInput extends RootApiInput {
 	
-	@ApiModelProperty(value="赛事编号")
+	@ApiModelProperty(value="赛事编号",required=true)
 	private String matchCode;
 	
-	@ApiModelProperty(value="宽度")
+	@ApiModelProperty(value="封面宽度")
 	private int width;
+	
+	@ApiModelProperty(value="详情宽度")
+	private int detailWidth;
 
 	public String getMatchCode() {
 		return matchCode;
@@ -31,6 +34,14 @@ public class ApiMatchInfoInput extends RootApiInput {
 
 	public void setWidth(int width) {
 		this.width = width;
+	}
+
+	public int getDetailWidth() {
+		return detailWidth;
+	}
+
+	public void setDetailWidth(int detailWidth) {
+		this.detailWidth = detailWidth;
 	}
 
 }

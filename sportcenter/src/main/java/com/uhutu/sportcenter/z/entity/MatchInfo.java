@@ -3,6 +3,8 @@ package com.uhutu.sportcenter.z.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.uhutu.zooweb.io.ImageThumb;
+
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -33,11 +35,20 @@ public class MatchInfo {
 	@ApiModelProperty(value="赛事标识")
 	private String flag;
 	
+	@ApiModelProperty(value="赛事标识")
+	private String flagName;
+	
 	@ApiModelProperty(value="赛事名称")
 	private String name;
 	
 	@ApiModelProperty(value="赛事详情")
-	private List<String> content = new ArrayList<String>();
+	private String content;
+	
+	@ApiModelProperty(value="赛事详情列表")
+	private List<ImageThumb> details = new ArrayList<ImageThumb>();
+	
+	@ApiModelProperty(value="关注标识")
+	private boolean attendFlag = false;
 
 	public UserBasicInfo getUserBasicInfo() {
 		return userBasicInfo;
@@ -103,12 +114,36 @@ public class MatchInfo {
 		this.code = code;
 	}
 
-	public List<String> getContent() {
+	public boolean isAttendFlag() {
+		return attendFlag;
+	}
+
+	public void setAttendFlag(boolean attendFlag) {
+		this.attendFlag = attendFlag;
+	}
+
+	public List<ImageThumb> getDetails() {
+		return details;
+	}
+
+	public void setDetails(List<ImageThumb> details) {
+		this.details = details;
+	}
+
+	public String getContent() {
 		return content;
 	}
 
-	public void setContent(List<String> content) {
+	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getFlagName() {
+		return flagName;
+	}
+
+	public void setFlagName(String flagName) {
+		this.flagName = flagName;
 	}
 
 }

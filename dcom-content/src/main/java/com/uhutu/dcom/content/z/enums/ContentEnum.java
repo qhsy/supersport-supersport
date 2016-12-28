@@ -28,7 +28,11 @@ public enum ContentEnum {
 	
 	LIVEEND("直播结束","0"),
 	
-	TYPE_LIVE("直播","dzsd4107100110030007");
+	TYPE_LIVE("直播","dzsd4107100110030007"),
+	
+	MATCH_PUB("已发布","dzsd4107100110130002"),
+	
+	MATCH_UNP("未发布","dzsd4107100110130001");
 
 	private String name = "";
 
