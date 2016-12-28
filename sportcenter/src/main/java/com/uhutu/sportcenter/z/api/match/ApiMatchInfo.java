@@ -25,6 +25,7 @@ import com.uhutu.sportcenter.z.entity.UserBasicInfo;
 import com.uhutu.sportcenter.z.input.ApiMatchInfoInput;
 import com.uhutu.sportcenter.z.result.ApiMatchInfoResult;
 import com.uhutu.zoocom.define.DefineUser;
+import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoocom.z.bean.TopUserFactory;
@@ -59,6 +60,8 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 			matchInfoResult.setMatchLiveInfos(matchLiveInfos);
 			
 			matchInfoResult.setMatchVidoInfos(matchVidoInfos);
+			
+			initMatchSign(input.getMatchCode(), matchInfoResult);
 			
 		}else{
 			
@@ -161,13 +164,23 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 				
 				CnContentBasicinfo contentBasicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",matchVideoInfo.getContentCode());
 				
-				if(contentBasicinfo != null && StringUtils.isNotEmpty(contentBasicinfo.getCover())){
+				if(contentBasicinfo != null ){
 					
-					cover = contentBasicinfo.getCover();
+					if(StringUtils.isEmpty(cover)){
+						
+						cover = contentBasicinfo.getCover();
+						
+					}
 					
-					UserBasicInfo basicInfo = MatchComponent.getInstance().initBasicInfo(contentBasicinfo.getAuthor());
+					if(StringUtils.isNotEmpty(contentBasicinfo.getAuthor())){
+						
+						UserBasicInfo basicInfo = MatchComponent.getInstance().initBasicInfo(contentBasicinfo.getAuthor());
+						
+						matchVideoInfo.setUserBasicInfo(basicInfo);
+						
+					}
 					
-					matchVideoInfo.setUserBasicInfo(basicInfo);
+					matchVideoInfo.setTitle(contentBasicinfo.getTitle());
 					
 					
 				}
@@ -206,16 +219,30 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 		
 		if(matchSigns.size() == 1){
 			
+			CnMatchSign cnMatchSign = matchSigns.get(0);
+			
+			if(cnMatchSign != null){
+				
+				String url = TopHelper.upInfo(810710028, cnMatchSign.getSignCode());
+				
+				result.setRedirectFlag(true);
+				
+				result.setSignUrl(url);
+				
+			}
 			
 			
 		}
 		
 		if(matchSigns.size() >= 1){
 			
+			String url = TopHelper.upInfo(810710027, matchCode);
 			
+			result.setRedirectFlag(false);
 			
-		}
-		
+			result.setSignUrl(url);
+			
+		}		
 		
 	}
 

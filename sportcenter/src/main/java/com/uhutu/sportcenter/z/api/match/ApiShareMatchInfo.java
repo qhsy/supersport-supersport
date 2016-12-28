@@ -1,12 +1,19 @@
 package com.uhutu.sportcenter.z.api.match;
 
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
+
 import com.uhutu.dcom.content.z.entity.CnMatchInfo;
+import com.uhutu.dcom.content.z.entity.CnMatchSign;
+import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.sportcenter.z.api.util.MatchComponent;
 import com.uhutu.sportcenter.z.entity.MatchInfo;
 import com.uhutu.sportcenter.z.input.ApiShareMatchInfoInput;
 import com.uhutu.sportcenter.z.result.ApiShareMatchInfoResult;
+import com.uhutu.zoocom.helper.TopHelper;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.helper.ImageHelper;
@@ -31,6 +38,8 @@ public class ApiShareMatchInfo extends RootApiBase<ApiShareMatchInfoInput, ApiSh
 			MatchInfo matchInfo = initMatchInfo(cnMatchInfo, input.getZoo().getToken(), input.getWidth(), input.getDetailWidth());
 			
 			shareMatchInfoResult.setMatchInfo(matchInfo);
+			
+			initMatchSign(input.getMatchCode(), shareMatchInfoResult);
 			
 		}else{
 			
@@ -63,6 +72,51 @@ public class ApiShareMatchInfo extends RootApiBase<ApiShareMatchInfoInput, ApiSh
 		matchInfo.setDetails(MatchComponent.getInstance().initDetails(cnMatchInfo.getContent(), detaiWidth));
 		
 		return matchInfo;
+		
+	}
+	
+	public void initMatchSign(String matchCode,ApiShareMatchInfoResult result){
+		
+		MDataMap mWhereMap = new MDataMap();
+		
+		mWhereMap.put("matchCode", matchCode);
+		
+		mWhereMap.put("status", ContentEnum.MATCH_PUB.getCode());
+		
+		List<CnMatchSign> matchSigns = JdbcHelper.queryForList(CnMatchSign.class, "", "zc desc,sort desc", "", mWhereMap);
+		
+		if(matchSigns.size() == 0){
+			
+			result.setSignUrl("");
+			
+		}
+		
+		if(matchSigns.size() == 1){
+			
+			CnMatchSign cnMatchSign = matchSigns.get(0);
+			
+			if(cnMatchSign != null){
+				
+				String url = TopHelper.upInfo(810710028, cnMatchSign.getSignCode());
+				
+				result.setRedirectFlag(true);
+				
+				result.setSignUrl(url);
+				
+			}
+			
+			
+		}
+		
+		if(matchSigns.size() >= 1){
+			
+			String url = TopHelper.upInfo(810710027, matchCode);
+			
+			result.setRedirectFlag(false);
+			
+			result.setSignUrl(url);
+			
+		}		
 		
 	}
 
