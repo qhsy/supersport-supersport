@@ -17,6 +17,7 @@ import com.uhutu.sportcenter.z.api.util.MatchComponent;
 import com.uhutu.sportcenter.z.entity.MatchInfo;
 import com.uhutu.sportcenter.z.entity.MatchLiveInfo;
 import com.uhutu.sportcenter.z.entity.MatchVidoInfo;
+import com.uhutu.sportcenter.z.entity.UserBasicInfo;
 import com.uhutu.sportcenter.z.input.ApiMatchInfoInput;
 import com.uhutu.sportcenter.z.result.ApiMatchInfoResult;
 import com.uhutu.zoocom.define.DefineUser;
@@ -118,6 +119,8 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 			
 			BeanUtils.copyProperties(cnMatchLive, matchLiveInfo);
 			
+			matchLiveInfo.setStatusName(MatchComponent.getInstance().initFlagName(cnMatchLive.getStatus()));
+			
 			matchLiveInfos.add(matchLiveInfo);
 			
 			
@@ -154,9 +157,15 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 					
 					cover = contentBasicinfo.getCover();
 					
+					UserBasicInfo basicInfo = MatchComponent.getInstance().initBasicInfo(contentBasicinfo.getAuthor());
+					
+					matchVideoInfo.setUserBasicInfo(basicInfo);
+					
+					
 				}
 				
 			}
+			
 			
 			matchVideoInfo.setCover(cover);
 

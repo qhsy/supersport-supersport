@@ -20,6 +20,9 @@ public class MatchVidoInfo {
 	
 	@ApiModelProperty(value="标题")
 	private String title;
+	
+	@ApiModelProperty(value="作者")
+	private UserBasicInfo userBasicInfo = new UserBasicInfo();
 
 	public String getContentCode() {
 		return contentCode;
@@ -51,6 +54,14 @@ public class MatchVidoInfo {
 
 	public void setMatchCode(String matchCode) {
 		this.matchCode = matchCode;
+	}
+
+	public UserBasicInfo getUserBasicInfo() {
+		return userBasicInfo;
+	}
+
+	public void setUserBasicInfo(UserBasicInfo userBasicInfo) {
+		this.userBasicInfo = userBasicInfo;
 	}
 	
 	

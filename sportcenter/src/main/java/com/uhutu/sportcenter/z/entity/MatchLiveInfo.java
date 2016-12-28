@@ -15,6 +15,9 @@ public class MatchLiveInfo {
 	@ApiModelProperty(value="直播状态")
 	private String status;
 	
+	@ApiModelProperty(value="直播状态name")
+	private String statusName;
+	
 	@ApiModelProperty(value="直播开始时间")
 	private String startTime;
 	
@@ -62,6 +65,14 @@ public class MatchLiveInfo {
 
 	public void setMatchCode(String matchCode) {
 		this.matchCode = matchCode;
+	}
+
+	public String getStatusName() {
+		return statusName;
+	}
+
+	public void setStatusName(String statusName) {
+		this.statusName = statusName;
 	}
 
 }
