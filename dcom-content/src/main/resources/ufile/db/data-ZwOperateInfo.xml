@@ -445,6 +445,18 @@
 			operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071099" operateName="直播信息" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_CnMatchLivePage?u_matchCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071100" operateName="报名设置" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_CnMatchSignPage?u_matchCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071101" operateName="相关视频" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_CnMatchVideoPage?u_matchCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
