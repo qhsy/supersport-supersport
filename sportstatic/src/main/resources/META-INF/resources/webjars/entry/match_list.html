@@ -67,7 +67,7 @@ new Vue({
 				type:'POST',
 				contentType:'application/json',
 				dataType: 'json',
-				data:'{"matchCode": "' + queryUrl('id') + '","zoo": {"key": "tesetkey","token": ""}}',
+				data:'{"matchCode": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": ""}}',
 				success:function(resp){
 					if(resp.status == 1){
 						_this.signInfo = resp;
@@ -91,9 +91,9 @@ new Vue({
 				alert('请报名选择项目！')
 			} else {
 				if(this.source == 'app'){
-					window.location.href = 'entry.html?code=' + this.radioVal + '&source=app&entryToken=' + queryUrl('token');
+					window.location.href = 'entry.html?code=' + this.radioVal + '&source=app&entryToken=' + queryUrl('entryToken');
 				} else if(this.source != 'app' && this.wechat){
-					window.location.href = 'entry.html?code=' + this.radioVal + '&source=wechat&entryToken=' + queryUrl('token');
+					window.location.href = 'entry.html?code=' + this.radioVal + '&source=wechat&entryToken=' + queryUrl('entryToken');
 				}
 			}
 		}

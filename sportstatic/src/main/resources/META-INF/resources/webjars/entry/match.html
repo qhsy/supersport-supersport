@@ -29,9 +29,11 @@ a:hover {text-decoration: none; }
 .tl{text-align: left;}.tr{text-align: right;}.tc{text-align: center;}.fl{float: left;}.fr{float: right;}.pos-r{position: relative;}.pos-f{position: fixed;}
 
 /* Style */
+.head{min-height: 2.1rem;}
 .info{padding: 12px 0; border-bottom: #E6E6E6 1px solid;}
 .info .tit{font-size: 16px; line-height: 22px; color: #212121; text-align: center;}
 .info .user{text-align: center; font-size: 12px; color: #757575; line-height: 16px;}
+.details{padding: 0 0 0.55rem;}
 .next-btn{width: 100%; height: 0.55rem; position: fixed; left: 0; bottom: 0; background: #F8800A; color: #fff; text-align: center; font-size: 0.2rem; line-height: 0.55rem;}
 </style>
 </head>
@@ -44,13 +46,24 @@ a:hover {text-decoration: none; }
 	<h2 class="user">{{matchInfo.matchInfo.UserBasicInfo.nickName}}</h2>
 </section>
 <section class="con">
-	
+	<ul class="details">
+		<li v-for="img in matchInfo.matchInfo.details"><img src="../static/img/lazyload.jpg" v-lazyload:opt.fadein="img.imageUrl" alt=""></li>
+	</ul>
 </section>
-<a href="javascript:;" class="next-btn" @click="callBackNext">我要报名</a>
+<template v-if="matchInfo.signUrl == ''">
+	<a href="javascript:;" class="next-btn" style="background: #c9c9c9;" @click="callBackNext">敬请期待</a>
+	
+</template>
+<template v-else>
+	<a href="javascript:;" class="next-btn" @click="callBackNext">我要报名</a>
+</template>
 <script type="text/javascript" src="js/common.min.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="../static/js/wxConfig.js"></script>
 <script>
+Vue.use(Vue.lazyimg,{
+	nohori: true
+});
 new Vue({
 	el: '.match',
 	data: {
@@ -59,8 +72,10 @@ new Vue({
 		wechatToken: sessionStorage.getItem('token')?sessionStorage.getItem('token'):''
 	},
 	created: function(){
+		this.apiAuthLogin();
 		this.apiShareMatchInfo();
 		this.apiShareContent();
+
 	},
 	methods: {
 		apiShareMatchInfo: function(){
@@ -70,7 +85,7 @@ new Vue({
 				type:'POST',
 				contentType:'application/json',
 				dataType: 'json',
-				data:'{"matchCode": "' + queryUrl('id') + '","zoo": {"key": "tesetkey","token": ""}}',
+				data:'{"detailWidth": 375,"matchCode": "' + queryUrl('id') + '","width": 375,"zoo": {"key": "tesetkey","token": ""}}',
 				success:function(resp){
 					if(resp.status == 1){
 						_this.matchInfo = resp;
@@ -79,6 +94,28 @@ new Vue({
 					}
 				}
 			});
+		},
+		apiAuthLogin: function(){
+			if(this.wechat){
+				if(!sessionStorage.getItem('token')){
+					$.ajax({
+						url:'/api/wechatController/authLogin2',
+						type:'POST',
+						contentType:'application/json',
+						dataType: 'json',
+						async: false,
+						data:'{"code": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": ""}}',
+						success:function(res){
+							if(res.status == 1){
+								sessionStorage.setItem('code',res.userCode);
+								sessionStorage.setItem('token',res.userToken);
+							}else{
+								alert(res.error);
+							}
+						}
+					});
+				}
+			}
 		},
 		apiShareContent: function(){
 			$.ajax({
@@ -104,11 +141,7 @@ new Vue({
 		},
 		callBackNext: function(){
 			if(this.wechat){
-				if(true){
-					window.location.href = 'match_list.html?id=' +  + '&source=wechat&token=' + this.wechatToken;
-				} else {
-					window.location.href = 'entry.html?code=' +  + '&source=wechat&entryToken=' + this.wechatToken;
-				}
+				window.location.href = this.matchInfo.signUrl + '&source=wechat&entryToken=' + this.wechatToken;
 			} else {
 				open();
 			}
