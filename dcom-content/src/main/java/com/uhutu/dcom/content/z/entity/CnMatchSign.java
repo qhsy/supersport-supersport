@@ -21,7 +21,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Table(indexes = { @Index(columnList = "matchCode") })
 public class CnMatchSign extends BaseEntity {
 	
-	@ZooData(name = "赛事编号",sort = {DefineWebPage.Page_Query + "=0",DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process })
+	@ZooData(name = "赛事编号",inc = DefineWebInc.Url_Param + "=matchCode",sort = {DefineWebPage.Page_Query + "=0",DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process })
 	@Column(length=50)
 	private String matchCode;
 	

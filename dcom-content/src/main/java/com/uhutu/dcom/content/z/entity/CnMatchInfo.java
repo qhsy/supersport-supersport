@@ -20,7 +20,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "code" }))
 public class CnMatchInfo extends BaseEntity {
 	
-	@ZooData(name = "赛事编号",sort={DefineWebPage.Page_Add + "=1",
+	@ZooData(name = "赛事编号", inc = DefineWebInc.Insert_Code + "=MH",sort={DefineWebPage.Page_Add + "=1",
 			DefineWebPage.Page_Edit + "=0" })
 	@Column(length=50)
 	private String code;

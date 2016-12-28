@@ -7,7 +7,7 @@ import com.uhutu.zoocom.root.RootPageSimple;
 import com.uhutu.zooweb.define.DefineZooWeb;
 
 @ZooPage(name = "报名设置", pages = { DefineZooWeb.PAGE_DEFAULT_SUB }, operates = { DefineZooWeb.PAGE_DEFAULT_OPERATE}, deploy = {
-				DefineWebDeploy.Grid_Order + "= sort desc,zc desc"})
+		DefineWebDeploy.Url_Query + "=matchCode",DefineWebDeploy.Grid_Order + "= sort desc,zc desc"})
 public class CnMatchSignPage extends RootPageSimple<CnMatchSign> {
 
 }
