@@ -21,7 +21,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Table(indexes = { @Index(columnList = "matchCode") })
 public class CnMatchLive extends BaseEntity {
 	
-	@ZooData(name = "赛事编号",  inc = DefineWebInc.Url_Param + "=matchCode",sort = {DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process})
+	@ZooData(name = "赛事编号",  inc = DefineWebInc.Url_Param + "=matchCode",sort = {DefineWebPage.Page_Query + "=1", DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process})
 	@Column(length=50)
 	private String matchCode;
 	
@@ -41,6 +41,9 @@ public class CnMatchLive extends BaseEntity {
 			DefineWebInc.System_Define + "=dzsd410710011014" })
 	@Column(length=50)
 	private String status;
+	
+	@ZooData(name="排序", require="1",sort = {DefineWebPage.Page_Query + "=0"})
+	private int sort;
 
 	public String getMatchCode() {
 		return matchCode;
@@ -80,6 +83,14 @@ public class CnMatchLive extends BaseEntity {
 
 	public void setLiveCode(String liveCode) {
 		this.liveCode = liveCode;
+	}
+
+	public int getSort() {
+		return sort;
+	}
+
+	public void setSort(int sort) {
+		this.sort = sort;
 	}
 	
 
