@@ -47,8 +47,8 @@ public class CnHomeItemRel extends BaseEntity {
 	@ApiModelProperty(name = "标题", notes = "标题")
 	private String title;
 
-	@ZooData(name = "封面", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "缺省图片", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
 	private String cover;
 
 	@ZooData(name = "内容作者", element = DefineWebElement.Model, inc = {

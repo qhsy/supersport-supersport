@@ -18,6 +18,9 @@ public class AdvertiseDetailForThirdHomePageApi {
 	@ApiModelProperty(name = "图片内容", notes = "图片内容")
 	private String name;
 
+	@ApiModelProperty(name = "缺省图片", notes = "缺省图片")
+	private String defaultPicUrl;
+	
 	@ApiModelProperty(name = "图片超链接跳转类型", notes = "dzsd4107100110150001:内容详情,dzsd4107100110150002:个人主页,dzsd4107100110150003:URL,dzsd4107100110150004:标签详情,dzsd4107100110150005:赛事详情", example = "01")
 	private String piclinkType;
 
@@ -57,6 +60,14 @@ public class AdvertiseDetailForThirdHomePageApi {
 
 	public String getLabelName() {
 		return labelName;
+	}
+
+	public String getDefaultPicUrl() {
+		return defaultPicUrl;
+	}
+
+	public void setDefaultPicUrl(String defaultPicUrl) {
+		this.defaultPicUrl = defaultPicUrl;
 	}
 
 	public void setLabelName(String labelName) {
