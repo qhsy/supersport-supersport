@@ -149,7 +149,7 @@ public class HomePageThirdSupport {
 			info.setCover(extMap.get(info.getCode()).getCover());
 		}
 		if (extMap.containsKey(info.getCode()) && StringUtils.isNotBlank(extMap.get(info.getCode()).getAuthor())) {
-			info.setCover(extMap.get(info.getCode()).getAuthor());
+			info.setAuthor(extMap.get(info.getCode()).getAuthor());
 		}
 		int wid = (int) ("dzsd4107100110110002".equals(item.getType()) ? Math.ceil(width / 2) : width);
 		if (StringUtils.isNotBlank(info.getCover()) && wid > 0
