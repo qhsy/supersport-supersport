@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.answer.z.entity.AwAnswerExpert;
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.UserInfo;
@@ -60,6 +61,14 @@ public class ApiUpdateUserInfo extends RootApiToken<ApiUpdateUserInfoInput, ApiU
 				if(StringUtils.isNotBlank(ucUserinfoExt.getTitle())){
 					
 					updateAnswerTitle(userCode, ucUserinfoExt.getTitle());
+					
+				}
+				
+				if(StringUtils.isNotEmpty(ucUserinfoExt.getNickName())){
+					
+					String nickName = EmojiUtil.emojiFilter(ucUserinfoExt.getNickName());
+					
+					ucUserinfoExt.setNickName(nickName);
 					
 				}
 				
