@@ -28,7 +28,15 @@ function queryString(name){
 	}
 	return request;
 }
-window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd44c999a0475e56&redirect_uri=http://api-001.sport.bigtiyu.com/webcdn/entry/match.html?id=' + queryString('id') + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect'
+var wechat = navigator.userAgent.indexOf('MicroMessenger') > -1?true:false;
+//wxec842da73ebe11a4
+//wxfd44c999a0475e56
+if(wechat){
+	window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=https://godo-beta-manage.srnpr.com/webjars/sportstatic/entry/match.html?id=' + queryString('id') + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect';
+} else {
+	window.location.href = 'https://godo-beta-manage.srnpr.com/webjars/sportstatic/entry/match.html?id=' + queryString('id');
+}
+
 
 </script>
 </body>
