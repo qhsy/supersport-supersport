@@ -91,9 +91,9 @@ public class WechatAccessTokenServiceImpl implements IWechatAccessTokenService {
 			
 		} catch (Exception e) {
 			
-			accessTokenResponse.setErrcode(0);;
+			accessTokenResponse.setErrcode(0);
 			
-			accessTokenResponse.setErrmsg(e.getMessage());;
+			accessTokenResponse.setErrmsg(e.getMessage());
 			
 		}
 		
