@@ -64,18 +64,39 @@ a:hover {text-decoration: none; }
 Vue.use(Vue.lazyimg,{
 	nohori: true
 });
+
+function apiAuthToken(){
+	var wechat = navigator.userAgent.indexOf('MicroMessenger') > -1?true:false;
+	if(wechat){
+		if(!sessionStorage.getItem('token')){
+			$.ajax({
+				url:'/api/wechatController/authLogin2',
+				type:'POST',
+				contentType:'application/json',
+				dataType: 'json',
+				async: false,
+				data:'{"code": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": ""}}',
+				success:function(resp){
+					if(resp.status == 1){
+						sessionStorage.setItem('code',resp.userCode);
+						sessionStorage.setItem('token',resp.userToken);
+					}else{
+						alert(resp.error);
+					}
+				}
+			});
+		}
+	}
+}
+apiAuthToken();
 new Vue({
 	el: '.match',
 	data: {
-		matchInfo: null,
-		wechat: navigator.userAgent.indexOf('MicroMessenger') > -1?true:false,
-		wechatToken: sessionStorage.getItem('token')?sessionStorage.getItem('token'):''
+		matchInfo: null
 	},
 	created: function(){
-		this.apiAuthLogin();
 		this.apiShareMatchInfo();
 		this.apiShareContent();
-
 	},
 	methods: {
 		apiShareMatchInfo: function(){
@@ -94,28 +115,6 @@ new Vue({
 					}
 				}
 			});
-		},
-		apiAuthLogin: function(){
-			if(this.wechat){
-				if(!sessionStorage.getItem('token')){
-					$.ajax({
-						url:'/api/wechatController/authLogin2',
-						type:'POST',
-						contentType:'application/json',
-						dataType: 'json',
-						async: false,
-						data:'{"code": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": ""}}',
-						success:function(res){
-							if(res.status == 1){
-								sessionStorage.setItem('code',res.userCode);
-								sessionStorage.setItem('token',res.userToken);
-							}else{
-								alert(res.error);
-							}
-						}
-					});
-				}
-			}
 		},
 		apiShareContent: function(){
 			$.ajax({
@@ -140,8 +139,9 @@ new Vue({
 			});
 		},
 		callBackNext: function(){
+			var token = sessionStorage.getItem('token')?sessionStorage.getItem('token'):'';
 			if(this.wechat){
-				window.location.href = this.matchInfo.signUrl + '&source=wechat&entryToken=' + this.wechatToken;
+				window.location.href = this.matchInfo.signUrl + '&source=wechat&entryToken=' + token;
 			} else {
 				open();
 			}
