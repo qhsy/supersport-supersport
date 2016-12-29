@@ -50,12 +50,8 @@ a:hover {text-decoration: none; }
 		<li v-for="img in matchInfo.matchInfo.details"><img src="../static/img/lazyload.jpg" v-lazyload:opt.fadein="img.imageUrl" alt=""></li>
 	</ul>
 </section>
-<template v-if="matchInfo.signUrl == ''">
-	<a href="javascript:;" class="next-btn" style="background: #c9c9c9;" @click="callBackNext">敬请期待</a>
-	
-</template>
-<template v-else>
-	<a href="javascript:;" class="next-btn" @click="callBackNext">我要报名</a>
+<template v-if="matchInfo.signUrl != ''">
+<a href="javascript:;" class="next-btn" @click="callBackNext">我要报名</a>
 </template>
 <script type="text/javascript" src="js/common.min.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
@@ -64,9 +60,8 @@ a:hover {text-decoration: none; }
 Vue.use(Vue.lazyimg,{
 	nohori: true
 });
-
+var wechat = navigator.userAgent.indexOf('MicroMessenger') > -1?true:false;
 function apiAuthToken(){
-	var wechat = navigator.userAgent.indexOf('MicroMessenger') > -1?true:false;
 	if(wechat){
 		if(!sessionStorage.getItem('token')){
 			$.ajax({
@@ -140,7 +135,7 @@ new Vue({
 		},
 		callBackNext: function(){
 			var token = sessionStorage.getItem('token')?sessionStorage.getItem('token'):'';
-			if(this.wechat){
+			if(wechat){
 				window.location.href = this.matchInfo.signUrl + '&source=wechat&entryToken=' + token;
 			} else {
 				open();

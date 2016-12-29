@@ -66,7 +66,7 @@ public class CnHomeItemRelFuncEdit extends RootFunc {
 						relInfo.setEndTime(input.getDataMap().get("end_time"));
 						relInfo.setRemark(input.getDataMap().get("remark"));
 						JdbcHelper.update(relInfo,
-								"itemCode,contentCode,matchCode,itemType,cover,sort,title,start_time,end_time,remark",
+								"itemCode,content_code,match_code,item_type,cover,sort,title,label_name,author,start_time,end_time,remark",
 								"za");
 					}
 
