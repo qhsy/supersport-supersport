@@ -1,7 +1,9 @@
 package com.uhutu.sportcenter.z.api.user;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.sportcenter.z.input.ApiVerifyNickNameInput;
 import com.uhutu.sportcenter.z.result.ApiVerifyNickNameResult;
@@ -28,7 +30,9 @@ public class ApiVerifyNickName extends RootApiBase<ApiVerifyNickNameInput, ApiVe
 				DefineUser.Login_System_Default);
 		UcUserinfoExt ucUserinfoExt = JdbcHelper.queryOne(UcUserinfoExt.class, "", "",
 				"nick_name=:nickName and user_code!=:userCode ",
-				MapHelper.initMap("nickName", input.getNickName(), "userCode", userCode));
+				MapHelper.initMap("nickName",
+						StringUtils.isEmpty(input.getNickName()) ? "" : EmojiUtil.emojiRecovery(input.getNickName()),
+						"userCode", userCode));
 
 		if (ucUserinfoExt != null) {
 			result.inError(81100001);
