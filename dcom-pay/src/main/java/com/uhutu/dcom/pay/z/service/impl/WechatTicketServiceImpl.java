@@ -82,9 +82,9 @@ public class WechatTicketServiceImpl implements IWechatTicketService {
 			
 		} catch (Exception e) {
 			
-			ticketResponse.setErrcode(0);;
+			ticketResponse.setErrcode(0);
 			
-			ticketResponse.setErrmsg(e.getMessage());;
+			ticketResponse.setErrmsg(e.getMessage());
 			
 		}
 		
