@@ -118,7 +118,7 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 		
 		mWhereMap.put("matchCode", matchCode);
 		
-		List<CnMatchLive> cnMatchLives = JdbcHelper.queryForList(CnMatchLive.class, "", "zc desc,sort desc", "", mWhereMap);
+		List<CnMatchLive> cnMatchLives = JdbcHelper.queryForList(CnMatchLive.class, "", "sort desc,zc desc", "", mWhereMap);
 		
 		cnMatchLives.forEach(cnMatchLive -> {
 			
@@ -149,7 +149,7 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 
 		mWhereMap.put("matchCode", matchCode);
 
-		List<CnMatchVideo> cnMatchVideos = JdbcHelper.queryForList(CnMatchVideo.class, "", "zc desc,sort desc", "",
+		List<CnMatchVideo> cnMatchVideos = JdbcHelper.queryForList(CnMatchVideo.class, "", "sort desc,zc desc", "",
 				mWhereMap);
 
 		cnMatchVideos.forEach(cnMatchVideo -> {
@@ -157,40 +157,37 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 			MatchVidoInfo matchVideoInfo = new MatchVidoInfo();
 
 			BeanUtils.copyProperties(cnMatchVideo, matchVideoInfo);
-			
+
 			String cover = matchVideoInfo.getCover();
-			
-			if(StringUtils.isEmpty(cover)){
-				
-				CnContentBasicinfo contentBasicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",matchVideoInfo.getContentCode());
-				
-				if(contentBasicinfo != null ){
-					
-					if(StringUtils.isEmpty(cover)){
-						
-						cover = contentBasicinfo.getCover();
-						
-					}
-					
-					if(StringUtils.isNotEmpty(contentBasicinfo.getAuthor())){
-						
-						UserBasicInfo basicInfo = MatchComponent.getInstance().initBasicInfo(contentBasicinfo.getAuthor());
-						
-						matchVideoInfo.setUserBasicInfo(basicInfo);
-						
-					}
-					
-					matchVideoInfo.setTitle(contentBasicinfo.getTitle());
-					
-					
+
+			CnContentBasicinfo contentBasicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
+					matchVideoInfo.getContentCode());
+
+			if (contentBasicinfo != null) {
+
+				if (StringUtils.isEmpty(cover)) {
+
+					cover = contentBasicinfo.getCover();
+
 				}
-				
+
+				if (StringUtils.isNotEmpty(contentBasicinfo.getAuthor())) {
+
+					UserBasicInfo basicInfo = MatchComponent.getInstance().initBasicInfo(contentBasicinfo.getAuthor());
+
+					matchVideoInfo.setUserBasicInfo(basicInfo);
+
+				}
+
+				matchVideoInfo.setTitle(contentBasicinfo.getTitle());
+
 			}
-			
-			JumpTypeData jumpTypeData = new JumpTypeSupport().getData("dzsd4107100110150001", matchVideoInfo.getContentCode(), "");
-			
+
+			JumpTypeData jumpTypeData = new JumpTypeSupport().getData("dzsd4107100110150001",
+					matchVideoInfo.getContentCode(), "");
+
 			matchVideoInfo.setJumpTypeData(jumpTypeData);
-			
+
 			matchVideoInfo.setCover(cover);
 
 			matchVidoInfos.add(matchVideoInfo);
@@ -209,7 +206,7 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 		
 		mWhereMap.put("status", ContentEnum.MATCH_PUB.getCode());
 		
-		List<CnMatchSign> matchSigns = JdbcHelper.queryForList(CnMatchSign.class, "", "zc desc,sort desc", "", mWhereMap);
+		List<CnMatchSign> matchSigns = JdbcHelper.queryForList(CnMatchSign.class, "", "sort desc,zc desc", "", mWhereMap);
 		
 		if(matchSigns.size() == 0){
 			

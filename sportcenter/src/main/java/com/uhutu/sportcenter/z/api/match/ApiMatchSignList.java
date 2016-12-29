@@ -58,7 +58,7 @@ public class ApiMatchSignList extends RootApiBase<ApiMatchSignListInput, ApiMatc
 		
 		mWhereMap.put("status", ContentEnum.MATCH_PUB.getCode());
 		
-		List<CnMatchSign> cnMatchSigns = JdbcHelper.queryForList(CnMatchSign.class, "", "zc desc,sort desc", "", mWhereMap);
+		List<CnMatchSign> cnMatchSigns = JdbcHelper.queryForList(CnMatchSign.class, "", "sort desc,zc desc", "", mWhereMap);
 		
 		List<MatchSignInfo> matchSignInfos = new ArrayList<MatchSignInfo>();
 		
