@@ -72,7 +72,7 @@ public class CnContentBasicinfo extends BaseEntity {
 	private String busiType;
 
 	@ZooData(name = "内容类型", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd410710011003" }, sort = { DefineWebPage.Page_Query + "=0" })
+			DefineWebInc.System_Define + "=dzsd410710011003" })
 	private String contentType;
 
 	@ZooData(name = "赞的起始数", verify = { DefineWebVerify.Base_Number }, sort = { DefineWebPage.Page_Query + "=0" })
