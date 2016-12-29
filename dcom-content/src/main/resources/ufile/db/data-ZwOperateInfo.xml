@@ -449,25 +449,29 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_CnMatchLivePage?u_matchCode=[[data:code]]')"
 			parentCode="" noteRemark="" />
-		<item code="dzoi41071100" operateName="报名设置" operateFunc=""
-			operateType="button"
-			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_CnMatchSignPage?u_matchCode=[[data:code]]')"
-			parentCode="" noteRemark="" />
-		<item code="dzoi41071101" operateName="相关视频" operateFunc=""
-			operateType="button"
-			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_CnMatchVideoPage?u_matchCode=[[data:code]]')"
-			parentCode="" noteRemark="" />
-		<item code="dzoi41071102" operateName="关联直播" operateFunc=""
+		<item code="dzoi41071100" operateName="关联直播" operateFunc=""
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_CnMatchLivePage?u_matchCode=[[data:code]]')"
 			parentCode="" noteRemark="" />
-		<item code="dzoi41071103" operateName="关联报名" operateFunc=""
+		<item code="dzoi41071101" operateName="报名设置" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_CnMatchSignPage?u_matchCode=[[data:code]]')"
+			parentCode="" noteRemark="" />		
+		<item code="dzoi41071102" operateName="关联报名" operateFunc=""
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_CnMatchSignPage?u_matchCode=[[data:code]]')"
-			parentCode="" noteRemark="" />
+			parentCode="" noteRemark="" />			
+		<item code="dzoi41071103" operateName="相关视频" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_CnMatchVideoPage?u_matchCode=[[data:code]]')"
+			parentCode="" noteRemark="" />		
 		<item code="dzoi41071104" operateName="关联视频" operateFunc=""
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_CnMatchVideoPage?u_matchCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071105" operateName="查看" operateFunc=""
+			operateType="link"
+			operateLink="../pb/com_uhutu_dcom_content_z_page_ReportInfoPage?u_code=[[data:signCode]]"
 			parentCode="" noteRemark="" />
 	</data>
 
