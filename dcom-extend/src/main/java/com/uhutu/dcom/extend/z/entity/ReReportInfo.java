@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
+import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
@@ -20,7 +21,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class ReReportInfo extends BaseEntity {
 
-	@ZooData(name = "报表编号")
+	@ZooData(name = "报表编号",inc = DefineWebInc.Url_Param + "=code")
 	private String code;
 
 	@ZooData(name = "报表标题")

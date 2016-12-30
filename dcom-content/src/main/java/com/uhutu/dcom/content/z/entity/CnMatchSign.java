@@ -25,9 +25,13 @@ public class CnMatchSign extends BaseEntity {
 	@Column(length=50)
 	private String matchCode;
 	
-	@ZooData(name = "报名项目",element = DefineWebElement.Model,inc = {DefineWebInc.Web_Component + "=dzcw410710010021" },require = "1",sort = {DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "报名编号",sort = {DefineWebPage.Page_Query + "=0",DefineWebPage.Page_Edit+"=0",DefineWebPage.Page_Add + "=" + DefineWebSort.Sort_Process })
 	@Column(length=50)
 	private String signCode;
+	
+	@ZooData(name = "报名项目",element = DefineWebElement.Model,inc = {DefineWebInc.Web_Component + "=dzcw410710010021" },require = "1",sort = {DefineWebPage.Page_Query + "=0" })
+	@Column(length=50)
+	private String signName;
 	
 	@ZooData(name = "报名链接",sort = {DefineWebPage.Page_Query + "=0" })
 	private String signUrl;

@@ -7,7 +7,7 @@ import com.uhutu.zoocom.root.RootPageSimple;
 import com.uhutu.zooweb.define.DefineZooWeb;
 
 @ZooPage(name = "报名信息", operates = DefineZooWeb.PAGE_DIALOG_OPERATE,
-		deploy = {DefineWebDeploy.Grid_Where + "=status='1'"})
+		deploy = {DefineWebDeploy.Grid_Where + "=status='1'",DefineWebDeploy.Url_Query + "=code"})
 public class ReportInfoPage extends RootPageSimple<ReReportInfo> {
 
 }
