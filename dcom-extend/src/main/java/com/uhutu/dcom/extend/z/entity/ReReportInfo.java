@@ -21,10 +21,10 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class ReReportInfo extends BaseEntity {
 
-	@ZooData(name = "报表编号",inc = DefineWebInc.Url_Param + "=code")
+	@ZooData(name = "报名编号",inc = DefineWebInc.Url_Param + "=code")
 	private String code;
 
-	@ZooData(name = "报表标题")
+	@ZooData(name = "报名标题")
 	private String title;
 
 	@ZooData(name = "开始时间",element = DefineWebElement.Datehms)
