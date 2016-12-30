@@ -51,7 +51,7 @@ a:hover {text-decoration: none; }
 	</ul>
 </section>
 <template v-if="matchInfo.signUrl != ''">
-<a href="javascript:;" class="next-btn" @click="callBackNext">我要报名</a>
+	<a href="javascript:;" class="next-btn" @click="callBackNext">我要报名</a>
 </template>
 <script type="text/javascript" src="js/common.min.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
@@ -101,7 +101,7 @@ new Vue({
 				type:'POST',
 				contentType:'application/json',
 				dataType: 'json',
-				data:'{"detailWidth": 375,"matchCode": "' + queryUrl('id') + '","width": 375,"zoo": {"key": "tesetkey","token": ""}}',
+				data:'{"detailWidth": 750,"matchCode": "' + queryUrl('id') + '","width": 750,"zoo": {"key": "tesetkey","token": ""}}',
 				success:function(resp){
 					if(resp.status == 1){
 						_this.matchInfo = resp;
