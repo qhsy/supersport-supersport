@@ -88,13 +88,13 @@ public class ApiReportSave extends RootApiToken<ApiReportSaveInput, ApiReportSav
 					fieldsMap.put(fd.getFieldId(), fd);
 					if ("1".equals(fd.getRequireAble()) && StringUtils.isBlank(map.get(fd.getFieldId()))) {
 						result.setStatus(0);
-						result.setError("<" + fd.getFieldLabel() + ">值不能为空");
+						result.setError("<" + fd.getFieldLabel() + ">不能为空");
 						break;
 					}
 
 					if (StringUtils.isNotBlank(fd.getCheckVerify())
 							&& !RegexHelper.checkRegexField(map.get(fd.getFieldId()), fd.getCheckVerify())) {
-						result.inError(86991103, fd.getFieldLabel());
+						result.inError(810710029, fd.getFieldLabel());
 						break;
 					}
 				}
