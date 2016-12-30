@@ -2,7 +2,7 @@
 <html class="match" lang="en" v-cloak>
 <head>
 <meta charset="UTF-8">
-<title v-text=""></title>
+<title></title>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta name="format-detection" content="telephone=no,email=no"> 
 <meta name="keywords" content="">
@@ -44,6 +44,7 @@ a:hover {text-decoration: none; }
 	</ul>
 	<a href="javascript:;" class="next-btn" @click="callBackNext">下一步</a>
 </section>
+<iframe :src="iframe" style="display: none"></iframe>
 <script type="text/javascript" src="js/common.min.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="../static/js/wxConfig.js"></script>
@@ -70,6 +71,12 @@ new Vue({
 		this.callBackShare();
 	},
 	methods: {
+		setTitle: function (title) {
+			document.title = title
+			if (navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+				this.iframe = '/favicon.ico' + Math.random()
+			}
+		},
 		apiGetData: function(){
 			var _this = this;
 			$.ajax({
@@ -81,6 +88,7 @@ new Vue({
 				success:function(resp){
 					if(resp.status == 1){
 						_this.signInfo = resp;
+						_this.setTitle(resp.matchName);
 					}else{
 						alert(resp.error);
 					}
@@ -101,9 +109,9 @@ new Vue({
 				toast('请选择报名项目')
 			} else {
 				if(this.source == 'app'){
-					window.location.href = betaHost + 'entry.html?code=' + this.radioVal + '&source=app&entryToken=' + queryUrl('entryToken');
+					window.location.href = host + 'entry.html?code=' + this.radioVal + '&source=app&entryToken=' + queryUrl('entryToken');
 				} else if(this.source != 'app' && this.wechat){
-					window.location.href = betaHost + 'entry.html?code=' + this.radioVal + '&source=wechat&entryToken=' + queryUrl('entryToken');
+					window.location.href = host + 'entry.html?code=' + this.radioVal + '&source=wechat&entryToken=' + queryUrl('entryToken');
 				}
 			}
 		}

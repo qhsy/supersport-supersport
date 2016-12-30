@@ -2,7 +2,7 @@
 <html class="match" lang="en" v-cloak>
 <head>
 <meta charset="UTF-8">
-<title v-text="matchInfo.matchInfo.name"></title>
+<title></title>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta name="format-detection" content="telephone=no,email=no"> 
 <meta name="keywords" content="">
@@ -53,6 +53,7 @@ a:hover {text-decoration: none; }
 <template v-if="matchInfo.signUrl != ''">
 	<a href="javascript:;" class="next-btn" @click="callBackNext">我要报名</a>
 </template>
+<iframe :src="iframe" style="display: none"></iframe>
 <script type="text/javascript" src="js/common.min.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="../static/js/wxConfig.js"></script>
@@ -87,13 +88,20 @@ apiAuthToken();
 new Vue({
 	el: '.match',
 	data: {
-		matchInfo: null
+		matchInfo: null,
+		iframe: ''
 	},
 	created: function(){
 		this.apiShareMatchInfo();
 		this.apiShareContent();
 	},
 	methods: {
+		setTitle: function (title) {
+			document.title = title
+			if (navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+				this.iframe = '/favicon.ico' + Math.random()
+			}
+		},
 		apiShareMatchInfo: function(){
 			var _this = this;
 			$.ajax({
@@ -105,6 +113,7 @@ new Vue({
 				success:function(resp){
 					if(resp.status == 1){
 						_this.matchInfo = resp;
+						_this.setTitle(resp.matchInfo.name);
 					}else{
 						alert(resp.error);
 					}
