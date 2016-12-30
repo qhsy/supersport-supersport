@@ -14,7 +14,8 @@ import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
-import com.uhutu.dcom.content.z.entity.CnSupportPraise;
+import com.uhutu.dcom.content.z.enums.ContentEnum;
+import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
@@ -26,7 +27,6 @@ import com.uhutu.sportcenter.z.api.util.HomePageSupport;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.input.ApiTummyMomentsInput;
 import com.uhutu.sportcenter.z.result.ApiTummyMomentsResult;
-import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiForMember;
 import com.uhutu.zoodata.helper.SerializeHelper;
@@ -50,6 +50,9 @@ public class ApiTummyMoments extends RootApiForMember<ApiTummyMomentsInput, ApiT
 
 	@Autowired
 	private ContentLabelServiceFactory labelServiceFactory;
+
+	@Autowired
+	private ContentServiceFactory serviceFactory;
 
 	protected ApiTummyMomentsResult process(ApiTummyMomentsInput input) {// 此版本屏蔽直播的运动时刻
 
@@ -128,8 +131,8 @@ public class ApiTummyMoments extends RootApiForMember<ApiTummyMomentsInput, ApiT
 				int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(sportingMoment.getCode(),
 						RemarkEnum.FLAG_ENABLE.getCode());
 				sportingMoment.setRemarkNum(remarkNum);
-				int praiseNum = JdbcHelper.count(CnSupportPraise.class, "",
-						MapHelper.initMap("content_code", sportingMoment.getCode(), "type", "01", "status", "1"));
+				int praiseNum = serviceFactory.getSupportPraiseService().queryCountByCode(sportingMoment.getCode(),
+						ContentEnum.FAVOR_STATUS_YES.getCode());
 				sportingMoment.setPraiseNum(praiseNum);
 
 				String title = sportingMoment.getTitle();
