@@ -471,7 +471,17 @@
 			parentCode="" noteRemark="" />
 		<item code="dzoi41071105" operateName="查看" operateFunc=""
 			operateType="link"
-			operateLink="../pb/com_uhutu_dcom_content_z_page_ReportInfoPage?u_code=[[data:signCode]]"
+			operateLink="../pb/com_uhutu_dcom_content_z_page_ReportInfoPage?u_code=[[data:sign_code]]"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071106" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.CnMatchSignFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071107" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.CnMatchSignFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
 	</data>
 
