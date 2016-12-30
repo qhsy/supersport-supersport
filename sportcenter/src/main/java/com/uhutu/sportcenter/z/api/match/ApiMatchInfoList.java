@@ -41,7 +41,7 @@ public class ApiMatchInfoList extends RootApiBase<ApiMatchInfoListInput, ApiMact
 		
 		int iStart = (pageInfo.getPagination() - 1) * pageInfo.getPageNum();
 		
-		List<CnMatchInfo> matchInfos = JdbcHelper.queryForList(CnMatchInfo.class, "", "zc desc,sort desc", "", mWhereMap, iStart, pageInfo.getPageNum());
+		List<CnMatchInfo> matchInfos = JdbcHelper.queryForList(CnMatchInfo.class, "", "sort desc,zc desc", "", mWhereMap, iStart, pageInfo.getPageNum());
 		
 		matchInfos.forEach(cnMatchInfo -> {
 			
