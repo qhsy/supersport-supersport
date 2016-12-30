@@ -98,7 +98,7 @@ new Vue({
 		},
 		callBackNext: function(){
 			if(this.radioVal == ''){
-				toast('请报名选择项目')
+				toast('请选择报名项目')
 			} else {
 				if(this.source == 'app'){
 					window.location.href = betaHost + 'entry.html?code=' + this.radioVal + '&source=app&entryToken=' + queryUrl('entryToken');
