@@ -108,7 +108,7 @@ public class ApiShareMatchInfo extends RootApiBase<ApiShareMatchInfoInput, ApiSh
 			
 		}
 		
-		if(matchSigns.size() >= 1){
+		if(matchSigns.size() > 1){
 			
 			String url = TopHelper.upInfo(810710027, matchCode);
 			
