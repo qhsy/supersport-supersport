@@ -44,9 +44,8 @@ public class CnContentBasicinfo extends BaseEntity {
 					DefineWebInc.Web_Component + "=dzcw410710010004" })
 	private String categoryCode;
 
-	@ZooData(name = "标签", sort = { DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" }, element = DefineWebElement.Model, inc = {
-					DefineWebInc.Web_Component + "=dzcw412410010001" })
+	@ZooData(name = "标签", sort = { DefineWebPage.Page_Grid + "=0" }, element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw412410010001" })
 	private String tagCode;
 
 	@ZooData(name = "内容作者", require = "1", element = DefineWebElement.Model, inc = {
