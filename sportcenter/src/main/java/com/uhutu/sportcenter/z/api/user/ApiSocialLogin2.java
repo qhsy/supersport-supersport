@@ -21,6 +21,7 @@ import com.uhutu.sportcenter.z.input.ApiSocialLoginInput2;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult2;
 import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.user.UserCallFactory;
 import com.uhutu.zooweb.user.UserReginsterInput;
 import com.uhutu.zooweb.user.UserReginsterResult;
@@ -239,7 +240,7 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 	 */
 	public String initNickName(String nickName,String userCode){
 		
-		UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByNickName(nickName);
+		UcUserinfoExt ucUserinfoExt = JdbcHelper.queryOne(UcUserinfoExt.class, "nickName",nickName);
 		
 		if(ucUserinfoExt != null){
 			
