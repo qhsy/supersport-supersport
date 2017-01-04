@@ -6,7 +6,6 @@
 <meta name="viewport"
 	content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
 <title>报名</title>
-<link type="text/css" href="/webjars/static/css/weui.min.css" rel="stylesheet">
 <link type="text/css" href="/webjars/entry/css/entry.css" rel="stylesheet">
 <script type="text/javascript" src="/webjars/static/js/lib/jquery/jquery-last.min.js"></script>
 <script type="text/javascript" src="/webjars/static/js/lib/jquery/jquery-plus.js"></script>
@@ -23,6 +22,82 @@
 <script type="text/javascript" src="/webjars/entry/js/common.min.js"></script>
 <script type="text/javascript" src="/webjars/static/js/wxConfig.js"></script>
 <script type="text/javascript" src="/webjars/static/js/jweixin-1.0.0.js"></script>
+
+<script type="text/javascript">
+	var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
+	function callbackShare(id){
+		var userAgent = navigator.userAgent;
+		if(userAgent.indexOf('Android') != -1){
+			javascript:android.callbackShare(id);
+		} else {
+			window.webkit.messageHandlers.callbackShare.postMessage(id);
+		}
+	}
+	function callBackOrder(code){
+
+		var userAgent = navigator.userAgent;
+		if(userAgent.indexOf('Android') != -1){
+			javascript:android.callBackOrder(code);
+		} else {
+			window.webkit.messageHandlers.callBackOrder.postMessage(code);
+		}
+	}
+
+	
+	function queryUrl(name){
+		var url = location.search;
+		var request = '';
+		if (url.indexOf("?") != -1) {
+			var str = url.substr(1);
+			var result = str.split("&");
+			for (var i = 0; i < result.length; i++) {
+				var arr = result[i].split("=");
+				if(arr[0] == name){
+					request = unescape(arr[1]);
+				}
+			}
+		}
+		return request;
+	}
+	if(isWeix){
+		wxConfigFun({
+			'share':true
+		});
+	}else{
+		callbackShare('');
+	}
+
+
+	function AddCssFiles(URL){
+	var oHead = document.getElementsByTagName('HEAD').item(0);
+	var	createLink= document.createElement("link");
+		createLink.type = "text/css";
+		createLink.rel="stylesheet";
+		createLink.rev = "stylesheet";
+		createLink.media = "screen";
+		createLink.href=URL;
+		oHead.appendChild(createLink);
+	}
+
+	entry.dataCache.source = queryUrl('source');
+
+	entry_api.c.api_token = queryUrl('entryToken');
+
+	
+
+	if(entry.dataCache.source == 'app'){
+
+		AddCssFiles('/webjars/static/css/weui.app.css');
+
+	}else {
+		
+		AddCssFiles('/webjars/static/css/weui.min.css');
+
+	}
+
+
+</script>
+</head>
 <body>
 	<div id="topTip" class="weui-toptips weui-toptips_warn js_tooltips" style="display: none;"></div>
 	<div class="page">
@@ -56,55 +131,10 @@
             <p class="weui-toast__content">数据加载中</p>
         </div>
     </div>
-
     <script type="text/javascript">
-    	var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
-    	function callbackShare(id){
-			var userAgent = navigator.userAgent;
-			if(userAgent.indexOf('Android') != -1){
-				javascript:android.callbackShare(id);
-			} else {
-				window.webkit.messageHandlers.callbackShare.postMessage(id);
-			}
-		}
-    	function callBackOrder(code){
-
-			var userAgent = navigator.userAgent;
-			if(userAgent.indexOf('Android') != -1){
-				javascript:android.callBackOrder(code);
-			} else {
-				window.webkit.messageHandlers.callBackOrder.postMessage(code);
-			}
-		}
-
     	
-    	function queryUrl(name){
-			var url = location.search;
-			var request = '';
-			if (url.indexOf("?") != -1) {
-				var str = url.substr(1);
-				var result = str.split("&");
-				for (var i = 0; i < result.length; i++) {
-					var arr = result[i].split("=");
-					if(arr[0] == name){
-						request = unescape(arr[1]);
-					}
-				}
-			}
-			return request;
-		}
-		if(isWeix){
-			wxConfigFun({
-				'share':true
-			});
-		}else{
-			callbackShare('');
-		}
-		entry.dataCache.source = queryUrl('source');
-
-		entry_api.c.api_token = queryUrl('entryToken');
-
-    	entry.index(queryUrl('code'));
+    	/*加载页面结构*/
+	entry.index(queryUrl('code'));
 
     </script>
 </body>
