@@ -11,10 +11,12 @@ import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiMatchInfoInput;
 import com.uhutu.sportcenter.z.input.ApiMatchInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiMatchSignListInput;
+import com.uhutu.sportcenter.z.input.ApiMySignListInput;
 import com.uhutu.sportcenter.z.input.ApiShareMatchInfoInput;
 import com.uhutu.sportcenter.z.result.ApiMacthInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiMatchInfoResult;
 import com.uhutu.sportcenter.z.result.ApiMatchSignListResult;
+import com.uhutu.sportcenter.z.result.ApiMySignListResult;
 import com.uhutu.sportcenter.z.result.ApiShareMatchInfoResult;
 
 import io.swagger.annotations.Api;
@@ -67,6 +69,15 @@ public class MatchController {
 	public ApiShareMatchInfoResult shareMatchInfo(@RequestBody ApiShareMatchInfoInput input) {
 		
 		return apiFactory.getApiShareMatchInfo().api(input);
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/mySignList", method = RequestMethod.POST)
+	@ApiOperation(value = "我的报名信息", notes = "我的报名信息")
+	public ApiMySignListResult mySignList(@RequestBody ApiMySignListInput input) {
+		
+		return apiFactory.getApiMySignList().api(input);
 		
 	}
 
