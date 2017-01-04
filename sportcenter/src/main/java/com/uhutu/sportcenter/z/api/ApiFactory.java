@@ -97,6 +97,7 @@ import com.uhutu.sportcenter.z.api.live.ApiSyncLiveUserInfo;
 import com.uhutu.sportcenter.z.api.match.ApiMatchInfo;
 import com.uhutu.sportcenter.z.api.match.ApiMatchInfoList;
 import com.uhutu.sportcenter.z.api.match.ApiMatchSignList;
+import com.uhutu.sportcenter.z.api.match.ApiMySignInfo;
 import com.uhutu.sportcenter.z.api.match.ApiMySignList;
 import com.uhutu.sportcenter.z.api.match.ApiShareMatchInfo;
 import com.uhutu.sportcenter.z.api.pay.ApiCoinAccInfo;
@@ -588,6 +589,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiMySignList apiMySignList;
+	
+	@Autowired
+	private ApiMySignInfo apiMySignInfo;
 
 	public ApiHomePageThird getApiHomePageThird() {
 		return apiHomePageThird;
@@ -1163,6 +1167,10 @@ public class ApiFactory {
 
 	public ApiMySignList getApiMySignList() {
 		return apiMySignList;
+	}
+
+	public ApiMySignInfo getApiMySignInfo() {
+		return apiMySignInfo;
 	}
 
 }

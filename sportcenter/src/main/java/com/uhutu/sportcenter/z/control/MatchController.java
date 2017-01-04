@@ -11,11 +11,13 @@ import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiMatchInfoInput;
 import com.uhutu.sportcenter.z.input.ApiMatchInfoListInput;
 import com.uhutu.sportcenter.z.input.ApiMatchSignListInput;
+import com.uhutu.sportcenter.z.input.ApiMySignInfoInput;
 import com.uhutu.sportcenter.z.input.ApiMySignListInput;
 import com.uhutu.sportcenter.z.input.ApiShareMatchInfoInput;
 import com.uhutu.sportcenter.z.result.ApiMacthInfoListResult;
 import com.uhutu.sportcenter.z.result.ApiMatchInfoResult;
 import com.uhutu.sportcenter.z.result.ApiMatchSignListResult;
+import com.uhutu.sportcenter.z.result.ApiMySignInfoResult;
 import com.uhutu.sportcenter.z.result.ApiMySignListResult;
 import com.uhutu.sportcenter.z.result.ApiShareMatchInfoResult;
 
@@ -78,6 +80,15 @@ public class MatchController {
 	public ApiMySignListResult mySignList(@RequestBody ApiMySignListInput input) {
 		
 		return apiFactory.getApiMySignList().api(input);
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/mySignInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "我的报名信息详情", notes = "我的报名信息详情")
+	public ApiMySignInfoResult mySignInfo(@RequestBody ApiMySignInfoInput input) {
+		
+		return apiFactory.getApiMySignInfo().api(input);
 		
 	}
 
