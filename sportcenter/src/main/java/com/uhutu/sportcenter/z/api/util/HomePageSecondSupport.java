@@ -132,7 +132,7 @@ public class HomePageSecondSupport {
 					if (cbi != null) {
 						hmp.getItem().setType(cbi.getContentType());
 					}
-					if ("dzsd4107100110030006".equals(cbi.getContentType())) {
+					if ("dzsd4107100110030006".equals(cbi.getContentType())||"dzsd4107100110030008".equals(cbi.getContentType())) {
 						CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
 								item.getPiclinkContent());
 						if (contentDetail != null) {
@@ -256,7 +256,7 @@ public class HomePageSecondSupport {
 							if (cbi != null) {
 								dfa.setType(cbi.getContentType());
 							}
-							if ("dzsd4107100110030006".equals(cbi.getContentType())) {
+							if ("dzsd4107100110030006".equals(cbi.getContentType())||"dzsd4107100110030008".equals(cbi.getContentType())) {
 								CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
 										details.get(j).getPiclinkContent());
 								if (contentDetail != null) {
@@ -281,7 +281,7 @@ public class HomePageSecondSupport {
 							if (cbi != null) {
 								navMenuForApi.setType(cbi.getContentType());
 							}
-							if ("dzsd4107100110030006".equals(cbi.getContentType())) {
+							if ("dzsd4107100110030006".equals(cbi.getContentType())||"dzsd4107100110030008".equals(cbi.getContentType())) {
 								CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
 										navMenuForApi.getPiclinkContent());
 								if (contentDetail != null) {

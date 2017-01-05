@@ -483,6 +483,10 @@
 			operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071108" operateName="详情" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_ContentOtherLiveDetailPage?u_code=[[data:code]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>

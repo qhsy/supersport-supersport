@@ -21,6 +21,7 @@ public class JumpTypeSupport {
 	public final static String Type_Match = "dzsd4107100110150005";
 
 	public final static String Content_Type_Href = "dzsd4107100110030006";
+	public final static String Content_Other_Live = "dzsd4107100110030008";
 
 	/**
 	 * 
@@ -39,7 +40,8 @@ public class JumpTypeSupport {
 				CnContentBasicinfo cb = JdbcHelper.queryOne(CnContentBasicinfo.class, "code", jumpContent);
 				if (cb != null) {
 					result.setContentType(cb.getContentType());
-					if (Content_Type_Href.equals(cb.getContentType())) {
+					if (Content_Type_Href.equals(cb.getContentType())
+							|| Content_Other_Live.equals(cb.getContentType())) {
 						CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code", jumpContent);
 						if (contentDetail != null) {
 							result.setUrl(contentDetail.getVideoUrl());
