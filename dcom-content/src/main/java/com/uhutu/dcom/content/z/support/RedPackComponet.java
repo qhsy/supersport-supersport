@@ -134,16 +134,20 @@ public class RedPackComponet {
 
 						JdbcHelper.update(redPackUser, "status", "za");
 
-						/* 跟分成人员发送消息通知 */
-						String content = TopHelper.upInfo(810710024, title,
-								packUserProfit.toString());
-						
-						String msgContent = TopHelper.upInfo(810710024, cnLiveVideoDetail.getTitle(),
-								packUserProfit.toString());
+						if(packUserProfit.compareTo(BigDecimal.ZERO) > 0){
+							
+							/* 跟分成人员发送消息通知 */
+							String content = TopHelper.upInfo(810710024, title,
+									packUserProfit.toString());
+							
+							String msgContent = TopHelper.upInfo(810710024, cnLiveVideoDetail.getTitle(),
+									packUserProfit.toString());
 
-						msgNotice(msgContent, redPackUser.getUserCode());
+							msgNotice(msgContent, redPackUser.getUserCode());
 
-						baiduPush(redPackUser.getUserCode(), "直播结算", content, "7", "");
+							baiduPush(redPackUser.getUserCode(), "直播结算", content, "7", "");
+							
+						}
 
 					}
 
