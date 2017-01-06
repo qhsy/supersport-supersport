@@ -21,11 +21,11 @@ public class ApiAttendFlag extends RootApiToken<ApiAttendFlagInput, ApiAttendFla
 
 		switch (input.getOperFlag()) {
 		case "live":
-			attendFlagResult.setAttendFlag(initLiveFlag(upUserCode(), input.getRoomId()));
+			attendFlagResult.setAttendFlag(initLiveFlag(upUserCode(), input.getCode()));
 			break;
 
 		default:
-			attendFlagResult.setAttendFlag(initFlag(upUserCode(), input.getBeAttend()));
+			attendFlagResult.setAttendFlag(initFlag(upUserCode(), input.getCode()));
 			break;
 		}
 

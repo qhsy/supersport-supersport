@@ -11,30 +11,11 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class ApiAttendFlagInput extends RootApiInput {
 	
-	@ApiModelProperty(value="被关注的用户编号")
-	private String beAttend;
+	@ApiModelProperty(value="编号",notes="用户编号，直播房间号")
+	private String code;
 	
-	@ApiModelProperty(value="直播房间号")
-	private String roomId;
-	
-	@ApiModelProperty(value="操作标识")
+	@ApiModelProperty(value="操作标识", notes="live:直播")
 	private String operFlag;
-
-	public String getBeAttend() {
-		return beAttend;
-	}
-
-	public void setBeAttend(String beAttend) {
-		this.beAttend = beAttend;
-	}
-
-	public String getRoomId() {
-		return roomId;
-	}
-
-	public void setRoomId(String roomId) {
-		this.roomId = roomId;
-	}
 
 	public String getOperFlag() {
 		return operFlag;
@@ -42,6 +23,14 @@ public class ApiAttendFlagInput extends RootApiInput {
 
 	public void setOperFlag(String operFlag) {
 		this.operFlag = operFlag;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 }
