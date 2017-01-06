@@ -114,6 +114,7 @@ import com.uhutu.sportcenter.z.api.remark.ApiPublishRemark;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkCount;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkList;
 import com.uhutu.sportcenter.z.api.user.ApiAnswerMsgList;
+import com.uhutu.sportcenter.z.api.user.ApiAttendFlag;
 import com.uhutu.sportcenter.z.api.user.ApiAttendList;
 import com.uhutu.sportcenter.z.api.user.ApiFansList;
 import com.uhutu.sportcenter.z.api.user.ApiFavorContentList;
@@ -592,6 +593,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiMySignInfo apiMySignInfo;
+	
+	@Autowired
+	private ApiAttendFlag apiAttendFlag;
 
 	public ApiHomePageThird getApiHomePageThird() {
 		return apiHomePageThird;
@@ -1171,6 +1175,10 @@ public class ApiFactory {
 
 	public ApiMySignInfo getApiMySignInfo() {
 		return apiMySignInfo;
+	}
+
+	public ApiAttendFlag getApiAttendFlag() {
+		return apiAttendFlag;
 	}
 
 }

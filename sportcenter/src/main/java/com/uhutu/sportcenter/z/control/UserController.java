@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.APiStartPageInput;
+import com.uhutu.sportcenter.z.input.ApiAttendFlagInput;
 import com.uhutu.sportcenter.z.input.ApiAttendListInput;
 import com.uhutu.sportcenter.z.input.ApiFansListInput;
 import com.uhutu.sportcenter.z.input.ApiFavorContentListInput;
@@ -34,6 +35,7 @@ import com.uhutu.sportcenter.z.input.ApiUserResetPwdInput;
 import com.uhutu.sportcenter.z.input.ApiVerifyNickNameInput;
 import com.uhutu.sportcenter.z.input.ApiVersionInfoInput;
 import com.uhutu.sportcenter.z.result.APiStartPageResult;
+import com.uhutu.sportcenter.z.result.ApiAttendFlagResult;
 import com.uhutu.sportcenter.z.result.ApiAttendListResult;
 import com.uhutu.sportcenter.z.result.ApiFansListResult;
 import com.uhutu.sportcenter.z.result.ApiFavorContentListResult;
@@ -288,6 +290,15 @@ public class UserController {
 	public ApiUserDataExpertResult userDataExpert(@RequestBody ApiUserDataExpertInput input) {
 
 		return apiFactory.getApiUserDataExpert().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/attendFlag", method = RequestMethod.POST)
+	@ApiOperation(value = "关注标识", notes = "是否关注标识")
+	public ApiAttendFlagResult attendFlag(@RequestBody ApiAttendFlagInput input) {
+
+		return apiFactory.getApiAttendFlag().api(input);
 
 	}
 
