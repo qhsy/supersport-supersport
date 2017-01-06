@@ -86,6 +86,7 @@
 		<child-detail :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030002'"></child-detail>
 		<child-picture :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030004'"></child-picture>
 		<child-video :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030005'"></child-video>
+		<child-live :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030008'"></child-video>
 	</article>
 	<!-- end -->
 	<article class="read">
@@ -163,8 +164,23 @@
 	</ul>
 </script>
 <!-- end -->
+<!-- 第三方直播流 -->
+<script type="text/x-template" id="template-live">
+	<div class="media" id="media"></div>
+	<!-- <template v-if="response.detail.status == '0'">
+		<div class="end">
+			<img :src="response.detail.cover" alt="">
+			<div class="end-info">
+				<h1>直播已结束</h1>
+			</div>
+		</div>
+	</template> -->
+	<h1 class="video-title">{{res.sportingMoment.title}}</h1>
+</script>
+<!-- end -->
 <script type="text/javascript" src="script/common.min.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="../static/js/live_connect.js"></script>
 <script type="text/javascript">
 var wechat = navigator.userAgent.indexOf('MicroMessenger') > -1;
 if(wechat){
@@ -224,6 +240,31 @@ Vue.component('child-picture',{
 		res:null
 	}
 });
+Vue.component('child-live',{
+	template:'#template-live',
+	props:{
+		res: null
+	},
+	ready: function(){
+		this.live();
+	},
+	methods:{
+		live: function(){
+			var _this = this;
+			new qcVideo.Player("media",{
+				"live_url" : _this.res.contentDetailInfo.videoUrl,
+				"live_url2" : _this.res.contentDetailInfo.videoUrl,
+				'width' : window.innerWidth,
+				'height' : window.innerWidth,
+				'x5_fullscreen': true,
+				'h5_start_patch': {
+					'url': _this.res.sportingMoment.cover,
+					'stretch': true
+				}
+			});
+		}
+	}
+})
 Vue.component('child-video',{
 	template:'#template-video',
 	props:{
