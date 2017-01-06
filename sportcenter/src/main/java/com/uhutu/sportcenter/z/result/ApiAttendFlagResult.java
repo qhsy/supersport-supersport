@@ -13,6 +13,9 @@ public class ApiAttendFlagResult extends RootApiResult {
 	
 	@ApiModelProperty(value="关注标识")
 	private boolean attendFlag = false;
+	
+	@ApiModelProperty(value="")
+	private String beAttention;
 
 	public boolean isAttendFlag() {
 		return attendFlag;
@@ -20,6 +23,14 @@ public class ApiAttendFlagResult extends RootApiResult {
 
 	public void setAttendFlag(boolean attendFlag) {
 		this.attendFlag = attendFlag;
+	}
+
+	public String getBeAttention() {
+		return beAttention;
+	}
+
+	public void setBeAttention(String beAttention) {
+		this.beAttention = beAttention;
 	}
 
 }

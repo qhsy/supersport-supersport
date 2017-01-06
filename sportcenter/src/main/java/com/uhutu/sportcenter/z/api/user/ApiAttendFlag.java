@@ -18,14 +18,17 @@ public class ApiAttendFlag extends RootApiToken<ApiAttendFlagInput, ApiAttendFla
 	protected ApiAttendFlagResult process(ApiAttendFlagInput input) {
 
 		ApiAttendFlagResult attendFlagResult = new ApiAttendFlagResult();
+		
+		attendFlagResult.setBeAttention(input.getCode());
 
 		switch (input.getOperFlag()) {
+		
 		case "live":
-			attendFlagResult.setAttendFlag(initLiveFlag(upUserCode(), input.getCode()));
+			initLiveFlag(upUserCode(), input.getCode(),attendFlagResult);
 			break;
 
 		default:
-			attendFlagResult.setAttendFlag(initFlag(upUserCode(), input.getCode()));
+			attendFlagResult.setAttendFlag(initFlag(upUserCode(), input.getCode()));;
 			break;
 		}
 
@@ -49,7 +52,7 @@ public class ApiAttendFlag extends RootApiToken<ApiAttendFlagInput, ApiAttendFla
 		
 	}
 	
-	public boolean initLiveFlag(String attention,String roomId){
+	public void initLiveFlag(String attention,String roomId,ApiAttendFlagResult attendFlagResult){
 		
 		boolean flag = false;
 		
@@ -59,9 +62,12 @@ public class ApiAttendFlag extends RootApiToken<ApiAttendFlagInput, ApiAttendFla
 			
 			flag = initFlag(attention, cnVideoInfo.getUserCode());
 			
+			attendFlagResult.setBeAttention(cnVideoInfo.getUserCode());
+			
 		}
 		
-		return flag;
+		attendFlagResult.setAttendFlag(flag);		
+		
 		
 	}
 	
