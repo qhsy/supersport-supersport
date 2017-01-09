@@ -45,7 +45,7 @@ function open(){
 		}else{
 			openclient({
 				scheme: 'xtyjgd://',
-				download: 'https://itunes.apple.com/us/app/guo-dong-yun-dong-shi-ke/id1107505487?l=zh&ls=1&mt=8'
+				download: 'https://itunes.apple.com/us/app/guo-dong-ti-yu-fu-wu-quan/id1107505487?l=zh&ls=1&mt=8'
 			});
 		}
 	} else if(browser.android){
