@@ -21,7 +21,8 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class CnRedPackInfo extends BaseEntity {
 
-	@ZooData(value = "编号", require = "1")
+	@ZooData(value = "编号", inc = DefineWebInc.Insert_Code + "=CRPI", sort = { DefineWebPage.Page_Add + "=1",
+			DefineWebPage.Page_Edit + "=0" })
 	@Column(length = 50)
 	private String code;
 
