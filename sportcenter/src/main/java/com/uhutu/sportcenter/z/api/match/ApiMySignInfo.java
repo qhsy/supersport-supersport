@@ -35,7 +35,7 @@ public class ApiMySignInfo extends RootApiToken<ApiMySignInfoInput, ApiMySignInf
 		
 		ApiMySignInfoResult signInfoResult = new ApiMySignInfoResult();
 		
-		ReReportJson reportJson = JdbcHelper.queryOne(ReReportJson.class, "signCode",input.getCode());
+		ReReportJson reportJson = JdbcHelper.queryOne(ReReportJson.class, "signCode",input.getCode(),"userCode",upUserCode());
 		
 		if(reportJson != null){
 			
