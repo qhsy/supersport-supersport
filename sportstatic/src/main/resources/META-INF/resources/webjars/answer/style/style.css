@@ -203,7 +203,7 @@ a:hover {text-decoration: none;}
 .personal-nav .add-icon{background-position: 0 -1.75rem;}
 
 .personal-tab{margin-bottom: 0.1rem; padding: 0 0.14rem; box-sizing: border-box; background: #fff; overflow: auto; box-shadow: 0 1px 3px #}
-.personal-tab li{width: 50%; float: left; border-top: #D6D6D6 1px solid; text-align: center; font-size: 0.12rem; line-height: 0.34rem;}
+.personal-tab li{width: 50%; float: left; text-align: center; font-size: 0.12rem; line-height: 0.34rem;}
 .personal-tab li.curr span{width: 100%; color: #F99653; border-bottom: #F99653 2px solid; line-height: 0.34rem; display: inline-block;}
 /*.personal-tab li:first-child:after{content: ""; float: right; width: 1px; height: 0.14rem; margin-top: 0.1rem; background: #D6D6D6;}*/
 .personal-sports li{margin-bottom: 0.04rem; position: relative;}
