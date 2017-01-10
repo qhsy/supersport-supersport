@@ -1,5 +1,6 @@
 package com.uhutu.sportcenter.z.api.match;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -95,6 +96,22 @@ public class ApiMySignList extends RootApiToken<ApiMySignListInput, ApiMySignLis
 			
 			mySignInfo.setCover(cover);
 			
+			if(StringUtils.isNotEmpty(cnMatchInfo.getEndTime())){
+				
+				Date endDate = DateHelper.parseDate(cnMatchInfo.getEndTime());
+				
+				mySignInfo.setEndTime(DateHelper.upDate(endDate, "yyyy-MM-dd HH:mm"));
+				
+			}
+			
+			if(cnMatchInfo.getStartTime() != null){
+				
+				Date startDate = DateHelper.parseDate(cnMatchInfo.getStartTime());
+				
+				mySignInfo.setStartTime(DateHelper.upDate(startDate, "yyyy-MM-dd HH:mm"));
+				
+			}
+			
 			mySignInfo.setLocation(cnMatchInfo.getPlace());
 			
 			
@@ -114,17 +131,6 @@ public class ApiMySignList extends RootApiToken<ApiMySignListInput, ApiMySignLis
 		
 		if(reReportInfo != null){
 			
-			if(reReportInfo.getEndTime() != null){
-				
-				mySignInfo.setEndTime(DateHelper.upDate(reReportInfo.getEndTime(), "yyyy-MM-dd HH:mm"));
-				
-			}
-			
-			if(reReportInfo.getStartTime() != null){
-				
-				mySignInfo.setStartTime(DateHelper.upDate(reReportInfo.getStartTime(), "yyyy-MM-dd HH:mm"));
-				
-			}
 			
 			if(reReportInfo.getOrderMoney() != null){
 				
