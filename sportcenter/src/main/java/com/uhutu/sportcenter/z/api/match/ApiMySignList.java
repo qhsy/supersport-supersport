@@ -33,7 +33,7 @@ public class ApiMySignList extends RootApiToken<ApiMySignListInput, ApiMySignLis
 
 		ApiMySignListResult result = new ApiMySignListResult();
 
-		String sqlWhere = "exists (select 1 from cn_match_sign where sign_code = code) and status= '1' and user_code='"+upUserCode()+"'";
+		String sqlWhere = "exists (select 1 from cn_match_sign where sign_code = code) and user_code='"+upUserCode()+"'";
 
 		int total = JdbcHelper.count(ReReportJson.class, sqlWhere, new MDataMap());
 
@@ -104,7 +104,7 @@ public class ApiMySignList extends RootApiToken<ApiMySignListInput, ApiMySignLis
 				
 			}
 			
-			if(cnMatchInfo.getStartTime() != null){
+			if(StringUtils.isNotEmpty(cnMatchInfo.getStartTime())){
 				
 				Date startDate = DateHelper.parseDate(cnMatchInfo.getStartTime());
 				
