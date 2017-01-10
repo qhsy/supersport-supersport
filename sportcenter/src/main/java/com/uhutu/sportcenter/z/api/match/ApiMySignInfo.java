@@ -1,6 +1,7 @@
 package com.uhutu.sportcenter.z.api.match;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -94,6 +95,22 @@ public class ApiMySignInfo extends RootApiToken<ApiMySignInfoInput, ApiMySignInf
 				
 			}
 			
+			if(StringUtils.isNotEmpty(cnMatchInfo.getEndTime())){
+				
+				Date endDate = DateHelper.parseDate(cnMatchInfo.getEndTime());
+				
+				mySignInfo.setEndTime(DateHelper.upDate(endDate, "yyyy-MM-dd HH:mm"));
+				
+			}
+			
+			if(cnMatchInfo.getStartTime() != null){
+				
+				Date startDate = DateHelper.parseDate(cnMatchInfo.getStartTime());
+				
+				mySignInfo.setStartTime(DateHelper.upDate(startDate, "yyyy-MM-dd HH:mm"));
+				
+			}
+			
 			mySignInfo.setCover(cover);
 			
 			mySignInfo.setLocation(cnMatchInfo.getPlace());
@@ -114,18 +131,6 @@ public class ApiMySignInfo extends RootApiToken<ApiMySignInfoInput, ApiMySignInf
 		ReReportInfo reReportInfo = JdbcHelper.queryOne(ReReportInfo.class, "code",mySignInfo.getSignCode());
 		
 		if(reReportInfo != null){
-			
-			if(reReportInfo.getEndTime() != null){
-				
-				mySignInfo.setEndTime(DateHelper.upDate(reReportInfo.getEndTime(), "yyyy-MM-dd HH:mm"));
-				
-			}
-			
-			if(reReportInfo.getStartTime() != null){
-				
-				mySignInfo.setStartTime(DateHelper.upDate(reReportInfo.getStartTime(), "yyyy-MM-dd HH:mm"));
-				
-			}
 			
 			if(reReportInfo.getOrderMoney() != null){
 				
@@ -168,6 +173,14 @@ public class ApiMySignInfo extends RootApiToken<ApiMySignInfoInput, ApiMySignInf
 						
 						String val = mDataMap.get(reportField.getFieldId());
 						
+						if(StringUtils.isNotEmpty(reportField.getScope())){
+							
+							MDataMap scopeMap = initScope(reportField.getScope());
+							
+							val = scopeMap.get(val);
+							
+						}
+						
 						signFieldInfo.setValue(val);
 						
 						signFieldInfos.add(signFieldInfo);
@@ -182,6 +195,32 @@ public class ApiMySignInfo extends RootApiToken<ApiMySignInfoInput, ApiMySignInf
 		}
 		
 		return signFieldInfos;
+		
+	}
+	
+	public MDataMap initScope(String scope){
+		
+		MDataMap mDataMap = new MDataMap();
+		
+		if(StringUtils.isNotBlank(scope)){
+			
+			String[] scopes = scope.split(",");
+			
+			for (String scopeOne : scopes) {
+				
+				String[] scopeOnes = scopeOne.split("&");
+				
+				if(scopeOnes.length > 1){
+					
+					mDataMap.put(scopeOnes[0], scopeOnes[1]);
+					
+				}
+				
+			}
+			
+		}
+		
+		return mDataMap;
 		
 	}
 
