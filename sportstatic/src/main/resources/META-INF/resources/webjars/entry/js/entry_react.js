@@ -56,6 +56,7 @@ var entry_Form = {
 				'type': 'number',
 				className: entry_config.css.input,
 				'id': this.props.fieldId,
+				'pattern':'[0-9]*',
 				'placeholder': '请输入' + this.props.fieldLabel,
 				'name': this.props.fieldId,
 				onChange: this.onChange,
