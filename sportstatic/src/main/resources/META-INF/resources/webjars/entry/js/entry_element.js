@@ -14,6 +14,18 @@ var entry_Form_Input = React.createClass({
 	}
 });
 
+var entry_Form_Number = React.createClass({
+	displayName : 'entry_Form_Number',
+
+	render : function() {
+		
+		return React.createElement(entry_config.html.div, {
+			className : entry_config.css.cell
+		}, React.createElement(entry_Form.Label, this.props), React
+				.createElement(entry_Form.Number, this.props));
+	}
+});
+
 var entry_Form_Select = React.createClass({
 	displayName : 'entry_Form_Select',
 

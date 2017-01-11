@@ -45,7 +45,8 @@ var entry_config = {
 		'select' : 'entry_Form_Select',
 		'hidden' : 'entry_Form_Hidden',
 		'tree' : 'entry_Form_Tree',
-		'model' : 'entry_Form_Model'
+		'model' : 'entry_Form_Model',
+		'number' : 'entry_Form_Number'
 
 	},
 

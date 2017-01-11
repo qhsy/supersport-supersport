@@ -31,6 +31,39 @@ var entry_Form = {
 			}));
 		}
 	}),
+	
+	Number: React.createClass({
+		displayName: 'entry_Form.Number',
+
+		getInitialState: function() {
+			return {
+				value: entry_page.data_up_value(this.props.code, this.props.fieldId)
+			};
+		},
+
+		onChange: function onChange(e) {
+			this.setState({
+				value: e.target.value
+			});
+			entry_page.data_in_value(this.props.code,
+				this.props.fieldId, e.target.value);
+		},
+
+		render: function() {
+			return React.createElement(entry_config.html.div, {
+				className: entry_config.css.cell_bd
+			}, React.createElement("input", {
+				'type': 'number',
+				className: entry_config.css.input,
+				'id': this.props.fieldId,
+				'placeholder': '请输入' + this.props.fieldLabel,
+				'name': this.props.fieldId,
+				onChange: this.onChange,
+				value: this.state.value
+			}));
+		}
+	}),
+
 
 	Label: React.createClass({
 		displayName: 'Label',
