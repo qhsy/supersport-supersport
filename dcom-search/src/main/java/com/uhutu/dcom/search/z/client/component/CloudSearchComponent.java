@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.aliyun.opensearch.CloudsearchClient;
+import com.aliyun.opensearch.CloudsearchSearch;
 import com.aliyun.opensearch.object.KeyTypeEnum;
 import com.uhutu.dcom.search.z.client.config.CloudSearchConfig;
 
@@ -49,6 +50,33 @@ public class CloudSearchComponent {
 		
 		return new CloudsearchClient(CloudSearchConfig.AK_ID, CloudSearchConfig.AK_SECRET, CloudSearchConfig.HOST, opts, KeyTypeEnum.ALIYUN);
 		
+	}
+	
+	public CloudsearchSearch search(String queryStr){
+		
+		CloudsearchSearch cloudSearch = null;
+		
+		try {
+			
+			cloudSearch = new CloudsearchSearch(getCloudSerachClient());
+			
+			cloudSearch.addIndex(CloudSearchConfig.APP_NAME);
+			
+			cloudSearch.setQueryString(queryStr);
+			
+			cloudSearch.setFormat("json");
+			
+		} catch (Exception e) {
+			
+			cloudSearch = null;
+			
+			e.printStackTrace();
+			
+		}
+		
+		
+		return cloudSearch;
+
 	}
 	
 }
