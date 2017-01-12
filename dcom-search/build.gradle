@@ -17,7 +17,9 @@ jar {
 
 dependencies {
 
-	compile group: 'org.apache.solr', name: 'solr-solrj', version: '6.2.1'
+	compile project(':dcom-component'){version=zooInitVersion;group=zooInitGroupId}
+	compile group: 'com.aliyun.opensearch', name: 'aliyun-sdk-opensearch', version: '2.1.3'
+	
 	
 	
 }
