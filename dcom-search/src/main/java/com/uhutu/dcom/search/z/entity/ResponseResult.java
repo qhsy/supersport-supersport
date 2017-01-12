@@ -1,4 +1,4 @@
-package com.uhutu.dcom.search.z.client.entity;
+package com.uhutu.dcom.search.z.entity;
 
 import java.util.ArrayList;
 import java.util.List;

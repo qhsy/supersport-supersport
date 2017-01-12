@@ -1,4 +1,4 @@
-package com.uhutu.dcom.search.z.client.entity;
+package com.uhutu.dcom.search.z.entity;
 
 /**
  * 用户 查询结果数据

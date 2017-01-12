@@ -1,13 +1,15 @@
-package com.uhutu.dcom.search.z.client.component;
+package com.uhutu.dcom.search.z.component;
 
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
 import com.aliyun.opensearch.CloudsearchClient;
 import com.aliyun.opensearch.CloudsearchSearch;
 import com.aliyun.opensearch.object.KeyTypeEnum;
-import com.uhutu.dcom.search.z.client.config.CloudSearchConfig;
+import com.uhutu.dcom.search.z.config.CloudSearchConfig;
 
 /**
  * solr客户端 共用组件
@@ -44,6 +46,12 @@ public class CloudSearchComponent {
 		
 	}
 	
+	/**
+	 * 获得客户端查询实例
+	 * @return
+	 * 		查询客户端实例
+	 * @throws UnknownHostException
+	 */
 	public CloudsearchClient getCloudSerachClient() throws UnknownHostException{
 		
 		Map<String, Object> opts = new HashMap<String, Object>();
@@ -52,7 +60,15 @@ public class CloudSearchComponent {
 		
 	}
 	
-	public CloudsearchSearch search(String queryStr){
+	/**
+	 * 单应用查询
+	 * @param appName
+	 * 		应用名称
+	 * @param queryStr
+	 * 		查询字符串
+	 * @return 查询对象
+	 */
+	public CloudsearchSearch search(String appName, String queryStr){
 		
 		CloudsearchSearch cloudSearch = null;
 		
@@ -60,7 +76,46 @@ public class CloudSearchComponent {
 			
 			cloudSearch = new CloudsearchSearch(getCloudSerachClient());
 			
-			cloudSearch.addIndex(CloudSearchConfig.APP_NAME);
+			cloudSearch.addIndex(appName);
+			
+			cloudSearch.setQueryString(queryStr);
+			
+			cloudSearch.setFormat("json");
+			
+		} catch (Exception e) {
+			
+			cloudSearch = null;
+			
+			e.printStackTrace();
+			
+		}
+		
+		
+		return cloudSearch;
+
+	}
+	
+	/**
+	 * 多应用间联合查询
+	 * @param queryStr
+	 * 		查询字符串
+	 * @param appNames
+	 * 		应用名称集合
+	 * @return 查询对象
+	 */
+	public CloudsearchSearch unionSearch(String queryStr, String... appNames){
+		
+		CloudsearchSearch cloudSearch = null;
+		
+		try {
+			
+			cloudSearch = new CloudsearchSearch(getCloudSerachClient());
+			
+			List<String> appNameList = new ArrayList<String>();
+			
+			Collections.addAll(appNameList, appNames);
+			
+			cloudSearch.addIndex(appNameList);
 			
 			cloudSearch.setQueryString(queryStr);
 			

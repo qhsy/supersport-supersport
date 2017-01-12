@@ -1,4 +1,4 @@
-package com.uhutu.dcom.search.z.client.entity;
+package com.uhutu.dcom.search.z.entity;
 
 /**
  * 响应错误信息

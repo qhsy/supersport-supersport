@@ -1,4 +1,4 @@
-package com.uhutu.dcom.search.z.client.config;
+package com.uhutu.dcom.search.z.config;
 
 /**
  * solr配置信息
