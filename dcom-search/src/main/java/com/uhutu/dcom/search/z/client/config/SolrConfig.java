@@ -8,8 +8,11 @@ package com.uhutu.dcom.search.z.client.config;
 
 public class SolrConfig {
 	
-	/*solr server url*/
-	public static String SOLR_URL="http://172.20.1.51:8080/solr/bigsport";
+	/*access key id*/
+	public static String AK_ID = "LTAINroRZ5gLaJ0Z";
+	
+	/*access key id*/
+	public static String AK_SECRET = "aDi1qqLcOu9FP3V0WCQ7UyB3t0qPYl";
 	
 
 }
