@@ -36,7 +36,7 @@ public class ApiMatchInfoResult extends RootApiResult {
 	@ApiModelProperty(value="按钮名称")
 	private String buttonName;
 	
-	@ApiModelProperty(value="按钮相关操作",notes="sign:报名,link:jump相关,none:按钮不展示")
+	@ApiModelProperty(name="按钮相关操作",notes="按钮相关操作 sign:报名,link:jump相关,none:按钮不展示")
 	private String operBtn = "none";
 	
 	@ApiModelProperty(value="是否直接报名")

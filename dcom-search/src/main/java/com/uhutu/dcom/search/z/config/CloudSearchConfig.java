@@ -16,7 +16,11 @@ public class CloudSearchConfig {
 	
 	public static String HOST = "http://opensearch-cn-beijing.aliyuncs.com";
 	
-	public static String APP_NAME = "bigtiyu_search_beta";
+	public static String APP_NAME_USER = "bigtiyu_search_beta_user";
+	
+	public static String APP_NAME_CONTENT = "bigtiyu_search_beta_content";
+	
+	public static String APP_NAME_MATCH = " bigtiyu_search_beta_match";
 	
 
 }
