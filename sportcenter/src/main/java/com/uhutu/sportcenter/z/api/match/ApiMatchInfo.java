@@ -82,6 +82,8 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 				
 			}
 			
+			operBtn(matchInfoResult);
+			
 		}else{
 			
 			matchInfoResult.setError("相关赛事信息不存在");
@@ -278,6 +280,28 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 		
 		return jumpTypeData;
 		
+		
+	}
+	
+	public void operBtn(ApiMatchInfoResult matchInfoResult){
+		
+		if(StringUtils.isNotBlank(matchInfoResult.getSignUrl())){
+			
+			matchInfoResult.setOperBtn("sign");
+			
+		}else{
+			
+			if(matchInfoResult.getLinkJumpData() != null){
+				
+				matchInfoResult.setOperBtn("link");
+				
+			}else{
+				
+				matchInfoResult.setOperBtn("none");
+				
+			}
+			
+		}
 		
 	}
 
