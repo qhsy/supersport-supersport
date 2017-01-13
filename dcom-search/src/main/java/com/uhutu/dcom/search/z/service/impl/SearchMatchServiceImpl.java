@@ -32,6 +32,8 @@ public class SearchMatchServiceImpl implements ISearchMatchService {
 				
 				cloudSearch.addSort("sort", "-");
 				
+				start = start < 0 ? 0 : start;
+				
 				cloudSearch.setStartHit(start);
 				
 				cloudSearch.setHits(number);
@@ -47,6 +49,8 @@ public class SearchMatchServiceImpl implements ISearchMatchService {
 			ResponseError responseError = new ResponseError();
 			
 			responseError.setCode("-1");
+			
+			responseData.setStatus("FAIL");
 			
 			responseError.setMessage(e.getMessage());
 			

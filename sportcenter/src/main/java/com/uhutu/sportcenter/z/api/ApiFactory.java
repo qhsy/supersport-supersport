@@ -113,6 +113,9 @@ import com.uhutu.sportcenter.z.api.remark.ApiOperRemark;
 import com.uhutu.sportcenter.z.api.remark.ApiPublishRemark;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkCount;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkList;
+import com.uhutu.sportcenter.z.api.search.ApiSearchMatch;
+import com.uhutu.sportcenter.z.api.search.ApiSearchUser;
+import com.uhutu.sportcenter.z.api.search.ApiSearchVideo;
 import com.uhutu.sportcenter.z.api.user.ApiAnswerMsgList;
 import com.uhutu.sportcenter.z.api.user.ApiAttendFlag;
 import com.uhutu.sportcenter.z.api.user.ApiAttendList;
@@ -596,6 +599,15 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiAttendFlag apiAttendFlag;
+	
+	@Autowired
+	private ApiSearchMatch apiSearchMatch;
+	
+	@Autowired
+	private ApiSearchUser apiSearchUser;
+	
+	@Autowired
+	private ApiSearchVideo apiSearchVideo;
 
 	public ApiHomePageThird getApiHomePageThird() {
 		return apiHomePageThird;
@@ -1179,6 +1191,18 @@ public class ApiFactory {
 
 	public ApiAttendFlag getApiAttendFlag() {
 		return apiAttendFlag;
+	}
+
+	public ApiSearchMatch getApiSearchMatch() {
+		return apiSearchMatch;
+	}
+
+	public ApiSearchUser getApiSearchUser() {
+		return apiSearchUser;
+	}
+
+	public ApiSearchVideo getApiSearchVideo() {
+		return apiSearchVideo;
 	}
 
 }

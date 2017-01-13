@@ -24,6 +24,8 @@ public class SearchUserServiceImpl implements ISearchUserService {
 			
 			if(cloudSearch != null){
 				
+				start = start < 0 ? 0 : start;
+				
 				cloudSearch.setStartHit(start);
 				
 				cloudSearch.setHits(number);
@@ -39,6 +41,8 @@ public class SearchUserServiceImpl implements ISearchUserService {
 			ResponseError responseError = new ResponseError();
 			
 			responseError.setCode("-1");
+			
+			responseData.setStatus("FAIL");
 			
 			responseError.setMessage(e.getMessage());
 			

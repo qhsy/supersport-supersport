@@ -25,6 +25,8 @@ public class SearchVideoServiceImpl implements ISearchVideoService {
 				
 				cloudSearch.addSort("zc", "-");
 				
+				start = start < 0 ? 0 : start;
+				
 				cloudSearch.setStartHit(start);
 				
 				cloudSearch.setHits(number);
@@ -40,6 +42,8 @@ public class SearchVideoServiceImpl implements ISearchVideoService {
 			ResponseError responseError = new ResponseError();
 			
 			responseError.setCode("-1");
+			
+			responseData.setStatus("FAIL");
 			
 			responseError.setMessage(e.getMessage());
 			
