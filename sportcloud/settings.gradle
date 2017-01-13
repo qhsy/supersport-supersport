@@ -39,6 +39,9 @@ project(':dcom-evaluate').projectDir = new File(settingsDir, '../dcom-evaluate')
 include ':dcom-course'
 project(':dcom-course').projectDir = new File(settingsDir, '../dcom-course')
 
+include ':dcom-search'
+project(':dcom-search').projectDir = new File(settingsDir, '../dcom-search')
+
 include ':sportcenter'
 project(':sportcenter').projectDir = new File(settingsDir, '../sportcenter')
 
