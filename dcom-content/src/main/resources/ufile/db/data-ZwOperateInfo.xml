@@ -487,6 +487,14 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_ContentOtherLiveDetailPage?u_code=[[data:code]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071109" operateName="设置跳转" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_CnMatchLinkPage?u_matchCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071110" operateName="跳转详情" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_CnMatchLinkPage?u_matchCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
