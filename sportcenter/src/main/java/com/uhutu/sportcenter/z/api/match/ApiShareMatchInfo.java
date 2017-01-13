@@ -2,10 +2,12 @@ package com.uhutu.sportcenter.z.api.match;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.content.z.entity.CnMatchInfo;
+import com.uhutu.dcom.content.z.entity.CnMatchLink;
 import com.uhutu.dcom.content.z.entity.CnMatchSign;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.sportcenter.z.api.util.MatchComponent;
@@ -40,6 +42,10 @@ public class ApiShareMatchInfo extends RootApiBase<ApiShareMatchInfoInput, ApiSh
 			shareMatchInfoResult.setMatchInfo(matchInfo);
 			
 			initMatchSign(input.getMatchCode(), shareMatchInfoResult);
+			
+			String buttonName = buttonName(input.getMatchCode(), shareMatchInfoResult.getSignUrl());
+			
+			shareMatchInfoResult.setButtonName(buttonName);
 			
 		}else{
 			
@@ -117,6 +123,31 @@ public class ApiShareMatchInfo extends RootApiBase<ApiShareMatchInfoInput, ApiSh
 			result.setSignUrl(url);
 			
 		}		
+		
+	}
+	
+	public String buttonName(String matchCode, String signUrl){
+		
+		String buttonName = "";
+		
+		if(StringUtils.isNotEmpty(signUrl)){
+			
+			buttonName = "我要报名";
+			
+		}else{
+			
+			CnMatchLink matchLink = JdbcHelper.queryOne(CnMatchLink.class, "matchCode",matchCode,"status",ContentEnum.MATCH_PUB.getCode());
+			
+			if(matchLink != null){
+				
+				buttonName = matchLink.getTitle();
+				
+			}
+			
+			
+		}
+		
+		return buttonName;
 		
 	}
 

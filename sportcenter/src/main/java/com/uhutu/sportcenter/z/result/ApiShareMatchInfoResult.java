@@ -18,6 +18,9 @@ public class ApiShareMatchInfoResult extends RootApiResult {
 	@ApiModelProperty(value="报名链接")
 	private String signUrl = "";
 	
+	@ApiModelProperty(value="按钮名称")
+	private String buttonName;
+	
 	@ApiModelProperty(value="是否直接报名")
 	private boolean redirectFlag = false;
 
@@ -43,6 +46,14 @@ public class ApiShareMatchInfoResult extends RootApiResult {
 
 	public void setRedirectFlag(boolean redirectFlag) {
 		this.redirectFlag = redirectFlag;
+	}
+
+	public String getButtonName() {
+		return buttonName;
+	}
+
+	public void setButtonName(String buttonName) {
+		this.buttonName = buttonName;
 	}
 	
 
