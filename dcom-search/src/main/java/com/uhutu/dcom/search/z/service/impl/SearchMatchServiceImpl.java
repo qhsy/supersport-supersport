@@ -6,6 +6,7 @@ import com.uhutu.dcom.search.z.config.CloudSearchConfig;
 import com.uhutu.dcom.search.z.entity.ResponseData;
 import com.uhutu.dcom.search.z.entity.ResponseError;
 import com.uhutu.dcom.search.z.service.ISearchMatchService;
+import com.uhutu.zoocom.helper.GsonHelper;
 
 /**
  * 赛事查询
@@ -36,6 +37,8 @@ public class SearchMatchServiceImpl implements ISearchMatchService {
 				cloudSearch.setHits(number);
 				
 				String jsonStr = cloudSearch.search();
+				
+				responseData = GsonHelper.fromJson(jsonStr, responseData);
 				
 			}
 			

@@ -24,7 +24,7 @@ public class CloudSearchComponent {
 	
 	/**
 	 * 获取实体bean处理实例
-	 * @return AccountComponet
+	 * @return CloudSearchComponent
 	 */
 	public static CloudSearchComponent getInstance(){
 		
