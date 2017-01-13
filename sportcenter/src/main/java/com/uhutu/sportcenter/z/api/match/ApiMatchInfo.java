@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnMatchInfo;
+import com.uhutu.dcom.content.z.entity.CnMatchLink;
 import com.uhutu.dcom.content.z.entity.CnMatchLive;
 import com.uhutu.dcom.content.z.entity.CnMatchSign;
 import com.uhutu.dcom.content.z.entity.CnMatchVideo;
@@ -62,6 +63,24 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 			matchInfoResult.setMatchVidoInfos(matchVidoInfos);
 			
 			initMatchSign(input.getMatchCode(), matchInfoResult);
+			
+			if(StringUtils.isEmpty(matchInfoResult.getSignUrl())){
+				
+				JumpTypeData jumpTypeData = linkJumpData(input.getMatchCode());
+				
+				matchInfoResult.setLinkJumpData(jumpTypeData);
+				
+				if(jumpTypeData != null){
+					
+					matchInfoResult.setButtonName(jumpTypeData.getJumpTitle());
+					
+				}
+				
+			}else{
+				
+				matchInfoResult.setButtonName("我要报名");
+				
+			}
 			
 		}else{
 			
@@ -240,6 +259,25 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 			result.setSignUrl(url);
 			
 		}		
+		
+	}
+	
+	public JumpTypeData linkJumpData(String matchCode){
+		
+		JumpTypeData jumpTypeData = null;
+		
+		CnMatchLink matchLink = JdbcHelper.queryOne(CnMatchLink.class, "matchCode",matchCode,"status",ContentEnum.MATCH_PUB.getCode());
+		
+		if(matchLink != null){
+			
+			jumpTypeData = new JumpTypeSupport().getData(matchLink.getLinkType(),
+					matchLink.getLinkContent(), matchLink.getTitle());
+			
+			
+		}
+		
+		return jumpTypeData;
+		
 		
 	}
 

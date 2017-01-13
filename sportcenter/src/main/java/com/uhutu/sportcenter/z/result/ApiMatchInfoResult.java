@@ -3,6 +3,7 @@ package com.uhutu.sportcenter.z.result;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.uhutu.sportcenter.z.entity.JumpTypeData;
 import com.uhutu.sportcenter.z.entity.MatchInfo;
 import com.uhutu.sportcenter.z.entity.MatchLiveInfo;
 import com.uhutu.sportcenter.z.entity.MatchVidoInfo;
@@ -28,6 +29,12 @@ public class ApiMatchInfoResult extends RootApiResult {
 	
 	@ApiModelProperty(value="报名链接")
 	private String signUrl = "";
+	
+	@ApiModelProperty(value="按钮跳转")
+	private JumpTypeData linkJumpData;
+	
+	@ApiModelProperty(value="按钮名称")
+	private String buttonName;
 	
 	@ApiModelProperty(value="是否直接报名")
 	private boolean redirectFlag = false;
@@ -70,6 +77,22 @@ public class ApiMatchInfoResult extends RootApiResult {
 
 	public void setRedirectFlag(boolean redirectFlag) {
 		this.redirectFlag = redirectFlag;
+	}
+
+	public JumpTypeData getLinkJumpData() {
+		return linkJumpData;
+	}
+
+	public void setLinkJumpData(JumpTypeData linkJumpData) {
+		this.linkJumpData = linkJumpData;
+	}
+
+	public String getButtonName() {
+		return buttonName;
+	}
+
+	public void setButtonName(String buttonName) {
+		this.buttonName = buttonName;
 	}
 	
 
