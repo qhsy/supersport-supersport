@@ -13,8 +13,8 @@ import com.uhutu.dcom.extend.sms.SmsTypeEnum;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.enums.UserEnum;
-import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.dcom.user.z.support.TecentSigSupport;
+import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.input.ApiUserRegSignInput;
 import com.uhutu.sportcenter.z.result.ApiUserRegSignResult;
 import com.uhutu.zoocom.helper.SecrurityHelper;
@@ -32,8 +32,8 @@ import com.uhutu.zooweb.user.UserReginsterResult;
 public class ApiUserRegSign extends RootApiBase<ApiUserRegSignInput, ApiUserRegSignResult> {
 
 	@Autowired
-	private UserServiceFactory userServiceFactory;
-
+	private UserInfoSupport userInfoSupport;
+	
 	public ApiUserRegSignResult process(ApiUserRegSignInput inputParam) {
 
 		ApiUserRegSignResult userRegResult = new ApiUserRegSignResult();
@@ -64,7 +64,7 @@ public class ApiUserRegSign extends RootApiBase<ApiUserRegSignInput, ApiUserRegS
 					inputParam.getVerify_code());
 			if (rootApiResult.getStatus() == 1) {
 
-				UserReginsterResult userAuthResult = userServiceFactory.getUserInfoService()
+				UserReginsterResult userAuthResult = userInfoSupport.getUserServiceFactory().getUserInfoService()
 						.regAuthUser(inputParam.getLoginName(), inputParam.getPassword());
 
 				if (userAuthResult.upFlagTrue()) {
@@ -87,7 +87,7 @@ public class ApiUserRegSign extends RootApiBase<ApiUserRegSignInput, ApiUserRegS
 
 					ucUserinfo.setMjFlag(SystemEnum.NO.getCode());
 
-					userServiceFactory.getUserInfoService().save(ucUserinfo);
+					
 
 					UcUserinfoExt ucUserinfoExt = new UcUserinfoExt();
 
@@ -95,11 +95,22 @@ public class ApiUserRegSign extends RootApiBase<ApiUserRegSignInput, ApiUserRegS
 
 					ucUserinfoExt.setNickName(inputParam.getNickName());
 
-					userServiceFactory.getUserInfoExtService().save(ucUserinfoExt);
+					
 
-					userRegResult.setUserCode(userAuthResult.getUserCode());
+					String returnStr = userInfoSupport.regUser(ucUserinfo, ucUserinfoExt, null);
 
-					userRegResult.setUserToken(userAuthResult.getToken());
+					if(StringUtils.isEmpty(returnStr)){
+						
+						userRegResult.setUserCode(userAuthResult.getUserCode());
+
+						userRegResult.setUserToken(userAuthResult.getToken());
+						
+					}else{
+						
+						userRegResult.inError(81100021, returnStr);
+						
+					}
+					
 
 				} else {
 
@@ -123,7 +134,7 @@ public class ApiUserRegSign extends RootApiBase<ApiUserRegSignInput, ApiUserRegS
 		
 		if(userRegResult.upFlagTrue()){
 			
-			userServiceFactory.getUserInfoService().attendOffice(userRegResult.getUserCode());
+			userInfoSupport.getUserServiceFactory().getUserInfoService().attendOffice(userRegResult.getUserCode());
 			
 		}
 		

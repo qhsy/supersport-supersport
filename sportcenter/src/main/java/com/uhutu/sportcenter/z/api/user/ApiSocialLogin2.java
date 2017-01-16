@@ -1,6 +1,7 @@
 package com.uhutu.sportcenter.z.api.user;
 
 import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
 import com.uhutu.dcom.user.z.enums.UserEnum;
-import com.uhutu.dcom.user.z.service.UserServiceFactory;
+import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput2;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult2;
 import com.uhutu.zoocom.define.DefineUser;
@@ -36,10 +37,10 @@ import com.uhutu.zooweb.user.UserReginsterResult;
 public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocialLoginResult2> {
 	
 	@Autowired
-	private UserServiceFactory userServiceFactory;
+	private AnswerServiceFactory answerServiceFactory;
 	
 	@Autowired
-	private AnswerServiceFactory answerServiceFactory;
+	private UserInfoSupport userInfoSupport;
 	
 	@Autowired
 	private WechatConfig config;
@@ -64,20 +65,32 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 		    
 			if (userRegResult.upFlagTrue()) {
 
-				saveUserInfo(userRegResult, inputParam);
+				UcUserinfo ucUserinfo = saveUserInfo(userRegResult, inputParam);
 
-				saveUserInfoExt(userRegResult.getUserCode(), inputParam);
+				UcUserinfoExt ucUserinfoExt = saveUserInfoExt(userRegResult.getUserCode(), inputParam);
 
-				saveSocialInfo(userRegResult.getUserCode(), inputParam);
+				UcUserinfoSocial ucUserinfoSocial = saveSocialInfo(userRegResult.getUserCode(), inputParam);
 				
-				/*关注官方帐号*/
-				userServiceFactory.getUserInfoService().attendOffice(userRegResult.getUserCode());
+				String returnStr = userInfoSupport.regUser(ucUserinfo, ucUserinfoExt, ucUserinfoSocial);
+				
+				if(StringUtils.isEmpty(returnStr)){
+					
+					/*关注官方帐号*/
+					userInfoSupport.getUserServiceFactory().getUserInfoService().attendOffice(userRegResult.getUserCode());
+					
+					result.setFirstLogin(true);
 
-				result.setFirstLogin(true);
+					result.setUserToken(userRegResult.getToken());
 
-				result.setUserToken(userRegResult.getToken());
+					result.setUserCode(userRegResult.getUserCode());
+					
+				}else{
+					
+					result.inError(81100021, returnStr);
+					
+				}
 
-				result.setUserCode(userRegResult.getUserCode());
+			
 
 			}else{
 		    	
@@ -85,11 +98,15 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 		    	
 		    }
 		    
-		    if(StringUtils.equals(inputParam.getAccountType(), "wechat") || StringUtils.equals(inputParam.getAccountType(), "wechat_h5")){
-		    	
-		    	 bindSettleAccount(result.getUserCode(), inputParam.getAccountName(),inputParam.getAccountType(), inputParam.getOpenid(), inputParam.getAccountId());
-		    	
-		    }
+		   if(result.upFlagTrue()){
+			   
+			   if(StringUtils.equals(inputParam.getAccountType(), "wechat") || StringUtils.equals(inputParam.getAccountType(), "wechat_h5")){
+			    	
+			    	 bindSettleAccount(result.getUserCode(), inputParam.getAccountName(),inputParam.getAccountType(), inputParam.getOpenid(), inputParam.getAccountId());
+			    	
+			    }
+			   
+		   }
 			
 		}
 
@@ -126,7 +143,7 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 	 */
 	public UcUserinfo saveUserInfo(UserReginsterResult userRegResult,ApiSocialLoginInput2 input){
 		
-		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(input.getAccountId(),UserEnum.FLAG_ENABLE.getCode());
+		UcUserinfo ucUserinfo = userInfoSupport.getUserServiceFactory().getUserInfoService().queryByLoginName(input.getAccountId(),UserEnum.FLAG_ENABLE.getCode());
 		
 		if(ucUserinfo == null){
 			
@@ -158,8 +175,6 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 			
 		}
 		
-		userServiceFactory.getUserInfoService().save(ucUserinfo);
-		
 		return ucUserinfo;
 		
 	}
@@ -171,9 +186,9 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 	 * @param input
 	 * 		系统输入参数
 	 */
-	public void saveUserInfoExt(String userCode,ApiSocialLoginInput2 input){
+	public UcUserinfoExt saveUserInfoExt(String userCode,ApiSocialLoginInput2 input){
 		
-		UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(userCode);
+		UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserServiceFactory().getUserInfoExtService().queryByUserCode(userCode);
 		
 		if(ucUserinfoExt == null){
 			
@@ -189,9 +204,9 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 			
 			ucUserinfoExt.setAboutHead(input.getAboutHead());
 			
-			userServiceFactory.getUserInfoExtService().save(ucUserinfoExt);
-			
 		}
+		
+		return ucUserinfoExt;
 		
 	}
 	
@@ -202,9 +217,9 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 	 * @param input
 	 * 		输入参数
 	 */
-	public void saveSocialInfo(String userCode, ApiSocialLoginInput2 input){
+	public UcUserinfoSocial saveSocialInfo(String userCode, ApiSocialLoginInput2 input){
 		
-		UcUserinfoSocial social = userServiceFactory.getUserInfoSocialService().queryByUserCode(userCode);
+		UcUserinfoSocial social = userInfoSupport.getUserServiceFactory().getUserInfoSocialService().queryByUserCode(userCode);
 		
 		if(social == null){
 			
@@ -226,7 +241,7 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 			
 		}
 		
-		userServiceFactory.getUserInfoSocialService().save(social);
+		return social;
 		
 	}
 	
@@ -266,7 +281,7 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 		
 		ApiSocialLoginResult2 loginResult = new ApiSocialLoginResult2();
 		
-    	UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().
+    	UcUserinfo ucUserinfo = userInfoSupport.getUserServiceFactory().getUserInfoService().
     			queryByLoginName(openId,UserEnum.FLAG_ENABLE.getCode());
     	
     	if(ucUserinfo != null){
@@ -296,7 +311,7 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 	 */
 	public void saveSocialLogin(ApiSocialLoginInput2 input){
 		
-		UcSocialLogin ucSocialLogin = userServiceFactory.getUserSocialLoginService().queryByUnionId(input.getAccountType(),input.getAccountId());
+		UcSocialLogin ucSocialLogin = userInfoSupport.getUserServiceFactory().getUserSocialLoginService().queryByUnionId(input.getAccountType(),input.getAccountId());
 		
 		if(ucSocialLogin == null){
 			
@@ -314,13 +329,13 @@ public class ApiSocialLogin2 extends RootApiBase<ApiSocialLoginInput2, ApiSocial
 			
 			ucSocialLogin.setType(input.getAccountType());
 			
-			userServiceFactory.getUserSocialLoginService().save(ucSocialLogin);
+			userInfoSupport.getUserServiceFactory().getUserSocialLoginService().save(ucSocialLogin);
 			
 		}else{
 			
 			ucSocialLogin.setOpenid(input.getOpenid());
 			
-			userServiceFactory.getUserSocialLoginService().save(ucSocialLogin);
+			userInfoSupport.getUserServiceFactory().getUserSocialLoginService().save(ucSocialLogin);
 			
 		}
 		

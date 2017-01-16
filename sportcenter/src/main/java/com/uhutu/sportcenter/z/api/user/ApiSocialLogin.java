@@ -12,7 +12,7 @@ import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
 import com.uhutu.dcom.user.z.enums.UserEnum;
-import com.uhutu.dcom.user.z.service.UserServiceFactory;
+import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.input.ApiSocialLoginInput;
 import com.uhutu.sportcenter.z.result.ApiSocialLoginResult;
 import com.uhutu.zoocom.define.DefineUser;
@@ -31,7 +31,7 @@ import com.uhutu.zooweb.user.UserReginsterResult;
 public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLoginResult> {
 	
 	@Autowired
-	private UserServiceFactory userServiceFactory;
+	private UserInfoSupport userInfoSupport;
 	
 	private UserCallFactory userCallFactory = new UserCallFactory();
 
@@ -45,17 +45,27 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 	    	
 	    	result = new ApiSocialLoginResult();
 	    	
-	    	saveUserInfo(userRegResult, inputParam);
+	    	UcUserinfo ucUserinfo = saveUserInfo(userRegResult, inputParam);
 		    
-		    saveUserInfoExt(userRegResult.getUserCode(), inputParam);
+		    UcUserinfoExt ucUserinfoExt = saveUserInfoExt(userRegResult.getUserCode(), inputParam);
 		    
-		    saveSocialInfo(userRegResult.getUserCode(), inputParam);
+		    UcUserinfoSocial ucUserinfoSocial = saveSocialInfo(userRegResult.getUserCode(), inputParam);
 		    
-		    result.setFirstLogin(true);
-		    
-		    result.setUserToken(userRegResult.getToken());
-		    
-		    result.setUserCode(userRegResult.getUserCode());
+		    String returnStr = userInfoSupport.regUser(ucUserinfo, ucUserinfoExt, ucUserinfoSocial); 
+		    		
+			if (StringUtils.isEmpty(returnStr)) {
+
+				result.setFirstLogin(true);
+
+				result.setUserToken(userRegResult.getToken());
+
+				result.setUserCode(userRegResult.getUserCode());
+
+			}else{
+				
+				result.inError(81100021, returnStr);
+				
+			}
 	    	
 	    }else{
 	    	
@@ -94,44 +104,43 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 	 * 		系统输入参数
 	 * return UcUserinfo
 	 */
-	public UcUserinfo saveUserInfo(UserReginsterResult userRegResult,ApiSocialLoginInput input){
-		
-		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByLoginName(input.getAccountId(),UserEnum.FLAG_ENABLE.getCode());
-		
-		if(ucUserinfo == null){
-			
+	public UcUserinfo saveUserInfo(UserReginsterResult userRegResult, ApiSocialLoginInput input) {
+
+		UcUserinfo ucUserinfo = userInfoSupport.getUserServiceFactory().getUserInfoService()
+				.queryByLoginName(input.getAccountId(), UserEnum.FLAG_ENABLE.getCode());
+
+		if (ucUserinfo == null) {
+
 			ucUserinfo = new UcUserinfo();
-			
+
 			ucUserinfo.setCode(userRegResult.getUserCode());
-			
+
 			ucUserinfo.setFlag(UserEnum.FLAG_ENABLE.getCode());
-			
+
 			ucUserinfo.setLastTime(new Date());
-			
+
 			ucUserinfo.setLoginCode(userRegResult.getLoginCode());
-			
+
 			ucUserinfo.setLoginName(input.getAccountId());
-			
+
 			ucUserinfo.setLoginPwd("");
-			
+
 			ucUserinfo.setType(UserEnum.TYPE_CUSTOM.getCode());
-			
+
 			ucUserinfo.setMjFlag(SystemEnum.NO.getCode());
-			
-		}else{
-			
+
+		} else {
+
 			ucUserinfo.setLastTime(new Date());
-			
+
 			ucUserinfo.setLoginCode(userRegResult.getLoginCode());
-			
+
 			ucUserinfo.setLoginPwd("");
-			
+
 		}
-		
-		userServiceFactory.getUserInfoService().save(ucUserinfo);
-		
+
 		return ucUserinfo;
-		
+
 	}
 	
 	/**
@@ -141,9 +150,9 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 	 * @param input
 	 * 		系统输入参数
 	 */
-	public void saveUserInfoExt(String userCode,ApiSocialLoginInput input){
+	public UcUserinfoExt saveUserInfoExt(String userCode,ApiSocialLoginInput input){
 		
-		UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(userCode);
+		UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserServiceFactory().getUserInfoExtService().queryByUserCode(userCode);
 		
 		if(ucUserinfoExt == null){
 			
@@ -157,9 +166,9 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 			
 			ucUserinfoExt.setAboutHead(input.getAboutHead());
 			
-			userServiceFactory.getUserInfoExtService().save(ucUserinfoExt);
-			
 		}
+		
+		return ucUserinfoExt;
 		
 	}
 	
@@ -170,9 +179,9 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 	 * @param input
 	 * 		输入参数
 	 */
-	public void saveSocialInfo(String userCode, ApiSocialLoginInput input){
+	public UcUserinfoSocial saveSocialInfo(String userCode, ApiSocialLoginInput input){
 		
-		UcUserinfoSocial social = userServiceFactory.getUserInfoSocialService().queryByUserCode(userCode);
+		UcUserinfoSocial social = userInfoSupport.getUserServiceFactory().getUserInfoSocialService().queryByUserCode(userCode);
 		
 		if(social == null){
 			
@@ -192,7 +201,7 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 			
 		}
 		
-		userServiceFactory.getUserInfoSocialService().save(social);
+		return social;
 		
 	}
 	
@@ -206,7 +215,7 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 	 */
 	public String initNickName(String nickName,String userCode){
 		
-		UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByNickName(nickName);
+		UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserServiceFactory().getUserInfoExtService().queryByNickName(nickName);
 		
 		if(ucUserinfoExt != null){
 			
@@ -232,7 +241,7 @@ public class ApiSocialLogin extends RootApiBase<ApiSocialLoginInput, ApiSocialLo
 		
 		ApiSocialLoginResult loginResult = new ApiSocialLoginResult();
 		
-    	UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().
+    	UcUserinfo ucUserinfo = userInfoSupport.getUserServiceFactory().getUserInfoService().
     			queryByLoginName(openId,UserEnum.FLAG_ENABLE.getCode());
     	
     	if(ucUserinfo != null){

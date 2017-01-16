@@ -1,5 +1,6 @@
 package com.uhutu.dcom.user.z.support;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +9,7 @@ import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
 import com.uhutu.dcom.user.z.entity.UserBasicInfo;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 用户信息统一支撑类
@@ -74,6 +76,72 @@ public class UserInfoSupport {
 		
 		return userServiceFactory.getUserInfoSocialService().queryByUserCode(userCode);
 		
+	}
+	
+	/**
+	 * 用户注册
+	 * @param userinfo
+	 * 		用户信息
+	 * @param userinfoExt
+	 * 		用户扩展信息
+	 * @param userinfoSocial
+	 * 		社交用户登录
+	 */
+	public String regUser(UcUserinfo userinfo, UcUserinfoExt userinfoExt, UcUserinfoSocial userinfoSocial){
+		
+		synchronized (UserInfoSupport.class) {
+			
+			String returnStr = "";
+			
+			
+			if(userinfoExt != null){				
+
+				try {
+					
+					UcUserinfoExt nickNameInfo = JdbcHelper.queryOne(UcUserinfoExt.class, "nickName",userinfoExt.getNickName());
+					
+					if(nickNameInfo == null){
+						
+						userServiceFactory.getUserInfoExtService().save(userinfoExt);
+						
+					}else{
+						
+						returnStr = "昵称已经被占用，请更换昵称";
+						
+					}
+					
+				} catch (Exception e) {
+					
+					returnStr = e.getMessage();
+					
+				}
+				
+			}
+			
+			if(StringUtils.isNotEmpty(returnStr)){
+				
+				if(userinfo != null){
+					
+					userServiceFactory.getUserInfoService().save(userinfo);
+					
+				}
+				
+				if(userinfoSocial != null){
+					
+					userServiceFactory.getUserInfoSocialService().save(userinfoSocial);
+					
+				}
+				
+			}
+			
+			return returnStr;
+			
+		}
+		
+	}
+
+	public UserServiceFactory getUserServiceFactory() {
+		return userServiceFactory;
 	}
 
 }
