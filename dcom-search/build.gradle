@@ -18,12 +18,13 @@ jar {
 dependencies {
 
 	compile project(':dcom-component'){version=zooInitVersion;group=zooInitGroupId}
-	compile group:'com.aliyun.opensearch', name: 'aliyun-sdk-opensearch', version: '2.1.3' 
+	compile ('com.aliyun.opensearch:aliyun-sdk-opensearch:2.1.3'){
+		exclude group: "org.slf4j"
+	} 
 	
 	
 	
 }
 configurations.all {
     	resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-    	exclude group: "slf4j"
 	}
