@@ -50,8 +50,8 @@
 		<item code="dzsd4107100110090001" defineName="优惠券" parentCode="dzsd410710011009" />
 		<item code="dzsd4107100110090002" defineName="手机" parentCode="dzsd410710011009" />
 		<item code="dzsd410710011010" defineName="标志" parentCode="dzsd41071001" />
-		<item code="dzsd4107100110100001" defineName="直播中" parentCode="dzsd410710011010" />
-		<item code="dzsd4107100110100002" defineName="回放" parentCode="dzsd410710011010" />
+		<item code="dzsd4107100110100001" defineName="正在直播" parentCode="dzsd410710011010" />
+		<item code="dzsd4107100110100002" defineName="直播回放" parentCode="dzsd410710011010" />
 		<item code="dzsd4107100110100003" defineName="请选择" parentCode="dzsd410710011010" />
 		<item code="dzsd410710011011" defineName="栏目类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110110001" defineName="推荐栏" parentCode="dzsd410710011011" />
