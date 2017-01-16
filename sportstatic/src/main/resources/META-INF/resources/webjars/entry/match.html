@@ -50,8 +50,8 @@ a:hover {text-decoration: none; }
 		<li v-for="img in matchInfo.matchInfo.details"><img src="../static/img/lazyload.jpg" v-lazyload:opt.fadein="img.imageUrl" alt=""></li>
 	</ul>
 </section>
-<template v-if="matchInfo.signUrl != ''">
-	<a href="javascript:;" class="next-btn" @click="callBackNext">我要报名</a>
+<template v-if="matchInfo.buttonName != '' || matchInfo.signUrl != ''">
+	<a href="javascript:;" class="next-btn" @click="callBackNext">{{matchInfo.buttonName}}</a>
 </template>
 <iframe :src="iframe" style="display: none"></iframe>
 <script type="text/javascript" src="js/common.min.js"></script>
@@ -144,7 +144,7 @@ new Vue({
 		},
 		callBackNext: function(){
 			var token = sessionStorage.getItem('token')?sessionStorage.getItem('token'):'';
-			if(wechat){
+			if(wechat && this.matchInfo.signUrl != ''){
 				window.location.href = this.matchInfo.signUrl + '&source=wechat&entryToken=' + token;
 			} else {
 				open();
