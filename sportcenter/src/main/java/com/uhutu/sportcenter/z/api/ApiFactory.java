@@ -124,6 +124,7 @@ import com.uhutu.sportcenter.z.api.user.ApiFavorContentList;
 import com.uhutu.sportcenter.z.api.user.ApiForAttention;
 import com.uhutu.sportcenter.z.api.user.ApiForLogin;
 import com.uhutu.sportcenter.z.api.user.ApiForTecentSig;
+import com.uhutu.sportcenter.z.api.user.ApiInviteUserInfo;
 import com.uhutu.sportcenter.z.api.user.ApiLoginOut;
 import com.uhutu.sportcenter.z.api.user.ApiMsgAdvice;
 import com.uhutu.sportcenter.z.api.user.ApiMsgAttendList;
@@ -612,6 +613,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiOperInviteUser apiOperInviteUser;
+	
+	@Autowired
+	private ApiInviteUserInfo apiInviteUserInfo;
 
 	public ApiHomePageThird getApiHomePageThird() {
 		return apiHomePageThird;
@@ -1211,6 +1215,10 @@ public class ApiFactory {
 
 	public ApiOperInviteUser getApiOperInviteUser() {
 		return apiOperInviteUser;
+	}
+
+	public ApiInviteUserInfo getApiInviteUserInfo() {
+		return apiInviteUserInfo;
 	}
 
 }

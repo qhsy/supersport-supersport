@@ -16,6 +16,7 @@ import com.uhutu.sportcenter.z.input.ApiFavorContentListInput;
 import com.uhutu.sportcenter.z.input.ApiForAttentionInput;
 import com.uhutu.sportcenter.z.input.ApiForLoginInput;
 import com.uhutu.sportcenter.z.input.ApiForTecentSigInput;
+import com.uhutu.sportcenter.z.input.ApiInviteUserInfoInput;
 import com.uhutu.sportcenter.z.input.ApiLoginOutInput;
 import com.uhutu.sportcenter.z.input.ApiOperInviteUserInput;
 import com.uhutu.sportcenter.z.input.ApiOwnSportMomentInput;
@@ -43,6 +44,7 @@ import com.uhutu.sportcenter.z.result.ApiFavorContentListResult;
 import com.uhutu.sportcenter.z.result.ApiForAttentionResult;
 import com.uhutu.sportcenter.z.result.ApiForLoginResult;
 import com.uhutu.sportcenter.z.result.ApiForTecentSigResult;
+import com.uhutu.sportcenter.z.result.ApiInviteUserInfoResult;
 import com.uhutu.sportcenter.z.result.ApiLoginOutResult;
 import com.uhutu.sportcenter.z.result.ApiOperInviteUserResult;
 import com.uhutu.sportcenter.z.result.ApiOwnSportMomentResult;
@@ -310,6 +312,15 @@ public class UserController {
 	public ApiOperInviteUserResult operInviteUser(@RequestBody ApiOperInviteUserInput input) {
 
 		return apiFactory.getApiOperInviteUser().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/inviteUserInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "邀请用户信息", notes = "邀请用户信息")
+	public ApiInviteUserInfoResult inviteUserInfo(@RequestBody ApiInviteUserInfoInput input) {
+
+		return apiFactory.getApiInviteUserInfo().api(input);
 
 	}
 
