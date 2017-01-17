@@ -29,7 +29,7 @@ body{background: url('img/name_bg@2x.jpg') no-repeat center top;}
 .container {width: 100%; height: 100%; position: fixed; left: 0; top: 0; background: #fff; display: none;}
 #clipArea {height: 100%;}
 .clip-btn{width: 100%; position: fixed; left: 0; bottom: 20px; text-align: center;}
-.close, .enter{width: 60px; display: inline-block; background: #F8800A; padding: 0 0.1rem; font: 12px/33px "MicrosoftYaHei"; color: #fff;}
+.close, .enter{width: 60px; display: inline-block; margin: 0 10px; background: #F8800A; padding: 0 0.1rem; font: 12px/33px "MicrosoftYaHei"; color: #fff;}
 .mask{width: 100%; height: 100%; position: fixed; left: 0; top: 0; background: rgba(255, 255, 255, .2); display: -webkit-box; display: box; box-pack: center; -webkit-box-pack:center; box-align: center; -webkit-box-align: center; z-index: 99;}
 .tost{display: block; background: rgba(38,38,43,0.9); border-radius: 0.04rem; line-height: 0.4rem; font-size: 0.12rem; color: #fff; padding: 0 0.3rem;  animation-name: fieldTipBounceIn; -webkit-animation-name: fieldTipBounceIn; -webkit-animation-fill-mode: both; animation-fill-mode: both; -webkit-animation-duration: .18s; animation-duration: .18s;}
 </style>
@@ -67,6 +67,7 @@ body{background: url('img/name_bg@2x.jpg') no-repeat center top;}
 var qc = null;
 var data = '';
 var token = '';
+var initUrl = '';
 var init = function(){
 	if(queryUrl('source') == 'wechat'){
 		if(!sessionStorage.getItem('token')){
@@ -101,6 +102,7 @@ var init = function(){
 		data:'{"zoo": {"key": "tesetkey","token": "' + token + '"}}',
 		success:function(resp){
 			if(resp.status == 1){
+				initUrl = resp.userBasicInfo.aboutHead;
 				$('.head').css('backgroundImage','url(' + resp.userBasicInfo.aboutHead + ')');
 				$('.input').val(resp.userBasicInfo.nickName);
 			}else{
@@ -149,12 +151,15 @@ $('.save').on('tap',function(){
 	var name = $('.input').val();
 	var head = $('.head').css('backgroundImage');
 	var imageBase = head.substring(5,head.length-2);
+	if(imageBase.indexOf('data:image/jpeg;base64,') > -1){
+		imageBase = imageBase.replace('data:image/jpeg;base64,','');
+	}
 	$.ajax({
 		url:'/api/userController/operInviteUser',
 		type:'POST',
 		contentType:'application/json',
 		dataType: 'json',
-		data:'{"headUrl": "","imageStr": "' + imageBase + '","nickName": "' + name + '","zoo": {"key": "tesetkey","token": "' + token + '"}}',
+		data:'{"headUrl": "' + initUrl + '","imageStr": "' + imageBase + '","nickName": "' + name + '","zoo": {"key": "tesetkey","token": "' + token + '"}}',
 		beforeSend: function(){
 			$('<div class="mask"><span class="tost">数据提交中...</span></div>').appendTo('body');
 		},
@@ -162,6 +167,7 @@ $('.save').on('tap',function(){
 			if(resp.status == 1){
 				$('.mask').remove();
 			}else{
+				$('.mask').remove();
 				tost(resp.error);
 			}
 		}
