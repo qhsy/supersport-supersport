@@ -31,30 +31,33 @@
 </style>
 </head>
 <body>
-<section class="register">
-	<validator name="validation">
-		<ul class="reg-list">
-			<li><input type="number" id="mobile" name="mobile" class="input" v-model="mobile" placeholder="请输入手机号"></li>
-			<li class="pos-r"><input type="number" id="code" name="code" class="input" v-model="code" placeholder="请输入验证码"><em class="getdata" v-el:time @click="sendSms">获取验证码</em>
-			</li>
-			<li><input type="password" id="password" name="password" class="input" v-model="password" placeholder="密码：6-16个字符"></li>
-			<li><input type="text" id="username" name="username" class="input" v-model="username" placeholder="请输入昵称"></li>
-		</ul>
-		<template v-if="mobile != '' && code != '' && password != '' && username != ''">
-			<button type="button" class="button curr" @click="apiPostUser">立即注册</button>
-		</template>
-		<template v-else>
-			<button type="button" class="button">立即注册</button>
-		</template>
-	</validator>
-	<p class="agreement">点击“立即注册”按钮，代表您同意<a href="">《果冻体育用户服务条款及隐私条款》</a></p>
-</section>
-<section class="wechat">
-	<h1 class="title"><span>用为登陆</span></h1>
-	<a href="" class="button" title="">微信登陆</a>
-</section>
+<article class="reg">
+	<section class="register">
+		<validator name="validation">
+			<ul class="reg-list">
+				<li><input type="number" id="mobile" name="mobile" class="input" v-model="mobile" placeholder="请输入手机号"></li>
+				<li class="pos-r"><input type="number" id="code" name="code" class="input" v-model="code" placeholder="请输入验证码"><em class="getdata" v-el:time @click="sendSms">获取验证码</em>
+				</li>
+				<li><input type="password" id="password" name="password" class="input" v-model="password" placeholder="密码：6-16个字符"></li>
+				<li><input type="text" id="username" name="username" class="input" v-model="username" placeholder="请输入昵称"></li>
+			</ul>
+			<template v-if="mobile != '' && code != '' && password != '' && username != ''">
+				<button type="button" class="button curr" @click="apiPostUser">立即注册</button>
+			</template>
+			<template v-else>
+				<button type="button" class="button">立即注册</button>
+			</template>
+		</validator>
+		<p class="agreement">点击“立即注册”按钮，代表您同意<a href="">《果冻体育用户服务条款及隐私条款》</a></p>
+	</section>
+	<template v-if="wechat">
+		<section class="wechat">
+			<h1 class="title"><span>用为登陆</span></h1>
+			<a href="" class="button" title="">微信登陆</a>
+		</section>
+	</template>
+</article>
 <script type="text/javascript" src="js/common.min.js"></script>
-<!-- <script type="text/javascript" src="js/vue-validator.min.js"></script> -->
 <script type="text/javascript" src="js/md5.js"></script>
 <script type="text/javascript">
 function tost(mess){
@@ -65,13 +68,17 @@ function tost(mess){
 	}, 1500);
 }
 new Vue({
-	el: '.register',
+	el: '.reg',
 	data: {
 		mobile: '',
 		code: '',
 		password: '',
 		username: '',
-		countDown: true
+		countDown: true,
+		wechat: navigator.userAgent.indexOf('MicroMessenger') > -1
+	},
+	created: function(){
+
 	},
 	methods: {
 		apiPostUser: function(){
