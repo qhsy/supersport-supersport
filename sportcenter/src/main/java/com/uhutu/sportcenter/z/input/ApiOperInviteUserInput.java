@@ -16,6 +16,9 @@ public class ApiOperInviteUserInput extends RootApiInput {
 	
 	@ApiModelProperty(value="用户昵称",required = true)
 	private String nickName;
+	
+	@ApiModelProperty(value="base64字符串")
+	private String imageStr;
 
 	public String getHeadUrl() {
 		return headUrl;
@@ -31,6 +34,14 @@ public class ApiOperInviteUserInput extends RootApiInput {
 
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
+	}
+
+	public String getImageStr() {
+		return imageStr;
+	}
+
+	public void setImageStr(String imageStr) {
+		this.imageStr = imageStr;
 	}
 
 }
