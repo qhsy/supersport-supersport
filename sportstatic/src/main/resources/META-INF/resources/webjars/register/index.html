@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>邀请好友注册</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<link rel="stylesheet" type="text/css" href="../static/css/base.css">
+<style type="text/css">
+.register{padding: 0 0.22rem; border-top: 0.16rem solid #f0f0f0;}
+.register .input{width: 100%; height: 48px; border-bottom: #f0f0f0 1px solid; font: 18px/48px "PingFangSC-Regular"; color: #212121;}
+.register .input::-webkit-input-placeholder{color: #DCDCDC; font-size: 14px;}
+.register .getdata{width: 100px; position: absolute; right: 0; top: 0; text-align: center; line-height: 48px; color: #F8800A; font-size: 14px;}
+.register .time{color: #BDBDBD;}
+.register .button{width: 100%; height: 46px; margin-top: 22px; background: #DCDCDC; font-size: 18px; text-align: center; color: #fff; line-height: 46px;}
+.register .button.curr{background: #F8800A;}
+.register .agreement{padding-top: 10px; font: 14px/20px "PingFangSC-Regular";}
+.register .agreement a{color: #F8800A;}
+.wechat{padding: 0 0.22rem;}
+.wechat .title{height: 24px; margin: 40px 0 30px; text-align: center; color: #7C7C7C; font: 16px/24px "PingFangSC-Regular"; position: relative;}
+.wechat .title span{background: #fff; padding: 0 0.1rem; position: relative; z-index: 9;}
+.wechat .title:after{content: ""; width: 100%; height: 1px; overflow: hidden; background: #BDBDBD; position: absolute; left: 0; top: 11px;}
+.wechat .button{height: 46px; display: block; color: #fff; text-align: center; background: #00CC33; font: 18px/46px "PingFangSC-Regular";}
+.mask{width: 100%; height: 100%; position: fixed; left: 0; top: 0; background: rgba(255, 255, 255, .2); display: -webkit-box; display: box; box-pack: center; -webkit-box-pack:center; box-align: center; -webkit-box-align: center; z-index: 99;}
+.tost{display: block; background: rgba(38,38,43,0.9); border-radius: 0.04rem; line-height: 0.4rem; font-size: 0.12rem; color: #fff; padding: 0 0.3rem;  animation-name: fieldTipBounceIn; -webkit-animation-name: fieldTipBounceIn; -webkit-animation-fill-mode: both; animation-fill-mode: both; -webkit-animation-duration: .18s; animation-duration: .18s;}
+</style>
+</head>
+<body>
+<article class="reg">
+	<section class="register">
+		<validator name="validation">
+			<ul class="reg-list">
+				<li><input type="number" id="mobile" name="mobile" class="input" v-model="mobile" placeholder="请输入手机号"></li>
+				<li class="pos-r"><input type="number" id="code" name="code" class="input" v-model="code" placeholder="请输入验证码"><em class="getdata" v-el:time @click="sendSms">获取验证码</em>
+				</li>
+				<li><input type="password" id="password" name="password" class="input" v-model="password" placeholder="密码：6-16个字符"></li>
+				<li><input type="text" id="username" name="username" class="input" v-model="username" placeholder="请输入昵称"></li>
+			</ul>
+			<template v-if="mobile != '' && code != '' && password != '' && username != ''">
+				<button type="button" class="button curr" @click="apiPostUser">立即注册</button>
+			</template>
+			<template v-else>
+				<button type="button" class="button">立即注册</button>
+			</template>
+		</validator>
+		<p class="agreement">点击“立即注册”按钮，代表您同意<a href="">《果冻体育用户服务条款及隐私条款》</a></p>
+	</section>
+	<template v-if="wechat">
+		<section class="wechat">
+			<h1 class="title"><span>用为登陆</span></h1>
+			<a href="" class="button" title="">微信登陆</a>
+		</section>
+	</template>
+</article>
+<script type="text/javascript" src="js/common.min.js"></script>
+<script type="text/javascript" src="js/md5.js"></script>
+<script type="text/javascript">
+function tost(mess){
+	var ele = $('<div class="mask"><span class="tost">' + mess + '</span></div>').appendTo('body');
+	var timer = setTimeout(function(){
+		ele.remove();
+		clearTimeout(timer);
+	}, 1500);
+}
+new Vue({
+	el: '.reg',
+	data: {
+		mobile: '',
+		code: '',
+		password: '',
+		username: '',
+		countDown: true,
+		wechat: navigator.userAgent.indexOf('MicroMessenger') > -1
+	},
+	created: function(){
+
+	},
+	methods: {
+		apiPostUser: function(){
+			var _this = this;
+			var tel = /^(13[0-9]|17[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/ig;
+			var num = /^\d{6}$/ig;
+			if(!tel.test(_this.mobile)){
+				tost('请输入正确的手机号')
+				return false;
+			}
+			if(!num.test(_this.code)){
+				tost('请输入6位的验证码')
+				return false;
+			}
+			$.ajax({
+				url:'/api/userController/userRegister',
+				type:'POST',
+				contentType:'application/json',
+				dataType: 'json',
+				data:'{"loginName": "' + _this.mobile + '","nickName": "' + _this.username + '","password": "' + hex_md5(_this.password) + '","verify_code": "' + _this.code + '","zoo": {"key": "tesetkey", "token": " "}}',
+				success:function(res){
+					if(res.status == 1){
+						
+					}else{
+						tost(res.error);
+					}
+				}
+			});
+		},
+		sendSms: function(){
+			var _this = this;
+			if(_this.mobile == ''){
+				tost('请输入手机号')
+				return false;
+			}
+			$.ajax({
+				url:'/api/userController/sendSms',
+				type:'POST',
+				contentType:'application/json',
+				dataType: 'json',
+				data:'{"mobileNO": "' + _this.mobile + '","msgType": "register","zoo": {"key": "tesetkey", "token": ""}}',
+				success:function(res){
+					if(res.status == 1){
+						_this.countDownFun();
+					}else{
+						tost(res.error);
+					}
+				}
+			});
+		},
+		countDownFun: function(){
+			var time = 60;
+			var _this = this;
+			var el = this.$els.time;
+			var timer = null;
+			if(_this.countDown){
+				_this.countDown = false;
+				el.className = 'getdata time';
+				el.textContent = time + 's';
+				timer = setInterval(function(){
+					if(time <= 0){
+						_this.countDown = true;
+						el.textContent = '获取验证码';
+						el.className = 'getdata';
+						clearInterval(timer);
+					}else{
+						time--;
+						el.textContent = time + 's';
+					}
+				}, 1000)
+			}
+			
+
+		}
+	}
+})
+</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>
+</html>
