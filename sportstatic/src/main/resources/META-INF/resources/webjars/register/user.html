@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="author" content="">
-<link rel="stylesheet" type="text/css" href="../static/css/base.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
 <style type="text/css">
 body{background: url('img/name_bg@2x.jpg') no-repeat center top;}
 .user{padding: 0 0.22rem;}
@@ -20,7 +20,7 @@ body{background: url('img/name_bg@2x.jpg') no-repeat center top;}
 .user .button{width: 1.47rem; height: 0.39rem; margin: 8px auto 0; display: block; border-radius: 2px; color: #fff; background: #F8800A; font: 14px/0.39rem "MicrosoftYaHei"; text-align: center;}
 .user .info{padding: 0 0 16px; margin: 0 0 13px; border-bottom: #DCDCDC 1px solid;}
 .user .about{font: 12px/18px "MicrosoftYaHei"; color: #212121; text-align: justify;}
-.user .input{width: 148px; height: 40px; background: #D8D8D8; border-radius: 1px; padding: 0 5px; box-sizing: border-box; font: 14px/48px "PingFangSC-Regular"; color: #212121;}
+.user .input{width: 148px; height: 40px; background: #D8D8D8; border-radius: 1px; padding: 0 5px; box-sizing: border-box; font: 14px/40px "PingFangSC-Regular"; color: #212121;}
 .user .name{padding: 26px 0 17px;}
 .user .text{text-align: center; font: 12px/18px "MicrosoftYaHei"; color: #757575;}
 .user .label{padding: 0 8px 0 0.47rem; float: left; font: 18px/40px "MicrosoftYaHei";}
@@ -66,11 +66,12 @@ body{background: url('img/name_bg@2x.jpg') no-repeat center top;}
 <script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="js/wxConfig.js"></script>
 <script type="text/javascript">
-var wx = navigator.userAgent.indexOf('MicroMessenger') > -1;
+var weix = navigator.userAgent.indexOf('MicroMessenger') > -1;
 var qc = null;
-var data = '';
 var token = '';
 var initUrl = '';
+var submit = false;
+var imageBase = '';
 var init = function(){
 	if(queryUrl('source') == 'wechat'){
 		if(!sessionStorage.getItem('token')){
@@ -116,7 +117,7 @@ var init = function(){
 		}
 	});
 }
-if(wx){
+if(weix){
 	$.ajax({
 		url:'/api/userController/shareContent',
 		type:'POST',
@@ -165,7 +166,7 @@ qc = new PhotoClip('#clipArea', {
 		console.log('照片读取完成');
 	},
 	done: function(dataURL) {
-		data = dataURL;
+		imageBase = dataURL;
 		this.clear();
 		$('.container').css('display','none');
 	},
@@ -175,29 +176,37 @@ qc = new PhotoClip('#clipArea', {
 });
 $('.save').on('tap',function(){
 	var name = $('.input').val();
-	var head = $('.head').css('backgroundImage');
-	var imageBase = head.substring(5,head.length-2);
-	if(imageBase.indexOf('data:image/jpeg;base64,') > -1){
+	if(imageBase){
 		imageBase = imageBase.replace('data:image/jpeg;base64,','');
 	}
-	$.ajax({
-		url:'/api/userController/operInviteUser',
-		type:'POST',
-		contentType:'application/json',
-		dataType: 'json',
-		data:'{"headUrl": "' + initUrl + '","imageStr": "' + imageBase + '","nickName": "' + name + '","zoo": {"key": "tesetkey","token": "' + token + '"}}',
-		beforeSend: function(){
-			$('<div class="mask"><span class="tost">数据提交中...</span></div>').appendTo('body');
-		},
-		success:function(resp){
-			if(resp.status == 1){
-				$('.mask').remove();
-			}else{
-				$('.mask').remove();
-				tost(resp.error);
+	console.log(imageBase)
+	submit = true;
+	if(submit){
+		$.ajax({
+			url:'/api/userController/operInviteUser',
+			type:'POST',
+			contentType:'application/json',
+			dataType: 'json',
+			data:'{"headUrl": "' + initUrl + '","imageStr": "' + imageBase + '","nickName": "' + name + '","zoo": {"key": "tesetkey","token": "' + token + '"}}',
+			beforeSend: function(){
+				$('<div class="mask"><span class="tost">数据提交中...</span></div>').appendTo('body');
+			},
+			success:function(resp){
+				if(resp.status == 1){
+					submit = false;
+					tost('信息修改成功');
+					$('.mask').remove();
+				}else{
+					submit = false;
+					$('.mask').remove();
+					tost(resp.error);
+				}
 			}
-		}
-	});
+		});
+	}
+
+	console.log(submit)
+	
 });
 $('.button').on('tap',function(){
 	open();
@@ -207,7 +216,7 @@ function tost(mess){
 	var timer = setTimeout(function(){
 		ele.remove();
 		clearTimeout(timer);
-	}, 1500);
+	}, 2000);
 }
 </script>
 <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
