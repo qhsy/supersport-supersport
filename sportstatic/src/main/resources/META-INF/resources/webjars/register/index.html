@@ -70,22 +70,6 @@ function tost(mess){
 		clearTimeout(timer);
 	}, 1500);
 }
-if(wx){
-	$.ajax({
-		url:'/api/userController/userRegister',
-		type:'POST',
-		contentType:'application/json',
-		dataType: 'json',
-		data:'{"loginName": "' + _this.mobile + '","nickName": "' + _this.username + '","password": "' + hex_md5(_this.password) + '","verify_code": "' + _this.code + '","zoo": {"key": "tesetkey", "token": " "}}',
-		success:function(resp){
-			if(resp.status == 1){
-				window.location.href = 'user.html?source=mobile&token=' + resp.userToken;
-			}else{
-				tost(resp.error);
-			}
-		}
-	});
-}
 new Vue({
 	el: '.reg',
 	data: {
@@ -127,6 +111,30 @@ new Vue({
 				}
 			});
 		},
+		apiShareContent: function(){
+			if(this.wechat){
+				$.ajax({
+					url:'/api/userController/shareContent',
+					type:'POST',
+					contentType:'application/json',
+					dataType: 'json',
+					data:'{"contentCode": "GGBH170117110001","zoo": {"key": "tesetkey","token": ""}}',
+					success:function(resp){
+						if(resp.status == 1){
+							wxConfigFun({
+								share: true,
+								imgUrl: resp.iconUrl,
+								title: resp.title,
+								link: resp.url,
+								desc: resp.content
+							});
+						}else{
+							alert(resp.error);
+						}
+					}
+				});
+			}
+		},
 		sendSms: function(){
 			var _this = this;
 			if(_this.mobile == ''){
@@ -144,28 +152,6 @@ new Vue({
 						_this.countDownFun();
 					}else{
 						tost(resp.error);
-					}
-				}
-			});
-		},
-		apiShareContent: function(){
-			$.ajax({
-				url:'/api/userController/shareContent',
-				type:'POST',
-				contentType:'application/json',
-				dataType: 'json',
-				data:'{"contentCode": "GGBH170117110001","zoo": {"key": "tesetkey","token": ""}}',
-				success:function(resp){
-					if(resp.status == 1){
-						wxConfigFun({
-							share: true,
-							imgUrl: resp.iconUrl,
-							title: resp.title,
-							link: resp.url,
-							desc: resp.content
-						});
-					}else{
-						alert(resp.error);
 					}
 				}
 			});
