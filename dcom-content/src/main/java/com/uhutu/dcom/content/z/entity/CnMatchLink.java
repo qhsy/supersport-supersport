@@ -30,7 +30,7 @@ public class CnMatchLink extends BaseEntity {
 	@Column(length=50)
 	private String title;
 	
-	@ZooData(name = "跳转类型", require = "1",element = DefineWebElement.Select,inc = {DefineWebInc.System_Define + "=dzsd410710011005" },sort = {DefineWebPage.Page_Query + "=1"})
+	@ZooData(name = "跳转类型", require = "1",element = DefineWebElement.Select,inc = {DefineWebInc.System_Define + "=dzsd410710011015" },sort = {DefineWebPage.Page_Query + "=1"})
 	@Column(length=50)
 	private String linkType;
 	
