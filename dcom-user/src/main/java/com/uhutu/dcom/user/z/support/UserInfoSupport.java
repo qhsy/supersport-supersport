@@ -9,7 +9,9 @@ import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.entity.UcUserinfoSocial;
 import com.uhutu.dcom.user.z.entity.UserBasicInfo;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
+import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
+import com.uhutu.zooweb.z.entity.ZwLoginInfo;
 
 /**
  * 用户信息统一支撑类
@@ -118,7 +120,7 @@ public class UserInfoSupport {
 				
 			}
 			
-			if(StringUtils.isNotEmpty(returnStr)){
+			if(StringUtils.isEmpty(returnStr)){
 				
 				if(userinfo != null){
 					
@@ -129,6 +131,16 @@ public class UserInfoSupport {
 				if(userinfoSocial != null){
 					
 					userServiceFactory.getUserInfoSocialService().save(userinfoSocial);
+					
+				}
+				
+			}else{
+				
+				ZwLoginInfo zwLoginInfo = JdbcHelper.queryOne(ZwLoginInfo.class, "loginName",userinfo.getLoginName());
+				
+				if(zwLoginInfo != null){
+					
+					JdbcHelper.dataDelete("zw_login_info", MapHelper.initMap("loginName",userinfo.getLoginName()));
 					
 				}
 				
