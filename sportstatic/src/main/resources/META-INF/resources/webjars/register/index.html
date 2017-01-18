@@ -53,19 +53,38 @@
 	<template v-if="wechat">
 		<section class="wechat">
 			<h1 class="title"><span>用为登陆</span></h1>
-			<a href="" class="button" title="">微信登陆</a>
+			<a href="wechat.html" class="button" title="">微信登陆</a>
 		</section>
 	</template>
 </article>
 <script type="text/javascript" src="js/common.min.js"></script>
 <script type="text/javascript" src="js/md5.js"></script>
+<script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="js/wxConfig.js"></script>
 <script type="text/javascript">
+var wx = navigator.userAgent.indexOf('MicroMessenger') > -1;
 function tost(mess){
 	var ele = $('<div class="mask"><span class="tost">' + mess + '</span></div>').appendTo('body');
 	var timer = setTimeout(function(){
 		ele.remove();
 		clearTimeout(timer);
 	}, 1500);
+}
+if(wx){
+	$.ajax({
+		url:'/api/userController/userRegister',
+		type:'POST',
+		contentType:'application/json',
+		dataType: 'json',
+		data:'{"loginName": "' + _this.mobile + '","nickName": "' + _this.username + '","password": "' + hex_md5(_this.password) + '","verify_code": "' + _this.code + '","zoo": {"key": "tesetkey", "token": " "}}',
+		success:function(resp){
+			if(resp.status == 1){
+				window.location.href = 'user.html?source=mobile&token=' + resp.userToken;
+			}else{
+				tost(resp.error);
+			}
+		}
+	});
 }
 new Vue({
 	el: '.reg',
@@ -75,10 +94,10 @@ new Vue({
 		password: '',
 		username: '',
 		countDown: true,
-		wechat: navigator.userAgent.indexOf('MicroMessenger') > -1
+		wechat: wx
 	},
 	created: function(){
-
+		this.apiShareContent();
 	},
 	methods: {
 		apiPostUser: function(){
@@ -101,7 +120,7 @@ new Vue({
 				data:'{"loginName": "' + _this.mobile + '","nickName": "' + _this.username + '","password": "' + hex_md5(_this.password) + '","verify_code": "' + _this.code + '","zoo": {"key": "tesetkey", "token": " "}}',
 				success:function(resp){
 					if(resp.status == 1){
-						window.location.href = '/user.html?source=mobile&token=' + resp.userToken;
+						window.location.href = 'user.html?source=mobile&token=' + resp.userToken;
 					}else{
 						tost(resp.error);
 					}
@@ -125,6 +144,28 @@ new Vue({
 						_this.countDownFun();
 					}else{
 						tost(resp.error);
+					}
+				}
+			});
+		},
+		apiShareContent: function(){
+			$.ajax({
+				url:'/api/userController/shareContent',
+				type:'POST',
+				contentType:'application/json',
+				dataType: 'json',
+				data:'{"contentCode": "GGBH170117110001","zoo": {"key": "tesetkey","token": ""}}',
+				success:function(resp){
+					if(resp.status == 1){
+						wxConfigFun({
+							share: true,
+							imgUrl: resp.iconUrl,
+							title: resp.title,
+							link: resp.url,
+							desc: resp.content
+						});
+					}else{
+						alert(resp.error);
 					}
 				}
 			});

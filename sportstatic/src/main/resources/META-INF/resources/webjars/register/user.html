@@ -63,7 +63,10 @@ body{background: url('img/name_bg@2x.jpg') no-repeat center top;}
 <script type="text/javascript" src="js/clip/hammer.min.js"></script>
 <script type="text/javascript" src="js/clip/lrz.all.bundle.js"></script>
 <script type="text/javascript" src="js/clip/PhotoClip.min.js"></script>
-<script type="text/javascript" type="text/javascript">
+<script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="js/wxConfig.js"></script>
+<script type="text/javascript">
+var wx = navigator.userAgent.indexOf('MicroMessenger') > -1;
 var qc = null;
 var data = '';
 var token = '';
@@ -103,7 +106,9 @@ var init = function(){
 		success:function(resp){
 			if(resp.status == 1){
 				initUrl = resp.userBasicInfo.aboutHead;
-				$('.head').css('backgroundImage','url(' + resp.userBasicInfo.aboutHead + ')');
+				if(resp.userBasicInfo.aboutHead){
+					$('.head').css('backgroundImage','url(' + resp.userBasicInfo.aboutHead + ')');
+				}
 				$('.input').val(resp.userBasicInfo.nickName);
 			}else{
 				tost(res.error);
@@ -111,7 +116,28 @@ var init = function(){
 		}
 	});
 }
-
+if(wx){
+	$.ajax({
+		url:'/api/userController/shareContent',
+		type:'POST',
+		contentType:'application/json',
+		dataType: 'json',
+		data:'{"contentCode": "GGBH170117110001","zoo": {"key": "tesetkey","token": ""}}',
+		success:function(resp){
+			if(resp.status == 1){
+				wxConfigFun({
+					share: false,
+					imgUrl: resp.iconUrl,
+					title: resp.title,
+					link: resp.url,
+					desc: resp.content
+				});
+			}else{
+				alert(resp.error);
+			}
+		}
+	});
+}
 init();
 $(".head").on('tap', function (event) {
     $('#file')[0].click();
