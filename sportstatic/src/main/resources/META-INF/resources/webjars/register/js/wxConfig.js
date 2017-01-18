@@ -7,7 +7,7 @@ function wxConfigFun(config){
 		'link':config && config.link || '',
 		'desc':config && config.desc || '',
 		'type':config && config.type || '',
-		'share':config && config.share || true,
+		'share':config && config.share || false,
 		'dataUrl':config && config.dataUrl || '',
 		'success':config && config.success || function(){},
 		'cancel':config && config.cancel || function(){}
@@ -21,7 +21,7 @@ function wxConfigFun(config){
 		contentType: 'application/json',
 		success: function(res) {
 			if(res.status == 1){
-				wx.config({    
+				wx.config({
 					debug: false,
 					appId: res.appId,
 					timestamp: res.timestamp,
