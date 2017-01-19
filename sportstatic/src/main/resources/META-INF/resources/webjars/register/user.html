@@ -179,7 +179,6 @@ $('.save').on('tap',function(){
 	if(imageBase){
 		imageBase = imageBase.replace('data:image/jpeg;base64,','');
 	}
-	console.log(imageBase)
 	submit = true;
 	if(submit){
 		$.ajax({
@@ -194,8 +193,8 @@ $('.save').on('tap',function(){
 			success:function(resp){
 				if(resp.status == 1){
 					submit = false;
-					tost('信息修改成功');
 					$('.mask').remove();
+					tost('信息修改成功');
 				}else{
 					submit = false;
 					$('.mask').remove();
@@ -203,10 +202,7 @@ $('.save').on('tap',function(){
 				}
 			}
 		});
-	}
-
-	console.log(submit)
-	
+	}	
 });
 $('.button').on('tap',function(){
 	open();
