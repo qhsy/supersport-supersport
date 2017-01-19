@@ -1,6 +1,7 @@
 package com.uhutu.sportcenter.z.api.match;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -26,6 +27,7 @@ import com.uhutu.sportcenter.z.entity.UserBasicInfo;
 import com.uhutu.sportcenter.z.input.ApiMatchInfoInput;
 import com.uhutu.sportcenter.z.result.ApiMatchInfoResult;
 import com.uhutu.zoocom.define.DefineUser;
+import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
@@ -35,6 +37,7 @@ import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 赛事详情
+ * 
  * @author 逄小帅
  *
  */
@@ -43,92 +46,89 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 
 	@Override
 	protected ApiMatchInfoResult process(ApiMatchInfoInput input) {
-		
+
 		ApiMatchInfoResult matchInfoResult = new ApiMatchInfoResult();
-		
-		CnMatchInfo cnMatchInfo = JdbcHelper.queryOne(CnMatchInfo.class, "code",input.getMatchCode());
-		
-		if(cnMatchInfo != null){
-			
-			MatchInfo matchInfo = initMatchInfo(cnMatchInfo, input.getZoo().getToken(), input.getWidth(), input.getDetailWidth());
-			
+
+		CnMatchInfo cnMatchInfo = JdbcHelper.queryOne(CnMatchInfo.class, "code", input.getMatchCode());
+
+		if (cnMatchInfo != null) {
+
+			MatchInfo matchInfo = initMatchInfo(cnMatchInfo, input.getZoo().getToken(), input.getWidth(),
+					input.getDetailWidth());
+
 			List<MatchLiveInfo> matchLiveInfos = initMatchLive(cnMatchInfo.getCode());
-			
+
 			List<MatchVidoInfo> matchVidoInfos = initMatchVideo(cnMatchInfo.getCode());
-			
+
 			matchInfoResult.setMatchInfo(matchInfo);
-			
+
 			matchInfoResult.setMatchLiveInfos(matchLiveInfos);
-			
+
 			matchInfoResult.setMatchVidoInfos(matchVidoInfos);
-			
+
 			initMatchSign(input.getMatchCode(), matchInfoResult);
-			
-			if(StringUtils.isEmpty(matchInfoResult.getSignUrl())){
-				
-				String buttonName = "";
-				
-				JumpTypeData jumpTypeData = linkJumpData(input.getMatchCode(),buttonName);
-				
-				matchInfoResult.setLinkJumpData(jumpTypeData);
-				
-				matchInfoResult.setButtonName(buttonName);
-				
-			}else{
-				
+
+			if (StringUtils.isEmpty(matchInfoResult.getSignUrl())) {
+
+				linkJumpData(input.getMatchCode(), matchInfoResult);
+
+			} else {
+
 				matchInfoResult.setButtonName("我要报名");
-				
+
 			}
-			
+
 			operBtn(matchInfoResult);
-			
-		}else{
-			
+
+		} else {
+
 			matchInfoResult.setError("相关赛事信息不存在");
-			
+
 			matchInfoResult.setStatus(-1);
-			
+
 		}
-		
+
 		return matchInfoResult;
 	}
-	
-	public MatchInfo initMatchInfo(CnMatchInfo cnMatchInfo,String token,int coverWidth,int detaiWidth){
-		
+
+	public MatchInfo initMatchInfo(CnMatchInfo cnMatchInfo, String token, int coverWidth, int detaiWidth) {
+
 		MatchInfo matchInfo = new MatchInfo();
-		
+
 		BeanUtils.copyProperties(cnMatchInfo, matchInfo);
-		
+
 		String flagName = MatchComponent.getInstance().initFlagName(matchInfo.getFlag());
-		
+
 		matchInfo.setFlagName(flagName);
-		
+
 		matchInfo.setUserBasicInfo(MatchComponent.getInstance().initBasicInfo(cnMatchInfo.getUserCode()));
-		
+
 		String coverSource = ImageHelper.upImageThumbnail(cnMatchInfo.getCover(), coverWidth);
-		
+
 		matchInfo.setCover(coverSource);
-		
+
 		matchInfo.setDetails(MatchComponent.getInstance().initDetails(cnMatchInfo.getContent(), detaiWidth));
-		
-		if(StringUtils.isNotBlank(token)){
-			
-			String userCode = TopUserFactory.upUserCallFactory().upUserCodeByAuthToken(token,DefineUser.Login_System_Default);
-			
-			UcAttentionInfo attentionInfo = JdbcHelper.queryOne(UcAttentionInfo.class, "attention",userCode,"beAttention",cnMatchInfo.getUserCode(),"status",SystemEnum.NORMAL.getCode());
-			
-			if(attentionInfo != null){
-				
+
+		if (StringUtils.isNotBlank(token)) {
+
+			String userCode = TopUserFactory.upUserCallFactory().upUserCodeByAuthToken(token,
+					DefineUser.Login_System_Default);
+
+			UcAttentionInfo attentionInfo = JdbcHelper.queryOne(UcAttentionInfo.class, "attention", userCode,
+					"beAttention", cnMatchInfo.getUserCode(), "status", SystemEnum.NORMAL.getCode());
+
+			if (attentionInfo != null) {
+
 				matchInfo.setAttendFlag(true);
-				
+
 			}
-			
+
 		}
-		
+
 		return matchInfo;
-		
+
 	}
-	
+
 	public List<MatchLiveInfo> initMatchLive(String matchCode){
 		
 		List<MatchLiveInfo> matchLiveInfos = new ArrayList<MatchLiveInfo>();
@@ -139,7 +139,7 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 		
 		List<CnMatchLive> cnMatchLives = JdbcHelper.queryForList(CnMatchLive.class, "", "sort desc,zc desc", "", mWhereMap);
 		
-		cnMatchLives.forEach(cnMatchLive -> {
+		for (CnMatchLive cnMatchLive : cnMatchLives) {
 			
 			MatchLiveInfo matchLiveInfo = new MatchLiveInfo();
 			
@@ -151,15 +151,19 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 			
 			matchLiveInfo.setJumpTypeData(jumpTypeData);
 			
+			String startTime = formatDate(matchLiveInfo.getStartTime());
+			
+			matchLiveInfo.setStartTime(startTime);
+			
 			matchLiveInfos.add(matchLiveInfo);
 			
 			
-		});
+		}
 		
 		return matchLiveInfos;
 		
 	}
-	
+
 	public List<MatchVidoInfo> initMatchVideo(String matchCode) {
 
 		List<MatchVidoInfo> matchVidoInfos = new ArrayList<MatchVidoInfo>();
@@ -216,97 +220,114 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 		return matchVidoInfos;
 
 	}
-	
-	public void initMatchSign(String matchCode,ApiMatchInfoResult result){
-		
+
+	public void initMatchSign(String matchCode, ApiMatchInfoResult result) {
+
 		MDataMap mWhereMap = new MDataMap();
-		
+
 		mWhereMap.put("matchCode", matchCode);
-		
+
 		mWhereMap.put("status", ContentEnum.MATCH_PUB.getCode());
-		
-		List<CnMatchSign> matchSigns = JdbcHelper.queryForList(CnMatchSign.class, "", "sort desc,zc desc", "", mWhereMap);
-		
-		if(matchSigns.size() == 0){
-			
+
+		List<CnMatchSign> matchSigns = JdbcHelper.queryForList(CnMatchSign.class, "", "sort desc,zc desc", "",
+				mWhereMap);
+
+		if (matchSigns.size() == 0) {
+
 			result.setSignUrl("");
-			
+
 		}
-		
-		if(matchSigns.size() == 1){
-			
+
+		if (matchSigns.size() == 1) {
+
 			CnMatchSign cnMatchSign = matchSigns.get(0);
-			
-			if(cnMatchSign != null){
-				
+
+			if (cnMatchSign != null) {
+
 				String url = TopHelper.upInfo(810710028, cnMatchSign.getSignCode());
-				
+
 				result.setRedirectFlag(true);
-				
+
 				result.setSignUrl(url);
-				
+
 			}
-			
-			
+
 		}
-		
-		if(matchSigns.size() > 1){
-			
+
+		if (matchSigns.size() > 1) {
+
 			String url = TopHelper.upInfo(810710027, matchCode);
-			
+
 			result.setRedirectFlag(false);
-			
+
 			result.setSignUrl(url);
-			
-		}		
-		
+
+		}
+
 	}
-	
-	public JumpTypeData linkJumpData(String matchCode,String buttonName){
-		
+
+	public void linkJumpData(String matchCode, ApiMatchInfoResult matchInfoResult) {
+
 		JumpTypeData jumpTypeData = null;
-		
-		CnMatchLink matchLink = JdbcHelper.queryOne(CnMatchLink.class, "matchCode",matchCode,"status",ContentEnum.MATCH_PUB.getCode());
-		
-		if(matchLink != null){
-			
-			jumpTypeData = new JumpTypeSupport().getData(matchLink.getLinkType(),
-					matchLink.getLinkContent(), matchLink.getLinkTitle());
-			
-		
-			if(StringUtils.isNotEmpty(matchLink.getTitle())){
-				
-				buttonName = matchLink.getTitle();
-				
+
+		CnMatchLink matchLink = JdbcHelper.queryOne(CnMatchLink.class, "matchCode", matchCode, "status",
+				ContentEnum.MATCH_PUB.getCode());
+
+		if (matchLink != null) {
+
+			jumpTypeData = new JumpTypeSupport().getData(matchLink.getLinkType(), matchLink.getLinkContent(),
+					matchLink.getLinkTitle());
+
+			if (StringUtils.isNotEmpty(matchLink.getTitle())) {
+
+				matchInfoResult.setButtonName(matchLink.getTitle());
+
 			}
-			
+
 		}
-		
-		return jumpTypeData;
-		
-		
+
+		matchInfoResult.setLinkJumpData(jumpTypeData);
+
 	}
-	
-	public void operBtn(ApiMatchInfoResult matchInfoResult){
-		
-		if(StringUtils.isNotBlank(matchInfoResult.getSignUrl())){
-			
+
+	public void operBtn(ApiMatchInfoResult matchInfoResult) {
+
+		if (StringUtils.isNotBlank(matchInfoResult.getSignUrl())) {
+
 			matchInfoResult.setOperBtn("sign");
-			
-		}else{
-			
-			if(matchInfoResult.getLinkJumpData() != null){
-				
+
+		} else {
+
+			if (matchInfoResult.getLinkJumpData() != null) {
+
 				matchInfoResult.setOperBtn("link");
-				
-			}else{
-				
+
+			} else {
+
 				matchInfoResult.setOperBtn("none");
-				
+
 			}
-			
+
 		}
-		
+
+	}
+
+	public String formatDate(String startTime) {
+
+		if (StringUtils.isNotEmpty(startTime)) {
+
+			Date startDate = DateHelper.parseDate(startTime);
+
+			if (startDate != null) {
+
+				startTime = DateHelper.upDate(startDate, "yyyy-MM-dd HH:mm");
+
+			}
+
+		}
+
+		return startTime;
+
 	}
 
 }

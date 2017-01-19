@@ -1,11 +1,5 @@
 package com.uhutu.sportcenter.z.entity;
 
-import java.util.Date;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.uhutu.zoocom.helper.DateHelper;
-
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -54,19 +48,8 @@ public class MatchLiveInfo {
 
 	public String getStartTime() {
 		
-		if(StringUtils.isNotEmpty(startTime)){
-			
-			Date startDate = DateHelper.parseDate(startTime);
-			
-			if(startDate != null){
-				
-				startTime = DateHelper.upDate(startDate,"yyyy-MM-dd HH:mm");
-				
-			}
-			
-		}
-		
 		return startTime;
+		
 	}
 
 	public void setStartTime(String startTime) {
