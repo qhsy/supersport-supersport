@@ -66,15 +66,13 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 			
 			if(StringUtils.isEmpty(matchInfoResult.getSignUrl())){
 				
-				JumpTypeData jumpTypeData = linkJumpData(input.getMatchCode());
+				String buttonName = "";
+				
+				JumpTypeData jumpTypeData = linkJumpData(input.getMatchCode(),buttonName);
 				
 				matchInfoResult.setLinkJumpData(jumpTypeData);
 				
-				if(jumpTypeData != null){
-					
-					matchInfoResult.setButtonName(jumpTypeData.getJumpTitle());
-					
-				}
+				matchInfoResult.setButtonName(buttonName);
 				
 			}else{
 				
@@ -264,7 +262,7 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 		
 	}
 	
-	public JumpTypeData linkJumpData(String matchCode){
+	public JumpTypeData linkJumpData(String matchCode,String buttonName){
 		
 		JumpTypeData jumpTypeData = null;
 		
@@ -273,8 +271,14 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 		if(matchLink != null){
 			
 			jumpTypeData = new JumpTypeSupport().getData(matchLink.getLinkType(),
-					matchLink.getLinkContent(), matchLink.getTitle());
+					matchLink.getLinkContent(), matchLink.getLinkTitle());
 			
+		
+			if(StringUtils.isNotEmpty(matchLink.getTitle())){
+				
+				buttonName = matchLink.getTitle();
+				
+			}
 			
 		}
 		
