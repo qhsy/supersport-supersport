@@ -18,13 +18,13 @@ body{background: url('img/name_bg@2x.jpg') no-repeat center top;}
 .user .head{width: 100px; height: 100px; margin: auto; background: #D8D8D8; overflow: hidden; border-radius: 50%; background: url('img/+_@2x.png') no-repeat center center; background-size: cover;}
 .user .head img{width: 100%; height: 100%;}
 .user .button{width: 1.47rem; height: 0.39rem; margin: 8px auto 0; display: block; border-radius: 2px; color: #fff; background: #F8800A; font: 14px/0.39rem "MicrosoftYaHei"; text-align: center;}
-.user .info{padding: 0 0 16px; margin: 0 0 13px; border-bottom: #DCDCDC 1px solid;}
+.user .info{padding: 0 0 16px; margin: 0 0 13px;}
 .user .about{font: 12px/18px "MicrosoftYaHei"; color: #212121; text-align: justify;}
 .user .input{width: 148px; height: 40px; background: #D8D8D8; border-radius: 1px; padding: 0 5px; box-sizing: border-box; font: 14px/40px "PingFangSC-Regular"; color: #212121;}
-.user .name{padding: 26px 0 17px;}
+.user .name{padding: 0.26rem 0 0.85rem;}
 .user .text{text-align: center; font: 12px/18px "MicrosoftYaHei"; color: #757575;}
-.user .label{padding: 0 8px 0 0.47rem; float: left; font: 18px/40px "MicrosoftYaHei";}
-.user .save{width: 60px; height: 33px; background: #F8800A; margin: auto; border-radius: 2px; font: 12px/33px ""; color: #fff; text-align: center; display: block;}
+.user .label{padding: 0 8px 0 0.6rem; float: left; font: 18px/40px "MicrosoftYaHei";}
+.user .save{width: 1.47rem; height: 0.4rem; background: #F8800A; margin: auto; border-radius: 2px; font: 14px/0.4rem "MicrosoftYaHei"; color: #fff; text-align: center; display: block;}
 /* clip */
 .container {width: 100%; height: 100%; position: fixed; left: 0; top: 0; background: #fff; display: none;}
 #clipArea {height: 100%;}
@@ -45,11 +45,6 @@ body{background: url('img/name_bg@2x.jpg') no-repeat center top;}
 		<div class="name"><em class="label">昵称</em><input type="text" name="" class="input" value=""></div>
 		<a href="javascript:;" class="save">保存</a>
 	</div>
-	<div class="about">
-		果冻体育，专注于服务全民赛事的直播视频互动平台。在这里，每一个赛事、每一个你，都可以轻松创建属于自己的体育“TV”，让更多小伙伴们看到你、喜欢你、支持你！小伙伴可与大咖达人亲密互动，享受前所未有的赛事直播和运动视频互动体验。<br><br>
-		别犹豫了，加入我们。精品赛事直播、海量运动视频、十万大咖达人在等你哟！
-	</div>
-	<a href="javascript:;" class="button">下载果冻体育APP</a>
 </section>
 <article class="container">
 	<div id="clipArea"></div>
@@ -194,7 +189,7 @@ $('.save').on('tap',function(){
 				if(resp.status == 1){
 					submit = false;
 					$('.mask').remove();
-					tost('信息修改成功');
+					window.location.href = 'down.html';
 				}else{
 					submit = false;
 					$('.mask').remove();
@@ -204,9 +199,6 @@ $('.save').on('tap',function(){
 		});
 	}	
 });
-$('.button').on('tap',function(){
-	open();
-})
 function tost(mess){
 	var ele = $('<div class="mask"><span class="tost">' + mess + '</span></div>').appendTo('body');
 	var timer = setTimeout(function(){
