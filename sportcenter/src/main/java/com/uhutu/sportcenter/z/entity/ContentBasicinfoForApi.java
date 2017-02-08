@@ -98,6 +98,9 @@ public class ContentBasicinfoForApi {
 
 	@ApiModelProperty(value = "用户基本信息")
 	private UserBasicInfo userBasicInfo = new UserBasicInfo();
+	
+	@ApiModelProperty(name = "接受打赏标识", notes = "开启:dzsd4699100110010001,关闭:dzsd4699100110010002")
+	private String redPackFlag;
 
 	public List<CnContentLabel> getTags() {
 		return tags;

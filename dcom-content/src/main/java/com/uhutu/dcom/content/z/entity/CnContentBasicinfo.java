@@ -92,6 +92,9 @@ public class CnContentBasicinfo extends BaseEntity {
 
 	@ZooData(name = "成绩")
 	private int mark;
+	
+	@ZooData(name="是否接受打赏标识")
+	private String redPackFlag;
 
 	public String getCode() {
 		return code;
@@ -251,6 +254,14 @@ public class CnContentBasicinfo extends BaseEntity {
 
 	public void setMark(int mark) {
 		this.mark = mark;
+	}
+
+	public String getRedPackFlag() {
+		return redPackFlag;
+	}
+
+	public void setRedPackFlag(String redPackFlag) {
+		this.redPackFlag = redPackFlag;
 	}
 
 }
