@@ -5,6 +5,7 @@
 		<item code="dzsd81121001" defineName="支付相关" parentCode="" />
 		<item code="dzsd811210011001" defineName="支付业务类型" parentCode="dzsd81121001" />
 		<item code="dzsd8112100110010001" defineName="红包打赏支付" parentCode="dzsd811210011001" />
+		<item code="dzsd8112100110010002" defineName="内容打赏支付" parentCode="dzsd811210011001" />
 	</data>
 
 </db>
