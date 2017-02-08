@@ -16,7 +16,9 @@ public enum OperType {
 	/**金币查询*/
 	COIN_QUERY("金币查询"),
 	
-	RED_PACK("红包打赏");
+	RED_PACK("红包打赏"),
+	
+	CONTENT_RED_PACK("内容红包打赏");
 	
 	private String remark;
 	

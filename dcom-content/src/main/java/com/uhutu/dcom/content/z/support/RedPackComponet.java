@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.util.ApplicationSupport;
 import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.config.enums.SystemEnum;
+import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
 import com.uhutu.dcom.content.z.entity.CnRedPackUser;
 import com.uhutu.dcom.content.z.service.IRedPackInfoService;
@@ -24,6 +25,7 @@ import com.uhutu.dcom.user.z.entity.UcClientInfo;
 import com.uhutu.dcom.user.z.entity.UcMsgNotice;
 import com.uhutu.dcom.user.z.entity.UcMsgNoticeUser;
 import com.uhutu.dcom.user.z.entity.UcTradeFlow;
+import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.enums.MsgEnum;
 import com.uhutu.dcom.user.z.support.AccountComponet;
 import com.uhutu.zoocom.helper.DateHelper;
@@ -266,5 +268,66 @@ public class RedPackComponet {
 		JdbcHelper.insert(ucMsgNoticeUser);
 		
 	}
+	
+	/**
+	 * 内容打赏收益
+	 * @param liveNO
+	 */
+	public void doContentProfit(String sendUserCode,String contentCode,BigDecimal payedMoney){
+		
+		synchronized (RedPackComponet.class) {
+			
+			//获取直播信息
+			CnContentBasicinfo contentBasicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",contentCode);
+			
+			String title = "";
+			
+			if(StringUtils.isNotEmpty(contentBasicinfo.getTitle())){
+				
+				title = EmojiUtil.emojiRecovery(contentBasicinfo.getTitle());
+				
+			}
+			
+			if (contentBasicinfo != null) {
+
+				if (payedMoney.compareTo(BigDecimal.ZERO) > 0) {
+
+					/* 记录打赏人员流水 */
+					liveProfitFlow(StringUtils.join(contentBasicinfo.getCode(), "-", contentBasicinfo.getAuthor()),
+							payedMoney, "");
+					/* 更新接收打赏人员收益 */
+					AccountComponet.getInstance().updateProfit(contentBasicinfo.getAuthor(), payedMoney);
+					
+					UcUserinfoExt ucUserinfoExt = JdbcHelper.queryOne(UcUserinfoExt.class, "userCode",sendUserCode);
+					
+					String sendNickName = "";
+					
+					if(ucUserinfoExt != null){
+						
+						sendNickName = EmojiUtil.emojiRecovery(ucUserinfoExt.getNickName()); 
+						
+					}
+
+					/* 跟接收打赏人员发送消息通知 */
+					String content = TopHelper.upInfo(810710030,sendNickName, title, payedMoney.toString());
+
+					String msgContent = TopHelper.upInfo(810710030,sendNickName, title, payedMoney.toString());
+
+					msgNotice(msgContent, contentBasicinfo.getAuthor());
+
+					baiduPush(contentBasicinfo.getAuthor(), "内容打赏", content, "1", contentBasicinfo.getCode());
+
+				}
+
+			}
+				
+				
+				
+			}
+			
+			
+		}
+		
+
 
 }

@@ -130,6 +130,12 @@ public class WechatNotifyServiceImpl implements IWechatNotifyService {
 			break;
 		case REDPACK_H5_NOTIFY:
 			className = "com.uhutu.sportcenter.z.pay.func.WechatRedPackNotifyFunc";
+			break;
+		case CONTENT_REDPACK_APP_NOTIFY:
+			className = "com.uhutu.sportcenter.z.pay.func.WechatContentRedPackNotifyFunc";
+			break;
+		case CONTENT_REDPACK_H5_NOTIFY:
+			className = "com.uhutu.sportcenter.z.pay.func.WechatContentRedPackNotifyFunc";
 			break;	
 		default:
 			break;

@@ -102,6 +102,12 @@ public class WechatConfig {
 
 	@Value("${redpack_H5_notifyUrl}")
 	private String redPackH5NotifyUrl;
+	
+	@Value("${content_redpack_app_notifyUrl}")
+	private String contentRedPackAppNotifyUrl;
+
+	@Value("${content_redpack_H5_notifyUrl}")
+	private String contentRedPackH5NotifyUrl;
 
 	/**
 	 * 获取app编号
@@ -148,6 +154,12 @@ public class WechatConfig {
 			tradeType = "APP";
 			break;
 		case REDPACK_H5:
+			tradeType = "JSAPI";
+			break;
+		case CONTENT_REDPACK_APP:
+			tradeType = "APP";
+			break;
+		case CONTENT_REDPACK_H5:
 			tradeType = "JSAPI";
 			break;
 		default:
@@ -209,6 +221,12 @@ public class WechatConfig {
 			break;
 		case REDPACK_H5:
 			notifyUrl = getRedPackH5NotifyUrl();
+			break;
+		case CONTENT_REDPACK_APP:
+			notifyUrl = getContentRedPackAppNotifyUrl();
+			break;
+		case CONTENT_REDPACK_H5:
+			notifyUrl = getContentRedPackH5NotifyUrl();
 			break;
 
 		default:
@@ -283,6 +301,18 @@ public class WechatConfig {
 			key = getServiceKey();
 			break;
 		case REDPACK_APP_NOTIFY:
+			key = getSignKey();
+			break;
+		case CONTENT_REDPACK_H5:
+			key = getServiceKey();
+			break;
+		case CONTENT_REDPACK_APP:
+			key = getSignKey();
+			break;
+		case CONTENT_REDPACK_H5_NOTIFY:
+			key = getServiceKey();
+			break;
+		case CONTENT_REDPACK_APP_NOTIFY:
 			key = getSignKey();
 			break;
 
@@ -431,6 +461,18 @@ public class WechatConfig {
 		case REDPACK_H5:
 			appid = getServiceAppId();
 			break;
+		case CONTENT_REDPACK_APP_NOTIFY:
+			appid = getAppId();
+			break;
+		case CONTENT_REDPACK_H5_NOTIFY:
+			appid = getServiceAppId();
+			break;
+		case CONTENT_REDPACK_APP:
+			appid = getAppId();
+			break;
+		case CONTENT_REDPACK_H5:
+			appid = getServiceAppId();
+			break;
 		default:
 			break;
 		}
@@ -501,6 +543,18 @@ public class WechatConfig {
 			mchid = getMchId();
 			break;
 		case REDPACK_H5_NOTIFY:
+			mchid = getServiceMchId();
+			break;
+		case CONTENT_REDPACK_APP:
+			mchid = getMchId();
+			break;
+		case CONTENT_REDPACK_H5:
+			mchid = getServiceMchId();
+			break;
+		case CONTENT_REDPACK_APP_NOTIFY:
+			mchid = getMchId();
+			break;
+		case CONTENT_REDPACK_H5_NOTIFY:
 			mchid = getServiceMchId();
 			break;
 		default:
@@ -584,6 +638,14 @@ public class WechatConfig {
 
 	public String getRedPackH5NotifyUrl() {
 		return redPackH5NotifyUrl;
+	}
+
+	public String getContentRedPackAppNotifyUrl() {
+		return contentRedPackAppNotifyUrl;
+	}
+
+	public String getContentRedPackH5NotifyUrl() {
+		return contentRedPackH5NotifyUrl;
 	}
 	
 	

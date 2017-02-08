@@ -29,6 +29,9 @@ public enum OrderType {
 	/**红包打赏*/
 	RED_PACK("dzsd8112100110010001","果冻体育-红包支付"),
 	
+	/**红包打赏*/
+	CONTENT_RED_PACK("dzsd8112100110010002","果冻体育-红包支付"),
+	
 	SOURCE_H5("dzsd4112100110020002","H5订单"),
 	
 	SOURCE_APP("dzsd4112100110020001","app订单"),
@@ -43,7 +46,11 @@ public enum OrderType {
 	
 	REDPACK_H5("dzsd4112100110020002-dzsd8112100110010001","redpack H5 订单"),
 	
-	REDPACK_APP("dzsd4112100110020001-dzsd8112100110010001","redpack app订单");
+	REDPACK_APP("dzsd4112100110020001-dzsd8112100110010001","redpack app订单"),
+	
+	CONTENT_REDPACK_H5("dzsd4112100110020002-dzsd8112100110010002","内容打赏 H5 订单"),
+	
+	CONTENT_REDPACK_APP("dzsd4112100110020001-dzsd8112100110010002","内容打赏 app订单");	
 	
 	
 	OrderType(String code, String text) {

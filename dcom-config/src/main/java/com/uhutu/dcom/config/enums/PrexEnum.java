@@ -36,5 +36,7 @@ public enum PrexEnum {
     /**账户操作流水*/
     ACCF,
     /**赛事编号*/
-    MH;
+    MH,
+    /**内容红包流水*/
+    CNRF;
 }
