@@ -26,10 +26,10 @@ public class ContentDetailInfo {
 	@ApiModelProperty(name="视频封面")
 	private String videoCover;
 	
-	@ApiModelProperty(name = "打赏人数")
+	@ApiModelProperty(value = "打赏人数")
 	private int redPackNum;
 
-	@ApiModelProperty(name = "打赏人员列表")
+	@ApiModelProperty(value = "打赏人员列表")
 	private List<UserBasicInfo> redPackUsers;
 	
 	public String getDescription() {
