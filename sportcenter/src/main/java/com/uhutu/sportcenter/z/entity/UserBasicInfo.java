@@ -23,6 +23,9 @@ public class UserBasicInfo {
 	
 	@ApiModelProperty(value="头衔")
 	private String title;
+	
+	@ApiModelProperty(value="关注标识")
+	private boolean attendFlag = false;
 
 	public String getUserCode() {
 		return userCode;
@@ -62,6 +65,14 @@ public class UserBasicInfo {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public boolean isAttendFlag() {
+		return attendFlag;
+	}
+
+	public void setAttendFlag(boolean attendFlag) {
+		this.attendFlag = attendFlag;
 	}
 
 }

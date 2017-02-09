@@ -42,6 +42,7 @@ import com.uhutu.sportcenter.z.api.content.ApiContentPhotosDetailInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentReadCount;
 import com.uhutu.sportcenter.z.api.content.ApiContentRecommInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentRedPack;
+import com.uhutu.sportcenter.z.api.content.ApiContentRedPackUser;
 import com.uhutu.sportcenter.z.api.content.ApiContentType;
 import com.uhutu.sportcenter.z.api.content.ApiContentWorth;
 import com.uhutu.sportcenter.z.api.content.ApiOperContent;
@@ -620,6 +621,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiContentRedPack apiContentRedPack;
+	
+	@Autowired
+	private ApiContentRedPackUser apiContentRedPackUser;
 
 	public ApiHomePageThird getApiHomePageThird() {
 		return apiHomePageThird;
@@ -1227,6 +1231,10 @@ public class ApiFactory {
 
 	public ApiContentRedPack getApiContentRedPack() {
 		return apiContentRedPack;
+	}
+
+	public ApiContentRedPackUser getApiContentRedPackUser() {
+		return apiContentRedPackUser;
 	}
 
 }

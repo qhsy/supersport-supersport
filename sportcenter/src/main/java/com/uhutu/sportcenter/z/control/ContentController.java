@@ -15,6 +15,7 @@ import com.uhutu.sportcenter.z.input.ApiContentPhotosInput;
 import com.uhutu.sportcenter.z.input.ApiContentReadCountInput;
 import com.uhutu.sportcenter.z.input.ApiContentRecommInput;
 import com.uhutu.sportcenter.z.input.ApiContentRedPackInput;
+import com.uhutu.sportcenter.z.input.ApiContentRedPackUserInput;
 import com.uhutu.sportcenter.z.input.ApiForCreateLabelInput;
 import com.uhutu.sportcenter.z.input.ApiForLabelsInput;
 import com.uhutu.sportcenter.z.input.ApiForSearchLabelsInput;
@@ -40,6 +41,7 @@ import com.uhutu.sportcenter.z.result.ApiContentPhotosResult;
 import com.uhutu.sportcenter.z.result.ApiContentReadCountResult;
 import com.uhutu.sportcenter.z.result.ApiContentRecommResult;
 import com.uhutu.sportcenter.z.result.ApiContentRedPackResult;
+import com.uhutu.sportcenter.z.result.ApiContentRedPackUserResult;
 import com.uhutu.sportcenter.z.result.ApiForCreateLabelResult;
 import com.uhutu.sportcenter.z.result.ApiForLabelsResult;
 import com.uhutu.sportcenter.z.result.ApiForSearchLabelsResult;
@@ -288,6 +290,15 @@ public class ContentController {
 	public ApiContentRedPackResult awardRedPack(@RequestBody ApiContentRedPackInput input) {
 
 		return apiFactory.getApiContentRedPack().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/redPackUsers", method = RequestMethod.POST)
+	@ApiOperation(value = "红包打赏人员列表", notes = "红包打赏人员列表")
+	public ApiContentRedPackUserResult redPackUsers(@RequestBody ApiContentRedPackUserInput input) {
+
+		return apiFactory.getApiContentRedPackUser().api(input);
 
 	}
 }
