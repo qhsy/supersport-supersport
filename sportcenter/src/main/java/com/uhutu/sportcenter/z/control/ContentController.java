@@ -14,6 +14,7 @@ import com.uhutu.sportcenter.z.input.ApiContentDetailProductsInput;
 import com.uhutu.sportcenter.z.input.ApiContentPhotosInput;
 import com.uhutu.sportcenter.z.input.ApiContentReadCountInput;
 import com.uhutu.sportcenter.z.input.ApiContentRecommInput;
+import com.uhutu.sportcenter.z.input.ApiContentRedPackInfoInput;
 import com.uhutu.sportcenter.z.input.ApiContentRedPackInput;
 import com.uhutu.sportcenter.z.input.ApiContentRedPackUserInput;
 import com.uhutu.sportcenter.z.input.ApiForCreateLabelInput;
@@ -40,6 +41,7 @@ import com.uhutu.sportcenter.z.result.ApiContentDetailResult;
 import com.uhutu.sportcenter.z.result.ApiContentPhotosResult;
 import com.uhutu.sportcenter.z.result.ApiContentReadCountResult;
 import com.uhutu.sportcenter.z.result.ApiContentRecommResult;
+import com.uhutu.sportcenter.z.result.ApiContentRedPackInfoResult;
 import com.uhutu.sportcenter.z.result.ApiContentRedPackResult;
 import com.uhutu.sportcenter.z.result.ApiContentRedPackUserResult;
 import com.uhutu.sportcenter.z.result.ApiForCreateLabelResult;
@@ -285,9 +287,9 @@ public class ContentController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/awardRedPack", method = RequestMethod.POST)
+	@RequestMapping(value = "/redPackAward", method = RequestMethod.POST)
 	@ApiOperation(value = "红包奖励", notes = "红包奖励")
-	public ApiContentRedPackResult awardRedPack(@RequestBody ApiContentRedPackInput input) {
+	public ApiContentRedPackResult redPackAward(@RequestBody ApiContentRedPackInput input) {
 
 		return apiFactory.getApiContentRedPack().api(input);
 
@@ -299,6 +301,15 @@ public class ContentController {
 	public ApiContentRedPackUserResult redPackUsers(@RequestBody ApiContentRedPackUserInput input) {
 
 		return apiFactory.getApiContentRedPackUser().api(input);
+
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/redPackInfo", method = RequestMethod.POST)
+	@ApiOperation(value = "红包信息", notes = "红包信息")
+	public ApiContentRedPackInfoResult redPackInfo(@RequestBody ApiContentRedPackInfoInput input) {
+
+		return apiFactory.getApiContentRedPackInfo().api(input);
 
 	}
 }
