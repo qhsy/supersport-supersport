@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.apache.commons.lang3.StringUtils;
 
 import com.uhutu.dcom.config.enums.SystemEnum;
-import com.uhutu.dcom.content.z.entity.CnContentRedpack;
+import com.uhutu.dcom.content.z.entity.CnContentRedpackFlow;
 import com.uhutu.dcom.content.z.entity.CnRedPackUser;
 import com.uhutu.dcom.content.z.support.RedPackComponet;
 import com.uhutu.dcom.pay.z.entity.PaPayInfo;
@@ -31,7 +31,7 @@ public class WechatRedPackNotifyFunc implements IWechatNotifyFunc {
 			
 			MResult mResult = new MResult();
 			
-			CnContentRedpack redPackFlow = getRedPackFlow(notifyRequest.getOut_trade_no());
+			CnContentRedpackFlow redPackFlow = getRedPackFlow(notifyRequest.getOut_trade_no());
 			
 			/*未支付*/
 			if(redPackFlow != null){
@@ -90,9 +90,9 @@ public class WechatRedPackNotifyFunc implements IWechatNotifyFunc {
 	 * @param flowCode
 	 * @return 打赏信息
 	 */
-	public CnContentRedpack getRedPackFlow(String flowCode){
+	public CnContentRedpackFlow getRedPackFlow(String flowCode){
 		
-		return JdbcHelper.queryOne(CnContentRedpack.class, "code",flowCode);
+		return JdbcHelper.queryOne(CnContentRedpackFlow.class, "code",flowCode);
 		
 	}
 	
@@ -157,7 +157,7 @@ public class WechatRedPackNotifyFunc implements IWechatNotifyFunc {
 	 * 		红包流水信息
 	 * @param mResult
 	 */
-	public void updateRedPackFlow(CnContentRedpack redPackFlow, MResult mResult){
+	public void updateRedPackFlow(CnContentRedpackFlow redPackFlow, MResult mResult){
 		
 		redPackFlow.setStatus(SystemEnum.NORMAL.getCode());
 		

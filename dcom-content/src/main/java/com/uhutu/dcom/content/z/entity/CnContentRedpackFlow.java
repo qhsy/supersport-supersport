@@ -15,7 +15,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  */
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "code"}))
-public class CnContentRedpack extends BaseEntity {
+public class CnContentRedpackFlow extends BaseEntity {
 	
 	@ZooData(value = "打赏流水号")
 	@Column(length = 50)

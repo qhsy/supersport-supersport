@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.config.enums.PrexEnum;
 import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
-import com.uhutu.dcom.content.z.entity.CnContentRedpack;
+import com.uhutu.dcom.content.z.entity.CnContentRedpackFlow;
 import com.uhutu.dcom.content.z.entity.CnRedPackInfo;
 import com.uhutu.dcom.pay.z.common.OrderType;
 import com.uhutu.dcom.pay.z.entity.PaPayInfo;
@@ -47,7 +47,7 @@ public class ApiContentRedPack extends RootApiToken<ApiContentRedPackInput, ApiC
 					
 					if(StringUtils.equals(contentBasicInfo.getRedPackFlag(), SystemEnum.YES.getCode())){
 						
-						CnContentRedpack redPackFlow = new CnContentRedpack();
+						CnContentRedpackFlow redPackFlow = new CnContentRedpackFlow();
 						redPackFlow.setCode(WebHelper.upCode(PrexEnum.CNRF.name()));
 						redPackFlow.setContentCode(contentBasicInfo.getCode());
 						redPackFlow.setMoney(packInfo.getMoney());
@@ -96,7 +96,7 @@ public class ApiContentRedPack extends RootApiToken<ApiContentRedPackInput, ApiC
 	 * @param liveGiftInput
 	 * 		输入参数
 	 */
-	public void initMobilePayInfo(CnContentRedpack flow,ApiContentRedPackInput input,ApiContentRedPackResult result) {
+	public void initMobilePayInfo(CnContentRedpackFlow flow,ApiContentRedPackInput input,ApiContentRedPackResult result) {
 
 		ApiWechatMobilePayInput mobilePayInput = new ApiWechatMobilePayInput();
 		mobilePayInput.setOrderCode(flow.getCode());

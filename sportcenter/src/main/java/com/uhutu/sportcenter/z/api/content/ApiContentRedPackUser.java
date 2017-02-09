@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.config.enums.SystemEnum;
-import com.uhutu.dcom.content.z.entity.CnContentRedpack;
+import com.uhutu.dcom.content.z.entity.CnContentRedpackFlow;
 import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
@@ -58,9 +59,9 @@ public class ApiContentRedPackUser extends RootApiToken<ApiContentRedPackUserInp
 		
 		int iStart = (pageInfo.getPagination() - 1) * pageInfo.getPageNum();
 		
-		List<CnContentRedpack> contentRedpacks = JdbcHelper.queryForList(CnContentRedpack.class, "", "", sqlBuffer.toString(), new MDataMap(), iStart, pageInfo.getPageNum());
+		List<CnContentRedpackFlow> contentRedpacks = JdbcHelper.queryForList(CnContentRedpackFlow.class, "", "", sqlBuffer.toString(), new MDataMap(), iStart, pageInfo.getPageNum());
 		
-		for (CnContentRedpack cnContentRedpack : contentRedpacks) {
+		for (CnContentRedpackFlow cnContentRedpack : contentRedpacks) {
 			
 			if (cnContentRedpack != null) {
 

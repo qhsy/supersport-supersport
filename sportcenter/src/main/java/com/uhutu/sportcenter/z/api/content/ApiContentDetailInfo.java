@@ -14,7 +14,7 @@ import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
-import com.uhutu.dcom.content.z.entity.CnContentRedpack;
+import com.uhutu.dcom.content.z.entity.CnContentRedpackFlow;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
@@ -210,7 +210,7 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 		
 		mWhereMap.put("status", SystemEnum.NORMAL.getCode());
 		
-		int num = JdbcHelper.count(CnContentRedpack.class, "", mWhereMap);
+		int num = JdbcHelper.count(CnContentRedpackFlow.class, "", mWhereMap);
 		
 		return num;
 		
@@ -233,9 +233,9 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 		
 		mWhereMap.put("status", SystemEnum.NORMAL.getCode());
 		
-		List<CnContentRedpack> contentRedPacks = JdbcHelper.queryForList(CnContentRedpack.class, "", "-zc", "", mWhereMap, 0, 30);
+		List<CnContentRedpackFlow> contentRedPacks = JdbcHelper.queryForList(CnContentRedpackFlow.class, "", "-zc", "", mWhereMap, 0, 30);
 		
-		for (CnContentRedpack cnContentRedpack : contentRedPacks) {
+		for (CnContentRedpackFlow cnContentRedpack : contentRedPacks) {
 			
 			if(cnContentRedpack != null){
 				
