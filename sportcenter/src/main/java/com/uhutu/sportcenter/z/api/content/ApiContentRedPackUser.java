@@ -15,6 +15,7 @@ import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.entity.UserBasicInfo;
 import com.uhutu.sportcenter.z.input.ApiContentRedPackUserInput;
 import com.uhutu.sportcenter.z.result.ApiContentRedPackUserResult;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 
@@ -43,9 +44,11 @@ public class ApiContentRedPackUser extends RootApiToken<ApiContentRedPackUserInp
 		
 		sqlBuffer.append(" and status = '").append(SystemEnum.NORMAL.getCode()).append("'");
 		
-		sqlBuffer.append(" group by send_user_code order by zc desc");
+		String totalStr = JdbcHelper.dataGet("cn_content_redpack", "count(DISTINCT send_user_code)", sqlBuffer.toString(), new MDataMap());
 		
-		int total = JdbcHelper.dataCount("cn_content_redpack", sqlBuffer.toString(), null);
+		int total = Integer.parseInt(totalStr);
+		
+		sqlBuffer.append(" group by send_user_code order by zc desc");
 		
 		PageInfo pageInfo = new PageInfo(total, input.getPagination(), 10);
 		
@@ -55,7 +58,7 @@ public class ApiContentRedPackUser extends RootApiToken<ApiContentRedPackUserInp
 		
 		int iStart = (pageInfo.getPagination() - 1) * pageInfo.getPageNum();
 		
-		List<CnContentRedpack> contentRedpacks = JdbcHelper.queryForList(CnContentRedpack.class, "", "", sqlBuffer.toString(), null, iStart, pageInfo.getPageNum());
+		List<CnContentRedpack> contentRedpacks = JdbcHelper.queryForList(CnContentRedpack.class, "", "", sqlBuffer.toString(), new MDataMap(), iStart, pageInfo.getPageNum());
 		
 		for (CnContentRedpack cnContentRedpack : contentRedpacks) {
 			
