@@ -77,6 +77,10 @@
 		<item code="dzsd4107100110150003" defineName="URL(跳转参数：超链接)" parentCode="dzsd410710011015" />
 		<item code="dzsd4107100110150004" defineName="标签详情(跳转参数：标签编号)" parentCode="dzsd410710011015" />
 		<item code="dzsd4107100110150005" defineName="赛事详情(跳转参数：赛事编号)" parentCode="dzsd410710011015" />
+		<item code="dzsd410710011016" defineName="红包类型" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110160001" defineName="直播红包" parentCode="dzsd410710011016" />
+		<item code="dzsd4107100110160002" defineName="内容红包" parentCode="dzsd410710011016" />
+
 	</data>
 
 </db>
