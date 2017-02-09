@@ -101,7 +101,7 @@ public class ContentBasicinfoForApi {
 	
 	@ApiModelProperty(name = "接受打赏标识", notes = "开启:dzsd4699100110010001,关闭:dzsd4699100110010002")
 	private String redPackFlag;
-
+	
 	public List<CnContentLabel> getTags() {
 		return tags;
 	}
@@ -332,6 +332,14 @@ public class ContentBasicinfoForApi {
 
 	public void setContentDetail(CnContentDetail contentDetail) {
 		this.contentDetail = contentDetail;
+	}
+
+	public String getRedPackFlag() {
+		return redPackFlag;
+	}
+
+	public void setRedPackFlag(String redPackFlag) {
+		this.redPackFlag = redPackFlag;
 	}
 
 }

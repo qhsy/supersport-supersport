@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.entity;
 
+import java.util.List;
+
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -23,7 +25,13 @@ public class ContentDetailInfo {
 	
 	@ApiModelProperty(name="视频封面")
 	private String videoCover;
+	
+	@ApiModelProperty(name = "打赏人数")
+	private int redPackNum;
 
+	@ApiModelProperty(name = "打赏人员列表")
+	private List<UserBasicInfo> redPackUsers;
+	
 	public String getDescription() {
 		return description;
 	}
@@ -62,6 +70,22 @@ public class ContentDetailInfo {
 
 	public void setVideoCover(String videoCover) {
 		this.videoCover = videoCover;
+	}
+
+	public int getRedPackNum() {
+		return redPackNum;
+	}
+
+	public void setRedPackNum(int redPackNum) {
+		this.redPackNum = redPackNum;
+	}
+
+	public List<UserBasicInfo> getRedPackUsers() {
+		return redPackUsers;
+	}
+
+	public void setRedPackUsers(List<UserBasicInfo> redPackUsers) {
+		this.redPackUsers = redPackUsers;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.uhutu.sportcenter.z.api.content;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -8,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uhutu.dcom.component.z.util.EmojiUtil;
+import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.entity.CnContentRecomm;
+import com.uhutu.dcom.content.z.entity.CnContentRedpack;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
@@ -24,9 +27,11 @@ import com.uhutu.sportcenter.z.api.util.PictureUtil;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.entity.ContentDetailInfo;
 import com.uhutu.sportcenter.z.entity.ContentRecommInfo;
+import com.uhutu.sportcenter.z.entity.UserBasicInfo;
 import com.uhutu.sportcenter.z.input.ApiContentDetailInput;
 import com.uhutu.sportcenter.z.result.ApiContentDetailResult;
 import com.uhutu.zoocom.define.DefineUser;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoocom.z.bean.TopUserFactory;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
@@ -152,6 +157,12 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 					contentDetailInfo.setVideoCover(
 							ImageHelper.upImageThumbnail(contentDetailInfo.getVideoCover(), input.getWidth()));
 				}
+				
+				/*初始化红包相关*/
+				contentDetailInfo.setRedPackNum(redPackNum(input.getContent_code()));
+				
+				contentDetailInfo.setRedPackUsers(redPackUsers(input.getContent_code()));
+				
 				contentDetailResult.setContentDetailInfo(contentDetailInfo);
 				if ("dzsd4107100110030004".equals(contentBasicinfoForApi.getContentType())) {// 单图模式的时候内容做标题
 					contentBasicinfoForApi.setTitle(contentDetailInfo.getContent());
@@ -169,6 +180,8 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 				contentBasicinfoForApi.setTitle(title);
 
 				contentDetailResult.setSportingMoment(contentBasicinfoForApi);
+				
+				
 
 			} else {
 
@@ -182,6 +195,84 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 
 		return contentDetailResult;
 
+	}
+	
+	/**
+	 * 获取红包打赏的人数
+	 * @param contentCode
+	 * @return
+	 */
+	public int redPackNum(String contentCode){
+		
+		MDataMap mWhereMap = new MDataMap();
+		
+		mWhereMap.put("contentCode", contentCode);
+		
+		mWhereMap.put("status", SystemEnum.NORMAL.getCode());
+		
+		int num = JdbcHelper.count(CnContentRedpack.class, "", mWhereMap);
+		
+		return num;
+		
+	}
+	
+	/**
+	 * 内容打赏人员
+	 * @param contentCode
+	 * @return
+	 */
+	public List<UserBasicInfo> redPackUsers(String contentCode){
+		
+		MDataMap mWhereMap = new MDataMap();
+		
+		List<String> repeatCodes = new ArrayList<String>();
+		
+		List<UserBasicInfo> userBasicInfos = new ArrayList<UserBasicInfo>();
+		
+		mWhereMap.put("contentCode", contentCode);
+		
+		mWhereMap.put("status", SystemEnum.NORMAL.getCode());
+		
+		List<CnContentRedpack> contentRedPacks = JdbcHelper.queryForList(CnContentRedpack.class, "", "-zc", "", mWhereMap, 0, 30);
+		
+		for (CnContentRedpack cnContentRedpack : contentRedPacks) {
+			
+			if(cnContentRedpack != null){
+				
+				if(!repeatCodes.contains(cnContentRedpack.getSendUserCode())){					
+					
+					UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(cnContentRedpack.getSendUserCode());
+					
+					UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(cnContentRedpack.getSendUserCode());
+					
+					if(ucUserinfo != null && ucUserinfoExt != null){
+						
+						repeatCodes.add(cnContentRedpack.getSendUserCode());
+						
+						UserBasicInfo basicInfo = new UserBasicInfo();
+						
+						basicInfo.setAboutHead(ucUserinfoExt.getAboutHead());
+						
+						basicInfo.setNickName(EmojiUtil.emojiRecovery(ucUserinfoExt.getNickName()));
+						
+						basicInfo.setTitle(ucUserinfoExt.getTitle());
+						
+						basicInfo.setType(ucUserinfo.getType());
+						
+						basicInfo.setUserCode(ucUserinfo.getCode());
+						
+						userBasicInfos.add(basicInfo);
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+		return userBasicInfos;
+		
 	}
 
 }
