@@ -20,7 +20,7 @@ public class RedPackInfo{
 	private String pic;
 
 	@ApiModelProperty(value = "红包金额")
-	private BigDecimal money;
+	private BigDecimal money = BigDecimal.ZERO;
 
 	@ApiModelProperty(value = "排序")
 	private int sort;
