@@ -115,6 +115,7 @@ import com.uhutu.sportcenter.z.api.remark.ApiOperRemark;
 import com.uhutu.sportcenter.z.api.remark.ApiPublishRemark;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkCount;
 import com.uhutu.sportcenter.z.api.remark.ApiRemarkList;
+import com.uhutu.sportcenter.z.api.search.ApiKeyWordRecomm;
 import com.uhutu.sportcenter.z.api.search.ApiSearchMatch;
 import com.uhutu.sportcenter.z.api.search.ApiSearchUser;
 import com.uhutu.sportcenter.z.api.search.ApiSearchVideo;
@@ -624,6 +625,13 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiContentRedPackUser apiContentRedPackUser;
+
+	@Autowired
+	private ApiKeyWordRecomm apiKeyWordRecomm;
+	
+	public ApiKeyWordRecomm getApiKeyWordRecomm() {
+		return apiKeyWordRecomm;
+	}
 
 	public ApiHomePageThird getApiHomePageThird() {
 		return apiHomePageThird;
