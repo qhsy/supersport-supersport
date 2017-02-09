@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class ApiOperContentInput extends RootApiInput {
 	
-	@ApiModelProperty(value="操作标识",example="delete:逻辑删除 打赏红包:redpack")
+	@ApiModelProperty(value="操作标识",example="delete:逻辑删除 redpack:打赏红包")
 	private String operFlag;
 	
 	@ApiModelProperty(value="内容编号")
