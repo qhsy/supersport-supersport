@@ -36,6 +36,10 @@ public class CnRedPackInfo extends BaseEntity {
 	@ZooData(value = "排序", require = "1", verify = { DefineWebVerify.Base_Number })
 	private int sort;
 
+	@ZooData(value = "类型", require = "1",element = DefineWebElement.Select,inc = {
+			DefineWebInc.System_Define + "=dzsd410710011016" })
+	private String type;
+	
 	@ZooData(value = "状态", require = "1", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=10" })
 	@Column(length = 50)
