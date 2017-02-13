@@ -27,11 +27,7 @@ public class SearchMatchServiceImpl implements ISearchMatchService {
 			CloudsearchSearch cloudSearch = CloudSearchComponent.getInstance().search(CloudSearchConfig.APP_NAME_MATCH, queryStr);
 			
 			if(cloudSearch != null){
-				
-				cloudSearch.addSort("zc", "-");
-				
-				cloudSearch.addSort("sort", "-");
-				
+			
 				start = start < 0 ? 0 : start;
 				
 				cloudSearch.setStartHit(start);
