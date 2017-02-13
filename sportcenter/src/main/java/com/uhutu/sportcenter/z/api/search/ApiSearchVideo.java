@@ -12,6 +12,7 @@ import com.uhutu.sportcenter.z.result.ApiSearchVideoResult;
 import com.uhutu.zoocom.helper.GsonHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 搜索用户
@@ -41,6 +42,14 @@ public class ApiSearchVideo extends RootApiBase<ApiSearchVideoInput, ApiSearchVi
 					for ( MDataMap item : responseData.getResult().getItems()) {
 						
 						VideoData videoData = BeanComponent.getInstance().invoke(VideoData.class, item, false);
+						
+						if(videoData != null && StringUtils.isNotEmpty(videoData.getCover())){
+							
+							String coverUrl = ImageHelper.upImageThumbnail(videoData.getCover(), input.getWidth());
+							
+							videoData.setCover(coverUrl);
+							
+						}
 						
 						searchVideoResult.getVideoDatas().add(videoData);
 						

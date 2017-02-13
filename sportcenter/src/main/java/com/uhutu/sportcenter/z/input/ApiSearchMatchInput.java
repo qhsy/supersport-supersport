@@ -16,6 +16,9 @@ public class ApiSearchMatchInput extends RootApiInput {
 	
 	@ApiModelProperty(name = "页码", value = "页码", example = "0")
 	private int pagination = 0;
+	
+	@ApiModelProperty(value="封面宽度")
+	private int width = 0;
 
 	public String getTitle() {
 		return title;
@@ -31,6 +34,14 @@ public class ApiSearchMatchInput extends RootApiInput {
 
 	public void setPagination(int pagination) {
 		this.pagination = pagination;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
 	}
 
 }

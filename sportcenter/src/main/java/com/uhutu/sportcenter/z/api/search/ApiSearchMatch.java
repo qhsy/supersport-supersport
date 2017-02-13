@@ -12,6 +12,7 @@ import com.uhutu.sportcenter.z.result.ApiSearchMatchResult;
 import com.uhutu.zoocom.helper.GsonHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 搜索用户
@@ -41,6 +42,14 @@ public class ApiSearchMatch extends RootApiBase<ApiSearchMatchInput, ApiSearchMa
 					for ( MDataMap item : responseData.getResult().getItems()) {
 						
 						MatchData matchData = BeanComponent.getInstance().invoke(MatchData.class, item, false);
+						
+						if(matchData != null && StringUtils.isNotEmpty(matchData.getCover())){
+							
+							String coverUrl = ImageHelper.upImageThumbnail(matchData.getCover(), input.getWidth());
+							
+							matchData.setCover(coverUrl);
+							
+						}
 						
 						searchMatchResult.getMatchDatas().add(matchData);
 					}
