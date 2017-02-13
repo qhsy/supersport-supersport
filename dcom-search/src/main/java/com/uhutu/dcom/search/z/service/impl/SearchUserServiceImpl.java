@@ -30,6 +30,8 @@ public class SearchUserServiceImpl implements ISearchUserService {
 				
 				cloudSearch.setHits(number);
 				
+				cloudSearch.addSort("type", "-");
+				
 				String jsonStr = cloudSearch.search();
 				
 				responseData = GsonHelper.fromJson(jsonStr, responseData);
