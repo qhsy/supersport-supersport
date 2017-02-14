@@ -174,6 +174,38 @@ function callbackEnterRoom(uid,username,avatar,roomid,chatRoomid,watchcount,admi
 }
 
 /**
+ * @时刻打赏
+ * @param  
+ * @return [Function]
+ * @author [wangxh]
+ */
+function callbackReward(head){
+	var userAgent = navigator.userAgent;
+	if(userAgent.indexOf('Android') != -1){
+		javascript:android.callbackReward(head);
+	} else {
+		window.webkit.messageHandlers.callbackReward.postMessage([head]);
+	}
+	
+}
+
+/**
+ * @时刻打赏人员列表
+ * @param  
+ * @return [Function]
+ * @author [wangxh]
+ */
+function callRewardList(){
+	var userAgent = navigator.userAgent;
+	if(userAgent.indexOf('Android') != -1){
+		javascript:android.callRewardList();
+	} else {
+		window.webkit.messageHandlers.callRewardList.postMessage(null);
+	}
+	
+}
+
+/**
  * @微信分享
  * @param  config
  * @return [Function]
