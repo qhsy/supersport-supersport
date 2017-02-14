@@ -60,8 +60,12 @@
 .shop .price{float: left; padding-top: 0.3rem; color: #FF7E00; font-size: 0.12rem;}
 .shop .price em{font-size: 0.2rem; line-height: 0.3rem;}
 .shop .btn{width: 0.66rem; height: 0.26rem; margin: 0.33rem 0 0; background: #FF7E00; color: #fff; text-align: center; line-height: 0.26rem; float: right; font-size: 0.12rem;}
-
-.ad{}
+.reward .reward-but{width: 0.9rem; height: 0.4rem; margin: 0.4rem auto 0.3rem; display: block; border-radius: 2px; font-size: 0.18rem; background: #F8800A; text-align: center; line-height: 0.4rem; color: #fff;}
+.reward .reward-num{text-align: center; font: 0.14rem/0.2rem "PingFangSC-Regular"; color: #757575;}
+.reward .reward-num em{color: #F8800A;}
+.reward .reward-list{padding: 0 0.16rem 0 0.22rem;}
+.reward .reward-list li{width: 0.36rem; height: 0.36rem; margin: 0 0.06rem 0 0; float: left; overflow: hidden; border-radius: 50%;}
+.reward .reward-list li img{width: 0.36rem; height: 0.36rem; border-radius: 50%;}
 </style>
 </head>
 <body>
@@ -87,6 +91,14 @@
 		<child-picture :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030004'"></child-picture>
 		<child-video :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030005'"></child-video>
 		<child-live :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030008'"></child-video>
+	</article>
+	<!-- pack -->
+	<article class="reward" v-if="res.sportingMoment.redPackFlag == 'dzsd4699100110010001'">
+		<button type="button" class="reward-but" @click="callReward(res.sportingMoment.userBasicInfo.aboutHead)">赏</button>
+		<div class="reward-num"><em>{{res.contentDetailInfo.redPackNum}}</em>人打赏</div>
+		<ul class="reward-list" @click="callRewardList()">
+			<li v-for="item in res.contentDetailInfo.redPackUsers"><img :src="item.aboutHead" alt=""></li>
+		</ul>
 	</article>
 	<!-- end -->
 	<article class="read">
@@ -151,7 +163,6 @@
 	        您的浏览器不支持HTML5视频
 	    </video>
 	</div>
-	<div class="ad" v-if="ad"><img src="http://api-001.sport.bigtiyu.com/webcdn/entry/fu/img/Bitmap Copy.jpg"></div>
 	<h1 class="video-title">{{res.sportingMoment.title}}</h1>
 	<h2 class="address" v-if="res.sportingMoment.localtionName">{{res.sportingMoment.localtionName}}</h2>
 	<child-tag :res="res"></child-tag>
@@ -179,6 +190,7 @@
 </script>
 <!-- end -->
 <script type="text/javascript" src="script/common.min.js"></script>
+<script type="text/javascript" src="../static/js/tools.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="../static/js/live_connect.js"></script>
 <script type="text/javascript">
@@ -277,11 +289,6 @@ Vue.component('child-video',{
 	},
 	ready:function(){
 		this.video();
-	},
-	computed:{
-		ad:function(){
-			return this.res.sportingMoment.tagName.indexOf('我是首腹') > -1?true:false;
-		}
 	},
 	methods:{
 		video:function(){
@@ -424,6 +431,18 @@ var vm = new Vue({
 				callbackTaobao(ios,and);
 			} else {
 				window.location.href = ios;
+			}
+		},
+		callReward:function(head){
+			var _this = this;
+			if(!_this.share){
+				callbackReward(head);
+			}
+		},
+		callRewardList:function(){
+			var _this = this;
+			if(!_this.share){
+				callRewardList();
 			}
 		},
 		callFavor:function(){
