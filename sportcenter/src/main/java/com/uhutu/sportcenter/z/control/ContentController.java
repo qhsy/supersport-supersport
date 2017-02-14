@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.control;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -289,7 +291,12 @@ public class ContentController {
 	@ResponseBody
 	@RequestMapping(value = "/redPackAward", method = RequestMethod.POST)
 	@ApiOperation(value = "红包奖励", notes = "红包奖励")
-	public ApiContentRedPackResult redPackAward(@RequestBody ApiContentRedPackInput input) {
+	public ApiContentRedPackResult redPackAward(@RequestBody ApiContentRedPackInput input,HttpServletRequest request) {
+		
+		String[] paths = request.getRequestURL().toString().split("/");
+		String path = paths[0] + "//" + paths[2];
+		input.setServeIP(path);
+		input.setRomoteIP(request.getRemoteAddr());
 
 		return apiFactory.getApiContentRedPack().api(input);
 
