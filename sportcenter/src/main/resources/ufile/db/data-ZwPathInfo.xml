@@ -125,6 +125,8 @@
 		<item code="dzpi4514101000020002" nodeName="两栏4:3" parentCode="dzpi451410100002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_HomeItemForSecond" pageIcon="glyphicon-pause" />
 		<item code="dzpi4514101000020003" nodeName="一栏16:9" parentCode="dzpi451410100002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_HomeItemForFrist" pageIcon="glyphicon-pause" />
 		<item code="dzpi4514101000020004" nodeName="首页排版" parentCode="dzpi451410100002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_HomeTypePage" pageIcon="glyphicon-th" />
+		<item code="dzpi451410100003" nodeName="搜索相关" parentCode="dzpi45141010" />
+		<item code="dzpi4514101000030001" nodeName="推荐搜索" parentCode="dzpi451410100003" pageUrl="/zpage/pg/com_uhutu_dcom_search_z_page_KeyWordRecommPage" pageIcon="glyphicon-lamp" />
 	</data>
 
 </db>
