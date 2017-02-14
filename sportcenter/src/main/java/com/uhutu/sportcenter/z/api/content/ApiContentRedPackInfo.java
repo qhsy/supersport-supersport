@@ -26,7 +26,7 @@ public class ApiContentRedPackInfo extends RootApiToken<ApiContentRedPackInfoInp
 		
 		ApiContentRedPackInfoResult redPackInfoResult = new ApiContentRedPackInfoResult();
 		
-		initRedPackInfo(input.getIndex(), redPackInfoResult);
+		initRedPackInfo(redPackInfoResult);
 		
 		return redPackInfoResult;
 	}
@@ -35,40 +35,26 @@ public class ApiContentRedPackInfo extends RootApiToken<ApiContentRedPackInfoInp
 	 * 获取直播红包
 	 * @param redPackInfoListResult
 	 */
-	public void initRedPackInfo(int index,ApiContentRedPackInfoResult redPackInfoResult){
+	public void initRedPackInfo(ApiContentRedPackInfoResult redPackInfoResult){
 		
 		MDataMap mWhereMap = new MDataMap();
 		
 		mWhereMap.put("status", SystemEnum.NORMAL.getCode());
 		
 		mWhereMap.put("type", "dzsd4107100110160002");
+
+		List<CnRedPackInfo> redPackInfos = JdbcHelper.queryForList(CnRedPackInfo.class, "", "-sort", "", mWhereMap);
 		
-		int total = JdbcHelper.count(CnRedPackInfo.class,"", mWhereMap);
-		
-		if(total > 0){
+		redPackInfos.forEach(redPackInfo -> {
 			
-			List<CnRedPackInfo> redPackInfos = JdbcHelper.queryForList(CnRedPackInfo.class, "", "-sort", "", mWhereMap,index,1);
+			RedPackInfo redPack = new RedPackInfo();
 			
-			redPackInfos.forEach(redPackInfo -> {
-				
-				RedPackInfo redPack = new RedPackInfo();
-				
-				BeanUtils.copyProperties(redPackInfo, redPack);		
-				
-				redPackInfoResult.setRedPackInfo(redPack);
-				
-			});
+			BeanUtils.copyProperties(redPackInfo, redPack);
 			
-			int nextIndex = index + 1;
+			redPackInfoResult.getRedPackInfos().add(redPack);
 			
-			if(nextIndex >= total){
-				
-				nextIndex = 0;
-			}
 			
-			redPackInfoResult.setNextIndex(nextIndex);
-			
-		}
+		});
 		
 	}
 

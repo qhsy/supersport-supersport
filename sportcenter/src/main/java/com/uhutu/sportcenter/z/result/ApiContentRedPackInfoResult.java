@@ -1,5 +1,8 @@
 package com.uhutu.sportcenter.z.result;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.uhutu.sportcenter.z.entity.RedPackInfo;
 import com.uhutu.zoocom.root.RootApiResult;
 
@@ -13,25 +16,14 @@ import io.swagger.annotations.ApiModelProperty;
 public class ApiContentRedPackInfoResult extends RootApiResult {
 	
 	@ApiModelProperty(value="红包信息")
-	private RedPackInfo redPackInfo = new RedPackInfo();
-	
-	@ApiModelProperty(value="下次索引值")
-	private int nextIndex = 0;
+	private List<RedPackInfo> redPackInfos = new ArrayList<RedPackInfo>();
 
-	public RedPackInfo getRedPackInfo() {
-		return redPackInfo;
+	public List<RedPackInfo> getRedPackInfos() {
+		return redPackInfos;
 	}
 
-	public void setRedPackInfo(RedPackInfo redPackInfo) {
-		this.redPackInfo = redPackInfo;
-	}
-
-	public int getNextIndex() {
-		return nextIndex;
-	}
-
-	public void setNextIndex(int nextIndex) {
-		this.nextIndex = nextIndex;
+	public void setRedPackInfos(List<RedPackInfo> redPackInfos) {
+		this.redPackInfos = redPackInfos;
 	}
 
 }
