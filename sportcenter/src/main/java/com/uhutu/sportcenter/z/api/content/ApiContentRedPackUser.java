@@ -45,7 +45,7 @@ public class ApiContentRedPackUser extends RootApiToken<ApiContentRedPackUserInp
 		
 		sqlBuffer.append(" and status = '").append(SystemEnum.NORMAL.getCode()).append("'");
 		
-		String totalStr = JdbcHelper.dataGet("cn_content_redpack", "count(DISTINCT send_user_code)", sqlBuffer.toString(), new MDataMap());
+		String totalStr = JdbcHelper.dataGet("cn_content_redpack_flow", "count(DISTINCT send_user_code)", sqlBuffer.toString(), new MDataMap());
 		
 		int total = Integer.parseInt(totalStr);
 		
