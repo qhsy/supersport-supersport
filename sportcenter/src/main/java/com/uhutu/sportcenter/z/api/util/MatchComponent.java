@@ -114,7 +114,7 @@ public class MatchComponent {
 
 		String name = "";
 
-		if (StringUtils.isNotEmpty(code)) {
+		if (StringUtils.isNotEmpty(code) && !StringUtils.equals("dzsd4107100110120007", code)) {
 
 			ZwSystemDefine systemDefine = JdbcHelper.queryOne(ZwSystemDefine.class, "code", code);
 
