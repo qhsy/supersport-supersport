@@ -1,21 +1,22 @@
 package com.uhutu.sportcenter.z.pay.func;
 
 import java.math.BigDecimal;
-
+import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
-
 import com.uhutu.dcom.config.enums.SystemEnum;
-import com.uhutu.dcom.content.z.entity.CnContentRedpackFlow;
+import com.uhutu.dcom.content.z.entity.CnRedPackFlow;
 import com.uhutu.dcom.content.z.entity.CnRedPackUser;
-import com.uhutu.dcom.content.z.support.RedPackComponet;
 import com.uhutu.dcom.pay.z.entity.PaPayInfo;
 import com.uhutu.dcom.pay.z.request.WechatNotifyRequest;
 import com.uhutu.dcom.pay.z.service.IWechatNotifyFunc;
+import com.uhutu.dcom.user.z.entity.UcAttentionInfo;
+import com.uhutu.dcom.user.z.entity.UcMsgAttention;
+import com.uhutu.dcom.user.z.enums.MsgEnum;
 import com.uhutu.zoocom.model.MResult;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
- * 微信内容红包支付
+ * 微信红包支付
  * 更新红包流水支付状态
  * 更新红包接收人金额信息
  * 更新支付信息交易流水号
@@ -31,7 +32,7 @@ public class WechatRedPackNotifyFunc implements IWechatNotifyFunc {
 			
 			MResult mResult = new MResult();
 			
-			CnContentRedpackFlow redPackFlow = getRedPackFlow(notifyRequest.getOut_trade_no());
+			CnRedPackFlow redPackFlow = getRedPackFlow(notifyRequest.getOut_trade_no());
 			
 			/*未支付*/
 			if(redPackFlow != null){
@@ -40,28 +41,35 @@ public class WechatRedPackNotifyFunc implements IWechatNotifyFunc {
 					
 					if(StringUtils.equals(redPackFlow.getStatus(), SystemEnum.INVALID.getCode())){
 						
+						CnRedPackUser redPackUser = getRedPackUserInfo(redPackFlow.getBusiCode(), redPackFlow.getReciveUserCode());
+						
+						if (redPackUser != null) {
 
 							/* 更新打赏金额 */
 							BigDecimal payedMoney = new BigDecimal(notifyRequest.getTotal_fee()).divide(new BigDecimal(100))
 									.setScale(2);
+
+							updateRedPackUser(redPackUser, payedMoney, mResult);
 
 							if(mResult.upFlagTrue()){
 								
 								updatePayInfo(notifyRequest.getTransaction_id(), notifyRequest.getOut_trade_no(), mResult);
 								
 							}
-							/*更新状态*/
+							
 							if(mResult.upFlagTrue()){
 								
 								updateRedPackFlow(redPackFlow, mResult);
 								
 							}
-							/*更新接受打赏人员金额*/
-							if(mResult.upFlagTrue()){
-								
-								updateRedPackUser(redPackFlow.getSendUserCode(),redPackFlow.getContentCode(), payedMoney);
-								
-							}
+							
+
+
+						}else{
+							
+							mResult.inError(81110016);
+							
+						}
 						
 					}
 					
@@ -90,9 +98,9 @@ public class WechatRedPackNotifyFunc implements IWechatNotifyFunc {
 	 * @param flowCode
 	 * @return 打赏信息
 	 */
-	public CnContentRedpackFlow getRedPackFlow(String flowCode){
+	public CnRedPackFlow getRedPackFlow(String flowCode){
 		
-		return JdbcHelper.queryOne(CnContentRedpackFlow.class, "code",flowCode);
+		return JdbcHelper.queryOne(CnRedPackFlow.class, "code",flowCode);
 		
 	}
 	
@@ -143,11 +151,22 @@ public class WechatRedPackNotifyFunc implements IWechatNotifyFunc {
 	 * 		更新打赏人员信息
 	 * @param payedMoney
 	 * 		支付金额
-	 * 		
+	 * @param mResult
+	 * 		处理结果
 	 */
-	public void updateRedPackUser(String sendUserCode,String contentCode,BigDecimal payedMoney){
+	public void updateRedPackUser(CnRedPackUser redPackUser,BigDecimal payedMoney,MResult mResult){
 		
-		RedPackComponet.getInstance().doContentProfit(sendUserCode, contentCode, payedMoney);
+		BigDecimal packMoney = redPackUser.getMoney().add(payedMoney).setScale(2);
+		
+		redPackUser.setMoney(packMoney);
+		
+		int result = JdbcHelper.update(redPackUser, "money", "za");
+		
+		if(result < 1){
+			
+			mResult.inError(81110018);
+			
+		}
 		
 	}
 	
@@ -157,9 +176,12 @@ public class WechatRedPackNotifyFunc implements IWechatNotifyFunc {
 	 * 		红包流水信息
 	 * @param mResult
 	 */
-	public void updateRedPackFlow(CnContentRedpackFlow redPackFlow, MResult mResult){
+	public void updateRedPackFlow(CnRedPackFlow redPackFlow, MResult mResult){
 		
 		redPackFlow.setStatus(SystemEnum.NORMAL.getCode());
+		
+		/*关注受打赏人员*/
+		attend(redPackFlow.getSendUserCode(), redPackFlow.getReciveUserCode());
 		
 		int result = JdbcHelper.update(redPackFlow, "status", "za");
 		
@@ -171,6 +193,63 @@ public class WechatRedPackNotifyFunc implements IWechatNotifyFunc {
 		
 	}
 	
+	/**
+	 * 根据领导们要求 打赏成功后关注人员信息
+	 */
+	public void attend(String sendUserCode, String reciveUserCode){
+		
+		UcAttentionInfo attentionInfo = JdbcHelper.queryOne(UcAttentionInfo.class, "attention",sendUserCode,"beAttention",reciveUserCode);
+		
+		if(attentionInfo == null){
+			
+			attentionInfo = new UcAttentionInfo();
+			
+			attentionInfo.setAttention(sendUserCode);
+			
+			attentionInfo.setBeAttention(reciveUserCode);
+			
+			attentionInfo.setStatus(SystemEnum.NORMAL.getCode());
+			
+			JdbcHelper.insert(attentionInfo);
+			
+		}else{
+			
+			attentionInfo.setStatus(SystemEnum.NORMAL.getCode());
+			
+			JdbcHelper.update(attentionInfo, "status", "attention,beAttention");
+			
+		}
+		
+		/*关注用户*/
+		if(StringUtils.equals(attentionInfo.getStatus(), SystemEnum.NORMAL.getCode())){
+			
+			saveMsgAttend(attentionInfo);
+			
+		}
+		
+		
+	}
 	
-	
+	/**
+	 * 保存关注信息
+	 * @param attentionInfo
+	 */
+	public void saveMsgAttend(UcAttentionInfo attentionInfo){
+		
+		UcMsgAttention msgAttention = new UcMsgAttention();
+		
+		msgAttention.setAttnUserCode(attentionInfo.getBeAttention());
+		
+		msgAttention.setFansUserCode(attentionInfo.getAttention());
+		
+		msgAttention.setMsgTime(new Date());
+		
+		msgAttention.setMsgTitle("关注了您");
+		
+		msgAttention.setStatus(MsgEnum.FLAG_UNREAD.getCode());
+		
+		JdbcHelper.insert(msgAttention);
+		
+	}
+
 }
