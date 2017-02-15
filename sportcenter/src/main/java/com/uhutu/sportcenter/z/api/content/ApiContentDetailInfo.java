@@ -235,7 +235,7 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 		
 		mWhereMap.put("status", SystemEnum.NORMAL.getCode());
 		
-		List<CnContentRedpackFlow> contentRedPacks = JdbcHelper.queryForList(CnContentRedpackFlow.class, "", "-zc", "", mWhereMap, 0, 30);
+		List<CnContentRedpackFlow> contentRedPacks = JdbcHelper.queryForList(CnContentRedpackFlow.class, "", "-zc", "", mWhereMap, 0, 16);
 		
 		for (CnContentRedpackFlow cnContentRedpack : contentRedPacks) {
 			
