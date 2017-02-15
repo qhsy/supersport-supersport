@@ -77,6 +77,19 @@ public class CnContentBasicinfo extends BaseEntity {
 	@ZooData(name = "赞的起始数", verify = { DefineWebVerify.Base_Number }, sort = { DefineWebPage.Page_Query + "=0" })
 	private int praiseBase;
 
+	@ZooData(name = "是否接受打赏", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd469910011001" })
+	private String redPackFlag;
+	
+	
+	public String getRedPackFlag() {
+		return redPackFlag;
+	}
+
+	public void setRedPackFlag(String redPackFlag) {
+		this.redPackFlag = redPackFlag;
+	}
+
 	public String getCover() {
 		return cover;
 	}
