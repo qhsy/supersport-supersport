@@ -204,15 +204,17 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 	 */
 	public int redPackNum(String contentCode){
 		
-		MDataMap mWhereMap = new MDataMap();
+		StringBuffer sqlBuffer= new StringBuffer();
 		
-		mWhereMap.put("contentCode", contentCode);
+		sqlBuffer.append(" content_code = '").append(contentCode).append("'");
 		
-		mWhereMap.put("status", SystemEnum.NORMAL.getCode());
+		sqlBuffer.append(" and status = '").append(SystemEnum.NORMAL.getCode()).append("'");
 		
-		int num = JdbcHelper.count(CnContentRedpackFlow.class, "", mWhereMap);
+		String totalStr = JdbcHelper.dataGet("cn_content_redpack_flow", "count(DISTINCT send_user_code)", sqlBuffer.toString(), new MDataMap());
 		
-		return num;
+		int total = Integer.parseInt(totalStr);
+		
+		return total;
 		
 	}
 	
