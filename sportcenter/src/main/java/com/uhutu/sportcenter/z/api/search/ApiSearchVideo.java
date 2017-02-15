@@ -31,7 +31,7 @@ public class ApiSearchVideo extends RootApiBase<ApiSearchVideoInput, ApiSearchVi
 		
 		int start = (input.getPagination() -1) * number;
 		
-		ResponseData responseData = SearchServiceFactory.getInstance().getSearchUserService().search(input.getTitle(), start, number);
+		ResponseData responseData = SearchServiceFactory.getInstance().getSearchVideoService().search(input.getTitle(), start, number);
 		
 		if(StringUtils.equals(responseData.getStatus(), "OK")){
 			
