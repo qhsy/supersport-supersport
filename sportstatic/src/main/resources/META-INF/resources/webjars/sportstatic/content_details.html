@@ -61,6 +61,7 @@
 .shop .price em{font-size: 0.2rem; line-height: 0.3rem;}
 .shop .btn{width: 0.66rem; height: 0.26rem; margin: 0.33rem 0 0; background: #FF7E00; color: #fff; text-align: center; line-height: 0.26rem; float: right; font-size: 0.12rem;}
 .reward .reward-but{width: 0.9rem; height: 0.4rem; margin: 0.4rem auto 0.3rem; display: block; border-radius: 2px; font-size: 0.18rem; background: #F8800A; text-align: center; line-height: 0.4rem; color: #fff;}
+.reward .reward-wrap{overflow: auto;}
 .reward .reward-num{text-align: center; font: 0.14rem/0.2rem "PingFangSC-Regular"; color: #757575;}
 .reward .reward-num em{color: #F8800A;}
 .reward .reward-list{padding: 0.15rem 0.16rem 0 0.22rem; overflow: auto;}
@@ -95,10 +96,12 @@
 	<!-- pack -->
 	<article class="reward" v-if="res.sportingMoment.redPackFlag == 'dzsd4699100110010001'">
 		<button type="button" class="reward-but" @click="callReward(res.sportingMoment.userBasicInfo.aboutHead)">赏</button>
-		<div class="reward-num"><em>{{res.contentDetailInfo.redPackNum}}</em>人打赏</div>
-		<ul class="reward-list" @click="callRewardList()">
-			<li v-for="item in res.contentDetailInfo.redPackUsers"><img :src="item.aboutHead" alt=""></li>
-		</ul>
+		<div class="reward-wrap" v-if="!share">
+			<div class="reward-num"><em>{{res.contentDetailInfo.redPackNum}}</em>人打赏</div>
+			<ul class="reward-list" @click="callRewardList()">
+				<li v-for="item in res.contentDetailInfo.redPackUsers"><img :src="item.aboutHead" alt=""></li>
+			</ul>
+		</div>
 	</article>
 	<!-- end -->
 	<article class="read">
@@ -437,6 +440,8 @@ var vm = new Vue({
 			var _this = this;
 			if(!_this.share){
 				callbackReward(head);
+			}else{
+				open();
 			}
 		},
 		callRewardList:function(){
