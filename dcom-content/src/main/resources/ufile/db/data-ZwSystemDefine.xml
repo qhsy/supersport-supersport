@@ -64,6 +64,7 @@
 		<item code="dzsd4107100110120004" defineName="进行中" parentCode="dzsd410710011012" />
 		<item code="dzsd4107100110120005" defineName="正在直播" parentCode="dzsd410710011012" />
 		<item code="dzsd4107100110120006" defineName="已结束" parentCode="dzsd410710011012" />
+		<item code="dzsd4107100110120007" defineName="无状态" parentCode="dzsd410710011012" />
 		<item code="dzsd410710011013" defineName="赛事状态" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110130001" defineName="未发布" parentCode="dzsd410710011013" />
 		<item code="dzsd4107100110130002" defineName="已发布" parentCode="dzsd410710011013" />
