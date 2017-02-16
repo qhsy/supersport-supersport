@@ -3,6 +3,7 @@ package com.uhutu.sportcenter.z.api.search;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.pay.z.util.BeanComponent;
 import com.uhutu.dcom.search.z.entity.ResponseData;
@@ -55,6 +56,16 @@ public class ApiSearchUser extends RootApiBase<ApiSearchUserInput, ApiSearchUser
 									.upUserCodeByAuthToken(input.getZoo().getToken(), DefineUser.Login_System_Default);
 							
 							boolean flag = initFlag(userCode, userData.getCode());
+							
+							String nickName = userData.getNick_name();
+							
+							if(StringUtils.isNotEmpty(nickName)){
+								
+								nickName = EmojiUtil.emojiRecovery(nickName);
+								
+							}
+							
+							userData.setNick_name(nickName);
 							
 							userData.setAttendFlag(flag);
 
