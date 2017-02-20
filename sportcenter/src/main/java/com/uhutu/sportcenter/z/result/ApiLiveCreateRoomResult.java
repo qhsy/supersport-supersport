@@ -16,6 +16,9 @@ public class ApiLiveCreateRoomResult extends RootApiResult {
 
 	@ApiModelProperty(value = "房间编号")
 	private String code;
+	
+	@ApiModelProperty(value="推流URL")
+	private String pushUrl;
 
 	public String getCode() {
 		return code;
@@ -23,6 +26,14 @@ public class ApiLiveCreateRoomResult extends RootApiResult {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public String getPushUrl() {
+		return pushUrl;
+	}
+
+	public void setPushUrl(String pushUrl) {
+		this.pushUrl = pushUrl;
 	}
 
 }

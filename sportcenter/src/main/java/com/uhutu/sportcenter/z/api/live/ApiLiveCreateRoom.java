@@ -5,9 +5,11 @@ import java.text.DecimalFormat;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.content.z.entity.CnLiveVideoInfo;
+import com.uhutu.dcom.content.z.support.LiveSupport;
 import com.uhutu.sportcenter.z.input.ApiLiveCreateRoomInput;
 import com.uhutu.sportcenter.z.result.ApiLiveCreateRoomResult;
 import com.uhutu.zoocom.helper.DateHelper;
+import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
@@ -39,8 +41,31 @@ public class ApiLiveCreateRoom extends RootApiToken<ApiLiveCreateRoomInput, ApiL
 			JdbcHelper.insert(videoInfo);
 			result.setCode(videoInfo.getCode());
 		}
+		
+		String pushUrl = getLivePushUrl(result.getCode());
+	
+		result.setPushUrl(pushUrl);
+		
 		return result;
 
+	}
+	
+
+	
+	public String getLivePushUrl(String roomId){
+		
+		String bzid = "5294";
+		
+		String key = "0e5cdd97c4ae7a3f0c7497de7728ee78";
+		
+		String streamId = bzid+"_"+roomId;
+		
+		String txTime = LiveSupport.getInstance().getTxTime(2);
+		
+		String txScreat = LiveSupport.getInstance().getTxSecret(key, streamId, txTime);
+		
+		return TopHelper.upInfo(810710031, bzid,streamId,bzid,txScreat,txTime);
+		
 	}
 
 }
