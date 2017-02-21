@@ -1,7 +1,5 @@
 package com.uhutu.sportcenter.z.control;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiBeginLiveInput;
+import com.uhutu.sportcenter.z.input.ApiChangeCountInput;
 import com.uhutu.sportcenter.z.result.ApiBeginLiveResult;
+import com.uhutu.sportcenter.z.result.ApiChangeCountResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,12 +33,19 @@ public class LiveNewController {
 	@ResponseBody
 	@RequestMapping(value = "/beginLive", method = RequestMethod.POST)
 	@ApiOperation(value = "开始直播", notes = "开始直播")
-	public ApiBeginLiveResult beginLive(@RequestBody ApiBeginLiveInput input, HttpServletRequest request) {
+	public ApiBeginLiveResult beginLive(@RequestBody ApiBeginLiveInput input) {
 
 		return apiFactory.getApiBeginLive().api(input);
 
 	}
 
-	
+	@ResponseBody
+	@RequestMapping(value = "/changeCount", method = RequestMethod.POST)
+	@ApiOperation(value = "修改计数器", notes = "修改计数器")
+	public ApiChangeCountResult changeCount(@RequestBody ApiChangeCountInput input) {
+
+		return apiFactory.getApiChangeCount().api(input);
+
+	}
 
 }
