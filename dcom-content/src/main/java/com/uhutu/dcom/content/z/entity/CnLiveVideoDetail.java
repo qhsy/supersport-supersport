@@ -101,6 +101,28 @@ public class CnLiveVideoDetail extends BaseEntity {
 	
 	@ZooData(name="本次直播的总收入")
 	private BigDecimal income = BigDecimal.ZERO;
+	
+	@ZooData(name="点播文件Id")
+	private String videoId;
+	
+	@ZooData(name="点播文件地址")
+	private String videoUrl;
+
+	public String getVideoId() {
+		return videoId;
+	}
+
+	public void setVideoId(String videoId) {
+		this.videoId = videoId;
+	}
+
+	public String getVideoUrl() {
+		return videoUrl;
+	}
+
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
+	}
 
 	public long getWatchConstant() {
 		return watchConstant;
