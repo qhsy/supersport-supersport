@@ -97,6 +97,7 @@ import com.uhutu.sportcenter.z.api.live.ApiLiveVideoHeart;
 import com.uhutu.sportcenter.z.api.live.ApiOperLiveInfo;
 import com.uhutu.sportcenter.z.api.live.ApiStartLive;
 import com.uhutu.sportcenter.z.api.live.ApiSyncLiveUserInfo;
+import com.uhutu.sportcenter.z.api.live2.ApiBeginLive;
 import com.uhutu.sportcenter.z.api.match.ApiMatchInfo;
 import com.uhutu.sportcenter.z.api.match.ApiMatchInfoList;
 import com.uhutu.sportcenter.z.api.match.ApiMatchSignList;
@@ -632,6 +633,9 @@ public class ApiFactory {
 
 	@Autowired
 	private ApiKeyWordRecomm apiKeyWordRecomm;
+	
+	@Autowired
+	private ApiBeginLive apiBeginLive;
 	
 	public ApiKeyWordRecomm getApiKeyWordRecomm() {
 		return apiKeyWordRecomm;
@@ -1251,6 +1255,10 @@ public class ApiFactory {
 
 	public ApiContentRedPackInfo getApiContentRedPackInfo() {
 		return apiContentRedPackInfo;
+	}
+
+	public ApiBeginLive getApiBeginLive() {
+		return apiBeginLive;
 	}
 
 }
