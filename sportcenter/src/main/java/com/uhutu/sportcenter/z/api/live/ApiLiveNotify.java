@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
+import com.uhutu.dcom.extend.z.entity.ReReportLimit;
 import com.uhutu.dcom.pay.z.entity.PaInclogInfo;
 import com.uhutu.dcom.pay.z.util.MD5;
 import com.uhutu.dcom.user.z.properties.SettingsDcomUser;
@@ -37,6 +38,9 @@ public class ApiLiveNotify extends RootApiBase<ApiLiveNotifyInput, ApiLiveNotify
 		synchronized (ApiLiveNotify.class) {
 
 			if (checkSign(input.getT(), input.getSign())) {
+				ReReportLimit limit = new ReReportLimit();
+				limit.setCode("回调测试" + input.getEvent_type());
+				JdbcHelper.insert(limit);
 
 				switch (input.getEvent_type()) {
 				case 0:
