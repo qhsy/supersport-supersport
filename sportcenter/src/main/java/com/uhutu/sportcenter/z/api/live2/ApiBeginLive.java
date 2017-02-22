@@ -52,6 +52,8 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 		ApiBeginLiveResult startLiveResult = new ApiBeginLiveResult();
 		
 		String roomId  = createRoomId();
+		
+		startLiveResult.setPushUrl(getLivePushUrl(roomId));
 
 		MDataMap mWhereMap = new MDataMap();
 
