@@ -36,108 +36,71 @@ public class ApiLiveNotify extends RootApiBase<ApiLiveNotifyInput, ApiLiveNotify
 
 		ApiLiveNotifyResult result = new ApiLiveNotifyResult();
 		ReReportLimit limit = new ReReportLimit();
-		limit.setCode("开始回调");
-		JdbcHelper.insert(limit);
 		synchronized (ApiLiveNotify.class) {
 
 			if (checkSign(input.getT(), input.getSign())) {
-				limit.setCode("状态处理" + input.getEvent_type());
-				JdbcHelper.insert(limit);
 				switch (input.getEvent_type()) {
 				case 0:// 断流
 					updateLiveStatus(input.getStream_id());
-					limit.setCode("已断流");
+					limit.setCode(input.getStream_id() + "已断流");
 					JdbcHelper.insert(limit);
 					break;
 				case 1:// 推流
-					limit.setCode("开始推流");
+					limit.setCode(input.getStream_id() + "开始推流");
 					JdbcHelper.insert(limit);
 					break;
 				case 100:// 新录制文件
 					updateLiveVideo(input.getStream_id(), input.getVideo_id(), input.getVideo_url());
-					limit.setCode("录制文件生成" + input.getVideo_id() + input.getStream_id());
+					limit.setCode(input.getStream_id() + "录制文件生成vId:" + input.getVideo_id() + " vUrl:"
+							+ input.getVideo_url());
 					JdbcHelper.insert(limit);
 					break;
 				case 200:// 新截图文件
-					limit.setCode("截图文件生成" + input.getPic_full_url() + input.getStream_id());
+					limit.setCode(input.getStream_id() + "截图文件生成" + input.getPic_full_url() + input.getStream_id());
 					JdbcHelper.insert(limit);
 					break;
-
 				default:
 					break;
 				}
-
 			} else {
-
 				result.setError("签名不一致");
-
 				result.setStatus(-1);
-
 			}
-
 			logInfo(input);
-
 		}
-
 		return result;
 	}
 
 	public void updateLiveStatus(String streamId) {
-
 		MDataMap mWhereMap = new MDataMap();
-
 		mWhereMap.put("streamId", streamId);
-
 		CnLiveVideoDetail videoDetail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "", "", mWhereMap);
-
 		if (videoDetail != null) {
-
 			videoDetail.setStatus(ContentEnum.LIVEEND.getCode());
-
 			JdbcHelper.update(videoDetail, "status", "za");
-
 		}
-
 	}
 
 	public void updateLiveVideo(String streamId, String videoId, String videoUrl) {
-
 		MDataMap mWhereMap = new MDataMap();
-
 		mWhereMap.put("streamId", streamId);
 		mWhereMap.put("videoId", videoId);
 		mWhereMap.put("videoUrl", videoUrl);
 		CnLiveVideoDetail videoDetail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "", "stream_id=:streamId",
 				mWhereMap);
-
 		if (videoDetail != null) {
-
 			videoDetail.setStatus(ContentEnum.LIVEEND.getCode());
-
 			JdbcHelper.update(videoDetail, "status,videoId,videoUrl", "za");
-
 		}
-
 	}
 
 	public boolean checkSign(String timestamp, String sign) {
-
-		ReReportLimit limit = new ReReportLimit();
-		limit.setCode("验签开始");
-		JdbcHelper.insert(limit);
 		boolean flag = false;
-
 		String checkSign = MD5.sign(settingsDcomUser.getLiveKey() + timestamp, "UTF-8");
-
 		if (StringUtils.equals(sign, checkSign)) {
-
 			flag = true;
-			limit.setCode("验签通过");
-			JdbcHelper.insert(limit);
 		}
-
 		return flag;
-
 	}
 
 	public void logInfo(ApiLiveNotifyInput input) {
