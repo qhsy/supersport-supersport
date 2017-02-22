@@ -24,6 +24,8 @@ public class ApiChangeStatus extends RootApiToken<ApiChangeStatusInput, ApiChang
 	@Override
 	protected ApiChangeStatusResult process(ApiChangeStatusInput input) {
 		
+		ApiChangeStatusResult statusResult = new ApiChangeStatusResult();
+		
 		switch (input.getStatus()) {
 		case 0:
 			//上线
@@ -39,7 +41,7 @@ public class ApiChangeStatus extends RootApiToken<ApiChangeStatusInput, ApiChang
 			break;
 		}
 		
-		return null;
+		return statusResult;
 	}
 	
 	/**

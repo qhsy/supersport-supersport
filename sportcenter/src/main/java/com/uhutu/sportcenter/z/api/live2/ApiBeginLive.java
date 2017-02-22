@@ -100,7 +100,7 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 			
 			liveVideoDetail.setChatCode(input.getGroupId());
 			
-			
+			liveVideoDetail.setBusiCode(WebHelper.upCode("LVEY"));
 
 			/* 根据产品需求添加 */
 			String contentCode = updateContent(liveVideoDetail);
@@ -110,7 +110,7 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 			SettingsDcomContent dcomContent = ConfigDcomContent.upConfig();
 			liveVideoDetail.setWatchConstant(Integer.valueOf(dcomContent.getLiveAppWatchConstant()));
 			liveVideoDetail.setPraiseConstant(Integer.valueOf(dcomContent.getLiveAppPraiseConstant()));
-			liveVideoDetail.setBusiCode(WebHelper.upCode("LVEY"));
+			
 			
 			String streamId = ContentEnum.BIZID.getCode()+"_"+liveVideoDetail.getBusiCode();
 			
