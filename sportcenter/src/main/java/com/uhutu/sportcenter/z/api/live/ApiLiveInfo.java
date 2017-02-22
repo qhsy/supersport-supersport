@@ -14,7 +14,6 @@ import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.sportcenter.z.input.ApiLiveInfoInput;
 import com.uhutu.sportcenter.z.result.ApiLiveInfoResult;
-import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 
@@ -75,14 +74,10 @@ public class ApiLiveInfo extends RootApiBase<ApiLiveInfoInput, ApiLiveInfoResult
 					
 				}
 				
-				if(StringUtils.equals(detail.getStatus(), ContentEnum.LIVEEND.getCode())){
-					
-					if(StringUtils.isNotEmpty(detail.getVideoUrl()) && StringUtils.isNotEmpty(detail.getVideoId())){
-						
-						result.setLiveType(1);
-						
-					}
-					
+				if (StringUtils.equals(detail.getStatus(), ContentEnum.LIVEEND.getCode())) {
+
+					result.setLiveType(1);
+
 				}
 				
 			}
