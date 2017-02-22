@@ -99,6 +99,7 @@ import com.uhutu.sportcenter.z.api.live.ApiStartLive;
 import com.uhutu.sportcenter.z.api.live.ApiSyncLiveUserInfo;
 import com.uhutu.sportcenter.z.api.live2.ApiBeginLive;
 import com.uhutu.sportcenter.z.api.live2.ApiChangeCount;
+import com.uhutu.sportcenter.z.api.live2.ApiChangeStatus;
 import com.uhutu.sportcenter.z.api.live2.ApiLiveEnterGroup;
 import com.uhutu.sportcenter.z.api.live2.ApiLiveQuitGroup;
 import com.uhutu.sportcenter.z.api.match.ApiMatchInfo;
@@ -648,6 +649,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiLiveEnterGroup apiLiveEnterGroup;
+	
+	@Autowired
+	private ApiChangeStatus apiChangeStatus;
 	
 	public ApiKeyWordRecomm getApiKeyWordRecomm() {
 		return apiKeyWordRecomm;
@@ -1283,6 +1287,10 @@ public class ApiFactory {
 
 	public ApiLiveEnterGroup getApiLiveEnterGroup() {
 		return apiLiveEnterGroup;
+	}
+
+	public ApiChangeStatus getApiChangeStatus() {
+		return apiChangeStatus;
 	}
 
 }

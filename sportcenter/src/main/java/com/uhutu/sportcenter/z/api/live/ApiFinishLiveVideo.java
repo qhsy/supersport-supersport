@@ -33,7 +33,7 @@ public class ApiFinishLiveVideo extends RootApiToken<ApiFinishLiveVideoInput, Ap
 			detail.setPraise(input.getPraise());
 			detail.setStatus("0");
 			JdbcHelper.update(detail, "length,watch,praise,status", "za");
-			RedPackComponet.getInstance().doLiveProfit(detail.getBusiCode());
+			
 			if (StringUtils.isNotBlank(detail.getContentCode())) {
 				CnContentBasicinfo cn = JdbcHelper.queryOne(CnContentBasicinfo.class, "code", detail.getContentCode());
 				cn.setStatus("dzsd4699100110010002");

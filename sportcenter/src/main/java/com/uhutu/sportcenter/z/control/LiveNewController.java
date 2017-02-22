@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiBeginLiveInput;
 import com.uhutu.sportcenter.z.input.ApiChangeCountInput;
+import com.uhutu.sportcenter.z.input.ApiChangeStatusInput;
 import com.uhutu.sportcenter.z.input.ApiLiveEnterGroupInput;
 import com.uhutu.sportcenter.z.input.ApiLiveQuitGroupInput;
 import com.uhutu.sportcenter.z.result.ApiBeginLiveResult;
 import com.uhutu.sportcenter.z.result.ApiChangeCountResult;
+import com.uhutu.sportcenter.z.result.ApiChangeStatusResult;
 import com.uhutu.sportcenter.z.result.ApiLiveEnterGroupResult;
 import com.uhutu.sportcenter.z.result.ApiLiveQuitGroupResult;
 
@@ -66,6 +68,14 @@ public class LiveNewController {
 	public ApiLiveEnterGroupResult quitGroup(@RequestBody ApiLiveEnterGroupInput input) {
 
 		return apiFactory.getApiLiveEnterGroup().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/changeStatus", method = RequestMethod.POST)
+	@ApiOperation(value = "修改在线状态", notes = "修改在线状态")
+	public ApiChangeStatusResult changeStatus(@RequestBody  ApiChangeStatusInput input) {
+
+		return apiFactory.getApiChangeStatus().api(input);
 	}
 
 }

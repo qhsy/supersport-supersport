@@ -92,11 +92,9 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 
 			liveVideoDetail.setUserCode(upUserCode());		
 
-			liveVideoDetail.setStatus(ContentEnum.LIVEING.getCode());
+			liveVideoDetail.setStatus(ContentEnum.LIVEREADY.getCode());
 
 			liveVideoDetail.setCreateTime(DateHelper.upDate(new Date()));
-			
-			liveVideoDetail.setStreamId(ContentEnum.BIZID.getCode()+"_"+roomId);
 			
 			liveVideoDetail.setCode(roomId);
 			
@@ -116,6 +114,8 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 			JdbcHelper.insert(liveVideoDetail);
 			savePackUser(liveVideoDetail.getBusiCode(), input.getUsers());
 			updateContentWorth(contentCode);
+			
+			liveVideoDetail.setStreamId(ContentEnum.BIZID.getCode()+"_"+liveVideoDetail.getBusiCode());
 
 		}
 
@@ -173,7 +173,7 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 
 		basicinfo.setPublishTime(new Date());
 
-		basicinfo.setStatus(ContentEnum.normal.getCode());
+		basicinfo.setStatus(ContentEnum.invalid.getCode());
 
 		basicinfo.setTagCode(liveVideoDetail.getTagCode());
 

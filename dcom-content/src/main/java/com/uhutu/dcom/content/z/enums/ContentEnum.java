@@ -24,6 +24,8 @@ public enum ContentEnum {
 	
 	FAVOR_STATUS_NO("不喜欢","0"),
 	
+	LIVEREADY("准备直播","2"),
+	
 	LIVEING("直播中","1"),
 	
 	LIVEEND("直播结束","0"),
