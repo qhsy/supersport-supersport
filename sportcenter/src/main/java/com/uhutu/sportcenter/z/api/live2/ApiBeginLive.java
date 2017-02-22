@@ -52,10 +52,6 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 		ApiBeginLiveResult startLiveResult = new ApiBeginLiveResult();
 		
 		String roomId  = createRoomId();
-		
-		String pushUrl = getLivePushUrl(roomId);
-		
-		startLiveResult.setPushUrl(pushUrl);
 
 		MDataMap mWhereMap = new MDataMap();
 
@@ -113,6 +109,10 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 			
 			
 			String streamId = ContentEnum.BIZID.getCode()+"_"+liveVideoDetail.getBusiCode();
+			
+			String pushUrl = getLivePushUrl(liveVideoDetail.getBusiCode());
+			
+			startLiveResult.setPushUrl(pushUrl);
 			
 			liveVideoDetail.setStreamId(streamId);
 			
