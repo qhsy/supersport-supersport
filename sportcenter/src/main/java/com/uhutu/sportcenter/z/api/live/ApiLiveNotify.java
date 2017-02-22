@@ -21,12 +21,13 @@ import com.uhutu.zoodata.z.helper.JdbcHelper;
 
 /**
  * 直播消息通知
+ * 
  * @author 逄小帅
  *
  */
 @Component
 public class ApiLiveNotify extends RootApiBase<ApiLiveNotifyInput, ApiLiveNotifyResult> {
-	
+
 	@Autowired
 	private SettingsDcomUser settingsDcomUser;
 
@@ -34,13 +35,12 @@ public class ApiLiveNotify extends RootApiBase<ApiLiveNotifyInput, ApiLiveNotify
 	protected ApiLiveNotifyResult process(ApiLiveNotifyInput input) {
 
 		ApiLiveNotifyResult result = new ApiLiveNotifyResult();
-
+		ReReportLimit limit = new ReReportLimit();
+		limit.setCode("回调测试1");
+		JdbcHelper.insert(limit);
 		synchronized (ApiLiveNotify.class) {
 
 			if (checkSign(input.getT(), input.getSign())) {
-				ReReportLimit limit = new ReReportLimit();
-				limit.setCode("回调测试" + input.getEvent_type());
-				JdbcHelper.insert(limit);
 
 				switch (input.getEvent_type()) {
 				case 0:
@@ -67,64 +67,67 @@ public class ApiLiveNotify extends RootApiBase<ApiLiveNotifyInput, ApiLiveNotify
 				result.setStatus(-1);
 
 			}
-			
+
 			logInfo(input);
 
 		}
 
 		return result;
 	}
-	
-	public void updateLiveStatus(String streamId){
-		
+
+	public void updateLiveStatus(String streamId) {
+
 		MDataMap mWhereMap = new MDataMap();
-		
+
 		mWhereMap.put("streamId", streamId);
-		
+
 		CnLiveVideoDetail videoDetail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "", "", mWhereMap);
-		
-		if(videoDetail != null){
-			
+
+		if (videoDetail != null) {
+
 			videoDetail.setStatus(ContentEnum.LIVEEND.getCode());
-			
+
 			JdbcHelper.update(videoDetail, "status", "za");
-			
+
 		}
-		
+
 	}
-	
-	public boolean checkSign(String timestamp,String sign){
-		
+
+	public boolean checkSign(String timestamp, String sign) {
+
+		ReReportLimit limit = new ReReportLimit();
+		limit.setCode("回调测试2");
+		JdbcHelper.insert(limit);
 		boolean flag = false;
-		
-		String checkSign = MD5.sign(settingsDcomUser.getLiveKey()+timestamp, "UTF-8");
-		
-		if(StringUtils.equals(sign, checkSign)){
-			
+
+		String checkSign = MD5.sign(settingsDcomUser.getLiveKey() + timestamp, "UTF-8");
+
+		if (StringUtils.equals(sign, checkSign)) {
+
 			flag = true;
-			
+
 		}
-		
+
 		return flag;
-		
+
 	}
-	
-	public void logInfo(ApiLiveNotifyInput input){
-		
+
+	public void logInfo(ApiLiveNotifyInput input) {
+
 		PaInclogInfo paInclogInfo = new PaInclogInfo();
-		
+
 		paInclogInfo.setBusiCode(input.getStream_id());
-		
+
 		paInclogInfo.setIncType("LIVE_NOTIFY");
-		
+
 		String jsonStr = GsonHelper.toJson(input);
-		
+
 		paInclogInfo.setRequestData(jsonStr);
-		
+
 		paInclogInfo.setZc(new Date());
-		
+
 		JdbcHelper.insert(paInclogInfo);
-		
+
 	}
 
 }
