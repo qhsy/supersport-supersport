@@ -7,8 +7,12 @@ import com.uhutu.zoocom.root.RootApiResult;
 import io.swagger.annotations.ApiModelProperty;
 
 public class ApiLiveInfoResult extends RootApiResult {
+	
 	@ApiModelProperty(value = "直播所需参数", notes = "直播所需参数")
 	private CnLiveVideoDetail detail = new CnLiveVideoDetail();
+	
+	@ApiModelProperty(value="直播类型 0:直播 1:点播")
+	private int liveType;
 
 	@ApiModelProperty(value = "直播appId", notes = "直播appId")
 	private String appId;
@@ -38,6 +42,14 @@ public class ApiLiveInfoResult extends RootApiResult {
 
 	public void setUserBasicInfo(UserBasicInfo userBasicInfo) {
 		this.userBasicInfo = userBasicInfo;
+	}
+
+	public int getLiveType() {
+		return liveType;
+	}
+
+	public void setLiveType(int liveType) {
+		this.liveType = liveType;
 	}
 
 }

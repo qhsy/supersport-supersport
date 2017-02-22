@@ -5,7 +5,9 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
+import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.properties.ConfigDcomContent;
 import com.uhutu.dcom.content.z.properties.SettingsDcomContent;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
@@ -33,11 +35,17 @@ public class ApiLiveInfo extends RootApiBase<ApiLiveInfoInput, ApiLiveInfoResult
 
 		ApiLiveInfoResult result = new ApiLiveInfoResult();
 		if (StringUtils.isNotBlank(input.getContentCode())) {
+			
 			CnContentBasicinfo basicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
 					input.getContentCode());
-			if (basicinfo != null && StringUtils.isNotBlank(basicinfo.getAuthor())) {
-				CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "zc desc",
-						" user_code=:userCode", MapHelper.initMap("userCode", basicinfo.getAuthor()));
+			
+			CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+					input.getContentCode());
+			
+			if (basicinfo != null && contentDetail != null && StringUtils.isNotEmpty(contentDetail.getContent()) ) {
+				
+				CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "busiCode",contentDetail.getContent());
+				
 				if(detail != null && StringUtils.isNotEmpty(detail.getTitle())){
 					
 					String title = EmojiUtil.emojiRecovery(detail.getTitle());
@@ -60,6 +68,23 @@ public class ApiLiveInfo extends RootApiBase<ApiLiveInfoInput, ApiLiveInfoResult
 					result.getUserBasicInfo().setType(info.getType());
 					result.getUserBasicInfo().setUserCode(ext.getUserCode());
 				}
+				
+				if(StringUtils.equals(detail.getStatus(), ContentEnum.LIVEING.getCode())){
+					
+					result.setLiveType(0);
+					
+				}
+				
+				if(StringUtils.equals(detail.getStatus(), ContentEnum.LIVEEND.getCode())){
+					
+					if(StringUtils.isNotEmpty(detail.getVideoUrl()) && StringUtils.isNotEmpty(detail.getVideoId())){
+						
+						result.setLiveType(1);
+						
+					}
+					
+				}
+				
 			}
 
 		}
