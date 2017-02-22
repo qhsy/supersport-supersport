@@ -36,24 +36,31 @@ public class ApiLiveNotify extends RootApiBase<ApiLiveNotifyInput, ApiLiveNotify
 
 		ApiLiveNotifyResult result = new ApiLiveNotifyResult();
 		ReReportLimit limit = new ReReportLimit();
-		limit.setCode("回调测试1");
+		limit.setCode("开始回调");
 		JdbcHelper.insert(limit);
 		synchronized (ApiLiveNotify.class) {
 
 			if (checkSign(input.getT(), input.getSign())) {
-
+				limit.setCode("状态处理" + input.getEvent_type());
+				JdbcHelper.insert(limit);
 				switch (input.getEvent_type()) {
-				case 0:
+				case 0:// 断流
 					updateLiveStatus(input.getStream_id());
+					limit.setCode("已断流");
+					JdbcHelper.insert(limit);
 					break;
-				case 1:
-
+				case 1:// 推流
+					limit.setCode("开始推流");
+					JdbcHelper.insert(limit);
 					break;
-				case 100:
-
+				case 100:// 新录制文件
+					updateLiveVideo(input.getStream_id(), input.getVideo_id(), input.getVideo_url());
+					limit.setCode("录制文件生成" + input.getVideo_id() + input.getStream_id());
+					JdbcHelper.insert(limit);
 					break;
-				case 200:
-
+				case 200:// 新截图文件
+					limit.setCode("截图文件生成" + input.getPic_full_url() + input.getStream_id());
+					JdbcHelper.insert(limit);
 					break;
 
 				default:
@@ -93,10 +100,30 @@ public class ApiLiveNotify extends RootApiBase<ApiLiveNotifyInput, ApiLiveNotify
 
 	}
 
+	public void updateLiveVideo(String streamId, String videoId, String videoUrl) {
+
+		MDataMap mWhereMap = new MDataMap();
+
+		mWhereMap.put("streamId", streamId);
+		mWhereMap.put("videoId", videoId);
+		mWhereMap.put("videoUrl", videoUrl);
+		CnLiveVideoDetail videoDetail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "", "stream_id=:streamId",
+				mWhereMap);
+
+		if (videoDetail != null) {
+
+			videoDetail.setStatus(ContentEnum.LIVEEND.getCode());
+
+			JdbcHelper.update(videoDetail, "status,videoId,videoUrl", "za");
+
+		}
+
+	}
+
 	public boolean checkSign(String timestamp, String sign) {
 
 		ReReportLimit limit = new ReReportLimit();
-		limit.setCode("回调测试2");
+		limit.setCode("验签开始");
 		JdbcHelper.insert(limit);
 		boolean flag = false;
 
@@ -105,7 +132,8 @@ public class ApiLiveNotify extends RootApiBase<ApiLiveNotifyInput, ApiLiveNotify
 		if (StringUtils.equals(sign, checkSign)) {
 
 			flag = true;
-
+			limit.setCode("验签通过");
+			JdbcHelper.insert(limit);
 		}
 
 		return flag;
