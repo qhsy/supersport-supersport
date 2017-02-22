@@ -34,7 +34,7 @@ public class ApiLiveMsg extends RootApiBase<ApiLiveMsgInput, ApiLiveMsgResult> {
 
 			MDataMap mWhereMap = new MDataMap();
 
-			mWhereMap.put("code", input.getCode());
+			mWhereMap.put("chatCode", input.getCode());
 
 			mWhereMap.put("status", "1");
 
