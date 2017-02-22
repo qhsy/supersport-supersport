@@ -32,7 +32,9 @@ public enum ContentEnum {
 	
 	MATCH_PUB("已发布","dzsd4107100110130002"),
 	
-	MATCH_UNP("未发布","dzsd4107100110130001");
+	MATCH_UNP("未发布","dzsd4107100110130001"),
+	
+	BIZID("bizid","5294");
 
 	private String name = "";
 

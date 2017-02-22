@@ -93,6 +93,8 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 			liveVideoDetail.setStatus(ContentEnum.LIVEING.getCode());
 
 			liveVideoDetail.setCreateTime(DateHelper.upDate(new Date()));
+			
+			liveVideoDetail.setStreamId(ContentEnum.BIZID.getCode()+"_"+roomId);
 
 			/* 根据产品需求添加 */
 			String contentCode = updateContent(liveVideoDetail);
@@ -237,7 +239,7 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 	 */
 	public String getLivePushUrl(String roomId){
 		
-		String bzid = "5294";
+		String bzid = ContentEnum.BIZID.getCode();
 		
 		String key = "0e5cdd97c4ae7a3f0c7497de7728ee78";
 		
