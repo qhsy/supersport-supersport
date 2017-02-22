@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiBeginLiveInput;
 import com.uhutu.sportcenter.z.input.ApiChangeCountInput;
+import com.uhutu.sportcenter.z.input.ApiLiveEnterGroupInput;
+import com.uhutu.sportcenter.z.input.ApiLiveQuitGroupInput;
 import com.uhutu.sportcenter.z.result.ApiBeginLiveResult;
 import com.uhutu.sportcenter.z.result.ApiChangeCountResult;
+import com.uhutu.sportcenter.z.result.ApiLiveEnterGroupResult;
+import com.uhutu.sportcenter.z.result.ApiLiveQuitGroupResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -46,6 +50,22 @@ public class LiveNewController {
 
 		return apiFactory.getApiChangeCount().api(input);
 
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/quitGroup", method = RequestMethod.POST)
+	@ApiOperation(value = "退出聊天室", notes = "退出聊天室")
+	public ApiLiveQuitGroupResult quitGroup(@RequestBody ApiLiveQuitGroupInput input) {
+
+		return apiFactory.getApiLiveQuitGroup().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/enterGroup", method = RequestMethod.POST)
+	@ApiOperation(value = "进入聊天室", notes = "进入聊天室")
+	public ApiLiveEnterGroupResult quitGroup(@RequestBody ApiLiveEnterGroupInput input) {
+
+		return apiFactory.getApiLiveEnterGroup().api(input);
 	}
 
 }
