@@ -100,7 +100,7 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 			
 			liveVideoDetail.setChatCode(input.getGroupId());
 			
-			liveVideoDetail.setStreamUrl(pushUrl);
+			
 
 			/* 根据产品需求添加 */
 			String contentCode = updateContent(liveVideoDetail);
@@ -111,11 +111,20 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 			liveVideoDetail.setWatchConstant(Integer.valueOf(dcomContent.getLiveAppWatchConstant()));
 			liveVideoDetail.setPraiseConstant(Integer.valueOf(dcomContent.getLiveAppPraiseConstant()));
 			liveVideoDetail.setBusiCode(WebHelper.upCode("LVEY"));
+			
+			String streamId = ContentEnum.BIZID.getCode()+"_"+liveVideoDetail.getBusiCode();
+			
+			liveVideoDetail.setStreamId(streamId);
+			
+			String playUrl = TopHelper.upInfo(810710032, ContentEnum.BIZID.getCode(),streamId);
+					
+			liveVideoDetail.setStreamUrl(playUrl);
+			
 			JdbcHelper.insert(liveVideoDetail);
 			savePackUser(liveVideoDetail.getBusiCode(), input.getUsers());
 			updateContentWorth(contentCode);
 			
-			liveVideoDetail.setStreamId(ContentEnum.BIZID.getCode()+"_"+liveVideoDetail.getBusiCode());
+			
 
 		}
 
