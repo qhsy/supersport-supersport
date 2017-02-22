@@ -7,6 +7,7 @@ import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
+import com.uhutu.dcom.content.z.entity.CnRedPackUser;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.properties.ConfigDcomContent;
 import com.uhutu.dcom.content.z.properties.SettingsDcomContent;
@@ -14,6 +15,7 @@ import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.sportcenter.z.input.ApiLiveInfoInput;
 import com.uhutu.sportcenter.z.result.ApiLiveInfoResult;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiBase;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 
@@ -80,10 +82,33 @@ public class ApiLiveInfo extends RootApiBase<ApiLiveInfoInput, ApiLiveInfoResult
 
 				}
 				
+				result.setRedPackFalg(initPackFlag(detail.getBusiCode()));
+				
+				
 			}
 
 		}
 		return result;
+	}
+	
+	public boolean initPackFlag(String bizCode){
+		
+		boolean flag = false;
+		
+		MDataMap mWhereMap = new MDataMap();
+		
+		mWhereMap.put("busiCode", bizCode);
+		
+		int count = JdbcHelper.count(CnRedPackUser.class, "", mWhereMap);
+		
+		if(count > 0){
+			
+			flag = true;
+			
+		}
+		
+		return flag;
+		
 	}
 
 }

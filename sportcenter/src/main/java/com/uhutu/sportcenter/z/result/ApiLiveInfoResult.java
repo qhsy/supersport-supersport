@@ -13,6 +13,9 @@ public class ApiLiveInfoResult extends RootApiResult {
 	
 	@ApiModelProperty(value="直播类型 0:直播 1:点播")
 	private int liveType;
+	
+	@ApiModelProperty(value="是否开启打赏")
+	private boolean redPackFalg = false;
 
 	@ApiModelProperty(value = "直播appId", notes = "直播appId")
 	private String appId;
@@ -50,6 +53,14 @@ public class ApiLiveInfoResult extends RootApiResult {
 
 	public void setLiveType(int liveType) {
 		this.liveType = liveType;
+	}
+
+	public boolean isRedPackFalg() {
+		return redPackFalg;
+	}
+
+	public void setRedPackFalg(boolean redPackFalg) {
+		this.redPackFalg = redPackFalg;
 	}
 
 }
