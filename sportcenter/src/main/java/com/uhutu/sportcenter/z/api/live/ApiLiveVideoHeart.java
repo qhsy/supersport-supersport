@@ -29,6 +29,7 @@ public class ApiLiveVideoHeart extends RootApiToken<ApiLiveVideoHeartInput, ApiL
 				"user_code=:user_code", MapHelper.initMap("user_code", upUserCode()));
 		if (detail != null) {
 			detail.setChannelId(input.getChannelId());
+			detail.setStreamUrl(input.getStreamUrl());
 			detail.setLength(input.getLength());
 			detail.setWatch(input.getWatch());
 			detail.setPraise(input.getPraise());
@@ -52,7 +53,15 @@ public class ApiLiveVideoHeart extends RootApiToken<ApiLiveVideoHeartInput, ApiL
 				}
 			}
 			
-			JdbcHelper.update(detail, "length,watch,praise,status,channelId,income", "za");
+			if(StringUtils.isNotEmpty(detail.getStreamUrl())){
+				
+				JdbcHelper.update(detail, "length,watch,praise,status,channelId,streamUrl,income", "za");
+				
+			}else{
+				
+				JdbcHelper.update(detail, "length,watch,praise,status,channelId,income", "za");
+				
+			}
 			
 		}
 		return result;
