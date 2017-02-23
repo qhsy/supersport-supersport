@@ -11,11 +11,13 @@ import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiBeginLiveInput;
 import com.uhutu.sportcenter.z.input.ApiChangeCountInput;
 import com.uhutu.sportcenter.z.input.ApiChangeStatusInput;
+import com.uhutu.sportcenter.z.input.ApiConvertStreamUrlInput;
 import com.uhutu.sportcenter.z.input.ApiLiveEnterGroupInput;
 import com.uhutu.sportcenter.z.input.ApiLiveQuitGroupInput;
 import com.uhutu.sportcenter.z.result.ApiBeginLiveResult;
 import com.uhutu.sportcenter.z.result.ApiChangeCountResult;
 import com.uhutu.sportcenter.z.result.ApiChangeStatusResult;
+import com.uhutu.sportcenter.z.result.ApiConvertStreamUrlResult;
 import com.uhutu.sportcenter.z.result.ApiLiveEnterGroupResult;
 import com.uhutu.sportcenter.z.result.ApiLiveQuitGroupResult;
 
@@ -76,6 +78,15 @@ public class LiveNewController {
 	public ApiChangeStatusResult changeStatus(@RequestBody  ApiChangeStatusInput input) {
 
 		return apiFactory.getApiChangeStatus().api(input);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getStreamUrl", method = RequestMethod.POST)
+	@ApiOperation(value = "获取流地址", notes = "获取流地址")
+	public ApiConvertStreamUrlResult changeStatus(@RequestBody  ApiConvertStreamUrlInput input) {
+
+		return apiFactory.getApiConvertStreamUrl().api(input);
+		
 	}
 
 }

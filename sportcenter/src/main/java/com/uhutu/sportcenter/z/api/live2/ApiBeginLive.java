@@ -258,7 +258,7 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 		
 		String bzid = ContentEnum.BIZID.getCode();
 		
-		String key = "0e5cdd97c4ae7a3f0c7497de7728ee78";
+		String key = ContentEnum.BIZKEY.getCode();
 		
 		String streamId = bzid+"_"+roomId;
 		

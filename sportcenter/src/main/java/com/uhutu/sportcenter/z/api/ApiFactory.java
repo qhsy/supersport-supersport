@@ -101,6 +101,7 @@ import com.uhutu.sportcenter.z.api.live.ApiSyncLiveUserInfo;
 import com.uhutu.sportcenter.z.api.live2.ApiBeginLive;
 import com.uhutu.sportcenter.z.api.live2.ApiChangeCount;
 import com.uhutu.sportcenter.z.api.live2.ApiChangeStatus;
+import com.uhutu.sportcenter.z.api.live2.ApiConvertStreamUrl;
 import com.uhutu.sportcenter.z.api.live2.ApiLiveEnterGroup;
 import com.uhutu.sportcenter.z.api.live2.ApiLiveQuitGroup;
 import com.uhutu.sportcenter.z.api.match.ApiMatchInfo;
@@ -656,6 +657,9 @@ public class ApiFactory {
 	
 	@Autowired
 	private ApiSportingMomentsThird apiSportingMomentsThird;
+	
+	@Autowired
+	private ApiConvertStreamUrl apiConvertStreamUrl;
 	
 	public ApiSportingMomentsThird getApiSportingMomentsThird() {
 		return apiSportingMomentsThird;
@@ -1299,6 +1303,10 @@ public class ApiFactory {
 
 	public ApiChangeStatus getApiChangeStatus() {
 		return apiChangeStatus;
+	}
+
+	public ApiConvertStreamUrl getApiConvertStreamUrl() {
+		return apiConvertStreamUrl;
 	}
 
 }
