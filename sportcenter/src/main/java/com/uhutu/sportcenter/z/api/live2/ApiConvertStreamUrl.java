@@ -52,7 +52,7 @@ public class ApiConvertStreamUrl extends RootApiToken<ApiConvertStreamUrlInput, 
 
 		String txScreat = LiveSupport.getInstance().getTxSecret(key, streamId, txTime);
 
-		String playtUrl = TopHelper.upInfo(810710032, bzid, streamId, txScreat, txTime);
+		String playtUrl = TopHelper.upInfo(810710033, bzid, streamId, bzid, txScreat, txTime);
 
 		String pushUrl = TopHelper.upInfo(810710031, bzid, streamId, bzid, txScreat, txTime);
 
@@ -73,11 +73,11 @@ public class ApiConvertStreamUrl extends RootApiToken<ApiConvertStreamUrlInput, 
 			
 			if(!StringUtils.contains(input.getStreamUrl(), "txSecret")){
 				
-				String[] heads = StringUtils.split("?");
+				String[] heads = StringUtils.splitByWholeSeparator(input.getStreamUrl(),"?");
 				
 				if(heads.length > 0){
 					
-					String[] params = StringUtils.split("liveplay.myqcloud.com/live/");
+					String[] params = StringUtils.splitByWholeSeparator(heads[0],"liveplay.myqcloud.com/live/");
 					
 					if(params.length > 1){
 						
@@ -91,7 +91,7 @@ public class ApiConvertStreamUrl extends RootApiToken<ApiConvertStreamUrlInput, 
 
 						String txScreat = LiveSupport.getInstance().getTxSecret(key, streamId, txTime);
 						
-						String playUrl = TopHelper.upInfo(810710032, bzid, streamId, txScreat, txTime);
+						String playUrl = TopHelper.upInfo(810710033, bzid, streamId, bzid, txScreat, txTime);
 						
 						result.setPlayUrl(playUrl);
 						
