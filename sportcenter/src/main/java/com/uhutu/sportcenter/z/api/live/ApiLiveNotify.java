@@ -76,8 +76,14 @@ public class ApiLiveNotify extends RootApiBase<ApiLiveNotifyInput, ApiLiveNotify
 		CnLiveVideoDetail videoDetail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "", "stream_id=:streamId",
 				mWhereMap);
 		if (videoDetail != null) {
-			videoDetail.setVideoId(videoId);
-			videoDetail.setVideoUrl(videoUrl);
+			if (StringUtils.isNotBlank(videoId)) {
+				videoDetail.setVideoId(videoDetail.getVideoId() + "," + videoId);
+				videoDetail.setVideoUrl(videoDetail.getVideoUrl() + "," + videoUrl);
+			} else {
+				videoDetail.setVideoId(videoId);
+				videoDetail.setVideoUrl(videoUrl);
+			}
+
 			JdbcHelper.update(videoDetail, "videoId,videoUrl", "za");
 		}
 	}
