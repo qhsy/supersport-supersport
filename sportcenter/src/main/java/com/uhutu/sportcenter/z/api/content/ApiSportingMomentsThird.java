@@ -26,8 +26,8 @@ import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.api.util.ContentComponent;
 import com.uhutu.sportcenter.z.api.util.HomePageSupport;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
-import com.uhutu.sportcenter.z.input.ApiSportingMomentsSecondInput;
-import com.uhutu.sportcenter.z.result.ApiSportingMomentsSecondResult;
+import com.uhutu.sportcenter.z.input.ApiSportingMomentsThirdInput;
+import com.uhutu.sportcenter.z.result.ApiSportingMomentsThirdResult;
 import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.model.MDataMap;
@@ -43,8 +43,7 @@ import com.uhutu.zooweb.user.UserCallFactory;
  * 
  */
 @Service
-public class ApiSportingMomentsSecond
-		extends RootApiForMember<ApiSportingMomentsSecondInput, ApiSportingMomentsSecondResult> {
+public class ApiSportingMomentsThird extends RootApiForMember<ApiSportingMomentsThirdInput, ApiSportingMomentsThirdResult> {
 
 	@Autowired
 	private ContentServiceFactory serviceFactory;
@@ -58,9 +57,9 @@ public class ApiSportingMomentsSecond
 	@Autowired
 	private ContentLabelServiceFactory labelServiceFactory;
 
-	protected ApiSportingMomentsSecondResult process(ApiSportingMomentsSecondInput input) {
+	protected ApiSportingMomentsThirdResult process(ApiSportingMomentsThirdInput input) {
 
-		ApiSportingMomentsSecondResult sportingMomentsResult = new ApiSportingMomentsSecondResult();
+		ApiSportingMomentsThirdResult sportingMomentsResult = new ApiSportingMomentsThirdResult();
 
 		List<CnContentBasicinfo> contentBasicInfos = new ArrayList<CnContentBasicinfo>();
 
@@ -79,7 +78,7 @@ public class ApiSportingMomentsSecond
 					String sqlWhere = initSql(dataMap);
 
 					sqlWhere = sqlWhere + "EXISTS (select 1 from uc_attention_info where attention = '" + userCode
-							+ "' and be_attention = author and status='1') and content_type!='dzsd4107100110030009'";
+							+ "' and be_attention = author and status='1')";
 
 					int istart = (input.getPagination() - 1) * 10;
 
@@ -104,12 +103,12 @@ public class ApiSportingMomentsSecond
 			String sqlWhere = initSql(dataMap);
 
 			sqlWhere = sqlWhere
-					+ " EXISTS (select 1 from uc_userinfo ui where code = author and type='dzsd4107100310010002') and content_type!='dzsd4107100110030009'";
+					+ " EXISTS (select 1 from uc_userinfo ui where code = author and type='dzsd4107100310010002')";
 
 			int istart = (input.getPagination() - 1) * 10;
 
-			contentBasicInfos = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "zc desc", sqlWhere,
-					new MDataMap(), istart, 10);
+			contentBasicInfos = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "zc desc", sqlWhere, new MDataMap(),
+					istart, 10);
 
 			int count = JdbcHelper.count(CnContentBasicinfo.class, sqlWhere, new MDataMap());
 
@@ -124,7 +123,7 @@ public class ApiSportingMomentsSecond
 			queryConditions.setConditionEqual("busiType", ContentEnum.sportmoment.getCode());
 			queryConditions.setConditionEqual("status", "dzsd4699100110010001");
 			queryConditions.setConditionEqual("shareScope", "dzsd4699100110010001");
-			queryConditions.setConditionNotEqual("contentType", "dzsd4107100110030009");
+
 			Page<CnContentBasicinfo> page = serviceFactory.getContentBasicinfoService().queryPage(input.getPagination(),
 					10, queryConditions);
 
@@ -205,15 +204,15 @@ public class ApiSportingMomentsSecond
 				sportingMoment.setRemarkNum(remarkNum);
 				int praiseNum = serviceFactory.getSupportPraiseService().queryCountByCode(sportingMoment.getCode(),
 						ContentEnum.FAVOR_STATUS_YES.getCode());
-
+				
 				sportingMoment.setPraiseNum(praiseNum);
-
+				
 				String title = sportingMoment.getTitle();
-
+				
 				title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
-
+				
 				sportingMoment.setTitle(title);
-
+				
 				sports.add(sportingMoment);
 
 			}

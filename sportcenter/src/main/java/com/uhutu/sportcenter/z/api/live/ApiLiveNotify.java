@@ -6,8 +6,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnLiveVideoDetail;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
+import com.uhutu.dcom.content.z.support.RedPackComponet;
 import com.uhutu.dcom.pay.z.entity.PaInclogInfo;
 import com.uhutu.dcom.pay.z.util.MD5;
 import com.uhutu.dcom.user.z.properties.SettingsDcomUser;
@@ -67,6 +69,18 @@ public class ApiLiveNotify extends RootApiBase<ApiLiveNotifyInput, ApiLiveNotify
 		if (videoDetail != null) {
 			videoDetail.setStatus(ContentEnum.LIVEEND.getCode());
 			JdbcHelper.update(videoDetail, "status", "za");
+			if (StringUtils.isNotBlank(videoDetail.getContentCode())) {
+				CnContentBasicinfo cn = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
+						videoDetail.getContentCode());
+				cn.setContentType("dzsd4107100110030009");
+				JdbcHelper.update(cn, "contentType", "za");
+			}
+			/* 直播打赏分成 */
+			if (StringUtils.isNotEmpty(videoDetail.getBusiCode())) {
+
+				RedPackComponet.getInstance().doLiveProfit(videoDetail.getBusiCode());
+
+			}
 		}
 	}
 
@@ -76,14 +90,19 @@ public class ApiLiveNotify extends RootApiBase<ApiLiveNotifyInput, ApiLiveNotify
 		CnLiveVideoDetail videoDetail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "", "stream_id=:streamId",
 				mWhereMap);
 		if (videoDetail != null) {
-			if (StringUtils.isNotBlank(videoId)) {
+			if (StringUtils.isNotBlank(videoDetail.getVideoId())) {
 				videoDetail.setVideoId(videoDetail.getVideoId() + "," + videoId);
 				videoDetail.setVideoUrl(videoDetail.getVideoUrl() + "," + videoUrl);
 			} else {
 				videoDetail.setVideoId(videoId);
 				videoDetail.setVideoUrl(videoUrl);
 			}
-
+			if (StringUtils.isNotBlank(videoDetail.getContentCode())) {
+				CnContentBasicinfo cn = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
+						videoDetail.getContentCode());
+				cn.setContentType("dzsd4107100110030009");
+				JdbcHelper.update(cn, "contentType", "za");
+			}
 			JdbcHelper.update(videoDetail, "videoId,videoUrl", "za");
 		}
 	}

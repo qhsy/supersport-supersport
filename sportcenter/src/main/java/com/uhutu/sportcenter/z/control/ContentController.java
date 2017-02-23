@@ -34,6 +34,7 @@ import com.uhutu.sportcenter.z.input.ApiShareInfoInput;
 import com.uhutu.sportcenter.z.input.ApiSportChickenSoupInput;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsInput;
 import com.uhutu.sportcenter.z.input.ApiSportingMomentsSecondInput;
+import com.uhutu.sportcenter.z.input.ApiSportingMomentsThirdInput;
 import com.uhutu.sportcenter.z.input.ApiSupportPraiseInput;
 import com.uhutu.sportcenter.z.input.ApiThemePageInput;
 import com.uhutu.sportcenter.z.input.ApiTummyMomentsInput;
@@ -61,6 +62,7 @@ import com.uhutu.sportcenter.z.result.ApiShareInfoResult;
 import com.uhutu.sportcenter.z.result.ApiSportChickenSoupResult;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsResult;
 import com.uhutu.sportcenter.z.result.ApiSportingMomentsSecondResult;
+import com.uhutu.sportcenter.z.result.ApiSportingMomentsThirdResult;
 import com.uhutu.sportcenter.z.result.ApiSupportPraiseResult;
 import com.uhutu.sportcenter.z.result.ApiThemePageResult;
 import com.uhutu.sportcenter.z.result.ApiTummyMomentsResult;
@@ -318,5 +320,13 @@ public class ContentController {
 
 		return apiFactory.getApiContentRedPackInfo().api(input);
 
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/sportingMomentsThird", method = RequestMethod.POST)
+	@ApiOperation(value = "运动时刻接口3", notes = "运动时刻展示3")
+	public ApiSportingMomentsThirdResult versionInfo(@RequestBody ApiSportingMomentsThirdInput input) {
+
+		return apiFactory.getApiSportingMomentsThird().api(input);
 	}
 }
