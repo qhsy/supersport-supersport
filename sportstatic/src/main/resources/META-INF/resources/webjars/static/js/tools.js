@@ -174,6 +174,21 @@ function callbackEnterRoom(uid,username,avatar,roomid,chatRoomid,watchcount,admi
 }
 
 /**
+ * @直播跳转
+ * @param  url
+ * @return [Function]
+ * @author [wangxh]
+ */
+function callbackEnterLive(code){
+	var userAgent = navigator.userAgent;
+	if(userAgent.indexOf('Android') != -1){
+		javascript:android.callbackEnterLive(code);
+	} else {
+		window.webkit.messageHandlers.callbackEnterLive.postMessage([code]);
+	}
+}
+
+/**
  * @时刻打赏
  * @param  
  * @return [Function]
