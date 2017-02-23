@@ -53,7 +53,7 @@ public class ApiLiveVideoHeart extends RootApiToken<ApiLiveVideoHeartInput, ApiL
 				}
 			}
 			
-			JdbcHelper.update(detail, "length,watch,praise,status,channelId,streamUrl,income", "za");
+			JdbcHelper.update(detail, "length,watch,praise,status,channelId,income", "za");
 			
 		}
 		return result;
