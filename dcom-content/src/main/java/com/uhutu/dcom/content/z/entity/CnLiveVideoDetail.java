@@ -107,6 +107,9 @@ public class CnLiveVideoDetail extends BaseEntity {
 	
 	@ZooData(name="点播文件地址")
 	private String videoUrl;
+	
+	@ZooData(name="web播放地址")
+	private String webStreamUrl;
 
 	public String getVideoId() {
 		return videoId;
@@ -308,6 +311,14 @@ public class CnLiveVideoDetail extends BaseEntity {
 
 	public void setIncome(BigDecimal income) {
 		this.income = income;
+	}
+
+	public String getWebStreamUrl() {
+		return webStreamUrl;
+	}
+
+	public void setWebStreamUrl(String webStreamUrl) {
+		this.webStreamUrl = webStreamUrl;
 	}
 
 }

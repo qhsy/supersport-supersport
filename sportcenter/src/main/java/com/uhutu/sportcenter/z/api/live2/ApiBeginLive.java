@@ -1,5 +1,7 @@
 package com.uhutu.sportcenter.z.api.live2;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
@@ -119,6 +121,10 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 			String playUrl = TopHelper.upInfo(810710032, ContentEnum.BIZID.getCode(),streamId);
 					
 			liveVideoDetail.setStreamUrl(playUrl);
+			
+			String webStreamUrl = TopHelper.upInfo(810710034, ContentEnum.BIZID.getCode(),streamId);
+			
+			liveVideoDetail.setWebStreamUrl(encodeUrl(webStreamUrl));
 			
 			JdbcHelper.insert(liveVideoDetail);
 			savePackUser(liveVideoDetail.getBusiCode(), input.getUsers());
@@ -268,6 +274,19 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 		
 		return TopHelper.upInfo(810710031, bzid,streamId,bzid,txScreat,txTime);
 		
+	}
+	
+	public String encodeUrl(String url) {
+
+		try {
+			url = URLEncoder.encode(url, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+
+			e.printStackTrace();
+		}
+
+		return url;
+
 	}
 
 }
