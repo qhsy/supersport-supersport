@@ -124,7 +124,7 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 			
 			String webStreamUrl = TopHelper.upInfo(810710034, ContentEnum.BIZID.getCode(),streamId);
 			
-			liveVideoDetail.setWebStreamUrl(encodeUrl(webStreamUrl));
+			liveVideoDetail.setWebStreamUrl(webStreamUrl);
 			
 			JdbcHelper.insert(liveVideoDetail);
 			savePackUser(liveVideoDetail.getBusiCode(), input.getUsers());
