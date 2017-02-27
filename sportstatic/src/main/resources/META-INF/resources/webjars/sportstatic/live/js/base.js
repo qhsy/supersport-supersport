@@ -6,10 +6,10 @@ function jsonpCallback(rspData) {
 
 //监听大群新消息（普通，点赞，提示，红包）
 function onBigGroupMsgNotify(msgList) {
-    if (msgList.length > 0) {
-        console.log('onBigGroupMsgNotify', msgList);
+    if(msgList.length > 0){
+        console.log('onBigGroupMsgNotify',msgList);
     }
-    for (var i = msgList.length - 1; i >= 0; i--) { //遍历消息，按照时间从后往前
+    for (var i = msgList.length - 1; i >= 0; i--) {//遍历消息，按照时间从后往前
         var msg = msgList[i];
         //console.warn(msg);
         webim.Log.warn('receive a new avchatroom group msg: ' + msg.getFromAccountNick());
@@ -23,15 +23,15 @@ function onBigGroupMsgNotify(msgList) {
 function onMsgNotify(newMsgList) {
     console.log('onMsgNotify', newMsgList);
     var newMsg;
-    for (var j in newMsgList) { //遍历新消息
+    for (var j in newMsgList) {//遍历新消息
         newMsg = newMsgList[j];
-        handlderMsg(newMsg); //处理新消息
+        handlderMsg(newMsg);//处理新消息
     }
 }
 
 //处理消息（私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息）
 function handlderMsg(msg) {
-    var fromAccount, fromAccountNick, sessType, subType, contentHtml;
+    var fromAccount, fromAccountNick, sessType, subType,contentHtml;
 
     fromAccount = msg.getFromAccount();
     if (!fromAccount) {
@@ -53,24 +53,24 @@ function handlderMsg(msg) {
     subType = msg.getSubType();
 
     switch (sessType) {
-        case webim.SESSION_TYPE.C2C: //私聊消息
+        case webim.SESSION_TYPE.C2C://私聊消息
             switch (subType) {
-                case webim.C2C_MSG_SUB_TYPE.COMMON: //c2c普通消息
+                case webim.C2C_MSG_SUB_TYPE.COMMON://c2c普通消息
                     //业务可以根据发送者帐号fromAccount是否为app管理员帐号，来判断c2c消息是否为全员推送消息，还是普通好友消息
                     //或者业务在发送全员推送消息时，发送自定义类型(webim.MSG_ELEMENT_TYPE.CUSTOM,即TIMCustomElem)的消息，在里面增加一个字段来标识消息是否为推送消息
                     contentHtml = convertMsgtoHtml(msg);
-                    webim.Log.warn('receive a new c2c msg: fromAccountNick=' + fromAccountNick + ", content=" + contentHtml);
+                    webim.Log.warn('receive a new c2c msg: fromAccountNick=' + fromAccountNick+", content="+contentHtml);
                     //c2c消息一定要调用已读上报接口
-                    var opts = {
-                        'To_Account': fromAccount, //好友帐号
-                        'LastedMsgTime': msg.getTime() //消息时间戳
+                    var opts={
+                        'To_Account':fromAccount,//好友帐号
+                        'LastedMsgTime':msg.getTime()//消息时间戳
                     };
                     webim.c2CMsgReaded(opts);
-                    alert('收到一条c2c消息(好友消息或者全员推送消息): 发送人=' + fromAccountNick + ", 内容=" + contentHtml);
+                    alert('收到一条c2c消息(好友消息或者全员推送消息): 发送人=' + fromAccountNick+", 内容="+contentHtml);
                     break;
             }
             break;
-        case webim.SESSION_TYPE.GROUP: //普通群消息，对于直播聊天室场景，不需要作处理
+        case webim.SESSION_TYPE.GROUP://普通群消息，对于直播聊天室场景，不需要作处理
             break;
     }
 }
@@ -80,57 +80,57 @@ function sdkLogin(callback) {
     console.log('sdkLogin', loginInfo);
     //web sdk 登录
     webim.login(loginInfo, listeners, options,
-        function(data) {
-            /**
-             * data :
-             * ActionStatus
-             * ErrorCode
-             * ErrorInfo
-             * identifierNick
-             */
-            //identifierNick为登录用户昵称(没有设置时，为帐号)，无登录态时为空
-            loginInfo.identifierNick = data.identifierNick ? data.identifierNick : loginInfo.identifierNick;
-            webim.Log.info('webim登录成功');
-            console.log('sdkLogin webim登录成功', data);
-            applyJoinBigGroup(avChatRoomId); //加入大群
-            //hideDiscussForm();//隐藏评论表单
-            //initEmotionUL();//初始化表情
-            callback && callback.call();
-        },
-        function(err) {
-            alert('sdkLogin' + err.ErrorInfo);
-        }
-    ); //
+            function (data) {
+                /**
+                 * data :
+                 * ActionStatus
+                 * ErrorCode
+                 * ErrorInfo
+                 * identifierNick
+                 */
+                //identifierNick为登录用户昵称(没有设置时，为帐号)，无登录态时为空
+                loginInfo.identifierNick = data.identifierNick ? data.identifierNick : loginInfo.identifierNick;
+                webim.Log.info('webim登录成功');
+                console.log('sdkLogin webim登录成功', data);
+                applyJoinBigGroup(avChatRoomId);//加入大群
+                //hideDiscussForm();//隐藏评论表单
+                //initEmotionUL();//初始化表情
+                callback && callback.call();
+            },
+            function (err) {
+                alert('sdkLogin' + err.ErrorInfo);
+            }
+    );//
 }
 
 //进入大群
 function applyJoinBigGroup(groupId) {
     var options = {
-        'GroupId': groupId //群id
+        'GroupId': groupId//群id
     };
     webim.applyJoinBigGroup(
-        options,
-        function(resp) {
-            //JoinedSuccess:加入成功; WaitAdminApproval:等待管理员审批
-            if (resp.JoinedStatus && resp.JoinedStatus == 'JoinedSuccess') {
-                console.log('applyJoinBigGroup 进群成功');
-                webim.Log.info('进群成功');
-                selToID = groupId;
-            } else {
-                alert('进群失败');
+            options,
+            function (resp) {
+                //JoinedSuccess:加入成功; WaitAdminApproval:等待管理员审批
+                if (resp.JoinedStatus && resp.JoinedStatus == 'JoinedSuccess') {
+                    console.log('applyJoinBigGroup 进群成功');
+                    webim.Log.info('进群成功');
+                    selToID = groupId;
+                } else {
+                    alert('进群失败');
+                }
+            },
+            function (err) {
+                console.log('applyJoinBigGroup: 进群失败', err);
+                if(10010 == err.ErrorCode){
+                    alert('直播已结束('+err.ErrorCode+')');
+                    hideLoginForm();
+                }else  if(10013 == err.ErrorCode){
+                    alert('进群失败 : ' + err.ErrorInfo);
+                }else{
+                    alert('进群失败 : ' + err.ErrorInfo);
+                }
             }
-        },
-        function(err) {
-            console.log('applyJoinBigGroup: 进群失败', err);
-            if (10010 == err.ErrorCode) {
-                alert('直播已结束(' + err.ErrorCode + ')');
-                hideLoginForm();
-            } else if (10013 == err.ErrorCode) {
-                alert('进群失败 : ' + err.ErrorInfo);
-            } else {
-                alert('进群失败 : ' + err.ErrorInfo);
-            }
-        }
     );
 }
 
@@ -186,54 +186,54 @@ function showMsg(msg) {
     //会话类型为私聊时，子类型为：webim.C2C_MSG_SUB_TYPE
     subType = msg.getSubType();
 
-    isSelfSend = msg.getIsSend(); //消息是否为自己发的
+    isSelfSend = msg.getIsSend();//消息是否为自己发的
 
     var _firstMsg = msg.getElems()[0];
-    if (subType == webim.GROUP_MSG_SUB_TYPE.COMMON && _firstMsg.getType() == webim.MSG_ELEMENT_TYPE.TEXT && _firstMsg.getContent().isAppMsg) {
+    if(subType == webim.GROUP_MSG_SUB_TYPE.COMMON && _firstMsg.getType() == webim.MSG_ELEMENT_TYPE.TEXT && _firstMsg.getContent().isAppMsg ) {
         //过滤出来自app的消息
         convertAppMsg(nickNameSpan, contentSpan, msg);
-    } else {
+    }else{
         //原始消息格式
         switch (subType) {
 
-            case webim.GROUP_MSG_SUB_TYPE.COMMON: //群普通消息
+            case webim.GROUP_MSG_SUB_TYPE.COMMON://群普通消息
                 var msgHTML = convertMsgtoHtml(msg);
-                if (msgHTML) {
+                if(msgHTML){
                     // 由于app 自定义了消息格式，fromAccountNick 不一定是用户的nick，实际nick存放在 消息体里
                     var appData = msg.getElems()[0].getContent().getData();
-                    if (appData && appData.nickName) {
+                    if(appData && appData.nickName){
                         nickNameSpan.innerHTML = appData.nickName;
                     }
                     contentSpan.innerHTML = msgHTML;
-                } else {
+                }else {
                     return;
                 }
                 break;
-            case webim.GROUP_MSG_SUB_TYPE.REDPACKET: //群红包消息
+            case webim.GROUP_MSG_SUB_TYPE.REDPACKET://群红包消息
                 return;
                 contentSpan.innerHTML = "[群红包消息]" + convertMsgtoHtml(msg);
                 break;
-            case webim.GROUP_MSG_SUB_TYPE.LOVEMSG: //群点赞消息
+            case webim.GROUP_MSG_SUB_TYPE.LOVEMSG://群点赞消息
                 //业务自己可以增加逻辑，比如展示点赞动画效果
                 contentSpan.innerHTML = "[群点赞消息]" + convertMsgtoHtml(msg);
                 //展示点赞动画
                 showLoveMsgAnimation();
                 break;
-            case webim.GROUP_MSG_SUB_TYPE.TIP: //群提示消息
+            case webim.GROUP_MSG_SUB_TYPE.TIP://群提示消息
                 var msgHTML = convertMsgtoHtml(msg);
-                if (msgHTML) {
+                if(msgHTML){
                     contentSpan.innerHTML = "[群提示消息]" + msgHTML;
-                } else {
+                }else {
                     return;
                 }
                 //contentSpan.innerHTML = "[群提示消息]" + convertMsgtoHtml(msg);
                 break;
         }
     }
-    if (nickNameSpan.innerHTML) {
+    if(nickNameSpan.innerHTML){
         textDiv.appendChild(nickNameSpan);
     }
-    if (contentSpan.innerHTML) {
+    if(contentSpan.innerHTML) {
         textDiv.appendChild(contentSpan);
     }
 
@@ -244,13 +244,12 @@ function showMsg(msg) {
 
 //把消息转换成Html
 function convertMsgtoHtml(msg) {
-    var html = "",
-        elems, elem, type, content;
-    elems = msg.getElems(); //获取消息包含的元素数组
+    var html = "", elems, elem, type, content;
+    elems = msg.getElems();//获取消息包含的元素数组
     for (var i in elems) {
         elem = elems[i];
-        type = elem.getType(); //获取元素类型
-        content = elem.getContent(); //获取元素对象
+        type = elem.getType();//获取元素类型
+        content = elem.getContent();//获取元素对象
         switch (type) {
             case webim.MSG_ELEMENT_TYPE.TEXT:
                 html += convertTextMsgToHtml(content);
@@ -267,15 +266,15 @@ function convertMsgtoHtml(msg) {
             case webim.MSG_ELEMENT_TYPE.FILE:
                 html += convertFileMsgToHtml(content);
                 break;
-            case webim.MSG_ELEMENT_TYPE.LOCATION: //暂不支持地理位置
+            case webim.MSG_ELEMENT_TYPE.LOCATION://暂不支持地理位置
                 //html += convertLocationMsgToHtml(content);
                 break;
             case webim.MSG_ELEMENT_TYPE.CUSTOM:
-                return;
+                return ;
                 html += convertCustomMsgToHtml(content);
                 break;
             case webim.MSG_ELEMENT_TYPE.GROUP_TIP:
-                return;
+                return ;
                 html += convertGroupTipMsgToHtml(content);
                 break;
             default:
@@ -290,20 +289,20 @@ function convertMsgtoHtml(msg) {
 function convertTextMsgToHtml(content) {
     return content.getText();
 
-    /*
-        var _data,
-            _text = content.getText();
-        console.log('convertTextMsgToHtml' ,_text);
-        if(content.getData()){
-            _data = content.getData();
-            _convertAppMsg(_data);
-            return _data.msg;
-        }else{
-            //原文本消息格式,这里会显示无昵称的情况
-            //return _text;
-            return ;
-        }
-    */
+/*
+    var _data,
+        _text = content.getText();
+    console.log('convertTextMsgToHtml' ,_text);
+    if(content.getData()){
+        _data = content.getData();
+        _convertAppMsg(_data);
+        return _data.msg;
+    }else{
+        //原文本消息格式,这里会显示无昵称的情况
+        //return _text;
+        return ;
+    }
+*/
 
     /*if(/^\{.*\}$/.test(_text)){
         //小直播的自定义格式，text为json数据
@@ -319,21 +318,21 @@ function convertTextMsgToHtml(content) {
     }*/
 }
 
-function _convertAppMsg(data) {
-    switch (data.userAction) {
+function _convertAppMsg(data){
+    switch (data.userAction){
         case 1:
             //文本消息
             break;
         case 2:
             //用户加入直播
-            data.msg = '进入了房间';
+            data.msg='进入了房间';
             //房间成员数加1
             memberCount = $('#user-icon-fans').html();
             $('#user-icon-fans').html(parseInt(memberCount) + 1);
             break;
         case 3:
             //用户退出直播
-            data.msg = '离开了房间';
+            data.msg='离开了房间';
             memberCount = parseInt($('#user-icon-fans').html());
             if (memberCount > 0) {
                 $('#user-icon-fans').html(memberCount - 1);
@@ -341,7 +340,7 @@ function _convertAppMsg(data) {
             break;
         case 4:
             //点赞消息
-            data.msg = '点了个赞';
+            data.msg='点了个赞';
             showLoveMsgAnimation();
             break;
         case 5:
@@ -350,23 +349,23 @@ function _convertAppMsg(data) {
     }
 }
 
-function convertAppMsg(nickSpan, contentSpan, msg) {
-    var elems, elem, type, content, data, memberCount;
-    elems = msg.getElems(); //获取消息包含的元素数组
+function convertAppMsg(nickSpan, contentSpan, msg){
+    var elems, elem, type, content,data,memberCount;
+    elems = msg.getElems();//获取消息包含的元素数组
     for (var i in elems) {
         elem = elems[i];
-        type = elem.getType(); //获取元素类型
-        content = elem.getContent(); //获取元素对象
+        type = elem.getType();//获取元素类型
+        content = elem.getContent();//获取元素对象
         data = content.getData();
         switch (data.userAction) {
             case 1:
                 //文本消息
-                nickSpan.innerHTML = data.nickName;
-                contentSpan.innerHTML = data.msg;
+                nickSpan.innerHTML = data.nickName ;
+                contentSpan.innerHTML = data.msg ;
                 break;
             case 2:
                 //用户加入直播
-                nickSpan.innerHTML = '通知 <i>' + data.nickName + '</i> 加入直播';
+                nickSpan.innerHTML = '通知 <i>'+ data.nickName + '</i> 加入直播';
                 nickSpan.setAttribute('class', 'user-name-red');
                 contentSpan.innerHTML = '';
                 //房间成员数加1
@@ -375,7 +374,7 @@ function convertAppMsg(nickSpan, contentSpan, msg) {
                 break;
             case 3:
                 //用户退出直播
-                nickSpan.innerHTML = '通知 <i>' + data.nickName + '</i> 退出直播';
+                nickSpan.innerHTML = '通知 <i>'+ data.nickName + '</i> 退出直播';
                 nickSpan.setAttribute('class', 'user-name-red');
                 contentSpan.innerHTML = '';
                 memberCount = parseInt($('#user-icon-fans').html());
@@ -385,16 +384,16 @@ function convertAppMsg(nickSpan, contentSpan, msg) {
                 break;
             case 4:
                 //点赞消息
-                nickSpan.innerHTML = '通知 ' + data.nickName + ' 点了个赞';
+                nickSpan.innerHTML = '通知 '+ data.nickName + ' 点了个赞' ;
                 nickSpan.setAttribute('class', 'user-name-red');
-                contentSpan.innerHTML = '';
+                contentSpan.innerHTML = '' ;
                 showLoveMsgAnimation();
                 break;
             case 5:
                 //弹幕消息
                 //文本消息
-                nickSpan.innerHTML = data.nickName;
-                contentSpan.innerHTML = data.msg;
+                nickSpan.innerHTML = data.nickName ;
+                contentSpan.innerHTML = data.msg ;
                 break;
         }
     }
@@ -409,27 +408,27 @@ function convertFaceMsgToHtml(content) {
         faceUrl = emotion[1];
     }
     if (faceUrl) {
-        return "<img src='" + faceUrl + "'/>";
+        return	"<img src='" + faceUrl + "'/>";
     } else {
         return data;
     }
 }
 //解析图片消息元素
 function convertImageMsgToHtml(content) {
-    var smallImage = content.getImage(webim.IMAGE_TYPE.SMALL); //小图
-    var bigImage = content.getImage(webim.IMAGE_TYPE.LARGE); //大图
-    var oriImage = content.getImage(webim.IMAGE_TYPE.ORIGIN); //原图
+    var smallImage = content.getImage(webim.IMAGE_TYPE.SMALL);//小图
+    var bigImage = content.getImage(webim.IMAGE_TYPE.LARGE);//大图
+    var oriImage = content.getImage(webim.IMAGE_TYPE.ORIGIN);//原图
     if (!bigImage) {
         bigImage = smallImage;
     }
     if (!oriImage) {
         oriImage = smallImage;
     }
-    return "<img src='" + smallImage.getUrl() + "#" + bigImage.getUrl() + "#" + oriImage.getUrl() + "' style='CURSOR: hand' id='" + content.getImageId() + "' bigImgUrl='" + bigImage.getUrl() + "' onclick='imageClick(this)' />";
+    return	"<img src='" + smallImage.getUrl() + "#" + bigImage.getUrl() + "#" + oriImage.getUrl() + "' style='CURSOR: hand' id='" + content.getImageId() + "' bigImgUrl='" + bigImage.getUrl() + "' onclick='imageClick(this)' />";
 }
 //解析语音消息元素
 function convertSoundMsgToHtml(content) {
-    var second = content.getSecond(); //获取语音时长
+    var second = content.getSecond();//获取语音时长
     var downUrl = content.getDownUrl();
     if (webim.BROWSER_INFO.type == 'ie' && parseInt(webim.BROWSER_INFO.ver) <= 8) {
         return '[这是一条语音消息]demo暂不支持ie8(含)以下浏览器播放语音,语音URL:' + downUrl;
@@ -460,10 +459,10 @@ function convertGroupTipMsgToHtml(content) {
     var maxIndex = WEB_IM_GROUP_TIP_MAX_USER_COUNT - 1;
     var opType, opUserId, userIdList;
     var memberCount;
-    opType = content.getOpType(); //群提示消息类型（操作类型）
-    opUserId = content.getOpUserId(); //操作人id
+    opType = content.getOpType();//群提示消息类型（操作类型）
+    opUserId = content.getOpUserId();//操作人id
     switch (opType) {
-        case webim.GROUP_TIP_TYPE.JOIN: //加入群
+        case webim.GROUP_TIP_TYPE.JOIN://加入群
             userIdList = content.getUserIdList();
             console.log(content);
             //text += opUserId + "邀请了";
@@ -480,7 +479,7 @@ function convertGroupTipMsgToHtml(content) {
             memberCount = $('#user-icon-fans').html();
             $('#user-icon-fans').html(parseInt(memberCount) + 1);
             break;
-        case webim.GROUP_TIP_TYPE.QUIT: //退出群
+        case webim.GROUP_TIP_TYPE.QUIT://退出群
             text += opUserId + "离开房间";
             //房间成员数减1
             memberCount = parseInt($('#user-icon-fans').html());
@@ -488,7 +487,7 @@ function convertGroupTipMsgToHtml(content) {
                 $('#user-icon-fans').html(memberCount - 1);
             }
             break;
-        case webim.GROUP_TIP_TYPE.KICK: //踢出群
+        case webim.GROUP_TIP_TYPE.KICK://踢出群
             text += opUserId + "将";
             userIdList = content.getUserIdList();
             for (var m in userIdList) {
@@ -500,7 +499,7 @@ function convertGroupTipMsgToHtml(content) {
             }
             text += "踢出该群";
             break;
-        case webim.GROUP_TIP_TYPE.SET_ADMIN: //设置管理员
+        case webim.GROUP_TIP_TYPE.SET_ADMIN://设置管理员
             text += opUserId + "将";
             userIdList = content.getUserIdList();
             for (var m in userIdList) {
@@ -512,7 +511,7 @@ function convertGroupTipMsgToHtml(content) {
             }
             text += "设为管理员";
             break;
-        case webim.GROUP_TIP_TYPE.CANCEL_ADMIN: //取消管理员
+        case webim.GROUP_TIP_TYPE.CANCEL_ADMIN://取消管理员
             text += opUserId + "取消";
             userIdList = content.getUserIdList();
             for (var m in userIdList) {
@@ -525,7 +524,7 @@ function convertGroupTipMsgToHtml(content) {
             text += "的管理员资格";
             break;
 
-        case webim.GROUP_TIP_TYPE.MODIFY_GROUP_INFO: //群资料变更
+        case webim.GROUP_TIP_TYPE.MODIFY_GROUP_INFO://群资料变更
             text += opUserId + "修改了群资料：";
             var groupInfoList = content.getGroupInfoList();
             var type, value;
@@ -555,7 +554,7 @@ function convertGroupTipMsgToHtml(content) {
             }
             break;
 
-        case webim.GROUP_TIP_TYPE.MODIFY_MEMBER_INFO: //群成员资料变更(禁言时间)
+        case webim.GROUP_TIP_TYPE.MODIFY_MEMBER_INFO://群成员资料变更(禁言时间)
             text += opUserId + "修改了群成员资料:";
             var memberInfoList = content.getMemberInfoList();
             var userId, shutupTime;
@@ -650,28 +649,28 @@ function tlsGetUserSig(res) {
         if (accountType) {
             loginInfo.accountType = accountType;
             //带上usersig登录
-            sdkLogin(function() {
+            sdkLogin(function(){
                 //window.history.pushState(null, null, window.location.pathname);
-                window.setTimeout(function() {
+                window.setTimeout(function () {
                     //在进群之后才能发送登录消息，不然有可能自己收不到
                     sendCustomLoginMsg();
-                }, 1000);
+                },1000);
                 showLogoutForm();
 
                 sendData({
-                    Action: 'EnterGroup',
-                    userid: webim.Tool.getQueryString("identifier"), // string  用户id
-                    liveuserid: webim.Tool.getQueryString('userid'), // string  主播id
-                    flag: webim.Tool.getQueryString('type'), // 0:直播 1:点播
+                    Action	:'EnterGroup',
+                    userid	:webim.Tool.getQueryString("identifier"),// string	用户id
+                    liveuserid	:webim.Tool.getQueryString('userid'),// string	主播id
+                    flag	:webim.Tool.getQueryString('type'), // 0:直播 1:点播
                     groupid: webim.Tool.getQueryString('type') == 0 ? avChatRoomId : webim.Tool.getQueryString('fileid'),
                     nickname: loginInfo.identifierNick,
                     headpic: '',
-                    fileid: webim.Tool.getQueryString('fileid') || '' // 点播的情况下使用，用于区分是哪个视频
+                    fileid	:webim.Tool.getQueryString('fileid') || '' // 点播的情况下使用，用于区分是哪个视频
                 });
 
                 var indexUrl = window.location.search.substr(1);
-                indexUrl = delUrlParam(delUrlParam(indexUrl, 'tmpsig'), 'identifier');
-                window.history.pushState(null, null, window.location.pathname + '?' + indexUrl);
+                indexUrl = delUrlParam(delUrlParam(indexUrl,'tmpsig'),'identifier');
+                window.history.pushState(null, null, window.location.pathname+'?'+indexUrl);
 
                 //login success save userSig identifier to cookie
 
@@ -681,7 +680,7 @@ function tlsGetUserSig(res) {
                 webim.Tool.setCookie('identifierNick', loginInfo.identifierNick, 3600 * 24);
                 webim.Tool.setCookie('avChatRoomId', avChatRoomId, 3600 * 24);
 
-            }); //sdk登录
+            });//sdk登录
         } else {
             console.error('accountType非法');
             //alert('accountType非法');
@@ -702,9 +701,9 @@ function tlsGetUserSig(res) {
 function imageClick(imgObj) {
     var imgUrls = imgObj.src;
     var imgUrlArr = imgUrls.split("#"); //字符分割
-    var smallImgUrl = imgUrlArr[0]; //小图
-    var bigImgUrl = imgUrlArr[1]; //大图
-    var oriImgUrl = imgUrlArr[2]; //原图
+    var smallImgUrl = imgUrlArr[0];//小图
+    var bigImgUrl = imgUrlArr[1];//大图
+    var oriImgUrl = imgUrlArr[2];//原图
     webim.Log.info("小图url:" + smallImgUrl);
     webim.Log.info("大图url:" + bigImgUrl);
     webim.Log.info("原图url:" + oriImgUrl);
@@ -713,46 +712,46 @@ function imageClick(imgObj) {
 
 //切换播放audio对象
 function onChangePlayAudio(obj) {
-    if (curPlayAudio) { //如果正在播放语音
-        if (curPlayAudio != obj) { //要播放的语音跟当前播放的语音不一样
+    if (curPlayAudio) {//如果正在播放语音
+        if (curPlayAudio != obj) {//要播放的语音跟当前播放的语音不一样
             curPlayAudio.currentTime = 0;
             curPlayAudio.pause();
             curPlayAudio = obj;
         }
     } else {
-        curPlayAudio = obj; //记录当前播放的语音
+        curPlayAudio = obj;//记录当前播放的语音
     }
 }
 
 //单击评论图片
 function smsPicClick() {
-    if (!loginInfo.identifier) { //未登录
-        if (accountMode == 1) { //托管模式
+    if (!loginInfo.identifier) {//未登录
+        if (accountMode == 1) {//托管模式
             //调用tls登录服务
             //tlsLogin();
             //tls匿名登录，获取tmpsig
             anoLogin(loginInfo.sdkAppID);
-        } else { //独立模式
+        } else {//独立模式
             alert('请填写帐号和票据');
         }
         return;
     } else {
-        hideDiscussTool(); //隐藏评论工具栏
-        showDiscussForm(); //显示评论表单
+        hideDiscussTool();//隐藏评论工具栏
+        showDiscussForm();//显示评论表单
     }
 }
 
 //发送消息(普通消息)
 function onSendMsg() {
 
-    if (!loginInfo.identifier) { //未登录
-        if (accountMode == 1) { //托管模式
+    if (!loginInfo.identifier) {//未登录
+        if (accountMode == 1) {//托管模式
             //调用tls登录服务
             //tlsLogin();
 
             //tls匿名登录，获取tmpsig
             anoLogin(loginInfo.sdkAppID);
-        } else { //独立模式
+        } else {//独立模式
             alert('请填写帐号和票据');
         }
         return;
@@ -788,11 +787,11 @@ function onSendMsg() {
     if (!selSess) {
         selSess = new webim.Session(selType, selToID, selToID, selSessHeadUrl, Math.round(new Date().getTime() / 1000));
     }
-    var isSend = true; //是否为自己发送
-    var seq = -1; //消息序列，-1表示sdk自动生成，用于去重
-    var random = Math.round(Math.random() * 4294967296); //消息随机数，用于去重
-    var msgTime = Math.round(new Date().getTime() / 1000); //消息时间戳
-    var subType; //消息子类型
+    var isSend = true;//是否为自己发送
+    var seq = -1;//消息序列，-1表示sdk自动生成，用于去重
+    var random = Math.round(Math.random() * 4294967296);//消息随机数，用于去重
+    var msgTime = Math.round(new Date().getTime() / 1000);//消息时间戳
+    var subType;//消息子类型
     if (selType == webim.SESSION_TYPE.GROUP) {
         //群消息子类型如下：
         //webim.GROUP_MSG_SUB_TYPE.COMMON-普通消息,
@@ -822,7 +821,7 @@ function onSendMsg() {
         });
         text_obj = new webim.Msg.Elem.Text(msgtosend);
         msg.addText(text_obj);
-    } else { //有表情
+    } else {//有表情
 
         for (var i = 0; i < emotions.length; i++) {
             tmsg = msgtosend.substring(0, msgtosend.indexOf(emotions[i]));
@@ -847,20 +846,20 @@ function onSendMsg() {
             msg.addText(text_obj);
         }
     }
-    webim.sendMsg(msg, function(resp) {
-        if (selType == webim.SESSION_TYPE.C2C) { //私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
+    webim.sendMsg(msg, function (resp) {
+        if (selType == webim.SESSION_TYPE.C2C) {//私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
             showMsg(msg);
         }
         webim.Log.info("发消息成功");
         $("#send_msg_text").val('');
 
-        hideDiscussForm(); //隐藏评论表单
-        showDiscussTool(); //显示评论工具栏
-        hideDiscussEmotion(); //隐藏表情
-    }, function(err) {
-        if (10010 == err.ErrorCode) {
+        hideDiscussForm();//隐藏评论表单
+        showDiscussTool();//显示评论工具栏
+        hideDiscussEmotion();//隐藏表情
+    }, function (err) {
+        if(10010 == err.ErrorCode) {
             alert('直播已结束(' + err.ErrorCode + ')');
-        } else {
+        }else{
             //webim.Log.error("发消息失败:" + err.ErrorInfo);
             //alert("发消息失败:" + err.ErrorInfo);
 
@@ -871,13 +870,13 @@ function onSendMsg() {
 //发送消息(群点赞消息)
 function sendGroupLoveMsg() {
 
-    if (!loginInfo.identifier) { //未登录
-        if (accountMode == 1) { //托管模式
+    if (!loginInfo.identifier) {//未登录
+        if (accountMode == 1) {//托管模式
             //调用tls登录服务
             //tlsLogin();
             //tls匿名登录，获取tmpsig
             anoLogin(loginInfo.sdkAppID);
-        } else { //独立模式
+        } else {//独立模式
             alert('请填写帐号和票据');
         }
         return;
@@ -891,10 +890,10 @@ function sendGroupLoveMsg() {
     if (!selSess) {
         selSess = new webim.Session(selType, selToID, selToID, selSessHeadUrl, Math.round(new Date().getTime() / 1000));
     }
-    var isSend = true; //是否为自己发送
-    var seq = -1; //消息序列，-1表示sdk自动生成，用于去重
-    var random = Math.round(Math.random() * 4294967296); //消息随机数，用于去重
-    var msgTime = Math.round(new Date().getTime() / 1000); //消息时间戳
+    var isSend = true;//是否为自己发送
+    var seq = -1;//消息序列，-1表示sdk自动生成，用于去重
+    var random = Math.round(Math.random() * 4294967296);//消息随机数，用于去重
+    var msgTime = Math.round(new Date().getTime() / 1000);//消息时间戳
     //群消息子类型如下：
     //webim.GROUP_MSG_SUB_TYPE.COMMON-普通消息,
     //webim.GROUP_MSG_SUB_TYPE.LOVEMSG-点赞消息，优先级最低
@@ -917,35 +916,35 @@ function sendGroupLoveMsg() {
     var text_obj = new webim.Msg.Elem.Text(msgtosend);
     msg.addText(text_obj);
 
-    webim.sendMsg(msg, function(resp) {
-        if (selType == webim.SESSION_TYPE.C2C) { //私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
+    webim.sendMsg(msg, function (resp) {
+        if (selType == webim.SESSION_TYPE.C2C) {//私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
             showMsg(msg);
         }
         webim.Log.info("点赞成功");
 
         sendData({
-            Action: 'ChangeCount',
-            userid: webim.Tool.getQueryString('userid'), // string  用户id
-            type: 1, // 0:修改观看数量 1：修改点赞数量
-            optype: 0, // 0:增加 1:减少
-            flag: webim.Tool.getQueryString('type'), // 0:直播 1:点播
-            fileid: webim.Tool.getQueryString('fileid') || '' // 点播的情况下使用，用于区分是哪个视频
+            Action	:'ChangeCount',
+            userid	:webim.Tool.getQueryString('userid'),// string	用户id
+            type	:1, // 0:修改观看数量 1：修改点赞数量
+            optype	:0, // 0:增加 1:减少
+            flag	:webim.Tool.getQueryString('type'), // 0:直播 1:点播
+            fileid	:webim.Tool.getQueryString('fileid') || '' // 点播的情况下使用，用于区分是哪个视频
         });
-    }, function(err) {
+    }, function (err) {
         webim.Log.error("发送点赞消息失败:" + err.ErrorInfo);
         alert("发送点赞消息失败:" + err.ErrorInfo);
     });
 }
 //发送自定义登录消息
-function sendCustomLoginMsg(type, callback) {
-    console.log('sendCustomLoginMsg', type);
+function sendCustomLoginMsg(type, callback){
+    console.log('sendCustomLoginMsg',type);
     if (!selSess) {
         selSess = new webim.Session(selType, selToID, selToID, selSessHeadUrl, Math.round(new Date().getTime() / 1000));
     }
-    var isSend = true; //是否为自己发送
-    var seq = -1; //消息序列，-1表示sdk自动生成，用于去重
-    var random = Math.round(Math.random() * 4294967296); //消息随机数，用于去重
-    var msgTime = Math.round(new Date().getTime() / 1000); //消息时间戳
+    var isSend = true;//是否为自己发送
+    var seq = -1;//消息序列，-1表示sdk自动生成，用于去重
+    var random = Math.round(Math.random() * 4294967296);//消息随机数，用于去重
+    var msgTime = Math.round(new Date().getTime() / 1000);//消息时间戳
     //群消息子类型如下：
     //webim.GROUP_MSG_SUB_TYPE.COMMON-普通消息,
     //webim.GROUP_MSG_SUB_TYPE.LOVEMSG-点赞消息，优先级最低
@@ -968,37 +967,35 @@ function sendCustomLoginMsg(type, callback) {
     var text_obj = new webim.Msg.Elem.Text(msgtosend);
     msg.addText(text_obj);
 
-    webim.sendMsg(msg, function(resp) {
-        if (selType == webim.SESSION_TYPE.C2C) { //私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
+    webim.sendMsg(msg, function (resp) {
+        if (selType == webim.SESSION_TYPE.C2C) {//私聊时，在聊天窗口手动添加一条发的消息，群聊时，长轮询接口会返回自己发的消息
             showMsg(msg);
         }
-        console.log('sendCustomLoginMsg success', resp);
+        console.log('sendCustomLoginMsg success',resp);
         callback && callback.call();
-    }, function(err) {
+    }, function (err) {
         //alert("发送消息失败:" + err.ErrorInfo);
     });
 }
 //切换文本框和工具栏
-function switchForm() {
-    if ($("#video-discuss-form").is(':visible')) {
+function switchForm(){
+    if($("#video-discuss-form").is(':visible')){
         hideDiscussForm();
         showDiscussTool();
     }
 }
 //显示登出框
-function showLogoutForm() {
+function showLogoutForm(){
     $(".j-btn-logout").show();
 }
-
-function hideLogoutForm() {
+function hideLogoutForm(){
     $(".j-btn-logout").hide();
 }
 //显示登录框
-function showLoginForm() {
+function showLoginForm(){
     $("#j-pane-login").show();
 }
-
-function hideLoginForm() {
+function hideLoginForm(){
     $("#j-pane-login").hide();
 }
 //隐藏评论文本框
@@ -1051,7 +1048,7 @@ function initEmotionUL() {
             "id": webim.Emotions[index][0],
             "src": webim.Emotions[index][1],
             "style": "cursor:pointer;"
-        }).click(function() {
+        }).click(function () {
             selectEmotionImg(this);
         });
         $('<li>').append(emotions).appendTo($('#emotionUL'));
@@ -1060,12 +1057,12 @@ function initEmotionUL() {
 
 //打开或显示表情
 function showEmotionDialog() {
-    if (openEmotionFlag) { //如果已经打开
+    if (openEmotionFlag) {//如果已经打开
         openEmotionFlag = false;
-        hideDiscussEmotion(); //关闭
-    } else { //如果未打开
+        hideDiscussEmotion();//关闭
+    } else {//如果未打开
         openEmotionFlag = true;
-        showDiscussEmotion(); //打开
+        showDiscussEmotion();//打开
     }
 }
 //选中表情
@@ -1076,48 +1073,48 @@ function selectEmotionImg(selImg) {
 //退出大群
 function quitBigGroup() {
     var options = {
-        'GroupId': avChatRoomId //群id
+        'GroupId': avChatRoomId//群id
     };
     webim.quitBigGroup(
-        options,
-        function(resp) {
-            webim.Log.info('退群成功');
-            $("#video_sms_list").find("li").remove();
-            //webim.Log.error('进入另一个大群:'+avChatRoomId2);
-            //applyJoinBigGroup(avChatRoomId2);//加入大群
-        },
-        function(err) {
-            alert(err.ErrorInfo);
-        }
+            options,
+            function (resp) {
+                webim.Log.info('退群成功');
+                $("#video_sms_list").find("li").remove();
+                //webim.Log.error('进入另一个大群:'+avChatRoomId2);
+                //applyJoinBigGroup(avChatRoomId2);//加入大群
+            },
+            function (err) {
+                alert(err.ErrorInfo);
+            }
     );
 }
 
-function sendData(data) {
+function sendData(data){
     return $.ajax({
         type: "POST",
         url: SERVER,
         data: JSON.stringify(data),
-        crossDomain: true,
+        crossDomain: true ,
         dataType: 'json'
-    }).done(function(data, textStatus, jqXHR) {
+    }).done(function (data, textStatus, jqXHR) {
         console.log('done', data);
-    }).fail(function(jqXHR, textStatus, errorThrown) {
+    }).fail(function (jqXHR, textStatus, errorThrown) {
 
     });
 }
 
-function delUrlParam(url, delParam) {
+function delUrlParam(url,delParam){
     var reg = new RegExp("(^|&)" + delParam + "=([^&]*)(&|$)", "i"); //构造一个含有目标参数的正则表达式对象
-    return url.replace(reg, '');
+    return url.replace(reg,'');
 }
 
 //登出
 function logout() {
     sendData({
-        Action: 'QuitGroup',
-        userid: webim.Tool.getCookie('identifier'), // string   用户id
-        liveuserid: webim.Tool.getQueryString('userid'), // string  主播id
-        flag: webim.Tool.getQueryString('type'), // 0:直播 1:点播
+        Action	:'QuitGroup',
+        userid	:webim.Tool.getCookie('identifier'),// string	用户id
+        liveuserid	:webim.Tool.getQueryString('userid'),// string	主播id
+        flag	:webim.Tool.getQueryString('type'), // 0:直播 1:点播
         groupid: webim.Tool.getQueryString('type') == 0 ? avChatRoomId : webim.Tool.getQueryString('fileid') // flag为0情况下填群组id，为1情况下填fileid
     });
 
@@ -1127,17 +1124,17 @@ function logout() {
     webim.Tool.delCookie('accountType');
 
     //发送退出消息
-    sendCustomLoginMsg(3, function() {
+    sendCustomLoginMsg(3, function(){
 
         webim.logout(
-            function(resp) {
+            function (resp) {
                 webim.Log.info('登出成功');
                 loginInfo.identifier = null;
                 loginInfo.userSig = null;
                 $("#video_sms_list").find("li").remove();
 
                 var indexUrl = window.location.search.substr(1);
-                indexUrl = delUrlParam(delUrlParam(indexUrl, 'tmpsig'), 'identifier');
+                indexUrl = delUrlParam(delUrlParam(indexUrl,'tmpsig'),'identifier');
                 console.log(indexUrl);
 
                 window.location.search = indexUrl;
@@ -1150,7 +1147,7 @@ function logout() {
 
 //监听 申请加群 系统消息
 function onApplyJoinGroupRequestNotify(notify) {
-    webim.Log.warn("执行 加群申请 回调：" + JSON.stringify(notify));
+    webim.Log.warn("执行 加群申请 回调："+JSON.stringify(notify));
     var timestamp = notify.MsgTime;
     var reportTypeCh = "[申请加群]";
     var content = notify.Operator_Account + "申请加入你的群";
@@ -1159,106 +1156,106 @@ function onApplyJoinGroupRequestNotify(notify) {
 
 //监听 申请加群被同意 系统消息
 function onApplyJoinGroupAcceptNotify(notify) {
-    webim.Log.warn("执行 申请加群被同意 回调：" + JSON.stringify(notify));
+    webim.Log.warn("执行 申请加群被同意 回调："+JSON.stringify(notify));
     var reportTypeCh = "[申请加群被同意]";
     var content = notify.Operator_Account + "同意你的加群申请，附言：" + notify.RemarkInfo;
     showGroupSystemMsg(notify.ReportType, reportTypeCh, notify.GroupId, notify.GroupName, content, notify.MsgTime);
 }
 //监听 申请加群被拒绝 系统消息
 function onApplyJoinGroupRefuseNotify(notify) {
-    webim.Log.warn("执行 申请加群被拒绝 回调：" + JSON.stringify(notify));
+    webim.Log.warn("执行 申请加群被拒绝 回调："+JSON.stringify(notify));
     var reportTypeCh = "[申请加群被拒绝]";
     var content = notify.Operator_Account + "拒绝了你的加群申请，附言：" + notify.RemarkInfo;
     showGroupSystemMsg(notify.ReportType, reportTypeCh, notify.GroupId, notify.GroupName, content, notify.MsgTime);
 }
 //监听 被踢出群 系统消息
 function onKickedGroupNotify(notify) {
-    webim.Log.warn("执行 被踢出群  回调：" + JSON.stringify(notify));
+    webim.Log.warn("执行 被踢出群  回调："+JSON.stringify(notify));
     var reportTypeCh = "[被踢出群]";
     var content = "你被管理员" + notify.Operator_Account + "踢出该群";
     showGroupSystemMsg(notify.ReportType, reportTypeCh, notify.GroupId, notify.GroupName, content, notify.MsgTime);
 }
 //监听 解散群 系统消息
 function onDestoryGroupNotify(notify) {
-    webim.Log.warn("执行 解散群 回调：" + JSON.stringify(notify));
+    webim.Log.warn("执行 解散群 回调："+JSON.stringify(notify));
     var reportTypeCh = "[群被解散]";
     var content = "群主" + notify.Operator_Account + "已解散该群";
     showGroupSystemMsg(notify.ReportType, reportTypeCh, notify.GroupId, notify.GroupName, content, notify.MsgTime);
 }
 //监听 创建群 系统消息
 function onCreateGroupNotify(notify) {
-    webim.Log.warn("执行 创建群 回调：" + JSON.stringify(notify));
+    webim.Log.warn("执行 创建群 回调："+JSON.stringify(notify));
     var reportTypeCh = "[创建群]";
     var content = "你创建了该群";
     showGroupSystemMsg(notify.ReportType, reportTypeCh, notify.GroupId, notify.GroupName, content, notify.MsgTime);
 }
 //监听 被邀请加群 系统消息
 function onInvitedJoinGroupNotify(notify) {
-    webim.Log.warn("执行 被邀请加群  回调: " + JSON.stringify(notify));
+    webim.Log.warn("执行 被邀请加群  回调: "+JSON.stringify(notify));
     var reportTypeCh = "[被邀请加群]";
     var content = "你被管理员" + notify.Operator_Account + "邀请加入该群";
     showGroupSystemMsg(notify.ReportType, reportTypeCh, notify.GroupId, notify.GroupName, content, notify.MsgTime);
 }
 //监听 主动退群 系统消息
 function onQuitGroupNotify(notify) {
-    webim.Log.warn("执行 主动退群  回调： " + JSON.stringify(notify));
+    webim.Log.warn("执行 主动退群  回调： "+JSON.stringify(notify));
     var reportTypeCh = "[主动退群]";
     var content = "你退出了该群";
     showGroupSystemMsg(notify.ReportType, reportTypeCh, notify.GroupId, notify.GroupName, content, notify.MsgTime);
 }
 //监听 被设置为管理员 系统消息
 function onSetedGroupAdminNotify(notify) {
-    webim.Log.warn("执行 被设置为管理员  回调：" + JSON.stringify(notify));
+    webim.Log.warn("执行 被设置为管理员  回调："+JSON.stringify(notify));
     var reportTypeCh = "[被设置为管理员]";
     var content = "你被群主" + notify.Operator_Account + "设置为管理员";
     showGroupSystemMsg(notify.ReportType, reportTypeCh, notify.GroupId, notify.GroupName, content, notify.MsgTime);
 }
 //监听 被取消管理员 系统消息
 function onCanceledGroupAdminNotify(notify) {
-    webim.Log.warn("执行 被取消管理员 回调：" + JSON.stringify(notify));
+    webim.Log.warn("执行 被取消管理员 回调："+JSON.stringify(notify));
     var reportTypeCh = "[被取消管理员]";
     var content = "你被群主" + notify.Operator_Account + "取消了管理员资格";
     showGroupSystemMsg(notify.ReportType, reportTypeCh, notify.GroupId, notify.GroupName, content, notify.MsgTime);
 }
 //监听 群被回收 系统消息
 function onRevokeGroupNotify(notify) {
-    webim.Log.warn("执行 群被回收 回调：" + JSON.stringify(notify));
+    webim.Log.warn("执行 群被回收 回调："+JSON.stringify(notify));
     var reportTypeCh = "[群被回收]";
     var content = "该群已被回收";
     showGroupSystemMsg(notify.ReportType, reportTypeCh, notify.GroupId, notify.GroupName, content, notify.MsgTime);
 }
 //监听 用户自定义 群系统消息
 function onCustomGroupNotify(notify) {
-    webim.Log.warn("执行 用户自定义系统消息 回调：" + JSON.stringify(notify));
+    webim.Log.warn("执行 用户自定义系统消息 回调："+JSON.stringify(notify));
     var reportTypeCh = "[用户自定义系统消息]";
-    var content = notify.UserDefinedField; //群自定义消息数据
+    var content = notify.UserDefinedField;//群自定义消息数据
     showGroupSystemMsg(notify.ReportType, reportTypeCh, notify.GroupId, notify.GroupName, content, notify.MsgTime);
 }
 
 //监听 群资料变化 群提示消息
 function onGroupInfoChangeNotify(groupInfo) {
-    webim.Log.warn("执行 群资料变化 回调： " + JSON.stringify(groupInfo));
+    webim.Log.warn("执行 群资料变化 回调： "+JSON.stringify(groupInfo));
     var groupId = groupInfo.GroupId;
-    var newFaceUrl = groupInfo.GroupFaceUrl; //新群组图标, 为空，则表示没有变化
-    var newName = groupInfo.GroupName; //新群名称, 为空，则表示没有变化
-    var newOwner = groupInfo.OwnerAccount; //新的群主id, 为空，则表示没有变化
-    var newNotification = groupInfo.GroupNotification; //新的群公告, 为空，则表示没有变化
-    var newIntroduction = groupInfo.GroupIntroduction; //新的群简介, 为空，则表示没有变化
+    var newFaceUrl = groupInfo.GroupFaceUrl;//新群组图标, 为空，则表示没有变化
+    var newName = groupInfo.GroupName;//新群名称, 为空，则表示没有变化
+    var newOwner = groupInfo.OwnerAccount;//新的群主id, 为空，则表示没有变化
+    var newNotification = groupInfo.GroupNotification;//新的群公告, 为空，则表示没有变化
+    var newIntroduction = groupInfo.GroupIntroduction;//新的群简介, 为空，则表示没有变化
 
     if (newName) {
         //更新群组列表的群名称
         //To do
-        webim.Log.warn("群id=" + groupId + "的新名称为：" + newName);
+        webim.Log.warn("群id="+groupId+"的新名称为："+newName);
     }
 }
 
 //显示一条群组系统消息
 function showGroupSystemMsg(type, typeCh, group_id, group_name, msg_content, msg_time) {
 
-    var sysMsgStr = "收到一条群系统消息: type=" + type + ", typeCh=" + typeCh + ",群ID=" + group_id + ", 群名称=" + group_name + ", 内容=" + msg_content + ", 时间=" + webim.Tool.formatTimeStamp(msg_time);
+    var sysMsgStr="收到一条群系统消息: type="+type+", typeCh="+typeCh+",群ID="+group_id+", 群名称="+group_name+", 内容="+msg_content+", 时间="+webim.Tool.formatTimeStamp(msg_time);
     webim.Log.warn(sysMsgStr);
-    if (5 == type) {
-        alert('直播已结束'); //执行退群操作
+    if(5 == type){
+        alert('直播已结束');//执行退群操作
 
         hideDiscussForm();
         hideDiscussTool();

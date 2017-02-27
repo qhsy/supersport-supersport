@@ -7,7 +7,7 @@
  * 参考文档：https://www.qcloud.com/document/product/454/8046#step4.3A-web.E5.90.8E.E5.8F.B0.E6.90.AD.E5.BB.BA
  * @type {string}
  */
-var SERVER = ''; //这里需要改成您实际搭建的 PHP 后台服务地址
+var SERVER = '';//这里需要改成您实际搭建的 PHP 后台服务地址
 
 
 /**
@@ -22,7 +22,7 @@ var SERVER = ''; //这里需要改成您实际搭建的 PHP 后台服务地址
  * 参数说明：0-表示独立模式，1-表示托管模式
  * @type {number}
  */
-var accountMode = 1; //请根据您的情况自行配置
+var accountMode = 0;//请根据您的情况自行配置
 
 /**
  * 变量说明：IM SDK 的应用配置信息
@@ -31,7 +31,7 @@ var accountMode = 1; //请根据您的情况自行配置
  * 简单说明：这里的配置，要跟您的小直播IM SDK的配置保持一致。 (选填)
  * @type {number}
  */
-var sdkAppID = 1400018957; //请根据您的情况自行配置，这里可以不填，分享链接会带上这个参数，页面可以从链接中获取。
+var sdkAppID    = 1400018957; //请根据您的情况自行配置，这里可以不填，分享链接会带上这个参数，页面可以从链接中获取。
 var accountType = 8747; //请根据您的情况自行配置，这里可以不填，分享链接会带上这个参数，页面可以从链接中获取。
 
 /**
@@ -40,8 +40,8 @@ var accountType = 8747; //请根据您的情况自行配置，这里可以不填
  * @type {string}
  */
 var avChatRoomId = '@#aJIPTVAEE'; //这里可以不填，分享链接会带上这个参数，页面可以从链接中获取。
-if (webim.Tool.getQueryString("groupid")) {
-    avChatRoomId = webim.Tool.getQueryString("groupid"); //用户自定义房间群id
+if(webim.Tool.getQueryString("groupid")){
+    avChatRoomId=webim.Tool.getQueryString("groupid");//用户自定义房间群id
 }
 
 /**
@@ -50,9 +50,9 @@ if (webim.Tool.getQueryString("groupid")) {
  * @type {string}
  */
 var selType = webim.SESSION_TYPE.GROUP;
-var selToID = avChatRoomId; //当前选中聊天id（当聊天类型为私聊时，该值为好友帐号，否则为群号）
-var selSess = null; //当前聊天会话
-var selSessHeadUrl = 'img/2017.jpg'; //默认群组头像(选填)
+var selToID = avChatRoomId;//当前选中聊天id（当聊天类型为私聊时，该值为好友帐号，否则为群号）
+var selSess = null;//当前聊天会话
+var selSessHeadUrl = '../img/2017.jpg';//默认群组头像(选填)
 
 /**
  * 变量说明 ：IM SDK 的应用配置信息
@@ -66,7 +66,7 @@ var loginInfo = {
     'identifier': '', //当前用户ID,必须是否字符串类
     'identifierNick': '', //当前用户昵称
     'userSig': '', //当前用户身份凭证，必须是字符串类型
-    'headurl': '' //当前用户默认头像
+    'headurl': ''//当前用户默认头像
 };
 
 //监听（多终端同步）群系统消息方法，方法都定义在base.js文件中
@@ -84,13 +84,13 @@ var onGroupSystemNotifys = {
     //"9": onSetedGroupAdminNotify, //设置管理员(被设置者接收,暂不支持)
     //"10": onCanceledGroupAdminNotify, //取消管理员(被取消者接收,暂不支持)
     "11": onRevokeGroupNotify, //群已被回收(全员接收)
-    "255": onCustomGroupNotify //用户自定义通知(默认全员接收)
+    "255": onCustomGroupNotify//用户自定义通知(默认全员接收)
 };
 
 
 //监听连接状态回调变化事件
-var onConnNotify = function(resp) {
-    switch (resp.ErrorCode) {
+var onConnNotify=function(resp){
+    switch(resp.ErrorCode){
         case webim.CONNECTION_STATUS.ON:
             //webim.Log.warn('连接状态正常...');
             break;
@@ -98,7 +98,7 @@ var onConnNotify = function(resp) {
             webim.Log.warn('连接已断开，无法收到新消息，请检查下你的网络是否正常');
             break;
         default:
-            webim.Log.error('未知连接状态,status=' + resp.ErrorCode);
+            webim.Log.error('未知连接状态,status='+resp.ErrorCode);
             break;
     }
 };
@@ -108,25 +108,25 @@ var listeners = {
     "onConnNotify": onConnNotify, //选填
     "jsonpCallback": jsonpCallback, //IE9(含)以下浏览器用到的jsonp回调函数,移动端可不填，pc端必填
     "onBigGroupMsgNotify": onBigGroupMsgNotify, //监听新消息(大群)事件，必填
-    "onMsgNotify": onMsgNotify, //监听新消息(私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息)事件，必填
+    "onMsgNotify": onMsgNotify,//监听新消息(私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息)事件，必填
     "onGroupSystemNotifys": onGroupSystemNotifys, //监听（多终端同步）群系统消息事件，必填
-    "onGroupInfoChangeNotify": onGroupInfoChangeNotify //监听群资料变化事件，选填
+    "onGroupInfoChangeNotify": onGroupInfoChangeNotify//监听群资料变化事件，选填
 };
 
-var isAccessFormalEnv = true; //是否访问正式环境
+var isAccessFormalEnv=true;//是否访问正式环境
 
-if (webim.Tool.getQueryString("isAccessFormalEnv") == "false") {
-    isAccessFormalEnv = false; //访问测试环境
+if(webim.Tool.getQueryString("isAccessFormalEnv")=="false"){
+    isAccessFormalEnv=false;//访问测试环境
 }
 
-var isLogOn = false; //是否在浏览器控制台打印 im sdk日志
+var isLogOn = false;//是否在浏览器控制台打印 im sdk日志
 
 //其他对象，选填
 var options = {
     'isAccessFormalEnv': isAccessFormalEnv, //是否访问正式环境，默认访问正式，选填
-    'isLogOn': isLogOn //是否开启控制台打印日志,默认开启，选填
+    'isLogOn': isLogOn//是否开启控制台打印日志,默认开启，选填
 };
-var openEmotionFlag = false; //是否打开表情，目前小直播IM SDK暂不支持发送表情
+var openEmotionFlag = false;//是否打开表情，目前小直播IM SDK暂不支持发送表情
 /**
  * IM Web SDK 参数配置
  * ******************************* End *************************************

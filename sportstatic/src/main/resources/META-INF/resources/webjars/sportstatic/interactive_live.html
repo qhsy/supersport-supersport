@@ -4,15 +4,16 @@
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
-<title>小直播</title>
-<meta name="keywords" content="">
-<meta name="description" content="小直播——直播分享">
+<title>果冻体育-直播</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="msapplication-tap-highlight" content="no">
-<link rel="stylesheet" href="//res.wx.qq.com/open/libs/weui/1.0.2/weui.min.css">
-<link rel="stylesheet" href="./css/mobile.css">
+<meta name="author" content="">
+<link rel="stylesheet" type="text/css" href="../static/css/base.css">
+<link rel="stylesheet" href="./live/css/mobile.css">
 </head>
 <body>
     <div id="j-video-page" class="video-page" style="display: block">
@@ -34,58 +35,61 @@
                             </div>
                         </div>
                     </div>
-                    <a class="j-btn-logout btn btn-logout" style="display: none;">退出</a>
+                    <!-- <a class="j-btn-logout btn btn-logout" style="display: none;">退出</a> -->
                 </div>
-                <div class="video-pane-body">
+                <div class="video-pane-body" style="display: none;">
                     <div class="video-discuss">
                         <ul class="video-sms-list" id="video_sms_list"></ul>
                         <div class="video-discuss-pane">
-                            <div class="pane-login" id="j-pane-login" style="display: none">
-                                <!--<span class="like-icon zoomIn green"></span>-->
-                                <a class="btn video-discuss-login j-btn-login">用户登录</a>
-                                <a class="btn video-discuss-anologin j-btn-anologin">游客登录</a>
-                            </div>
-                            <div class="video-discuss-tool" id="video-discuss-tool" style="display: none">
-                                <!--<span class="like-icon zoomIn green"></span>-->
-                                <a class="video-discuss-sms j-btn-sms"></a>
-                                <a class="video-discuss-like j-btn-like"></a>
-                            </div>
-                            <div class="video-discuss-form" id="video-discuss-form" style="display: none">
-                                <input type="text" class="video-discuss-input" id="send_msg_text">
+                            <a class="video-discuss-like j-btn-like"></a>
+                            <div class="video-discuss-form" id="video-discuss-form">
+                                <!-- <input type="text" class="video-discuss-input" id="send_msg_text"> -->
                                 <!--<a class="video-discuss-face j-btn-show-emotion"></a>-->
+                                <div class="video-discuss-input"></div>
                                 <button class="video-discuss-button j-btn-send-msg">发送</button>
-                            </div>
-                            <div class="video-discuss-emotion" id="video-discuss-emotion" style="display: none">
-                                <div class="video-emotion-pane">
-                                    <ul id="emotionUL">
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="end-info" style="display: none;">
+                    <h1>直播已结束</h1>
+                    <span>查看热门直播</span>
+                </div>
             </div>
             <!--聊天部分 end-->
         </div>
-        <script type="text/javascript" src="js/lib.js"></script>
+        <script type="text/javascript" src="script/common.min.js"></script>
+        <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript" src="./live/js/lib.js"></script>
         <!--引入webim sdk-->
-        <script type="text/javascript" src="sdk/webim.js"></script>
-        <script type="text/javascript" src="sdk/json2.js"></script>
+        <script type="text/javascript" src="./live/sdk/webim.js"></script>
+        <script type="text/javascript" src="./live/sdk/json2.js"></script>
         <!--TLS web sdk(只用于托管模式，独立模式不用引入)-->
         <script type="text/javascript" src="https://tls.qcloud.com/libs/api.min.js"></script>
-        <!--encrypt.min.js 只在需要直接调用访客登录接口时需要引用-->
-        <script type="text/javascript" src="https://tls.qcloud.com/libs/encrypt.min.js"></script>
         <!--webim demo js-->
-        <script type="text/javascript" src="js/base.js"></script>
-        <script type="text/javascript" src="js/config.js"></script>
-        <script type="text/javascript" src="js/xzb.js"></script>
-        <!-- 微信和手Q 二次分享组件 -->
+        <script type="text/javascript" src="./live/js/base.js"></script>
+        <script type="text/javascript" src="./live/js/config.js"></script>
+        <script type="text/javascript" src="./live/js/xzb.js"></script>
         <script type="text/javascript">
-            if(UA.wx){
-                document.write('<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"><\/script>');
-            }else if(UA.qq){
-                document.write('<script src="http://open.mobile.qq.com/sdk/qqapi.js?_bid=152"><\/script>');
-            }
+            reqwest({
+                url: '/api/userController/shareContent',
+                method: 'post',
+                data: '{"contentCode": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": " "}}',
+                type: 'json',
+                contentType: 'application/json',
+                success: function(resp) {
+                    if(resp.status == 1){
+                        shareWeiXin({
+                            'url':'/api/wechatController/configInfo',
+                            'imgUrl':resp.iconUrl,
+                            'title':resp.title,
+                            'link':window.location.href,
+                            'desc':resp.content
+                        });
+                    }
+                }
+            });
         </script>
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
     </body>
 </html>
