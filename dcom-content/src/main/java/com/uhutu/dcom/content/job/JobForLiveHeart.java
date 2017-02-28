@@ -32,22 +32,22 @@ public class JobForLiveHeart extends RootJob {
 	@Override
 	public MResult process() {
 
-//		List<CnLiveVideoDetail> ds = JdbcHelper.queryForList(CnLiveVideoDetail.class, "", "zc desc",
-//				"status='1' and ((zu is null and zc<DATE_SUB(NOW(),INTERVAL 90 SECOND)) or ( zu is not null and zu<DATE_SUB(NOW(),INTERVAL 90 SECOND) ))  ",
-//				new MDataMap());
-//		if (ds != null && !ds.isEmpty()) {
-//			for (int i = 0; i < ds.size(); i++) {
-//				CnLiveVideoDetail cd = ds.get(i);
-//				cd.setStatus("0");
-//				JdbcHelper.update(cd, "status", "za");
-//				if (StringUtils.isNotBlank(cd.getContentCode())) {
-//					CnContentBasicinfo cn = JdbcHelper.queryOne(CnContentBasicinfo.class, "code", cd.getContentCode());
-//					cn.setStatus("dzsd4699100110010002");
-//					JdbcHelper.update(cn, "status", "za");
-//				}
-//				RedPackComponet.getInstance().doLiveProfit(cd.getBusiCode());
-//			}
-//		}
+		List<CnLiveVideoDetail> ds = JdbcHelper.queryForList(CnLiveVideoDetail.class, "", "zc desc",
+				"status='1' and ((zu is null and zc<DATE_SUB(NOW(),INTERVAL 90 SECOND)) or ( zu is not null and zu<DATE_SUB(NOW(),INTERVAL 90 SECOND) ))  ",
+				new MDataMap());
+		if (ds != null && !ds.isEmpty()) {
+			for (int i = 0; i < ds.size(); i++) {
+				CnLiveVideoDetail cd = ds.get(i);
+				cd.setStatus("0");
+				JdbcHelper.update(cd, "status", "za");
+				if (StringUtils.isNotBlank(cd.getContentCode())) {
+					CnContentBasicinfo cn = JdbcHelper.queryOne(CnContentBasicinfo.class, "code", cd.getContentCode());
+					cn.setStatus("dzsd4699100110010002");
+					JdbcHelper.update(cn, "status", "za");
+				}
+				RedPackComponet.getInstance().doLiveProfit(cd.getBusiCode());
+			}
+		}
 		return new MResult();
 	}
 

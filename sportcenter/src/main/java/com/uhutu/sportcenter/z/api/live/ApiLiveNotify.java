@@ -65,7 +65,9 @@ public class ApiLiveNotify extends RootApiBase<ApiLiveNotifyInput, ApiLiveNotify
 	public void updateLiveStatus(String streamId) {
 		MDataMap mWhereMap = new MDataMap();
 		mWhereMap.put("streamId", streamId);
-		CnLiveVideoDetail videoDetail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "", "", mWhereMap);
+		CnLiveVideoDetail videoDetail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", "",
+				" status='1' and ((zu is null and zc<DATE_SUB(NOW(),INTERVAL 90 SECOND)) or ( zu is not null and zu<DATE_SUB(NOW(),INTERVAL 90 SECOND) )) and stream_id=:streamId ",
+				mWhereMap);
 		if (videoDetail != null) {
 			videoDetail.setStatus(ContentEnum.LIVEEND.getCode());
 			JdbcHelper.update(videoDetail, "status", "za");
