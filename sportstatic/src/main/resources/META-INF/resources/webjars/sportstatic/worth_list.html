@@ -42,7 +42,7 @@
 				</a>
 			</template>
 			<template v-else>
-				<template v-if="moment.contentType == 'dzsd4107100110030007'">
+				<template v-if="moment.contentType == 'dzsd4107100110030007' moment.contentType == 'dzsd4107100110030009'">
 					<a href="javascript:;" @click="live(moment.liveVideoDetailForApi.userCode,moment.liveVideoDetailForApi.nickName,moment.liveVideoDetailForApi.aboutHead,moment.liveVideoDetailForApi.code,moment.liveVideoDetailForApi.chatCode,moment.liveVideoDetailForApi.watch,moment.liveVideoDetailForApi.praise,moment.liveVideoDetailForApi.addressName,moment.liveVideoDetailForApi.title,moment.code)">
 						<moment :moment="moment"></moment>
 					</a>
@@ -66,7 +66,9 @@
 		<template v-else>
 			<img src="../static/img/lazyload.jpg" v-lazyload="moment.cover" alt="">
 		</template>
-		<span v-if="moment.mark == 'dzsd4107100110100001' && moment.contentType == 'dzsd4107100110030007'" class="state">直播中</span>
+		<span v-if="moment.contentType == 'dzsd4107100110030007'" class="state">正在直播</span>
+		<span v-if="moment.contentType == 'dzsd4107100110030009'" class="state">回放</span>
+		<span v-if="moment.mark == 'dzsd4107100110100001' && moment.contentType == 'dzsd4107100110030006'" class="state">正在直播</span>
 		<span v-if="moment.mark == 'dzsd4107100110100002' && moment.contentType == 'dzsd4107100110030006'" class="state end">回放</span>
 		<!-- <em class="reading">{{moment.readNum}}</em> -->
 	</div>
@@ -76,6 +78,7 @@
 	</div>
 </script>
 <script type="text/javascript" src="script/common.min.js"></script>
+<script type="text/javascript" src="../static/js/tools.js"></script>
 <script>
 Vue.use(Vue.lazyimg,{
 	nohori: true
@@ -140,6 +143,7 @@ new Vue({
 			}
 		},
 		live:function(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address,title,code) {
+			callbackEnterLive(moment.code);
 			callbackEnterRoom(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address,title,code);
 		},
 		backSportTime:function(code,type) {
