@@ -106,8 +106,8 @@
 
                 //hlsUrl = data.returnData.hls_play_url.replace('.hls','.m3u8');
                 renderData = data;
-                hlsUrl = data.returnData.webStreamUrl;
-                flvUrl = data.returnData.webStreamUrl;
+                hlsUrl = data.returnData.hls_play_url;
+                flvUrl = data.returnData.hls_play_url;
 
                 //房间成员数加1
                 //memberCount = $('#user-icon-fans').html();
@@ -204,7 +204,8 @@
                 //_player.addEventListener(event,videoEventHandler);
             });
             _player.id = 'player';
-            if(hlsUrl && /myqcloud.com/.test(hlsUrl)){
+            console.log(hlsUrl)
+            if(hlsUrl && /myqcloud.com\//.test(hlsUrl)){
                 //hlsUrl = 'http://2157.liveplay.myqcloud.com/2157_358556a1088511e6b91fa4dcbef5e35a.m3u8';
                 //_player.src = hlsUrl;
                 addSource(_player, hlsUrl, 'application/x-mpegURL');

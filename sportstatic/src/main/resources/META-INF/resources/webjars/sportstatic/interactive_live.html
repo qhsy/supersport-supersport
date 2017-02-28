@@ -17,10 +17,7 @@
 </head>
 <body>
     <div id="j-video-page" class="video-page" style="display: block">
-        <!--视频部分 start-->
         <div id="PlayerContainer" class="video-play"></div>
-        <!--视频部分 end-->
-        <!--聊天部分 start-->
         <div class="video-pane">
             <div class="video-pane-head">
                 <div class="video-pane-info">
@@ -35,7 +32,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <a class="j-btn-logout btn btn-logout" style="display: none;">退出</a> -->
                 </div>
                 <div class="video-pane-body" style="display: none;">
                     <div class="video-discuss">
@@ -43,8 +39,6 @@
                         <div class="video-discuss-pane">
                             <a class="video-discuss-like j-btn-like"></a>
                             <div class="video-discuss-form" id="video-discuss-form">
-                                <!-- <input type="text" class="video-discuss-input" id="send_msg_text"> -->
-                                <!--<a class="video-discuss-face j-btn-show-emotion"></a>-->
                                 <div class="video-discuss-input"></div>
                                 <button class="video-discuss-button j-btn-send-msg">发送</button>
                             </div>
@@ -56,27 +50,24 @@
                     <span>查看热门直播</span>
                 </div>
             </div>
-            <!--聊天部分 end-->
         </div>
-        <script type="text/javascript" src="script/common.min.js"></script>
+        <script type="text/javascript" src="./live/js/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" src="../static/js/tools.js"></script>
         <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
         <script type="text/javascript" src="./live/js/lib.js"></script>
-        <!--引入webim sdk-->
         <script type="text/javascript" src="./live/sdk/webim.js"></script>
         <script type="text/javascript" src="./live/sdk/json2.js"></script>
-        <!--TLS web sdk(只用于托管模式，独立模式不用引入)-->
         <script type="text/javascript" src="https://tls.qcloud.com/libs/api.min.js"></script>
-        <!--webim demo js-->
         <script type="text/javascript" src="./live/js/base.js"></script>
         <script type="text/javascript" src="./live/js/config.js"></script>
         <script type="text/javascript" src="./live/js/xzb.js"></script>
         <script type="text/javascript">
-            reqwest({
+            $.ajax({
                 url: '/api/userController/shareContent',
-                method: 'post',
-                data: '{"contentCode": "' + queryUrl('code') + '","zoo": {"key": "tesetkey","token": " "}}',
-                type: 'json',
-                contentType: 'application/json',
+                type: "POST",
+                data: '{"contentCode": "' + getParams('code') + '","zoo": {"key": "tesetkey","token": " "}}',
+                contentType:'application/json',
+                dataType: 'json',
                 success: function(resp) {
                     if(resp.status == 1){
                         shareWeiXin({
