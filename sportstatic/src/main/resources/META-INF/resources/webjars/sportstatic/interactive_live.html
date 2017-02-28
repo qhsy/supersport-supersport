@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
 <title>果冻体育-直播</title>
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -13,74 +11,143 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="author" content="">
 <link rel="stylesheet" type="text/css" href="../static/css/base.css">
-<link rel="stylesheet" href="./live/css/mobile.css">
+<style type="text/css">
+.video-page { position: fixed; top: 0; width: 100%; background-color: #000; }
+.cover { position: absolute; z-index: 99; width: 100%; height: 100%; top: 0; background-color: transparent; background-size: cover; background-position: center center; }
+.play-btn { content: ''; position: absolute; width: 60px; height: 60px; left: 50%; top: 50%; transform: translate(-50%, -50%); background: url(live/img/pause.png)  no-repeat; background-size: cover; }
+.video-play video { width: 100%; height: 100%; display: block; overflow: hidden; }
+.video-play video::-webkit-media-controls { display: none !important; }
+.video-play video::-webkit-media-controls-start-playback-button { display: none !important; }
+.video-pane { position: absolute; top: 0; z-index: 100; width: 100%; height: 100%; }
+.video-pane .video-pane-head { height: 20%; /*height:60px;*/ position: absolute; width: 100%; top: 0; }
+.video-pane .video-pane-body { height: 80%; position: fixed; z-index: 100; width: 100%; bottom: 0; overflow: hidden; }
+.video-close { position: absolute; top: 0; right: 0; background: url(live/img/drop_out.png) no-repeat; background-size: 14px 14px; width: 14px; height: 14px; margin: 15px }
+.video-close:focus, .video-close:hover { background-image: url(live/img/drop_out_hover.png) }
+.btn-logout { position: absolute; top: 30px; right: 10px; display: inline-block; padding: 5px 10px; color: #FFF; border: 1px solid #dc4348; background: -webkit-gradient(linear, left top, left bottom, from(#DC5A5A), to(#dc4b53)); background: linear-gradient(#DC5A5A, #dc4b53); border-radius: 10px; }
+.user-info-num { font-size: 13px; color: #fff }
+.video-pane-info { display: inline-block; background: url(live/img/back.png); border-radius: 51px; height: 51px; margin: 20px 15px; }
+.video-info { z-index: 2; position: relative; padding: 3px }
+.user-img { display: inline-block; width: 45px; height: 45px; }
+.user-img img { width: 45px; height: 45px; border-radius: 50%; }
+.user-info-text { display: inline-block; padding-left: 10px; padding-right: 20px; vertical-align: top; padding-top: 5px; color: #fff; max-width: 200px }
+.user-info-name { line-height: 16px }
+.user-icon-fans { background: url(live/img/visitor_white.png) no-repeat }
+.user-icon-like { background: url(live/img/like_white.png) no-repeat; margin-left: 10px }
+.user-icon-fans, .user-icon-like { background-size: 11px 10px; width: 11px; height: 10px; display: inline-block; margin-right: 2px }
+.video-discuss { position: absolute; bottom: 0; left: 0; right: 0 }
+.video-sms-list { color: #fff; margin: 0 15px }
+.video-sms-list li { margin-bottom: 5px }
+.video-sms-list li:nth-child(1) { opacity: .4 }
+.video-sms-list li:nth-child(2) { opacity: .6 }
+.video-sms-list li:nth-child(3) { opacity: .8 }
+.video-sms-pane { display: inline-block }
+.video-sms-text { padding: 2px 10px; font-size: 14px; background-color: #fff; border-radius: 10px; text-align: left; max-width: 250px; line-height: 18px; color: #000; word-wrap: break-word }
+.video-sms-text span { padding-right: 10px; vertical-align: top; color: #000 }
+.video-sms-text span.user-name-green { color: #1fbcb6 }
+.video-sms-text span.user-name-red { color: #f12b5b }
+.video-sms-text span.user-name-blue { color: #2b84f1 }
+.video-sms-text span.user-name-org { color: #ff7906 }
+.video-discuss-tool { margin: 25px 15px 15px }
+.pane-login { padding: 25px 15px 15px; text-align: center; }
+.pane-login .btn { display: inline-block; padding: 10px 20px; color: #FFF; border: 1px solid #dc4348; background: -webkit-gradient(linear, left top, left bottom, from(#DC5A5A), to(#dc4b53)); background: linear-gradient(#DC5A5A, #dc4b53); border-radius: 10px; }
+.video-discuss-login { margin-right: 30px; }
+.video-discuss-sms { background: url(live/img/comment.png) no-repeat; background-size: 35px 35px; display: inline-block; width: 35px; height: 35px }
+.video-discuss-sms:focus, .video-discuss-sms:hover { background-image: url(live/img/comment_hover.png) }
+.video-discuss-like { background: url(live/img/like.png) no-repeat; background-size: 30px 30px; bottom: 10px; display: inline-block; width: 30px; height: 30px; position: absolute; right: 15px }
+.video-discuss-like:focus, .video-discuss-like:hover { background-image: url(live/img/like_hover.png) }
+.video-discuss-form {width: 65%; height: 30px; padding: 8px 60px 10px 8px; position: relative }
+.video-discuss-input { width: 85%; height: 30px; vertical-align: top; padding: 0 13% 0 2%; border-radius: 2px; background: #fff;}
+.video-discuss-button { background-color: #dc4b53; height: 30px; color: #fff; width: 45px; position: absolute; right: 10px; font-size: 14px; top: 8px; border-radius: 2px }
+.video-discuss-face { background: url(live/img/face.png) no-repeat; background-size: 20px 20px; width: 20px; height: 20px; display: inline-block; right: 65px; top: 12px; position: absolute }
+.video-discuss-face:focus, .video-discuss-face:hover { background-image: url(live/img/face_hover.png) }
+.like-icon { background: url(live/img/like_icon_1.png) no-repeat; background-size: 19px 17px; width: 19px; height: 17px; position: absolute; right: 24px; margin-top: -15px; opacity: 0; -webkit-animation-duration: 1.5s; animation-duration: 1.5s; -webkit-animation-fill-mode: both; animation-fill-mode: both }
+.like-icon.green { background-image: url(live/img/like_icon_2.png) }
+.like-icon.blue { background-image: url(live/img/like_icon_3.png) }
+.like-icon.red { background-image: url(live/img/like_icon_4.png) }
+@-webkit-keyframes zoomIn {
+    from { opacity: 0; -webkit-transform: scale3d(.3, .3, .3); transform: scale3d(.3, .3, .3); margin-top: 0 }
+    50% { opacity: 1 }
+    100% { opacity: 0; margin-top: -60px; -webkit-transform: scale3d(1, 1, 1); transform: scale3d(1, 1, 1) }
+}
+@keyframes zoomIn {
+    from { opacity: 0; -webkit-transform: scale3d(.3, .3, .3); transform: scale3d(.3, .3, .3); margin-top: 0 }
+    50% { opacity: 1 }
+    100% { opacity: 0; margin-top: -60px; -webkit-transform: scale3d(1, 1, 1); transform: scale3d(1, 1, 1) }
+}
+.zoomIn { -webkit-animation-name: zoomIn; animation-name: zoomIn }
+.video-discuss-emotion { height: 140px; background-color: #fff; padding: 8px; position: relative }
+.video-emotion-pane { width: 100%; height: 100% }
+.video-emotion-pane ul { margin: 12px; padding: 0; overflow: hidden; border-top: 1px #CCC solid; border-left: 1px #CCC solid; list-style: none; width: 333px }
+.video-emotion-pane ul li { float: left; border-right: 1px #CCC solid; border-bottom: 1px #CCC solid; height: 30px; line-height: 30px; width: 32px; margin: 0; padding: 4px 2px; text-align: center }
+.video-emotion-pane ul li img { width: 24px; height: 24px; vertical-align: middle }
+#MAXIM { content: "tig201605241501026" }
+.end-info{width: 100%; height: 100%; position: absolute; left: 0; top: 0; z-index: 999;}
+.end-info h1{padding: 70% 0 0.1rem; text-align: center; color: #fff;  font: 0.24rem/0.4rem "PingFangSC-Medium";}
+.end-info span{width: 1rem; margin: auto; padding: 0 0.05rem; border-radius: 5px; display: block; background: #F8800A; color: #fff; text-align: center; font-size: 0.14rem; line-height: 0.3rem; }
+</style>
 </head>
 <body>
-    <div id="j-video-page" class="video-page" style="display: block">
-        <div id="PlayerContainer" class="video-play"></div>
-        <div class="video-pane">
-            <div class="video-pane-head">
-                <div class="video-pane-info">
-                    <div class="video-info">
-                        <div class="user-img j-user-avatar"></div>
-                            <div class="user-info-text">
-                                <div class="user-info-name j-user-name">&nbsp;</div>
-                                <div class="user-info-num">
-                                    <i class="user-icon-fans"></i><span id="user-icon-fans">0</span>
-                                    <i class="user-icon-like"></i><span id="user-icon-like">0</span>
-                                </div>
-                            </div>
+<div id="j-video-page" class="video-page" style="display: block">
+    <div id="PlayerContainer" class="video-play"></div>
+    <div class="video-pane">
+        <div class="video-pane-head">
+            <div class="video-pane-info">
+                <div class="video-info">
+                    <div class="user-img j-user-avatar">
+                    </div>
+                    <div class="user-info-text">
+                        <div class="user-info-name j-user-name">&nbsp;</div>
+                        <div class="user-info-num">
+                            <i class="user-icon-fans"></i><span id="user-icon-fans">0</span>
+                            <i class="user-icon-like"></i><span id="user-icon-like">0</span>
                         </div>
                     </div>
                 </div>
-                <div class="video-pane-body" style="display: none;">
-                    <div class="video-discuss">
-                        <ul class="video-sms-list" id="video_sms_list"></ul>
-                        <div class="video-discuss-pane">
-                            <a class="video-discuss-like j-btn-like"></a>
-                            <div class="video-discuss-form" id="video-discuss-form">
-                                <div class="video-discuss-input"></div>
-                                <button class="video-discuss-button j-btn-send-msg">发送</button>
-                            </div>
+            </div>
+            <a class="j-btn-logout btn btn-logout" style="display: none;">退出</a>
+        </div>
+        <div class="video-pane-body">
+            <div class="video-discuss">
+                <ul class="video-sms-list" id="video_sms_list"></ul>
+                <div class="video-discuss-pane">
+                    <div class="pane-login" id="j-pane-login" style="display: none">
+                        <!--<span class="like-icon zoomIn green"></span>-->
+                        <a class="btn video-discuss-login j-btn-login">用户登录</a>
+                        <a class="btn video-discuss-anologin j-btn-anologin">游客登录</a>
+                    </div>
+                    <div class="video-discuss-tool" id="video-discuss-tool" style="display: none">
+                        <!--<span class="like-icon zoomIn green"></span>-->
+                        <!-- <a class="video-discuss-sms j-btn-sms"></a> -->
+                        <a class="video-discuss-like j-btn-like"></a>
+                    </div>
+                    <div class="video-discuss-form" id="video-discuss-form"  style="display: none">
+                        <div class="video-discuss-input" id="send_msg_text"></div>
+                        <!--<a class="video-discuss-face j-btn-show-emotion"></a>-->
+                        <button class="video-discuss-button j-btn-send-msg">发送</button>
+                    </div>
+                    <div class="video-discuss-emotion" id="video-discuss-emotion" style="display: none">
+                        <div class="video-emotion-pane">
+                            <ul id="emotionUL">
+                            </ul>
                         </div>
                     </div>
-                </div>
-                <div class="end-info" style="display: none;">
-                    <h1>直播已结束</h1>
-                    <span>查看热门直播</span>
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="./live/js/jquery-3.1.1.min.js"></script>
-        <script type="text/javascript" src="../static/js/tools.js"></script>
-        <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
-        <script type="text/javascript" src="./live/js/lib.js"></script>
-        <script type="text/javascript" src="./live/sdk/webim.js"></script>
-        <script type="text/javascript" src="./live/sdk/json2.js"></script>
-        <script type="text/javascript" src="https://tls.qcloud.com/libs/api.min.js"></script>
-        <script type="text/javascript" src="./live/js/base.js"></script>
-        <script type="text/javascript" src="./live/js/config.js"></script>
-        <script type="text/javascript" src="./live/js/xzb.js"></script>
-        <script type="text/javascript">
-            $.ajax({
-                url: '/api/userController/shareContent',
-                type: "POST",
-                data: '{"contentCode": "' + getParams('code') + '","zoo": {"key": "tesetkey","token": " "}}',
-                contentType:'application/json',
-                dataType: 'json',
-                success: function(resp) {
-                    if(resp.status == 1){
-                        shareWeiXin({
-                            'url':'/api/wechatController/configInfo',
-                            'imgUrl':resp.iconUrl,
-                            'title':resp.title,
-                            'link':window.location.href,
-                            'desc':resp.content
-                        });
-                    }
-                }
-            });
-        </script>
-        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
-    </body>
+    </div>
+    <div class="end-info" style="display: none;">
+        <h1>直播已结束</h1>
+        <span>查看热门直播</span>
+    </div>
+</div>
+<script type="text/javascript" src="live/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../static/js/tools.js"></script>
+<script type="text/javascript" src="../static/js/share.js"></script>
+<script type="text/javascript" src="live/js/lib.js"></script>
+<script type="text/javascript" src="live/sdk/webim.js"></script>
+<script type="text/javascript" src="live/sdk/json2.js"></script>
+<script type="text/javascript" src="live/js/base.js"></script>
+<script type="text/javascript" src="live/js/xzb.js"></script>
+
+</body>
 </html>

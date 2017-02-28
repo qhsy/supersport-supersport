@@ -124,6 +124,7 @@ function applyJoinBigGroup(groupId) {
                 console.log('applyJoinBigGroup: 进群失败', err);
                 if(10010 == err.ErrorCode){
                     alert('直播已结束('+err.ErrorCode+')');
+                    liveEnd();
                     hideLoginForm();
                 }else  if(10013 == err.ErrorCode){
                     alert('进群失败 : ' + err.ErrorInfo);
@@ -859,6 +860,7 @@ function onSendMsg() {
     }, function (err) {
         if(10010 == err.ErrorCode) {
             alert('直播已结束(' + err.ErrorCode + ')');
+            liveEnd();
         }else{
             //webim.Log.error("发消息失败:" + err.ErrorInfo);
             //alert("发消息失败:" + err.ErrorInfo);
@@ -983,6 +985,12 @@ function switchForm(){
         hideDiscussForm();
         showDiscussTool();
     }
+}
+
+//直播结束
+function liveEnd(){
+    $('.end-info').show();
+    $('.play-btn').remove();   
 }
 //显示登出框
 function showLogoutForm(){
@@ -1256,7 +1264,7 @@ function showGroupSystemMsg(type, typeCh, group_id, group_name, msg_content, msg
     webim.Log.warn(sysMsgStr);
     if(5 == type){
         alert('直播已结束');//执行退群操作
-
+        liveEnd();
         hideDiscussForm();
         hideDiscussTool();
         hideLogoutForm();

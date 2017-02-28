@@ -22,7 +22,7 @@ var SERVER = '';//这里需要改成您实际搭建的 PHP 后台服务地址
  * 参数说明：0-表示独立模式，1-表示托管模式
  * @type {number}
  */
-var accountMode = 0;//请根据您的情况自行配置
+var accountMode = 1;//请根据您的情况自行配置
 
 /**
  * 变量说明：IM SDK 的应用配置信息
@@ -31,8 +31,8 @@ var accountMode = 0;//请根据您的情况自行配置
  * 简单说明：这里的配置，要跟您的小直播IM SDK的配置保持一致。 (选填)
  * @type {number}
  */
-var sdkAppID    = 1400018957; //请根据您的情况自行配置，这里可以不填，分享链接会带上这个参数，页面可以从链接中获取。
-var accountType = 8747; //请根据您的情况自行配置，这里可以不填，分享链接会带上这个参数，页面可以从链接中获取。
+var sdkAppID    = 0; //请根据您的情况自行配置，这里可以不填，分享链接会带上这个参数，页面可以从链接中获取。
+var accountType = 0; //请根据您的情况自行配置，这里可以不填，分享链接会带上这个参数，页面可以从链接中获取。
 
 /**
  * 变量说明 ：IM SDK 的应用配置信息
@@ -52,7 +52,7 @@ if(webim.Tool.getQueryString("groupid")){
 var selType = webim.SESSION_TYPE.GROUP;
 var selToID = avChatRoomId;//当前选中聊天id（当聊天类型为私聊时，该值为好友帐号，否则为群号）
 var selSess = null;//当前聊天会话
-var selSessHeadUrl = '../img/2017.jpg';//默认群组头像(选填)
+var selSessHeadUrl = 'img/2017.jpg';//默认群组头像(选填)
 
 /**
  * 变量说明 ：IM SDK 的应用配置信息

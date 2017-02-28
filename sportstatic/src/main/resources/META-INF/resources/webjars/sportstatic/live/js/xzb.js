@@ -1,7 +1,74 @@
-/**
- * 功能逻辑
- * Start
- */
+var SERVER = '';//这里需要改成您实际搭建的 PHP 后台服务地址
+var accountMode = 0;//请根据您的情况自行配置
+var sdkAppID    = 1400018957; //请根据您的情况自行配置，这里可以不填，分享链接会带上这个参数，页面可以从链接中获取。
+var accountType = 8747; //请根据您的情况自行配置，这里可以不填，分享链接会带上这个参数，页面可以从链接中获取。
+var avChatRoomId = '@#aJIPTVAEE'; //这里可以不填，分享链接会带上这个参数，页面可以从链接中获取。
+if(webim.Tool.getQueryString("groupid")){
+    avChatRoomId=webim.Tool.getQueryString("groupid");//用户自定义房间群id
+}
+var selType = webim.SESSION_TYPE.GROUP;
+var selToID = avChatRoomId;//当前选中聊天id（当聊天类型为私聊时，该值为好友帐号，否则为群号）
+var selSess = null;//当前聊天会话
+var selSessHeadUrl = '../img/2017.jpg';//默认群组头像(选填)
+var loginInfo = {
+    'sdkAppID': '', //用户所属应用id
+    'appIDAt3rd': '', //用户所属应用id
+    'accountType': '', //用户所属应用帐号类型
+    'identifier': '', //当前用户ID,必须是否字符串类
+    'identifierNick': '', //当前用户昵称
+    'userSig': '', //当前用户身份凭证，必须是字符串类型
+    'headurl': ''//当前用户默认头像
+};
+var onGroupSystemNotifys = {
+    //"1": onApplyJoinGroupRequestNotify, //申请加群请求（只有管理员会收到,暂不支持）
+    //"2": onApplyJoinGroupAcceptNotify, //申请加群被同意（只有申请人能够收到,暂不支持）
+    //"3": onApplyJoinGroupRefuseNotify, //申请加群被拒绝（只有申请人能够收到,暂不支持）
+    //"4": onKickedGroupNotify, //被管理员踢出群(只有被踢者接收到,暂不支持)
+    "5": onDestoryGroupNotify, //群被解散(全员接收)
+    //"6": onCreateGroupNotify, //创建群(创建者接收,暂不支持)
+    //"7": onInvitedJoinGroupNotify, //邀请加群(被邀请者接收,暂不支持)
+    //"8": onQuitGroupNotify, //主动退群(主动退出者接收,暂不支持)
+    //"9": onSetedGroupAdminNotify, //设置管理员(被设置者接收,暂不支持)
+    //"10": onCanceledGroupAdminNotify, //取消管理员(被取消者接收,暂不支持)
+    "11": onRevokeGroupNotify, //群已被回收(全员接收)
+    "255": onCustomGroupNotify//用户自定义通知(默认全员接收)
+};
+var onConnNotify=function(resp){
+    switch(resp.ErrorCode){
+        case webim.CONNECTION_STATUS.ON:
+            //webim.Log.warn('连接状态正常...');
+            break;
+        case webim.CONNECTION_STATUS.OFF:
+            webim.Log.warn('连接已断开，无法收到新消息，请检查下你的网络是否正常');
+            break;
+        default:
+            webim.Log.error('未知连接状态,status='+resp.ErrorCode);
+            break;
+    }
+};
+
+//监听事件
+var listeners = {
+    "onConnNotify": onConnNotify, //选填
+    "jsonpCallback": jsonpCallback, //IE9(含)以下浏览器用到的jsonp回调函数,移动端可不填，pc端必填
+    "onBigGroupMsgNotify": onBigGroupMsgNotify, //监听新消息(大群)事件，必填
+    "onMsgNotify": onMsgNotify,//监听新消息(私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息)事件，必填
+    "onGroupSystemNotifys": onGroupSystemNotifys, //监听（多终端同步）群系统消息事件，必填
+    "onGroupInfoChangeNotify": onGroupInfoChangeNotify//监听群资料变化事件，选填
+};
+
+var isAccessFormalEnv=true;//是否访问正式环境
+
+if(webim.Tool.getQueryString("isAccessFormalEnv")=="false"){
+    isAccessFormalEnv=false;//访问测试环境
+}
+
+var isLogOn = false;//是否在浏览器控制台打印 im sdk日志
+var options = {
+    'isAccessFormalEnv': isAccessFormalEnv, //是否访问正式环境，默认访问正式，选填
+    'isLogOn': isLogOn//是否开启控制台打印日志,默认开启，选填
+};
+var openEmotionFlag = false;//是否打开表情，目前小直播IM SDK暂不支持发送表情
 (function () {
 
     var sUserAgent = navigator.userAgent.toLowerCase()
@@ -18,24 +85,7 @@
     var renderData={}, //页面渲染所需的数据，JOSN格式
         hlsUrl = '',
         flvUrl = '';
-
-    /**
-     * 函数功能：获取url参数，并进一步获取页面所需的参数
-     * 1.初始化Web IM SDK 登录参数
-     * 2.获取页面渲染数据，包括用户id、昵称，直播名称，直播状态，视频地址等数据
-     * 3.获取视频播放地址
-     *
-     */
     function initParams(){
-        /**
-         * 获取url参数
-         * ?userid=xxxx&type=x&fileid=xxx&ts=xxx
-         * hls
-         * groupid
-         * sdkappid
-         * acctype
-         */
-
         sdkAppID = getParams("sdkappid") || sdkAppID;
         accountType = getParams("acctype") || accountType;
         avChatRoomId = selToID = getParams("groupid") || avChatRoomId;
@@ -64,6 +114,7 @@
             type: getParams('type'),
             fileid: getParams('fileid')||''
         };
+
         return $.ajax({
             type: "POST",
             url: '/api/liveVideoController/liveInfo',
@@ -79,7 +130,7 @@
                     "returnData": {
                         "userid": resp.detail.userCode,
                         "groupid": resp.detail.chatCode,
-                        "timestamp": 1487927296,
+                        "timestamp": 0,
                         "type": resp.liveType,
                         "viewercount": resp.detail.watch,
                         "likecount": resp.detail.praise,
@@ -103,20 +154,12 @@
                 $('.j-user-avatar').html('<img src="'+ (data.returnData.userinfo.headpic || defPic) +'">');
                 $('.j-user-name').text(data.returnData.userinfo.nickname);
                 avChatRoomId = selToID = data.returnData.groupid || avChatRoomId;
-
-                //hlsUrl = data.returnData.hls_play_url.replace('.hls','.m3u8');
                 renderData = data;
                 hlsUrl = data.returnData.hls_play_url;
                 flvUrl = data.returnData.hls_play_url;
-
                 //房间成员数加1
-                //memberCount = $('#user-icon-fans').html();
                 $('#user-icon-fans').html( data.returnData.viewercount);
-
-                //var loveCount = $('#user-icon-like').html();
                 $('#user-icon-like').html( data.returnData.likecount);
-
-                //设置封面
                 document.querySelector("#PlayerContainer").appendChild(initVideoCover(data));
             }else{
                 alert("接口返回数据错误: " + data.returnMsg +'['+ data.returnValue +']');
@@ -150,7 +193,7 @@
         return template;
     }
     function initVideoCover(data){
-        var coverURL = data.returnData.userinfo.frontcover || '../img/back-img.png';
+        var coverURL = data.returnData.userinfo.frontcover || './img/back-img.png';
 
         var elem = document.createElement('div');
         var playBtn = document.createElement('div');
@@ -177,9 +220,6 @@
         element.appendChild(source);
     }
 
-    /**
-     * 初始化视频播放
-     */
     function initPlayer(){
         var container = document.querySelector("#PlayerContainer");
         container.style.height =  (window.innerHeight || document.documentElement.clientHeight)+'px';
@@ -191,9 +231,6 @@
         //PC平台需要Flash播放器
         if(bIsPc){
             container.innerHTML = initSwf(flvUrl);
-        }else if(renderData.returnData.type != 0){
-           $('.end-info').show();
-           $('.play-btn').hide();
         }else{
             //移动端播放逻辑
             var _player = document.createElement('video'),
@@ -204,10 +241,8 @@
                 //_player.addEventListener(event,videoEventHandler);
             });
             _player.id = 'player';
-            console.log(hlsUrl)
+
             if(hlsUrl && /myqcloud.com\//.test(hlsUrl)){
-                //hlsUrl = 'http://2157.liveplay.myqcloud.com/2157_358556a1088511e6b91fa4dcbef5e35a.m3u8';
-                //_player.src = hlsUrl;
                 addSource(_player, hlsUrl, 'application/x-mpegURL');
             }
 
@@ -219,7 +254,6 @@
             _player.setAttribute('x5-video-player-fullscreen', 'true');//在Android x5内核浏览器下开启播放全屏模式
 
             if(getParams('type') == 1){
-                //点播
             }else{
 
             }
@@ -256,7 +290,7 @@
         if(_player && event.type == 'error'){//在Android 微信 x5 模式下 首次播放失败没有error事件
             alert('视频加载失败，请稍后重试或刷新页面');// hls 的直播地址会有30s的延迟, 首次播放需要重试，在Android 微信 x5 模式下系统默认会重试。正式上线可以去掉这里的提示以实现静默重试
             playOnError = true;
-            console.error('video play error', event);
+
             if(bIsIpad || bIsIphoneOs){ //ios系统手动重试
                 reloadVideo();
             }
@@ -267,7 +301,7 @@
             }
         }
         if(event.type != 'timeupdate'){
-            console.log(event.type);
+
         }
     }
     var _reloadTimer;
@@ -300,7 +334,6 @@
                     showDiscussTool();
                 }
             } else if(webim.Tool.getCookie('sdkappid') && webim.Tool.getCookie('userSig') && webim.Tool.getCookie('identifier') && webim.Tool.getCookie('accountType')) {
-                console.log(webim.Tool.getCookie('sdkappid'))
                 //已登录模式 check cookie
                 loginInfo.sdkappid = loginInfo.appIDAt3rd= webim.Tool.getCookie('sdkappid');
                 loginInfo.userSig = webim.Tool.getCookie('userSig');
@@ -310,14 +343,14 @@
                 showDiscussTool();
             } else {
                 //未登录, 无登录态模式, 可收消息
-                showLoginForm();
+                //showLoginForm();
                 //sdk登录
                 sdkLogin();
             }
         }else{//独立模式
             //sdk登录
             sdkLogin();
-            showLoginForm();
+            //showLoginForm();
         }
     }
 
@@ -333,27 +366,28 @@
             smsPicClick();
             event.stopPropagation();//for switchForm()
         });
-        $(document).on(onClick,'.j-btn-like',function(){
+        $(document).on(onClick,'.j-btn-like',function(event){
             open();
+            event.stopPropagation();
+            event.preventDefault();
             //sendGroupLoveMsg();
         });
         $(document).on(onClick,'.j-btn-show-emotion',function(){
             showEmotionDialog();
         });
-        $(document).on(onClick,'.j-btn-send-msg',function(event){
-            event.preventDefault();
+        $(document).on(onClick,'.j-btn-send-msg',function(){
             //onSendMsg();
+        });
+        $(document).on(onClick,'.video-sms-list',function(event){
+            open();
+            event.stopPropagation();//for switchForm()
         });
         $(document).on(onClick,'.j-btn-logout',function(){
             logout();
         });
-        $(document).on(onClick,'.video-sms-list', function(event){
-            open();
-            event.stopPropagation();
-        });
         $(document).on(onClick,'#video-discuss-form',function(event){
             open();
-            event.stopPropagation();
+            event.stopPropagation();//for switchForm()
         });
         window.addEventListener("orientationchange", function(e) {
 
@@ -382,110 +416,14 @@
             $(document).on(onClick,'.video-pane-body', function(){
                 var _player = document.querySelector("#player");
                 if(_player){
+                    //hideVideoCover();
+                    if(playOnError) {// 加载视频出现错误
+                        loadVideo(hlsUrl);
+                    }
                     _player.play();
                 }
                 //switchForm();
             });
-        }
-    }
-
-    /**
-     * 初始化分享文案
-     * @param info
-     */
-    function setShareInfo(info) {
-        var nick = info.returnData.userinfo.nickname || info.returnData.userid,
-            shareInfo = {
-            title: info.returnData.title,
-            desc:  info.returnData.type ? nick +' 直播精彩回放': nick +' 正在直播',
-            imgUrl: info.returnData.userinfo.frontcover || location.origin+'/open/qcloud/video/share/img/default_cover.jpg',
-            link: window.location.href,
-            success: function (ret) {
-            },
-            cancel: function (ret) {
-            }
-        };
-        document.querySelector('[name=description]').setAttribute('content',shareInfo.desc);
-        if (window.wx) {
-            //分享到朋友圈
-            wx.onMenuShareTimeline({
-                title: shareInfo.title +' '+shareInfo.desc,
-                link: shareInfo.link,
-                imgUrl: shareInfo.imgUrl,
-                success: function(){
-                },
-                cancel: function(){
-            }
-        });
-            //分享给朋友
-            wx.onMenuShareAppMessage(shareInfo);
-            //分享到QQ
-            wx.onMenuShareQQ(shareInfo);
-            //分享到腾讯微博
-            wx.onMenuShareWeibo(shareInfo);
-
-            wx.onMenuShareQZone(shareInfo);
-        } else if (window.mqq) {
-            mqq.data.setShareInfo({
-                title: shareInfo.title,
-                desc: shareInfo.desc,
-                share_url: shareInfo.link,
-                image_url: shareInfo.imgUrl
-            });
-        }
-    }
-    /**
-     * 初始化微信 QQ分享接口
-     * @param info
-     */
-    function initShareInfo(info){
-        if (window.wx) {
-            $.ajax({
-                type: "POST",
-                'url': SERVER,
-                'data': JSON.stringify({
-                    'Action':'GetWeixinSignature',
-                    'url': location.href.split('?')[0]
-                }),
-                crossDomain: true ,
-                dataType: 'json'
-            }).done(function (ret) {
-                var code = ret.returnValue;
-                var data = ret.returnData.data;
-                if (code == 0 && data) {
-                    // data.debug = true;
-                    data.jsApiList = [
-                        'onMenuShareTimeline',
-                        'onMenuShareAppMessage',
-                        'onMenuShareQQ',
-                        'onMenuShareWeibo',
-                        'onMenuShareQZone'
-                    ];
-                    wx.config(data);
-                    wx.ready(function() {
-                        setShareInfo(info);
-                    });
-                } else {
-                    setShareInfo(info);
-                }
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                setShareInfo(info);
-            });
-
-            //初始化微信分享，需要用户申请微信开放平台公众号分享权限。以下为测试用数据。
-            /*wx.config({
-                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                appId: 'wx0051e12508338fb9', // 必填，公众号的唯一标识
-                timestamp:1478588250 , // 必填，生成签名的时间戳
-                nonceStr: '', // 必填，生成签名的随机串
-                signature: '',// 必填，签名，参考微信开放平台文档 http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
-                jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-            });
-            wx.ready(function() {
-                setShareInfo(info);
-            });*/
-        } else {
-            setShareInfo(info);
         }
     }
 
@@ -501,7 +439,7 @@
                     "returnData": {
                         "userid": resp.detail.userCode,
                         "groupid": resp.detail.chatCode,
-                        "timestamp": 1487927296,
+                        "timestamp": 0,
                         "type": resp.liveType,
                         "viewercount": resp.detail.watch,
                         "likecount": resp.detail.praise,
@@ -519,28 +457,18 @@
                         }
                     }
                 }
-            //type=0 直播模式需要进行im登录收发消息
             if(data.returnData.type == 0 ){
+                $('.video-discuss-form,.video-discuss-tool').show();
                 initLogin();
+                initPlayer();
+            }else{
+                $('.end-info').show();
+                $('.play-btn').hide();
             }
-            //初始化视频播放
-            initPlayer();
-            //初始化微信二次分享内容，具体参考微信公众号分享指引 https://mp.weixin.qq.com/wiki
-            //initShareInfo(data);
-            //获取参数后才能绑定的事件
             bindEventAfterInitParams(data);
 
         });
-        //绑定操作事件
         bindEvent();
     }
-
-    /**
-     * 开始调用全局初始化函数
-     */
     init();
 })();
-/**
- * 功能逻辑
- * End
- */
