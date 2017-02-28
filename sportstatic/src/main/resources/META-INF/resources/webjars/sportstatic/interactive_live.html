@@ -141,13 +141,36 @@
     </div>
 </div>
 <script type="text/javascript" src="live/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../static/js/lib/reqwest.min.js"></script>
+<script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="../static/js/tools.js"></script>
 <script type="text/javascript" src="../static/js/share.js"></script>
 <script type="text/javascript" src="live/js/lib.js"></script>
 <script type="text/javascript" src="live/sdk/webim.js"></script>
 <script type="text/javascript" src="live/sdk/json2.js"></script>
 <script type="text/javascript" src="live/js/base.js"></script>
-<script type="text/javascript" src="live/js/xzb.js"></script>
-
+<script type="text/javascript" src="live/js/godoLive.js"></script>
+<script type="text/javascript">
+    $.ajax({
+        url: '/api/userController/shareContent',
+        type: "POST",
+        data: '{"contentCode": "' + getParams('code') + '","zoo": {"key": "tesetkey","token": ""}}',
+        contentType:'application/json',
+        dataType: 'json',
+        success: function(resp) {
+            if(resp.status == 1){
+                shareWeiXin({
+                    'url':'/api/wechatController/configInfo',
+                    'imgUrl':resp.iconUrl,
+                    'title':resp.title,
+                    'link':window.location.href,
+                    'desc':resp.content
+                });
+            }
+        }
+    });
+</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>
 </body>
 </html>
