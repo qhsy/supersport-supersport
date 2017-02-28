@@ -117,19 +117,23 @@ function applyJoinBigGroup(groupId) {
                     webim.Log.info('进群成功');
                     selToID = groupId;
                 } else {
-                    alert('进群失败');
+                    //alert('进群失败');
+                    alert('请检查您的网络环境！');
                 }
             },
             function (err) {
                 console.log('applyJoinBigGroup: 进群失败', err);
                 if(10010 == err.ErrorCode){
-                    alert('直播已结束('+err.ErrorCode+')');
+                    //alert('直播已结束('+err.ErrorCode+')');
+                    //alert('直播已结束');
                     liveEnd();
                     hideLoginForm();
                 }else  if(10013 == err.ErrorCode){
-                    alert('进群失败 : ' + err.ErrorInfo);
+                    //alert('进群失败 : ' + err.ErrorInfo);
+                     alert('请检查您的网络环境！');
                 }else{
-                    alert('进群失败 : ' + err.ErrorInfo);
+                    //alert('进群失败 : ' + err.ErrorInfo);
+                     alert('请检查您的网络环境！');
                 }
             }
     );
@@ -859,7 +863,7 @@ function onSendMsg() {
         hideDiscussEmotion();//隐藏表情
     }, function (err) {
         if(10010 == err.ErrorCode) {
-            alert('直播已结束(' + err.ErrorCode + ')');
+            //alert('直播已结束(' + err.ErrorCode + ')');
             liveEnd();
         }else{
             //webim.Log.error("发消息失败:" + err.ErrorInfo);
@@ -989,8 +993,12 @@ function switchForm(){
 
 //直播结束
 function liveEnd(){
-    $('.end-info').show();
-    $('.play-btn').remove();   
+    setTimeout(function(){
+        $('.end-info').show();
+        $('.play-btn').remove();
+        $('.video-sms-list').hide();
+        $("#PlayerCover").show();
+    },20000);
 }
 //显示登出框
 function showLogoutForm(){
@@ -1263,7 +1271,7 @@ function showGroupSystemMsg(type, typeCh, group_id, group_name, msg_content, msg
     var sysMsgStr="收到一条群系统消息: type="+type+", typeCh="+typeCh+",群ID="+group_id+", 群名称="+group_name+", 内容="+msg_content+", 时间="+webim.Tool.formatTimeStamp(msg_time);
     webim.Log.warn(sysMsgStr);
     if(5 == type){
-        alert('直播已结束');//执行退群操作
+        //alert('直播已结束');//执行退群操作
         liveEnd();
         hideDiscussForm();
         hideDiscussTool();

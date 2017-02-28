@@ -151,6 +151,17 @@ var openEmotionFlag = false;//是否打开表情，目前小直播IM SDK暂不�
                 if(data.returnData.type == 0){
                     $('.video-pane-body').show();
                 }
+                $.ajax({
+                    type: "POST",
+                    url: '/api/liveVideoController/liveMsg',
+                    data: '{"code": "' + getParams('code') + '","zoo": {"key": "tesetkey","token": ""}}',
+                    contentType:'application/json',
+                    dataType: 'json'
+                }).done(function(data){
+                    if(data.status == 1){
+                        
+                    }
+                });
                 $('.j-user-avatar').html('<img src="'+ (data.returnData.userinfo.headpic || defPic) +'">');
                 $('.j-user-name').text(data.returnData.userinfo.nickname);
                 avChatRoomId = selToID = data.returnData.groupid || avChatRoomId;
@@ -388,6 +399,10 @@ var openEmotionFlag = false;//是否打开表情，目前小直播IM SDK暂不�
         $(document).on(onClick,'#video-discuss-form',function(event){
             open();
             event.stopPropagation();//for switchForm()
+        });
+        $(document).on(onClick,'.end-info span',function(event){
+            open();
+             event.stopPropagation();
         });
         window.addEventListener("orientationchange", function(e) {
 
