@@ -20,6 +20,8 @@ var loginInfo = {
     'headurl': ''//当前用户默认头像
 };
 var like;
+var timer = null;
+var setTime = null;
 var onGroupSystemNotifys = {
     //"1": onApplyJoinGroupRequestNotify, //申请加群请求（只有管理员会收到,暂不支持）
     //"2": onApplyJoinGroupAcceptNotify, //申请加群被同意（只有申请人能够收到,暂不支持）
@@ -124,44 +126,67 @@ var openEmotionFlag = false;//是否打开表情，目前小直播IM SDK暂不�
             dataType: 'json'
         }).done(function (resp, textStatus, jqXHR) {
             if(resp.status == 1){
-                var defPic = '../img/user-img.png'; //用户默认头像
-                var data = {
-                    "returnValue": resp.status,
-                    "returnMsg": resp.error,
-                    "returnData": {
-                        "userid": resp.detail.userCode,
-                        "groupid": resp.detail.chatCode,
-                        "timestamp": 0,
-                        "type": resp.liveType,
-                        "viewercount": resp.detail.watch,
-                        "likecount": resp.detail.praise,
-                        "title": resp.detail.title,
-                        "playurl": '',
-                        "hls_play_url": resp.detail.webStreamUrl,
-                        "status": resp.detail.status,
-                        "fileid": "",
-                        "userinfo": {
-                            "nickname": resp.userBasicInfo.nickName,
-                            "headpic": resp.userBasicInfo.aboutHead,
-                            "frontcover": resp.detail.cover,
-                            "location": "",
-                            "desc": null
+                if(resp.liveType == 0){
+                    $('.video-page').show();
+                    var defPic = '../img/user-img.png'; //用户默认头像
+                        var data = {
+                            "returnValue": resp.status,
+                            "returnMsg": resp.error,
+                            "returnData": {
+                                "userid": resp.detail.userCode,
+                                "groupid": resp.detail.chatCode,
+                                "timestamp": 0,
+                                "type": resp.liveType,
+                                "viewercount": resp.detail.watch,
+                                "likecount": resp.detail.praise,
+                                "title": resp.detail.title,
+                                "playurl": '',
+                                "hls_play_url": resp.detail.webStreamUrl,
+                                "status": resp.detail.status,
+                                "fileid": "",
+                                "userinfo": {
+                                    "nickname": resp.userBasicInfo.nickName,
+                                    "headpic": resp.userBasicInfo.aboutHead,
+                                    "frontcover": resp.detail.cover,
+                                    "location": "",
+                                    "desc": null
+                                }
+                            }
                         }
-                    }
+                        if(data.returnData.type == 0){
+                            $('.video-pane-body').show();
+                        }
+                        $('.j-user-avatar').html('<img src="'+ (data.returnData.userinfo.headpic || defPic) +'">');
+                        $('.j-user-name').text(data.returnData.userinfo.nickname);
+                        avChatRoomId = selToID = data.returnData.groupid || avChatRoomId;
+                        renderData = data;
+                        hlsUrl = data.returnData.hls_play_url;
+                        flvUrl = data.returnData.hls_play_url;
+                        //房间成员数加1
+                        //$('#user-icon-fans').html( data.returnData.viewercount);
+                        //$('#user-icon-like').html( data.returnData.likecount);
+                        document.querySelector("#PlayerContainer").appendChild(initVideoCover(data));
+                } else {
+                    $('.video-page').hide();
+                    $('.video-playback').show();
+                    $('.zy_media video').attr({
+                        'poster': resp.detail.cover
+                    });
+                    $('.video-playback .user-img').html('<img src="' + resp.userBasicInfo.aboutHead + '" >');
+                    $('.video-playback .user-info-name').html(resp.userBasicInfo.nickName);
+                    $('.zy_media video source').attr({
+                        'src': resp.detail.videoUrl
+                    });
+                    zymedia('#playback',{
+                        alwaysShowControls: true,
+                        hideVideoControlsOnLoad:true,
+                        videoWidth: '100%',
+                        videoHeight: window.innerHeight,
+                        preload:'preload',
+                        alwaysShowControls: false,
+                        enableFullscreen: false
+                    });
                 }
-                if(data.returnData.type == 0){
-                    $('.video-pane-body').show();
-                }
-                $('.j-user-avatar').html('<img src="'+ (data.returnData.userinfo.headpic || defPic) +'">');
-                $('.j-user-name').text(data.returnData.userinfo.nickname);
-                avChatRoomId = selToID = data.returnData.groupid || avChatRoomId;
-                renderData = data;
-                hlsUrl = data.returnData.hls_play_url;
-                flvUrl = data.returnData.hls_play_url;
-                //房间成员数加1
-                //$('#user-icon-fans').html( data.returnData.viewercount);
-                //$('#user-icon-like').html( data.returnData.likecount);
-                document.querySelector("#PlayerContainer").appendChild(initVideoCover(data));
             }else{
                 alert("接口返回数据错误: " + data.returnMsg +'['+ data.returnValue +']');
             }
@@ -444,8 +469,6 @@ var openEmotionFlag = false;//是否打开表情，目前小直播IM SDK暂不�
                 var currTime = data.seconds;
                 var time = 120000 - (currTime*1000) -6000;
                 var iCurr = 600;
-                var timer = null;
-                var setTime = null;
                 if(currTime < 120){
                     $('#user-icon-fans').html(0);
                     $('#user-icon-like').html(0);
@@ -459,8 +482,7 @@ var openEmotionFlag = false;//是否打开表情，目前小直播IM SDK暂不�
                         },6000)
                     }, time);
                 } else {
-                    $('#user-icon-fans').html(data.watchConstant);
-                    $('#user-icon-like').html(data.praiseConstant);
+                    setNum();
                     setInterval(function(){
                        setNum();
                     },6000)

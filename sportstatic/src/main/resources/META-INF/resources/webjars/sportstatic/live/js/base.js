@@ -92,7 +92,6 @@ function sdkLogin(callback) {
                 loginInfo.identifierNick = data.identifierNick ? data.identifierNick : loginInfo.identifierNick;
                 webim.Log.info('webim登录成功');
                 console.log('sdkLogin webim登录成功', data);
-                videoInfo();
                 applyJoinBigGroup(avChatRoomId);//加入大群
                 //hideDiscussForm();//隐藏评论表单
                 //initEmotionUL();//初始化表情
@@ -116,7 +115,6 @@ function applyJoinBigGroup(groupId) {
                 if (resp.JoinedStatus && resp.JoinedStatus == 'JoinedSuccess') {
                     console.log('applyJoinBigGroup 进群成功');
                     webim.Log.info('进群成功');
-                    videoInfo();
                     selToID = groupId;
                 } else {
                     //alert('进群失败');
@@ -863,7 +861,7 @@ function onSendMsg() {
         webim.Log.info("发消息成功");
         $("#send_msg_text").val('');
 
-        hideDiscussForm();//隐藏评论表单
+        //hideDiscussForm();//隐藏评论表单
         showDiscussTool();//显示评论工具栏
         hideDiscussEmotion();//隐藏表情
     }, function (err) {
@@ -998,16 +996,15 @@ function switchForm(){
 
 //直播结束
 function liveEnd(){
-    $('.video-pane-info').hide();
+    //$('.video-pane-info').hide();
     $('.end-info').show();
     $('.play-btn').remove();
     $('.video-sms-list').hide();
     $("#PlayerCover").show();
-    hideDiscussForm();
-    hideDiscussTool();
-}
-function videoInfo(){
-    $('.video-info').show();
+    $('.user-info-num').hide();
+    $('.user-info-num-sub').show();
+    //showDiscussForm();
+    //showDiscussTool();
 }
 //显示登出框
 function showLogoutForm(){

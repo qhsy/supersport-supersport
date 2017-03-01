@@ -11,6 +11,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="author" content="">
 <link rel="stylesheet" type="text/css" href="../static/css/base.css">
+<link rel="stylesheet" type="text/css" href="live/zy.media.min.css">
 <style type="text/css">
 .video-page { position: fixed; top: 0; width: 100%; background-color: #000; }
 .cover { position: absolute; z-index: 99; width: 100%; height: 100%; top: 0; background-color: transparent; background-size: cover; background-position: center center; }
@@ -25,6 +26,7 @@
 .video-close:focus, .video-close:hover { background-image: url(live/img/drop_out_hover.png) }
 .btn-logout { position: absolute; top: 30px; right: 10px; display: inline-block; padding: 5px 10px; color: #FFF; border: 1px solid #dc4348; background: -webkit-gradient(linear, left top, left bottom, from(#DC5A5A), to(#dc4b53)); background: linear-gradient(#DC5A5A, #dc4b53); border-radius: 10px; }
 .user-info-num { font-size: 13px; color: #fff }
+.user-info-num-sub { font-size: 13px; color: #fff; display: none;}
 .video-pane-info { display: inline-block; background: url(live/img/back.png); border-radius: 51px; height: 51px; margin: 20px 15px; }
 .video-info { z-index: 2; position: relative; padding: 3px }
 .user-img { display: inline-block; width: 45px; height: 45px; }
@@ -33,7 +35,10 @@
 .user-info-name { line-height: 16px }
 .user-icon-fans { background: url(live/img/visitor_white.png) no-repeat }
 .user-icon-like { background: url(live/img/like_white.png) no-repeat; margin-left: 10px }
-.user-icon-fans, .user-icon-like { background-size: 11px 10px; width: 11px; height: 10px; display: inline-block; margin-right: 2px }
+.user-icon-fans-sub { background: url(live/img/visitor_white.png) no-repeat }
+.user-icon-like-sub { background: url(live/img/like_white.png) no-repeat; margin-left: 10px }
+
+.user-icon-fans, .user-icon-like, .user-icon-fans-sub, .user-icon-like-sub { background-size: 11px 10px; width: 11px; height: 10px; display: inline-block; margin-right: 2px }
 .video-discuss { position: absolute; bottom: 0; left: 0; right: 0 }
 .video-sms-list { color: #fff; margin: 0 15px }
 .video-sms-list li { margin-bottom: 5px }
@@ -87,12 +92,12 @@
 </style>
 </head>
 <body>
-<div id="j-video-page" class="video-page" style="display: block">
+<div id="j-video-page" class="video-page" style="display: none;">
     <div id="PlayerContainer" class="video-play"></div>
     <div class="video-pane">
         <div class="video-pane-head">
             <div class="video-pane-info">
-                <div class="video-info" style="display: none">
+                <div class="video-info">
                     <div class="user-img j-user-avatar">
                     </div>
                     <div class="user-info-text">
@@ -100,6 +105,10 @@
                         <div class="user-info-num">
                             <i class="user-icon-fans"></i><span id="user-icon-fans">0</span>
                             <i class="user-icon-like"></i><span id="user-icon-like">0</span>
+                        </div>
+                        <div class="user-info-num-sub">
+                            <i class="user-icon-fans-sub"></i><span>0</span>
+                            <i class="user-icon-like-sub"></i><span>0</span>
                         </div>
                     </div>
                 </div>
@@ -140,7 +149,33 @@
         <span>查看热门直播</span>
     </div>
 </div>
+<div class="video-playback" style="display: none;">
+    <div class="video-pane-info" style="position: fixed; left: 0; top: 0; z-index: 999; background: rgba(255,255,255,0.5);">
+        <div class="video-info">
+            <div class="user-img j-user-avatar">
+            </div>
+            <div class="user-info-text">
+                <div class="user-info-name j-user-name">&nbsp;</div>
+                <div class="user-info-num">
+                    <i class="user-icon-fans"></i><span id="user-icon-fans">0</span>
+                    <i class="user-icon-like"></i><span id="user-icon-like">0</span>
+                </div>
+                <div class="user-info-num-sub">
+                    <i class="user-icon-fans-sub"></i><span>0</span>
+                    <i class="user-icon-like-sub"></i><span>0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+   <div class="zy_media">
+        <video id="playback">
+            <source type="video/mp4">
+            您的浏览器不支持HTML5视频
+        </video>
+    </div>
+</div>
 <script type="text/javascript" src="live/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="live/zy.media.min.js"></script>
 <script type="text/javascript" src="../static/js/lib/reqwest.min.js"></script>
 <script type="text/javascript" src="../static/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="../static/js/tools.js"></script>
