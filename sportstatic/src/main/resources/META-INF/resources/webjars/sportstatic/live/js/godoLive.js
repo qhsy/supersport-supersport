@@ -482,8 +482,7 @@ var openEmotionFlag = false;//是否打开表情，目前小直播IM SDK暂不�
                         },6000)
                     }, time);
                 } else {
-                    $('#user-icon-fans').html(data.watchConstant);
-                    $('#user-icon-like').html(data.praiseConstant);
+                    setNum();
                     setInterval(function(){
                        setNum();
                     },6000)
