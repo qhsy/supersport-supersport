@@ -92,6 +92,7 @@ function sdkLogin(callback) {
                 loginInfo.identifierNick = data.identifierNick ? data.identifierNick : loginInfo.identifierNick;
                 webim.Log.info('webim登录成功');
                 console.log('sdkLogin webim登录成功', data);
+                videoInfo();
                 applyJoinBigGroup(avChatRoomId);//加入大群
                 //hideDiscussForm();//隐藏评论表单
                 //initEmotionUL();//初始化表情
@@ -115,6 +116,7 @@ function applyJoinBigGroup(groupId) {
                 if (resp.JoinedStatus && resp.JoinedStatus == 'JoinedSuccess') {
                     console.log('applyJoinBigGroup 进群成功');
                     webim.Log.info('进群成功');
+                    videoInfo();
                     selToID = groupId;
                 } else {
                     //alert('进群失败');
@@ -996,12 +998,16 @@ function switchForm(){
 
 //直播结束
 function liveEnd(){
+    $('.video-pane-info').hide();
     $('.end-info').show();
     $('.play-btn').remove();
     $('.video-sms-list').hide();
     $("#PlayerCover").show();
     hideDiscussForm();
     hideDiscussTool();
+}
+function videoInfo(){
+    $('.video-info').show();
 }
 //显示登出框
 function showLogoutForm(){

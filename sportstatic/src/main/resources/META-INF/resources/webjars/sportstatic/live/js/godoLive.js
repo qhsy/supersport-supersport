@@ -442,26 +442,37 @@ var openEmotionFlag = false;//是否打开表情，目前小直播IM SDK暂不�
         }).done(function(data){
             if(data.status == 1){
                 var currTime = data.seconds;
+                var time = 120000 - (currTime*1000) -6000;
                 var iCurr = 600;
-                var intervalTime;
-                if(data.seconds >= 120){
-                    intervalTime = 6000;
-                }else{
-                    intervalTime = 120000;
+                var timer = null;
+                var setTime = null;
+                if(currTime < 120){
+                    $('#user-icon-fans').html(0);
+                    $('#user-icon-like').html(0);
+                    setTime = setInterval(function(){
+                        currTime = currTime+6;
+                    },6000);
+                    timer = setTimeout(function(){
+                        clearTimeout(timer);
+                        setInterval(function(){
+                            setNum();
+                        },6000)
+                    }, time);
+                } else {
+                    $('#user-icon-fans').html(data.watchConstant);
+                    $('#user-icon-like').html(data.praiseConstant);
+                    setInterval(function(){
+                       setNum();
+                    },6000)
                 }
-                var praiseConstant = parseInt(Math.atan((currTime-120)/iCurr)*data.watchConstant);
-                var watchConstant = parseInt(Math.atan((currTime-120)/iCurr)*data.praiseConstant);
-                $('#user-icon-fans').html( praiseConstant );
-                $('#user-icon-like').html( watchConstant );
-                setInterval(function(){
-                    intervalTime = 6000;
+                function setNum(){
+                    clearInterval(setTime);
                     currTime = currTime+6;
-                    praiseConstant = parseInt(Math.atan((currTime-120)/iCurr)*data.watchConstant);
-                    watchConstant = parseInt(Math.atan((currTime-120)/iCurr)*data.praiseConstant);
-                    $('#user-icon-fans').html( praiseConstant );
-                    $('#user-icon-like').html( watchConstant );
-                },intervalTime);
-                
+                    var watchConstant = parseInt(Math.atan((currTime-120)/iCurr)*data.watchConstant);
+                    var praiseConstant = parseInt(Math.atan((currTime-120)/iCurr)*data.praiseConstant);
+                    $('#user-icon-fans').html(watchConstant);
+                    $('#user-icon-like').html(praiseConstant);
+                }
             }
         });
 
