@@ -127,7 +127,7 @@ function applyJoinBigGroup(groupId) {
                     //alert('直播已结束('+err.ErrorCode+')');
                     //alert('直播已结束');
                     liveEnd();
-                    hideLoginForm();
+                    //hideLoginForm();
                 }else  if(10013 == err.ErrorCode){
                     //alert('进群失败 : ' + err.ErrorInfo);
                      alert('请检查您的网络环境！');
@@ -998,7 +998,9 @@ function liveEnd(){
         $('.play-btn').remove();
         $('.video-sms-list').hide();
         $("#PlayerCover").show();
-    },20000);
+        hideDiscussForm();
+        hideDiscussTool();
+    },25000);
 }
 //显示登出框
 function showLogoutForm(){
@@ -1273,10 +1275,10 @@ function showGroupSystemMsg(type, typeCh, group_id, group_name, msg_content, msg
     if(5 == type){
         //alert('直播已结束');//执行退群操作
         liveEnd();
-        hideDiscussForm();
-        hideDiscussTool();
-        hideLogoutForm();
-        hideLoginForm();
+        //hideDiscussForm();
+        //hideDiscussTool();
+        //hideLogoutForm();
+        //hideLoginForm();
     }
     //alert(sysMsgStr);
 

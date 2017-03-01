@@ -159,8 +159,8 @@ var openEmotionFlag = false;//是否打开表情，目前小直播IM SDK暂不�
                 hlsUrl = data.returnData.hls_play_url;
                 flvUrl = data.returnData.hls_play_url;
                 //房间成员数加1
-                $('#user-icon-fans').html( data.returnData.viewercount);
-                $('#user-icon-like').html( data.returnData.likecount);
+                //$('#user-icon-fans').html( data.returnData.viewercount);
+                //$('#user-icon-like').html( data.returnData.likecount);
                 document.querySelector("#PlayerContainer").appendChild(initVideoCover(data));
             }else{
                 alert("接口返回数据错误: " + data.returnMsg +'['+ data.returnValue +']');
