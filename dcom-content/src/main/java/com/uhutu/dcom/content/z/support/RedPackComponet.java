@@ -159,13 +159,17 @@ public class RedPackComponet {
 				
 				if(redPackUsers.size() > 0){
 					
-					String content = TopHelper.upInfo(810710025, title,cnLiveVideoDetail.getIncome().setScale(2).toString(), totalProfit.toString());
-					
-					String msgContent = TopHelper.upInfo(810710025, cnLiveVideoDetail.getTitle(),cnLiveVideoDetail.getIncome().setScale(2).toString(), totalProfit.toString());
-					
-					msgNotice(msgContent, cnLiveVideoDetail.getUserCode());
-					
-					baiduPush(cnLiveVideoDetail.getUserCode(), "直播结算", content, "7", "");
+					if(totalProfit.compareTo(BigDecimal.ZERO) > 0 ){
+						
+						String content = TopHelper.upInfo(810710025, title,cnLiveVideoDetail.getIncome().setScale(2).toString(), totalProfit.toString());
+						
+						String msgContent = TopHelper.upInfo(810710025, cnLiveVideoDetail.getTitle(),cnLiveVideoDetail.getIncome().setScale(2).toString(), totalProfit.toString());
+						
+						msgNotice(msgContent, cnLiveVideoDetail.getUserCode());
+						
+						baiduPush(cnLiveVideoDetail.getUserCode(), "直播结算", content, "7", "");
+						
+					}
 					
 				}
 				
