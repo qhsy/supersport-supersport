@@ -163,7 +163,7 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 
 		CnContentDetail cnContentDetail = new CnContentDetail();
 
-		cnContentDetail.setContent(liveVideoDetail.getCode());
+		cnContentDetail.setContent(liveVideoDetail.getBusiCode());
 
 		basicinfo.setShareScope("dzsd4699100110010001");
 
