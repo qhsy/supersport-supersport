@@ -86,15 +86,18 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 
 			liveVideoDetail.setCreateTime(DateHelper.upDate(new Date()));
 
+			
+			SettingsDcomContent dcomContent = ConfigDcomContent.upConfig();
+			liveVideoDetail.setWatchConstant(Integer.valueOf(dcomContent.getLiveAppWatchConstant()));
+			liveVideoDetail.setPraiseConstant(Integer.valueOf(dcomContent.getLiveAppPraiseConstant()));
+			liveVideoDetail.setBusiCode(WebHelper.upCode("LVEY"));
+			
 			/* 根据产品需求添加 */
 			String contentCode = updateContent(liveVideoDetail);
 
 			liveVideoDetail.setContentCode(contentCode);
 			startLiveResult.setContentCode(contentCode);
-			SettingsDcomContent dcomContent = ConfigDcomContent.upConfig();
-			liveVideoDetail.setWatchConstant(Integer.valueOf(dcomContent.getLiveAppWatchConstant()));
-			liveVideoDetail.setPraiseConstant(Integer.valueOf(dcomContent.getLiveAppPraiseConstant()));
-			liveVideoDetail.setBusiCode(WebHelper.upCode("LVEY"));
+			
 			JdbcHelper.insert(liveVideoDetail);
 			savePackUser(liveVideoDetail.getBusiCode(), input.getUsers());
 			updateContentWorth(contentCode);
