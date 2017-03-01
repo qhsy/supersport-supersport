@@ -53,7 +53,7 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 
 		ApiBeginLiveResult startLiveResult = new ApiBeginLiveResult();
 		
-		String roomId  = createRoomId();
+		String roomId  = createRoomId(input.getGroupId());
 
 		MDataMap mWhereMap = new MDataMap();
 
@@ -232,23 +232,42 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 	 * 创建房间
 	 * @return
 	 */
-	public String createRoomId(){
+	public String createRoomId(String chatCode){
 		
 		String roomId = "";
 		
-		CnLiveVideoInfo info = JdbcHelper.queryOne(CnLiveVideoInfo.class, "user_code", upUserCode());
+		CnLiveVideoInfo info = JdbcHelper.queryOne(CnLiveVideoInfo.class, "chatCode", chatCode);
+		
 		if (info != null) {
+			
 			roomId = info.getCode();
+			
 		} else {
-			int simpleNum = JdbcHelper.count(CnLiveVideoInfo.class, "", new MDataMap()) + 1;
-			CnLiveVideoInfo videoInfo = new CnLiveVideoInfo();
-			videoInfo.setCode(new DecimalFormat("10000000").format(simpleNum));
-			videoInfo.setChatCode(videoInfo.getCode());
-			videoInfo.setStatus("1");
-			videoInfo.setCreateTime(DateHelper.upNow());
-			videoInfo.setUserCode(upUserCode());
-			JdbcHelper.insert(videoInfo);
-			roomId = videoInfo.getCode();
+			
+			info = JdbcHelper.queryOne(CnLiveVideoInfo.class, "userCode",upUserCode());
+			
+			if(info == null){
+				
+				int simpleNum = JdbcHelper.count(CnLiveVideoInfo.class, "", new MDataMap()) + 1;
+				CnLiveVideoInfo videoInfo = new CnLiveVideoInfo();
+				videoInfo.setCode(new DecimalFormat("10000000").format(simpleNum));
+				videoInfo.setChatCode(chatCode);
+				videoInfo.setStatus("1");
+				videoInfo.setCreateTime(DateHelper.upNow());
+				videoInfo.setUserCode(upUserCode());
+				JdbcHelper.insert(videoInfo);
+				roomId = videoInfo.getCode();
+				
+			}else{
+				
+				roomId = info.getCode();
+				
+				info.setChatCode(chatCode);
+				
+				JdbcHelper.update(info, "chatCode", "za");
+				
+			}
+			
 		}	
 		
 		return roomId;

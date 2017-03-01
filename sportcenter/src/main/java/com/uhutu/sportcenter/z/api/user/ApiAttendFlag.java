@@ -56,7 +56,7 @@ public class ApiAttendFlag extends RootApiToken<ApiAttendFlagInput, ApiAttendFla
 		
 		boolean flag = false;
 		
-		CnLiveVideoInfo cnVideoInfo = JdbcHelper.queryOne(CnLiveVideoInfo.class, "code",roomId);
+		CnLiveVideoInfo cnVideoInfo = JdbcHelper.queryOne(CnLiveVideoInfo.class, "chatCode",roomId);
 		
 		if(cnVideoInfo != null && StringUtils.isNotEmpty(cnVideoInfo.getUserCode())){
 			
