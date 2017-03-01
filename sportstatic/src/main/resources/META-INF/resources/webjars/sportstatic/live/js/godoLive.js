@@ -443,15 +443,25 @@ var openEmotionFlag = false;//是否打开表情，目前小直播IM SDK暂不�
             if(data.status == 1){
                 var currTime = data.seconds;
                 var iCurr = 600;
-                var praiseConstant = data.praiseConstant
-                var watchConstant = data.watchConstant
+                var intervalTime;
+                if(data.seconds >= 120){
+                    intervalTime = 6000;
+                }else{
+                    intervalTime = 120000;
+                }
+                var praiseConstant = parseInt(Math.atan((currTime-120)/iCurr)*data.watchConstant);
+                var watchConstant = parseInt(Math.atan((currTime-120)/iCurr)*data.praiseConstant);
+                $('#user-icon-fans').html( praiseConstant );
+                $('#user-icon-like').html( watchConstant );
                 setInterval(function(){
+                    intervalTime = 6000;
                     currTime = currTime+6;
                     praiseConstant = parseInt(Math.atan((currTime-120)/iCurr)*data.watchConstant);
                     watchConstant = parseInt(Math.atan((currTime-120)/iCurr)*data.praiseConstant);
                     $('#user-icon-fans').html( praiseConstant );
                     $('#user-icon-like').html( watchConstant );
-                },6000);
+                },intervalTime);
+                
             }
         });
 

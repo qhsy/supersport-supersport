@@ -123,6 +123,7 @@ function applyJoinBigGroup(groupId) {
             },
             function (err) {
                 console.log('applyJoinBigGroup: 进群失败', err);
+
                 if(10010 == err.ErrorCode){
                     //alert('直播已结束('+err.ErrorCode+')');
                     //alert('直播已结束');
@@ -200,7 +201,6 @@ function showMsg(msg) {
     }else{
         //原始消息格式
         switch (subType) {
-
             case webim.GROUP_MSG_SUB_TYPE.COMMON://群普通消息
                 var msgHTML = convertMsgtoHtml(msg);
                 if(msgHTML){
@@ -220,7 +220,7 @@ function showMsg(msg) {
                 break;
             case webim.GROUP_MSG_SUB_TYPE.LOVEMSG://群点赞消息
                 //业务自己可以增加逻辑，比如展示点赞动画效果
-                contentSpan.innerHTML = "[群点赞消息]" + convertMsgtoHtml(msg);
+                //contentSpan.innerHTML = "[群点赞消息]" + convertMsgtoHtml(msg);
                 //展示点赞动画
                 showLoveMsgAnimation();
                 break;
@@ -235,16 +235,19 @@ function showMsg(msg) {
                 break;
         }
     }
-    if(nickNameSpan.innerHTML){
+    if(nickNameSpan.innerHTML && nickNameSpan.innerHTML.indexOf('点了个赞') <= -1){
         textDiv.appendChild(nickNameSpan);
+        paneDiv.appendChild(textDiv);
+        li.appendChild(paneDiv);
+        ul.appendChild(li);
     }
     if(contentSpan.innerHTML) {
         textDiv.appendChild(contentSpan);
+        paneDiv.appendChild(textDiv);
+        li.appendChild(paneDiv);
+        ul.appendChild(li);
     }
-
-    paneDiv.appendChild(textDiv);
-    li.appendChild(paneDiv);
-    ul.appendChild(li);
+    
 }
 
 //把消息转换成Html
@@ -388,7 +391,7 @@ function convertAppMsg(nickSpan, contentSpan, msg){
                 }
                 break;
             case 4:
-                //点赞消息
+                //点赞消息                
                 nickSpan.innerHTML = '通知 '+ data.nickName + ' 点了个赞' ;
                 nickSpan.setAttribute('class', 'user-name-red');
                 contentSpan.innerHTML = '' ;
@@ -993,14 +996,12 @@ function switchForm(){
 
 //直播结束
 function liveEnd(){
-    setTimeout(function(){
-        $('.end-info').show();
-        $('.play-btn').remove();
-        $('.video-sms-list').hide();
-        $("#PlayerCover").show();
-        hideDiscussForm();
-        hideDiscussTool();
-    },25000);
+    $('.end-info').show();
+    $('.play-btn').remove();
+    $('.video-sms-list').hide();
+    $("#PlayerCover").show();
+    hideDiscussForm();
+    hideDiscussTool();
 }
 //显示登出框
 function showLogoutForm(){
@@ -1274,7 +1275,9 @@ function showGroupSystemMsg(type, typeCh, group_id, group_name, msg_content, msg
     webim.Log.warn(sysMsgStr);
     if(5 == type){
         //alert('直播已结束');//执行退群操作
-        liveEnd();
+        setTimeout(function(){
+            liveEnd();
+        },25000)
         //hideDiscussForm();
         //hideDiscussTool();
         //hideLogoutForm();
