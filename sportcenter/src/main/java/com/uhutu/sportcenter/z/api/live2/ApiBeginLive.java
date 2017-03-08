@@ -99,6 +99,8 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 			liveVideoDetail.setChatCode(input.getGroupId());
 			
 			liveVideoDetail.setBusiCode(WebHelper.upCode("LVEY"));
+			
+			liveVideoDetail.setLandScapeFlag(input.getLandScapeFlag());
 
 			/* 根据产品需求添加 */
 			String contentCode = updateContent(liveVideoDetail);

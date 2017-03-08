@@ -36,6 +36,9 @@ public class ApiBeginLiveInput extends RootApiInput {
 
 	@ApiModelProperty(value = "标签编码")
 	private String tagCode;
+	
+	@ApiModelProperty(value = "横屏标识 dzsd4699100110010001:是 dzsd4699100110010002:否")
+	private String landScapeFlag;
 
 	@ApiModelProperty(value = "接受打赏人")
 	private List<RedPackUserForApi> users = new ArrayList<RedPackUserForApi>();
@@ -102,6 +105,14 @@ public class ApiBeginLiveInput extends RootApiInput {
 
 	public void setGroupId(String groupId) {
 		this.groupId = groupId;
+	}
+
+	public String getLandScapeFlag() {
+		return landScapeFlag;
+	}
+
+	public void setLandScapeFlag(String landScapeFlag) {
+		this.landScapeFlag = landScapeFlag;
 	}
 
 }
