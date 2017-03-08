@@ -74,6 +74,7 @@
 		<item code="dzsd4107100110140001" defineName="未开始" parentCode="dzsd410710011014" />
 		<item code="dzsd4107100110140002" defineName="正在直播" parentCode="dzsd410710011014" />
 		<item code="dzsd4107100110140003" defineName="直播结束" parentCode="dzsd410710011014" />
+		<item code="dzsd4107100110140004" defineName="直播回放" parentCode="dzsd410710011014" />
 		<item code="dzsd410710011015" defineName="跳转类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110150001" defineName="内容详情页(跳转参数：内容编号)" parentCode="dzsd410710011015" />
 		<item code="dzsd4107100110150002" defineName="个人主页(跳转参数：用户编号)" parentCode="dzsd410710011015" />
