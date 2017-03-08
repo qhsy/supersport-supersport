@@ -110,6 +110,9 @@ public class CnLiveVideoDetail extends BaseEntity {
 	
 	@ZooData(name="web播放地址")
 	private String webStreamUrl;
+	
+	@ZooData(name="横屏标识", element = DefineWebElement.Select, inc = {DefineWebInc.System_Define + "=dzsd469910011001" })
+	private String landScapeFlag;
 
 	public String getVideoId() {
 		return videoId;
@@ -319,6 +322,14 @@ public class CnLiveVideoDetail extends BaseEntity {
 
 	public void setWebStreamUrl(String webStreamUrl) {
 		this.webStreamUrl = webStreamUrl;
+	}
+
+	public String getLandScapeFlag() {
+		return landScapeFlag;
+	}
+
+	public void setLandScapeFlag(String landScapeFlag) {
+		this.landScapeFlag = landScapeFlag;
 	}
 
 }
