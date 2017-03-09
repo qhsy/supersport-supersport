@@ -219,6 +219,21 @@ function callRewardList(){
 	}
 	
 }
+/**
+ * @时刻详情更多评论跳转
+ * @param  
+ * @return [Function]
+ * @author [wangxh]
+ */
+function callRemarkList(code){
+	var userAgent = navigator.userAgent;
+	if(userAgent.indexOf('Android') != -1){
+		javascript:android.callRemarkList(code);
+	} else {
+		window.webkit.messageHandlers.callRemarkList.postMessage([code]);
+	}
+	
+}
 
 /**
  * @微信分享

@@ -79,7 +79,7 @@
 .comment .remark .date{font-size: 10px; color: #BDBDBD;}
 .comment .content{padding: 0 0 0.13rem 42px;}
 .comment .more{display: block; border-top: #f8f8f8 0.04rem solid; text-align: center; color: #4990E2; font: 15px/55px "";}
-
+.comment .null-data{text-align: center; font: 14px/55px "";}
 </style>
 </head>
 <body>
@@ -160,7 +160,8 @@
 				</p>
 			</li>
 		</ul>
-		<a href="javascript:;" class="more" v-if="remarkList.length > 5">查看更多评论</a>
+		<a href="javascript:;" class="more" v-if="remarkList.length > 5" @click="remarkCallback">查看更多评论</a>
+		<div class="null-data" v-if="!remarkList.length">暂无评论</div>
 	</article>
 	<div class="spacing" v-if="share != ''"></div>
 	<!-- loading -->
@@ -495,6 +496,14 @@ var vm = new Vue({
 			var _this = this;
 			if(!_this.share){
 				callbackFunc(code);
+			}else{
+				open()
+			}
+		},
+		remarkCallback:function(){
+			var _this = this;
+			if(!_this.share){
+				callRemarkList(code);
 			}else{
 				open()
 			}
