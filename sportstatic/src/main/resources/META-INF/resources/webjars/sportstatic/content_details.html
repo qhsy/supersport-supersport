@@ -160,7 +160,7 @@
 				</p>
 			</li>
 		</ul>
-		<a href="javascript:;" class="more" v-if="remarkList.length > 5" @click="remarkCallback">查看更多评论</a>
+		<a href="javascript:;" class="more" v-if="remarkList.length > 5" @click="remarkCallback(res.sportingMoment.code)">查看更多评论</a>
 		<div class="null-data" v-if="!remarkList.length">暂无评论</div>
 	</article>
 	<div class="spacing" v-if="share != ''"></div>
@@ -500,7 +500,7 @@ var vm = new Vue({
 				open()
 			}
 		},
-		remarkCallback:function(){
+		remarkCallback:function(code){
 			var _this = this;
 			if(!_this.share){
 				callRemarkList(code);
