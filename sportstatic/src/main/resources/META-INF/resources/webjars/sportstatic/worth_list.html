@@ -43,7 +43,7 @@
 			</template>
 			<template v-else>
 				<template v-if="moment.contentType == 'dzsd4107100110030007' moment.contentType == 'dzsd4107100110030009'">
-					<a href="javascript:;" @click="live(moment.liveVideoDetailForApi.userCode,moment.liveVideoDetailForApi.nickName,moment.liveVideoDetailForApi.aboutHead,moment.liveVideoDetailForApi.code,moment.liveVideoDetailForApi.chatCode,moment.liveVideoDetailForApi.watch,moment.liveVideoDetailForApi.praise,moment.liveVideoDetailForApi.addressName,moment.liveVideoDetailForApi.title,moment.code)">
+					<a href="javascript:;" @click="live(moment.code)">
 						<moment :moment="moment"></moment>
 					</a>
 				</template>
@@ -142,9 +142,8 @@ new Vue({
 				this.stopBool = false;
 			}
 		},
-		live:function(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address,title,code) {
-			callbackEnterLive(moment.code);
-			callbackEnterRoom(uid,username,avatar,roomid,chatRoomid,watchcount,admirecount,address,title,code);
+		live:function(code) {
+			callbackEnterLive(code);
 		},
 		backSportTime:function(code,type) {
 			callbackSportTime(code,type);

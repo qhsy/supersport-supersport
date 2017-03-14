@@ -12,7 +12,8 @@
 <meta name="author" content="">
 <link rel="stylesheet" type="text/css" href="../static/css/base.css">
 <style type="text/css">
-.container{padding-bottom: 0.8rem;}
+.container{padding-bottom: 0;}
+.spacing{height: 0.5rem;}
 /* Header Style */
 .user{height: 0.58rem; padding: 0 0.16rem 0 0.22rem; }
 .user .head{height: 0.32rem; margin: 0.13rem 0 0; display: -webkit-flex; display: flex; float: left;}
@@ -50,13 +51,14 @@
 .content .cover{text-align: center;}
 .content .video{background: #000;}
 /* Shop Style */
-.shop{padding: 0.13rem 0.22rem 0; border-top: #f8f8f8 0.14rem solid;}
+.shop{padding: 0.13rem 0.22rem 0; border-top: #f8f8f8 0.14rem solid; overflow: auto;}
 .shop .title{line-height: 0.25rem; font-size: 0.18rem; color: #535252;}
-.shop .item{height: 1rem; padding: 0.12rem 0; border-bottom: #F0F0F0 1px solid;}
+.shop .list{padding-bottom: 0.18rem;}
+.shop .item{ overflow: auto; padding: 0.12rem 0; border-bottom: #F0F0F0 1px solid;}
 .shop .item:last-child{border-bottom: 0;}
 .shop .list-img{width: 1rem; height: 1rem; margin-right: 0.15rem; float: left; border: #f8f8f8 1px solid; box-sizing: border-box;}
 .shop .list-img img{width: 100%; height: 100%;}
-.shop .name{color: #343434; line-height: 0.2rem; text-align: justify;}
+.shop .name{height: 0.4rem; overflow: hidden; color: #343434; line-height: 0.2rem; text-align: justify;}
 .shop .price{float: left; padding-top: 0.3rem; color: #FF7E00; font-size: 0.12rem;}
 .shop .price em{font-size: 0.2rem; line-height: 0.3rem;}
 .shop .btn{width: 0.66rem; height: 0.26rem; margin: 0.33rem 0 0; background: #FF7E00; color: #fff; text-align: center; line-height: 0.26rem; float: right; font-size: 0.12rem;}
@@ -67,10 +69,22 @@
 .reward .reward-list{padding: 0.15rem 0.16rem 0 0.22rem; overflow: auto;}
 .reward .reward-list li{width: 0.36rem; height: 0.36rem; margin: 0 0.06rem 0 0; float: left; overflow: hidden; border-radius: 50%;}
 .reward .reward-list li img{width: 0.36rem; height: 0.36rem; border-radius: 50%;}
+.comment{padding: 0.12rem 0 0; border-top: #f8f8f8 0.14rem solid; }
+.comment .title{padding: 0 0.22rem; padding-bottom: 0.13rem; font: 18px/25px "PingFangSC-Medium"; color: #535252;}
+.comment .item{padding: 0 0.22rem; border-bottom: #f8f8f8 0.04rem solid;}
+.comment .item:last-child{border-bottom: 0;}
+.comment .remark{padding: 0.16rem 0 0.07rem; display: -webkit-flex; align-items: center;}
+.comment .remark .head{width: 32px; height: 32px; margin-right: 10px; border-radius: 50%; overflow: hidden;}
+.comment .remark .name{font-size: 13px; line-height: 18px; color: #7B99BC;}
+.comment .remark .date{font-size: 10px; color: #BDBDBD;}
+.comment .content{padding: 0 0 0.13rem 42px;}
+.comment .more{display: block; border-top: #f8f8f8 0.04rem solid; text-align: center; color: #4990E2; font: 15px/55px "";}
+.comment .null-data{text-align: center; font: 14px/55px "";}
 </style>
 </head>
 <body>
 <section class="container" v-cloak>
+	<!-- user -->
 	<header class="user">
 		<div class="head">
 			<div class="photo" @click="headCallback(res.sportingMoment.userBasicInfo.userCode)">
@@ -93,7 +107,7 @@
 		<child-video :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030005'"></child-video>
 		<child-live :res="res" v-if="res.sportingMoment.contentType == 'dzsd4107100110030008'"></child-video>
 	</article>
-	<!-- pack -->
+	<!-- reward -->
 	<article class="reward" v-if="res.sportingMoment.redPackFlag == 'dzsd4699100110010001'">
 		<button type="button" class="reward-but" @click="callReward(res.sportingMoment.userBasicInfo.aboutHead)">赏</button>
 		<div class="reward-wrap" v-if="!share">
@@ -103,7 +117,7 @@
 			</ul>
 		</div>
 	</article>
-	<!-- end -->
+	<!-- read -->
 	<article class="read">
 		<div :class="[share?'assist':'related']">
 			<em class="time">{{res.sportingMoment.publishTimeStr}}</em>
@@ -111,7 +125,7 @@
 			<span :class="['assNum',res.sportingMoment.favorFlag?'like':'nolike']" @click="callFavor">{{res.sportingMoment.praiseNum}}</span>
 		</div>
 	</article>
-	<!-- shop module -->
+	<!-- shopping -->
 	<article class="shop" v-if="shop.productInfos.length">
 		<h3 class="title">{{shop.title}}</h3>
 		<ul class="list">
@@ -128,7 +142,29 @@
 		</ul>
 	</article>
 	<!-- end -->
-	<!-- data loading -->
+	<article class="comment">
+		<h3 class="title">最新评论</h3>
+		<ul class="list">
+			<li class="item" v-for="remark in remarkData">
+				<div class="remark">
+					<span class="head">
+						<img :src="remark.replyInfo.aboutHead" alt="">
+					</span>
+					<div class="info">
+						<h3 class="name">{{remark.replyInfo.nickName}}</h3>
+						<h4 class="date">{{remark.replyInfo.publishTime}}</h4>
+					</div>
+				</div>
+				<p class="content">
+					{{remark.replyInfo.remark}}
+				</p>
+			</li>
+		</ul>
+		<a href="javascript:;" class="more" v-if="remarkList.length > 5" @click="remarkCallback(res.sportingMoment.code)">查看更多评论</a>
+		<div class="null-data" v-if="!remarkList.length">暂无评论</div>
+	</article>
+	<div class="spacing" v-if="share != ''"></div>
+	<!-- loading -->
 	<aside class="loading" transition="fade" v-if="loading"><em><img src="../static/img/doing.gif">数据加载中...</em></aside>
 </section>
 <!-- 文章详情 -->
@@ -343,18 +379,33 @@ var vm = new Vue({
 		res: null,
 		shop: [],
 		share: queryUrl('share'),
-		loading: true
+		loading: true,
+		remarkList: null
 	},
 	created:function(){
-		this.reqwest();
+		this.getDataDetail();
 		if(this.share){
 			share();
 		}
 	},
+	computed:{
+		remarkData:function(){
+			var data;
+			if(this.remarkList.length >= 5){
+				data = this.remarkList.slice(0, 5)
+			}else{
+				data = this.remarkList;
+			}
+			return data;
+		}
+	},
 	methods:{
-		reqwest:function(){
+		getDataDetail:function(){
 			var _this = this;
 			var token = sessionStorage.getItem('token')?sessionStorage.getItem('token'):'';
+			/*
+			 * 获取内容详情
+			 */
 			reqwest({
 				url: '/api/contentController/contentDetail',
 				method: 'post',
@@ -375,6 +426,9 @@ var vm = new Vue({
 					}
 				}
 			});
+			/*
+			 * 获取内容分享数据
+			 */
 			reqwest({
 				url: '/api/userController/shareContent',
 				method: 'post',
@@ -393,6 +447,9 @@ var vm = new Vue({
 					}
 				}
 			});
+			/*
+			 * 获取淘宝数据
+			 */
 			reqwest({
 				url: '/api/contentController/contentDetailProducts',
 				method: 'post',
@@ -405,6 +462,9 @@ var vm = new Vue({
 					}
 				}
 			});
+			/*
+			 * 返回阅读量
+			 */
 			reqwest({
 				url: '/api/contentController/contentReadCount',
 				method: 'post',
@@ -413,11 +473,37 @@ var vm = new Vue({
 				contentType: 'application/json',
 				success: function(resp) {}
 			});
+			/*
+			 * 获取内容评论列表
+			 */
+			reqwest({
+				url: '/api/remarkController/remarkList',
+				method: 'post',
+				data: '{"contentCode": "' + queryUrl('id') + '","pagination": "1","zoo": {"key": "tesetkey","token": ""}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {
+					if(resp.status == 1){
+						_this.remarkList = resp.contentRemarkInfo
+					}else {
+						alert(resp.error)
+					}
+
+				}
+			});
 		},
 		headCallback:function(code){
 			var _this = this;
 			if(!_this.share){
 				callbackFunc(code);
+			}else{
+				open()
+			}
+		},
+		remarkCallback:function(code){
+			var _this = this;
+			if(!_this.share){
+				callRemarkList(code);
 			}else{
 				open()
 			}
