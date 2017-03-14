@@ -57,12 +57,20 @@ public class ApiTummyMoments extends RootApiForMember<ApiTummyMomentsInput, ApiT
 	protected ApiTummyMomentsResult process(ApiTummyMomentsInput input) {// 此版本屏蔽直播的运动时刻
 
 		ApiTummyMomentsResult sportingMomentsResult = new ApiTummyMomentsResult();
+		
+		String tagCode = "GGBH161202110002";
+		
+		if(StringUtils.isNotEmpty(input.getTagCode())){
+			
+			tagCode = input.getTagCode();
+			
+		}
 
 		List<CnContentBasicinfo> contentBasicInfos = new ArrayList<CnContentBasicinfo>();
 		int istart = (input.getPagination() - 1) * 10;
 		String sql = "SELECT * from (select b.*, sum(case when a.content_code=b.code AND a.type='01' AND a.status='1' then 1 else 0 end) "
 				+ " as praiseBase  from cn_content_basicinfo b left join cn_support_praise a on a.content_code=b.code group by b.code desc ) "
-				+ " zz where tag_code like '%GGBH161202110002%' and tag_code is not null and share_scope='dzsd4699100110010001' and status='dzsd4699100110010001' ORDER BY zz.praiseBase desc ";
+				+ " zz where tag_code like '%"+tagCode+"%' and tag_code is not null and share_scope='dzsd4699100110010001' and status='dzsd4699100110010001' ORDER BY zz.praiseBase desc ";
 		List<Map<String, Object>> objs = JdbcHelper.dataSqlList(sql + " LIMIT " + istart + ",10", null);
 		contentBasicInfos = SerializeHelper.convertList(CnContentBasicinfo.class, objs);
 		int count = JdbcHelper.dataSqlList(sql, null).size();

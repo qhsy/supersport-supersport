@@ -11,6 +11,9 @@ public class ApiTummyMomentsInput extends RootApiInput {
 
 	@ApiModelProperty(value = "宽度")
 	private int width;
+	
+	@ApiModelProperty(value="标签编号")
+	private String tagCode;
 
 	public int getPagination() {
 		return pagination;
@@ -26,6 +29,14 @@ public class ApiTummyMomentsInput extends RootApiInput {
 
 	public void setWidth(int width) {
 		this.width = width;
+	}
+
+	public String getTagCode() {
+		return tagCode;
+	}
+
+	public void setTagCode(String tagCode) {
+		this.tagCode = tagCode;
 	}
 
 }
