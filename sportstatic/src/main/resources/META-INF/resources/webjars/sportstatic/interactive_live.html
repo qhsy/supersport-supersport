@@ -19,20 +19,20 @@
 .video-play video { width: 100%; height: 100%; display: block; overflow: hidden; }
 .video-play video::-webkit-media-controls { display: none !important; }
 .video-play video::-webkit-media-controls-start-playback-button { display: none !important; }
-.video-pane { position: absolute; top: 0; z-index: 100; width: 100%; height: 100%; }
-.video-pane .video-pane-head { height: 20%; /*height:60px;*/ position: absolute; width: 100%; top: 0; }
-.video-pane .video-pane-body { height: 80%; position: fixed; z-index: 100; width: 100%; bottom: 0; overflow: hidden; }
+.video-pane { position: absolute; top: 0; z-index: 100; width: 100%; /*height: 100%;*/ }
+.video-pane .video-pane-head { height: 96px; /*height:60px;*/ position: absolute; width: 100%; top: 0; background: url('live/img/mask_top@2x.png') repeat-x left top; background-size: auto 96px; }
+.video-pane .video-pane-body { height: 80%; position: fixed; z-index: 100; width: 100%; bottom: 0; overflow: hidden; background: url('live/img/mask_down@2x.png') repeat-x left bottom; background-size: auto 67px;}
 .video-close { position: absolute; top: 0; right: 0; background: url(live/img/drop_out.png) no-repeat; background-size: 14px 14px; width: 14px; height: 14px; margin: 15px }
 .video-close:focus, .video-close:hover { background-image: url(live/img/drop_out_hover.png) }
 .btn-logout { position: absolute; top: 30px; right: 10px; display: inline-block; padding: 5px 10px; color: #FFF; border: 1px solid #dc4348; background: -webkit-gradient(linear, left top, left bottom, from(#DC5A5A), to(#dc4b53)); background: linear-gradient(#DC5A5A, #dc4b53); border-radius: 10px; }
-.user-info-num { font-size: 13px; color: #fff }
-.user-info-num-sub { font-size: 13px; color: #fff; display: none;}
-.video-pane-info { display: inline-block; background: url(live/img/back.png); border-radius: 51px; height: 51px; margin: 20px 15px; }
-.video-info { z-index: 2; position: relative; padding: 3px }
-.user-img { display: inline-block; width: 45px; height: 45px; }
-.user-img img { width: 45px; height: 45px; border-radius: 50%; }
-.user-info-text { display: inline-block; padding-left: 10px; padding-right: 20px; vertical-align: top; padding-top: 5px; color: #fff; max-width: 200px }
-.user-info-name { line-height: 16px }
+.user-info-num { font-size: 12px; color: #fff; padding-top: 3px; }
+.user-info-num-sub { font-size: 12px; color: #fff; display: none;}
+.video-pane-info { display: inline-block; border-radius: 51px; height: 51px; margin: 18px 18px; }
+.video-info { z-index: 2; position: relative;}
+.user-img { display: inline-block; width: 38px; height: 38px; }
+.user-img img { width: 38px; height: 38px; border-radius: 50%; border: 1px solid #fff;}
+.user-info-text { display: inline-block; padding-left: 5px; padding-right: 20px; vertical-align: top; color: #fff; max-width: 200px }
+.user-info-name { line-height: 22px; font-size: 18px;}
 .user-icon-fans { background: url(live/img/visitor_white.png) no-repeat }
 .user-icon-like { background: url(live/img/like_white.png) no-repeat; margin-left: 10px }
 .user-icon-fans-sub { background: url(live/img/visitor_white.png) no-repeat }
@@ -42,14 +42,14 @@
 .video-discuss { position: absolute; bottom: 0; left: 0; right: 0 }
 .video-sms-list { color: #fff; margin: 0 15px }
 .video-sms-list li { margin-bottom: 5px }
-.video-sms-list li:nth-child(1) { opacity: .4 }
+/* .video-sms-list li:nth-child(1) { opacity: .4 }
 .video-sms-list li:nth-child(2) { opacity: .6 }
-.video-sms-list li:nth-child(3) { opacity: .8 }
+.video-sms-list li:nth-child(3) { opacity: .8 } */
 .video-sms-pane { display: inline-block }
-.video-sms-text { padding: 2px 10px; font-size: 14px; background-color: #fff; border-radius: 10px; text-align: left; max-width: 250px; line-height: 18px; color: #000; word-wrap: break-word }
-.video-sms-text span { padding-right: 10px; vertical-align: top; color: #000 }
+.video-sms-text { padding: 2px 10px; font-size: 14px; background-color: rgba(0, 0, 0, 0.4); border-radius: 4px; text-align: left; max-width: 250px; line-height: 18px; color: #fff; word-wrap: break-word }
+.video-sms-text span { padding-right: 10px; vertical-align: top; color: #fff }
 .video-sms-text span.user-name-green { color: #1fbcb6 }
-.video-sms-text span.user-name-red { color: #f12b5b }
+.video-sms-text span.user-name-red { color: #fff }
 .video-sms-text span.user-name-blue { color: #2b84f1 }
 .video-sms-text span.user-name-org { color: #ff7906 }
 .video-discuss-tool { margin: 25px 15px 15px }
@@ -58,11 +58,11 @@
 .video-discuss-login { margin-right: 30px; }
 .video-discuss-sms { background: url(live/img/comment.png) no-repeat; background-size: 35px 35px; display: inline-block; width: 35px; height: 35px }
 .video-discuss-sms:focus, .video-discuss-sms:hover { background-image: url(live/img/comment_hover.png) }
-.video-discuss-like { background: url(live/img/like.png) no-repeat; background-size: 30px 30px; bottom: 10px; display: inline-block; width: 30px; height: 30px; position: absolute; right: 15px }
+.video-discuss-like { background: url(live/img/live_zan.png) no-repeat; background-size: 30px 30px; bottom: 3px; display: inline-block; width: 37px; height: 36px; position: absolute; right: 15px }
 .video-discuss-like:focus, .video-discuss-like:hover { background-image: url(live/img/like_hover.png) }
-.video-discuss-form {width: 65%; height: 30px; padding: 8px 60px 10px 8px; position: relative }
-.video-discuss-input { width: 85%; height: 30px; vertical-align: top; padding: 0 13% 0 2%; border-radius: 2px; background: #fff;}
-.video-discuss-button { background-color: #dc4b53; height: 30px; color: #fff; width: 45px; position: absolute; right: 10px; font-size: 14px; top: 8px; border-radius: 2px }
+.video-discuss-form {width: 100%; height: 30px; padding: 8px 60px 10px 8px; position: relative; background: url('live/img/live_copy.png') no-repeat 20px center; background-size: auto 30px; }
+.video-discuss-input { width: 85%; height: 30px; vertical-align: top; padding: 0 13% 0 2%; border-radius: 2px; background: #fff; display: none;}
+.video-discuss-button { background-color: #dc4b53; height: 30px; color: #fff; width: 45px; position: absolute; right: 10px; font-size: 14px; top: 8px; border-radius: 2px; display: none; }
 .video-discuss-face { background: url(live/img/face.png) no-repeat; background-size: 20px 20px; width: 20px; height: 20px; display: inline-block; right: 65px; top: 12px; position: absolute }
 .video-discuss-face:focus, .video-discuss-face:hover { background-image: url(live/img/face_hover.png) }
 .like-icon { background: url(live/img/like_icon_1.png) no-repeat; background-size: 19px 17px; width: 19px; height: 17px; position: absolute; right: 24px; margin-top: -15px; opacity: 0; -webkit-animation-duration: 1.5s; animation-duration: 1.5s; -webkit-animation-fill-mode: both; animation-fill-mode: both }
@@ -92,6 +92,7 @@
 </style>
 </head>
 <body>
+<!-- 直播 -->
 <div id="j-video-page" class="video-page" style="display: none;">
     <div id="PlayerContainer" class="video-play"></div>
     <div class="video-pane">
@@ -129,7 +130,7 @@
                         <!-- <a class="video-discuss-sms j-btn-sms"></a> -->
                         <a class="video-discuss-like j-btn-like"></a>
                     </div>
-                    <div class="video-discuss-form" id="video-discuss-form"  style="display: none">
+                    <div class="video-discuss-form" id="video-discuss-form" style="display: none">
                         <div class="video-discuss-input" id="send_msg_text"></div>
                         <!--<a class="video-discuss-face j-btn-show-emotion"></a>-->
                         <button class="video-discuss-button j-btn-send-msg">发送</button>
@@ -149,20 +150,26 @@
         <span>查看热门直播</span>
     </div>
 </div>
+<!-- end -->
+<!-- 直播回放 -->
 <div class="video-playback" style="display: none;">
-    <div class="video-pane-info" style="position: fixed; left: 0; top: 0; z-index: 999; background: rgba(255,255,255,0.5);">
-        <div class="video-info">
-            <div class="user-img j-user-avatar">
-            </div>
-            <div class="user-info-text">
-                <div class="user-info-name j-user-name">&nbsp;</div>
-                <div class="user-info-num">
-                    <i class="user-icon-fans"></i><span id="user-icon-fans">0</span>
-                    <i class="user-icon-like"></i><span id="user-icon-like">0</span>
-                </div>
-                <div class="user-info-num-sub">
-                    <i class="user-icon-fans-sub"></i><span>0</span>
-                    <i class="user-icon-like-sub"></i><span>0</span>
+    <div class="video-pane">
+        <div class="video-pane-head">
+            <div class="video-pane-info">
+                <div class="video-info">
+                    <div class="user-img j-user-avatar">
+                    </div>
+                    <div class="user-info-text">
+                        <div class="user-info-name j-user-name">&nbsp;</div>
+                        <div class="user-info-num">
+                            <i class="user-icon-fans"></i><span id="user-icon-fans">0</span>
+                            <i class="user-icon-like"></i><span id="user-icon-like">0</span>
+                        </div>
+                        <div class="user-info-num-sub">
+                            <i class="user-icon-fans-sub"></i><span>0</span>
+                            <i class="user-icon-like-sub"></i><span>0</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -174,6 +181,7 @@
         </video>
     </div>
 </div>
+<!-- end -->
 <script type="text/javascript" src="live/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="live/zy.media.min.js"></script>
 <script type="text/javascript" src="../static/js/lib/reqwest.min.js"></script>

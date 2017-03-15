@@ -235,7 +235,10 @@ function showMsg(msg) {
                 break;
         }
     }
-    if(nickNameSpan.innerHTML && nickNameSpan.innerHTML.indexOf('点了个赞') <= -1){
+    if(nickNameSpan.innerHTML){
+        if(nickNameSpan.innerHTML.indexOf('点了个赞') >= 0 || nickNameSpan.innerHTML.indexOf('退出直播') >= 0){
+            return ;
+        }
         textDiv.appendChild(nickNameSpan);
         paneDiv.appendChild(textDiv);
         li.appendChild(paneDiv);

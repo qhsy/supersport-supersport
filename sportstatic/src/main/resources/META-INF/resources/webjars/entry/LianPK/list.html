@@ -13,7 +13,6 @@
 <link rel="stylesheet" type="text/css" href="../../static/css/base.css">
 <meta name="author" content="">
 <style type="text/css">
-
 /* content */
 .header{position: relative; margin-bottom: 5px; padding-bottom: 5px; background: #332A31;}
 .header .href{width: 100%; position: absolute; left: 0; bottom: 5px; text-align: center;}
@@ -35,6 +34,7 @@
 .list .qiye{width: 0.1rem; height: 0.1rem; background: url(../../static/img/icon_qiyeSmall@3x.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
 .recording{width: 70px; height: 70px; position: fixed; bottom: 10px; right: 10px; background: url(img/recording@2x.png) left top; background-size: cover;}
 .space{height: 70px; overflow: hidden;}
+.no-data{text-align: center; font:16px/30px "";}
 </style>
 </head>
 <body>
@@ -208,7 +208,7 @@ new Vue({
 				type:'POST',
 				contentType:'application/json',
 				dataType: 'json',
-				data:'{"pagination": "' + _this.initPage + '", tagCode: "GGBH170314110002", width": ' + _this.initWidth + ',"zoo": {"key": "tesetkey","token": " "}}',
+				data:'{"pagination": "' + _this.initPage + '","tagCode": "GGBH170314110002","width": ' + _this.initWidth + ',"zoo": {"key": "tesetkey","token": ""}}',
 				success:function(res){
 					if(res.status == 1){
 						_this.forData = _this.forData.concat(res.moments);
