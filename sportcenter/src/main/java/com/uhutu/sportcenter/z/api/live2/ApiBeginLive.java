@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.component.z.util.EmojiUtil;
+import com.uhutu.dcom.config.enums.SystemEnum;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentWorth;
@@ -23,6 +24,7 @@ import com.uhutu.dcom.content.z.properties.ConfigDcomContent;
 import com.uhutu.dcom.content.z.properties.SettingsDcomContent;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.content.z.support.LiveSupport;
+import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.sportcenter.z.entity.RedPackUserForApi;
 import com.uhutu.sportcenter.z.input.ApiBeginLiveInput;
 import com.uhutu.sportcenter.z.result.ApiBeginLiveResult;
@@ -120,11 +122,26 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 			
 			liveVideoDetail.setStreamId(streamId);
 			
-			String playUrl = TopHelper.upInfo(810710032, ContentEnum.BIZID.getCode(),streamId);
-					
-			liveVideoDetail.setStreamUrl(playUrl);
+			String playUrl = "";
+		
+			String webStreamUrl = "";
 			
-			String webStreamUrl = TopHelper.upInfo(810710034, ContentEnum.BIZID.getCode(),streamId);
+			if(mjFlag(upUserCode())){
+				
+				playUrl = input.getStreamUrl();
+				
+				webStreamUrl = input.getWebStreamUrl();
+				
+			}else{
+				
+				playUrl = TopHelper.upInfo(810710032, ContentEnum.BIZID.getCode(),streamId);
+				
+				webStreamUrl = TopHelper.upInfo(810710034, ContentEnum.BIZID.getCode(),streamId);
+				
+			}
+			
+			
+			liveVideoDetail.setStreamUrl(playUrl);
 			
 			liveVideoDetail.setWebStreamUrl(webStreamUrl);
 			
@@ -308,6 +325,34 @@ public class ApiBeginLive extends RootApiToken<ApiBeginLiveInput, ApiBeginLiveRe
 
 		return url;
 
+	}
+	
+	/**
+	 * 判断是否为马甲用户
+	 * @param userCode
+	 * 		用户编号
+	 * @return boolean
+	 */
+	public boolean mjFlag(String userCode){
+		
+		boolean mjFlag = false;
+		
+		MDataMap mWhereMap = new MDataMap();
+		
+		mWhereMap.put("code", userCode);
+		
+		mWhereMap.put("mjFlag", SystemEnum.YES.getCode());
+		
+		int count = JdbcHelper.count(UcUserinfo.class, "", mWhereMap);
+		
+		if(count > 0){
+			
+			mjFlag = true;
+			
+		}
+		
+		return mjFlag;
+		
 	}
 
 }

@@ -39,6 +39,12 @@ public class ApiBeginLiveInput extends RootApiInput {
 	
 	@ApiModelProperty(value = "横屏标识 dzsd4699100110010001:是 dzsd4699100110010002:否")
 	private String landScapeFlag;
+	
+	@ApiModelProperty(value="直播流地址")
+	private String streamUrl;
+	
+	@ApiModelProperty(value="web直播地址")
+	private String webStreamUrl;
 
 	@ApiModelProperty(value = "接受打赏人")
 	private List<RedPackUserForApi> users = new ArrayList<RedPackUserForApi>();
@@ -113,6 +119,22 @@ public class ApiBeginLiveInput extends RootApiInput {
 
 	public void setLandScapeFlag(String landScapeFlag) {
 		this.landScapeFlag = landScapeFlag;
+	}
+
+	public String getStreamUrl() {
+		return streamUrl;
+	}
+
+	public void setStreamUrl(String streamUrl) {
+		this.streamUrl = streamUrl;
+	}
+
+	public String getWebStreamUrl() {
+		return webStreamUrl;
+	}
+
+	public void setWebStreamUrl(String webStreamUrl) {
+		this.webStreamUrl = webStreamUrl;
 	}
 
 }
