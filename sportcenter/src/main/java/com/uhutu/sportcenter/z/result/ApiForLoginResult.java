@@ -1,9 +1,5 @@
 package com.uhutu.sportcenter.z.result;
 
-import com.uhutu.zoocom.baseannotation.ZooData;
-import com.uhutu.zoocom.define.DefineWebElement;
-import com.uhutu.zoocom.define.DefineWebInc;
-import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoocom.root.RootApiResult;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -23,9 +19,6 @@ public class ApiForLoginResult extends RootApiResult {
 	@ApiModelProperty(value = "sig信息")
 	private String sig;
 
-	@ApiModelProperty(value = "是否马甲", notes="dzsd4699100110010001:是,dzsd4699100110010002:否")
-	private String mjFlag;
-	
 	public String getUserToken() {
 		return userToken;
 	}
@@ -48,14 +41,6 @@ public class ApiForLoginResult extends RootApiResult {
 
 	public void setSig(String sig) {
 		this.sig = sig;
-	}
-
-	public String getMjFlag() {
-		return mjFlag;
-	}
-
-	public void setMjFlag(String mjFlag) {
-		this.mjFlag = mjFlag;
 	}
 
 }

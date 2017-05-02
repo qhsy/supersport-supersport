@@ -57,7 +57,7 @@ public class ApiForLogin extends RootApiBase<ApiForLoginInput, ApiForLoginResult
 			if (loginResult.upFlagTrue()) {
 
 				result.setUserToken(loginResult.getToken());
-				result.setMjFlag(ucUserinfo.getMjFlag());
+
 				result.setUserCode(ucUserinfo.getCode());
 
 			} else {
