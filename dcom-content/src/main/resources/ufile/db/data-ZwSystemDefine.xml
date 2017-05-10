@@ -6,15 +6,15 @@
 		<item code="dzsd4107100110020001" defineName="运动时刻" parentCode="dzsd410710011002" />
 		<item code="dzsd4107100110020002" defineName="文章" parentCode="dzsd410710011002" />
 		<item code="dzsd410710011003" defineName="展示类型" parentCode="dzsd41071001" />
-		<item code="dzsd4107100110030001" defineName="文章" parentCode="dzsd410710011003" />
-		<item code="dzsd4107100110030002" defineName="文章(含视频)" parentCode="dzsd410710011003" />
-		<item code="dzsd4107100110030003" defineName="图集" parentCode="dzsd410710011003" />
-		<item code="dzsd4107100110030004" defineName="单图" parentCode="dzsd410710011003" />
-		<item code="dzsd4107100110030005" defineName="单视频" parentCode="dzsd410710011003" />
-		<item code="dzsd4107100110030006" defineName="第三方链接" parentCode="dzsd410710011003" />
-		<item code="dzsd4107100110030007" defineName="直播" parentCode="dzsd410710011003" />
-		<item code="dzsd4107100110030008" defineName="第三方直播流" parentCode="dzsd410710011003" />
-		<item code="dzsd4107100110030009" defineName="直播回放" parentCode="dzsd410710011003" />
+		<item code="dzsd4107100110030001" defineName="视频" parentCode="dzsd410710011003" />
+		<item code="dzsd4107100110030002" defineName="第三方直播" parentCode="dzsd410710011003" />
+		<item code="dzsd4107100110030003" defineName="专题" parentCode="dzsd410710011003" />
+<!-- 		<item code="dzsd4107100110030001" defineName="文章" parentCode="dzsd410710011003" /> -->
+<!-- 		<item code="dzsd4107100110030002" defineName="文章(含视频)" parentCode="dzsd410710011003" /> -->
+<!-- 		<item code="dzsd4107100110030004" defineName="单图" parentCode="dzsd410710011003" /> -->
+<!-- 		<item code="dzsd4107100110030006" defineName="第三方链接" parentCode="dzsd410710011003" /> -->
+<!-- 		<item code="dzsd4107100110030007" defineName="直播" parentCode="dzsd410710011003" /> -->
+<!-- 		<item code="dzsd4107100110030009" defineName="直播回放" parentCode="dzsd410710011003" /> -->
 		<item code="dzsd410710011004" defineName="广告类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110040001" defineName="单图广告" parentCode="dzsd410710011004" />
 		<item code="dzsd4107100110040002" defineName="轮播广告" parentCode="dzsd410710011004" />
@@ -32,14 +32,14 @@
 		<item code="dzsd4107100110050011" defineName="直播(跳转参数：直播的内容编号)" parentCode="dzsd410710011005" />
 		<item code="dzsd4107100110050012" defineName="统一报名" parentCode="dzsd410710011005" />
 		<item code="dzsd410710011006" defineName="栏目类型" parentCode="dzsd41071001" />
-		<item code="dzsd4107100110060001" defineName="轮播广告栏目" parentCode="dzsd410710011006" />
-		<item code="dzsd4107100110060002" defineName="单图广告栏目" parentCode="dzsd410710011006" />
-		<item code="dzsd4107100110060003" defineName="内容栏目(老)" parentCode="dzsd410710011006" />
-		<item code="dzsd4107100110060005" defineName="一栏内容" parentCode="dzsd410710011006" />
-		<item code="dzsd4107100110060006" defineName="两栏内容1:1" parentCode="dzsd410710011006" />
-		<item code="dzsd4107100110060007" defineName="两栏内容4:3" parentCode="dzsd410710011006" />
-		<item code="dzsd4107100110060008" defineName="三栏内容" parentCode="dzsd410710011006" />
-		<item code="dzsd4107100110060009" defineName="导航栏" parentCode="dzsd410710011006" />
+		<item code="dzsd4107100110060001" defineName="推荐栏" parentCode="dzsd410710011006" />
+		<item code="dzsd4107100110060002" defineName="直播预告栏" parentCode="dzsd410710011006" />
+<!-- 		<item code="dzsd4107100110060003" defineName="内容栏目(老)" parentCode="dzsd410710011006" /> -->
+<!-- 		<item code="dzsd4107100110060005" defineName="一栏内容" parentCode="dzsd410710011006" /> -->
+<!-- 		<item code="dzsd4107100110060006" defineName="两栏内容1:1" parentCode="dzsd410710011006" /> -->
+<!-- 		<item code="dzsd4107100110060007" defineName="两栏内容4:3" parentCode="dzsd410710011006" /> -->
+<!-- 		<item code="dzsd4107100110060008" defineName="三栏内容" parentCode="dzsd410710011006" /> -->
+<!-- 		<item code="dzsd4107100110060009" defineName="导航栏" parentCode="dzsd410710011006" /> -->
 		<item code="dzsd410710011007" defineName="栏目类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110070001" defineName="内容信息" parentCode="dzsd410710011007" />
 		<item code="dzsd4107100110070002" defineName="达人信息" parentCode="dzsd410710011007" />
