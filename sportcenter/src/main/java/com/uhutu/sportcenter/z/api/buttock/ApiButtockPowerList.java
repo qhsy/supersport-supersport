@@ -48,91 +48,91 @@ public class ApiButtockPowerList extends RootApiBase<ApiButtockPowerListInput, A
 	protected ApiButtockPowerListResult process(ApiButtockPowerListInput input) {
 
 		ApiButtockPowerListResult result = new ApiButtockPowerListResult();
-
-		int total = JdbcHelper.count(AwPointRecommen.class, "", MapHelper.initMap("type", "dzsd4888100110030006"));
-
-		PageInfo pageInfo = new PageInfo(total, input.getPagination(), 10);
-
-		result.setNextflag(pageInfo.hasNext());
-
-		int istart = (input.getPagination() - 1) * 10;
-		
-		String orderStr = "IFNULL((SELECT count(1) + (select praise_base from cn_content_basicinfo where code = answer_code) from cn_support_praise where content_code = answer_code and status = '1'),0) DESC";
-		
-		List<AwPointRecommen> recommList = JdbcHelper.queryForList(AwPointRecommen.class, "", orderStr,
-				"type='dzsd4888100110030006'", new MDataMap(), istart, 10);
-
-		if (recommList.size() > 0) {
-
-			recommList.forEach(pointRecomm -> {
-
-				CnContentBasicinfo contentBasicInfo = contentServiceFactory.getContentBasicinfoService()
-						.queryByCode(pointRecomm.getAnswerCode());
-
-				if (contentBasicInfo != null) {
-
-					ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();
-
-					BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
-
-					UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(contentBasicInfo.getAuthor());
-
-					UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(contentBasicInfo.getAuthor());
-
-					if (ucUserinfoExt != null) {
-
-						sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
-
-						sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
-
-					}
-
-					if (ucUserinfo != null) {
-
-						sportingMoment.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
-
-						sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
-
-					}
-
-					sportingMoment.setTagName(
-							labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
-
-					sportingMoment.setTags(
-							labelServiceFactory.getContentLabelService().getLabels(sportingMoment.getTagCode()));
-					
-					boolean favorFlag = false;
-					
-					if(StringUtils.isNotEmpty(input.getZoo().getToken())){
-						
-						favorFlag = ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken());
-						
-					}
-					
-					sportingMoment.setFavorFlag(favorFlag);
-
-					sportingMoment.setCover(ImageHelper.upImageThumbnail(sportingMoment.getCover(), input.getWidth()));
-
-					sportingMoment.setPublishTimeStr("MM-dd HH:mm");
-
-					int praiseNum = contentServiceFactory.getSupportPraiseService()
-							.queryCountByCode(pointRecomm.getAnswerCode(), ContentEnum.FAVOR_STATUS_YES.getCode());
-
-					sportingMoment.setPraiseNum(praiseNum);
-
-					result.getButtockPowerList().add(sportingMoment);
-
-				}
-
-			});
-
-		} else {
-
-			result.setStatus(0);
-
-			result.setError("运营同学正在努力整理实力派的信息哟");
-
-		}
+//
+//		int total = JdbcHelper.count(AwPointRecommen.class, "", MapHelper.initMap("type", "dzsd4888100110030006"));
+//
+//		PageInfo pageInfo = new PageInfo(total, input.getPagination(), 10);
+//
+//		result.setNextflag(pageInfo.hasNext());
+//
+//		int istart = (input.getPagination() - 1) * 10;
+//		
+//		String orderStr = "IFNULL((SELECT count(1) + (select praise_base from cn_content_basicinfo where code = answer_code) from cn_support_praise where content_code = answer_code and status = '1'),0) DESC";
+//		
+//		List<AwPointRecommen> recommList = JdbcHelper.queryForList(AwPointRecommen.class, "", orderStr,
+//				"type='dzsd4888100110030006'", new MDataMap(), istart, 10);
+//
+//		if (recommList.size() > 0) {
+//
+//			recommList.forEach(pointRecomm -> {
+//
+//				CnContentBasicinfo contentBasicInfo = contentServiceFactory.getContentBasicinfoService()
+//						.queryByCode(pointRecomm.getAnswerCode());
+//
+//				if (contentBasicInfo != null) {
+//
+//					ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();
+//
+//					BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
+//
+//					UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(contentBasicInfo.getAuthor());
+//
+//					UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(contentBasicInfo.getAuthor());
+//
+//					if (ucUserinfoExt != null) {
+//
+//						sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+//
+//						sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+//
+//					}
+//
+//					if (ucUserinfo != null) {
+//
+//						sportingMoment.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
+//
+//						sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
+//
+//					}
+//
+//					sportingMoment.setTagName(
+//							labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
+//
+//					sportingMoment.setTags(
+//							labelServiceFactory.getContentLabelService().getLabels(sportingMoment.getTagCode()));
+//					
+//					boolean favorFlag = false;
+//					
+//					if(StringUtils.isNotEmpty(input.getZoo().getToken())){
+//						
+//						favorFlag = ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken());
+//						
+//					}
+//					
+//					sportingMoment.setFavorFlag(favorFlag);
+//
+//					sportingMoment.setCover(ImageHelper.upImageThumbnail(sportingMoment.getCover(), input.getWidth()));
+//
+//					sportingMoment.setPublishTimeStr("MM-dd HH:mm");
+//
+//					int praiseNum = contentServiceFactory.getSupportPraiseService()
+//							.queryCountByCode(pointRecomm.getAnswerCode(), ContentEnum.FAVOR_STATUS_YES.getCode());
+//
+//					sportingMoment.setPraiseNum(praiseNum);
+//
+//					result.getButtockPowerList().add(sportingMoment);
+//
+//				}
+//
+//			});
+//
+//		} else {
+//
+//			result.setStatus(0);
+//
+//			result.setError("运营同学正在努力整理实力派的信息哟");
+//
+//		}
 
 		return result;
 	}

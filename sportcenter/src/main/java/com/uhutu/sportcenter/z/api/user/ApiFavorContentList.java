@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.component.z.page.PageInfo;
 import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
-import com.uhutu.dcom.content.z.entity.CnContentDetail;
 import com.uhutu.dcom.content.z.entity.CnContentReadCount;
 import com.uhutu.dcom.content.z.entity.CnSupportPraise;
 import com.uhutu.dcom.content.z.enums.ContentEnum;
@@ -18,11 +17,8 @@ import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.dcom.tag.z.service.ContentLabelServiceFactory;
-import com.uhutu.dcom.user.z.entity.UcUserinfo;
-import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
 import com.uhutu.sportcenter.z.api.util.ContentComponent;
-import com.uhutu.sportcenter.z.api.util.HomePageSupport;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.input.ApiFavorContentListInput;
 import com.uhutu.sportcenter.z.result.ApiFavorContentListResult;
@@ -68,15 +64,16 @@ public class ApiFavorContentList extends RootApiBase<ApiFavorContentListInput, A
 
 		sqlBuffer.append(" and content_code like '").append("CNBH%").append("'");
 
-		sqlBuffer.append(" and exists(select 1 from cn_content_basicinfo where code = content_code and status = 'dzsd4699100110010001' and content_type!='dzsd4107100110030007' )");
+		sqlBuffer.append(
+				" and exists(select 1 from cn_content_basicinfo where code = content_code and status = 'dzsd4699100110010001' and content_type!='dzsd4107100110030007' )");
 
 		List<CnSupportPraise> praiseList = JdbcHelper.queryForList(CnSupportPraise.class, "", "-zc",
 				sqlBuffer.toString(), new MDataMap(), iStart, iNumber);
 
 		int total = JdbcHelper.count(CnSupportPraise.class, sqlBuffer.toString(), new MDataMap());
-		
+
 		PageInfo pageInfo = new PageInfo(total, input.getPagination(), iNumber);
-		
+
 		result.setNextPageFlag(pageInfo.hasNext());
 
 		praiseList.forEach(praise -> {
@@ -90,34 +87,37 @@ public class ApiFavorContentList extends RootApiBase<ApiFavorContentListInput, A
 
 				BeanUtils.copyProperties(basicinfo, basicinfoForApi);
 
-//				UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(basicinfo.getAuthor());
-//
-//				UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(basicinfo.getAuthor());
+				// UcUserinfoExt ucUserinfoExt =
+				// userInfoSupport.getUserInfoExt(basicinfo.getAuthor());
+				//
+				// UcUserinfo ucUserinfo =
+				// userInfoSupport.getUserInfo(basicinfo.getAuthor());
 
-//				if (ucUserinfoExt != null) {
-//
-//					basicinfoForApi.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
-//
-//					basicinfoForApi.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
-//
-//					basicinfoForApi.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
-//
-//				}
-//
-//				if (ucUserinfo != null) {
-//
-//					basicinfoForApi.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
-//
-//					basicinfoForApi.getUserBasicInfo().setType(ucUserinfo.getType());
-//
-//				}
+				// if (ucUserinfoExt != null) {
+				//
+				// basicinfoForApi.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+				//
+				// basicinfoForApi.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+				//
+				// basicinfoForApi.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
+				//
+				// }
+				//
+				// if (ucUserinfo != null) {
+				//
+				// basicinfoForApi.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
+				//
+				// basicinfoForApi.getUserBasicInfo().setType(ucUserinfo.getType());
+				//
+				// }
 
-				String tagName = labelServiceFactory.getContentLabelService().initTagName(basicinfoForApi.getTagCode());
+				// String tagName =
+				// labelServiceFactory.getContentLabelService().initTagName(basicinfoForApi.getTagCode());
+				//
+				// basicinfoForApi.setTagName(tagName);
 
-				basicinfoForApi.setTagName(tagName);
-
-				basicinfoForApi
-						.setTags(labelServiceFactory.getContentLabelService().getLabels(basicinfoForApi.getTagCode()));
+				// basicinfoForApi
+				// .setTags(labelServiceFactory.getContentLabelService().getLabels(basicinfoForApi.getTagCode()));
 				basicinfoForApi.setFavorFlag(
 						ContentComponent.lightFavor(basicinfoForApi.getCode(), input.getZoo().getToken()));
 
@@ -125,26 +125,29 @@ public class ApiFavorContentList extends RootApiBase<ApiFavorContentListInput, A
 				basicinfoForApi.setPublishTimeStr("MM-dd HH:mm");
 				CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
 						basicinfoForApi.getCode());
-				basicinfoForApi.setReadNum(contentReadCount != null ? contentReadCount.getCount() : 0);
+				// basicinfoForApi.setReadNum(contentReadCount != null ?
+				// contentReadCount.getCount() : 0);
 				int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(basicinfoForApi.getCode(),
 						RemarkEnum.FLAG_ENABLE.getCode());
 				basicinfoForApi.setRemarkNum(remarkNum);
 				int praiseNum = contentServiceFactory.getSupportPraiseService()
 						.queryCountByCode(basicinfoForApi.getCode(), ContentEnum.FAVOR_STATUS_YES.getCode());
-				basicinfoForApi.setPraiseNum(praiseNum);
-				
-				basicinfoForApi = new HomePageSupport(userInfoSupport).getSingleTitle(basicinfoForApi);
-				CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
-						basicinfoForApi.getCode());
-				if (contentDetail != null) {
-					basicinfoForApi.setContentDetail(contentDetail);
-				}
+				// basicinfoForApi.setPraiseNum(praiseNum);
+
+				// basicinfoForApi = new
+				// HomePageSupport(userInfoSupport).getSingleTitle(basicinfoForApi);
+				// CnContentDetail contentDetail =
+				// JdbcHelper.queryOne(CnContentDetail.class, "code",
+				// basicinfoForApi.getCode());
+				// if (contentDetail != null) {
+				// basicinfoForApi.setContentDetail(contentDetail);
+				// }
 				String title = basicinfoForApi.getTitle();
-				
+
 				title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
-				
+
 				basicinfoForApi.setTitle(title);
-				
+
 				result.getContentInfoList().add(basicinfoForApi);
 
 			}

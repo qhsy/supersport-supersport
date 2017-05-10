@@ -92,29 +92,29 @@ public class ApiTummyMoments extends RootApiForMember<ApiTummyMomentsInput, ApiT
 
 				UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(contentBasicInfo.getAuthor());
 
-				if (ucUserinfoExt != null) {
+//				if (ucUserinfoExt != null) {
+//
+//					sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+//
+//					sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+//
+//					sportingMoment.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
+//
+//				}
+//
+//				if (ucUserinfo != null) {
+//
+//					sportingMoment.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
+//
+//					sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
+//
+//				}
 
-					sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
-
-					sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
-
-					sportingMoment.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
-
-				}
-
-				if (ucUserinfo != null) {
-
-					sportingMoment.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
-
-					sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
-
-				}
-
-				sportingMoment.setTagName(
-						labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
-
-				sportingMoment
-						.setTags(labelServiceFactory.getContentLabelService().getLabels(sportingMoment.getTagCode()));
+//				sportingMoment.setTagName(
+//						labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
+//
+//				sportingMoment
+//						.setTags(labelServiceFactory.getContentLabelService().getLabels(sportingMoment.getTagCode()));
 				sportingMoment
 						.setFavorFlag(ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken()));
 
@@ -125,23 +125,23 @@ public class ApiTummyMoments extends RootApiForMember<ApiTummyMomentsInput, ApiT
 				CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
 						sportingMoment.getCode());
 
-				if (contentReadCount != null) {
-
-					sportingMoment.setReadNum(contentReadCount.getCount());
-
-				}
-				CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
-						sportingMoment.getCode());
-				if (contentDetail != null) {
-					sportingMoment.setContentDetail(contentDetail);
-				}
-				sportingMoment = new HomePageSupport(userInfoSupport).getSingleTitle(sportingMoment);
-				int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(sportingMoment.getCode(),
-						RemarkEnum.FLAG_ENABLE.getCode());
-				sportingMoment.setRemarkNum(remarkNum);
-				int praiseNum = serviceFactory.getSupportPraiseService().queryCountByCode(sportingMoment.getCode(),
-						ContentEnum.FAVOR_STATUS_YES.getCode());
-				sportingMoment.setPraiseNum(praiseNum);
+//				if (contentReadCount != null) {
+//
+//					sportingMoment.setReadNum(contentReadCount.getCount());
+//
+//				}
+//				CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+//						sportingMoment.getCode());
+//				if (contentDetail != null) {
+//					sportingMoment.setContentDetail(contentDetail);
+//				}
+//				sportingMoment = new HomePageSupport(userInfoSupport).getSingleTitle(sportingMoment);
+//				int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(sportingMoment.getCode(),
+//						RemarkEnum.FLAG_ENABLE.getCode());
+//				sportingMoment.setRemarkNum(remarkNum);
+//				int praiseNum = serviceFactory.getSupportPraiseService().queryCountByCode(sportingMoment.getCode(),
+//						ContentEnum.FAVOR_STATUS_YES.getCode());
+//				sportingMoment.setPraiseNum(praiseNum);
 
 				String title = sportingMoment.getTitle();
 

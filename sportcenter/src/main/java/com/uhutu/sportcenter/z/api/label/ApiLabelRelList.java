@@ -107,7 +107,7 @@ public class ApiLabelRelList extends RootApiBase<ApiLabelRelListInput, ApiLabelR
 		List<CnContentBasicinfo> contentBasicinfos = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "-zc",
 				sWhere, new MDataMap(), iStart, iNumber);
 
-		labelContentInfo.setContentBasicInfos(initBasicInfos(contentBasicinfos, width));
+//		labelContentInfo.setContentBasicInfos(initBasicInfos(contentBasicinfos, width));
 
 		return labelContentInfo;
 
@@ -139,7 +139,7 @@ public class ApiLabelRelList extends RootApiBase<ApiLabelRelListInput, ApiLabelR
 		List<CnContentBasicinfo> contentBasicinfos = JdbcHelper.queryForList(CnContentBasicinfo.class, "", orderStr,
 				sWhere, new MDataMap(), iStart, iNumber);
 
-		labelContentInfo.setContentBasicInfos(initBasicInfos(contentBasicinfos, width));
+//		labelContentInfo.setContentBasicInfos(initBasicInfos(contentBasicinfos, width));
 
 		return labelContentInfo;
 
@@ -191,76 +191,76 @@ public class ApiLabelRelList extends RootApiBase<ApiLabelRelListInput, ApiLabelR
 	 * 		内容宽度
 	 * @return
 	 */
-	public List<ContentBasicinfoForApi> initBasicInfos(List<CnContentBasicinfo> contentBasicinfos, int width) {
-
-		List<ContentBasicinfoForApi> basicInfoApis = new ArrayList<ContentBasicinfoForApi>();
-
-		contentBasicinfos.forEach(basicInfo -> {
-
-			if (basicInfo != null) {
-
-				ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();
-
-				BeanUtils.copyProperties(basicInfo, sportingMoment);
-
-				UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(sportingMoment.getAuthor());
-
-				UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(sportingMoment.getAuthor());
-
-				if (ucUserinfoExt != null) {
-
-					sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
-
-					sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
-
-				}
-
-				if (ucUserinfo != null) {
-
-					sportingMoment.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
-
-					sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
-
-				}
-
-				sportingMoment.setTagName(
-						labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
-
-				sportingMoment.setTags(
-						labelServiceFactory.getContentLabelService().getLabels(sportingMoment.getTagCode()));
-				
-				ImageThumb coverThum = ImageHelper.upThumbWithHeight(sportingMoment.getCover(), width);
-
-				sportingMoment.setCover(coverThum.getThumbUrl());
-
-				sportingMoment.setCoverWH(coverThum.getThumbWidth() + "*" + coverThum.getThumbHeight());
-
-				CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
-						sportingMoment.getCode());
-				
-				if (contentReadCount != null) {
-
-					sportingMoment.setReadNum(contentReadCount.getCount());
-
-				}
-				CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
-						sportingMoment.getCode());
-				if (contentDetail != null) {
-					sportingMoment.setContentDetail(contentDetail);
-				}
-				String title = sportingMoment.getTitle();
-				
-				title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
-				
-				sportingMoment.setTitle(title);
-
-				basicInfoApis.add(sportingMoment);
-
-			}
-		});
-
-		return basicInfoApis;
-
-	}
+//	public List<ContentBasicinfoForApi> initBasicInfos(List<CnContentBasicinfo> contentBasicinfos, int width) {
+//
+//		List<ContentBasicinfoForApi> basicInfoApis = new ArrayList<ContentBasicinfoForApi>();
+//
+//		contentBasicinfos.forEach(basicInfo -> {
+//
+//			if (basicInfo != null) {
+//
+//				ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();
+//
+//				BeanUtils.copyProperties(basicInfo, sportingMoment);
+//
+//				UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(sportingMoment.getAuthor());
+//
+//				UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(sportingMoment.getAuthor());
+//
+//				if (ucUserinfoExt != null) {
+//
+//					sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+//
+//					sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+//
+//				}
+//
+//				if (ucUserinfo != null) {
+//
+//					sportingMoment.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
+//
+//					sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
+//
+//				}
+//
+//				sportingMoment.setTagName(
+//						labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
+//
+//				sportingMoment.setTags(
+//						labelServiceFactory.getContentLabelService().getLabels(sportingMoment.getTagCode()));
+//				
+//				ImageThumb coverThum = ImageHelper.upThumbWithHeight(sportingMoment.getCover(), width);
+//
+//				sportingMoment.setCover(coverThum.getThumbUrl());
+//
+//				sportingMoment.setCoverWH(coverThum.getThumbWidth() + "*" + coverThum.getThumbHeight());
+//
+//				CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
+//						sportingMoment.getCode());
+//				
+//				if (contentReadCount != null) {
+//
+//					sportingMoment.setReadNum(contentReadCount.getCount());
+//
+//				}
+//				CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+//						sportingMoment.getCode());
+//				if (contentDetail != null) {
+//					sportingMoment.setContentDetail(contentDetail);
+//				}
+//				String title = sportingMoment.getTitle();
+//				
+//				title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+//				
+//				sportingMoment.setTitle(title);
+//
+//				basicInfoApis.add(sportingMoment);
+//
+//			}
+//		});
+//
+//		return basicInfoApis;
+//
+//	}
 
 }

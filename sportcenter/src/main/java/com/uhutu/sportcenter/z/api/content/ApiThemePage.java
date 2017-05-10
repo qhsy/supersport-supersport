@@ -139,21 +139,21 @@ public class ApiThemePage extends RootApiBase<ApiThemePageInput, ApiThemePageRes
 						ContentBasicinfoForApi re = new ContentBasicinfoForApi();
 
 						BeanUtils.copyProperties(basicInfo, re);
-						UcUserinfo userInfo = userInfoSupport.getUserInfo(re.getAuthor());
-						UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(re.getAuthor());
-						if (ucUserinfoExt != null) {
-							if (StringUtils.isNotBlank(ucUserinfoExt.getAboutHead())) {
-								re.getUserBasicInfo()
-										.setAboutHead(ImageHelper.upImageThumbnail(ucUserinfoExt.getAboutHead(), 80));
-							}
-							re.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
-						}
-						if (userInfo != null) {
-							re.getUserBasicInfo().setType(userInfo.getType());
-							re.getUserBasicInfo().setUserCode(userInfo.getCode());
-						}
-						re.setPraiseNum(contentServiceFactory.getSupportPraiseService().queryCountByCode(re.getCode(),
-								ContentEnum.FAVOR_STATUS_YES.getCode()));
+//						UcUserinfo userInfo = userInfoSupport.getUserInfo(re.getAuthor());
+//						UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(re.getAuthor());
+//						if (ucUserinfoExt != null) {
+//							if (StringUtils.isNotBlank(ucUserinfoExt.getAboutHead())) {
+//								re.getUserBasicInfo()
+//										.setAboutHead(ImageHelper.upImageThumbnail(ucUserinfoExt.getAboutHead(), 80));
+//							}
+//							re.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+//						}
+//						if (userInfo != null) {
+//							re.getUserBasicInfo().setType(userInfo.getType());
+//							re.getUserBasicInfo().setUserCode(userInfo.getCode());
+//						}
+//						re.setPraiseNum(contentServiceFactory.getSupportPraiseService().queryCountByCode(re.getCode(),
+//								ContentEnum.FAVOR_STATUS_YES.getCode()));
 
 						String themeCover = coverMap.get(basicInfo.getCode());
 

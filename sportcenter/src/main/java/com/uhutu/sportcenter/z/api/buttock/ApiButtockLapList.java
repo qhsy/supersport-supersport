@@ -46,90 +46,90 @@ public class ApiButtockLapList extends RootApiBase<ApiButtockLapListInput, ApiBu
 		
 		ApiButtockLapListResult result = new ApiButtockLapListResult();
 		
-		int total = JdbcHelper.count(CnContentBasicinfo.class, "", MapHelper.initMap("tagCode","GGBH160719110001","status",ContentEnum.normal.getCode(),"shareScope","dzsd4699100110010001"));
-		
-		PageInfo pageInfo = new PageInfo(total, input.getPagination(), 10);
-		
-		result.setNextflag(pageInfo.hasNext());
-		
-		int istart = (input.getPagination() - 1)*10;
-		
-		String whereStr = "tagCode='GGBH160719110001' and status='"+ContentEnum.normal.getCode()+"' and shareScope='dzsd4699100110010001'";
-		
-		List<CnContentBasicinfo> contentList = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "-publish_time", whereStr, new MDataMap(), istart, 10);
-		
-		if(contentList.size() > 0){
-			
-			contentList.forEach(pointRecomm -> {
-				
-				CnContentBasicinfo contentBasicInfo = contentServiceFactory.getContentBasicinfoService().queryByCode(pointRecomm.getCode());
-
-				if (contentBasicInfo != null) {
-
-					ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();
-
-					BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
-
-					UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(contentBasicInfo.getAuthor());
-
-					UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(contentBasicInfo.getAuthor());
-
-					if (ucUserinfoExt != null) {
-
-						sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
-
-						sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
-
-					}
-
-					if (ucUserinfo != null) {
-
-						sportingMoment.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
-
-						sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
-
-					}
-
-					sportingMoment.setTagName(
-							labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
-
-					sportingMoment.setTags(
-							labelServiceFactory.getContentLabelService().getLabels(sportingMoment.getTagCode()));
-					
-					boolean favorFlag = false;
-					
-					if(StringUtils.isNotEmpty(input.getZoo().getToken())){
-						
-						favorFlag = ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken());
-						
-					}
-					
-					sportingMoment.setFavorFlag(favorFlag);
-					
-					sportingMoment.setCover(ImageHelper.upImageThumbnail(sportingMoment.getCover(), input.getWidth()));
-
-					sportingMoment.setPublishTimeStr("MM-dd HH:mm");
-					
-					int praiseNum = contentServiceFactory.getSupportPraiseService().queryCountByCode(pointRecomm.getCode(),ContentEnum.FAVOR_STATUS_YES.getCode());
-					
-					sportingMoment.setPraiseNum(praiseNum);
-
-					result.getButtockLapList().add(sportingMoment);
-
-				}
-
-			
-				
-				
-			});
-			
-		}else{
-			
-			result.setStatus(0);
-			
-			result.setError("运营同学正在努力整理翘丽圈的信息哟");
-			
-		}
+//		int total = JdbcHelper.count(CnContentBasicinfo.class, "", MapHelper.initMap("tagCode","GGBH160719110001","status",ContentEnum.normal.getCode(),"shareScope","dzsd4699100110010001"));
+//		
+//		PageInfo pageInfo = new PageInfo(total, input.getPagination(), 10);
+//		
+//		result.setNextflag(pageInfo.hasNext());
+//		
+//		int istart = (input.getPagination() - 1)*10;
+//		
+//		String whereStr = "tagCode='GGBH160719110001' and status='"+ContentEnum.normal.getCode()+"' and shareScope='dzsd4699100110010001'";
+//		
+//		List<CnContentBasicinfo> contentList = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "-publish_time", whereStr, new MDataMap(), istart, 10);
+//		
+//		if(contentList.size() > 0){
+//			
+//			contentList.forEach(pointRecomm -> {
+//				
+//				CnContentBasicinfo contentBasicInfo = contentServiceFactory.getContentBasicinfoService().queryByCode(pointRecomm.getCode());
+//
+//				if (contentBasicInfo != null) {
+//
+//					ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();
+//
+//					BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
+//
+//					UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(contentBasicInfo.getAuthor());
+//
+//					UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(contentBasicInfo.getAuthor());
+//
+//					if (ucUserinfoExt != null) {
+//
+//						sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+//
+//						sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+//
+//					}
+//
+//					if (ucUserinfo != null) {
+//
+//						sportingMoment.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
+//
+//						sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
+//
+//					}
+//
+//					sportingMoment.setTagName(
+//							labelServiceFactory.getContentLabelService().initTagName(sportingMoment.getTagCode()));
+//
+//					sportingMoment.setTags(
+//							labelServiceFactory.getContentLabelService().getLabels(sportingMoment.getTagCode()));
+//					
+//					boolean favorFlag = false;
+//					
+//					if(StringUtils.isNotEmpty(input.getZoo().getToken())){
+//						
+//						favorFlag = ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken());
+//						
+//					}
+//					
+//					sportingMoment.setFavorFlag(favorFlag);
+//					
+//					sportingMoment.setCover(ImageHelper.upImageThumbnail(sportingMoment.getCover(), input.getWidth()));
+//
+//					sportingMoment.setPublishTimeStr("MM-dd HH:mm");
+//					
+//					int praiseNum = contentServiceFactory.getSupportPraiseService().queryCountByCode(pointRecomm.getCode(),ContentEnum.FAVOR_STATUS_YES.getCode());
+//					
+//					sportingMoment.setPraiseNum(praiseNum);
+//
+//					result.getButtockLapList().add(sportingMoment);
+//
+//				}
+//
+//			
+//				
+//				
+//			});
+//			
+//		}else{
+//			
+//			result.setStatus(0);
+//			
+//			result.setError("运营同学正在努力整理翘丽圈的信息哟");
+//			
+//		}
 		
 		return result;
 	

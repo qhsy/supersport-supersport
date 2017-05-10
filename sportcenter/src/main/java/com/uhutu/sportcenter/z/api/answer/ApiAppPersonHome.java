@@ -278,29 +278,29 @@ public class ApiAppPersonHome extends RootApiBase<ApiAppPersonHomeInput, ApiAppP
 
 			BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
 
-			if(ucUserinfoExt != null){
-				
-				sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
-				
-				sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
-				
-			}
-			
-			if(ucUserinfo != null){
-				
-				sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
-				
-				sportingMoment.getUserBasicInfo().setUserCode(userCode);
-				
-			}
+//			if(ucUserinfoExt != null){
+//				
+//				sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+//				
+//				sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+//				
+//			}
+//			
+//			if(ucUserinfo != null){
+//				
+//				sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
+//				
+//				sportingMoment.getUserBasicInfo().setUserCode(userCode);
+//				
+//			}
 			
 			sportingMoment.setFavorFlag(ContentComponent.lightFavor(sportingMoment.getCode(), token));
 			
-			sportingMoment.setReadNum(ContentComponent.readNum(sportingMoment.getCode()));
+//			sportingMoment.setReadNum(ContentComponent.readNum(sportingMoment.getCode()));
 			
 			sportingMoment.setRemarkNum(ContentComponent.remarkNum(sportingMoment.getCode()));
 			
-			sportingMoment.setPraiseNum(ContentComponent.praiseNum(sportingMoment.getCode()));
+//			sportingMoment.setPraiseNum(ContentComponent.praiseNum(sportingMoment.getCode()));
 			
 			String title = sportingMoment.getTitle();
 			

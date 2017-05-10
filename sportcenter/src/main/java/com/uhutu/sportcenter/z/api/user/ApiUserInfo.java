@@ -123,21 +123,21 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 
 			BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
 
-			if(ucUserinfoExt != null){
-				
-				sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
-				
-				sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
-				
-			}
-			
-			if(ucUserinfo != null){
-				
-				sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
-				
-				sportingMoment.getUserBasicInfo().setUserCode(userCode);
-				
-			}
+//			if(ucUserinfoExt != null){
+//				
+//				sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+//				
+//				sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+//				
+//			}
+//			
+//			if(ucUserinfo != null){
+//				
+//				sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
+//				
+//				sportingMoment.getUserBasicInfo().setUserCode(userCode);
+//				
+//			}
 			
 			String title = sportingMoment.getTitle();
 			

@@ -97,139 +97,139 @@ public class HomePageSupport {
 		return cff;
 	}
 
-	public List<HomePageModel> getPageModels(String itemCode, String itemType, String t1, String t2, String width,
-			String token) {
-		List<HomePageModel> li = new ArrayList<HomePageModel>();
-		MDataMap map = new MDataMap();
-		map.put("itemType", itemType);
-		map.put("itemCode", itemCode);
-		List<CnContentItemRel> rels = JdbcHelper.queryForList(CnContentItemRel.class, "contentCode",
-				"sort desc,start_time desc,zc desc",
-				" itemCode=:itemCode and itemType=:itemType and endTime>=NOW() and startTime<=NOW() ", map);
-		StringBuffer str = new StringBuffer();
-		if (rels != null && !rels.isEmpty() && rels.size() > 0) {
-			for (int i = 0; i < rels.size(); i++) {
-				if (i == rels.size() - 1) {
-					str.append("'" + rels.get(i).getContentCode() + "'");
-				} else {
-					str.append("'" + rels.get(i).getContentCode() + "',");
-				}
-			}
-		}
-		if (StringUtils.isNotBlank(str)) {
-			if ("dzsd4107100110060003".equals(itemType)) {// 内容
-
-				List<CnContentBasicinfo> basics = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "",
-						"status='dzsd4699100110010001' and shareScope='dzsd4699100110010001' and code in("
-								+ str.toString() + ")",
-						new MDataMap());
-				List<CnContentBasicinfo> infos = new ArrayList<CnContentBasicinfo>();
-				for (int i = 0; i < rels.size(); i++) {
-					for (int j = 0; j < basics.size(); j++) {
-						if (rels.get(i).getContentCode().equals(basics.get(j).getCode())) {
-							infos.add(basics.get(j));
-						}
-					}
-				}
-				if (infos != null && !infos.isEmpty() && infos.size() > 0) {
-					for (int i = 0; i < infos.size(); i++) {
-						HomePageModel hmp = new HomePageModel();
-						CnContentBasicinfo info = infos.get(i);
-						ContentBasicinfoForApi infoApi = new ContentBasicinfoForApi();
-						UserinfoExtForApi userInfoApi = new UserinfoExtForApi();
-//						if (StringUtils.isNotBlank(info.getAuthor())) {
-//							UcUserinfoExt ext = userInfoSupport.getUserBasicInfo(info.getAuthor()).getUcUserinfoExt();
-//							if (ext == null) {
-//								continue;
-//							}
-//							UserBasicInfo ubi = userInfoSupport.getUserBasicInfo(info.getAuthor());
-//							BeanUtils.copyProperties(ubi.getUcUserinfoExt(), userInfoApi);
+//	public List<HomePageModel> getPageModels(String itemCode, String itemType, String t1, String t2, String width,
+//			String token) {
+//		List<HomePageModel> li = new ArrayList<HomePageModel>();
+//		MDataMap map = new MDataMap();
+//		map.put("itemType", itemType);
+//		map.put("itemCode", itemCode);
+//		List<CnContentItemRel> rels = JdbcHelper.queryForList(CnContentItemRel.class, "contentCode",
+//				"sort desc,start_time desc,zc desc",
+//				" itemCode=:itemCode and itemType=:itemType and endTime>=NOW() and startTime<=NOW() ", map);
+//		StringBuffer str = new StringBuffer();
+//		if (rels != null && !rels.isEmpty() && rels.size() > 0) {
+//			for (int i = 0; i < rels.size(); i++) {
+//				if (i == rels.size() - 1) {
+//					str.append("'" + rels.get(i).getContentCode() + "'");
+//				} else {
+//					str.append("'" + rels.get(i).getContentCode() + "',");
+//				}
+//			}
+//		}
+//		if (StringUtils.isNotBlank(str)) {
+//			if ("dzsd4107100110060003".equals(itemType)) {// 内容
 //
-//							if (ubi.getUcUserinfo() != null) {
-//
-//								userInfoApi.setType(ubi.getUcUserinfo().getType());
-//
-//							}
-//
+//				List<CnContentBasicinfo> basics = JdbcHelper.queryForList(CnContentBasicinfo.class, "", "",
+//						"status='dzsd4699100110010001' and shareScope='dzsd4699100110010001' and code in("
+//								+ str.toString() + ")",
+//						new MDataMap());
+//				List<CnContentBasicinfo> infos = new ArrayList<CnContentBasicinfo>();
+//				for (int i = 0; i < rels.size(); i++) {
+//					for (int j = 0; j < basics.size(); j++) {
+//						if (rels.get(i).getContentCode().equals(basics.get(j).getCode())) {
+//							infos.add(basics.get(j));
 //						}
-						CnContentRecomm recomm = JdbcHelper.queryOne(CnContentRecomm.class, "contentCode",
-								info.getCode());
-						if (recomm != null) {
-							info.setCover(
-									StringUtils.isNotBlank(recomm.getCover()) ? recomm.getCover() : info.getCover());
-							info.setTitle(
-									StringUtils.isNotBlank(recomm.getTitle()) ? recomm.getTitle() : info.getTitle());
-						}
-						if (StringUtils.isNotBlank(info.getCover()) && StringUtils.isNotBlank(width)) {
-							info.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(width)));
-						}
-						BeanUtils.copyProperties(info, infoApi);
-						CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
-								infoApi.getCode());
-						if (contentDetail != null) {
-							infoApi.setContentDetail(contentDetail);
-						}
-						int praiseNum = JdbcHelper.count(CnSupportPraise.class, "",
-								MapHelper.initMap("content_code", infoApi.getCode(), "type", "01", "status", "1"));
-						infoApi.setPraiseNum(praiseNum);
-						CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class,
-								"contentCode", infoApi.getCode());
-						infoApi.setReadNum(contentReadCount != null ? contentReadCount.getCount() : 0);
-						int remarkNum = JdbcHelper.count(CnContentRemark.class, "",
-								MapHelper.initMap("content_code", infoApi.getCode(), "status", "dzsd4699100110010001"));
-						infoApi.setRemarkNum(remarkNum);
-						infoApi.setFavorFlag(ContentComponent.lightFavor(infoApi.getCode(), token));
-						infoApi.getUserBasicInfo().setNickName(userInfoApi.getNickName());
-						infoApi.getUserBasicInfo().setAboutHead(userInfoApi.getAboutHead());
-						infoApi.getUserBasicInfo().setType(userInfoApi.getType());
-						hmp.setInfo(getSingleTitle(infoApi));
-						hmp.setShowType("dzsd4107100110060003");
-						li.add(hmp);
-					}
-				}
-			} else if ("dzsd4107100110060002".equals(itemType)) {// 一栏广告
-
-				CnAdvertiseDetail detail = JdbcHelper.queryOne(CnAdvertiseDetail.class, "", "",
-						" code in(" + str.toString() + ")", new MDataMap());
-				HomePageModel hmp = new HomePageModel();
-				hmp.setShowType("dzsd4107100110060002");
-				AdvertiseDetailForApi dfa = new AdvertiseDetailForApi();
-				BeanUtils.copyProperties(detail, dfa);
-//				if ("dzsd4107100110050002".equals(detail.getPiclinkType())
-//						&& StringUtils.isNotBlank(detail.getPiclinkContent())) {
-//					CnContentBasicinfo cbi = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
-//							detail.getPiclinkContent());
-//					if (cbi != null) {
-//						dfa.setType(cbi.getContentType());
 //					}
 //				}
-				if (StringUtils.isNotBlank(dfa.getPicUrl()) && StringUtils.isNotBlank(width)) {
-					dfa.setPicUrl(ImageHelper.upImageThumbnail(dfa.getPicUrl(), Integer.valueOf(width)));
-				}
-				hmp.getAdv().getDetails().add(dfa);
-				li.add(hmp);
-			} else if ("dzsd4107100110060001".equals(itemType)
-					&& t1.substring(0, 10).equals(DateHelper.upNow().substring(0, 10))) {// 轮播广告
-
-				List<CnAdvertiseDetail> details = JdbcHelper.queryForList(CnAdvertiseDetail.class, "",
-						" field(code," + str.toString() + ")", " code in(" + str.toString() + ")", new MDataMap());
-				if (details != null && !details.isEmpty() && details.size() > 0) {
-					HomePageModel hmp = new HomePageModel();
-					hmp.setShowType("dzsd4107100110060001");
-					for (int j = 0; j < details.size(); j++) {
-						AdvertiseDetailForApi dfa = new AdvertiseDetailForApi();
-						BeanUtils.copyProperties(details.get(j), dfa);
-						if (StringUtils.isNotBlank(dfa.getPicUrl()) && StringUtils.isNotBlank(width)) {
-							dfa.setPicUrl(ImageHelper.upImageThumbnail(dfa.getPicUrl(), Integer.valueOf(width)));
-						}
-						hmp.getAdv().getDetails().add(dfa);
-					}
-					li.add(hmp);
-				}
-			}
-		}
-		return li;
-	}
+//				if (infos != null && !infos.isEmpty() && infos.size() > 0) {
+//					for (int i = 0; i < infos.size(); i++) {
+//						HomePageModel hmp = new HomePageModel();
+//						CnContentBasicinfo info = infos.get(i);
+//						ContentBasicinfoForApi infoApi = new ContentBasicinfoForApi();
+//						UserinfoExtForApi userInfoApi = new UserinfoExtForApi();
+////						if (StringUtils.isNotBlank(info.getAuthor())) {
+////							UcUserinfoExt ext = userInfoSupport.getUserBasicInfo(info.getAuthor()).getUcUserinfoExt();
+////							if (ext == null) {
+////								continue;
+////							}
+////							UserBasicInfo ubi = userInfoSupport.getUserBasicInfo(info.getAuthor());
+////							BeanUtils.copyProperties(ubi.getUcUserinfoExt(), userInfoApi);
+////
+////							if (ubi.getUcUserinfo() != null) {
+////
+////								userInfoApi.setType(ubi.getUcUserinfo().getType());
+////
+////							}
+////
+////						}
+//						CnContentRecomm recomm = JdbcHelper.queryOne(CnContentRecomm.class, "contentCode",
+//								info.getCode());
+//						if (recomm != null) {
+//							info.setCover(
+//									StringUtils.isNotBlank(recomm.getCover()) ? recomm.getCover() : info.getCover());
+//							info.setTitle(
+//									StringUtils.isNotBlank(recomm.getTitle()) ? recomm.getTitle() : info.getTitle());
+//						}
+//						if (StringUtils.isNotBlank(info.getCover()) && StringUtils.isNotBlank(width)) {
+//							info.setCover(ImageHelper.upImageThumbnail(info.getCover(), Integer.valueOf(width)));
+//						}
+//						BeanUtils.copyProperties(info, infoApi);
+//						CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+//								infoApi.getCode());
+//						if (contentDetail != null) {
+//							infoApi.setContentDetail(contentDetail);
+//						}
+//						int praiseNum = JdbcHelper.count(CnSupportPraise.class, "",
+//								MapHelper.initMap("content_code", infoApi.getCode(), "type", "01", "status", "1"));
+//						infoApi.setPraiseNum(praiseNum);
+//						CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class,
+//								"contentCode", infoApi.getCode());
+//						infoApi.setReadNum(contentReadCount != null ? contentReadCount.getCount() : 0);
+//						int remarkNum = JdbcHelper.count(CnContentRemark.class, "",
+//								MapHelper.initMap("content_code", infoApi.getCode(), "status", "dzsd4699100110010001"));
+//						infoApi.setRemarkNum(remarkNum);
+//						infoApi.setFavorFlag(ContentComponent.lightFavor(infoApi.getCode(), token));
+//						infoApi.getUserBasicInfo().setNickName(userInfoApi.getNickName());
+//						infoApi.getUserBasicInfo().setAboutHead(userInfoApi.getAboutHead());
+//						infoApi.getUserBasicInfo().setType(userInfoApi.getType());
+//						hmp.setInfo(getSingleTitle(infoApi));
+//						hmp.setShowType("dzsd4107100110060003");
+//						li.add(hmp);
+//					}
+//				}
+//			} else if ("dzsd4107100110060002".equals(itemType)) {// 一栏广告
+//
+//				CnAdvertiseDetail detail = JdbcHelper.queryOne(CnAdvertiseDetail.class, "", "",
+//						" code in(" + str.toString() + ")", new MDataMap());
+//				HomePageModel hmp = new HomePageModel();
+//				hmp.setShowType("dzsd4107100110060002");
+//				AdvertiseDetailForApi dfa = new AdvertiseDetailForApi();
+//				BeanUtils.copyProperties(detail, dfa);
+////				if ("dzsd4107100110050002".equals(detail.getPiclinkType())
+////						&& StringUtils.isNotBlank(detail.getPiclinkContent())) {
+////					CnContentBasicinfo cbi = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
+////							detail.getPiclinkContent());
+////					if (cbi != null) {
+////						dfa.setType(cbi.getContentType());
+////					}
+////				}
+//				if (StringUtils.isNotBlank(dfa.getPicUrl()) && StringUtils.isNotBlank(width)) {
+//					dfa.setPicUrl(ImageHelper.upImageThumbnail(dfa.getPicUrl(), Integer.valueOf(width)));
+//				}
+//				hmp.getAdv().getDetails().add(dfa);
+//				li.add(hmp);
+//			} else if ("dzsd4107100110060001".equals(itemType)
+//					&& t1.substring(0, 10).equals(DateHelper.upNow().substring(0, 10))) {// 轮播广告
+//
+//				List<CnAdvertiseDetail> details = JdbcHelper.queryForList(CnAdvertiseDetail.class, "",
+//						" field(code," + str.toString() + ")", " code in(" + str.toString() + ")", new MDataMap());
+//				if (details != null && !details.isEmpty() && details.size() > 0) {
+//					HomePageModel hmp = new HomePageModel();
+//					hmp.setShowType("dzsd4107100110060001");
+//					for (int j = 0; j < details.size(); j++) {
+//						AdvertiseDetailForApi dfa = new AdvertiseDetailForApi();
+//						BeanUtils.copyProperties(details.get(j), dfa);
+//						if (StringUtils.isNotBlank(dfa.getPicUrl()) && StringUtils.isNotBlank(width)) {
+//							dfa.setPicUrl(ImageHelper.upImageThumbnail(dfa.getPicUrl(), Integer.valueOf(width)));
+//						}
+//						hmp.getAdv().getDetails().add(dfa);
+//					}
+//					li.add(hmp);
+//				}
+//			}
+//		}
+//		return li;
+//	}
 
 	public UserInfoSupport getUserInfoSupport() {
 		return userInfoSupport;

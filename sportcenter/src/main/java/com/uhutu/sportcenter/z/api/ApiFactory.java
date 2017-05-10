@@ -56,7 +56,7 @@ import com.uhutu.sportcenter.z.api.content.ApiShareInfo;
 import com.uhutu.sportcenter.z.api.content.ApiSportChickenSoup;
 import com.uhutu.sportcenter.z.api.content.ApiSportingMoments;
 import com.uhutu.sportcenter.z.api.content.ApiSportingMomentsSecond;
-import com.uhutu.sportcenter.z.api.content.ApiSportingMomentsThird;
+import com.uhutu.sportcenter.z.api.content.APiVideoList;
 import com.uhutu.sportcenter.z.api.content.ApiSupportPraise;
 import com.uhutu.sportcenter.z.api.content.ApiThemePage;
 import com.uhutu.sportcenter.z.api.content.ApiTummyMoments;
@@ -656,13 +656,13 @@ public class ApiFactory {
 	private ApiChangeStatus apiChangeStatus;
 	
 	@Autowired
-	private ApiSportingMomentsThird apiSportingMomentsThird;
+	private APiVideoList APiVideoList;
 	
 	@Autowired
 	private ApiConvertStreamUrl apiConvertStreamUrl;
 	
-	public ApiSportingMomentsThird getApiSportingMomentsThird() {
-		return apiSportingMomentsThird;
+	public APiVideoList getAPiVideoList() {
+		return APiVideoList;
 	}
 
 	public ApiKeyWordRecomm getApiKeyWordRecomm() {

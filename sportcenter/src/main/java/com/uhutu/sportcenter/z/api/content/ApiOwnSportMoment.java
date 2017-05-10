@@ -55,89 +55,89 @@ public class ApiOwnSportMoment extends RootApiToken<ApiOwnSportMomentInput, ApiO
 
 		ApiOwnSportMomentResult result = new ApiOwnSportMomentResult();
 
-		UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(upUserCode());
-
-		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByCode(upUserCode());
-
-		QueryConditions queryConditions = new QueryConditions();
-
-		queryConditions.setConditionEqual("busiType", ContentEnum.sportmoment.getCode());
-
-		queryConditions.setConditionEqual("status", "dzsd4699100110010001");
-
-		queryConditions.setConditionEqual("author", upUserCode());
-		queryConditions.setConditionNotEqual("contentType", "dzsd4107100110030007");
-		Page<CnContentBasicinfo> page = serviceFactory.getContentBasicinfoService().queryPage(input.getPagination(), 10,
-				queryConditions);
-
-		List<CnContentBasicinfo> contentBasicInfos = page.getContent();
-
-		List<ContentBasicinfoForApi> sports = new ArrayList<ContentBasicinfoForApi>();
-
-		for (CnContentBasicinfo contentBasicInfo : contentBasicInfos) {
-
-			ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();
-
-			BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
-
-			if (ucUserinfoExt != null) {
-
-				sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
-
-				sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
-				
-				sportingMoment.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
-
-			}
-
-			if (ucUserinfo != null) {
-
-				sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
-
-				sportingMoment.getUserBasicInfo().setUserCode(upUserCode());
-
-			}
-			CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
-					sportingMoment.getCode());
-			if (contentDetail != null) {
-				sportingMoment.setContentDetail(contentDetail);
-			}
-			sportingMoment.setPublishTimeStr("MM-dd HH:mm");
-			CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
-					sportingMoment.getCode());
-			sportingMoment.setReadNum(contentReadCount != null ? contentReadCount.getCount() : 0);
-			int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(sportingMoment.getCode(),
-					RemarkEnum.FLAG_ENABLE.getCode());
-			sportingMoment.setRemarkNum(remarkNum);
-			int praiseNum = serviceFactory.getSupportPraiseService().queryCountByCode(sportingMoment.getCode(),
-					ContentEnum.FAVOR_STATUS_YES.getCode());
-			sportingMoment.setPraiseNum(praiseNum);
-			
-			sportingMoment.setFavorFlag(ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken()));
-			
-			sportingMoment = new HomePageSupport(userInfoSupport).getSingleTitle(sportingMoment);
-			
-			String title = sportingMoment.getTitle();
-			
-			title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
-			
-			sportingMoment.setTitle(title);
-			
-			sports.add(sportingMoment);
-
-		}
-
-		result.setMoments(sports);
-
-		if (page.hasNext()) {
-
-			result.setNextPageFlag(true);
-
-		} else {
-
-			result.setNextPageFlag(false);
-
-		}
+//		UcUserinfoExt ucUserinfoExt = userServiceFactory.getUserInfoExtService().queryByUserCode(upUserCode());
+//
+//		UcUserinfo ucUserinfo = userServiceFactory.getUserInfoService().queryByCode(upUserCode());
+//
+//		QueryConditions queryConditions = new QueryConditions();
+//
+//		queryConditions.setConditionEqual("busiType", ContentEnum.sportmoment.getCode());
+//
+//		queryConditions.setConditionEqual("status", "dzsd4699100110010001");
+//
+//		queryConditions.setConditionEqual("author", upUserCode());
+//		queryConditions.setConditionNotEqual("contentType", "dzsd4107100110030007");
+//		Page<CnContentBasicinfo> page = serviceFactory.getContentBasicinfoService().queryPage(input.getPagination(), 10,
+//				queryConditions);
+//
+//		List<CnContentBasicinfo> contentBasicInfos = page.getContent();
+//
+//		List<ContentBasicinfoForApi> sports = new ArrayList<ContentBasicinfoForApi>();
+//
+//		for (CnContentBasicinfo contentBasicInfo : contentBasicInfos) {
+//
+//			ContentBasicinfoForApi sportingMoment = new ContentBasicinfoForApi();
+//
+//			BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
+//
+//			if (ucUserinfoExt != null) {
+//
+//				sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+//
+//				sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+//				
+//				sportingMoment.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
+//
+//			}
+//
+//			if (ucUserinfo != null) {
+//
+//				sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
+//
+//				sportingMoment.getUserBasicInfo().setUserCode(upUserCode());
+//
+//			}
+//			CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+//					sportingMoment.getCode());
+//			if (contentDetail != null) {
+//				sportingMoment.setContentDetail(contentDetail);
+//			}
+//			sportingMoment.setPublishTimeStr("MM-dd HH:mm");
+//			CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class, "contentCode",
+//					sportingMoment.getCode());
+//			sportingMoment.setReadNum(contentReadCount != null ? contentReadCount.getCount() : 0);
+//			int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(sportingMoment.getCode(),
+//					RemarkEnum.FLAG_ENABLE.getCode());
+//			sportingMoment.setRemarkNum(remarkNum);
+//			int praiseNum = serviceFactory.getSupportPraiseService().queryCountByCode(sportingMoment.getCode(),
+//					ContentEnum.FAVOR_STATUS_YES.getCode());
+//			sportingMoment.setPraiseNum(praiseNum);
+//			
+//			sportingMoment.setFavorFlag(ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken()));
+//			
+//			sportingMoment = new HomePageSupport(userInfoSupport).getSingleTitle(sportingMoment);
+//			
+//			String title = sportingMoment.getTitle();
+//			
+//			title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+//			
+//			sportingMoment.setTitle(title);
+//			
+//			sports.add(sportingMoment);
+//
+//		}
+//
+//		result.setMoments(sports);
+//
+//		if (page.hasNext()) {
+//
+//			result.setNextPageFlag(true);
+//
+//		} else {
+//
+//			result.setNextPageFlag(false);
+//
+//		}
 
 		return result;
 	}

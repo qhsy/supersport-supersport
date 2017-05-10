@@ -70,103 +70,103 @@ public class ApiContentType extends RootApiBase<ApiContentTypeInput, ApiContentT
 
 	private List<ContentBasicinfoForTypeApi> getInfos(int width, int num) {
 		List<ContentBasicinfoForTypeApi> result = new ArrayList<ContentBasicinfoForTypeApi>();
-		StringBuffer str = new StringBuffer();
-		List<CnContentWorth> ws = JdbcHelper.queryForList(CnContentWorth.class, "", "sort desc,zc desc", "", null,
-				(num - 1) * 10, 10);
-		Map<String, String> map = new HashMap<String, String>();
-		if (ws != null && !ws.isEmpty() && ws.size() > 0) {
-			for (int i = 0; i < ws.size(); i++) {
-				if (i == ws.size() - 1) {
-					str.append("'" + ws.get(i).getContentCode() + "'");
-				} else {
-					str.append("'" + ws.get(i).getContentCode() + "',");
-				}
-				map.put(ws.get(i).getContentCode(), ws.get(i).getMark());
-			}
-
-			if (StringUtils.isNotBlank(str)) {
-				List<CnContentBasicinfo> basics = JdbcHelper.queryForList(CnContentBasicinfo.class, "",
-						" field(code," + str.toString() + ")",
-						"status='dzsd4699100110010001' and shareScope='dzsd4699100110010001' and code in("
-								+ str.toString() + ")",
-						new MDataMap());
-				for (CnContentBasicinfo contentBasicInfo : basics) {
-					if (contentBasicInfo != null) {
-						ContentBasicinfoForTypeApi sportingMoment = new ContentBasicinfoForTypeApi();
-						BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
-						UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(contentBasicInfo.getAuthor());
-						UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(contentBasicInfo.getAuthor());
-						if (ucUserinfoExt != null) {
-							sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
-							sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
-							sportingMoment.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
-						}
-						if (ucUserinfo != null) {
-							sportingMoment.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
-							sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
-						}
-						sportingMoment.setCover(ImageHelper.upImageThumbnail(sportingMoment.getCover(), width));
-						sportingMoment.setPublishTimeStr("MM-dd HH:mm");
-						CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class,
-								"contentCode", sportingMoment.getCode());
-						if (contentReadCount != null) {
-							sportingMoment.setReadNum(contentReadCount.getCount());
-						}
-						if ("dzsd4107100110030004".equals(sportingMoment.getContentType())) {
-							CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code",
-									sportingMoment.getCode());
-//							if (detail != null && StringUtils.isNotBlank(detail.getContent())) {
-//								sportingMoment.setTitle(detail.getContent());
+//		StringBuffer str = new StringBuffer();
+//		List<CnContentWorth> ws = JdbcHelper.queryForList(CnContentWorth.class, "", "sort desc,zc desc", "", null,
+//				(num - 1) * 10, 10);
+//		Map<String, String> map = new HashMap<String, String>();
+//		if (ws != null && !ws.isEmpty() && ws.size() > 0) {
+//			for (int i = 0; i < ws.size(); i++) {
+//				if (i == ws.size() - 1) {
+//					str.append("'" + ws.get(i).getContentCode() + "'");
+//				} else {
+//					str.append("'" + ws.get(i).getContentCode() + "',");
+//				}
+//				map.put(ws.get(i).getContentCode(), ws.get(i).getMark());
+//			}
+//
+//			if (StringUtils.isNotBlank(str)) {
+//				List<CnContentBasicinfo> basics = JdbcHelper.queryForList(CnContentBasicinfo.class, "",
+//						" field(code," + str.toString() + ")",
+//						"status='dzsd4699100110010001' and shareScope='dzsd4699100110010001' and code in("
+//								+ str.toString() + ")",
+//						new MDataMap());
+//				for (CnContentBasicinfo contentBasicInfo : basics) {
+//					if (contentBasicInfo != null) {
+//						ContentBasicinfoForTypeApi sportingMoment = new ContentBasicinfoForTypeApi();
+//						BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
+//						UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(contentBasicInfo.getAuthor());
+//						UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(contentBasicInfo.getAuthor());
+//						if (ucUserinfoExt != null) {
+//							sportingMoment.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+//							sportingMoment.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+//							sportingMoment.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
+//						}
+//						if (ucUserinfo != null) {
+//							sportingMoment.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
+//							sportingMoment.getUserBasicInfo().setType(ucUserinfo.getType());
+//						}
+//						sportingMoment.setCover(ImageHelper.upImageThumbnail(sportingMoment.getCover(), width));
+//						sportingMoment.setPublishTimeStr("MM-dd HH:mm");
+//						CnContentReadCount contentReadCount = JdbcHelper.queryOne(CnContentReadCount.class,
+//								"contentCode", sportingMoment.getCode());
+//						if (contentReadCount != null) {
+//							sportingMoment.setReadNum(contentReadCount.getCount());
+//						}
+//						if ("dzsd4107100110030004".equals(sportingMoment.getContentType())) {
+//							CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+//									sportingMoment.getCode());
+////							if (detail != null && StringUtils.isNotBlank(detail.getContent())) {
+////								sportingMoment.setTitle(detail.getContent());
+////							}
+//						}
+//						CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+//								sportingMoment.getCode());
+//						if (contentDetail != null) {
+//							sportingMoment.setContentDetail(contentDetail);
+//						}
+//						int remarkNum = remarkServiceFactory.getContentRemarkService()
+//								.queryCount(sportingMoment.getCode(), RemarkEnum.FLAG_ENABLE.getCode());
+//						sportingMoment.setRemarkNum(remarkNum);
+//						int praiseNum = serviceFactory.getSupportPraiseService()
+//								.queryCountByCode(sportingMoment.getCode(), ContentEnum.FAVOR_STATUS_YES.getCode());
+//						sportingMoment.setPraiseNum(praiseNum);
+//						String title = sportingMoment.getTitle();
+//						title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
+//						sportingMoment.setTitle(title);
+//						sportingMoment.setMark(map.get(sportingMoment.getCode()));
+//						if (StringUtils.isNotBlank(sportingMoment.getCode())) {
+//							CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+//									sportingMoment.getCode());
+//							if (detail != null) {
+//								sportingMoment.setDetail(detail);
 //							}
-						}
-						CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
-								sportingMoment.getCode());
-						if (contentDetail != null) {
-							sportingMoment.setContentDetail(contentDetail);
-						}
-						int remarkNum = remarkServiceFactory.getContentRemarkService()
-								.queryCount(sportingMoment.getCode(), RemarkEnum.FLAG_ENABLE.getCode());
-						sportingMoment.setRemarkNum(remarkNum);
-						int praiseNum = serviceFactory.getSupportPraiseService()
-								.queryCountByCode(sportingMoment.getCode(), ContentEnum.FAVOR_STATUS_YES.getCode());
-						sportingMoment.setPraiseNum(praiseNum);
-						String title = sportingMoment.getTitle();
-						title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
-						sportingMoment.setTitle(title);
-						sportingMoment.setMark(map.get(sportingMoment.getCode()));
-						if (StringUtils.isNotBlank(sportingMoment.getCode())) {
-							CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code",
-									sportingMoment.getCode());
-							if (detail != null) {
-								sportingMoment.setDetail(detail);
-							}
-						}
-						if ("dzsd4107100110030007".equals(sportingMoment.getContentType())) {
-							CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", " zc desc ",
-									" user_code=:user_code",
-									MapHelper.initMap("user_code", sportingMoment.getAuthor()));
-							if (detail != null) {
-								CnLiveVideoDetailForApi videoDetailForApi = new CnLiveVideoDetailForApi();
-								BeanUtils.copyProperties(detail, videoDetailForApi);
-								
-								if(StringUtils.isNotEmpty(videoDetailForApi.getTitle())){
-									
-									String title2 = EmojiUtil.emojiRecovery(videoDetailForApi.getTitle());
-									
-									videoDetailForApi.setTitle(title2);
-									
-								}
-								
-								videoDetailForApi.setNickName(sportingMoment.getUserBasicInfo().getNickName());
-								videoDetailForApi.setAboutHead(sportingMoment.getUserBasicInfo().getAboutHead());
-								sportingMoment.setLiveVideoDetailForApi(videoDetailForApi);
-							}
-						}
-						result.add(sportingMoment);
-					}
-				}
-			}
-		}
+//						}
+//						if ("dzsd4107100110030007".equals(sportingMoment.getContentType())) {
+//							CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "", " zc desc ",
+//									" user_code=:user_code",
+//									MapHelper.initMap("user_code", sportingMoment.getAuthor()));
+//							if (detail != null) {
+//								CnLiveVideoDetailForApi videoDetailForApi = new CnLiveVideoDetailForApi();
+//								BeanUtils.copyProperties(detail, videoDetailForApi);
+//								
+//								if(StringUtils.isNotEmpty(videoDetailForApi.getTitle())){
+//									
+//									String title2 = EmojiUtil.emojiRecovery(videoDetailForApi.getTitle());
+//									
+//									videoDetailForApi.setTitle(title2);
+//									
+//								}
+//								
+//								videoDetailForApi.setNickName(sportingMoment.getUserBasicInfo().getNickName());
+//								videoDetailForApi.setAboutHead(sportingMoment.getUserBasicInfo().getAboutHead());
+//								sportingMoment.setLiveVideoDetailForApi(videoDetailForApi);
+//							}
+//						}
+//						result.add(sportingMoment);
+//					}
+//				}
+//			}
+//		}
 		return result;
 	}
 

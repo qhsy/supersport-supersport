@@ -4,10 +4,7 @@ import com.uhutu.zoocom.root.RootApiInput;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class ApiSportingMomentsThirdInput extends RootApiInput {
-
-	@ApiModelProperty(name = "查询类型", required = true, value = "查询类型1：全部。2：我关注的人，3：GODO达人", example = "1")
-	private String type = "1";
+public class APiVideoListInput extends RootApiInput {
 
 	@ApiModelProperty(name = "页码", value = "页码", example = "0")
 	private int pagination = 0;
@@ -29,14 +26,6 @@ public class ApiSportingMomentsThirdInput extends RootApiInput {
 
 	public void setWidth(int width) {
 		this.width = width;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 }
