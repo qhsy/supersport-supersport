@@ -61,12 +61,12 @@ public class ApiContentDetailProducts
 			result.setStatus(0);
 			result.setError("编号不能为空");
 		}
-		if (result.upFlagTrue() && result.getProductInfos() != null && result.getProductInfos().size() > 0) {
-			CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code", input.getCode());
-			if (detail != null && StringUtils.isNotBlank(detail.getTitle())) {
-				result.setTitle(detail.getTitle());
-			}
-		}
+//		if (result.upFlagTrue() && result.getProductInfos() != null && result.getProductInfos().size() > 0) {
+//			CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code", input.getCode());
+//			if (detail != null && StringUtils.isNotBlank(detail.getTitle())) {
+//				result.setTitle(detail.getTitle());
+//			}
+//		}
 		return result;
 	}
 

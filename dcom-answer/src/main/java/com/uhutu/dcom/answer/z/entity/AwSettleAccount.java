@@ -8,7 +8,7 @@ import javax.persistence.UniqueConstraint;
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
-@Entity
+//@Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"userCode"}))
 public class AwSettleAccount extends BaseEntity {
 	

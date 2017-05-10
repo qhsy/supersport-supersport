@@ -20,8 +20,8 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author xiegj
  *
  */
-@Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "code" }), indexes = { @Index(columnList = "code") })
+//@Entity
+//@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "code" }), indexes = { @Index(columnList = "code") })
 public class AcActivityAnswerInfo extends BaseEntity {
 
 	@ZooData(name = "活动编号", inc = DefineWebInc.Insert_Code + "=ACBH", sort = { DefineWebPage.Page_Add + "=1",

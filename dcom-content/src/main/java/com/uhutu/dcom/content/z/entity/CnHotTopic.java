@@ -13,7 +13,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author 逄小帅
  *
  */
-@Entity
+//@Entity
 public class CnHotTopic extends BaseEntity {
 	
 	@ZooData(value="话题名称",require = "1", element = DefineWebElement.Model, inc = {

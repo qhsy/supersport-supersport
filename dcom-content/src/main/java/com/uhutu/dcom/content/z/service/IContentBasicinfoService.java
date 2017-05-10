@@ -36,7 +36,7 @@ public interface IContentBasicinfoService {
 	 */
 	public Page<CnContentBasicinfo> queryPage(int pageNum, int limit,QueryConditions conditions);
 
-	public List<CnContentBasicinfo> queryAll(String shareScope);
+//	public List<CnContentBasicinfo> queryAll(String shareScope);
 
 	/**
 	 * 根据作者查询内容对象
@@ -45,7 +45,7 @@ public interface IContentBasicinfoService {
 	 *
 	 * @return 内容信息
 	 */
-	public List<CnContentBasicinfo> queryByAuthor(String author);
+//	public List<CnContentBasicinfo> queryByAuthor(String author);
 	
 	/**
 	 * 内容基本信息存储

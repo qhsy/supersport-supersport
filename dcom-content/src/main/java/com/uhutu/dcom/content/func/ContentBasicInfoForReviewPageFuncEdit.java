@@ -17,24 +17,24 @@ public class ContentBasicInfoForReviewPageFuncEdit extends RootFunc {
 	public WebOperateResult process(WebPageModel webPageModel, ExtendPageDefine extendPageDefine,
 			WebOperateInput input) {
 		WebOperateResult result = new WebOperateResult();
-		CnContentBasicinfo cn = JdbcHelper.queryOne(CnContentBasicinfo.class, "za", input.getDataMap().get("za"));
-		if (StringUtils.isNotBlank(input.getDataMap().get("review_status"))
-				&& StringUtils.isNotBlank(cn.getReviewStatus())) {
-			if ("dzsd4107100110080001".equals(input.getDataMap().get("review_status"))
-					&& ("dzsd4107100110080002".equals(cn.getReviewStatus())
-							|| "dzsd4107100110080003".equals(cn.getReviewStatus()))) {
-				result.inError(810710019);
-			}
-		}
-		if (result.upFlagTrue()) {
-			JdbcHelper.dataUpdate(extendPageDefine.getPageSource().getTableName(), input.getDataMap(), "review_status",
-					"za");
-			if (StringUtils.isNotBlank(cn.getAuthor()) && StringUtils.isNoneBlank(cn.getCode())
-					&& "dzsd4107100110080002".equals(input.getDataMap().get("review_status"))) {// 抽奖
-				DrawSupport support = new DrawSupport();
-				support.draw(cn.getAuthor(), cn.getCode());
-			}
-		}
+//		CnContentBasicinfo cn = JdbcHelper.queryOne(CnContentBasicinfo.class, "za", input.getDataMap().get("za"));
+//		if (StringUtils.isNotBlank(input.getDataMap().get("review_status"))
+//				&& StringUtils.isNotBlank(cn.getReviewStatus())) {
+//			if ("dzsd4107100110080001".equals(input.getDataMap().get("review_status"))
+//					&& ("dzsd4107100110080002".equals(cn.getReviewStatus())
+//							|| "dzsd4107100110080003".equals(cn.getReviewStatus()))) {
+//				result.inError(810710019);
+//			}
+//		}
+//		if (result.upFlagTrue()) {
+//			JdbcHelper.dataUpdate(extendPageDefine.getPageSource().getTableName(), input.getDataMap(), "review_status",
+//					"za");
+//			if (StringUtils.isNotBlank(cn.getAuthor()) && StringUtils.isNoneBlank(cn.getCode())
+//					&& "dzsd4107100110080002".equals(input.getDataMap().get("review_status"))) {// 抽奖
+//				DrawSupport support = new DrawSupport();
+//				support.draw(cn.getAuthor(), cn.getCode());
+//			}
+//		}
 		return result;
 	}
 }

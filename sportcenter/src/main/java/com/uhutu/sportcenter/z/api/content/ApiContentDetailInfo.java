@@ -106,11 +106,11 @@ public class ApiContentDetailInfo extends RootApiBase<ApiContentDetailInput, Api
 					}
 				}
 
-				contentBasicinfoForApi.setTagName(
-						labelServiceFacotry.getContentLabelService().initTagName(cnContentBasicinfo.getTagCode()));
-
-				contentBasicinfoForApi.setTags(
-						labelServiceFacotry.getContentLabelService().getLabels(cnContentBasicinfo.getTagCode()));
+//				contentBasicinfoForApi.setTagName(
+//						labelServiceFacotry.getContentLabelService().initTagName(cnContentBasicinfo.getTagCode()));
+//
+//				contentBasicinfoForApi.setTags(
+//						labelServiceFacotry.getContentLabelService().getLabels(cnContentBasicinfo.getTagCode()));
 				contentBasicinfoForApi.setFavorFlag(
 						ContentComponent.lightFavor(contentBasicinfoForApi.getCode(), input.getZoo().getToken()));
 				contentBasicinfoForApi.setAuthorFlag(

@@ -42,9 +42,9 @@ public class ApiPublishContentPhotos extends RootApiToken<ApiPublishContentPhoto
 
 			BeanUtils.copyProperties(input.getContentBasicInfo(), contentBasicinfo);
 			contentBasicinfo.setAuthor(upUserCode());
-			String waterMarker = new WaterMarkerSupport().getWaterMarker(contentBasicinfo.getCover(),
-					contentBasicinfo.getTagCode());// 背景图加水印
-			contentBasicinfo.setCover(StringUtils.isNotBlank(waterMarker) ? waterMarker : contentBasicinfo.getCover());
+//			String waterMarker = new WaterMarkerSupport().getWaterMarker(contentBasicinfo.getCover(),
+//					contentBasicinfo.getTagCode());// 背景图加水印
+//			contentBasicinfo.setCover(StringUtils.isNotBlank(waterMarker) ? waterMarker : contentBasicinfo.getCover());
 			
 			String title = contentBasicinfo.getTitle();
 					

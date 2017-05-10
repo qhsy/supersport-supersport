@@ -15,7 +15,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author xiegj
  *
  */
-@Entity
+//@Entity
 public class CnThemeInfo extends BaseEntity {
 
 	@ZooData(name = "专题编号", inc = { DefineWebInc.Insert_Code + "=ZTBH", DefineWebInc.Url_Param + "=code" }, sort = {

@@ -90,27 +90,27 @@ public class ApiFavorContentList extends RootApiBase<ApiFavorContentListInput, A
 
 				BeanUtils.copyProperties(basicinfo, basicinfoForApi);
 
-				UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(basicinfo.getAuthor());
+//				UcUserinfoExt ucUserinfoExt = userInfoSupport.getUserInfoExt(basicinfo.getAuthor());
+//
+//				UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(basicinfo.getAuthor());
 
-				UcUserinfo ucUserinfo = userInfoSupport.getUserInfo(basicinfo.getAuthor());
-
-				if (ucUserinfoExt != null) {
-
-					basicinfoForApi.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
-
-					basicinfoForApi.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
-
-					basicinfoForApi.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
-
-				}
-
-				if (ucUserinfo != null) {
-
-					basicinfoForApi.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
-
-					basicinfoForApi.getUserBasicInfo().setType(ucUserinfo.getType());
-
-				}
+//				if (ucUserinfoExt != null) {
+//
+//					basicinfoForApi.getUserBasicInfo().setAboutHead(ucUserinfoExt.getAboutHead());
+//
+//					basicinfoForApi.getUserBasicInfo().setNickName(ucUserinfoExt.getNickName());
+//
+//					basicinfoForApi.getUserBasicInfo().setTitle(ucUserinfoExt.getTitle());
+//
+//				}
+//
+//				if (ucUserinfo != null) {
+//
+//					basicinfoForApi.getUserBasicInfo().setUserCode(ucUserinfo.getCode());
+//
+//					basicinfoForApi.getUserBasicInfo().setType(ucUserinfo.getType());
+//
+//				}
 
 				String tagName = labelServiceFactory.getContentLabelService().initTagName(basicinfoForApi.getTagCode());
 

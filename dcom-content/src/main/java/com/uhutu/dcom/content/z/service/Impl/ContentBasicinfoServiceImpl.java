@@ -38,15 +38,15 @@ public class ContentBasicinfoServiceImpl implements IContentBasicinfoService {
 		return daoFacotry.getContentBasicinfoDao().queryByCode(code);
 	}
 
-	@Override
-	public List<CnContentBasicinfo> queryAll(String shareScope) {
-		return daoFacotry.getContentBasicinfoDao().queryAll(shareScope);
-	}
+//	@Override
+//	public List<CnContentBasicinfo> queryAll(String shareScope) {
+//		return daoFacotry.getContentBasicinfoDao().queryAll(shareScope);
+//	}
 
-	@Override
-	public List<CnContentBasicinfo> queryByAuthor(String author) {
-		return daoFacotry.getContentBasicinfoDao().queryByAuthor(author);
-	}
+//	@Override
+//	public List<CnContentBasicinfo> queryByAuthor(String author) {
+//		return daoFacotry.getContentBasicinfoDao().queryByAuthor(author);
+//	}
 
 	@Override
 	public Page<CnContentBasicinfo> queryPage(int pageNum, int limit,QueryConditions conditions) {

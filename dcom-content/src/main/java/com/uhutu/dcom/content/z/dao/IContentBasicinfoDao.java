@@ -36,8 +36,8 @@ public interface IContentBasicinfoDao
 	 *            0:不公开 1：公开 分享范围
 	 * @return 内容信息
 	 */
-	@Query("select cc from CnContentBasicinfo cc where cc.shareScope=:shareScope and cc.status='dzsd4699100110010001' order by cc.publishTime desc")
-	public List<CnContentBasicinfo> queryAll(@Param("shareScope") String shareScope);
+//	@Query("select cc from CnContentBasicinfo cc where cc.shareScope=:shareScope and cc.status='dzsd4699100110010001' order by cc.publishTime desc")
+//	public List<CnContentBasicinfo> queryAll(@Param("shareScope") String shareScope);
 
 	/**
 	 * 根据作者查询内容对象
@@ -47,8 +47,8 @@ public interface IContentBasicinfoDao
 	 *
 	 * @return 内容信息
 	 */
-	@Query("select cc from CnContentBasicinfo cc where cc.author=:author and cc.status='dzsd4699100110010001' order by cc.publishTime desc")
-	public List<CnContentBasicinfo> queryByAuthor(@Param("author") String author);
+//	@Query("select cc from CnContentBasicinfo cc where cc.author=:author and cc.status='dzsd4699100110010001' order by cc.publishTime desc")
+//	public List<CnContentBasicinfo> queryByAuthor(@Param("author") String author);
 
 	/**
 	 * 根据内容编号查询标题

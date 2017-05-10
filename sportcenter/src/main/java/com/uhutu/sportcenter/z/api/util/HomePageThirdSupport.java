@@ -153,7 +153,7 @@ public class HomePageThirdSupport {
 			info.setCover(extMap.get(info.getCode()).getCover());
 		}
 		if (extMap.containsKey(info.getCode()) && StringUtils.isNotBlank(extMap.get(info.getCode()).getAuthor())) {
-			info.setAuthor(extMap.get(info.getCode()).getAuthor());
+//			info.setAuthor(extMap.get(info.getCode()).getAuthor());
 		}
 		int wid = (int) ("dzsd4107100110110002".equals(item.getType()) ? Math.ceil(width / 2) : width);
 		if (StringUtils.isNotBlank(info.getCover()) && wid > 0
@@ -162,10 +162,10 @@ public class HomePageThirdSupport {
 		}
 		content.setTitle(StringUtils.isEmpty(info.getTitle()) ? "" : EmojiUtil.emojiRecovery(info.getTitle()));
 		content.setCover(info.getCover());
-		if (StringUtils.isNotBlank(info.getAuthor())) {
-			String nickName = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", info.getAuthor()).getNickName();
-			content.setNickName(StringUtils.isEmpty(nickName) ? "" : EmojiUtil.emojiRecovery(nickName));
-		}
+//		if (StringUtils.isNotBlank(info.getAuthor())) {
+//			String nickName = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", info.getAuthor()).getNickName();
+//			content.setNickName(StringUtils.isEmpty(nickName) ? "" : EmojiUtil.emojiRecovery(nickName));
+//		}
 		if (info.getCode().contains(Start)) {
 			content.setJump(new JumpTypeSupport().getData("dzsd4107100110150001", info.getCode(), info.getTitle()));
 		} else {
@@ -180,12 +180,12 @@ public class HomePageThirdSupport {
 	 * @return
 	 */
 	private CnContentBasicinfo getSingleTitle(CnContentBasicinfo ci) {
-		if (ci.getCode().contains(Start) && "dzsd4107100110030004".equals(ci.getContentType())) {
-			CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code", ci.getCode());
-			if (detail != null && StringUtils.isNotBlank(detail.getContent())) {
-				ci.setTitle(detail.getContent());
-			}
-		}
+//		if (ci.getCode().contains(Start) && "dzsd4107100110030004".equals(ci.getContentType())) {
+//			CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code", ci.getCode());
+//			if (detail != null && StringUtils.isNotBlank(detail.getContent())) {
+//				ci.setTitle(detail.getContent());
+//			}
+//		}
 		return ci;
 	}
 

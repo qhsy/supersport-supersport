@@ -88,12 +88,12 @@ public class HomePageSupport {
 	 * @return
 	 */
 	public ContentBasicinfoForApi getSingleTitle(ContentBasicinfoForApi cff) {
-		if ("dzsd4107100110030004".equals(cff.getContentType())) {
-			CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code", cff.getCode());
-			if (detail != null && StringUtils.isNotBlank(detail.getContent())) {
-				cff.setTitle(detail.getContent());
-			}
-		}
+//		if ("dzsd4107100110030004".equals(cff.getContentType())) {
+//			CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code", cff.getCode());
+//			if (detail != null && StringUtils.isNotBlank(detail.getContent())) {
+//				cff.setTitle(detail.getContent());
+//			}
+//		}
 		return cff;
 	}
 
@@ -137,21 +137,21 @@ public class HomePageSupport {
 						CnContentBasicinfo info = infos.get(i);
 						ContentBasicinfoForApi infoApi = new ContentBasicinfoForApi();
 						UserinfoExtForApi userInfoApi = new UserinfoExtForApi();
-						if (StringUtils.isNotBlank(info.getAuthor())) {
-							UcUserinfoExt ext = userInfoSupport.getUserBasicInfo(info.getAuthor()).getUcUserinfoExt();
-							if (ext == null) {
-								continue;
-							}
-							UserBasicInfo ubi = userInfoSupport.getUserBasicInfo(info.getAuthor());
-							BeanUtils.copyProperties(ubi.getUcUserinfoExt(), userInfoApi);
-
-							if (ubi.getUcUserinfo() != null) {
-
-								userInfoApi.setType(ubi.getUcUserinfo().getType());
-
-							}
-
-						}
+//						if (StringUtils.isNotBlank(info.getAuthor())) {
+//							UcUserinfoExt ext = userInfoSupport.getUserBasicInfo(info.getAuthor()).getUcUserinfoExt();
+//							if (ext == null) {
+//								continue;
+//							}
+//							UserBasicInfo ubi = userInfoSupport.getUserBasicInfo(info.getAuthor());
+//							BeanUtils.copyProperties(ubi.getUcUserinfoExt(), userInfoApi);
+//
+//							if (ubi.getUcUserinfo() != null) {
+//
+//								userInfoApi.setType(ubi.getUcUserinfo().getType());
+//
+//							}
+//
+//						}
 						CnContentRecomm recomm = JdbcHelper.queryOne(CnContentRecomm.class, "contentCode",
 								info.getCode());
 						if (recomm != null) {

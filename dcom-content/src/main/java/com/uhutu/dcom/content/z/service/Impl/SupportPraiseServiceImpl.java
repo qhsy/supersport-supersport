@@ -93,7 +93,7 @@ public class SupportPraiseServiceImpl implements ISupportPraiseService {
 			num = daoFacotry.getSupportPraiseDao().queryCountByCode(contentCode, status);
 			CnContentBasicinfo info = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",contentCode);
 			if(info!=null){
-				num = num +info.getPraiseBase();
+//				num = num +info.getPraiseBase();
 			}
 		}else {
 			num = daoFacotry.getSupportPraiseDao().queryCountByCode(contentCode, status);

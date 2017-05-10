@@ -143,7 +143,7 @@ public class ApiPublishRemark extends RootApiToken<ApiPublishRemarkInput, ApiPub
 		
 		if(contentOptional.isPresent()){
 			
-			ucMsgRemark.setContentAuthor(contentBasicInfo.getAuthor());
+//			ucMsgRemark.setContentAuthor(contentBasicInfo.getAuthor());
 			
 			ucMsgRemark.setContentTitle(contentBasicInfo.getTitle());
 			
@@ -159,7 +159,7 @@ public class ApiPublishRemark extends RootApiToken<ApiPublishRemarkInput, ApiPub
 			
 			if(StringUtils.isEmpty(remark.getParentCode())){
 				
-				ucMsgRemark.setUserCode(contentBasicInfo.getAuthor());
+//				ucMsgRemark.setUserCode(contentBasicInfo.getAuthor());
 				
 				if(userinfoExt != null){
 					

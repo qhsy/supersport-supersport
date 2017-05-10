@@ -23,8 +23,8 @@ public class ApiHomePageSecond extends RootApiBase<ApiHomePageSecondInput, ApiHo
 	protected ApiHomePageSecondResult process(ApiHomePageSecondInput input) {
 		ApiHomePageSecondResult result = new ApiHomePageSecondResult();
 
-		result.getList().addAll(
-				new HomePageSecondSupport(userInfoSupport).getPageModels(Integer.valueOf(input.getWidth()), input.getZoo().getToken()));
+//		result.getList().addAll(
+//				new HomePageSecondSupport(userInfoSupport).getPageModels(Integer.valueOf(input.getWidth()), input.getZoo().getToken()));
 
 		return result;
 	}

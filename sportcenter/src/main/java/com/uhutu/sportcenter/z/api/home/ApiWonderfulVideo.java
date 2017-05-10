@@ -84,27 +84,27 @@ public class ApiWonderfulVideo extends RootApiBase<ApiWonderfulVideoInput, ApiWo
 				
 				UserBasicInfo userBasicInfo = new UserBasicInfo();
 				
-				UcUserinfo userinfo = userInfoSupport.getUserInfo(basicInfo.getAuthor());
-				
-				UcUserinfoExt userinfoExt = userInfoSupport.getUserInfoExt(basicInfo.getAuthor());
-				
-				if(userinfo != null){
-					
-					userBasicInfo.setType(userinfo.getType());
-					
-				}
-				
-				if(userinfoExt != null){
-					
-					userBasicInfo.setAboutHead(userinfoExt.getAboutHead());
-					
-					userBasicInfo.setNickName(userinfoExt.getNickName());
-					
-					userBasicInfo.setTitle(userinfoExt.getTitle());
-					
-					userBasicInfo.setUserCode(userinfoExt.getUserCode());
-					
-				}
+//				UcUserinfo userinfo = userInfoSupport.getUserInfo(basicInfo.getAuthor());
+//				
+//				UcUserinfoExt userinfoExt = userInfoSupport.getUserInfoExt(basicInfo.getAuthor());
+//				
+//				if(userinfo != null){
+//					
+//					userBasicInfo.setType(userinfo.getType());
+//					
+//				}
+//				
+//				if(userinfoExt != null){
+//					
+//					userBasicInfo.setAboutHead(userinfoExt.getAboutHead());
+//					
+//					userBasicInfo.setNickName(userinfoExt.getNickName());
+//					
+//					userBasicInfo.setTitle(userinfoExt.getTitle());
+//					
+//					userBasicInfo.setUserCode(userinfoExt.getUserCode());
+//					
+//				}
 				
 				showModel.setContentShowInfo(showInfo);
 				

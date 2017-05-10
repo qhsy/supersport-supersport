@@ -47,23 +47,23 @@ public class ApiPublishSportingMoment
 
 		contentBasicinfo.setTitle(title);
 
-		String content = contentDetail.getContent();
-
-		content = StringUtils.isEmpty(content) ? "" : EmojiUtil.emojiFilter(content);
-
-		contentDetail.setContent(content);
-
-		contentBasicinfo.setAuthor(upUserCode());
-
-		String waterMarker = new WaterMarkerSupport().getWaterMarker(contentBasicinfo.getCover(),
-				contentBasicinfo.getTagCode());// 背景图加水印
-		contentBasicinfo.setCover(StringUtils.isNotBlank(waterMarker) ? waterMarker : contentBasicinfo.getCover());
-		if (StringUtils.isNotBlank(contentBasicinfo.getCover())) {
-			ImageThumb thumb = ImageHelper.upThumbWithHeight(contentBasicinfo.getCover(), 640);
-			if (thumb != null) {
-				contentBasicinfo.setCoverWH(thumb.getSourceWidth() + "*" + thumb.getSourceHeight());
-			}
-		}
+//		String content = contentDetail.getContent();
+//
+//		content = StringUtils.isEmpty(content) ? "" : EmojiUtil.emojiFilter(content);
+//
+//		contentDetail.setContent(content);
+//
+//		contentBasicinfo.setAuthor(upUserCode());
+//
+//		String waterMarker = new WaterMarkerSupport().getWaterMarker(contentBasicinfo.getCover(),
+//				contentBasicinfo.getTagCode());// 背景图加水印
+//		contentBasicinfo.setCover(StringUtils.isNotBlank(waterMarker) ? waterMarker : contentBasicinfo.getCover());
+//		if (StringUtils.isNotBlank(contentBasicinfo.getCover())) {
+//			ImageThumb thumb = ImageHelper.upThumbWithHeight(contentBasicinfo.getCover(), 640);
+//			if (thumb != null) {
+//				contentBasicinfo.setCoverWH(thumb.getSourceWidth() + "*" + thumb.getSourceHeight());
+//			}
+//		}
 		contentServiceFactory.getContentBasicinfoService().save(contentBasicinfo);
 
 		contentDetail.setCode(contentBasicinfo.getCode());

@@ -1,6 +1,5 @@
 package com.uhutu.dcom.content.z.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
@@ -33,39 +32,6 @@ public class CnContentItem extends BaseEntity {
 			DefineWebInc.System_Define + "=dzsd410710011006" })
 	private String type;
 
-	@ZooData(name = "栏目图标", require = "1", element = DefineWebElement.Upload, sort = {
-			DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" })
-	@ApiModelProperty(name = "栏目图标", notes = "栏目图标", example = "http://www.ichsy.com")
-	private String picUrl;
-
-	@ZooData(value = "更多是否开通", element = DefineWebElement.Select, inc = { DefineWebInc.System_Define + "=10" }, sort = {
-			DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Query + "=0",
-			DefineWebPage.Page_Grid + "=0" }, demo = "0:已开通,1:未关闭")
-	@Column(length = 50)
-	@ApiModelProperty(name = "更多是否开通0:已开通,1:未关闭", notes = "更多是否开通0:已开通,1:未关闭")
-	private String moreStatus;
-
-	@ZooData(name = "更多内容", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
-			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
-	@ApiModelProperty(name = "更多内容", notes = "更多内容", example = "http://www.ichsy.com")
-	private String contentTitle;
-
-	@ZooData(name = "更多跳转类型", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd410710011005" }, sort = { DefineWebPage.Page_Add + "=0",
-					DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
-	@ApiModelProperty(name = "更多跳转类型", notes = "轮播图链接跳转类型dzsd4107100110050003:超链接,dzsd4107100110050002:内容详情页,dzsd4107100110050001:个人中心,dzsd4107100110050006:专题,dzsd4107100110050007:标签详情,dzsd4107100110050008:时刻列表,dzsd4107100110050009:问答列表,dzsd4107100110050010:活动报名,dzsd4107100110050011:直播")
-	private String piclinkType;
-
-	@ZooData(name = "更多跳转参数", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0",
-			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
-	@ApiModelProperty(name = "更多跳转参数", notes = "更多跳转参数", example = "http://www.ichsy.com")
-	private String piclinkContent;
-
-	@ZooData(name = "跳转后标题", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
-	@ApiModelProperty(name = "跳转后标题", notes = "跳转后标题", example = "http://www.ichsy.com")
-	private String piclinkTitle;
-
 	@ZooData(name = "发布状态", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String status;
@@ -97,22 +63,6 @@ public class CnContentItem extends BaseEntity {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getMoreStatus() {
-		return moreStatus;
-	}
-
-	public String getPiclinkTitle() {
-		return piclinkTitle;
-	}
-
-	public void setPiclinkTitle(String piclinkTitle) {
-		this.piclinkTitle = piclinkTitle;
-	}
-
-	public void setMoreStatus(String moreStatus) {
-		this.moreStatus = moreStatus;
 	}
 
 	public String getStatus() {
@@ -163,36 +113,5 @@ public class CnContentItem extends BaseEntity {
 		this.sort = sort;
 	}
 
-	public String getPicUrl() {
-		return picUrl;
-	}
-
-	public void setPicUrl(String picUrl) {
-		this.picUrl = picUrl;
-	}
-
-	public String getContentTitle() {
-		return contentTitle;
-	}
-
-	public void setContentTitle(String contentTitle) {
-		this.contentTitle = contentTitle;
-	}
-
-	public String getPiclinkType() {
-		return piclinkType;
-	}
-
-	public void setPiclinkType(String piclinkType) {
-		this.piclinkType = piclinkType;
-	}
-
-	public String getPiclinkContent() {
-		return piclinkContent;
-	}
-
-	public void setPiclinkContent(String piclinkContent) {
-		this.piclinkContent = piclinkContent;
-	}
 
 }

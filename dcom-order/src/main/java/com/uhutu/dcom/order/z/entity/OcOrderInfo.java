@@ -20,7 +20,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author xiegj
  *
  */
-@Entity
+//@Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "code" }), indexes = { @Index(columnList = "code") })
 public class OcOrderInfo extends BaseEntity {
 

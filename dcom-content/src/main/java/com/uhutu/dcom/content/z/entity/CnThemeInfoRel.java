@@ -16,7 +16,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author xiegj
  *
  */
-@Entity
+//@Entity
 public class CnThemeInfoRel extends BaseEntity {
 
 	@ZooData(name = "专题名称", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0",

@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author xiegj
  *
  */
-@Entity
+//@Entity
 public class CnHomeNavMenu extends BaseEntity {
 	@ZooData(name = "编号", inc = DefineWebInc.Insert_Code + "=DHLTBBH", sort = { DefineWebPage.Page_Add + "=1",
 			DefineWebPage.Page_Edit + "=0" })

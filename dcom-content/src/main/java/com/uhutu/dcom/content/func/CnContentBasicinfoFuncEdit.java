@@ -1,7 +1,5 @@
 package com.uhutu.dcom.content.func;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.model.MDataMap;
@@ -9,8 +7,6 @@ import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.api.webpage.WebOperateInput;
 import com.uhutu.zooweb.api.webpage.WebOperateResult;
 import com.uhutu.zooweb.api.webpage.WebPageModel;
-import com.uhutu.zooweb.helper.ImageHelper;
-import com.uhutu.zooweb.io.ImageThumb;
 import com.uhutu.zooweb.model.ExtendPageDefine;
 import com.uhutu.zooweb.root.RootFunc;
 
@@ -28,12 +24,6 @@ public class CnContentBasicinfoFuncEdit extends RootFunc {
 		if ("dzsd4699100110010001".equals(input.getDataMap().get("status"))
 				&& "dzsd4699100110010002".equals(info.getStatus())) {
 			map.put("publish_time", DateHelper.upNow());
-		}
-		if (StringUtils.isNotBlank(input.getDataMap().get("cover"))) {
-			ImageThumb thumb = ImageHelper.upThumbWithHeight(input.getDataMap().get("cover"), 640);
-			if (thumb != null) {
-				input.getDataMap().put("coverwh", thumb.getSourceWidth() + "*" + thumb.getSourceHeight());
-			}
 		}
 		JdbcHelper.dataUpdate(extendPageDefine.getPageSource().getTableName(), map, "", "za");
 		return new WebOperateResult();

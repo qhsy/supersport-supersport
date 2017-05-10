@@ -296,11 +296,11 @@ public class RedPackComponet {
 
 				if (payedMoney.compareTo(BigDecimal.ZERO) > 0) {
 
-					/* 记录打赏人员流水 */
-					liveProfitFlow(StringUtils.join(contentBasicinfo.getCode(), "-", contentBasicinfo.getAuthor()),
-							payedMoney, "");
+//					/* 记录打赏人员流水 */
+//					liveProfitFlow(StringUtils.join(contentBasicinfo.getCode(), "-", contentBasicinfo.getAuthor()),
+//							payedMoney, "");
 					/* 更新接收打赏人员收益 */
-					AccountComponet.getInstance().updateProfit(contentBasicinfo.getAuthor(), payedMoney);
+//					AccountComponet.getInstance().updateProfit(contentBasicinfo.getAuthor(), payedMoney);
 					
 					UcUserinfoExt ucUserinfoExt = JdbcHelper.queryOne(UcUserinfoExt.class, "userCode",sendUserCode);
 					
@@ -317,9 +317,9 @@ public class RedPackComponet {
 
 					String msgContent = TopHelper.upInfo(810710030,sendNickName, title, payedMoney.toString());
 
-					msgNotice(msgContent, contentBasicinfo.getAuthor());
-
-					baiduPush(contentBasicinfo.getAuthor(), "内容打赏", content, "1", contentBasicinfo.getCode());
+//					msgNotice(msgContent, contentBasicinfo.getAuthor());
+//
+//					baiduPush(contentBasicinfo.getAuthor(), "内容打赏", content, "1", contentBasicinfo.getCode());
 
 				}
 

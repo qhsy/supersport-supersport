@@ -13,7 +13,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author 逄小帅
  *
  */
-@Entity
+//@Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "userCode", "questionCode"}))
 public class AwAnswerListen extends BaseEntity {
 	

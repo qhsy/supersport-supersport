@@ -20,19 +20,19 @@ public class contentBasicTypePageFuncDelete extends RootFunc {
 	public WebOperateResult process(WebPageModel webPageModel, ExtendPageDefine extendPageDefine,
 			WebOperateInput input) {
 		WebOperateResult result = new WebOperateResult();
-		CnContentBasicinfo cb = JdbcHelper.queryOne(CnContentBasicinfo.class, "za", input.getDataMap().get("za"));
-
-		if (StringUtils.isNotBlank(cb.getType()) && cb.getType().contains(input.getDataMap().get("type"))) {
-			List<String> li = Arrays.asList(cb.getType().split(","));
-			List<String> list = new ArrayList<String>();
-			for (int i = 0; i < li.size(); i++) {
-				if (!li.get(i).equals(input.getDataMap().get("type"))) {
-					list.add(li.get(i));
-				}
-			}
-			cb.setType(StringUtils.join(list.toArray(), ","));
-			JdbcHelper.update(cb, "type", "za");
-		}
+//		CnContentBasicinfo cb = JdbcHelper.queryOne(CnContentBasicinfo.class, "za", input.getDataMap().get("za"));
+//
+//		if (StringUtils.isNotBlank(cb.getType()) && cb.getType().contains(input.getDataMap().get("type"))) {
+//			List<String> li = Arrays.asList(cb.getType().split(","));
+//			List<String> list = new ArrayList<String>();
+//			for (int i = 0; i < li.size(); i++) {
+//				if (!li.get(i).equals(input.getDataMap().get("type"))) {
+//					list.add(li.get(i));
+//				}
+//			}
+//			cb.setType(StringUtils.join(list.toArray(), ","));
+//			JdbcHelper.update(cb, "type", "za");
+//		}
 		return result;
 	}
 

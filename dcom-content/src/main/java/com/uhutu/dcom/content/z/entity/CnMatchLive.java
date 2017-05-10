@@ -17,7 +17,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author 逄小帅
  *
  */
-@Entity
+//@Entity
 @Table(indexes = { @Index(columnList = "matchCode") })
 public class CnMatchLive extends BaseEntity {
 	

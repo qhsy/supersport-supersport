@@ -43,42 +43,42 @@ public class ApiContentRedPack extends RootApiToken<ApiContentRedPackInput, ApiC
 			
 			CnContentBasicinfo contentBasicInfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",input.getContentCode(),"status",SystemEnum.YES.getCode());
 			
-				if (contentBasicInfo != null) {
-					
-					if(StringUtils.equals(contentBasicInfo.getRedPackFlag(), SystemEnum.YES.getCode())){
-						
-						CnContentRedpackFlow redPackFlow = new CnContentRedpackFlow();
-						redPackFlow.setCode(WebHelper.upCode(PrexEnum.CNRF.name()));
-						redPackFlow.setContentCode(contentBasicInfo.getCode());
-						redPackFlow.setMoney(packInfo.getMoney());
-						redPackFlow.setReciveUserCode(contentBasicInfo.getAuthor());
-						redPackFlow.setSendUserCode(upUserCode());
-						redPackFlow.setStatus("0");
-						PaPayInfo payInfo = new PaPayInfo();
-						payInfo.setBusiCode(redPackFlow.getCode());
-						payInfo.setMoney(packInfo.getMoney());
-						payInfo.setPaySource(input.getOrderSource());
-						payInfo.setPayType(input.getPayType());
-						payInfo.setBusiType(OrderType.CONTENT_RED_PACK.getCode());
-						JdbcHelper.insert(redPackFlow);
-						JdbcHelper.insert(payInfo);
-						
-						/**调用支付逻辑*/
-						initMobilePayInfo(redPackFlow, input, result);
-						
-					
-						
-					}else{
-						
-						result.setStatus(0);
-						result.setError("未开启打赏");
-						
-					}
-					
-				} else {
-					result.setStatus(0);
-					result.setError("接受打赏内容不存在");
-				}
+//				if (contentBasicInfo != null) {
+//					
+//					if(StringUtils.equals(contentBasicInfo.getRedPackFlag(), SystemEnum.YES.getCode())){
+//						
+//						CnContentRedpackFlow redPackFlow = new CnContentRedpackFlow();
+//						redPackFlow.setCode(WebHelper.upCode(PrexEnum.CNRF.name()));
+//						redPackFlow.setContentCode(contentBasicInfo.getCode());
+//						redPackFlow.setMoney(packInfo.getMoney());
+//						redPackFlow.setReciveUserCode(contentBasicInfo.getAuthor());
+//						redPackFlow.setSendUserCode(upUserCode());
+//						redPackFlow.setStatus("0");
+//						PaPayInfo payInfo = new PaPayInfo();
+//						payInfo.setBusiCode(redPackFlow.getCode());
+//						payInfo.setMoney(packInfo.getMoney());
+//						payInfo.setPaySource(input.getOrderSource());
+//						payInfo.setPayType(input.getPayType());
+//						payInfo.setBusiType(OrderType.CONTENT_RED_PACK.getCode());
+//						JdbcHelper.insert(redPackFlow);
+//						JdbcHelper.insert(payInfo);
+//						
+//						/**调用支付逻辑*/
+//						initMobilePayInfo(redPackFlow, input, result);
+//						
+//					
+//						
+//					}else{
+//						
+//						result.setStatus(0);
+//						result.setError("未开启打赏");
+//						
+//					}
+//					
+//				} else {
+//					result.setStatus(0);
+//					result.setError("接受打赏内容不存在");
+//				}
 			
 		} else {
 			result.setStatus(0);

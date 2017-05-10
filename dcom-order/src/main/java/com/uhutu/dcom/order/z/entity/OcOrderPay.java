@@ -17,7 +17,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author xiegj
  *
  */
-@Entity
+//@Entity
 public class OcOrderPay extends BaseEntity {
 
 	@ZooData(name = "(订单支付信息)订单编号")

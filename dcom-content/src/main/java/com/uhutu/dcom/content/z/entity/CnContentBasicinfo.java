@@ -2,15 +2,16 @@ package com.uhutu.dcom.content.z.entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebElement;
+import com.uhutu.zoocom.define.DefineWebInc;
+import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
-
-import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 内容基本信息数据模型
@@ -22,79 +23,39 @@ import io.swagger.annotations.ApiModelProperty;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "code" }))
 public class CnContentBasicinfo extends BaseEntity {
 
-	@ZooData(name = "内容编号")
+	@ZooData(name = "编号", inc = DefineWebInc.Insert_Code + "=CNBH", sort = { DefineWebPage.Page_Add + "=1",
+			DefineWebPage.Page_Edit + "=0" })
 	private String code;
 
-	@ApiModelProperty(name = "内容封面图片链接", notes = "内容封面图片链接", example = "http://www.ichsy.com")
-	@ZooData(name = "内容封面")
-	private String cover;
-
-	@ApiModelProperty(name = "内容封面图片宽高(此参数不用输入，只作为展示使用)", notes = "内容封面图片宽高", example = "800*600")
-	@ZooData(name = "内容封面宽高")
-	private String coverWH;
-
-	@ApiModelProperty(name = "标题", notes = "标题", example = "新体优家，您运动的首选~")
-	@ZooData(name = "内容标题")
-	@Column(columnDefinition = "longtext")
+	@ZooData(name = "标题", require = "1", verify = { DefineWebVerify.Max_Length + "=60" })
 	private String title;
 
-	@ApiModelProperty(name = "日期展示", notes = "日期展示", example = "2016-4-19")
-	@ZooData(name = "发布时间")
-	private Date publishTime;
+	@ZooData(name = "副标题", require = "1", verify = { DefineWebVerify.Max_Length + "=255" })
+	private String ptitle;
 
-	@ZooData(name = "内容简介")
-	private String aboutDesc;
+	@ZooData(name = "内容封面(宽1080*高810)", element = DefineWebElement.Upload, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	private String cover;
 
-	@ZooData(name = "内容来源")
-	private String souce;
-
-	@ZooData(name = "内容状态 1:正常，02：失效")
+	@ZooData(name = "发布状态", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd469910011001" })
 	private String status;
 
-	@ZooData(name = "内容分类编号")
-	private String categoryCode;
+	@ZooData(name = "发布时间", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0",
+			DefineWebPage.Page_Add + "=0" })
+	private Date publishTime;
 
-	@ZooData(name = "标签编码")
-	@Column(columnDefinition = "longtext")
-	private String tagCode;
-
-	@ZooData(name = "内容作者")
-	private String author;
-
-	@ZooData(name = "内容分享范围 0:不公开  1：公开")
-	private String shareScope;
-
-	@ApiModelProperty(name = "地理位置", notes = "位置经纬度", example = "116.404, 39.915")
-	@ZooData(name = "定位经纬度")
-	private String location;
-
-	@ApiModelProperty(name = "地理位置名称", notes = "位置名称", example = "金域国际大厦")
-	@ZooData(name = "定位位置名称")
-	private String localtionName;
-
-	@ZooData(name = "业务类型编号：运动时刻 文章")
-	private String busiType;
-	
-	@ZooData(name = "内容分类")
-	@Column(columnDefinition = "longtext")
-	private String type;
-
-	@ApiModelProperty(name = "展示类型", notes = " 01:展示图文", example = "01")
-	@ZooData(name = "内容类型：感想、视频、图片")
+	@ZooData(name = "内容类型", element = DefineWebElement.Select, inc = {
+			DefineWebInc.System_Define + "=dzsd410710011003" })
 	private String contentType;
 
-	@ApiModelProperty(name = "赞的起始数", notes = "赞的起始数", example = "01")
-	@ZooData(name = "赞的起始数")
-	private int praiseBase;
+	@ZooData(name = "内容作者", require = "1", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw451010010001" }, sort = { DefineWebPage.Page_Query + "=0",
+					DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Add + "=0" })
+	private String author;
 
-	@ZooData(name = "审核状态")
-	private String reviewStatus;
-
-	@ZooData(name = "成绩")
-	private int mark;
-	
-	@ZooData(name="是否接受打赏标识")
-	private String redPackFlag;
+	@ZooData(name = "视频地址", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	private String videoUrl;
 
 	public String getCode() {
 		return code;
@@ -102,14 +63,6 @@ public class CnContentBasicinfo extends BaseEntity {
 
 	public void setCode(String code) {
 		this.code = code;
-	}
-
-	public String getCover() {
-		return cover;
-	}
-
-	public void setCover(String cover) {
-		this.cover = cover;
 	}
 
 	public String getTitle() {
@@ -120,28 +73,20 @@ public class CnContentBasicinfo extends BaseEntity {
 		this.title = title;
 	}
 
-	public Date getPublishTime() {
-		return publishTime;
+	public String getPtitle() {
+		return ptitle;
 	}
 
-	public void setPublishTime(Date publishTime) {
-		this.publishTime = publishTime;
+	public void setPtitle(String ptitle) {
+		this.ptitle = ptitle;
 	}
 
-	public String getAboutDesc() {
-		return aboutDesc;
+	public String getCover() {
+		return cover;
 	}
 
-	public void setAboutDesc(String aboutDesc) {
-		this.aboutDesc = aboutDesc;
-	}
-
-	public String getSouce() {
-		return souce;
-	}
-
-	public void setSouce(String souce) {
-		this.souce = souce;
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 
 	public String getStatus() {
@@ -152,68 +97,12 @@ public class CnContentBasicinfo extends BaseEntity {
 		this.status = status;
 	}
 
-	public String getCategoryCode() {
-		return categoryCode;
+	public Date getPublishTime() {
+		return publishTime;
 	}
 
-	public void setCategoryCode(String categoryCode) {
-		this.categoryCode = categoryCode;
-	}
-
-	public String getTagCode() {
-		return tagCode;
-	}
-
-	public void setTagCode(String tagCode) {
-		this.tagCode = tagCode;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-
-	public String getShareScope() {
-		return shareScope;
-	}
-
-	public void setShareScope(String shareScope) {
-		this.shareScope = shareScope;
-	}
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public String getLocaltionName() {
-		return localtionName;
-	}
-
-	public void setLocaltionName(String localtionName) {
-		this.localtionName = localtionName;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getBusiType() {
-		return busiType;
-	}
-
-	public void setBusiType(String busiType) {
-		this.busiType = busiType;
+	public void setPublishTime(Date publishTime) {
+		this.publishTime = publishTime;
 	}
 
 	public String getContentType() {
@@ -224,44 +113,20 @@ public class CnContentBasicinfo extends BaseEntity {
 		this.contentType = contentType;
 	}
 
-	public int getPraiseBase() {
-		return praiseBase;
+	public String getAuthor() {
+		return author;
 	}
 
-	public void setPraiseBase(int praiseBase) {
-		this.praiseBase = praiseBase;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 
-	public String getCoverWH() {
-		return coverWH;
+	public String getVideoUrl() {
+		return videoUrl;
 	}
 
-	public void setCoverWH(String coverWH) {
-		this.coverWH = coverWH;
-	}
-
-	public String getReviewStatus() {
-		return reviewStatus;
-	}
-
-	public void setReviewStatus(String reviewStatus) {
-		this.reviewStatus = reviewStatus;
-	}
-
-	public int getMark() {
-		return mark;
-	}
-
-	public void setMark(int mark) {
-		this.mark = mark;
-	}
-
-	public String getRedPackFlag() {
-		return redPackFlag;
-	}
-
-	public void setRedPackFlag(String redPackFlag) {
-		this.redPackFlag = redPackFlag;
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
 	}
 
 }

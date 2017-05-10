@@ -194,13 +194,13 @@ public class ApiMatchInfo extends RootApiBase<ApiMatchInfoInput, ApiMatchInfoRes
 
 				}
 
-				if (StringUtils.isNotEmpty(contentBasicinfo.getAuthor())) {
-
-					UserBasicInfo basicInfo = MatchComponent.getInstance().initBasicInfo(contentBasicinfo.getAuthor());
-
-					matchVideoInfo.setUserBasicInfo(basicInfo);
-
-				}
+//				if (StringUtils.isNotEmpty(contentBasicinfo.getAuthor())) {
+//
+//					UserBasicInfo basicInfo = MatchComponent.getInstance().initBasicInfo(contentBasicinfo.getAuthor());
+//
+//					matchVideoInfo.setUserBasicInfo(basicInfo);
+//
+//				}
 
 				matchVideoInfo.setTitle(contentBasicinfo.getTitle());
 

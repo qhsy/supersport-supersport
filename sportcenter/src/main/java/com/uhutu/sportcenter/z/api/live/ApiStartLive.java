@@ -131,52 +131,53 @@ public class ApiStartLive extends RootApiToken<ApiStartLiveInput, ApiStartLiveRe
 	 */
 	public String updateContent(CnLiveVideoDetail liveVideoDetail) {
 
-		CnContentBasicinfo basicinfo = new CnContentBasicinfo();
-
-		basicinfo.setAuthor(upUserCode());
-
-		basicinfo.setBusiType(ContentEnum.sportmoment.getCode());
-
-		basicinfo.setContentType(ContentEnum.TYPE_LIVE.getCode());
-
-		basicinfo.setCover(liveVideoDetail.getCover());
-
-		if (StringUtils.isNotBlank(liveVideoDetail.getAddressName())) {
-
-			basicinfo.setLocaltionName(liveVideoDetail.getAddressName());
-
-		}
-
-		if (StringUtils.isNotBlank(liveVideoDetail.getLatitude())
-				&& StringUtils.isNotBlank(liveVideoDetail.getLongitude())) {
-
-			String location = liveVideoDetail.getLatitude() + "," + liveVideoDetail.getLongitude();
-
-			basicinfo.setLocation(location);
-
-		}
-
-		basicinfo.setPublishTime(new Date());
-
-		basicinfo.setStatus(ContentEnum.normal.getCode());
-
-		basicinfo.setTagCode(liveVideoDetail.getTagCode());
-
-		basicinfo.setTitle(liveVideoDetail.getTitle());
-
-		CnContentDetail cnContentDetail = new CnContentDetail();
-
-		cnContentDetail.setContent(liveVideoDetail.getBusiCode());
-
-		basicinfo.setShareScope("dzsd4699100110010001");
-
-		contentServiceFactory.getContentBasicinfoService().save(basicinfo);
-
-		cnContentDetail.setCode(basicinfo.getCode());
-
-		contentServiceFactory.getContentDetailService().save(cnContentDetail);
-
-		return basicinfo.getCode();
+//		CnContentBasicinfo basicinfo = new CnContentBasicinfo();
+//
+//		basicinfo.setAuthor(upUserCode());
+//
+//		basicinfo.setBusiType(ContentEnum.sportmoment.getCode());
+//
+//		basicinfo.setContentType(ContentEnum.TYPE_LIVE.getCode());
+//
+//		basicinfo.setCover(liveVideoDetail.getCover());
+//
+//		if (StringUtils.isNotBlank(liveVideoDetail.getAddressName())) {
+//
+//			basicinfo.setLocaltionName(liveVideoDetail.getAddressName());
+//
+//		}
+//
+//		if (StringUtils.isNotBlank(liveVideoDetail.getLatitude())
+//				&& StringUtils.isNotBlank(liveVideoDetail.getLongitude())) {
+//
+//			String location = liveVideoDetail.getLatitude() + "," + liveVideoDetail.getLongitude();
+//
+//			basicinfo.setLocation(location);
+//
+//		}
+//
+//		basicinfo.setPublishTime(new Date());
+//
+//		basicinfo.setStatus(ContentEnum.normal.getCode());
+//
+//		basicinfo.setTagCode(liveVideoDetail.getTagCode());
+//
+//		basicinfo.setTitle(liveVideoDetail.getTitle());
+//
+//		CnContentDetail cnContentDetail = new CnContentDetail();
+//
+//		cnContentDetail.setContent(liveVideoDetail.getBusiCode());
+//
+//		basicinfo.setShareScope("dzsd4699100110010001");
+//
+//		contentServiceFactory.getContentBasicinfoService().save(basicinfo);
+//
+//		cnContentDetail.setCode(basicinfo.getCode());
+//
+//		contentServiceFactory.getContentDetailService().save(cnContentDetail);
+//
+//		return basicinfo.getCode();
+		return null;
 
 	}
 

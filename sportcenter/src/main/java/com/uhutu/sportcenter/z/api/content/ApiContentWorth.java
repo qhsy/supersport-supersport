@@ -116,9 +116,9 @@ public class ApiContentWorth extends RootApiBase<ApiContentWorthInput, ApiConten
 						if ("dzsd4107100110030004".equals(sportingMoment.getContentType())) {
 							CnContentDetail detail = JdbcHelper.queryOne(CnContentDetail.class, "code",
 									sportingMoment.getCode());
-							if (detail != null && StringUtils.isNotBlank(detail.getContent())) {
-								sportingMoment.setTitle(detail.getContent());
-							}
+//							if (detail != null && StringUtils.isNotBlank(detail.getContent())) {
+//								sportingMoment.setTitle(detail.getContent());
+//							}
 						}
 						CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
 								sportingMoment.getCode());

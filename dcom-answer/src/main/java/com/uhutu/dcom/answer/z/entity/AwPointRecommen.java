@@ -16,7 +16,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author xiegj
  *
  */
-@Entity
+//@Entity
 public class AwPointRecommen extends BaseEntity {
 
 	@ZooData(name = "类型", element = DefineWebElement.Select, sort = { DefineWebPage.Page_Query + "=0",

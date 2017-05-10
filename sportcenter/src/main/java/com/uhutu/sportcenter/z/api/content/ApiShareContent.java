@@ -67,13 +67,14 @@ public class ApiShareContent extends RootApiBase<ApiShareContentInput, ApiShareC
 				if (StringUtils.isNotBlank(basicInfo.getCover())) {
 					shareResult.setIconUrl(ImageHelper.upImageThumbnail(basicInfo.getCover(), 120));
 				}
-				if (StringUtils.isNotBlank(basicInfo.getTagCode())
-						&& (basicInfo.getTagCode().contains("GGBH161020110001")
-								|| basicInfo.getTagCode().contains("GGBH161020210001")
-								|| basicInfo.getTagCode().contains("GGBH161020210002")
-								|| basicInfo.getTagCode().contains("GGBH161020210003"))) {
-					shareResult.setContent(TopHelper.upInfo(810710021));
-				} else if (recomm != null && StringUtils.isNotBlank(recomm.getContent())) {
+//				if (StringUtils.isNotBlank(basicInfo.getTagCode())
+//						&& (basicInfo.getTagCode().contains("GGBH161020110001")
+//								|| basicInfo.getTagCode().contains("GGBH161020210001")
+//								|| basicInfo.getTagCode().contains("GGBH161020210002")
+//								|| basicInfo.getTagCode().contains("GGBH161020210003"))) {
+//					shareResult.setContent(TopHelper.upInfo(810710021));
+//				} else 
+					if (recomm != null && StringUtils.isNotBlank(recomm.getContent())) {
 					shareResult.setContent(recomm.getContent());
 				} else {
 					if (StringUtils.isNotBlank(basicInfo.getContentType())

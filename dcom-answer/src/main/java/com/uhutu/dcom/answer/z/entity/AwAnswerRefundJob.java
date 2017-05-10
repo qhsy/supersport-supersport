@@ -19,7 +19,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author xiegj
  *
  */
-@Entity
+//@Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "code" }))
 public class AwAnswerRefundJob extends BaseEntity {
 

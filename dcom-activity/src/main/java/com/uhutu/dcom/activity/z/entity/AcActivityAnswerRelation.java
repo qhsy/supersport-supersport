@@ -16,7 +16,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author xiegj
  *
  */
-@Entity
+//@Entity
 public class AcActivityAnswerRelation extends BaseEntity {
 
 	@ZooData(name = "活动名称", sort = { DefineWebPage.Page_Query + "=0",

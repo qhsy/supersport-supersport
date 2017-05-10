@@ -15,7 +15,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author xiegj
  *
  */
-@Entity
+//@Entity
 public class CnHomeType extends BaseEntity {
 
 	@ZooData(name = "编号", inc = DefineWebInc.Insert_Code + "=SYBSBH", sort = { DefineWebPage.Page_Add + "=1",

@@ -15,7 +15,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author 逄小帅
  *
  */
-@Entity
+//@Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = { "userCode" }))
 public class AwAnswerExpert extends BaseEntity {
 	

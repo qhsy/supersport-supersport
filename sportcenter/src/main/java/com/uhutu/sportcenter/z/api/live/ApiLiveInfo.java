@@ -43,49 +43,49 @@ public class ApiLiveInfo extends RootApiBase<ApiLiveInfoInput, ApiLiveInfoResult
 			CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
 					input.getContentCode());
 			
-			if (basicinfo != null && contentDetail != null && StringUtils.isNotEmpty(contentDetail.getContent()) ) {
+//			if (basicinfo != null && contentDetail != null && StringUtils.isNotEmpty(contentDetail.getContent()) ) {
+//				
+//				CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "busiCode",contentDetail.getContent());
+//				
+//				if(detail != null && StringUtils.isNotEmpty(detail.getTitle())){
+//					
+//					String title = EmojiUtil.emojiRecovery(detail.getTitle());
+//					
+//					detail.setTitle(title);
+//					
+//				}
 				
-				CnLiveVideoDetail detail = JdbcHelper.queryOne(CnLiveVideoDetail.class, "busiCode",contentDetail.getContent());
+//				result.setDetail(detail);
+//				if (detail != null) {
+//					SettingsDcomContent dcomContent = ConfigDcomContent.upConfig();
+//					result.setAppId(dcomContent.getLiveAppId());
+//				}
+//				UcUserinfoExt ext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", basicinfo.getAuthor());
+//				UcUserinfo info = JdbcHelper.queryOne(UcUserinfo.class, "code", basicinfo.getAuthor());
+//				if (ext != null && info != null) {
+//					result.getUserBasicInfo().setAboutHead(ext.getAboutHead());
+//					result.getUserBasicInfo().setNickName(ext.getNickName());
+//					result.getUserBasicInfo().setTitle(ext.getTitle());
+//					result.getUserBasicInfo().setType(info.getType());
+//					result.getUserBasicInfo().setUserCode(ext.getUserCode());
+//				}
+//				
+//				if(StringUtils.equals(detail.getStatus(), ContentEnum.LIVEING.getCode())){
+//					
+//					result.setLiveType(0);
+//					
+//				}
+//				
+//				if (StringUtils.equals(detail.getStatus(), ContentEnum.LIVEEND.getCode())) {
+//
+//					result.setLiveType(1);
+//
+//				}
+//				
+//				result.setRedPackFalg(initPackFlag(detail.getBusiCode()));
+//				
 				
-				if(detail != null && StringUtils.isNotEmpty(detail.getTitle())){
-					
-					String title = EmojiUtil.emojiRecovery(detail.getTitle());
-					
-					detail.setTitle(title);
-					
-				}
-				
-				result.setDetail(detail);
-				if (detail != null) {
-					SettingsDcomContent dcomContent = ConfigDcomContent.upConfig();
-					result.setAppId(dcomContent.getLiveAppId());
-				}
-				UcUserinfoExt ext = JdbcHelper.queryOne(UcUserinfoExt.class, "user_code", basicinfo.getAuthor());
-				UcUserinfo info = JdbcHelper.queryOne(UcUserinfo.class, "code", basicinfo.getAuthor());
-				if (ext != null && info != null) {
-					result.getUserBasicInfo().setAboutHead(ext.getAboutHead());
-					result.getUserBasicInfo().setNickName(ext.getNickName());
-					result.getUserBasicInfo().setTitle(ext.getTitle());
-					result.getUserBasicInfo().setType(info.getType());
-					result.getUserBasicInfo().setUserCode(ext.getUserCode());
-				}
-				
-				if(StringUtils.equals(detail.getStatus(), ContentEnum.LIVEING.getCode())){
-					
-					result.setLiveType(0);
-					
-				}
-				
-				if (StringUtils.equals(detail.getStatus(), ContentEnum.LIVEEND.getCode())) {
-
-					result.setLiveType(1);
-
-				}
-				
-				result.setRedPackFalg(initPackFlag(detail.getBusiCode()));
-				
-				
-			}
+//			}
 
 		}
 		return result;

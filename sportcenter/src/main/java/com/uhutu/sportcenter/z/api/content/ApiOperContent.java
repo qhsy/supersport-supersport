@@ -69,17 +69,17 @@ public class ApiOperContent extends RootApiToken<ApiOperContentInput, ApiOperCon
 			
 			CnContentBasicinfo basicinfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code", contentCode);
 			
-			if(basicinfo != null){
-				
-				String redPackFlag = basicinfo.getRedPackFlag();
-					
-				redPackFlag = StringUtils.equals(SystemEnum.YES.getCode(), redPackFlag) ? SystemEnum.NO.getCode() : SystemEnum.YES.getCode();
-					
-				basicinfo.setRedPackFlag(redPackFlag);
-				
-				JdbcHelper.update(basicinfo, "redPackFlag", "code");
-				
-			}
+//			if(basicinfo != null){
+//				
+//				String redPackFlag = basicinfo.getRedPackFlag();
+//					
+//				redPackFlag = StringUtils.equals(SystemEnum.YES.getCode(), redPackFlag) ? SystemEnum.NO.getCode() : SystemEnum.YES.getCode();
+//					
+//				basicinfo.setRedPackFlag(redPackFlag);
+//				
+//				JdbcHelper.update(basicinfo, "redPackFlag", "code");
+//				
+//			}
 			
 		}
 		

@@ -14,7 +14,7 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
  * @author xiegj
  *
  */
-@Entity
+//@Entity
 public class AwAnswerRefundLog extends BaseEntity {
 
 	@ZooData(value = "退款编号")
