@@ -25,21 +25,12 @@ import io.swagger.annotations.ApiOperation;
  *
  */
 @RestController
-@RequestMapping(value = "/api/homeController")
+@RequestMapping(value = "/api/otherController")
 @Api(tags = "首页相关")
-public class HomeController {
+public class OtherController {
 
 	@Autowired
 	private ApiFactory apiFactory;
-
-	@ResponseBody
-	@RequestMapping(value = "/homePage", method = RequestMethod.POST)
-	@ApiOperation(value = "首页接口", notes = "首页接口")
-	public ApiHomePageResult homePageThird(@RequestBody ApiHomePageInput input) {
-
-		return apiFactory.getApiHomePage().api(input);
-
-	}
 
 	// @ResponseBody
 	// @RequestMapping(value = "/homePageSecond", method = RequestMethod.POST)
