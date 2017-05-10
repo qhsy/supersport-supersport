@@ -30,9 +30,9 @@ import io.swagger.annotations.ApiOperation;
  * @author 逄小帅
  *
  */
-@RestController
-@RequestMapping(value = "/api/liveNewController")
-@Api(tags = "新直播相关")
+//@RestController
+//@RequestMapping(value = "/api/liveNewController")
+//@Api(tags = "新直播相关")
 public class LiveNewController {
 
 	@Autowired
