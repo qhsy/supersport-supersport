@@ -221,14 +221,14 @@ public class HomePageSecondSupport {
 					for (int i = 0; i < details.size(); i++) {
 						AdvertiseDetailForApi dfa = new AdvertiseDetailForApi();
 						BeanUtils.copyProperties(details.get(i), dfa);
-						if ("dzsd4107100110050002".equals(details.get(i).getPiclinkType())
-								&& StringUtils.isNotBlank(details.get(i).getPiclinkContent())) {
-							CnContentBasicinfo cbi = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
-									details.get(i).getPiclinkContent());
-							if (cbi != null) {
-								dfa.setType(cbi.getContentType());
-							}
-						}
+//						if ("dzsd4107100110050002".equals(details.get(i).getPiclinkType())
+//								&& StringUtils.isNotBlank(details.get(i).getPiclinkContent())) {
+//							CnContentBasicinfo cbi = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
+//									details.get(i).getPiclinkContent());
+//							if (cbi != null) {
+//								dfa.setType(cbi.getContentType());
+//							}
+//						}
 						if (titleMap.containsKey(dfa.getCode())) {
 							dfa.setName(titleMap.get(dfa.getCode()));
 						}
@@ -249,21 +249,21 @@ public class HomePageSecondSupport {
 						if (StringUtils.isNotBlank(dfa.getPicUrl()) && width > 0) {
 							dfa.setPicUrl(ImageHelper.upImageThumbnail(dfa.getPicUrl(), Integer.valueOf(width)));
 						}
-						if ("dzsd4107100110050002".equals(details.get(j).getPiclinkType())
-								&& StringUtils.isNotBlank(details.get(j).getPiclinkContent())) {
-							CnContentBasicinfo cbi = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
-									details.get(j).getPiclinkContent());
-							if (cbi != null) {
-								dfa.setType(cbi.getContentType());
-							}
-							if ("dzsd4107100110030006".equals(cbi.getContentType())||"dzsd4107100110030008".equals(cbi.getContentType())) {
-								CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
-										details.get(j).getPiclinkContent());
-								if (contentDetail != null) {
-									dfa.setPiclinkContent(contentDetail.getVideoUrl());
-								}
-							}
-						}
+//						if ("dzsd4107100110050002".equals(details.get(j).getPiclinkType())
+//								&& StringUtils.isNotBlank(details.get(j).getPiclinkContent())) {
+//							CnContentBasicinfo cbi = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
+//									details.get(j).getPiclinkContent());
+//							if (cbi != null) {
+//								dfa.setType(cbi.getContentType());
+//							}
+//							if ("dzsd4107100110030006".equals(cbi.getContentType())||"dzsd4107100110030008".equals(cbi.getContentType())) {
+//								CnContentDetail contentDetail = JdbcHelper.queryOne(CnContentDetail.class, "code",
+//										details.get(j).getPiclinkContent());
+//								if (contentDetail != null) {
+//									dfa.setPiclinkContent(contentDetail.getVideoUrl());
+//								}
+//							}
+//						}
 						hmp.getAdv().getDetails().add(dfa);
 					}
 				}

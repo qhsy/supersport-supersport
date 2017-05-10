@@ -42,9 +42,9 @@ import io.swagger.annotations.ApiOperation;
  * @author xiegj
  *
  */
-@RestController
-@RequestMapping(value = "/api/liveVideoController")
-@Api(tags = "直播相关")
+//@RestController
+//@RequestMapping(value = "/api/liveVideoController")
+//@Api(tags = "直播相关")
 public class LiveVideoController {
 
 	@Autowired

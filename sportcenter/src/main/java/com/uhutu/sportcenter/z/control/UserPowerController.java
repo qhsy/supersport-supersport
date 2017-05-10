@@ -29,9 +29,9 @@ import io.swagger.annotations.ApiOperation;
  * @author pang_jhui
  *
  */
-@RestController
-@RequestMapping(value = "/api/userPowerController")
-@Api(tags = "用户能量捐赠")
+//@RestController
+//@RequestMapping(value = "/api/userPowerController")
+//@Api(tags = "用户能量捐赠")
 public class UserPowerController {
 	
 	@Autowired

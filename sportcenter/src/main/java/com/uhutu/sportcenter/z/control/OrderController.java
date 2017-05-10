@@ -38,9 +38,9 @@ import io.swagger.annotations.ApiOperation;
  * @author xiegj
  *
  */
-@RestController
-@RequestMapping(value = "/api/orderController")
-@Api(tags = "订单相关接口")
+//@RestController
+//@RequestMapping(value = "/api/orderController")
+//@Api(tags = "订单相关接口")
 public class OrderController {
 
 	@Autowired

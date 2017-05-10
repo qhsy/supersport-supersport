@@ -26,9 +26,9 @@ import io.swagger.annotations.ApiOperation;
  * @author 逄小帅
  *
  */
-@RestController
-@RequestMapping(value = "/api/buttock")
-@Api(tags = "翘臀大赛相关接口")
+//@RestController
+//@RequestMapping(value = "/api/buttock")
+//@Api(tags = "翘臀大赛相关接口")
 public class ButtockController {
 
 	@Autowired

@@ -68,9 +68,9 @@ import io.swagger.annotations.ApiOperation;
  * @author 逄小帅
  *
  */
-@RestController
-@RequestMapping(value = "/api/answerController")
-@Api(tags = "问答相关接口")
+//@RestController
+//@RequestMapping(value = "/api/answerController")
+//@Api(tags = "问答相关接口")
 public class AnswerController {
 
 	@Autowired

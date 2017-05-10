@@ -24,9 +24,9 @@ import io.swagger.annotations.ApiOperation;
  * @author pangjh
  *
  */
-@RestController
-@RequestMapping(value = "/api/redPackController")
-@Api(tags = "红包打赏相关接口")
+//@RestController
+//@RequestMapping(value = "/api/redPackController")
+//@Api(tags = "红包打赏相关接口")
 public class RedPackController {
 
 	@Autowired

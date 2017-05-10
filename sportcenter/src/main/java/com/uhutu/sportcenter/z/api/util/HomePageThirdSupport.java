@@ -125,8 +125,8 @@ public class HomePageThirdSupport {
 								&& !"gif".equals(StringUtils.substringAfterLast(extMap.get(cad.getCode()).getCover(), "."))) {
 							dfa.setDefaultPicUrl(ImageHelper.upImageThumbnail(extMap.get(cad.getCode()).getCover(), Integer.valueOf(width)));
 						}
-						dfa.setJump(new JumpTypeSupport().getData(cad.getPiclinkType(), cad.getPiclinkContent(),
-								cad.getContentTitle()));
+//						dfa.setJump(new JumpTypeSupport().getData(cad.getPiclinkType(), cad.getPiclinkContent(),
+//								cad.getContentTitle()));
 						dfa.setLabelName(extMap.get(cad.getCode()).getLabelName());
 						dfa.setTitle(extMap.get(cad.getCode()).getTitle());
 						if (StringUtils.isNotBlank(extMap.get(cad.getCode()).getAuthor())) {

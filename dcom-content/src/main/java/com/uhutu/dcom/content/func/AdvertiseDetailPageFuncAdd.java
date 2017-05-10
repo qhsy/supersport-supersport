@@ -2,7 +2,6 @@ package com.uhutu.dcom.content.func;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.uhutu.dcom.content.z.entity.CnShareInfo;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.model.MParamReplace;
@@ -70,12 +69,6 @@ public class AdvertiseDetailPageFuncAdd extends RootFunc {
 		}
 
 		JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), mInsertMap);
-		if ("dzsd4107100110050003".equals(input.getDataMap().get("piclink_type"))||"dzsd4107100110150003".equals(input.getDataMap().get("piclink_type"))) {
-			CnShareInfo shareInfo = new CnShareInfo();
-			shareInfo.setCode(mInsertMap.get("code"));
-			shareInfo.setStatus("0");
-			JdbcHelper.insert(shareInfo);
-		}
 		return new WebOperateResult();
 	}
 

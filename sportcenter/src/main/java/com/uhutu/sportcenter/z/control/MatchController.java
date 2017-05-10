@@ -30,9 +30,9 @@ import io.swagger.annotations.ApiOperation;
  * @author 逄小帅
  *
  */
-@RestController
-@RequestMapping(value = "/api/matchController")
-@Api(tags = "赛事相关接口")
+//@RestController
+//@RequestMapping(value = "/api/matchController")
+//@Api(tags = "赛事相关接口")
 public class MatchController {
 
 	@Autowired

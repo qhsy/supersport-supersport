@@ -26,9 +26,9 @@ import com.uhutu.sportcenter.z.result.ApiWechatMobilePayResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@RestController
-@RequestMapping(value = "/api/payController")
-@Api(tags = "支付接口相关")
+//@RestController
+//@RequestMapping(value = "/api/payController")
+//@Api(tags = "支付接口相关")
 public class PayController {
 	
 	@Autowired

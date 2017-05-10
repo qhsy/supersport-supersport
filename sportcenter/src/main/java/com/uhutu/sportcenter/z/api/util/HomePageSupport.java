@@ -195,14 +195,14 @@ public class HomePageSupport {
 				hmp.setShowType("dzsd4107100110060002");
 				AdvertiseDetailForApi dfa = new AdvertiseDetailForApi();
 				BeanUtils.copyProperties(detail, dfa);
-				if ("dzsd4107100110050002".equals(detail.getPiclinkType())
-						&& StringUtils.isNotBlank(detail.getPiclinkContent())) {
-					CnContentBasicinfo cbi = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
-							detail.getPiclinkContent());
-					if (cbi != null) {
-						dfa.setType(cbi.getContentType());
-					}
-				}
+//				if ("dzsd4107100110050002".equals(detail.getPiclinkType())
+//						&& StringUtils.isNotBlank(detail.getPiclinkContent())) {
+//					CnContentBasicinfo cbi = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
+//							detail.getPiclinkContent());
+//					if (cbi != null) {
+//						dfa.setType(cbi.getContentType());
+//					}
+//				}
 				if (StringUtils.isNotBlank(dfa.getPicUrl()) && StringUtils.isNotBlank(width)) {
 					dfa.setPicUrl(ImageHelper.upImageThumbnail(dfa.getPicUrl(), Integer.valueOf(width)));
 				}

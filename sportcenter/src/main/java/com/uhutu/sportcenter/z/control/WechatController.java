@@ -20,9 +20,9 @@ import com.uhutu.sportcenter.z.result.ApiWechatUserLoginResult3;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@RestController
-@RequestMapping(value = "/api/wechatController")
-@Api(tags = "微信配置信息相关")
+//@RestController
+//@RequestMapping(value = "/api/wechatController")
+//@Api(tags = "微信配置信息相关")
 public class WechatController {
 	
 	@Autowired

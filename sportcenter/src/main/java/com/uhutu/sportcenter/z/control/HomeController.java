@@ -54,39 +54,39 @@ public class HomeController {
 
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/homePageSecond", method = RequestMethod.POST)
-	@ApiOperation(value = "新首页二", notes = "新首页二")
-	public ApiHomePageSecondResult homePageSecond(@RequestBody ApiHomePageSecondInput input) {
+//	@ResponseBody
+//	@RequestMapping(value = "/homePageSecond", method = RequestMethod.POST)
+//	@ApiOperation(value = "新首页二", notes = "新首页二")
+//	public ApiHomePageSecondResult homePageSecond(@RequestBody ApiHomePageSecondInput input) {
+//
+//		return apiFactory.getApiHomePageSecond().api(input);
+//
+//	}
 
-		return apiFactory.getApiHomePageSecond().api(input);
-
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/expertChat", method = RequestMethod.POST)
-	@ApiOperation(value = "达人专访", notes = "达人专访")
-	public ApiExpertChatResult expertChat(@RequestBody ApiExpertChatInput input) {
-
-		return apiFactory.getApiExpertChat().api(input);
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/wonderfulVideo", method = RequestMethod.POST)
-	@ApiOperation(value = "精彩视频", notes = "精彩视频")
-	public ApiWonderfulVideoResult wonderfulVideo(@RequestBody ApiWonderfulVideoInput input) {
-
-		return apiFactory.getApiWonderfulVideo().api(input);
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/hotTopic", method = RequestMethod.POST)
-	@ApiOperation(value = "热门话题", notes = "热门话题")
-	public ApiHotTopicResult hotTopic(@RequestBody ApiHotTopicInput input) {
-
-		return apiFactory.getApiHotTopic().api(input);
-
-	}
+//	@ResponseBody
+//	@RequestMapping(value = "/expertChat", method = RequestMethod.POST)
+//	@ApiOperation(value = "达人专访", notes = "达人专访")
+//	public ApiExpertChatResult expertChat(@RequestBody ApiExpertChatInput input) {
+//
+//		return apiFactory.getApiExpertChat().api(input);
+//	}
+//
+//	@ResponseBody
+//	@RequestMapping(value = "/wonderfulVideo", method = RequestMethod.POST)
+//	@ApiOperation(value = "精彩视频", notes = "精彩视频")
+//	public ApiWonderfulVideoResult wonderfulVideo(@RequestBody ApiWonderfulVideoInput input) {
+//
+//		return apiFactory.getApiWonderfulVideo().api(input);
+//	}
+//
+//	@ResponseBody
+//	@RequestMapping(value = "/hotTopic", method = RequestMethod.POST)
+//	@ApiOperation(value = "热门话题", notes = "热门话题")
+//	public ApiHotTopicResult hotTopic(@RequestBody ApiHotTopicInput input) {
+//
+//		return apiFactory.getApiHotTopic().api(input);
+//
+//	}
 
 	@ResponseBody
 	@RequestMapping(value = "/startUpApi", method = RequestMethod.POST)
@@ -106,22 +106,22 @@ public class HomeController {
 
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/contentType", method = RequestMethod.POST)
-	@ApiOperation(value = "值得看", notes = "值得看")
-	public ApiContentTypeResult contentType(@RequestBody ApiContentTypeInput input) {
+//	@ResponseBody
+//	@RequestMapping(value = "/contentType", method = RequestMethod.POST)
+//	@ApiOperation(value = "值得看", notes = "值得看")
+//	public ApiContentTypeResult contentType(@RequestBody ApiContentTypeInput input) {
+//
+//		return apiFactory.getApiContentType().api(input);
+//
+//	}
 
-		return apiFactory.getApiContentType().api(input);
-
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/contentWorth", method = RequestMethod.POST)
-	@ApiOperation(value = "分类详情页", notes = "分类详情页")
-	public ApiContentWorthResult contentWorth(@RequestBody ApiContentWorthInput input) {
-
-		return apiFactory.getApiContentWorth().api(input);
-
-	}
+//	@ResponseBody
+//	@RequestMapping(value = "/contentWorth", method = RequestMethod.POST)
+//	@ApiOperation(value = "分类详情页", notes = "分类详情页")
+//	public ApiContentWorthResult contentWorth(@RequestBody ApiContentWorthInput input) {
+//
+//		return apiFactory.getApiContentWorth().api(input);
+//
+//	}
 
 }

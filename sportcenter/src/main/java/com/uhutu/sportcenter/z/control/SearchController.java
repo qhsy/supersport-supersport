@@ -26,9 +26,9 @@ import io.swagger.annotations.ApiOperation;
  * @author 逄小帅
  *
  */
-@RestController
-@RequestMapping(value = "/api/searchController")
-@Api(tags = "搜索相关接口")
+//@RestController
+//@RequestMapping(value = "/api/searchController")
+//@Api(tags = "搜索相关接口")
 public class SearchController {
 
 	@Autowired
