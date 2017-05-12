@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
-import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
 import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
@@ -20,9 +19,7 @@ import com.uhutu.sportcenter.z.api.util.ContentComponent;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.input.APiVideoListInput;
 import com.uhutu.sportcenter.z.result.APiVideoListResult;
-import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoocom.root.RootApiForMember;
-import com.uhutu.zooweb.helper.ImageHelper;
 
 /**
  * 视频列表
@@ -45,7 +42,7 @@ public class APiVideoList extends RootApiForMember<APiVideoListInput, APiVideoLi
 
 		List<CnContentBasicinfo> contentBasicInfos = new ArrayList<CnContentBasicinfo>();
 		QueryConditions queryConditions = new QueryConditions();
-		queryConditions.setConditionEqual("busiType", ContentEnum.sportmoment.getCode());
+		queryConditions.setConditionEqual("contentType", "dzsd4107100110030001");
 		queryConditions.setConditionEqual("status", "dzsd4699100110010001");
 		Page<CnContentBasicinfo> page = serviceFactory.getContentBasicinfoService().queryPage(input.getPagination(), 10,
 				queryConditions);
@@ -62,10 +59,13 @@ public class APiVideoList extends RootApiForMember<APiVideoListInput, APiVideoLi
 				BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
 				sportingMoment
 						.setFavorFlag(ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken()));
-				sportingMoment.setCover(ImageHelper.upImageThumbnail(sportingMoment.getCover(), input.getWidth()));
+				// sportingMoment.setCover(ImageHelper.upImageThumbnail(sportingMoment.getCover(),
+				// input.getWidth()));
 				sportingMoment.setPublishTimeStr("MM-dd HH:mm");
 				int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(sportingMoment.getCode(),
 						RemarkEnum.FLAG_ENABLE.getCode());
+				sportingMoment
+						.setMakeFlag(ContentComponent.makeFlag(sportingMoment.getCode(), input.getZoo().getToken()));
 				sportingMoment.setRemarkNum(remarkNum);
 				String title = sportingMoment.getTitle();
 				title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
@@ -75,20 +75,6 @@ public class APiVideoList extends RootApiForMember<APiVideoListInput, APiVideoLi
 		}
 		sportingMomentsResult.setMoments(sports);
 		return sportingMomentsResult;
-	}
-
-	public String initSql(MDataMap mDataMap) {
-
-		StringBuffer buffer = new StringBuffer();
-
-		mDataMap.keySet().forEach(key -> {
-
-			buffer.append(key).append("='").append(mDataMap.get(key)).append("' and ");
-
-		});
-
-		return buffer.toString();
-
 	}
 
 }

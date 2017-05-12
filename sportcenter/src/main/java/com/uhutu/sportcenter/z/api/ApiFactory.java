@@ -46,6 +46,7 @@ import com.uhutu.sportcenter.z.api.content.ApiContentRedPackInfo;
 import com.uhutu.sportcenter.z.api.content.ApiContentRedPackUser;
 import com.uhutu.sportcenter.z.api.content.ApiContentType;
 import com.uhutu.sportcenter.z.api.content.ApiContentWorth;
+import com.uhutu.sportcenter.z.api.content.ApiLiveMake;
 import com.uhutu.sportcenter.z.api.content.ApiOperContent;
 import com.uhutu.sportcenter.z.api.content.ApiOwnSportMoment;
 import com.uhutu.sportcenter.z.api.content.ApiPicPasterList;
@@ -661,6 +662,14 @@ public class ApiFactory {
 	@Autowired
 	private ApiConvertStreamUrl apiConvertStreamUrl;
 	
+	@Autowired
+	private ApiLiveMake apiLiveMake;
+	
+	
+	public ApiLiveMake getApiLiveMake() {
+		return apiLiveMake;
+	}
+
 	public APiVideoList getAPiVideoList() {
 		return APiVideoList;
 	}

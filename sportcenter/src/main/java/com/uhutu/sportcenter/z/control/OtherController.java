@@ -19,14 +19,14 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * 首页相关接口
+ * 其他相关接口
  * 
  * @author pang_jhui
  *
  */
 @RestController
 @RequestMapping(value = "/api/otherController")
-@Api(tags = "首页相关")
+@Api(tags = "其他")
 public class OtherController {
 
 	@Autowired

@@ -3,6 +3,8 @@ package com.uhutu.sportcenter.z.entity;
 import java.util.Date;
 
 import com.uhutu.dcom.component.z.util.CalendarUtil;
+import com.uhutu.zoocom.baseannotation.ZooData;
+import com.uhutu.zoocom.define.DefineWebPage;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -40,6 +42,12 @@ public class ContentBasicinfoForApi {
 
 	@ApiModelProperty(value = "喜欢标识")
 	private boolean favorFlag;
+
+	@ApiModelProperty(value = "预约标识")
+	private boolean makeFlag;
+
+	@ZooData(name = "视频地址", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	private String videoUrl;
 
 	public String getCode() {
 		return code;
@@ -127,6 +135,22 @@ public class ContentBasicinfoForApi {
 
 	public void setRemarkNum(long remarkNum) {
 		this.remarkNum = remarkNum;
+	}
+
+	public String getVideoUrl() {
+		return videoUrl;
+	}
+
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
+	}
+
+	public boolean isMakeFlag() {
+		return makeFlag;
+	}
+
+	public void setMakeFlag(boolean makeFlag) {
+		this.makeFlag = makeFlag;
 	}
 
 }

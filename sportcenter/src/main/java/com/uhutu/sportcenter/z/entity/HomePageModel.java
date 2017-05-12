@@ -1,5 +1,8 @@
 package com.uhutu.sportcenter.z.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -10,26 +13,18 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class HomePageModel {
 
-	@ApiModelProperty(name = "展示类型", notes = "dzsd4107100110060001:轮播广告,dzsd4107100110060002:单图广告,dzsd4107100110060003:内容,dzsd4107100110060004:时间展示", example = "dzsd4107100110060001")
+	@ApiModelProperty(name = "展示类型", notes = "dzsd4107100110060001:推荐栏,dzsd4107100110060002:直播预告栏", example = "dzsd4107100110060001")
 	private String showType = "";
 
-	@ApiModelProperty(name = "内容信息", notes = "内容信息", example = "张嘉译拍摄《营盘镇警事》杀青新闻")
-	ContentBasicinfoForApi info = new ContentBasicinfoForApi();
+	@ApiModelProperty(name = "直播信息", notes = "直播信息", example = "")
+	List<ContentBasicinfoForApi> lives = new ArrayList<ContentBasicinfoForApi>();
 
-	@ApiModelProperty(name = "广告信息", notes = "广告信息")
-	private AdvertiseMent adv = new AdvertiseMent();
+	@ApiModelProperty(name = "视频信息", notes = "视频信息", example = "")
+	List<ContentBasicinfoForApi> videos = new ArrayList<ContentBasicinfoForApi>();
 
-	@ApiModelProperty(name = "日期展示信息", notes = "日期展示信息")
-	private String dateShow = "";
-
-	public ContentBasicinfoForApi getInfo() {
-		return info;
-	}
-
-	public void setInfo(ContentBasicinfoForApi info) {
-		this.info = info;
-	}
-
+	@ApiModelProperty(name = "专题信息", notes = "专题信息", example = "")
+	List<ContentBasicinfoForApi> topics = new ArrayList<ContentBasicinfoForApi>();
+	
 	public String getShowType() {
 		return showType;
 	}
@@ -38,20 +33,28 @@ public class HomePageModel {
 		this.showType = showType;
 	}
 
-	public AdvertiseMent getAdv() {
-		return adv;
+	public List<ContentBasicinfoForApi> getLives() {
+		return lives;
 	}
 
-	public void setAdv(AdvertiseMent adv) {
-		this.adv = adv;
+	public void setLives(List<ContentBasicinfoForApi> lives) {
+		this.lives = lives;
 	}
 
-	public String getDateShow() {
-		return dateShow;
+	public List<ContentBasicinfoForApi> getVideos() {
+		return videos;
 	}
 
-	public void setDateShow(String dateShow) {
-		this.dateShow = dateShow;
+	public void setVideos(List<ContentBasicinfoForApi> videos) {
+		this.videos = videos;
+	}
+
+	public List<ContentBasicinfoForApi> getTopics() {
+		return topics;
+	}
+
+	public void setTopics(List<ContentBasicinfoForApi> topics) {
+		this.topics = topics;
 	}
 
 }
