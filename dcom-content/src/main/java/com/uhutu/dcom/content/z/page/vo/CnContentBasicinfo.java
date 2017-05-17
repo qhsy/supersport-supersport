@@ -27,7 +27,7 @@ public class CnContentBasicinfo extends BaseEntity {
 	@ZooData(name = "副标题", require = "1", verify = { DefineWebVerify.Max_Length + "=255" })
 	private String ptitle;
 
-	@ZooData(name = "封面", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
+	@ZooData(name = "封面", element = DefineWebElement.UploadAli, sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
 	private String cover;
 
