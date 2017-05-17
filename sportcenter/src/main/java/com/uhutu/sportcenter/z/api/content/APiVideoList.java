@@ -59,8 +59,10 @@ public class APiVideoList extends RootApiForMember<APiVideoListInput, APiVideoLi
 				BeanUtils.copyProperties(contentBasicInfo, sportingMoment);
 				sportingMoment
 						.setFavorFlag(ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken()));
-				// sportingMoment.setCover(ImageHelper.upImageThumbnail(sportingMoment.getCover(),
-				// input.getWidth()));
+				if (StringUtils.isNotBlank(sportingMoment.getCover()) && input.getWidth() > 0) {
+					sportingMoment
+							.setCover(sportingMoment.getCover() + "?x-oss-process=image/resize,w_" + input.getWidth());
+				}
 				sportingMoment.setPublishTimeStr("MM-dd HH:mm");
 				int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(sportingMoment.getCode(),
 						RemarkEnum.FLAG_ENABLE.getCode());
