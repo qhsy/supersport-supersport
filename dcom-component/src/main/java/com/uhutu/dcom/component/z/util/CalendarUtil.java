@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
+import com.uhutu.zoocom.helper.DateHelper;
+
 /**
  * 日期工具类
  * @author 逄小帅
@@ -93,6 +95,16 @@ public class CalendarUtil {
 		
 		return formateStr;
 		
+	}
+	
+	public static String timeStr(Date date) {
+		String result = DateHelper.upDate(date, "MM-dd HH:mm");
+		int timeYear =DateHelper.getTimeEleByType(DateHelper.upDate(date), Calendar.YEAR);
+		int thisYear = DateHelper.getTimeEleByType(null, Calendar.YEAR);
+		if(thisYear!=timeYear){
+			result = DateHelper.upDate(date, "yyyy-MM-dd HH:mm");
+		}
+		return result;
 	}
 
 }

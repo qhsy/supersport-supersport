@@ -28,7 +28,7 @@ public class ContentBasicinfoForApi {
 
 	@ZooData(name = "副标题", require = "1", verify = { DefineWebVerify.Max_Length + "=255" })
 	private String ptitle;
-	
+
 	@ApiModelProperty(name = "日期展示", notes = "日期展示", example = "2016-4-19")
 	private Date publishTime;
 
@@ -49,6 +49,9 @@ public class ContentBasicinfoForApi {
 
 	@ApiModelProperty(value = "预约标识")
 	private boolean makeFlag;
+
+	@ApiModelProperty(value = "能否预约")
+	private boolean makeAble;
 
 	@ZooData(name = "视频地址", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String videoUrl;
@@ -107,7 +110,7 @@ public class ContentBasicinfoForApi {
 
 		if (getPublishTime() != null) {
 
-			tempStr = CalendarUtil.formateTip(getPublishTime());
+			tempStr = CalendarUtil.timeStr(getPublishTime());
 
 		}
 
@@ -119,7 +122,7 @@ public class ContentBasicinfoForApi {
 
 		if (getPublishTime() != null) {
 
-			this.publishTimeStr = CalendarUtil.formateTip(getPublishTime());
+			this.publishTimeStr = CalendarUtil.timeStr(getPublishTime());
 
 		}
 
@@ -163,6 +166,14 @@ public class ContentBasicinfoForApi {
 
 	public void setPtitle(String ptitle) {
 		this.ptitle = ptitle;
+	}
+
+	public boolean isMakeAble() {
+		return makeAble;
+	}
+
+	public void setMakeAble(boolean makeAble) {
+		this.makeAble = makeAble;
 	}
 
 }
