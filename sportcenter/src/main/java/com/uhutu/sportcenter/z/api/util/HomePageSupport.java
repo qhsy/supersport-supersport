@@ -82,7 +82,11 @@ public class HomePageSupport {
 					CnContentBasicinfo info = basics.get(i);
 					ContentBasicinfoForApi infoApi = new ContentBasicinfoForApi();
 					if (StringUtils.isNotBlank(info.getCover()) && StringUtils.isNotBlank(width)) {
-						info.setCover(info.getCover() + "?x-oss-process=image/resize,w_" + width);
+						if (Integer.valueOf(width) >= 750) {
+							info.setCover(info.getCover() + "-w1242.jpg");
+						} else {
+							info.setCover(info.getCover() + "-w750.jpg");
+						}
 					}
 					BeanUtils.copyProperties(info, infoApi);
 					int remarkNum = JdbcHelper.count(CnContentRemark.class, "",

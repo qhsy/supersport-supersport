@@ -12,11 +12,13 @@ import com.uhutu.sportcenter.z.input.APiVideoListInput;
 import com.uhutu.sportcenter.z.input.ApiComplainInfoInput;
 import com.uhutu.sportcenter.z.input.ApiHomePageInput;
 import com.uhutu.sportcenter.z.input.ApiLiveMakeInput;
+import com.uhutu.sportcenter.z.input.ApiSavePointsInput;
 import com.uhutu.sportcenter.z.input.ApiShareInfoInput;
 import com.uhutu.sportcenter.z.result.APiVideoListResult;
 import com.uhutu.sportcenter.z.result.ApiComplainInfoResult;
 import com.uhutu.sportcenter.z.result.ApiHomePageResult;
 import com.uhutu.sportcenter.z.result.ApiLiveMakeResult;
+import com.uhutu.sportcenter.z.result.ApiSavePointsResult;
 import com.uhutu.sportcenter.z.result.ApiShareInfoResult;
 
 import io.swagger.annotations.Api;
@@ -42,6 +44,14 @@ public class ContentController {
 	public ApiHomePageResult versionInfo(@RequestBody ApiHomePageInput input) {
 
 		return apiFactory.getApiHomePage().api(input);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/pointsFlow", method = RequestMethod.POST)
+	@ApiOperation(value = "积分记录接口", notes = "积分记录接口")
+	public ApiSavePointsResult pointsSave(@RequestBody ApiSavePointsInput input) {
+
+		return apiFactory.getApiSavePoints().api(input);
 	}
 
 	// @ResponseBody

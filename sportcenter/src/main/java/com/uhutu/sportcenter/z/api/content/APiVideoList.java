@@ -60,8 +60,11 @@ public class APiVideoList extends RootApiForMember<APiVideoListInput, APiVideoLi
 				sportingMoment
 						.setFavorFlag(ContentComponent.lightFavor(sportingMoment.getCode(), input.getZoo().getToken()));
 				if (StringUtils.isNotBlank(sportingMoment.getCover()) && input.getWidth() > 0) {
-					sportingMoment
-							.setCover(sportingMoment.getCover() + "?x-oss-process=image/resize,w_" + input.getWidth());
+					if (input.getWidth() >= 750) {
+						sportingMoment.setCover(sportingMoment.getCover() + "-w1242.jpg");
+					} else {
+						sportingMoment.setCover(sportingMoment.getCover() + "-w750.jpg");
+					}
 				}
 				sportingMoment.setPublishTimeStr("MM-dd HH:mm");
 				int remarkNum = remarkServiceFactory.getContentRemarkService().queryCount(sportingMoment.getCode(),

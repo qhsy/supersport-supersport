@@ -52,6 +52,7 @@ import com.uhutu.sportcenter.z.api.content.ApiOwnSportMoment;
 import com.uhutu.sportcenter.z.api.content.ApiPicPasterList;
 import com.uhutu.sportcenter.z.api.content.ApiPublishContentPhotos;
 import com.uhutu.sportcenter.z.api.content.ApiPublishSportingMoment;
+import com.uhutu.sportcenter.z.api.content.ApiSavePoints;
 import com.uhutu.sportcenter.z.api.content.ApiShareContent;
 import com.uhutu.sportcenter.z.api.content.ApiShareInfo;
 import com.uhutu.sportcenter.z.api.content.ApiSportChickenSoup;
@@ -665,7 +666,14 @@ public class ApiFactory {
 	@Autowired
 	private ApiLiveMake apiLiveMake;
 	
+	@Autowired
+	private ApiSavePoints apiSavePoints;
 	
+	
+	public ApiSavePoints getApiSavePoints() {
+		return apiSavePoints;
+	}
+
 	public ApiLiveMake getApiLiveMake() {
 		return apiLiveMake;
 	}
