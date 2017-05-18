@@ -5,6 +5,7 @@ import java.util.Date;
 import com.uhutu.dcom.component.z.util.CalendarUtil;
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebPage;
+import com.uhutu.zoocom.define.DefineWebVerify;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -25,6 +26,9 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(name = "标题", notes = "标题", example = "新体优家，您运动的首选~")
 	private String title;
 
+	@ZooData(name = "副标题", require = "1", verify = { DefineWebVerify.Max_Length + "=255" })
+	private String ptitle;
+	
 	@ApiModelProperty(name = "日期展示", notes = "日期展示", example = "2016-4-19")
 	private Date publishTime;
 
@@ -151,6 +155,14 @@ public class ContentBasicinfoForApi {
 
 	public void setMakeFlag(boolean makeFlag) {
 		this.makeFlag = makeFlag;
+	}
+
+	public String getPtitle() {
+		return ptitle;
+	}
+
+	public void setPtitle(String ptitle) {
+		this.ptitle = ptitle;
 	}
 
 }
