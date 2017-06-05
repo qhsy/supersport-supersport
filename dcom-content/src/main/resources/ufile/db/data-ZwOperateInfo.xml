@@ -536,6 +536,16 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_ContentItemRelForFristPage?u_itemCode=[[data:code]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071120" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.HomeItemForRecommPageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071121" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.HomeItemForRecommPageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
