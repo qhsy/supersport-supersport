@@ -34,14 +34,15 @@
 <!-- 		<item code="dzpi4514100200041002" nodeName="参赛人员信息" parentCode="dzpi451410020004" pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UcSignInfoPage" pageIcon="glyphicon-forward" /> -->
 <!-- 		<item code="dzpi4514100200041003" nodeName="参赛订单信息" parentCode="dzpi451410020004" pageUrl="/zpage/pg/com_uhutu_dcom_order_z_page_OcOrderInfoPage" pageIcon="glyphicon-heart-empty" /> -->
 <!-- 		<item code="dzpi4514100200041004" nodeName="参赛名额信息" parentCode="dzpi451410020004" pageUrl="/zpage/pg/com_uhutu_dcom_user_z_page_UcSignCountPage" pageIcon="glyphicon-forward" /> -->
-		<item code="dzpi45141003" nodeName="内容" parentCode="" />
-		<item code="dzpi451410031003" nodeName="栏目" parentCode="dzpi45141003" />
-		<item code="dzpi4514100310031001" nodeName="栏目信息" parentCode="dzpi451410031003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemPage" pageIcon="glyphicon-heart-empty" />
-		<item code="dzpi4514100310030002" nodeName="首页内容排版" parentCode="dzpi451410031003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_HomeStylePage" pageIcon="glyphicon-th" />
 <!-- 		<item code="dzpi4514100310031003" nodeName="广告栏目信息" parentCode="dzpi451410031003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemForAdvPage" pageIcon="glyphicon-heart" /> -->
-<!-- 		<item code="dzpi451410031002" nodeName="素材" parentCode="dzpi45141003" /> -->
-<!-- 		<item code="dzpi4514100310021001" nodeName="素材库" parentCode="dzpi451410031002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_AdvertiseDetailPage" pageIcon="glyphicon-film" /> -->
+		<item code="dzpi45141003" nodeName="内容" parentCode="" />
+		<item code="dzpi451410031002" nodeName="素材" parentCode="dzpi45141003" />
+		<item code="dzpi4514100310021001" nodeName="素材库" parentCode="dzpi451410031002" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_CnMaterialLibraryPage" pageIcon="glyphicon-film" />
 <!-- 		<item code="dzpi4514100310021002" nodeName="贴纸" parentCode="dzpi451410031002" pageUrl="/zpage/pg/com_uhutu_dcom_tag_z_page_PicPasterPage" pageIcon="glyphicon-film" /> -->
+		<item code="dzpi451410031003" nodeName="栏目" parentCode="dzpi45141003" />
+		<item code="dzpi4514100310030001" nodeName="首页内容排版" parentCode="dzpi451410031003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_HomeStylePage" pageIcon="glyphicon-th" />
+		<item code="dzpi4514100310031002" nodeName="栏目--推荐栏" parentCode="dzpi451410031003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_HomeItemForRecommPage" pageIcon="glyphicon-heart-empty" />
+		<item code="dzpi4514100310031003" nodeName="栏目--直播预告" parentCode="dzpi451410031003" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentItemPage" pageIcon="glyphicon-heart-empty" />
 		<item code="dzpi451410031005" nodeName="内容管理" parentCode="dzpi45141003" />
 <!-- 		<item code="dzpi4514100310051002" nodeName="文章信息" parentCode="dzpi451410031005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ ContentBasicInfoPage" pageIcon="glyphicon-adjust" /> -->
 <!-- 		<item code="dzpi4514100310051004" nodeName="文章(含视频)信息" parentCode="dzpi451410031005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForVideoPage" pageIcon="glyphicon-adjust" /> -->
@@ -49,7 +50,7 @@
 <!-- 		<item code="dzpi4514100310051006" nodeName="单图信息" parentCode="dzpi451410031005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForSinglePicPage" pageIcon="glyphicon-adjust" /> -->
 		<item code="dzpi4514100310051007" nodeName="视频" parentCode="dzpi451410031005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForSingleVideoPage" pageIcon="glyphicon-adjust" />
 		<item code="dzpi4514100310051008" nodeName="直播" parentCode="dzpi451410031005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForOtherLivePage" pageIcon="glyphicon-adjust" />
-		<item code="dzpi4514100310051009" nodeName="专题" parentCode="dzpi451410031005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForHrefPage" pageIcon="glyphicon-adjust" />
+<!-- 		<item code="dzpi4514100310051009" nodeName="专题" parentCode="dzpi451410031005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForHrefPage" pageIcon="glyphicon-adjust" /> -->
 <!-- 		<item code="dzpi4514100310051009" nodeName="直播信息" parentCode="dzpi451410031005" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentBasicInfoForLivePage" pageIcon="glyphicon-adjust" /> -->
 <!-- 		<item code="dzpi451410031006" nodeName="编辑推荐" parentCode="dzpi45141003" /> -->
 <!-- 		<item code="dzpi4514100310061002" nodeName="编辑推荐列表" parentCode="dzpi451410031006" pageUrl="/zpage/pg/com_uhutu_dcom_content_z_page_ContentRecommPage" pageIcon="glyphicon-list-alt" /> -->

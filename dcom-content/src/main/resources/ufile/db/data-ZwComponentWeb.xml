@@ -71,6 +71,9 @@
 		<item code="dzcw410710010023" componentClass="com.uhutu.zooweb.component.DialogComponent"
 			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_LiveMatchInfoSelectPage&amp;max=1"
 			serverDefine="table=CnLiveMatchInfo&amp;text=name&amp;value=code" />
+		<item code="dzcw410710010024" componentClass="com.uhutu.zooweb.component.DialogComponent"
+			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_MaterialLibrarySelectPage&amp;max=1"
+			serverDefine="table=CnMaterialLibrary&amp;text=title&amp;value=code" />
 	</data>
 
 </db>

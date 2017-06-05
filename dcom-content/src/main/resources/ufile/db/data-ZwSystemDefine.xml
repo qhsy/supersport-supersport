@@ -7,8 +7,8 @@
 		<item code="dzsd4107100110020002" defineName="文章" parentCode="dzsd410710011002" />
 		<item code="dzsd410710011003" defineName="展示类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110030001" defineName="视频" parentCode="dzsd410710011003" />
-		<item code="dzsd4107100110030002" defineName="第三方直播" parentCode="dzsd410710011003" />
-		<item code="dzsd4107100110030003" defineName="专题" parentCode="dzsd410710011003" />
+		<item code="dzsd4107100110030002" defineName="直播" parentCode="dzsd410710011003" />
+<!-- 		<item code="dzsd4107100110030003" defineName="专题" parentCode="dzsd410710011003" /> -->
 <!-- 		<item code="dzsd4107100110030001" defineName="文章" parentCode="dzsd410710011003" /> -->
 <!-- 		<item code="dzsd4107100110030002" defineName="文章(含视频)" parentCode="dzsd410710011003" /> -->
 <!-- 		<item code="dzsd4107100110030004" defineName="单图" parentCode="dzsd410710011003" /> -->
@@ -88,7 +88,10 @@
 		<item code="dzsd4107100110170001" defineName="未开始" parentCode="dzsd410710011017" />
 		<item code="dzsd4107100110170002" defineName="正在进行" parentCode="dzsd410710011017" />
 		<item code="dzsd4107100110170003" defineName="已结束" parentCode="dzsd410710011017" />
-
+		<item code="dzsd410710011018" defineName="跳转类型" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110180001" defineName="URL(跳转参数：超链接)" parentCode="dzsd410710011018" />
+		<item code="dzsd4107100110180002" defineName="直播间(跳转参数：直播间编号)" parentCode="dzsd410710011018" />
+		<item code="dzsd4107100110180003" defineName="视频(跳转参数：内容编号)" parentCode="dzsd410710011018" />
 	</data>
 
 </db>
