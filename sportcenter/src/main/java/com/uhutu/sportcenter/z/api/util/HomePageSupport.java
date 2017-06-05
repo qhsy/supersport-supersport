@@ -11,6 +11,7 @@ import com.uhutu.dcom.content.z.entity.CnContentItem;
 import com.uhutu.dcom.content.z.entity.CnContentItemRel;
 import com.uhutu.dcom.content.z.entity.CnHomeStyle;
 import com.uhutu.dcom.content.z.entity.CnLiveInfo;
+import com.uhutu.dcom.content.z.entity.CnMaterialLibrary;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.entity.HomePageModel;
@@ -75,45 +76,62 @@ public class HomePageSupport {
 			}
 		}
 		if (StringUtils.isNotBlank(str)) {
-			List<CnContentBasicinfo> basics = JdbcHelper.queryForList(CnContentBasicinfo.class, "",
-					" field(code," + str.toString() + ")",
-					"status='dzsd4699100110010001' and code in(" + str.toString() + ")", new MDataMap());
-			if (basics != null && !basics.isEmpty() && basics.size() > 0) {
-				for (int i = 0; i < basics.size(); i++) {
-					CnContentBasicinfo info = basics.get(i);
-					ContentBasicinfoForApi infoApi = new ContentBasicinfoForApi();
-					if (StringUtils.isNotBlank(info.getCover()) && StringUtils.isNotBlank(width)) {
-						if (Integer.valueOf(width) >= 750) {
-							info.setCover(info.getCover() + "-w1242.jpg");
-						} else {
-							info.setCover(info.getCover() + "-w750.jpg");
+			basicInfos(itemType, token, model, str.toString(), width);
+		}
+		return model;
+	}
+
+	private void basicInfos(String itemType, String token, HomePageModel model, String str, String width) {
+		List<CnContentBasicinfo> basics = JdbcHelper.queryForList(CnContentBasicinfo.class, "",
+				" field(code," + str.toString() + ")",
+				"status='dzsd4699100110010001' and code in(" + str.toString() + ")", new MDataMap());
+		List<CnMaterialLibrary> mls = JdbcHelper.queryForList(CnMaterialLibrary.class, "",
+				" field(code," + str.toString() + ")", " code in(" + str.toString() + ")", new MDataMap());
+		model.setShowType(itemType);
+		if (mls != null && !mls.isEmpty()) {//推荐
+			for (int i = 0; i < mls.size(); i++) {
+				CnMaterialLibrary ml = mls.get(i);
+				if (StringUtils.isNotBlank(ml.getUrl()) && StringUtils.isNotBlank(width)) {
+					if (Integer.valueOf(width) >= 750) {
+						ml.setUrl(ml.getUrl() + "-w1242.jpg");
+					} else {
+						ml.setUrl(ml.getUrl() + "-w750.jpg");
+					}
+				}
+				model.getTopics().add(ml);
+			}
+		}
+		if (basics != null && !basics.isEmpty()) {
+			for (int i = 0; i < basics.size(); i++) {
+				CnContentBasicinfo info = basics.get(i);
+				ContentBasicinfoForApi infoApi = new ContentBasicinfoForApi();
+				if (StringUtils.isNotBlank(info.getCover()) && StringUtils.isNotBlank(width)) {
+					if (Integer.valueOf(width) >= 750) {
+						info.setCover(info.getCover() + "-w1242.jpg");
+					} else {
+						info.setCover(info.getCover() + "-w750.jpg");
+					}
+				}
+				BeanUtils.copyProperties(info, infoApi);
+				int remarkNum = JdbcHelper.count(CnContentRemark.class, "",
+						MapHelper.initMap("content_code", infoApi.getCode(), "status", "dzsd4699100110010001"));
+				infoApi.setRemarkNum(remarkNum);
+				infoApi.setFavorFlag(ContentComponent.lightFavor(infoApi.getCode(), token));
+				infoApi.setMakeFlag(ContentComponent.makeFlag(infoApi.getCode(), token));
+				if ("dzsd4107100110030001".equals(infoApi.getContentType())) {// 视频
+					model.getVideos().add(infoApi);
+				} else if ("dzsd4107100110030002".equals(infoApi.getContentType())) {// 直播
+					infoApi.setMakeAble(false);
+					if (StringUtils.isNotBlank(infoApi.getVideoUrl())) {
+						CnLiveInfo liveInfo = JdbcHelper.queryOne(CnLiveInfo.class, "code", infoApi.getVideoUrl());
+						if (liveInfo != null && StringUtils.isNotBlank(liveInfo.getStatus())) {
+							infoApi.setMakeAble("dzsd4107100110170001".equals(liveInfo.getStatus()));
 						}
 					}
-					BeanUtils.copyProperties(info, infoApi);
-					int remarkNum = JdbcHelper.count(CnContentRemark.class, "",
-							MapHelper.initMap("content_code", infoApi.getCode(), "status", "dzsd4699100110010001"));
-					infoApi.setRemarkNum(remarkNum);
-					infoApi.setFavorFlag(ContentComponent.lightFavor(infoApi.getCode(), token));
-					infoApi.setMakeFlag(ContentComponent.makeFlag(infoApi.getCode(), token));
-					model.setShowType(itemType);
-					if ("dzsd4107100110030001".equals(infoApi.getContentType())) {// 视频
-						model.getVideos().add(infoApi);
-					} else if ("dzsd4107100110030002".equals(infoApi.getContentType())) {// 直播
-						infoApi.setMakeAble(false);
-						if (StringUtils.isNotBlank(infoApi.getVideoUrl())) {
-							CnLiveInfo liveInfo = JdbcHelper.queryOne(CnLiveInfo.class, "code", infoApi.getVideoUrl());
-							if (liveInfo != null && StringUtils.isNotBlank(liveInfo.getStatus())) {
-								infoApi.setMakeAble("dzsd4107100110170001".equals(liveInfo.getStatus()));
-							}
-						}
-						model.getLives().add(infoApi);
-					} else if ("dzsd4107100110030003".equals(infoApi.getContentType())) {// 专题
-						model.getTopics().add(infoApi);
-					}
+					model.getLives().add(infoApi);
 				}
 			}
 		}
-		return model;
 	}
 
 }

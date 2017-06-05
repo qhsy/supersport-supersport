@@ -35,6 +35,7 @@ public class CnMaterialLibrary extends BaseEntity {
 
 	@ZooData(name = "跳转类型", require = "1", element = DefineWebElement.Select, inc = {
 			DefineWebInc.System_Define + "=dzsd410710011018" }, comment = "")
+	@ApiModelProperty(name = "跳转类型", notes = "跳转类型:dzsd4107100110180001:URL(跳转参数：超链接),dzsd4107100110180002:直播间(跳转参数：直播间编号),dzsd4107100110180003:视频(跳转参数：内容编号)", example = "")
 	private String piclinkType;
 
 	@ZooData(name = "跳转参数", require = "1")
