@@ -16,7 +16,7 @@ import com.uhutu.zooweb.helper.WebHelper;
 import com.uhutu.zooweb.model.ExtendPageDefine;
 import com.uhutu.zooweb.root.RootFunc;
 
-public class CnContentBasicinfoFuncAdd extends RootFunc {
+public class CnContentBasicinfoForLiveFuncAdd extends RootFunc {
 
 	@Override
 	public WebOperateResult process(WebPageModel webPageModel, ExtendPageDefine extendPageDefine,
@@ -73,7 +73,7 @@ public class CnContentBasicinfoFuncAdd extends RootFunc {
 		if ("dzsd4699100110010001".equals(input.getDataMap().get("status"))) {
 			mInsertMap.put("publish_time", DateHelper.upNow());
 		}
-		mInsertMap.put("content_type", "dzsd4107100110030001");
+		mInsertMap.put("content_type", "dzsd4107100110030002");
 		JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), mInsertMap);
 		MDataMap detail = new MDataMap();
 		detail.put("code", mInsertMap.get("code"));
