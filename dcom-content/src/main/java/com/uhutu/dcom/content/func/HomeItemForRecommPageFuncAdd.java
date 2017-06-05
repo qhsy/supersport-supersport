@@ -10,7 +10,7 @@ import com.uhutu.zooweb.helper.WebHelper;
 import com.uhutu.zooweb.model.ExtendPageDefine;
 import com.uhutu.zooweb.root.RootFunc;
 
-public class ContentItemPageFuncAdd extends RootFunc {
+public class HomeItemForRecommPageFuncAdd extends RootFunc {
 
 	@Override
 	public WebOperateResult process(WebPageModel webPageModel, ExtendPageDefine extendPageDefine,
@@ -24,7 +24,7 @@ public class ContentItemPageFuncAdd extends RootFunc {
 		if (result.upFlagTrue()) {
 			MDataMap insert = input.getDataMap();
 			insert.put("code", WebHelper.upCode("LMBH"));
-			insert.put("type", "dzsd4107100110060002");
+			insert.put("type", "dzsd4107100110060001");
 			JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), insert);
 		}
 		return result;
