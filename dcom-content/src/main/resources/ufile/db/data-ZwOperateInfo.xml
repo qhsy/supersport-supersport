@@ -546,6 +546,11 @@
 			operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071122" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.CnContentBasicinfoForLiveFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>
