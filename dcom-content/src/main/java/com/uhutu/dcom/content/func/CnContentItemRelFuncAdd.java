@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentItem;
 import com.uhutu.dcom.content.z.entity.CnContentItemRel;
+import com.uhutu.dcom.content.z.entity.CnMaterialLibrary;
 import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.helper.TopHelper;
 import com.uhutu.zoocom.model.MDataMap;
@@ -33,7 +34,9 @@ public class CnContentItemRelFuncAdd extends RootFunc {
 			CnContentItem item = JdbcHelper.queryOne(CnContentItem.class, "code", input.getDataMap().get("item_code"));
 			CnContentBasicinfo binfo = JdbcHelper.queryOne(CnContentBasicinfo.class, "code",
 					input.getDataMap().get("content_code"));
-			if (item != null && binfo != null) {
+			CnMaterialLibrary linfo = JdbcHelper.queryOne(CnMaterialLibrary.class, "code",
+					input.getDataMap().get("content_code"));
+			if (item != null && (binfo != null || linfo != null)) {
 				// 根据栏目类型做校验
 				result = check(item.getType(), input.getDataMap().get("item_code"),
 						input.getDataMap().get("content_code"), input.getDataMap().get("start_time"),

@@ -1,5 +1,7 @@
 package com.uhutu.dcom.content.z.entity.ext.ext;
 
+import javax.persistence.Column;
+
 import com.uhutu.zoocom.baseannotation.ZooData;
 import com.uhutu.zoocom.define.DefineWebElement;
 import com.uhutu.zoocom.define.DefineWebInc;
@@ -9,7 +11,7 @@ import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
- * 栏目与导航数据模型
+ * 栏目与内容数据模型
  * 
  * @author xiegj
  *
@@ -22,13 +24,21 @@ public class CnContentItemRel extends BaseEntity {
 	private String itemCode;
 
 	@ZooData(value = "栏目类型", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Add + "=0",
-			DefineWebPage.Page_Edit + "=0" }, element = DefineWebElement.Select, inc = {
+			DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Grid + "=0" }, element = DefineWebElement.Select, inc = {
 					DefineWebInc.System_Define + "=dzsd410710011006" })
 	private String itemType;
 
-	@ZooData(name = "导航名称", require = "1", element = DefineWebElement.Model, inc = {
-			DefineWebInc.Web_Component + "=dzcw410710010013" })
+	@ZooData(name = "素材", require = "1", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw410710010024" })
 	private String contentCode;
+
+	@ZooData(name = "自定义标题", verify = { DefineWebVerify.Max_Length + "=50" })
+	@Column(length = 255)
+	private String title;
+
+	@ZooData(name = "自定义封面", element = DefineWebElement.UploadAli, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
+	private String cover;
 
 	@ZooData(name = "展示顺序(倒序)", require = "1", verify = { DefineWebVerify.Base_Number })
 	private int sort;
@@ -41,7 +51,8 @@ public class CnContentItemRel extends BaseEntity {
 			DefineWebPage.Page_Query + "=0" })
 	private String endTime;
 
-	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
 	private String remark;
 
 	public String getItemCode() {
@@ -62,6 +73,14 @@ public class CnContentItemRel extends BaseEntity {
 
 	public int getSort() {
 		return sort;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public void setSort(int sort) {
@@ -98,6 +117,14 @@ public class CnContentItemRel extends BaseEntity {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 
 }

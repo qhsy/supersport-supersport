@@ -24,18 +24,22 @@ public class CnContentItemRel extends BaseEntity {
 	private String itemCode;
 
 	@ZooData(value = "栏目类型", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Add + "=0",
-			DefineWebPage.Page_Edit + "=0" }, element = DefineWebElement.Select, inc = {
+			DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Grid + "=0" }, element = DefineWebElement.Select, inc = {
 					DefineWebInc.System_Define + "=dzsd410710011006" })
 	private String itemType;
 
-	@ZooData(name = "图片内容", require = "1", element = DefineWebElement.Model, inc = {
-			DefineWebInc.Web_Component + "=dzcw410710010009" })
+	@ZooData(name = "内容", require = "1", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw410710010007" })
 	private String contentCode;
 
 	@ZooData(name = "自定义标题", verify = { DefineWebVerify.Max_Length + "=50" })
 	@Column(length = 255)
 	private String title;
-	
+
+	@ZooData(name = "自定义封面", element = DefineWebElement.UploadAli, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
+	private String cover;
+
 	@ZooData(name = "展示顺序(倒序)", require = "1", verify = { DefineWebVerify.Base_Number })
 	private int sort;
 
@@ -47,7 +51,8 @@ public class CnContentItemRel extends BaseEntity {
 			DefineWebPage.Page_Query + "=0" })
 	private String endTime;
 
-	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "备注", element = DefineWebElement.Textarea, sort = { DefineWebPage.Page_Query + "=0",
+			DefineWebPage.Page_Grid + "=0" })
 	private String remark;
 
 	public String getItemCode() {
@@ -112,6 +117,14 @@ public class CnContentItemRel extends BaseEntity {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 
 }

@@ -26,7 +26,7 @@ public class CnContentItemRel extends BaseEntity {
 	private String itemCode;
 
 	@ZooData(value = "栏目类型", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Add + "=0",
-			DefineWebPage.Page_Edit + "=0" }, element = DefineWebElement.Select, inc = {
+			DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Grid + "=0" }, element = DefineWebElement.Select, inc = {
 					DefineWebInc.System_Define + "=dzsd410710011006" })
 	private String itemType;
 
@@ -38,7 +38,7 @@ public class CnContentItemRel extends BaseEntity {
 	@Column(length = 255)
 	private String title;
 
-	@ZooData(name = "自定义封面", element = DefineWebElement.Upload, sort = { DefineWebPage.Page_Query + "=0",
+	@ZooData(name = "自定义封面", element = DefineWebElement.UploadAli, sort = { DefineWebPage.Page_Query + "=0",
 			DefineWebPage.Page_Grid + "=0" })
 	private String cover;
 
