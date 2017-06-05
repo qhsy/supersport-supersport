@@ -4,7 +4,6 @@ import java.util.Date;
 
 import com.uhutu.dcom.component.z.util.CalendarUtil;
 import com.uhutu.zoocom.baseannotation.ZooData;
-import com.uhutu.zoocom.define.DefineWebPage;
 import com.uhutu.zoocom.define.DefineWebVerify;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -53,7 +52,7 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(value = "能否预约")
 	private boolean makeAble;
 
-	@ZooData(name = "视频地址", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ApiModelProperty(name = "视频地址")
 	private String videoUrl;
 
 	public String getCode() {

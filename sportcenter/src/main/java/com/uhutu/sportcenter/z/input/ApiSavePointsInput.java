@@ -10,7 +10,7 @@ public class ApiSavePointsInput extends RootApiInput {
 	private String code;
 
 	@ApiModelProperty(name = "积分类型", required = true, value = "积分类型", example = "")
-	private boolean type;
+	private String type;
 
 	public String getCode() {
 		return code;
@@ -20,11 +20,11 @@ public class ApiSavePointsInput extends RootApiInput {
 		this.code = code;
 	}
 
-	public boolean isType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(boolean type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

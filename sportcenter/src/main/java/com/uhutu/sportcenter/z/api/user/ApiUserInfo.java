@@ -163,8 +163,6 @@ public class ApiUserInfo extends RootApiBase<ApiUserInfoInput, ApiUserInfoResult
 
 		Long tempVal = new Long(page.getTotalElements());
 
-		apiUserInfo.setSportsNum(tempVal.intValue());
-		
 		initFansNum(apiUserInfo);
 		
 		/*初始化用户操作标识*/

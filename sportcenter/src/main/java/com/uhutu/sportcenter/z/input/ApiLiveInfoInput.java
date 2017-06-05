@@ -6,15 +6,15 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class ApiLiveInfoInput extends RootApiInput {
 
-	@ApiModelProperty(value = "内容编号")
-	private String contentCode;
+	@ApiModelProperty(value = "编号")
+	private String code;
 
-	public String getContentCode() {
-		return contentCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setContentCode(String contentCode) {
-		this.contentCode = contentCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 }

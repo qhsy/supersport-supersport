@@ -4,68 +4,83 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 用户展示信息
+ * 
  * @author pang_jhui
  *
  */
 public class UserInfo extends UserBasicInfo {
-	
+
 	@ApiModelProperty(value = "性别", notes = "性别")
 	private String sex = "";
-	
+
 	@ApiModelProperty(value = "所在地", notes = "所在地")
 	private String location = "";
-	
-	@ApiModelProperty(value="位置名称")
+
+	@ApiModelProperty(value = "位置名称")
 	private String locationName;
-	
+
 	@ApiModelProperty(value = "封面", notes = "封面")
 	private String aboutCover = "";
-	
+
 	@ApiModelProperty(value = "简介标签", notes = "足球、篮球、户外")
 	private String aboutTag = "";
-	
+
 	@ApiModelProperty(value = "简介标签展示名称", notes = "足球、篮球、户外")
 	private String aboutTagName = "";
-	
+
 	@ApiModelProperty(value = "简介视频", notes = "简介视频")
 	private String aboutVideo = "";
-	
+
 	@ApiModelProperty(value = "简介视频封面", notes = "简介视频封面")
 	private String aboutVideoCover = "";
-	
+
 	@ApiModelProperty(value = "关注领域", notes = "关注领域集合")
 	private String domain = "";
-	
+
 	@ApiModelProperty(value = "关注领域", notes = "关注领域名称集合")
 	private String domainName = "";
-	
+
 	@ApiModelProperty(value = "用户等级", notes = "用户等级")
 	private String level = "";
-	
-	@ApiModelProperty(value="用户简介")
+
+	@ApiModelProperty(value = "用户简介")
 	private String aboutDesc;
 
 	@ApiModelProperty(value = "注册到现在为止年数", notes = "注册到现在为止年数")
 	private int years = 1;
-	
-	@ApiModelProperty(value = "运动时刻发布总数量", notes = "运动时刻数量")
-	private int sportsNum = 0;
-	
-	@ApiModelProperty(value="粉丝数量",notes="粉丝数量")
+
+	// @ApiModelProperty(value = "运动时刻发布总数量", notes = "运动时刻数量")
+	// private int sportsNum = 0;
+
+	@ApiModelProperty(value = "粉丝数量", notes = "粉丝数量")
 	private int fansNum;
-	
-	@ApiModelProperty(value="关注数量",notes="关注数量")
+
+	@ApiModelProperty(value = "关注数量", notes = "关注数量")
 	private int attendNum;
-	
-	@ApiModelProperty(value="喜欢数量",notes="喜欢数量")
+
+	@ApiModelProperty(value = "喜欢数量", notes = "喜欢数量")
 	private int favorNum;
-	
-	@ApiModelProperty(value="用户操作标识",notes="社交类用户:social,普通用户:customl,微信用户:wechat")
+
+	@ApiModelProperty(value = "消息数量", notes = "消息数量")
+	private int msgNum;
+
+	@ApiModelProperty(value = "用户操作标识", notes = "社交类用户:social,普通用户:customl,微信用户:wechat")
 	private String socialFlag;
-	
-	@ApiModelProperty(value="原头像地址")
+
+	@ApiModelProperty(value = "原头像地址")
 	private String sourceHeadUrl;
-	
+
+	@ApiModelProperty(value = "头衔")
+	private String title;
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public String getSex() {
 		return sex;
 	}
@@ -130,13 +145,13 @@ public class UserInfo extends UserBasicInfo {
 		this.years = years;
 	}
 
-	public int getSportsNum() {
-		return sportsNum;
-	}
-
-	public void setSportsNum(int sportsNum) {
-		this.sportsNum = sportsNum;
-	}
+	// public int getSportsNum() {
+	// return sportsNum;
+	// }
+	//
+	// public void setSportsNum(int sportsNum) {
+	// this.sportsNum = sportsNum;
+	// }
 
 	public int getFansNum() {
 		return fansNum;
@@ -217,6 +232,13 @@ public class UserInfo extends UserBasicInfo {
 	public void setSourceHeadUrl(String sourceHeadUrl) {
 		this.sourceHeadUrl = sourceHeadUrl;
 	}
-	
+
+	public int getMsgNum() {
+		return msgNum;
+	}
+
+	public void setMsgNum(int msgNum) {
+		this.msgNum = msgNum;
+	}
 
 }

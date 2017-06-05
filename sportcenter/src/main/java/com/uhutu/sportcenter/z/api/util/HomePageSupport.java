@@ -10,6 +10,7 @@ import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.entity.CnContentItem;
 import com.uhutu.dcom.content.z.entity.CnContentItemRel;
 import com.uhutu.dcom.content.z.entity.CnHomeStyle;
+import com.uhutu.dcom.content.z.entity.CnLiveInfo;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.entity.HomePageModel;
@@ -98,6 +99,13 @@ public class HomePageSupport {
 					if ("dzsd4107100110030001".equals(infoApi.getContentType())) {// 视频
 						model.getVideos().add(infoApi);
 					} else if ("dzsd4107100110030002".equals(infoApi.getContentType())) {// 直播
+						infoApi.setMakeAble(false);
+						if (StringUtils.isNotBlank(infoApi.getVideoUrl())) {
+							CnLiveInfo liveInfo = JdbcHelper.queryOne(CnLiveInfo.class, "code", infoApi.getVideoUrl());
+							if (liveInfo != null && StringUtils.isNotBlank(liveInfo.getStatus())) {
+								infoApi.setMakeAble("dzsd4107100110170001".equals(liveInfo.getStatus()));
+							}
+						}
 						model.getLives().add(infoApi);
 					} else if ("dzsd4107100110030003".equals(infoApi.getContentType())) {// 专题
 						model.getTopics().add(infoApi);

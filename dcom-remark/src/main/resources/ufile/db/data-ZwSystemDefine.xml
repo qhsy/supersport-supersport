@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<db xmlns="http://www.uhutu.com/xml/ufile/db" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.uhutu.com/xml/ufile/db  zzzdb.xsd">
+	<data table="ZwSystemDefine">
+		<item code="dzsd480110011001" defineName="积分规则类型" parentCode="dzsd48011001" />
+		<item code="dzsd4801100110010001" defineName="每个记一次" parentCode="dzsd480110011001" />
+		<item code="dzsd4801100110010002" defineName="上限自然天" parentCode="dzsd480110011001" />
+	</data>
+
+</db>

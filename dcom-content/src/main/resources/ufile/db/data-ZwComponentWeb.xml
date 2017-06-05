@@ -65,6 +65,12 @@
 		<item code="dzcw410710010021" componentClass="com.uhutu.zooweb.component.DialogComponent"
 			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_ReReportInfoPage&amp;max=1"
 			serverDefine="table=ReReportInfo&amp;text=title&amp;value=code" />
+		<item code="dzcw410710010022" componentClass="com.uhutu.zooweb.component.DialogComponent"
+			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_LiveInfoSelectPage&amp;max=1"
+			serverDefine="table=CnLiveInfo&amp;text=title&amp;value=code" />
+		<item code="dzcw410710010023" componentClass="com.uhutu.zooweb.component.DialogComponent"
+			clientExtend="page=/pg/com_uhutu_dcom_content_z_page_component_LiveMatchInfoSelectPage&amp;max=1"
+			serverDefine="table=CnLiveMatchInfo&amp;text=name&amp;value=code" />
 	</data>
 
 </db>

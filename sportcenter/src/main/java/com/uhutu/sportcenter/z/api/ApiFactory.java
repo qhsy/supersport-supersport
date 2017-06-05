@@ -89,7 +89,9 @@ import com.uhutu.sportcenter.z.api.label.ApiForLabels;
 import com.uhutu.sportcenter.z.api.label.ApiForSearchLabels;
 import com.uhutu.sportcenter.z.api.label.ApiLabelRelList;
 import com.uhutu.sportcenter.z.api.label.ApiRecommLabelList;
+import com.uhutu.sportcenter.z.api.live.ApiChooseMatch;
 import com.uhutu.sportcenter.z.api.live.ApiFinishLiveVideo;
+import com.uhutu.sportcenter.z.api.live.ApiFriendsNearby;
 import com.uhutu.sportcenter.z.api.live.ApiLiveCreateRoom;
 import com.uhutu.sportcenter.z.api.live.ApiLiveGift;
 import com.uhutu.sportcenter.z.api.live.ApiLiveInfo;
@@ -669,7 +671,21 @@ public class ApiFactory {
 	@Autowired
 	private ApiSavePoints apiSavePoints;
 	
+	@Autowired
+	private ApiChooseMatch apiChooseMatch;
 	
+	@Autowired
+	private ApiFriendsNearby apiFriendsNearby;
+	
+	
+	public ApiFriendsNearby getApiFriendsNearby() {
+		return apiFriendsNearby;
+	}
+
+	public ApiChooseMatch getApiChooseMatch() {
+		return apiChooseMatch;
+	}
+
 	public ApiSavePoints getApiSavePoints() {
 		return apiSavePoints;
 	}

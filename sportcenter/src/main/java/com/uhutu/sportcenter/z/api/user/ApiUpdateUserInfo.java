@@ -58,11 +58,11 @@ public class ApiUpdateUserInfo extends RootApiToken<ApiUpdateUserInfoInput, ApiU
 				
 				ucUserinfoExt.setAboutHead(headUrl);
 				
-				if(StringUtils.isNotBlank(ucUserinfoExt.getTitle())){
-					
-					updateAnswerTitle(userCode, ucUserinfoExt.getTitle());
-					
-				}
+//				if(StringUtils.isNotBlank(ucUserinfoExt.getTitle())){
+//					
+//					updateAnswerTitle(userCode, ucUserinfoExt.getTitle());
+//					
+//				}
 				
 				if(StringUtils.isNotEmpty(ucUserinfoExt.getNickName())){
 					

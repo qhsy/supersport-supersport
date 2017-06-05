@@ -84,6 +84,10 @@
 		<item code="dzsd410710011016" defineName="红包类型" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110160001" defineName="直播红包" parentCode="dzsd410710011016" />
 		<item code="dzsd4107100110160002" defineName="内容红包" parentCode="dzsd410710011016" />
+		<item code="dzsd410710011017" defineName="直播间状态" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110170001" defineName="未开始" parentCode="dzsd410710011017" />
+		<item code="dzsd4107100110170002" defineName="正在进行" parentCode="dzsd410710011017" />
+		<item code="dzsd4107100110170003" defineName="已结束" parentCode="dzsd410710011017" />
 
 	</data>
 

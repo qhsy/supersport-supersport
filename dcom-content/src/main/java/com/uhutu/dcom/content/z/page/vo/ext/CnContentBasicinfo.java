@@ -43,7 +43,8 @@ public class CnContentBasicinfo extends BaseEntity {
 			DefineWebInc.System_Define + "=dzsd410710011003" })
 	private String contentType;
 
-	@ZooData(name = "直播编号", require = "1")
+	@ZooData(name = "直播", require = "1", element = DefineWebElement.Model, inc = {
+			DefineWebInc.Web_Component + "=dzcw410710010022" })
 	private String videoUrl;
 
 	public String getCode() {
