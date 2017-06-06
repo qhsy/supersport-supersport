@@ -32,7 +32,8 @@ public class CnLiveMatchInfo extends BaseEntity {
 			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String logo;
 
-	@ZooData(name = "球队颜色", require = "1", element = DefineWebElement.Input, sort = { DefineWebPage.Page_Query + "=0" })
+	@ZooData(name = "球队颜色", require = "1", element = DefineWebElement.Selectcolor, sort = {
+			DefineWebPage.Page_Query + "=0" })
 	@Column(length = 50)
 	private String color;
 
