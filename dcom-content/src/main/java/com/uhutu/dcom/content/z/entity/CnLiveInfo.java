@@ -25,9 +25,12 @@ public class CnLiveInfo extends BaseEntity {
 			DefineWebPage.Page_Edit + "=0" })
 	private String code;
 
-	@ZooData(name = "聊天室编号", inc = DefineWebInc.Insert_Code + "=LTSBH", sort = { DefineWebPage.Page_Add + "=1",
-			DefineWebPage.Page_Edit + "=0" })
+	@ZooData(name = "聊天室编号", sort = { DefineWebPage.Page_Add + "=1", DefineWebPage.Page_Edit + "=0" })
 	private String chatCode;
+
+	@ZooData(name = "聊天室名称", sort = { DefineWebPage.Page_Add + "=1", DefineWebPage.Page_Edit + "=0",
+			DefineWebPage.Page_Grid + "=0" })
+	private String chatName;
 
 	@ZooData(name = "主播", require = "1", element = DefineWebElement.Model, inc = {
 			DefineWebInc.Web_Component + "=dzcw451010010001" })
@@ -83,6 +86,14 @@ public class CnLiveInfo extends BaseEntity {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public String getChatName() {
+		return chatName;
+	}
+
+	public void setChatName(String chatName) {
+		this.chatName = chatName;
 	}
 
 	public String getChatCode() {
