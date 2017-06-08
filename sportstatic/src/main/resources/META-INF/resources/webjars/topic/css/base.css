@@ -1,0 +1,24 @@
+html{font-size: 100px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif; background: #2D2143;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,pre,form,fieldset,input,textarea,blockquote,p,button,header,footer,nav,section,article,aside,video,audio,figure,figcaption,hgroup{padding: 0px; margin: 0px; tap-highlight-color: rgba(0, 0, 0, 0); -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -ms-tap-highlight-color: rgba(0, 0, 0, 0); font-size: 0.14rem; line-height: 0.22rem;}
+table,td,tr,th{font-size: 0.12rem;}
+table{margin: 0 auto;}
+img{vertical-align: top; border: 0;}
+ol,ul{list-style: none;}
+li{list-style-type: none;}
+h1,h2,h3,h4,h5,h6{font-weight:normal; font-size: 100%;}
+img{width: 100%; height: auto; vertical-align: top; }
+address,caption,cite,code,dfn,em,i,b{font-weight: normal; font-style: normal;}
+input,textarea,select,button{outline: none; resize: none; border: 0;}
+a{-webkit-appearance: none; outline: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-touch-callout: none; text-decoration: none;}
+a:hover {text-decoration: none;}
+.no-data{width: 100%; height: 100%; background: url(../img/no_data.png) no-repeat center 40%; background-size: 1.6rem; position: fixed;}
+.load{padding: 0.2rem 0; color: #fff; text-align: center; line-height: 0.45rem;}
+.load em{display: inline-block; width: 0.25rem; height: 0.25rem; margin: 0.1rem; vertical-align: top; animation: load .7s linear infinite; background: url(../img/qiaotun_load.png) no-repeat left top; background-size: 0.25rem;}
+.tost{width: 1.6rem; border-radius: 5px; background: rgba(0,0,0,0.7); color: #fff; text-align: center; line-height: 0.4rem; position: fixed; left: 50%; margin-left: -0.8rem; bottom: 0.3rem;}
+[v-cloak] {display: none;}
+
+/* share */
+.open-app{width: 100%; padding: 0 0.15rem; height: 0.6rem; box-sizing: border-box; -webkit-box-sizing: border-box; background:#fff url(../img/app_bg.png) no-repeat right top; background-size: auto 0.6rem; position: fixed; left: 0; top: 0; z-index: 999;}
+.app-btn{width: 0.8rem; height: 0.3rem; float: right; margin-top: 0.1rem; background: #fd8529; text-align: center; line-height: 0.3rem; color: #fff; border-radius: 0.15rem;}
+.app-logo{height: 0.4rem; margin-top: 0.1rem; float: left;}
+.app-logo img{width: auto; height: 100%;}

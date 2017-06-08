@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>关于我们</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<link rel="stylesheet" href="css/main.css?version=20160509">
+<style type="text/css">
+.version{width: 100%; position: fixed; top: 0; left: 0; bottom: 0.73rem; z-index: 5; overflow: hidden; background:url('../static/img/about@2x.png') no-repeat center center; background-size: 60%;}
+.version-ft{width: 100%; position: fixed; left: 0; bottom: 0; font-size: 0.12rem; text-align: center; z-index: 9;}
+.version-ft h3{color: #3c3c3c; font-weight: 700; line-height: 0.2rem; }
+.version-ft h4,.version-t{color: #aaaaaa; line-height: 0.2rem; font-size: 0.12rem;}
+.version-t{padding: 0.08rem 0 0.05rem;}
+</style>
+</head>
+<body >
+<section class="version"></section>
+<aside class="version-ft">
+	<h3>新体优家（北京）科技文化有限公司</h3>
+	<h4>Copyright&copy;2016 版权所有</h4>
+	<p class="version-t"></p>
+</aside>
+<script>
+	window.onload = function(){
+		var browser = {
+			versions:function() {		//获取浏览器版本信息
+				var u = navigator.userAgent, app = navigator.appVersion; 
+				return {
+					mac: u.indexOf('Macintosh') > -1, //mac
+					window: u.indexOf('Windows') > -1, //window
+					webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核 
+					mobile: u.indexOf('AppleWebKit') > -1 && u.indexOf('Mobile') > -1,
+					android: u.indexOf('Android') > -1 && u.indexOf('Mobile') > -1,
+					iPhone: u.indexOf('iPhone') > -1 && u.indexOf('Mobile') > -1,
+					iPad: u.indexOf('iPad') > -1 && u.indexOf('Mobile') > -1,
+				}; 
+			}()
+		}
+		if(browser.versions.android){
+			document.querySelector('.version-t').innerHTML = getVersion() + ' for Android';
+		} else if(browser.versions.iPhone){
+			document.querySelector('.version-t').innerHTML = getVersion() + ' for iPhone';
+		} else if(browser.versions.iPad){
+			document.querySelector('.version-t').innerHTML = getVersion() + ' for iPad';
+		}
+		function getVersion(){
+			var value = window.location.search;
+			var subString = value.substr(1);
+			var valueArr = subString.split('=');
+
+			if(!value){
+				return 'V1.0.0';
+			}else{
+				return 'V' + valueArr[1];
+			}
+		}
+	}
+</script>
+</body>
+</html>

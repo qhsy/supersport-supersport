@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" id="follow">
+<head>
+<meta charset="UTF-8">
+<title>关注</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<link rel="stylesheet" href="style/style.css">
+<script type="text/javascript">
+var require = {
+	baseUrl:'js/',
+	paths:{
+		vue:'vue.min',
+		zepto:'zepto.min',
+		jssdk:'jweixin-1.0.0',
+		common:'common',
+		extend:'vue.extend',
+		qrcode:'qrcode'
+	},
+	shim:{
+		zepto:{
+			exports:'$'
+		},
+		common:{
+			exports:'common'
+		},
+		qrcode:{
+			exports:'QRCode'
+		}
+	}
+};
+</script>
+</head>
+<body>
+<section class="wrap" v-cloak>
+	<template v-if="browser">
+		<article class="isBrowser">
+			<span id="qrcode"></span>
+			<h1>微信扫一扫</h1>
+		</article>
+	</template>
+	<template v-else>
+		<ul class="top-wrap">
+			<template v-if=result.attendList.length>
+			<li class="top-item" v-for="item in result.attendList">
+				<a href="personal.html?userCode={{item.userCode}}">
+					<span class="photo"><img :src="item.aboutHead" alt=""></span>
+					<div class="nickname">
+						<h1>{{item.nickName}}</h1>
+						<h2>{{item.title}}</h2>
+						<p>{{item.total}}个回答</p>
+					</div>
+				</a>
+			</li>
+			</template>
+			<template v-else>
+			<li class="no-data"></li>
+			</template>
+		</ul>
+	</template>
+</section>
+<footer-nav></footer-nav>
+<script type="text/javascript" src="js/require.min.js"></script>
+<script type="text/javascript" src="js/app/follow.js"></script>
+</body>
+</html>

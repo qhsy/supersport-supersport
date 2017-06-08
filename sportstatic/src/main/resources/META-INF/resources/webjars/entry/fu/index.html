@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+</head>
+<body>
+<script>
+function queryUrl(name){
+	var url = location.search;
+	var request = '';
+	if (url.indexOf("?") != -1) {
+		var str = url.substr(1);
+		var result = str.split("&");
+		for (var i = 0; i < result.length; i++) {
+			var arr = result[i].split("=");
+			if(arr[0] == name){
+				request = unescape(arr[1]);
+			}
+		}
+	}
+	return request;
+}
+window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxfd44c999a0475e56&redirect_uri=http://api-001.sport.bigtiyu.com/webcdn/entry/fu/detailed.html?id=' + queryUrl('id') + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect'
+
+</script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no,email=no"> 
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes"> 
+<meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes"/>
+<meta name="author" content="">
+<link rel="stylesheet" type="text/css" href="../static/css/base.css">
+<style type="text/css">
+.worth{overflow: auto;}
+.warp{width: 100%; padding: 0.16rem 0; overflow: hidden; font-size: 14px; line-height: 20px;}
+.types{overflow: auto;}
+.types li{width: 1rem; height: 0.75rem; float: left; overflow: hidden; margin: 0 0 0 0.08rem; position: relative;}
+.types li img{width: 1rem; min-height: 0.75rem;}
+.types .title{width: 100%; height: 100%; position: absolute; left: 0; top: 0; color: #fff; text-align: center; display: -webkit-box; -webkit-box-align: center;}
+.types .title span{width: 100%; display: block; text-align: center;}
+.space{height: 0.06rem; margin-bottom: 0.1rem; background: #F8F8F8; overflow: hidden;}
+.moments{ padding: 0.06rem 0 0; overflow: auto;}
+.moment{width: 50%; padding: 0 0 0.13rem; box-sizing: border-box; -webkit-box-sizing: border-box; float: left; overflow: hidden;}
+.moment:nth-child(even){padding-left: 0.02rem;}
+.moment:nth-child(odd){padding-right: 0.02rem;}
+.moment img{width: 100%; min-height: 1.76rem;}
+.moment .info{width: 100%; height: 1.36rem; overflow: hidden; position: relative;}
+.moment .info img{margin-top: -0.2rem;}
+.moment .state{height: 21px; padding: 0 0.05rem; background: #FF7E00; position: absolute; right: 0px; top: 0px; font-size: 12px; color: #fff; text-align: center; line-height: 21px; }
+.moment .end{border: #fff 1px solid; background: rgba(0,0,0,0.62); border-radius: 2px;}
+.moment .reading{width: 74px; height: 18px; padding-right: 6px; position: absolute; right: 0; top: 0; line-height: 18px; color: #FFFFFF; font-size: 12px; text-align: right; background: url(../static/img/bg_top@3x.png) no-repeat center center; background-size: cover;}
+.moment .reading:before{content: ""; width: 17px; height: 12px; margin: 3px 5px 0 0; vertical-align: top; display: inline-block; background: url(../static/img/liulan@3x.png) no-repeat center center; background-size: cover;}
+.moment .title{height: 36px; padding: 0 0.05rem; margin: 0.14rem 0 0.03rem; overflow: hidden; font-size: 15px; text-align: center; color: #414141; line-height: 20px;}
+.moment .user{color: #757575; font-size: 12px; text-align: center; line-height: 18px;}
+/* .moment .photo{width: 11px; height: 11px; margin: 3px 6px 0; float: left; background: url(../static/img/touxiang@3x.png) no-repeat center center; background-size: cover;} */
+</style>
+</head>
+<body>
+<section class="worth" v-cloak>
+	<aside class="load" v-if="load"><img src="../static/img/godo.gif" alt=""></aside>
+	<article class="warp" v-if="types.length">
+		<ul class="types" @touchstart="touchstart" @touchmove="touchmove" @touchend="touchend">
+			<li v-for="type in types">
+				<a href="worth_list.html?code={{type.code}}">
+					<img src="../static/img/lazyload.jpg" v-lazyload="type.cover" alt="">
+					<h1 class="title"><span>{{type.name}}</span></h1>
+				</a>
+			</li>
+		</ul>
+	</article>
+	<div class="space" v-if="!load && types.length"></div>
+	<ul class="moments">
+		<li class="moment" v-for="moment in moments">
+			<template v-if="moment.contentType == 'dzsd4107100110030006'">
+				<a :href="moment.detail.videoUrl">
+					<moment :moment="moment"></moment>
+				</a>
+			</template>
+			<template v-else>
+				<template v-if="moment.contentType == 'dzsd4107100110030007' || moment.contentType == 'dzsd4107100110030009'">
+					<a href="javascript:;" @click="live(moment.code)">
+						<moment :moment="moment"></moment>
+					</a>
+				</template>
+				<template v-else>
+					<a href="javascript:;" @click="backSportTime(moment.code,moment.contentType)">
+						<moment :moment="moment"></moment>
+					</a>
+				</template>
+			</template>
+		</li>
+	</ul>
+	<aside class="load" v-if="nextPage"><img src="../static/img/godo.gif" alt=""></aside>
+</section>
+<script type="text/x-template" id="template">
+	<div class="info">
+		<template v-if="moment.contentType == 'dzsd4107100110030007'">
+			<img src="../static/img/lazyload.jpg" v-lazyload="moment.liveVideoDetailForApi.cover" alt="">
+		</template>
+		<template v-else>
+			<img src="../static/img/lazyload.jpg" v-lazyload="moment.cover" alt="">
+		</template>
+		<span v-if="moment.contentType == 'dzsd4107100110030007'" class="state">正在直播</span>
+		<span v-if="moment.contentType == 'dzsd4107100110030009'" class="state">回放</span>
+		<span v-if="moment.mark == 'dzsd4107100110100001' && moment.contentType == 'dzsd4107100110030006'" class="state">正在直播</span>
+		<span v-if="moment.mark == 'dzsd4107100110100002' && moment.contentType == 'dzsd4107100110030006'" class="state end">回放</span>
+		<!-- <em class="reading">{{moment.readNum}}</em> -->
+		
+	</div>
+	<h1 class="title">{{moment.title}}</h1>
+	<div class="user">
+		{{moment.userBasicInfo.nickName}}
+	</div>
+</script>
+<script type="text/javascript" src="script/common.min.js"></script>
+<script type="text/javascript" src="../static/js/tools.js"></script>
+<script>
+Vue.use(Vue.lazyimg,{
+	nohori: true
+});
+var initX = 0, moveX = 0, offsetX = 0, ismove = false;
+Vue.component('moment',{
+	template:'#template',
+	props:{
+		moment:null
+	}
+});
+var vm = new Vue({
+	el: '.worth',
+	data: {
+		types: [],
+		moments: [],
+		initPage: 1,
+		initWidth: 200,
+		nextPage: false,
+		load: true,
+		stopBool: false
+	},
+	watch: {
+		initPage: 'getData'
+	},
+	created: function(){
+		var _this = this;
+		_this.getData();
+		callbackShare('');
+		window.addEventListener('scroll', _this.refresh, false);
+	},
+	methods: {
+		getData: function(){
+			var _this = this;
+			reqwest({
+				url: '/api/homeController/contentType',
+				method: 'post',
+				data: '{"num": ' + _this.initPage + ',"width": ' + _this.initWidth + ',"zoo": {"key": "tesetkey","token": " "}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {
+					if(resp.status == 1){
+						_this.types = _this.types.concat(resp.types);
+						_this.moments = _this.moments.concat(resp.moments);
+						_this.nextPage = resp.nextFlag;
+						_this.stopBool = true;
+						_this.$nextTick(function(){
+							_this.load = false;
+						});
+					}else{
+						alert(resp.error)
+					}
+				}
+			});
+		},
+		refresh: function(){
+			var winHeight = window.innerHeight;
+			var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+			var bodyHeight = document.body.clientHeight;
+			if(this.stopBool && this.nextPage && (winHeight + scrollTop) >= bodyHeight){
+				this.initPage++;
+				this.stopBool = false;
+			}
+		},
+		backSportTime:function(code,type) {
+			callbackSportTime(code,type);
+		},
+		live:function(code) {
+			callbackEnterLive(code);			
+		},
+		touchstart: function(event){
+			var target = event.targetTouches[0];
+			var _this = event.currentTarget;
+			var windowWidth = window.innerWidth;
+			var objWidth = parseFloat(_this.style.width);
+			objWidth <= windowWidth?ismove=false:ismove=true;
+			initX = target.pageX;
+		},
+		touchmove: function(event){
+			var target = event.targetTouches[0];
+			var _this = event.currentTarget;
+			if(ismove){
+				moveX = target.pageX - initX + offsetX;
+				_this.style.marginLeft = moveX + 'px';
+				event.preventDefault();
+			}
+		},
+		touchend: function(event){
+			var target = event.targetTouches[0];
+			var _this = event.currentTarget;
+			var marLeft = window.innerWidth - _this.offsetWidth;
+			if(ismove){
+				offsetX = moveX;
+				if(offsetX > 0){
+					offsetX = 0;
+				} else if(offsetX < marLeft){
+					offsetX = marLeft;
+				}
+				_this.style.marginLeft = offsetX + 'px';
+			}
+		}
+	}
+
+})
+vm.$watch('types', function () {  
+    var childrenLi = document.querySelector('.types');
+    if(childrenLi){
+    	var	liLength = childrenLi.querySelectorAll('li').length,
+		liWidth = childrenLi.querySelector('li').clientWidth,
+		offsetLeft = childrenLi.querySelector('li').offsetLeft;
+		document.querySelector('.types').style.width = liLength*(liWidth+offsetLeft) + offsetLeft + 'px';
+    }
+});
+</script>
+</body>
+</html>

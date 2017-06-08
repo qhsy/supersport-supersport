@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>2016 Beijing Throwdown</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<section class="register">
+	<h1 class="h1">2016 Beijing </h1>
+	<h2 class="h2">ThrowDown <em>报名</em></h2>
+	<article class="type">
+		<h1 class="title">参赛项目<em>Entry project</em></h1>
+		<ul class="type-list">
+			<li data-type="dzsd4107100510020001">
+				<a href="javascript:;">个人标准组<br>（Rx）</a>
+			</li>
+			<li data-type="dzsd4107100510020002">
+				<a href="javascript:;">个人业余组<br>（Scale）</a>
+			</li>
+			<li data-type="dzsd4107100510020003">
+				<a href="javascript:;">团队标准组<br>（Team Event）</a>
+			</li>
+		</ul>
+	</article>
+	<article class="container"></article>
+	<img src="" alt="" class="img">
+</section>
+<footer class="copy">
+	<p>本活动报名最终解释权归果冻体育官方所有。</p>
+	<p>The activities of the final interpretation of the right to </p>
+</footer>
+<template id="personal">
+	<!-- 模板部分 -->  
+		<ul class="personal formArr">
+			<li><span class="attr"><em>*</em>姓名</span><input name="name" id="name" class="ipt" type="text" placeholder="Name"></li>
+			<li><span class="photo"><em>*</em>照片</span><div id="photo-result" class="photo-result" data=""><em>Add<br>photos</em></div></li>
+			<li><span class="attr"><em>*</em>性别</span>
+				<div id="sex" class="sex" data="">
+					<a href="javascript:;" class="male">Male</a>
+					<a href="javascript:;" class="female">Female</a>
+				</div>
+			</li>
+			<li class="fl"><span class="attr"><em>*</em>年龄</span><input type="text" name="age" id="age" class="ipt w100" placeholder="Age"></li>
+			<li><span class="attr"><em class="height">*</em>身高</span><input name="height" id="height"  class="ipt w100" type="text" placeholder="Height(cm)"></li>
+			<li><span class="attr"><em>*</em>体重</span><input name="weight" id="weight" class="ipt" type="text" placeholder="Weight(kg)"></li>
+			<li><span class="attr"><em>*</em>电话</span><input name="mobile" id="mobile" class="ipt" type="text" placeholder="Mobile phone"></li>
+			<li><span class="attr"><em>*</em>邮件</span><input name="email" id="email" class="ipt" type="text" placeholder="E-mail" ></li>
+			<li><span class="attr"><em></em>训练CF时间</span><input name="time" id="time" class="ipt w203" type="text" placeholder="CossFit experience（month）"></li>
+			<li><span class="attr"><em></em>所　属BOX</span><input name="box" id="box" class="ipt w208" type="text" placeholder="Representative Box"></li>
+		</ul>
+		<div class="price"><i>￥</i><span></span></div>
+		<a href="javascript:;" class="submit">提交 Submit</s>
+	<!-- 模板结束 -->    
+</template>
+<template id="status">
+	<div class="status">
+		<div class="text"></div>
+		<a href="javascript:;" class="btn">查看报名信息<em>Check the registration information</em></a>
+	</div>
+</template>
+<template id="all">
+	<div class="status">
+		<div class="text"></div>
+	</div>
+</template>
+<template id="team">  
+	<!-- 模板部分 -->
+	<p class="team-note">including two men &amp; two women</p>
+		<dl class="teamname">
+			<dd><span class="attr"><em>*</em>团队名称</span><input name="teamname" id="teamname" class="ipt w196" type="text" placeholder="Name"></dd>
+		</dl>
+		<dl class="team formArr">
+			<dt>队员一</dt>
+			<dd><span class="attr"><em>*</em>姓名</span><input name="name" id="name1" class="ipt" type="text" placeholder="Name"></dd>
+			<dd><span class="photo"><em>*</em>照片</span><div id="photo-result1" class="photo-result" data=""><em>Add<br>photos</em></div></dd>
+			<dd><span class="attr"><em>*</em>性别</span>
+				<div id="sex1" class="sex" data="男">
+					<a href="javascript:;" class="male curr">Male</a>
+				</div>
+			</dd>
+			<dd class="fl"><span class="attr"><em>*</em>年龄</span><input name="age" id="age1" class="ipt w100" type="text" placeholder="Age"></dd>
+			<dd><span class="attr"><em class="height">*</em>身高</span><input name="height" id="height1" class="ipt w100" type="text" placeholder="Height(cm)"></dd>
+			<dd><span class="attr"><em>*</em>体重</span><input name="weight" id="weight1" class="ipt" type="text" placeholder="Weight(kg)"></dd>
+			<dd><span class="attr"><em>*</em>电话</span><input name="mobile" id="mobile1" class="ipt" type="text" placeholder="Mobile phone"></dd>
+			<dd><span class="attr"><em>*</em>邮件</span><input name="email" id="email1" class="ipt" type="text" placeholder="E-mail"></dd>
+			<dd><span class="attr"><em></em>训练CF时间</span><input name="time" id="time1" class="ipt w203" type="text" placeholder="CossFit experience（month）"></dd>
+			<dd><span class="attr"><em></em>所　属BOX</span><input name="box" id="box1" class="ipt w208" type="text" placeholder="Representative Box"></dd>
+		</dl>
+		<dl class="team formArr">
+			<dt>队员二</dt>
+			<dd><span class="attr"><em>*</em>姓名</span><input name="name" id="name2" class="ipt" type="text" placeholder="Name" data-required="true" data-descriptions="username2"></dd>
+			<dd><span class="photo"><em>*</em>照片</span><div id="photo-result2" class="photo-result" data=""><em>Add<br>photos</em></div></dd>
+			<dd><span class="attr"><em>*</em>性别</span>
+				<div id="sex2" class="sex" data="男">
+					<a href="javascript:;" class="male curr">Male</a>
+				</div>
+			</dd>
+			<dd class="fl"><span class="attr"><em>*</em>年龄</span><input name="age" id="age2"  class="ipt w100" type="text" placeholder="Age"></dd>
+			<dd><span class="attr"><em class="height">*</em>身高</span><input name="height" id="height2"  class="ipt w100" type="text" placeholder="Height(cm)"></dd>
+			<dd><span class="attr"><em>*</em>体重</span><input name="weight" id="weight2"  class="ipt" type="text" placeholder="Weight(kg)"></dd>
+			<dd><span class="attr"><em>*</em>电话</span><input name="mobile" id="mobile2"  class="ipt" type="text" placeholder="Mobile phone"></dd>
+			<dd><span class="attr"><em>*</em>邮件</span><input name="email" id="email2"  class="ipt" type="text" placeholder="E-mail"></dd>
+			<dd><span class="attr"><em></em>训练CF时间</span><input name="time" id="time2"  class="ipt w203" type="text" placeholder="CossFit experience（month）"></dd>
+			<dd><span class="attr"><em></em>所　属BOX</span><input name="box" id="box2"  class="ipt w208" type="text" placeholder="Representative Box"></dd>
+		</dl>
+		<dl class="team formArr">
+			<dt>队员三</dt>
+			<dd><span class="attr"><em>*</em>姓名</span><input name="name" id="name3" class="ipt" type="text" placeholder="Name"></dd>
+			<dd><span class="photo"><em>*</em>照片</span><div id="photo-result3" class="photo-result" data=""><em>Add<br>photos</em></div></dd>
+			<dd><span class="attr"><em>*</em>性别</span>
+				<div id="sex3" class="sex" data="女">
+					<a href="javascript:;" class="female curr">Female</a>
+				</div>
+			</dd>
+			<dd class="fl"><span class="attr"><em>*</em>年龄</span><input name="age" id="age3"  class="ipt w100" type="text" placeholder="Age"></dd>
+			<dd><span class="attr"><em class="height">*</em>身高</span><input name="height" id="height3"  class="ipt w100" type="text" placeholder="Height(cm)"></dd>
+			<dd><span class="attr"><em>*</em>体重</span><input name="weight" id="weight3"  class="ipt" type="text" placeholder="Weight(kg)"></dd>
+			<dd><span class="attr"><em>*</em>电话</span><input name="mobile" id="mobile3"  class="ipt" type="text" placeholder="Mobile phone"></dd>
+			<dd><span class="attr"><em>*</em>邮件</span><input name="email" id="email3"  class="ipt" type="text" placeholder="E-mail"></dd>
+			<dd><span class="attr"><em></em>训练CF时间</span><input name="time" id="time3"  class="ipt w203" type="text" placeholder="CossFit experience（month）"></dd>
+			<dd><span class="attr"><em></em>所　属BOX</span><input name="box" id="box3"  class="ipt w208" type="text" placeholder="Representative Box"></dd>
+		</dl>
+		<dl class="team formArr">
+			<dt>队员四</dt>
+			<dd><span class="attr"><em>*</em>姓名</span><input name="name" id="name4" class="ipt" type="text" placeholder="Name"></dd>
+			<dd><span class="photo"><em>*</em>照片</span><div id="photo-result4" class="photo-result" data=""><em>Add<br>photos</em></div></dd>
+			<dd><span class="attr"><em>*</em>性别</span>
+				<div id="sex4" class="sex" data="女">
+					<a href="javascript:;" class="female curr">Female</a>
+				</div>
+			</dd>
+			<dd class="fl"><span class="attr"><em>*</em>年龄</span><input name="age" id="age4" class="ipt w100" type="text" placeholder="Age"></dd>
+			<dd><span class="attr"><em class="height">*</em>身高</span><input name="height" id="height4" class="ipt w100" type="text" placeholder="Height(cm)"></dd>
+			<dd><span class="attr"><em>*</em>体重</span><input name="weight" id="weight4" class="ipt" type="text" placeholder="Weight(kg)"></dd>
+			<dd><span class="attr"><em>*</em>电话</span><input name="mobile" id="mobile4"  class="ipt" type="text" placeholder="Mobile phone"></dd>
+			<dd><span class="attr"><em>*</em>邮件</span><input name="email" id="email4" class="ipt" type="text" placeholder="E-mail" data-required="true"></dd>
+			<dd><span class="attr"><em></em>训练CF时间</span><input name="time" id="time4" class="ipt w203" type="text" placeholder="CossFit experience（month）"></dd>
+			<dd><span class="attr"><em></em>所　属BOX</span><input name="box" id="box4" class="ipt w208" type="text" placeholder="Representative Box"></dd>
+		</dl>
+		<div class="price"><i>￥</i><span></span></div>
+		<a href="javascript:;" class="submit">提交 Submit</s>
+	<!-- 模板结束 -->    
+</template>
+</script>
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/weixin.js"></script>
+<script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
+<script>
+function tost(mess){
+	var ele = $('<div class="mask"><span class="tost">' + mess + '</span></div>').appendTo('body');
+	var timer = setTimeout(function(){
+		ele.remove();
+		clearTimeout(timer);
+	}, 1500);
+}
+
+/**
+ * 获取TOKEN
+ */
+function token(){
+	if(sessionStorage.getItem('token')){
+		return sessionStorage.getItem('token');
+	}else{
+		return '';
+	}
+}
+$(function(){
+	var isWeix = navigator.userAgent.indexOf('MicroMessenger') > -1;
+	var team = $('#team').html();
+	var isSubmit = true;
+	var personal = $('#personal').html();
+	var all = $('#all').html()
+	var status = $('#status').html();
+	var images = {
+			localId: [],
+			serverId: []
+		};
+	/**
+	 * 获取微信CODE
+	 */
+
+	/**
+	 * 获取微信授权CONFIG
+	 */
+	weiXin({
+		'url': '/api/wechatController/configInfo'
+	});
+	/**
+	 * 微信上传图片
+	 */
+	wx.hideOptionMenu();
+	wx.ready(function(){
+		$('.container').on('click','.photo-result',function(){
+			var _this = $(this);
+			var img = $('<img/>');
+			wx.chooseImage({
+			    count: 1,
+			    sizeType: ['original', 'compressed'],
+			    sourceType: ['album', 'camera'],
+			    success: function (res) {
+			        images.localIds = res.localIds;
+			        _this.html(img.attr('src',images.localIds));
+			        wx.uploadImage({
+					    localId: images.localIds[0],
+					    isShowProgressTips: 1,
+					    success: function (res) {
+					        images.serverId = res.serverId;
+					        _this.attr('data',images.serverId);
+					    }
+					});
+			    }
+			});
+		});
+	});
+	/* End *
+
+	/**
+	 * 获取参赛项目类型
+	 */
+	$.ajax({
+		'url':'/api/orderController/checkSingType',
+		type:'POST',
+		contentType:'application/json',
+		dataType: 'json',
+		data:'{"zoo": {"key": "tesetkey","token": "' + token() + '"}}',
+		success:function(resp){
+			if(resp.status == 1){
+				var list = resp.xhList;
+				for(var i = 0; i<list.length; i++){
+					$('.type-list li').each(function(){
+						var statu = $(this).attr('data-type');
+						if(statu == list[i].type){
+							$(this).attr({
+								'data-ty':list[i].ty,
+								'data-price':list[i].price
+							});
+						}
+					});
+				}
+				if($('.type-list li[data-ty=yes]').length){
+					var index = $('.type-list li[data-ty=yes]').first().index();
+					var price = $('.type-list li[data-ty=yes]').first().attr('data-price');
+					if(index == 0){
+						$('.container').html(personal);
+						$('.container').find('.price span').text(price);
+					} else if(index == 1){
+						$('.container').html(personal);
+						$('.container').find('.price span').text(price);
+					} else if(index == 2){
+						$('.container').html(team);
+						$('.container').find('.price span').text(price);
+					}
+					$('.type-list li[data-ty=yes]').first().addClass('curr');
+					return false;
+				}
+				if($('.type-list li[data-ty=no]').length){
+					var index = $('.type-list li[data-ty=no]').first().index();
+					if(index == 0){
+						$('.container').html(status).find('.text').html('已报名<span>Already registered</span>');
+					} else if(index == 1){
+						$('.container').html(status).find('.text').html('已报名<span>Already registered</span>');
+					} else if(index == 2){
+						$('.container').html(status).find('.text').html('已报名<span>Already registered</span>');
+					}
+					$('.type-list li[data-ty=no]').first().addClass('curr');
+					return false;
+				}
+				if($('.type-list li[data-ty=al]').length){
+					$('.container').html(all).find('.text').html('已报满<span>Full registration </span>');
+					$('.type-list li[data-ty=al]').first().addClass('curr');
+					return false;
+				}
+			}
+		}
+	});
+	/* End */
+
+	$('.type-list li').on('click',function(){
+		var _this = $(this);
+		var index = _this.index();
+		var statu = _this.attr('data-ty');
+		var price = _this.attr('data-price');
+		if(statu == 'yes' && index == 0){
+			$('.container').html(personal);
+			$('.container').find('.price span').text(price);
+		} else if(statu == 'yes' && index == 1){
+			$('.container').html(personal);
+			$('.container').find('.price span').text(price);
+		} else if(statu == 'yes' && index == 2){
+			$('.container').html(team);
+			$('.container').find('.price span').text(price);
+		} else if(statu == 'al' && index == 0){
+			$('.container').html(all).find('.text').html('已报满<span>Full registration </span>');
+		} else if(statu == 'al' && index == 1){
+			$('.container').html(all).find('.text').html('已报满<span>Full registration </span>');
+		} else if(statu == 'al' && index == 2){
+			$('.container').html(all).find('.text').html('已报满<span>Full registration </span>');
+		} else if(statu == 'no' && index == 0){
+			$('.container').html(status).find('.text').html('已报名<span>Already registered</span>');
+		} else if(statu == 'no' && index == 1){
+			$('.container').html(status).find('.text').html('已报名<span>Already registered</span>');
+		} else if(statu == 'no' && index == 2){
+			$('.container').html(status).find('.text').html('已报名<span>Already registered</span>');
+		}
+
+		if(!_this.attr('data-ty') && index == 1 && $('.type-list li').eq(0).attr('data-ty') == 'no'){
+			$('.container').html(all).find('.text').html('个人标准组已报名<span>Rx’d already registered</span>');
+		} else if(!_this.attr('data-ty') && index == 0 && $('.type-list li').eq(1).attr('data-ty') == 'no'){
+			$('.container').html(all).find('.text').html('个人业余组已报名<span>Scale already registered</span>');
+		}
+
+
+		$(this).addClass('curr').siblings().removeClass('curr');
+
+	});
+
+	$('.container').on('click', '.sex a', function(){
+		var _this = $(this);
+		var index = _this.index();
+		_this.parent().find('a').removeClass('curr').eq(index).addClass('curr');
+		if(_this.is('.male')){
+			$('.sex').attr('data','男');
+		}
+		if(_this.is('.female')){
+			$('.sex').attr('data','女');
+		}
+
+	});
+
+    /**
+     * 定点支付
+     */
+   
+    $('.container').on('click','.btn', function(){
+    	window.location.href = 'reg_succ.html?app=1&token=' + token();
+    });
+    $('.container').on('click','.submit',function(){
+    	var mobile = /^(13[0-9]|17[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/ig;
+    	//var email = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/g;
+    	var email = /.*/;
+    	var order = $('.curr').attr('data-type');
+		if($('input').is('#name')){
+    		if($('#name').val() == ''){
+	    		tost('请填写姓名');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#teamname')){
+    		if($('#teamname').val() == ''){
+	    		tost('请填写团队名称');
+	    		return false;
+	    	}
+    	}
+    	if($('#photo-result').attr('data') == ''){
+    		tost('请上传照片');
+	    	return false;
+    	}
+    	if($('#sex').attr('data') == ''){
+    		tost('请选择性别');
+	    	return false;
+    	}
+    	if($('input').is('#age')){
+    		if($('#age').val() == ''){
+	    		tost('请填写年龄');
+	    		return false;
+	    	}
+	    	if(isNaN($('#age').val()) || parseFloat($.trim($('#age').val())) <= 0){
+	    		tost('请正确填写年龄');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#height')){
+    		if($('#height').val() == ''){
+	    		tost('请填写身高');
+	    		return false;
+	    	}
+	    	if(isNaN($('#height').val()) || parseFloat($.trim($('#height').val())) <= 0){
+	    		tost('请正确填写身高');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#weight')){
+    		if($('#weight').val() == ''){
+	    		tost('请填写体重');
+	    		return false;
+	    	}
+	    	if(isNaN($('#weight').val()) || parseFloat($.trim($('#weight').val())) <= 0){
+	    		tost('请正确填写体重');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#mobile')){
+    		if($('#mobile').val() == ''){
+	    		tost('请填写手机号码');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#email')){
+    		if($('#email').val() == ''){
+	    		tost('请填写邮箱');
+	    		return false;
+	    	}
+	    	if(!email.test($('#email').val())){
+	    		tost('请正确填写邮箱');
+	    		return false;
+	    	}
+    	}
+    	/* Start */
+    	if($('input').is('#name1')){
+    		if($('#name1').val() == ''){
+	    		tost('请填写队员一姓名');
+	    		return false;
+	    	}
+    	}
+    	if($('#photo-result1').attr('data') == ''){
+    		tost('请上传队员一照片');
+	    	return false;
+    	}
+    	if($('#sex1').attr('data') == ''){
+    		tost('请选择性别');
+	    	return false;
+    	}
+    	if($('input').is('#age1')){
+    		if($('#age1').val() == ''){
+	    		tost('请填写队员一年龄');
+	    		return false;
+	    	}
+	    	if(isNaN($('#age1').val()) || parseFloat($.trim($('#age1').val())) <= 0){
+	    		tost('请正确填写队员一年龄');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#height1')){
+    		if($('#height1').val() == ''){
+	    		tost('请填写队员一身高');
+	    		return false;
+	    	}
+	    	if(isNaN($('#height1').val()) || parseFloat($.trim($('#height1').val())) <= 0){
+	    		tost('请正确填写队员一身高');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#weight1')){
+    		if($('#weight1').val() == ''){
+	    		tost('请填写队员一体重');
+	    		return false;
+	    	}
+	    	if(isNaN($('#weight1').val()) || parseFloat($.trim($('#weight1').val())) <= 0){
+	    		tost('请正确填写队员一体重');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#mobile1')){
+    		if($('#mobile1').val() == ''){
+	    		tost('请填写队员一手机号码');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#email1')){
+    		if($('#email1').val() == ''){
+	    		tost('请填写队员一邮箱');
+	    		return false;
+	    	}
+	    	if(!email.test($('#email1').val())){
+	    		tost('请正确填写队员一邮箱');
+	    		return false;
+	    	}
+    	}
+    	/* End */
+    	/* Start */
+    	if($('input').is('#name2')){
+    		if($('#name2').val() == ''){
+	    		tost('请填写队员二姓名');
+	    		return false;
+	    	}
+    	}
+    	if($('#photo-result2').attr('data') == ''){
+    		tost('请上传队员二照片');
+	    	return false;
+    	}
+    	if($('#sex2').attr('data') == ''){
+    		tost('请选择性别');
+	    	return false;
+    	}
+    	if($('input').is('#age2')){
+    		if($('#age2').val() == ''){
+	    		tost('请填写队员二年龄');
+	    		return false;
+	    	}
+	    	if(isNaN($('#age2').val()) || parseFloat($.trim($('#age2').val())) <= 0){
+	    		tost('请正确填写队员二年龄');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#height2')){
+    		if($('#height2').val() == ''){
+	    		tost('请填写队员二身高');
+	    		return false;
+	    	}
+	    	if(isNaN($('#height2').val()) || parseFloat($.trim($('#height2').val())) <= 0){
+	    		tost('请正确填写队员二身高');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#weight2')){
+    		if($('#weight2').val() == ''){
+	    		tost('请填写队员二体重');
+	    		return false;
+	    	}
+	    	if(isNaN($('#weight2').val()) || parseFloat($.trim($('#weight2').val())) <= 0){
+	    		tost('请正确填写队员二体重');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#mobile2')){
+    		if($('#mobile2').val() == ''){
+	    		tost('请填写队员二手机号码');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#email2')){
+    		if($('#email2').val() == ''){
+	    		tost('请填写队员二邮箱');
+	    		return false;
+	    	}
+	    	if(!email.test($('#email2').val())){
+	    		tost('请正确填写队员二邮箱');
+	    		return false;
+	    	}
+    	}
+    	/* End */
+    	/* Start */
+    	if($('input').is('#name3')){
+    		if($('#name3').val() == ''){
+	    		tost('请填写队员三姓名');
+	    		return false;
+	    	}
+    	}
+    	if($('#photo-result3').attr('data') == ''){
+    		tost('请上传队员三照片');
+	    	return false;
+    	}
+    	if($('#sex3').attr('data') == ''){
+    		tost('请选择性别');
+	    	return false;
+    	}
+    	if($('input').is('#age3')){
+    		if($('#age3').val() == ''){
+	    		tost('请填写队员三年龄');
+	    		return false;
+	    	}
+	    	if(isNaN($('#age3').val()) || parseFloat($.trim($('#age3').val())) <= 0){
+	    		tost('请正确填写队员三年龄');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#height3')){
+    		if($('#height3').val() == ''){
+	    		tost('请填写队员三身高');
+	    		return false;
+	    	}
+	    	if(isNaN($('#height3').val()) || parseFloat($.trim($('#height3').val())) <= 0){
+	    		tost('请正确填写队员三身高');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#weight3')){
+    		if($('#weight3').val() == ''){
+	    		tost('请填写队员三体重');
+	    		return false;
+	    	}
+	    	if(isNaN($('#weight3').val()) || parseFloat($.trim($('#weight3').val())) <= 0){
+	    		tost('请正确填写队员三体重');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#mobile3')){
+    		if($('#mobile3').val() == ''){
+	    		tost('请填写队员三手机号码');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#email3')){
+    		if($('#email3').val() == ''){
+	    		tost('请填写队员三邮箱');
+	    		return false;
+	    	}
+	    	if(!email.test($('#email3').val())){
+	    		tost('请正确填写队员三邮箱');
+	    		return false;
+	    	}
+    	}
+    	/* End */
+    	/* Start */
+    	if($('input').is('#name4')){
+    		if($('#name4').val() == ''){
+	    		tost('请填写队员四姓名');
+	    		return false;
+	    	}
+    	}
+    	if($('#photo-result4').attr('data') == ''){
+    		tost('请上传队员四图片');
+	    	return false;
+    	}
+    	if($('#sex4').attr('data') == ''){
+    		tost('请选择性别');
+	    	return false;
+    	}
+    	if($('input').is('#age4')){
+    		if($('#age4').val() == ''){
+	    		tost('请填写队员四年龄');
+	    		return false;
+	    	}
+	    	if(isNaN($('#age4').val()) || parseFloat($.trim($('#age4').val())) <= 0){
+	    		tost('请正确填写队员四年龄');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#height4')){
+    		if($('#height4').val() == ''){
+	    		tost('请填写队员四身高');
+	    		return false;
+	    	}
+	    	if(isNaN($('#height4').val()) || parseFloat($.trim($('#height4').val())) <= 0){
+	    		tost('请正确填写队员四身高');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#weight4')){
+    		if($('#weight4').val() == ''){
+	    		tost('请填写队员四体重');
+	    		return false;
+	    	}
+	    	if(isNaN($('#weight4').val()) || parseFloat($.trim($('#weight4').val())) <= 0){
+	    		tost('请正确填写队员四体重');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#mobile4')){
+    		if($('#mobile4').val() == ''){
+	    		tost('请填写队员四手机号码');
+	    		return false;
+	    	}
+    	}
+    	if($('input').is('#email4')){
+    		if($('#email4').val() == ''){
+	    		tost('请填写队员四邮箱');
+	    		return false;
+	    	}
+	    	if(!email.test($('#email4').val())){
+	    		tost('请正确填写队员四邮箱');
+	    		return false;
+	    	}
+    	}
+    	/* End */
+    	var formArr = [];
+		var formLength = $('.container').find('.formArr');
+		for(var i=0; i<formLength.length; i++){
+			var json = {
+				'age': parseFloat(formLength.eq(i).find('input[name=age]').val()),
+				'boxName': formLength.eq(i).find('input[name=box]').val(),
+				'groupName':$('input').is('#teamname')?$('#teamname').val():'',
+				'height': parseFloat(formLength.eq(i).find('input[name=height]').val()),
+				'mail': formLength.eq(i).find('input[name=email]').val(),
+				'name': formLength.eq(i).find('input[name=name]').val(),
+				'phone': formLength.eq(i).find('input[name=mobile]').val(),
+				'photo': formLength.eq(i).find('.photo-result').attr('data'),
+				'sex': formLength.eq(i).find('.sex').attr('data'),
+				'time': parseFloat(formLength.eq(i).find('input[name=time]').val()) || '',
+				'type': $('.curr').attr('data-type'),
+				'weight': parseFloat(formLength.eq(i).find('input[name=weight]').val())  || '',
+			}
+			formArr.push(JSON.stringify(json));
+		}
+		if(isSubmit){
+			isSubmit = false;
+	    	$.ajax({
+				'url':'/api/orderController/answerOrder',
+				type:'POST',
+				contentType:'application/json',
+				dataType: 'json',
+				data:'{"answerCode": "' + order + '", "appVersion": "", "orderSource": "dzsd4112100110020002", "orderType": "dzsd4112100110010005", "payType":"dzsd4112100110040002", "romoteIP": "", "serveIP": "", "signs": [' + formArr.join(",") + '],"zoo": {"key": "tesetkey","token": "' + token() + '"}}',
+				success:function(resp){
+					if(resp.status == 1){
+						if (typeof WeixinJSBridge == "undefined") {
+							if (document.addEventListener) {
+								document.addEventListener('WeixinJSBridgeReady', function(){
+									orderPay(resp.wechatH5PayResponse)
+								}, false);
+							} else if (document.attachEvent) {
+								document.attachEvent('WeixinJSBridgeReady', function(){
+									orderPay(resp.wechatH5PayResponse)
+								});
+								document.attachEvent('onWeixinJSBridgeReady', function(){
+									orderPay(resp.wechatH5PayResponse)
+								});
+							}
+						} else {
+							orderPay(resp.wechatH5PayResponse);
+						}
+					}
+				}
+			});
+		}
+    	
+    });
+ 	function orderPay(resp){
+    	WeixinJSBridge.invoke('getBrandWCPayRequest', {
+			"appId":resp.appId,
+			"timeStamp":resp.timeStamp,
+			"nonceStr":resp.nonceStr,
+			"package":"prepay_id=" + resp.prepay_id,
+			"signType":resp.signType,
+			"paySign":resp.paySign
+		}, function(result) {
+			if (result.err_msg == "get_brand_wcpay_request:ok") {
+				isSubmit = true;
+				window.location.href = 'reg_succ.html?app=1&token=' + token();
+			}else{
+				isSubmit = true;
+				tost('支付失败，请重新支付！');
+			}
+		});
+    }
+});
+</script>
+</body>
+</html>

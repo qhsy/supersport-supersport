@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>2016 Beijing Throwdown</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<style type="text/css">
+html{background: #161616;}
+</style>
+</head>
+<body>
+<section class="succeed"></section>
+<div class="tips" style="display: none;"><header class="share"></header><footer class="save"></footer></div>
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="js/tools.js"></script>
+<script>
+function tost(mess){
+	var ele = $('<div class="mask"><span class="tost">' + mess + '</span></div>').appendTo('body');
+	var timer = setTimeout(function(){
+		ele.remove();
+		clearTimeout(timer);
+	}, 1500);
+}
+function queryUrl(name){
+	var url = location.search;
+	var request = '';
+
+	if (url.indexOf("?") != -1) {
+		var str = url.substr(1);
+		var result = str.split("&");
+		for (var i = 0; i < result.length; i++) {
+			var arr = result[i].split("=");
+			if(arr[0] == name){
+				request = unescape(arr[1]);
+			}
+		}
+	}
+	return request;
+}
+function callbackSavePic(href){
+	var userAgent = navigator.userAgent;
+	if(userAgent.indexOf('Android') != -1){
+		javascript:android.callbackSavePic(href);
+	} else {
+		window.webkit.messageHandlers.callbackSavePic.postMessage(href);
+	}
+}
+$(function(){
+	$.ajax({
+		url:'/api/orderController/watchCard',
+		type:'POST',
+		contentType:'application/json',
+		dataType: 'json',
+		data:'{"zoo": {"key": "tesetkey","token": "' + queryUrl('token') + '"}}',
+		success:function(resp){
+			if(resp.status == 1){
+				var ulEle = $('<ul class="result"/>');
+				var liEle = $('<li/>');
+					liEle.html('<img src="' + resp.pic + '" />');
+					ulEle.append(liEle);
+				$('.succeed').append(ulEle);
+				$('.tips').css('display','block');
+				if($('.tips').is(':visible')){
+					setTimeout(function(){
+						$('.tips').css('display','none');
+					},5000);
+				}
+				if(!queryUrl('app')){
+					callbackShare('GGTBH161114110001');
+				}
+				
+			}else{
+				tost(resp.error);
+			}
+		}
+	});
+	$.ajax({
+		'url':'/api/contentController/shareInfo',
+		type:'POST',
+		contentType:'application/json',
+		dataType: 'json',
+		data:'{"code": "GGTBH161114110001","zoo": {"key": "tesetkey","token": " "}}',
+		success:function(resp){
+			if(resp.status == 1){
+				shareWeiXin({
+					'url':'/api/wechatController/configInfo',
+					'imgUrl':resp.cover,
+					'title':resp.title,
+					'link':resp.url,
+					'desc':resp.aboutDesc
+				});
+			}
+		}
+	});
+
+	touch.on('body', 'tap', '.tips', function(){
+		var _this = $(this);
+		_this.css('display','none');
+	})
+	touch.on('.succeed', 'hold', 'li', function(){
+		var src = $(this).attr('src');
+		callbackSavePic(src);
+	});
+
+});
+</script>
+</body>
+</html>

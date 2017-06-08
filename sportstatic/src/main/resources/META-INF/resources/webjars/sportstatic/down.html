@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>果冻体育</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<style type="text/css">
+html{font-size: 100px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
+body{background: #f7f9f7;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,pre,form,fieldset,input,textarea,blockquote,p,button,header,footer,nav,section,article,aside,video,audio,figure,figcaption,hgroup{padding: 0px; margin: 0px; tap-highlight-color: rgba(0, 0, 0, 0); -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -ms-tap-highlight-color: rgba(0, 0, 0, 0); font-size: 0.14rem; line-height: 0.22rem;}
+table,td,tr,th{font-size: 0.12rem;}
+table{margin: 0 auto;}
+img{vertical-align: top; border: 0;}
+ol,ul{list-style: none;}
+li{list-style-type: none;}
+h1,h2,h3,h4,h5,h6{font-weight:normal; font-size: 100%;}
+img{width: 100%; height: auto; vertical-align: top; }
+address,caption,cite,code,dfn,em,i,b{font-weight: normal; font-style: normal;}
+input,textarea,select,button{outline: none; resize: none; border: 0;}
+a{-webkit-appearance: none; outline: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-touch-callout: none; text-decoration: none;}
+a:hover {text-decoration: none; }
+.f12{font-size: 0.12rem;}.f14{font-size: 0.14rem;}.f16{font-size: 0.16rem;}.f18{font-size: 0.18rem;}
+.tl{text-align: left;}.tr{text-align: right;}.tc{text-align: center;}
+.fl{float: left;}.fr{float: right;}
+.pos-r{position: relative;}.pos-f{position: fixed;}
+
+/*body*/
+.logo{width: 1.8rem; height: 1.8rem; position: fixed; left: 0.3rem; top: 0.3rem; z-index: 5;}
+.page{width: 100%; position: fixed; left: 0; top: 0; bottom: 0; background: url(image/down/bg.png) center center no-repeat; background-size: cover;}
+.wrap{width: 100%; height: 100%; position: fixed; left: 0; top: 0; display: -webkit-box; -webkit-box-pack: center; -webkit-box-align: center; background: rgba(0,0,0,0.3);}
+.app-down{text-align: center;}
+.down-txt{font-size: 0.4rem; color: #fff; font-style: normal; line-height: 0.8rem;}
+.down-txt em{padding-right: 0.3rem; font-style: normal;}
+.down-btn{height: 0.56rem; padding: 0 0.15rem; margin: 0.5rem 0.1rem 0; display: inline-block; background: rgba(255,255,255,0.95); border-radius: 10px; text-align: center; color: #333; font-size: 0.24rem; line-height: 0.56rem;)}
+.donw-erwm{width: 1.2rem; height: 1.2rem; position: fixed; left: 0.3rem; bottom: 0.3rem; z-index: 9;}
+/*font*/
+@font-face {
+  font-family: 'iconfont';
+  src: url('http://at.alicdn.com/t/font_1464769912_2303586.eot'); /* IE9*/
+  src: url('http://at.alicdn.com/t/font_1464769912_2303586.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('http://at.alicdn.com/t/font_1464769912_2303586.woff') format('woff'), /* chrome、firefox */
+  url('http://at.alicdn.com/t/font_1464769912_2303586.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('http://at.alicdn.com/t/font_1464769912_2303586.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont{padding-left: 0.05rem; font-family: "iconfont"; font-size: 0.26rem;}
+
+@media screen and (min-width: 0px) and (max-width: 414px){
+	.donw-erwm{display: none;}
+	.down-btn{padding: 0.1rem 0.35rem; border-radius: 5px;}
+}
+
+@media screen and (min-width: 320px){
+	html{font-size: 50px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
+}
+@media screen and (min-width: 375px){
+	html{font-size: 60px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
+}
+@media screen and (min-width: 414px){
+	html{font-size: 70px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
+}
+@media screen and (min-width: 640px){
+	html{font-size: 100px; font-family: 'microsoft yahei', Verdana, Arial, Helvetica, sans-serif;}
+}
+</style>
+</head>
+<body>
+<div class="logo"><img src="image/down/logo.png" alt=""></div>
+<div class="page"></div>
+<div class="wrap">
+	<div class="app-down">
+		<p class="down-txt">&nbsp;</p>
+		<a href="javascript:;" class="down-btn iphone">立即下载<em class="iconfont">&#xe600;</em></a>
+		<a href="javascript:;" class="down-btn android">立即下载<em class="iconfont">&#xe601;</em></a>
+	</div>
+</div>
+<!-- <span class="donw-erwm"><img src="image/down/00f8f82f1358414ffff457cff260f4ac.png" alt=""></span> -->
+<script>
+	var u = navigator.userAgent,app = navigator.appVersion;
+	var browser = {
+		language: (navigator.browserLanguage || navigator.language).toLowerCase(),
+		window:u.indexOf('Windows') > -1,		//window
+		mac:u.indexOf('Mac') > -1,		//Mac OS
+		mobile:u.indexOf('Mobile') > -1 && u.indexOf('AppleWebKit') > -1,		//Mobile
+		android:u.indexOf('Linux') > -1 && u.indexOf('Android') > -1,		//Android
+		ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),		
+		iPad:u.indexOf('iPad') > -1 && u.indexOf('Mac') > -1,		//iPad
+		iPod:u.indexOf('iPod') > -1 && u.indexOf('Mac') > -1,		//iPod
+		iPhone:u.indexOf('iPhone') > -1 && u.indexOf('Mac') > 1,		//iPhone
+		trident:u.indexOf('Trident') > -1,		//IE
+		presto: u.indexOf('Presto') > -1,		//opera内核 
+		webKit: u.indexOf('AppleWebKit') > -1,		//苹果、谷歌内核 
+		gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,		//gecko
+		qq:u.indexOf('QQ') > -1,
+		microMessenger:u.indexOf('MicroMessenger') > -1		//QQ weixin
+	}
+	if(browser.ios || browser.iPad || browser.iPhone || browser.iPod){
+		document.querySelector('.android').style.display='none';
+	} else if(browser.android){
+		document.querySelector('.iphone').style.display='none';
+	}
+	document.querySelector('.iphone').onclick = function(){
+		if(browser.ios || browser.iPad || browser.iPhone || browser.iPod){
+			if(browser.microMessenger || browser.qq){
+				window.location.replace('http://a.app.qq.com/o/simple.jsp?pkgname=com.bigtiyu.sportstalent.app')
+			}else{
+				window.location.replace('https://itunes.apple.com/us/app/guo-dong-ti-yu-fu-wu-quan/id1107505487?l=zh&ls=1&mt=8');
+			}
+		}
+	}
+	document.querySelector('.android').onclick = function(){
+		if(browser.microMessenger || browser.qq){
+			window.location.replace('http://a.app.qq.com/o/simple.jsp?pkgname=com.bigtiyu.sportstalent.app')
+		}else{
+			window.location.href='http://tiyuapp.oss-cn-beijing.aliyuncs.com/app-release.apk';
+		}
+	}
+</script>
+</body>
+</html>

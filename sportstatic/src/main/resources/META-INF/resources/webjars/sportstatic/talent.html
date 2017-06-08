@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>达人专访</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no,email=no"> 
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-touch-fullscreen" content="yes"> 
+<meta name="App-Config" content="fullscreen=yes,useHistoryState=yes,transition=yes"/>
+<meta name="author" content="">
+<link rel="stylesheet" type="text/css" href="../static/css/base.css">
+<style type="text/css">
+.content{width: 100%; height: 100%; overflow: hidden;}
+.talent{width: 100%; padding: 0 .05rem; box-sizing: border-box; display: -webkit-flex; display: -moz-flex; display: -o-flex; display: flex; -webkit-flex-wrap:wrap; -o-flex-wrap:wrap; -moz-flex-wrap:wrap; flex-wrap:wrap;}
+.talent .item{width: 50%; padding: 0 .03rem; box-sizing: border-box; line-height: .15rem; float: left;}
+.talent .photo{display: block; width: 1.76rem; height: 1.76rem;}
+.talent .photo img{width: 1.76rem; height: 1.76rem;}
+.talent .title{width: 100%; margin-top: .06rem; margin-bottom: .125rem; color: #212121; font-size: .14rem; word-break: break-all; word-wrap: break-word; line-height: .16rem; display: -webkit-box; display: -moz-box; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; -webkit-line-clamp:2; }
+.talent .name{color: #BDBDBD; padding-bottom: .125rem; font-size: .12rem;}
+.talent .h-3{height: 0.3rem;}
+</style>
+</head>
+<body>
+<section class="content" v-cloak>
+	<ul class="talent">
+		<li class="item" v-for="item in commits" @click="backSportTime(item.contentShowInfo.code,item.contentShowInfo.type)">
+			<a href="javascript:;" class="photo"><img src="../static/img/lazyload.jpg" v-lazyload:opts.fadein="item.contentShowInfo.cover" alt=""></a>
+			<h1 class="title" :class="{'h-3':browser}">{{item.contentShowInfo.title}}</h1>
+		</li>
+	</ul>
+	<aside class="load" v-if="next"><img src="../static/img/godo.gif" alt=""></aside>
+</section>
+<script type="text/javascript" src="script/common.min.js"></script>
+<script>
+Vue.use(Vue.lazyimg,{
+	nohori: true
+});
+new Vue({
+	el:'.content',
+	data:{
+		commits:[],
+		page:1,
+		next:true,
+		browser:navigator.userAgent.indexOf('Lenovo') > -1
+	},
+	created:function(){
+		var _this = this;
+		_this.getData();
+		window.addEventListener('scroll', _this.refresh, false);
+		callWebTitle('达人专访');
+	},
+	watch:{
+		page:'getData'
+	},
+	methods:{
+		getData:function(){
+			var _this = this;
+			reqwest({
+				url: '/api/homeController/expertChat',
+				method: 'post',
+				data: '{"pagination": "' + _this.page + '", "width": "' + window.innerWidth + '", "zoo": {"key": "tesetkey", "token": " "}}',
+				type: 'json',
+				contentType: 'application/json',
+				success: function(resp) {
+					if(resp.status == 1){
+						_this.commits = _this.commits.concat(resp.contentShowModels);
+						_this.next = resp.nextPageFlag;
+					}else{
+						alert(resp.error)
+					}
+				}
+			});
+		},
+		refresh:function(){
+			var winHeight = window.innerHeight;
+			var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+			var bodyHeight = document.body.clientHeight;
+			if(this.next && bodyHeight <= (winHeight + scrollTop)){
+				this.page++;
+			}
+		},
+		backSportTime:function(code,type) {
+			callbackSportTime(code,type);
+		}
+	}
+})
+</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260476594'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260476594' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>
+</html>

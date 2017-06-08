@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+</head>
+<body>
+<script>
+function queryString(name){
+	var url = location.search;
+	var request = '';
+	if (url.indexOf("?") != -1) {
+		var str = url.substr(1);
+		var result = str.split("&");
+		for (var i = 0; i < result.length; i++) {
+			var arr = result[i].split("=");
+			if(arr[0] == name){
+				request = unescape(arr[1]);
+			}
+		}
+	}
+	return request;
+}
+var wechat = navigator.userAgent.indexOf('MicroMessenger') > -1?true:false;
+//wxec842da73ebe11a4
+//wxfd44c999a0475e56
+if(wechat){
+	window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec842da73ebe11a4&redirect_uri=http://godo-beta-manage.srnpr.com/webjars/entry/match.html?id=' + queryString('id') + '&response_type=code&scope=snsapi_userinfo&state=512457895#wechat_redirect';
+} else {
+	window.location.href = 'http://godo-beta-manage.srnpr.com/webjars/entry/match.html?id=' + queryString('id');
+}
+</script>
+</body>
+</html>

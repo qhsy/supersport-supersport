@@ -1,0 +1,78 @@
+ <!DOCTYPE html>
+<html lang="en" id="my-questions">
+<head>
+<meta charset="UTF-8">
+<title>我问</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<link rel="stylesheet" href="style/style.css">
+<script type="text/javascript">
+var require = {
+    baseUrl:'js/',
+    paths:{
+        vue:'vue.min',
+        zepto:'zepto.min',
+        jssdk:'jweixin-1.0.0',
+        common:'common',
+        extend:'vue.extend',
+        qrcode:'qrcode'
+    },
+    shim:{
+        zepto:{
+            exports:'$'
+        },
+        common:{
+            exports:'common'
+        },
+        qrcode:{
+            exports:'QRCode'
+        }
+    }
+};
+</script>
+</head>
+<body v-cloak>
+<section class="wrap">
+    <template v-if="browser">
+        <article class="isBrowser">
+            <span id="qrcode"></span>
+            <h1>微信扫一扫</h1>
+        </article>
+    </template>
+    <template v-else>
+        <template v-if="result.total">
+            <article class="leon-answer">
+            	<h1>我问<i>{{result.total}}</i>个</h1>
+                <ul class="bd">
+                	<li v-for="item in result.questionInfos">
+                        <a href="details.html?id={{item.code}}">
+                        	<h2><span>￥{{item.money}}<i v-bind:class="{i1:item.statusText=='未回答',i2:item.statusText=='已回答'}">{{item.statusText}}</i></span><img :src="item.aboutHead" alt="">{{item.nickName}}</h2>
+                            <template v-if="item.scope == 'dzsd4888100110020002'">
+                                <p>{{item.content}}</p>
+                            </template>
+                            <template v-else>
+                                <p><b>[私密]</b>{{item.content}}</p>
+                            </template>
+                            <div class="info">
+                                偷偷听<i>{{item.listen}}</i>　分成收入<i>￥{{item.askAmount}}</i><em style="float: right;">{{item.questionTimeStr}}</em>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </article>
+        </template>
+        <template v-else>
+        <div class="no-data"></div>
+        </template>
+    </template>
+</section>
+<footer-nav></footer-nav>
+<script type="text/javascript" src="js/require.min.js"></script>
+<script type="text/javascript" src="js/app/my_questions.js"></script>
+</body>
+</html>

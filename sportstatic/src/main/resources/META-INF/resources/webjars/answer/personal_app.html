@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" id="personal">
+<head>
+<meta charset="UTF-8">
+<title>个人主页</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<link rel="stylesheet" href="style/style.css">
+<script type="text/javascript">
+var require = {
+	baseUrl:'js/',
+	paths:{
+		vue:'vue.min',
+		zepto:'zepto.min',
+		jssdk:'jweixin-1.0.0',
+		common:'common',
+		extend:'vue.extend',
+		qrcode:'qrcode'
+	},
+	shim:{
+		zepto:{
+			exports:'$'
+		},
+		common:{
+			exports:'common'
+		},
+		qrcode:{
+			exports:'QRCode'
+		}
+	}
+};
+</script>
+<style>
+.isData{text-align:center; padding: 0.2rem 0;}
+.personal .photo{position: relative;}
+.personal .photo .mark{width: 0.15rem; height: 0.15rem; background: url(../static/img/icon_markbig.png) left top; background-size: cover; position: absolute; right: 0.05rem; bottom: 0.05rem;}
+.personal .photo .qiye{width: 0.15rem; height: 0.15rem; background: url(../static/img/icon_qiyeSmall@3x.png) left top; background-size: cover; position: absolute; right: 0.05rem; bottom: 0.05rem;}
+.personal-sports .qiye{width: 0.12rem; height: 0.12rem; background: url(../static/img/icon_qiyeSmall@3x.png) left top; background-size: cover; position: absolute; right: 0; bottom: 0;}
+
+
+/*分享*/
+/* .share{width: 100%; padding: 0.13rem 0; background: rgba(217,217,217,0.7); position: fixed; left: 0; bottom: 0; z-index: 99;}
+.share .logo{width: 1.07rem; margin-left: 0.16rem; float: left;}
+.share .btn{width: 0.74rem; height: 0.26rem; margin-right: 0.5rem; background: #F8800A; float: right; border-radius: 4px; text-align: center; color: #fff; font-size: 0.12rem; line-height: 0.26rem;}
+.share .close{width: 0.22rem; height: 0.22rem; border-radius: 50%; background: #D8D8D8; color: #fff; position: absolute; right: 0.1rem; top: 0.15rem; text-align: center; line-height: 0.22rem; font-size: 0.12rem;} */
+/*分享*/
+.share{width: 100%; padding: 10px 0; background: rgba(217,217,217,0.7); position: fixed; left: 0; bottom: 0; z-index: 99;}
+.share .logo{height: 30px; margin-left: 16px; float: left;}
+.share .logo img{width: auto; height: 100%;}
+.share .btn{width:74px; height: 30px; margin-right: 15px; background: #F8800A; float: right; border-radius: 4px; text-align: center; color: #fff; font-size: 12px; line-height:30px;}
+.share .close{width: 20px; height: 20px; border-radius: 50%; background: #D8D8D8; color: #fff; position: absolute; right: 10px; top: 17px; text-align: center; line-height: 22px; font-size: 12px;}
+</style>
+</head>
+<body>
+<!-- <header class="open-app">
+	<span class="app-logo"><img src="style/img/about.png"></span>
+	<a href="javascript:;" class="app-btn" @click="open">打开App</a>
+</header> -->
+<section class="wrap" v-cloak style="padding: 0 0 0.6rem;">
+	<article class="personal">
+		<template v-if="result.userInfo.aboutCover">
+			<header class="head" style="background-image: url('{{result.userInfo.aboutCover}}');">
+				<hduser :result="result"></hduser>
+			</header>
+		</template>
+		<template v-else>
+			<header class="head">
+				<hduser :result="result"></hduser>
+			</header>
+		</template>
+		<div class="info">
+			<p class="about" v-if="result.answerUserInfo.ability">
+				{{result.answerUserInfo.ability}}
+			</p>
+			<a href="javascript:;" @click="open" v-if="!result.ownFlag" class="quiz">提问</a>
+		</div>
+	</article>
+	<ul class="personal-tab">
+		<li @click="tabEvent(0)" :class="[currView == 'contentTab'?'curr':'']"><span>运动时刻</span></li>
+		<li @click="tabEvent(1)" :class="[currView == 'questionTab'?'curr':'']"><span>问达</span></li>
+	</ul>
+	<template v-if="currView == 'contentTab'">
+		<template v-if="!result.userContentTabInfo.contentInfos.length">
+			<div class="isData">目前Ta还没有发布时刻</div>
+		</template>
+		<template v-else>
+			<ul class="personal-sports" v-cloak>
+				<li v-for="item in result.userContentTabInfo.contentInfos">
+					<a href="javascript:;" @click="open">
+						<sports :item="item"></sports>
+					</a>
+				</li>
+			</ul>
+		</template>
+	</template>
+	<template v-else>
+		<template v-if="!result.userQuestionTabInfo.questionInfos.length">
+			<div class="isData">目前Ta还没有回答问题</div>
+		</template>
+		<template v-else>
+			<dl class="personal-dl" v-cloak>
+				<dt>回答了{{result.answerUserInfo.answerCount}}个问题</dt>
+				<dd class="details-item" v-for="item in result.userQuestionTabInfo.questionInfos">
+					<a href="javascript:;" @click="open">
+						<answer :item="item" :head="result"></answer>
+					</a>
+				</dd>
+			</dl>
+		</template>
+		
+	</template>
+</section>
+<div class="fixed" v-if="browser" v-cloak @click="closeQrcode">
+	<span>
+		<em id="qrcode"></em>
+		<i>微信扫一扫</i>
+	</span>
+</div>
+<template id="header">
+	<div class="user">
+		<span class="attend"><em>{{result.userInfo.attendNum}}</em>关注</span>
+		<span class="photo">
+			<img :src="result.answerUserInfo.aboutHead" alt="">
+			<em class="mark" v-if="result.userInfo.type == 'dzsd4107100310010002'"></em>
+			<em class="qiye" v-if="result.userInfo.type == 'dzsd4107100310010003'"></em>
+		</span>
+		<span class="fans"><em>{{result.userInfo.fansNum}}</em>粉丝</span>
+	</div>
+	<h1 class="name">{{result.answerUserInfo.nickName}}</h1>
+	<h2 class="tag">{{result.answerUserInfo.title}}</h2>
+	<template v-if="!result.ownFlag">
+		<template v-if="result.answerUserInfo.attendFlag == '0'">
+			<a href="javascript:;" class="follow" @click="attendFlag">+ 关注</a>
+		</template>
+		<template v-else>
+			<a href="javascript:;" class="follow un" @click="unAttendFlag">已关注</a>
+		</template>
+	</template>
+</template>
+<!-- component sports -->
+<template id="sports">
+	<div class="canvas"><img :src="item.cover" alt=""></div>
+	<div class="mask">
+		<h1 class="title">{{item.title}}</h1>
+	</div>
+	<div class="user">
+		<span class="photo">
+			<img :src="item.userBasicInfo.aboutHead" :alt="item.userBasicInfo.nickName">
+			<i class="sign" v-if="item.userBasicInfo.type == 'dzsd4107100310010002'"></i>
+			<i class="qiye" v-if="item.userBasicInfo.type == 'dzsd4107100310010003'"></i>
+		</span>
+		<em class="name">{{item.userBasicInfo.nickName}}</em>
+	</div>
+</template>
+<!-- end -->
+<!-- component answer -->
+<template id="answer">
+	<div class="ask"><span class="ask-photo"><img :src="item.aboutHead" alt=""></span><em>{{item.nickName}}</em><i>{{item.money}}</i></div>
+	<h1 class="title">{{item.content}}</h1>
+	<div class="user">
+		<span class="photo"><img :src="head.answerUserInfo.aboutHead" alt="" title=""></span>
+		<span :class="[item.activityFlag?'listen-flag':'hear']"><i class="iconfont">&#xe600;</i>{{item.soundContent}}</span>
+		<em class="time">{{item.lengh}}”</em>
+	</div>
+	<div class="status"><em>听过{{item.listen}}</em>赞{{item.praiseNum}}<i>{{item.questionTimeStr}}</i></div>
+</template>
+<!--  -->
+<script type="text/javascript" src="js/require.min.js"></script>
+<script type="text/javascript" src="js/app/personal_app.js"></script>
+<script type="text/javascript" src="../static/js/share.js"></script>
+<script>
+share()
+</script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>详情</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no" >
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="author" content="">
+<link rel="stylesheet" href="css/main.css?version=20160509">
+<style type="text/css">
+body{background: #333; overflow: hidden;}
+</style>
+</head>
+<body class="ms-controller">
+<section class="photo" id="photo"></section>
+<!-- 图片信息 -->
+<section class="photo-info">
+	<aside class="photo-num"><em class="number">1</em>/<span class="photo-sum"></span></aside>
+	<h1 class="photo-tit"></h1>
+	<time class="photo-time"></time>
+	<div class="photo-txt"></div>
+</section>
+<!-- 达人 -->
+<aside class="photo-head"><em><img src="image/normal_head.png" alt=""></em><i></i></aside>
+<em class="icon-markbig"></em>
+<script type="text/javascript" src="script/zepto.min.js"></script>
+<script type="text/javascript" src="../common/share.js"></script>
+<script type="text/javascript">
+$(function(){
+	var share = urlFormat('share');
+	if(parseInt(share)){
+		var ele = $('<header class="open-app"><span class="app-logo"><img src="css/img/about.png"></span><a href="javascript:;" class="app-btn">打开App</a></header>');
+		ele.prependTo('body');
+	}
+	var jsonData,isHide = true,code = urlFormat('code');;
+	$.ajax({
+		url:'/api/contentController/contentPhotosDetail',
+		type:'POST',
+		contentType:'application/json',
+		data:'{"content_code": "' + code + '","zoo": {"key": "tesetkey","token": " "}}',
+		dataType:'json',
+		success:function(data){
+			
+			new Slider({
+				wrap: document.querySelector('#photo'),
+				number:document.querySelector('.number'),
+				text:document.querySelector('.photo-txt'),
+				title:document.querySelector('.photo-tit'),
+				name:document.querySelector('.photo-head i'),
+				head:document.querySelector('.photo-head em'),
+				time:document.querySelector('.photo-time'),
+				sum:document.querySelector('.photo-sum'),
+				data: data
+			});
+			if(data.contentBasicInfo.userBasicInfo.type!='dzsd4107100310010002'){
+				$('.icon-markbig').remove();
+			}
+			$('body').removeClass('ms-controller');
+			$('.photo-list').on('tap',function(){
+				isHide = !isHide;
+				isHide?$('.photo-info,.photo-head,.icon-markbig').show():$('.photo-info,.photo-head,.icon-markbig').hide();
+			});
+		}
+	});
+	$('.app-btn').on('click',function(){
+		open();
+	});
+	$('.photo-head').on('click',function(){
+		var id = $(this).find('em').attr('id');
+		callbackFunc(id);
+	});
+});
+//构造函数
+function Slider(opts) {
+	this.wrap = opts.wrap;
+	this.data = opts.data;
+	this.number = opts.number;
+	this.sum = opts.sum;
+	this.text = opts.text;
+	this.title = opts.title;
+	this.name = opts.name;
+	this.head = opts.head;
+	this.time = opts.time;
+	this.init();
+	this.renderDOM();
+	this.bindDOM();
+}
+Slider.prototype.init = function() {
+	this.radio = window.innerHeight / window.innerWidth;
+	this.scaleW = window.innerWidth;
+	this.idx = 0;
+};
+Slider.prototype.renderDOM = function() {
+	var wrap = this.wrap;
+	var data = this.data['contentPhotosDetails'];
+	var len = data.length;
+	this.outer = document.createElement('ul');
+	this.outer.className = 'photo-list';
+	for (var i = 0; i < len; i++) {
+		var li = document.createElement('li');
+		var item = data[i];
+		li.style.width = window.innerWidth + 'px';
+		li.style.webkitTransform = 'translate3d(' + i * this.scaleW + 'px, 0, 0)';
+		if (item) {
+			if (item['thumb']['sourceHeight'] / item['thumb']['sourceWidth'] > this.radio) {
+				li.innerHTML = '<img height="' + window.innerHeight + '" src="' + item['thumb']['sourceUrl'] + '">';
+			} else {
+				li.innerHTML = '<img width="' + window.innerWidth + '" src="' + item['thumb']['sourceUrl'] + '">';
+			}
+		}
+		this.outer.appendChild(li);
+	}
+	this.outer.style.cssText = 'width:' + this.scaleW + 'px';
+	wrap.style.height = window.innerHeight + 'px';
+	wrap.appendChild(this.outer);
+	this.time.innerHTML = this.data.contentBasicInfo['publishTimeStr'];
+	if(this.data.contentBasicInfo.userBasicInfo['aboutHead']){
+		this.head.innerHTML = '<img src="' + this.data.contentBasicInfo.userBasicInfo['aboutHead'] + '"/>';
+	}
+	this.head.setAttribute('id',this.data.contentBasicInfo.author)
+	this.name.innerHTML = this.data.contentBasicInfo.userBasicInfo['nickName'];
+	this.title.innerHTML = this.data.contentBasicInfo['title'];
+	this.text.innerHTML = '<p>' + this.data.contentPhotosDetails[0].content + '</p>';
+	this.sum.innerHTML = this.data.totalCount;
+};
+
+Slider.prototype.goIndex = function(n) {
+	var idx = this.idx;
+	var lis = this.outer.getElementsByTagName('li');
+	var len = lis.length;
+	var cidx;
+	if (typeof n == 'number') {
+		cidx = idx;
+	} else if (typeof n == 'string') {
+		cidx = idx + n * 1;
+	}
+	if (cidx > len - 1) {
+		cidx = len - 1;
+	} else if (cidx < 0) {
+		cidx = 0;
+	}
+
+	this.idx = cidx;
+	lis[cidx].style.webkitTransition = '-webkit-transform 0.2s ease-out';
+	lis[cidx - 1] && (lis[cidx - 1].style.webkitTransition = '-webkit-transform 0.2s ease-out');
+	lis[cidx + 1] && (lis[cidx + 1].style.webkitTransition = '-webkit-transform 0.2s ease-out');
+
+	lis[cidx].style.webkitTransform = 'translate3d(0, 0, 0)';
+	lis[cidx - 1] && (lis[cidx - 1].style.webkitTransform = 'translate3d(-' + this.scaleW + 'px, 0, 0)');
+	lis[cidx + 1] && (lis[cidx + 1].style.webkitTransform = 'translate3d(' + this.scaleW + 'px, 0, 0)');
+
+	this.number.innerHTML = cidx+1;
+	this.text.innerHTML = '<p>' + this.data.contentPhotosDetails[cidx].content + '</p>'
+};
+Slider.prototype.bindDOM = function() {
+	var self = this;
+	var scaleW = self.scaleW;
+	var outer = self.outer;
+	var len = self.data.contentPhotosDetails.length;
+	var startHandler = function(evt) {
+		self.startTime = new Date() * 1;
+		self.startX = evt.touches[0].pageX;
+		self.offsetX = 0;
+		var target = evt.target;
+		while (target.nodeName != 'LI' && target.nodeName != 'BODY') {
+			target = target.parentNode;
+		}
+		self.target = target;
+	};
+	var moveHandler = function(evt) {
+		evt.preventDefault();
+		self.offsetX = evt.targetTouches[0].pageX - self.startX;
+		var lis = outer.getElementsByTagName('li');
+		var i = self.idx - 1;
+		var m = i + 3;
+		for (i; i < m; i++) {
+			lis[i] && (lis[i].style.webkitTransition = '-webkit-transform 0s ease-out');
+			lis[i] && (lis[i].style.webkitTransform = 'translate3d(' + ((i - self.idx) * self.scaleW + self.offsetX) + 'px, 0, 0)');
+		}
+	};
+	var endHandler = function(evt) {
+		evt.preventDefault();
+		var boundary = scaleW / 6;
+		var endTime = new Date() * 1;
+		var lis = outer.getElementsByTagName('li');
+		if (endTime - self.startTime > 300) {
+			if (self.offsetX >= boundary) {
+				self.goIndex('-1');
+			} else if (self.offsetX < 0 && self.offsetX < -boundary) {
+				self.goIndex('+1');
+			} else {
+				self.goIndex('0');
+			}
+		} else {
+			if (self.offsetX > 50) {
+				self.goIndex('-1');
+			} else if (self.offsetX < -50) {
+				self.goIndex('+1');
+			} else {
+				self.goIndex('0');
+			}
+		}
+	};
+	outer.addEventListener('touchstart', startHandler);
+	outer.addEventListener('touchmove', moveHandler);
+	outer.addEventListener('touchend', endHandler);
+};
+function callbackFunc(code){
+	var userAgent = navigator.userAgent;
+	if(userAgent.indexOf('Android') != -1){
+		javascript:android.StartUserInfo(code);
+	}
+}
+/* 通过URL获取CODE值 */
+function urlFormat(arg){
+	// ?content_code=string&share=1
+	var url = window.location.search;
+	if(typeof url != 'string' || url == '') return;
+	var newUrl = url.substr(1);
+	var urlArr = newUrl.split('&');
+	for(var i=0; i<urlArr.length; i++){
+		var arr = urlArr[i].split('=');
+		for(j=0; j<arr.length; j++){
+			if(arg == arr[0]){
+				return arr[1]
+			}
+		}
+	}
+}
+
+</script>
+</body>
+</html>
