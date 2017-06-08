@@ -55,6 +55,17 @@ public class ContentBasicinfoForApi {
 	@ApiModelProperty(name = "视频地址")
 	private String videoUrl;
 
+	@ApiModelProperty(value="音视频时长")
+	private long duration;
+	
+	public long getDuration() {
+		return duration;
+	}
+
+	public void setDuration(long duration) {
+		this.duration = duration;
+	}
+
 	public String getCode() {
 		return code;
 	}

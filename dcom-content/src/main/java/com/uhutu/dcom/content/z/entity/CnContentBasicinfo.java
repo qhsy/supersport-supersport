@@ -57,6 +57,10 @@ public class CnContentBasicinfo extends BaseEntity {
 	@ZooData(name = "视频地址", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String videoUrl;
 
+	@ZooData(name="时长", sort = { DefineWebPage.Page_Query + "=0",DefineWebPage.Page_Grid+"=0",
+			DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Add + "=0" })
+	private long duration;
+	
 	public String getCode() {
 		return code;
 	}
@@ -127,6 +131,14 @@ public class CnContentBasicinfo extends BaseEntity {
 
 	public void setVideoUrl(String videoUrl) {
 		this.videoUrl = videoUrl;
+	}
+
+	public long getDuration() {
+		return duration;
+	}
+
+	public void setDuration(long duration) {
+		this.duration = duration;
 	}
 
 }

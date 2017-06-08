@@ -1,6 +1,7 @@
 package com.uhutu.dcom.content.func;
 
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.support.DurationSupport;
 import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
@@ -24,6 +25,9 @@ public class CnContentBasicinfoFuncEdit extends RootFunc {
 		if ("dzsd4699100110010001".equals(input.getDataMap().get("status"))
 				&& "dzsd4699100110010002".equals(info.getStatus())) {
 			map.put("publish_time", DateHelper.upNow());
+		}
+		if ("dzsd4107100110030001".equals(info.getContentType()) && !info.getVideoUrl().equals(map.get("video_url"))) {
+			map.put("duration", String.valueOf(new DurationSupport().getDuration(map.get("video_url"))));
 		}
 		JdbcHelper.dataUpdate(extendPageDefine.getPageSource().getTableName(), map, "", "za");
 		return new WebOperateResult();

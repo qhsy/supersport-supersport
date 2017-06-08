@@ -2,6 +2,7 @@ package com.uhutu.dcom.content.func;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.uhutu.dcom.content.z.support.DurationSupport;
 import com.uhutu.zoocom.define.DefineWebInc;
 import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.model.MDataMap;
@@ -74,6 +75,7 @@ public class CnContentBasicinfoFuncAdd extends RootFunc {
 			mInsertMap.put("publish_time", DateHelper.upNow());
 		}
 		mInsertMap.put("content_type", "dzsd4107100110030001");
+		mInsertMap.put("duration", String.valueOf(new DurationSupport().getDuration(mInsertMap.get("video_url"))));
 		JdbcHelper.dataInsert(extendPageDefine.getPageSource().getTableName(), mInsertMap);
 		MDataMap detail = new MDataMap();
 		detail.put("code", mInsertMap.get("code"));
