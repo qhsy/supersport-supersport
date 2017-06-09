@@ -55,6 +55,7 @@ import com.uhutu.sportcenter.z.api.content.ApiPublishSportingMoment;
 import com.uhutu.sportcenter.z.api.content.ApiSavePoints;
 import com.uhutu.sportcenter.z.api.content.ApiShareContent;
 import com.uhutu.sportcenter.z.api.content.ApiShareInfo;
+import com.uhutu.sportcenter.z.api.content.ApiSpecialEffectRecord;
 import com.uhutu.sportcenter.z.api.content.ApiSportChickenSoup;
 import com.uhutu.sportcenter.z.api.content.ApiSportingMoments;
 import com.uhutu.sportcenter.z.api.content.ApiSportingMomentsSecond;
@@ -677,7 +678,14 @@ public class ApiFactory {
 	@Autowired
 	private ApiFriendsNearby apiFriendsNearby;
 	
+	@Autowired
+	private ApiSpecialEffectRecord apiSpecialEffectRecord;
 	
+	
+	public ApiSpecialEffectRecord getApiSpecialEffectRecord() {
+		return apiSpecialEffectRecord;
+	}
+
 	public ApiFriendsNearby getApiFriendsNearby() {
 		return apiFriendsNearby;
 	}

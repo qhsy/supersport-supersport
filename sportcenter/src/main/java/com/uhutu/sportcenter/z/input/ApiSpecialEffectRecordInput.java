@@ -4,7 +4,7 @@ import com.uhutu.zoocom.root.RootApiInput;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class ApiSavePointsInput extends RootApiInput {
+public class ApiSpecialEffectRecordInput extends RootApiInput {
 
 	@ApiModelProperty(name = "内容编号", required = true, value = "编号", example = "v1.1.0")
 	private String code;

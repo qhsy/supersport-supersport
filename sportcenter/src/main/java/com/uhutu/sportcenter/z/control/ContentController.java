@@ -14,12 +14,14 @@ import com.uhutu.sportcenter.z.input.ApiHomePageInput;
 import com.uhutu.sportcenter.z.input.ApiLiveMakeInput;
 import com.uhutu.sportcenter.z.input.ApiSavePointsInput;
 import com.uhutu.sportcenter.z.input.ApiShareInfoInput;
+import com.uhutu.sportcenter.z.input.ApiSpecialEffectRecordInput;
 import com.uhutu.sportcenter.z.result.APiVideoListResult;
 import com.uhutu.sportcenter.z.result.ApiComplainInfoResult;
 import com.uhutu.sportcenter.z.result.ApiHomePageResult;
 import com.uhutu.sportcenter.z.result.ApiLiveMakeResult;
 import com.uhutu.sportcenter.z.result.ApiSavePointsResult;
 import com.uhutu.sportcenter.z.result.ApiShareInfoResult;
+import com.uhutu.sportcenter.z.result.ApiSpecialEffectRecordResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -52,6 +54,14 @@ public class ContentController {
 	public ApiSavePointsResult pointsSave(@RequestBody ApiSavePointsInput input) {
 
 		return apiFactory.getApiSavePoints().api(input);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/specialEffectRecord", method = RequestMethod.POST)
+	@ApiOperation(value = "特效使用记录接口", notes = "特效使用记录接口")
+	public ApiSpecialEffectRecordResult pointsSave(@RequestBody ApiSpecialEffectRecordInput input) {
+
+		return apiFactory.getApiSpecialEffectRecord().api(input);
 	}
 
 	// @ResponseBody
