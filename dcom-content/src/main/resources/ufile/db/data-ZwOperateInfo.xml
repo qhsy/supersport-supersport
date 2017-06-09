@@ -505,7 +505,7 @@
 			operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
 			parentCode="" noteRemark="" />
-		<item code="dzoi41071113" operateName="关联" operateFunc=""
+		<item code="dzoi41071113" operateName="选择球队" operateFunc=""
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_LiveMatchRelPage?u_code=[[data:code]]')"
 			parentCode="" noteRemark="" />
@@ -550,6 +550,14 @@
 			operateFunc="com.uhutu.dcom.content.func.CnContentBasicinfoForLiveFuncAdd"
 			operateType="button"
 			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071123" operateName="选择特效" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_LiveSpecialEffectRelPage?u_code=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071124" operateName="已关联特效" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_LiveSpecialEffectRelPage?u_code=[[data:code]]')"
 			parentCode="" noteRemark="" />
 	</data>
 
