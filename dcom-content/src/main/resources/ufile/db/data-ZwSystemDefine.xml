@@ -92,6 +92,14 @@
 		<item code="dzsd4107100110180001" defineName="URL(跳转参数：超链接)" parentCode="dzsd410710011018" />
 		<item code="dzsd4107100110180002" defineName="直播间(跳转参数：直播间编号)" parentCode="dzsd410710011018" />
 		<item code="dzsd4107100110180003" defineName="视频(跳转参数：内容编号)" parentCode="dzsd410710011018" />
+		<item code="dzsd410710011019" defineName="特效类型" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110190001" defineName="左到右直线滑动" parentCode="dzsd410710011019" />
+		<item code="dzsd4107100110190002" defineName="放大淡出" parentCode="dzsd410710011019" />
+		<item code="dzsd4107100110190003" defineName="抛物线滑动" parentCode="dzsd410710011019" />
+		<item code="dzsd410710011020" defineName="状态" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110200001" defineName="启用" parentCode="dzsd410710011020" />
+		<item code="dzsd4107100110200002" defineName="停止" parentCode="dzsd410710011020" />
+		
 	</data>
 
 </db>
