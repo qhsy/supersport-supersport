@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.uhutu.dcom.content.z.entity.CnLiveInfo;
 import com.uhutu.dcom.content.z.entity.CnLiveMatchInfo;
+import com.uhutu.sportcenter.z.entity.CnLiveSpecialEffectForApi;
 import com.uhutu.sportcenter.z.entity.UserBasicInfo;
 import com.uhutu.zoocom.root.RootApiResult;
 
@@ -20,6 +21,9 @@ public class ApiLiveInfoResult extends RootApiResult {
 
 	@ApiModelProperty(value = "球队信息")
 	List<CnLiveMatchInfo> matchs = new ArrayList<CnLiveMatchInfo>();
+
+	@ApiModelProperty(value = "特效信息")
+	List<CnLiveSpecialEffectForApi> lse = new ArrayList<CnLiveSpecialEffectForApi>();
 
 	public CnLiveInfo getLiveInfo() {
 		return liveInfo;
@@ -45,4 +49,12 @@ public class ApiLiveInfoResult extends RootApiResult {
 		this.matchs = matchs;
 	}
 
+	public List<CnLiveSpecialEffectForApi> getLse() {
+		return lse;
+	}
+
+	public void setLse(List<CnLiveSpecialEffectForApi> lse) {
+		this.lse = lse;
+	}
+	
 }
