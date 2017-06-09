@@ -2,8 +2,8 @@ package com.uhutu.dcom.content.func;
 
 import java.util.List;
 
-import com.uhutu.dcom.content.z.entity.CnLiveMatchRel;
 import com.uhutu.zoocom.helper.MapHelper;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.api.webpage.WebOperateInput;
 import com.uhutu.zooweb.api.webpage.WebOperateResult;
@@ -17,10 +17,11 @@ public class LiveMatchRelFuncEdit extends RootFunc {
 	public WebOperateResult process(WebPageModel webPageModel, ExtendPageDefine extendPageDefine,
 			WebOperateInput input) {
 		WebOperateResult result = new WebOperateResult();
-		List<CnLiveMatchRel> rels = JdbcHelper.queryForList(CnLiveMatchRel.class, "", "",
+		List<MDataMap> rels = JdbcHelper.dataQuery(extendPageDefine.getPageSource().getTableName(), "", "",
 				"code=:code and game_code=:game_code and za!=:za",
 				MapHelper.initMap("code", input.getDataMap().get("code"), "game_code",
-						input.getDataMap().get("game_code"), "za", input.getDataMap().get("za")));
+						input.getDataMap().get("game_code"), "za", input.getDataMap().get("za")),
+				0, 0);
 		if (rels != null && rels.size() > 0) {
 			result.inError(810710002);
 		} else {

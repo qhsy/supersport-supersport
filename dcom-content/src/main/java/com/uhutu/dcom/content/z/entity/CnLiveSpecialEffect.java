@@ -36,8 +36,7 @@ public class CnLiveSpecialEffect extends BaseEntity {
 	private String status;
 
 	@ZooData(name = "位置(倒序)", element = DefineWebElement.Input, verify = { DefineWebVerify.Base_Number }, sort = {
-			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Add + "=0",
-			DefineWebPage.Page_Grid + "=0" }, require = "1")
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Add + "=0" }, require = "1")
 	private int sort = 0;
 
 	public String getCode() {
