@@ -559,6 +559,24 @@
 			operateType="button"
 			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_LiveSpecialEffectRelPage?u_code=[[data:code]]')"
 			parentCode="" noteRemark="" />
+		<item code="dzoi41071125" operateName="新增赠送规则" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pa/com_uhutu_dcom_content_z_page_LiveSpecialEffectFreePage?u_seCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071126" operateName="已存在赠送规则" operateFunc=""
+			operateType="button"
+			operateLink="zstatic_operate.ope_link('../pg/com_uhutu_dcom_content_z_page_LiveSpecialEffectFreePage?u_seCode=[[data:code]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071127" operateName="添加"
+			operateFunc="com.uhutu.dcom.content.func.LiveSpecialEffectFreePageFuncAdd"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
+		<item code="dzoi41071128" operateName="修改"
+			operateFunc="com.uhutu.dcom.content.func.LiveSpecialEffectFreePageFuncEdit"
+			operateType="button"
+			operateLink="zstatic_operate.operate_submit('[[struct:pageUnique]]','[[operate:operateCode]]')"
+			parentCode="" noteRemark="" />
 	</data>
 
 </db>

@@ -99,7 +99,10 @@
 		<item code="dzsd410710011020" defineName="状态" parentCode="dzsd41071001" />
 		<item code="dzsd4107100110200001" defineName="启用" parentCode="dzsd410710011020" />
 		<item code="dzsd4107100110200002" defineName="停止" parentCode="dzsd410710011020" />
-		
+		<item code="dzsd410710011021" defineName="赠送类型" parentCode="dzsd41071001" />
+		<item code="dzsd4107100110210001" defineName="用户注册" parentCode="dzsd410710011021" />
+		<item code="dzsd4107100110210002" defineName="每日开启app" parentCode="dzsd410710011021" />
+		<item code="dzsd4107100110210003" defineName="进入直播间" parentCode="dzsd410710011021" />
 	</data>
 
 </db>
