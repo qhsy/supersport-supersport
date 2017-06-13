@@ -1,4 +1,4 @@
-package com.uhutu.sportcenter.z.entity;
+package com.uhutu.dcom.content.z.entity;
 
 import com.uhutu.zoodata.dbbase.BaseEntity;
 

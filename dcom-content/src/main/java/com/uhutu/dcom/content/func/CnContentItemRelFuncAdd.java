@@ -38,9 +38,9 @@ public class CnContentItemRelFuncAdd extends RootFunc {
 					input.getDataMap().get("content_code"));
 			if (item != null && (binfo != null || linfo != null)) {
 				// 根据栏目类型做校验
-				result = check(item.getType(), input.getDataMap().get("item_code"),
-						input.getDataMap().get("content_code"), input.getDataMap().get("start_time"),
-						input.getDataMap().get("end_time"));
+//				result = check(item.getType(), input.getDataMap().get("item_code"),
+//						input.getDataMap().get("content_code"), input.getDataMap().get("start_time"),
+//						input.getDataMap().get("end_time"));
 				if (result.upFlagTrue()) {
 					CnContentItemRel relInfo = new CnContentItemRel();
 					relInfo.setContentCode(input.getDataMap().get("content_code"));

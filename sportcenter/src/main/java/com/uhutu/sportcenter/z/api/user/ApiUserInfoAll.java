@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
 
 import com.uhutu.dcom.content.z.enums.ContentEnum;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
+import com.uhutu.dcom.remark.z.support.PointSupport;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.dcom.user.z.enums.MsgEnum;
 import com.uhutu.dcom.user.z.enums.UserEnum;
 import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.dcom.user.z.support.UserInfoSupport;
-import com.uhutu.sportcenter.z.api.util.PointSupport;
 import com.uhutu.sportcenter.z.entity.UserInfo;
 import com.uhutu.sportcenter.z.input.ApiUserInfoAllInput;
 import com.uhutu.sportcenter.z.result.ApiUserInfoAllResult;

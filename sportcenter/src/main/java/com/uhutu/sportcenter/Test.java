@@ -1,116 +1,129 @@
 package com.uhutu.sportcenter;
 
-import java.awt.AlphaComposite;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.SimpleTimeZone;
+import java.util.UUID;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 
+import org.apache.commons.codec.binary.Base64;
+
+import com.uhutu.zoocom.support.WebClientSupport;
 /**
- * 图片水印
- * 
- * @blog http://sjsky.iteye.com
- * @author Michael
+ * @author Administrator
+ *
  */
 public class Test {
 
-	/**
-	 * @param args
-	 */
+	private static final String AccessKeyId = "LTAIOB2zfuHzS4BI";
+	private static final String AccessKeySecret = "IUvLfFwLLP5G4pZuTAjfy4t38TlNVK";
+	private final static String ALGORITHM = "HmacSHA1";
+	private static final String ISO8601_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+	private static final String ENCODING = "UTF-8";
+	private static final String requestURL = "http://mts.cn-hangzhou.aliyuncs.com?";
 	public static void main(String[] args) {
-		String srcImgPath = "d:/Documents/Pictures/测试水印/222.jpg";
-		String iconPath = "d:/Documents/Pictures/测试水印/logo.png";
-		String targerPath = "d:/Documents/Pictures/测试水印/img_mark_icon.jpg";
-		// 给图片添加水印
-		Test.markImageByIcon(iconPath, srcImgPath, targerPath);
+		String url = "http://tiyu-vod-iin.oss-cn-hangzhou.aliyuncs.com/mp4MultibitrateIn55/video.mp4";
+//		StringBuffer str = new StringBuffer();
+//		str.append(
+//				"http://mts.cn-hangzhou.aliyuncs.com?FileURLs=http://manageupload.oss-cn-beijing.aliyuncs.com/603afb4f4af9404b8d5e0c5cdbb8a2dc.MP4");
+//		str.append("&Action=QueryMediaListByURL&Format=json&Version=2014-06-18&Signature=").append(signature)
+//				.append("&SignatureMethod=Hmac-SHA1&SignatureNonce=").append(TopHelper.upUuid())
+//				.append("&SignatureVersion=1.0&AccessKeyId=").append(AccessKeyId).append("&Timestamp=")
+//				.append(formatIso8601Date(new Date()))
+//				.append("&IncludePlayList=true&IncludeSnapshotList=false&IncludeMediaInfo=true");
+		System.out.println(aa(url));
+
 	}
 
-	/**
-	 * 给图片添加水印
-	 * 
-	 * @param iconPath
-	 *            水印图片路径
-	 * @param srcImgPath
-	 *            源图片路径
-	 * @param targerPath
-	 *            目标图片路径
-	 */
-	public static void markImageByIcon(String iconPath, String srcImgPath, String targerPath) {
-		markImageByIcon(iconPath, srcImgPath, targerPath, null);
-	}
+	public static String aa(String fileUrl) {
+		String result = null;
+		final String HTTP_METHOD = "GET";
+		Map<String, String> parameters = new HashMap<String, String>();
+		// 加入请求参数
+		parameters.put("Action", "QueryMediaListByURL");
+		parameters.put("Version", "2014-06-18");
+		parameters.put("AccessKeyId", AccessKeyId);
+		parameters.put("TimeStamp", formatIso8601Date(new Date()));
+		parameters.put("SignatureMethod", "HMAC-SHA1");
+		parameters.put("SignatureVersion", "1.0");
+		parameters.put("SignatureNonce", UUID.randomUUID().toString());
+		parameters.put("Format", "json");
+		parameters.put("FileURLs", fileUrl);
+		// 对参数进行排序
+		String[] sortedKeys = parameters.keySet().toArray(new String[] {});
+		Arrays.sort(sortedKeys);
+		final String SEPARATOR = "&";
+		// 生成stringToSign字符串
+		StringBuilder stringToSign = new StringBuilder();
+		stringToSign.append(HTTP_METHOD).append(SEPARATOR);
+		stringToSign.append(percentEncode("/")).append(SEPARATOR);
+		StringBuilder canonicalizedQueryString = new StringBuilder();
+		for (String key : sortedKeys) {
+			// 这里注意对key和value进行编码
+			canonicalizedQueryString.append("&").append(percentEncode(key)).append("=")
+					.append(percentEncode(parameters.get(key)));
+		}
+		// 这里注意对canonicalizedQueryString进行编码
+		stringToSign.append(percentEncode(canonicalizedQueryString.toString().substring(1)));
 
-	/**
-	 * 给图片添加水印、可设置水印图片旋转角度
-	 * 
-	 * @param iconPath
-	 *            水印图片路径
-	 * @param srcImgPath
-	 *            源图片路径
-	 * @param targerPath
-	 *            目标图片路径
-	 * @param degree
-	 *            水印图片旋转角度
-	 */
-	public static void markImageByIcon(String iconPath, String srcImgPath, String targerPath, Integer degree) {
-		OutputStream os = null;
-		try {
-			Image srcImg = ImageIO.read(new File(srcImgPath));
-
-			BufferedImage buffImg = new BufferedImage(srcImg.getWidth(null), srcImg.getHeight(null),
-					BufferedImage.TYPE_INT_RGB);
-
-			// 得到画笔对象
-			// Graphics g= buffImg.getGraphics();
-			Graphics2D g = buffImg.createGraphics();
-
-			// 设置对线段的锯齿状边缘处理
-			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-
-			g.drawImage(srcImg.getScaledInstance(srcImg.getWidth(null), srcImg.getHeight(null), Image.SCALE_SMOOTH), 0,
-					0, null);
-
-			if (null != degree) {
-				// 设置水印旋转
-				g.rotate(Math.toRadians(degree), (double) buffImg.getWidth() / 2, (double) buffImg.getHeight() / 2);
-			}
-
-			// 水印图象的路径 水印一般为gif或者png的，这样可设置透明度
-			ImageIcon imgIcon = new ImageIcon(iconPath);
-
-			// 得到Image对象。
-			Image img = imgIcon.getImage();
-
-			float alpha = 1.0f; // 透明度
-			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, alpha));
-
-			// 表示水印图片的位置
-			g.drawImage(img, 472, 30, null);
-
-			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
-
-			g.dispose();
-
-			os = new FileOutputStream(targerPath);
-
-			// 生成图片
-			ImageIO.write(buffImg, "JPG", os);
-
-			System.out.println("图片完成添加Icon印章。。。。。。");
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
+		// 以下是一段计算签名的示例代码
+		String key = AccessKeySecret + "&";
+		byte[] signData = null;
 			try {
-				if (null != os)
-					os.close();
+				Mac mac = Mac.getInstance(ALGORITHM);
+				mac.init(new SecretKeySpec(key.getBytes(ENCODING), ALGORITHM));
+				signData = mac.doFinal(stringToSign.toString().getBytes(ENCODING));
+				
+				String signature = new String(Base64.encodeBase64(signData));
+				
+				StringBuilder requestUrl = new StringBuilder(requestURL);
+				requestUrl.append(URLEncoder.encode("Signature", ENCODING)).append("=").append(signature);
+				for (Map.Entry<String, String> e : parameters.entrySet()) {
+					requestUrl.append("&").append(percentEncode(e.getKey())).append("=").append(percentEncode(e.getValue()));
+				}
+				System.out.println(requestUrl);
+				result = WebClientSupport.create().doGet(requestUrl.toString());
+				System.out.println(result);
+			} catch (InvalidKeyException e) {
+				e.printStackTrace();
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+			return result;
 	}
+
+
+	private static String formatIso8601Date(Date date) {
+		SimpleDateFormat df = new SimpleDateFormat(ISO8601_DATE_FORMAT);
+		df.setTimeZone(new SimpleTimeZone(0, "GMT"));
+		return df.format(date);
+	}
+
+	private static String percentEncode(String value) {
+		String result = null;
+		try {
+			result = value != null
+					? URLEncoder.encode(value, ENCODING).replace("+", "%20").replace("*", "%2A").replace("%7E", "~")
+					: null;
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

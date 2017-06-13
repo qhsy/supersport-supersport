@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.uhutu.dcom.content.z.entity.CnLiveInfo;
 import com.uhutu.dcom.content.z.entity.CnLiveMatchInfo;
-import com.uhutu.sportcenter.z.entity.CnLiveSpecialEffectForApi;
+import com.uhutu.dcom.content.z.entity.CnLiveSpecialEffectForApi;
 import com.uhutu.sportcenter.z.entity.UserBasicInfo;
 import com.uhutu.zoocom.root.RootApiResult;
 

@@ -12,7 +12,7 @@ import com.uhutu.zoocom.define.DefineWebVerify;
 import com.uhutu.zoodata.dbbase.BaseEntity;
 
 /**
- * 直播特效
+ * 直播特效基本信息表
  * 
  * @author xiegj
  *

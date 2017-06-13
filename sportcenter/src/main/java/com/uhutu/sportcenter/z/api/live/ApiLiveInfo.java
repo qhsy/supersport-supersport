@@ -8,14 +8,17 @@ import org.springframework.stereotype.Component;
 import com.uhutu.dcom.content.z.entity.CnLiveInfo;
 import com.uhutu.dcom.content.z.entity.CnLiveMatchInfo;
 import com.uhutu.dcom.content.z.entity.CnLiveMatchRel;
+import com.uhutu.dcom.content.z.support.SpecialEffectSupport;
 import com.uhutu.dcom.user.z.entity.UcUserinfo;
 import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
 import com.uhutu.sportcenter.z.input.ApiLiveInfoInput;
 import com.uhutu.sportcenter.z.result.ApiLiveInfoResult;
+import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.model.MDataMap;
-import com.uhutu.zoocom.root.RootApiBase;
+import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
+import com.uhutu.zooweb.user.UserCallFactory;
 
 import io.swagger.annotations.ApiModel;
 
@@ -27,7 +30,7 @@ import io.swagger.annotations.ApiModel;
  */
 @ApiModel
 @Component
-public class ApiLiveInfo extends RootApiBase<ApiLiveInfoInput, ApiLiveInfoResult> {
+public class ApiLiveInfo extends RootApiToken<ApiLiveInfoInput, ApiLiveInfoResult> {
 
 	@Override
 	protected ApiLiveInfoResult process(ApiLiveInfoInput input) {
@@ -68,6 +71,8 @@ public class ApiLiveInfo extends RootApiBase<ApiLiveInfoInput, ApiLiveInfoResult
 						result.setMatchs(matchs);
 					}
 				}
+				result.setLse(SpecialEffectSupport.Instance().getSpecialEffects(input.getCode(), new UserCallFactory()
+						.upUserCodeByAuthToken(input.getZoo().getToken(), DefineUser.Login_System_Default)));
 			}
 
 		}

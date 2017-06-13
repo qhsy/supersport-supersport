@@ -30,6 +30,9 @@ public class CnLiveSpecialEffectRel extends BaseEntity {
 			DefineWebInc.Web_Component + "=dzcw410710010025" })
 	private String gameCode;
 
+	@ZooData(name = "赠送次数", require = "1", verify = { DefineWebVerify.Base_Number })
+	private int num;
+
 	@ZooData(name = "展示顺序(倒序)", require = "1", verify = { DefineWebVerify.Base_Number })
 	private int sort;
 
@@ -55,6 +58,14 @@ public class CnLiveSpecialEffectRel extends BaseEntity {
 
 	public void setSort(int sort) {
 		this.sort = sort;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 }

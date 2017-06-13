@@ -1,4 +1,4 @@
-package com.uhutu.sportcenter.z.api.util;
+package com.uhutu.dcom.remark.z.support;
 
 import java.math.BigDecimal;
 import java.util.Date;
