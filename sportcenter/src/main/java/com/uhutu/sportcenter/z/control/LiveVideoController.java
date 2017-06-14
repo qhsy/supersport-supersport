@@ -13,9 +13,11 @@ import com.uhutu.sportcenter.z.api.ApiFactory;
 import com.uhutu.sportcenter.z.input.ApiChooseMatchInput;
 import com.uhutu.sportcenter.z.input.ApiFriendsNearbyInput;
 import com.uhutu.sportcenter.z.input.ApiLiveInfoInput;
+import com.uhutu.sportcenter.z.input.ApiLiveSpecialEffectsInput;
 import com.uhutu.sportcenter.z.result.ApiChooseMatchResult;
 import com.uhutu.sportcenter.z.result.ApiFriendsNearbyResult;
 import com.uhutu.sportcenter.z.result.ApiLiveInfoResult;
+import com.uhutu.sportcenter.z.result.ApiLiveSpecialEffectsResult;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -139,6 +141,14 @@ public class LiveVideoController {
 	@ApiOperation(value = "附近的人", notes = "附近的人")
 	public ApiFriendsNearbyResult friendsNearby(@RequestBody ApiFriendsNearbyInput input, HttpServletRequest request) {
 		return apiFactory.getApiFriendsNearby().api(input);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/liveSpecialEffects", method = RequestMethod.POST)
+	@ApiOperation(value = "直播特效", notes = "直播特效")
+	private ApiLiveSpecialEffectsResult liveSpecialEffects(@RequestBody ApiLiveSpecialEffectsInput input,
+			HttpServletRequest request) {
+		return apiFactory.getApiLiveSpecialEffects().api(input);
 	}
 
 	// @ResponseBody

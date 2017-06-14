@@ -12,6 +12,17 @@ public class ApiSpecialEffectRecordInput extends RootApiInput {
 	@ApiModelProperty(name = "特效编号", required = true, value = "特效编号", example = "tx001")
 	private String seCode;
 
+	@ApiModelProperty(name = "使用数量")
+	private long num;
+
+	public long getNum() {
+		return num;
+	}
+
+	public void setNum(long num) {
+		this.num = num;
+	}
+
 	public String getCode() {
 		return code;
 	}

@@ -18,6 +18,9 @@ import com.uhutu.zoodata.dbbase.BaseEntity;
 @Entity
 public class CnLiveSpecialEffectFreeLog extends BaseEntity {
 
+	@ZooData(name = "用户编号", require = "1", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
+	private String userCode;
+	
 	@ZooData(name = "特效编号", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
 	private String seCode;
 
@@ -38,6 +41,14 @@ public class CnLiveSpecialEffectFreeLog extends BaseEntity {
 
 	public void setSeCode(String seCode) {
 		this.seCode = seCode;
+	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
 	}
 
 	public String getZsType() {

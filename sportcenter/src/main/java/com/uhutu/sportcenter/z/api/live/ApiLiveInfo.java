@@ -1,6 +1,8 @@
 package com.uhutu.sportcenter.z.api.live;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -71,8 +73,14 @@ public class ApiLiveInfo extends RootApiToken<ApiLiveInfoInput, ApiLiveInfoResul
 						result.setMatchs(matchs);
 					}
 				}
-				result.setLse(SpecialEffectSupport.Instance().getSpecialEffects(input.getCode(), new UserCallFactory()
-						.upUserCodeByAuthToken(input.getZoo().getToken(), DefineUser.Login_System_Default)));
+				ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+				cachedThreadPool.execute(new Runnable() {
+					public void run() {
+						SpecialEffectSupport.Instance().saveSpecialEffect(null, input.getCode(), new UserCallFactory()
+								.upUserCodeByAuthToken(input.getZoo().getToken(), DefineUser.Login_System_Default));
+					}
+				});
+				cachedThreadPool.shutdown();
 			}
 
 		}

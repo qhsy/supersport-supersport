@@ -23,7 +23,7 @@ public class CnLiveUserSpecialEffect extends BaseEntity {
 	@ZooData(name = "特效编号", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
 	private String seCode;
 
-	@ZooData(name = "直播间编号&阵营编号", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
+	@ZooData(name = "直播间编号", sort = { DefineWebPage.Page_Add + "=0", DefineWebPage.Page_Edit + "=0" })
 	private String param;
 
 	@ZooData(name = "数量", element = DefineWebElement.Input, verify = { DefineWebVerify.Base_Number }, sort = {

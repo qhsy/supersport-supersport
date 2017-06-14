@@ -99,6 +99,7 @@ import com.uhutu.sportcenter.z.api.live.ApiLiveInfo;
 import com.uhutu.sportcenter.z.api.live.ApiLiveInfoList;
 import com.uhutu.sportcenter.z.api.live.ApiLiveMsg;
 import com.uhutu.sportcenter.z.api.live.ApiLiveNotify;
+import com.uhutu.sportcenter.z.api.live.ApiLiveSpecialEffects;
 import com.uhutu.sportcenter.z.api.live.ApiLiveVideoHeart;
 import com.uhutu.sportcenter.z.api.live.ApiOperLiveInfo;
 import com.uhutu.sportcenter.z.api.live.ApiStartLive;
@@ -681,7 +682,13 @@ public class ApiFactory {
 	@Autowired
 	private ApiSpecialEffectRecord apiSpecialEffectRecord;
 	
+	@Autowired
+	private ApiLiveSpecialEffects apiLiveSpecialEffects;
 	
+	public ApiLiveSpecialEffects getApiLiveSpecialEffects() {
+		return apiLiveSpecialEffects;
+	}
+
 	public ApiSpecialEffectRecord getApiSpecialEffectRecord() {
 		return apiSpecialEffectRecord;
 	}

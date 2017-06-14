@@ -27,11 +27,13 @@ public class ApiSavePoints extends RootApiToken<ApiSavePointsInput, ApiSavePoint
 	protected ApiSavePointsResult process(ApiSavePointsInput input) {
 		ApiSavePointsResult result = new ApiSavePointsResult();
 		MResult rr = new MResult();
-		if (JFType.equals(input.getCode())) {// 积分
+		if (JFType.equals(input.getType())) {// 积分
 			rr = PointSupport.savePointFlow(input.getType(), input.getCode(), TopUserFactory.upUserCallFactory()
 					.upUserCodeByAuthToken(input.getZoo().getToken(), DefineUser.Login_System_Default));
 		} else {// 特效
-			SpecialEffectSupport.Instance().saveSpecialEffect(input.getType(), input.getCode());
+			SpecialEffectSupport.Instance().saveSpecialEffect(input.getType(), input.getCode(),
+					TopUserFactory.upUserCallFactory().upUserCodeByAuthToken(input.getZoo().getToken(),
+							DefineUser.Login_System_Default));
 		}
 		if (!rr.upFlagTrue()) {
 			result.inError(rr.getStatus());
