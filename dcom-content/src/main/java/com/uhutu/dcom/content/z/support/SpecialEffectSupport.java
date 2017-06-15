@@ -73,7 +73,7 @@ public class SpecialEffectSupport {
 			CnLiveInfo info = JdbcHelper.queryOne(CnLiveInfo.class, "code", code);
 			if (info != null) {
 				List<CnLiveSpecialEffectRel> rels = JdbcHelper.queryForList(CnLiveSpecialEffectRel.class, "", "",
-						"num>0 and code=:code and game_code in (select code from cn_live_special_effect where status=:status)",
+						"code=:code and game_code in (select code from cn_live_special_effect where status=:status)",
 						MapHelper.initMap("code", code, "status", "dzsd4107100110200001"));
 				insertTemporarySpecialEffect(rels, code, userCode);
 			}
@@ -188,7 +188,7 @@ public class SpecialEffectSupport {
 				}
 			}
 		}
-		return null;
+		return result;
 	}
 
 	/**
