@@ -11,14 +11,23 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class CnLiveMatchLogForApi extends BaseEntity {
 
-	@ApiModelProperty(name = "直播名称")
+	@ApiModelProperty(value = "直播名称")
 	private String code;
 
-	@ApiModelProperty(name = "球队名称")
+	@ApiModelProperty(value = "球队名称")
 	private String gameCode;
 
-	@ApiModelProperty(name = "用户昵称")
+	@ApiModelProperty(value = "用户编号")
 	private String userCode;
+	
+	@ApiModelProperty(value="用户sig信息")
+	private String sig;
+	
+	@ApiModelProperty(value="用户昵称")
+	private String nickName;
+	
+	@ApiModelProperty(value="用户头像")
+	private String headUrl;
 
 	@ApiModelProperty(value = "经度")
 	private double longitude;
@@ -35,6 +44,30 @@ public class CnLiveMatchLogForApi extends BaseEntity {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+	
+	public String getSig() {
+		return sig;
+	}
+
+	public void setSig(String sig) {
+		this.sig = sig;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getHeadUrl() {
+		return headUrl;
+	}
+
+	public void setHeadUrl(String headUrl) {
+		this.headUrl = headUrl;
 	}
 
 	public String getGameCode() {

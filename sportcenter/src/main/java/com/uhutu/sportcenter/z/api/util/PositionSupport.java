@@ -10,6 +10,8 @@ import org.springframework.beans.BeanUtils;
 import com.uhutu.dcom.content.z.entity.CnLivePositionInfo;
 import com.uhutu.dcom.content.z.entity.CnLivePositionLog;
 import com.uhutu.dcom.content.z.properties.ConfigDcomContent;
+import com.uhutu.dcom.user.z.entity.UcUserinfoExt;
+import com.uhutu.dcom.user.z.support.TecentSigSupport;
 import com.uhutu.sportcenter.z.entity.CnLiveMatchLogForApi;
 import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.helper.MapHelper;
@@ -98,6 +100,13 @@ public class PositionSupport {
 			for (int i = 0; i < list.size(); i++) {
 				CnLiveMatchLogForApi logForApi = new CnLiveMatchLogForApi();
 				BeanUtils.copyProperties(list.get(i), logForApi);
+				logForApi.setSig(new TecentSigSupport().upSigCodeByUserCode(logForApi.getUserCode()));
+				UcUserinfoExt userinfoExt = JdbcHelper.queryOne(UcUserinfoExt.class, "userCode",
+						logForApi.getUserCode());
+				if (userinfoExt != null) {
+					logForApi.setNickName(userinfoExt.getNickName());
+					logForApi.setHeadUrl(userinfoExt.getAboutHead());
+				}
 				logForApi.setDistance(distance(lon, lat, logForApi.getLongitude(), logForApi.getLatitude()));
 			}
 		}
