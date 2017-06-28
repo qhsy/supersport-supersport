@@ -17,7 +17,6 @@ jar {
 
 dependencies {
 	//compile project(':zoozero'){version=zooInitVersion;group=zooInitGroupId}
-	compile group: 'jave', name: 'jave', version: '1.0.2'
 	compile group: zooInitGroupId, name: 'zoozero', version: zooInitVersion, changing: true
 	compile project(':dcom-answer'){version=zooInitVersion;group=zooInitGroupId}
 	compile project(':dcom-component'){version=zooInitVersion;group=zooInitGroupId}
