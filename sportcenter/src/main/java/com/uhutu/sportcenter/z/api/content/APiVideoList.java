@@ -13,6 +13,7 @@ import com.uhutu.dcom.component.z.page.QueryConditions;
 import com.uhutu.dcom.component.z.util.EmojiUtil;
 import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
 import com.uhutu.dcom.content.z.service.ContentServiceFactory;
+import com.uhutu.dcom.content.z.support.DurationSupport;
 import com.uhutu.dcom.remark.z.enums.RemarkEnum;
 import com.uhutu.dcom.remark.z.service.ContentRemarkServiceFactory;
 import com.uhutu.sportcenter.z.api.util.ContentComponent;
@@ -75,6 +76,9 @@ public class APiVideoList extends RootApiForMember<APiVideoListInput, APiVideoLi
 				String title = sportingMoment.getTitle();
 				title = StringUtils.isEmpty(title) ? "" : EmojiUtil.emojiRecovery(title);
 				sportingMoment.setTitle(title);
+				if(sportingMoment.getDuration()==0){
+					sportingMoment.setDuration(new DurationSupport().getDuration(contentBasicInfo.getZa(), contentBasicInfo.getVideoUrl()));
+				}
 				sports.add(sportingMoment);
 			}
 		}

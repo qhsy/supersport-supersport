@@ -1,71 +1,146 @@
 package com.uhutu.dcom.content.z.support;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.SimpleTimeZone;
+import java.util.UUID;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 
-import it.sauronsoftware.jave.Encoder;
-import it.sauronsoftware.jave.EncoderException;
-import it.sauronsoftware.jave.InputFormatException;
-import it.sauronsoftware.jave.MultimediaInfo;
+import com.uhutu.dcom.content.z.entity.CnContentBasicinfo;
+import com.uhutu.dcom.content.z.support.compent.AliYunResponseInfo;
+import com.uhutu.zoocom.helper.GsonHelper;
+import com.uhutu.zoocom.support.WebClientSupport;
+import com.uhutu.zoodata.z.helper.JdbcHelper;
+import com.uhutu.zooweb.z.properties.ConfigZooWeb;
 
 public class DurationSupport {
-	public long getDuration(String filePath) {
-		MultimediaInfo m = null;
-		File source = null;
-		if (StringUtils.isNotBlank(filePath)) {
-			try {
-				source = getFile(filePath);
-				Encoder encoder = new Encoder();
-				m = encoder.getInfo(source);
-			} catch (InputFormatException e) {
-				e.printStackTrace();
-			} catch (EncoderException e) {
-				e.printStackTrace();
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				if (source != null) {
-					source.delete();
-				}
+
+	private static final String AccessKeyId = ConfigZooWeb.upConfig().getUploadOssAccessKeyId();;
+	private static final String AccessKeySecret = ConfigZooWeb.upConfig().getUploadOssAccessKeySecret();;
+	private final static String ALGORITHM = "HmacSHA1";
+	private static final String ISO8601_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+	private static final String ENCODING = "UTF-8";
+	private static final String requestURL = "http://mts.cn-hangzhou.aliyuncs.com?";
+
+	/**
+	 * 
+	 * @param filePath
+	 * @return
+	 */
+	public long getDuration(String za, String videoUrl) {
+		long duration = 0;
+		if (StringUtils.isNotBlank(videoUrl)) {
+			String response = doRequest(videoUrl);
+			AliYunResponseInfo responseInfo = new AliYunResponseInfo();
+			responseInfo = GsonHelper.fromJson(response, responseInfo);
+			if (responseInfo != null && responseInfo.getMediaList() != null
+					&& responseInfo.getMediaList().getMedia() != null
+					&& !responseInfo.getMediaList().getMedia().isEmpty()) {
+				duration = Math.round(Double.valueOf(responseInfo.getMediaList().getMedia().get(0).getDuration()));
+				updateBasicInfo(za, duration);
 			}
 		}
-		return m == null ? 0 : (m.getDuration() / 1000);
+		return duration;
 	}
 
-	private byte[] readInstream(InputStream inputStream) throws Exception {
-		ByteArrayOutputStream byteArrayOutPutStream = new ByteArrayOutputStream();// 创建ByteArrayOutputStream类
-		byte[] buffer = new byte[1024];// 声明缓存区
-		int length = -1;// 定义读取的默认长度
-		while ((length = inputStream.read(buffer)) != -1) {
-			byteArrayOutPutStream.write(buffer, 0, length);// 把缓存区中的输入到内存中
+	private void updateBasicInfo(String za, long duration) {
+		CnContentBasicinfo basicinfo = new CnContentBasicinfo();
+		basicinfo.setZa(za);
+		basicinfo.setDuration(duration);
+		JdbcHelper.update(basicinfo, "duration", "za");
+	}
+
+	private String doRequest(String fileUrl) {
+		String result = null;
+		final String HTTP_METHOD = "GET";
+		Map<String, String> parameters = new HashMap<String, String>();
+		// 加入请求参数
+		parameters.put("Action", "QueryMediaListByURL");
+		parameters.put("Version", "2014-06-18");
+		parameters.put("AccessKeyId", AccessKeyId);
+		parameters.put("TimeStamp", formatIso8601Date(new Date()));
+		parameters.put("SignatureMethod", "HMAC-SHA1");
+		parameters.put("SignatureVersion", "1.0");
+		parameters.put("SignatureNonce", UUID.randomUUID().toString());
+		parameters.put("Format", "json");
+		parameters.put("FileURLs", fileUrl);
+		parameters.put("IncludePlayList", "true");
+		// 对参数进行排序
+		String[] sortedKeys = parameters.keySet().toArray(new String[] {});
+		Arrays.sort(sortedKeys);
+		final String SEPARATOR = "&";
+		// 生成stringToSign字符串
+		StringBuilder stringToSign = new StringBuilder();
+		stringToSign.append(HTTP_METHOD).append(SEPARATOR);
+		stringToSign.append(percentEncode("/")).append(SEPARATOR);
+		StringBuilder canonicalizedQueryString = new StringBuilder();
+		for (String key : sortedKeys) {
+			// 这里注意对key和value进行编码
+			canonicalizedQueryString.append("&").append(percentEncode(key)).append("=")
+					.append(percentEncode(parameters.get(key)));
 		}
-		;
-		byteArrayOutPutStream.close();// 关闭输入流
-		inputStream.close();// 关闭输入流
+		// 这里注意对canonicalizedQueryString进行编码
+		stringToSign.append(percentEncode(canonicalizedQueryString.toString().substring(1)));
 
-		return byteArrayOutPutStream.toByteArray();// 返回这个输入流的字节数组
-	}
+		// 以下是一段计算签名的示例代码
+		String key = AccessKeySecret + "&";
+		byte[] signData = null;
+		try {
+			Mac mac = Mac.getInstance(ALGORITHM);
+			mac.init(new SecretKeySpec(key.getBytes(ENCODING), ALGORITHM));
+			signData = mac.doFinal(stringToSign.toString().getBytes(ENCODING));
 
-	private File getFile(String urlPath) throws Exception {
-		File file = null;
-		URL url = new URL(urlPath);
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		connection.setRequestMethod("GET");
-		connection.setConnectTimeout(6 * 1000);
-		if (connection.getResponseCode() == 200) {
-			InputStream inputStream = connection.getInputStream();
-			byte[] data = readInstream(inputStream);
-			file = new File("linshiwenjian");
-			FileOutputStream outputStream = new FileOutputStream(file);
-			outputStream.write(data);
-			outputStream.close();
+			String signature = new String(Base64.encodeBase64(signData));
+
+			StringBuilder requestUrl = new StringBuilder(requestURL);
+			requestUrl.append(URLEncoder.encode("Signature", ENCODING)).append("=").append(signature);
+			for (Map.Entry<String, String> e : parameters.entrySet()) {
+				requestUrl.append("&").append(percentEncode(e.getKey())).append("=")
+						.append(percentEncode(e.getValue()));
+			}
+			result = WebClientSupport.create().doGet(requestUrl.toString());
+		} catch (InvalidKeyException e) {
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return file;
+		return result;
 	}
+
+	private static String formatIso8601Date(Date date) {
+		SimpleDateFormat df = new SimpleDateFormat(ISO8601_DATE_FORMAT);
+		df.setTimeZone(new SimpleTimeZone(0, "GMT"));
+		return df.format(date);
+	}
+
+	private static String percentEncode(String value) {
+		String result = null;
+		try {
+			result = value != null
+					? URLEncoder.encode(value, ENCODING).replace("+", "%20").replace("*", "%2A").replace("%7E", "~")
+					: null;
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

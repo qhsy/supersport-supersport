@@ -12,6 +12,7 @@ import com.uhutu.dcom.content.z.entity.CnContentItemRel;
 import com.uhutu.dcom.content.z.entity.CnHomeStyle;
 import com.uhutu.dcom.content.z.entity.CnLiveInfo;
 import com.uhutu.dcom.content.z.entity.CnMaterialLibrary;
+import com.uhutu.dcom.content.z.support.DurationSupport;
 import com.uhutu.dcom.remark.z.entity.CnContentRemark;
 import com.uhutu.sportcenter.z.entity.ContentBasicinfoForApi;
 import com.uhutu.sportcenter.z.entity.HomePageModel;
@@ -119,6 +120,9 @@ public class HomePageSupport {
 				infoApi.setFavorFlag(ContentComponent.lightFavor(infoApi.getCode(), token));
 				infoApi.setMakeFlag(ContentComponent.makeFlag(infoApi.getCode(), token));
 				if ("dzsd4107100110030001".equals(infoApi.getContentType())) {// 视频
+					if(infoApi.getDuration()==0){
+						infoApi.setDuration(new DurationSupport().getDuration(info.getZa(), info.getVideoUrl()));
+					}
 					model.getVideos().add(infoApi);
 				} else if ("dzsd4107100110030002".equals(infoApi.getContentType())) {// 直播
 					infoApi.setMakeAble(false);

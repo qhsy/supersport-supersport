@@ -40,11 +40,12 @@ public class CnContentBasicinfo extends BaseEntity {
 	private Date publishTime;
 
 	@ZooData(name = "内容类型", element = DefineWebElement.Select, inc = {
-			DefineWebInc.System_Define + "=dzsd410710011003" },sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Edit + "=0",
-					DefineWebPage.Page_Add + "=0" })
+			DefineWebInc.System_Define + "=dzsd410710011003" }, sort = { DefineWebPage.Page_Query + "=0",
+					DefineWebPage.Page_Edit + "=0", DefineWebPage.Page_Add + "=0" })
 	private String contentType;
 
-	@ZooData(name = "视频地址", require = "1", sort = { DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
+	@ZooData(name = "视频地址", element = DefineWebElement.UploadMediaCloud, require = "1", sort = {
+			DefineWebPage.Page_Query + "=0", DefineWebPage.Page_Grid + "=0" })
 	private String videoUrl;
 
 	public String getCode() {
