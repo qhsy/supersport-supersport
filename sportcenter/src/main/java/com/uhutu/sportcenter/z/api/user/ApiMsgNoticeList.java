@@ -59,7 +59,7 @@ public class ApiMsgNoticeList extends RootApiToken<ApiMsgNoticeListInput, ApiMsg
 			String content =  StringUtils.isEmpty(ucMsgNotice.getContent()) ? "" : EmojiUtil.emojiRecovery(ucMsgNotice.getContent());
 			
 			msgNoticeInfo.setContent(content);
-			
+			msgNoticeInfo.setBusiCode(ucMsgNotice.getCode());
 			result.getMsgNoticeInfos().add(msgNoticeInfo);
 			
 		});
