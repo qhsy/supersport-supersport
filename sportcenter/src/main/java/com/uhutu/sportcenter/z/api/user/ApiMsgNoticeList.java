@@ -18,6 +18,7 @@ import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.MsgNoticeInfo;
 import com.uhutu.sportcenter.z.input.ApiMsgNoticeListInput;
 import com.uhutu.sportcenter.z.result.ApiMsgNoticeListResult;
+import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.root.RootApiToken;
 
 /**
@@ -54,7 +55,7 @@ public class ApiMsgNoticeList extends RootApiToken<ApiMsgNoticeListInput, ApiMsg
 			
 			msgNoticeInfo.setContent(ucMsgNotice.getContent());
 			
-			msgNoticeInfo.setNotifyTime(ucMsgNotice.getNotifyTime());	
+			msgNoticeInfo.setNotifyTime(DateHelper.parseDate(ucMsgNotice.getNotifyTime()));	
 			
 			String content =  StringUtils.isEmpty(ucMsgNotice.getContent()) ? "" : EmojiUtil.emojiRecovery(ucMsgNotice.getContent());
 			

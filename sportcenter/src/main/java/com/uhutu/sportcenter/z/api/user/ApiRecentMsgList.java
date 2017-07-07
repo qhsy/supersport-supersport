@@ -20,6 +20,7 @@ import com.uhutu.sportcenter.z.entity.MsgNoticeInfo;
 import com.uhutu.sportcenter.z.entity.MsgNumInfo;
 import com.uhutu.sportcenter.z.input.ApiRecentMsgListInput;
 import com.uhutu.sportcenter.z.result.ApiRecentMsgListResult;
+import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.helper.MapHelper;
 import com.uhutu.zoocom.root.RootApiToken;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
@@ -71,7 +72,7 @@ public class ApiRecentMsgList extends RootApiToken<ApiRecentMsgListInput, ApiRec
 					
 					msgNoticeInfo.setContent(ucMsgNotice.getContent());
 					
-					msgNoticeInfo.setNotifyTime(ucMsgNotice.getNotifyTime());
+					msgNoticeInfo.setNotifyTime(DateHelper.parseDate(ucMsgNotice.getNotifyTime()));
 					
 					String content =  StringUtils.isEmpty(ucMsgNotice.getContent()) ? "" : EmojiUtil.emojiRecovery(ucMsgNotice.getContent());
 					
@@ -119,7 +120,7 @@ public class ApiRecentMsgList extends RootApiToken<ApiRecentMsgListInput, ApiRec
 				
 				msgNoticeInfo.setContent(ucMsgAnswer.getContent());
 				
-				msgNoticeInfo.setNotifyTime(ucMsgAnswer.getNotifyTime());
+				msgNoticeInfo.setNotifyTime(DateHelper.parseDate(ucMsgAnswer.getNotifyTime()));
 				
 				msgNoticeInfo.setBusiCode(ucMsgAnswer.getBusiCode());
 				

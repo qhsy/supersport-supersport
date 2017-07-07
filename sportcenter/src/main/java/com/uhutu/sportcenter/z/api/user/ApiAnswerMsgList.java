@@ -10,6 +10,7 @@ import com.uhutu.dcom.user.z.service.UserServiceFactory;
 import com.uhutu.sportcenter.z.entity.MsgNoticeInfo;
 import com.uhutu.sportcenter.z.input.ApiAnswerMsgListInput;
 import com.uhutu.sportcenter.z.result.ApiAnswerMsgListResult;
+import com.uhutu.zoocom.helper.DateHelper;
 import com.uhutu.zoocom.root.RootApiToken;
 
 /**
@@ -42,7 +43,7 @@ public class ApiAnswerMsgList extends RootApiToken<ApiAnswerMsgListInput, ApiAns
 			
 			String msgTimeStr = DateFormatUtils.format(msgNotice.getZc(), "yyyy-MM-dd HH:mm:ss");
 			
-			msgNoticeInfo.setNotifyTime(msgTimeStr);
+			msgNoticeInfo.setNotifyTime(DateHelper.parseDate(msgTimeStr));
 			
 			msgNoticeInfo.setBusiCode(msgNotice.getBusiCode());
 			
