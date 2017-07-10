@@ -15,6 +15,7 @@ import com.uhutu.dcom.user.z.support.TecentSigSupport;
 import com.uhutu.sportcenter.z.entity.CnLiveMatchLogForApi;
 import com.uhutu.zoocom.define.DefineUser;
 import com.uhutu.zoocom.helper.MapHelper;
+import com.uhutu.zoocom.model.MDataMap;
 import com.uhutu.zoodata.z.helper.JdbcHelper;
 import com.uhutu.zooweb.user.UserCallFactory;
 
@@ -88,14 +89,19 @@ public class PositionSupport {
 		double minLng = around[1];
 		double maxLat = around[2];
 		double maxLng = around[3];
+		MDataMap param = new MDataMap();
+		param.put("lat", String.valueOf(lat));
+		param.put("lon", String.valueOf(lon));
+		param.put("minLng", String.valueOf(minLng));
+		param.put("maxLng", String.valueOf(maxLng));
+		param.put("minLat", String.valueOf(minLat));
+		param.put("maxLat", String.valueOf(maxLat));
+		param.put("userCode", userCode);
+		param.put("code", code);
 		List<CnLivePositionInfo> list = JdbcHelper.queryForList(CnLivePositionInfo.class, "",
-				"ACOS(SIN((" + lat + " * 3.1415) / 180 ) * SIN((latitude * 3.1415) / 180 )+COS((" + lat
-						+ " * 3.1415) / 180 ) * COS((latitude * 3.1415) / 180 ) *COS((" + lon
-						+ " * 3.1415) / 180 - (longitude * 3.1415) / 180 ) )* 6380 asc",
-				"latitude <> 0 and longitude > '" + minLng + "' and longitude < '" + maxLng + "' and latitude > '"
-						+ minLat + "' and latitude < '" + maxLat + "' and user_code <> '" + userCode + "' and code='"
-						+ code + "'",
-				null, (page - 1) * 10, 10);
+				"ACOS(SIN((:lat * 3.1415) / 180 ) * SIN((latitude * 3.1415) / 180 )+COS((:lat * 3.1415) / 180 ) * COS((latitude * 3.1415) / 180 ) *COS((:lon * 3.1415) / 180 - (longitude * 3.1415) / 180 ) )* 6380 asc",
+				"latitude <> 0 and longitude > :minLng and longitude < :maxLng and latitude > :minLat and latitude < :maxLat and user_code <> :userCode and code=:code",
+				param, (page - 1) * 10, 10);
 		if (list != null && !list.isEmpty()) {
 			for (int i = 0; i < list.size(); i++) {
 				CnLiveMatchLogForApi logForApi = new CnLiveMatchLogForApi();
@@ -108,6 +114,7 @@ public class PositionSupport {
 					logForApi.setHeadUrl(userinfoExt.getAboutHead());
 				}
 				logForApi.setDistance(distance(lon, lat, logForApi.getLongitude(), logForApi.getLatitude()));
+				result.add(logForApi);
 			}
 		}
 		return result;
@@ -239,11 +246,11 @@ public class PositionSupport {
 		int num = 0;
 		if (type == TypeSame) {
 			num = JdbcHelper.count(CnLivePositionInfo.class, "code=:code and game_code=:gameCode",
-					MapHelper.initMap("code", code, "gemaCode", gameCode));
+					MapHelper.initMap("code", code, "gameCode", gameCode));
 		}
 		if (type == TypeSame) {
 			num = JdbcHelper.count(CnLivePositionInfo.class, "code=:code and game_code!=:gameCode",
-					MapHelper.initMap("code", code, "gemaCode", gameCode));
+					MapHelper.initMap("code", code, "gameCode", gameCode));
 		}
 		return num;
 	}
